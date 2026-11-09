@@ -24,6 +24,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_step4_finish.js"></script>
 <script src="./overrides/front_pass8_glazing.js"></script>
 <script src="./overrides/front_pass9_gf_glazing.js"></script>
+<script src="./overrides/front_pass11_slats.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -83,6 +84,7 @@ if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
   MAT.interior_stone = M_({color:0xb79d7c, roughness:.8, emissive:0x7a5530, emissiveIntensity:.45});
   MAT.interior_ceiling = M_({color:0xffe6c0, emissive:0xffc98a, emissiveIntensity:1.1});
   MAT.interior_floor = M_({color:0x4a3a2c, roughness:.4, emissive:0x3a2614, emissiveIntensity:.3});
+  MAT.slat_timber = M_({color:0xa8784a, roughness:.6, emissive:0x6a3e16, emissiveIntensity:.35});   // front pass 11 warm lit timber slats
   MAT.door_timber = M_({color:0x5a3a22, roughness:.55, emissive:0x2a160a, emissiveIntensity:.25});   // front pass 10 timber entry door
   MAT.interior_lobby = M_({color:0xd9b98c, roughness:.7, emissive:0xe0a868, emissiveIntensity:.9});   // front pass 9 lit GF lobby
 }

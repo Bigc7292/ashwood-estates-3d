@@ -26,6 +26,7 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - Step 5: none in source (Q1).
 - Step 6 pass 8 (this commit): glazing. Dark clear glass with warm-lit rooms behind (timber back wall and ceiling glow behind the FF slat screen; lit lobby behind the GF entry glass). Interior depths and finishes are display assumptions. Critic (bbe1b36): closer, FAIL; next fix the GF glazing.
 - Step 6 loop 2 pass 9 (this commit): GF glazing band widened to the entry recess walls (x 7.50-10.70, M27) with two bronze mullions and a transom; brown panel replaced by a lit lobby. Also added: step 7 motion hook (window.__frame) in front_pass.html, inactive in stills and walk mode. Critic (f1cd5ad): look PASS, but width breaks CAD (M16 rule); restore CAD width.
-- Step 6 loop 2 pass 10 (this commit): GF glass back to the CAD cue x 7.50-9.59; x 9.59-10.70 is a dark timber entry door (image-read, display assumption); lit lobby kept. M27 resolved (CAD width kept). Awaiting critic.
+- Step 6 loop 2 pass 10 (this commit): GF glass back to the CAD cue x 7.50-9.59; x 9.59-10.70 is a dark timber entry door (image-read, display assumption); lit lobby kept. M27 resolved (CAD width kept). Critic (8aba267): GF glass PASS; next fix the FF slat screen.
+- Step 6 loop 2 pass 11 (this commit): FF slat screen recoloured to warm lit timber and the staggered back layer dropped, so the lit rooms show between the slats. Extent unchanged. Awaiting critic.
 
-Current position: step 6 (critique), loop 1. Step 6 loop 2, pass 10 (GF glass at CAD width) awaiting critic.
+Current position: step 6 (critique), loop 1. Step 6 loop 2, pass 11 (slat screen tone) awaiting critic.
