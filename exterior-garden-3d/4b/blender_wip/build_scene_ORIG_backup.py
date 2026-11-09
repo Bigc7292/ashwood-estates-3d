@@ -166,7 +166,7 @@ if LV >= ORDER.index('space'):
     for l in [b for b in M['boxes'] if b['cat']=='lawn']:
         box(l['id'].upper()+'_bed', l['x0'],l['x1'],l['z0'],l['z1'], 0,0.05,'lawn',C,'CAD V4 Source landscape rect')
     # raised rear deck at GF FFL with pool cut (pool 9.50 x 2.40 CAD); coping 0.30
-    cp = 0.30; DZ0 = PZ0-cp
+    cp = 0.42; DZ0 = PZ0-cp   # Q4 F1: coping 0.30 -> 0.42 (reference stone edge reads heavier; assumed, not CAD)
     box('DECK_rear_strip', 2.9,15.9, PZ1+cp,GF_Z0, 0,GF0,'deck',C,'image: raised deck; CAD z between pool & facade')
     box('DECK_left_of_pool', 2.9,PX0-cp, DZ0,PZ1+cp, 0,GF0,'deck',C,'image deck; CAD pool x')
     box('DECK_terrace_right', PX1+cp,15.9, PZ0+0.0,PZ1+cp, 0,GF0,'deck',C,'CAD TERRACE label zone; image lounge deck')
@@ -227,7 +227,7 @@ def palm(name, x, z, ht, src):
     top=(x+0.35, -z, ht); fv=[]; ff=[]
     # Fronds = rachis + individual pinnate leaflets as real geometry (was a flat strip with an alpha-stripe texture,
     # which rendered as see-through 'cards'). Two tiers: upper arching fronds and lower drooping ones (date palm per p25/p26).
-    nf=34
+    nf=52   # Q4 F1: 34 -> 52 fronds, denser crown to match the reference palms (appearance, not CAD)
     for k in range(nf):
         tier = k % 2
         a=2*math.pi*k/nf+random.uniform(-.12,.12); L=random.uniform(2.7,3.5)*(0.9 if tier else 1.0)
@@ -344,6 +344,11 @@ if LV >= ORDER.index('models'):
     for i in range(26):
         x=7.35+i*0.143
         box(f'FF_slat_{i}', x,x+0.06, z+0.55,z+0.65, GF1+0.2,FF1,'bronze',C,'image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW')
+    # Q4 F1: second, offset slat layer behind the first, so the screen reads layered (reference) not as one flat band.
+    # Depth offset 0.25 m; slats are 0.06 m wide and placed at half pitch. Still an appearance reading, not CAD.
+    for i in range(25):
+        x=7.42+i*0.143
+        box(f'FF_slat_back_{i}', x,x+0.06, z+0.30,z+0.38, GF1+0.35,FF1-0.1,'bronze',C,'Q4 F1 layered screen: second slat layer (appearance from image p25/ELEV-FRONT)')
     for i in range(27):
         x=3.45+i*0.143
         box(f'FF_slat_L{i}', x,x+0.06, FF_ZF+0.10,FF_ZF+0.18, FF0,FF1,'bronze',C,'image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)')
