@@ -5,7 +5,7 @@
 (window.MODEL_OVERRIDES = window.MODEL_OVERRIDES || {remove:[], add:[]});
 window.MODEL_OVERRIDES.remove_plain_trees = true;   // keep courtyard trees only
 window.MODEL_OVERRIDES.palms = [
-  {id:'palm-left-main',  x:0.0,  z:24.0, trunk:7.0, crown:3.6, lean:[ 0.04,0.00], status:'pass3_image_read_assumption'},
-  {id:'palm-left-back',  x:-1.6, z:21.5, trunk:6.0, crown:3.0, lean:[-0.05,0.02], status:'pass3_image_read_assumption'},
-  {id:'palm-right',      x:18.4, z:26.0, trunk:7.4, crown:3.6, lean:[-0.03,0.00], status:'pass3_image_read_assumption'}
+  {id:'palm-left-main',  x:0.0,  z:24.0, trunk:7.6, crown:3.8, lean:[ 0.04,0.00], status:'pass3_image_read_assumption'},
+  {id:'palm-left-back',  x:-1.6, z:21.5, trunk:6.5, crown:3.2, lean:[-0.05,0.02], status:'pass3_image_read_assumption'},
+  {id:'palm-right',      x:18.4, z:26.0, trunk:7.9, crown:3.8, lean:[-0.03,0.00], status:'pass3_image_read_assumption'}
 ];
