@@ -1,0 +1,1 @@
+{"replace": [["if (!Q.get('view')) {", "if (false) {"], ["if(Q.get('view')) return;", "if(true){ if(window.__OC) window.__OC.update(); return; }"]], "append": "window.__OC = new OrbitControls(cam, renderer.domElement); window.__OC.target.set(...VIEWS.tgt); window.__OC.enableDamping = true; window.__OC.maxPolarAngle = Math.PI*0.495; window.__OC.update();"}
