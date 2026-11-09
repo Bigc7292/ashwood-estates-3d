@@ -1,0 +1,21 @@
+const path=require('path'),fs=require('fs'),http=require('http');
+const {chromium}=require('/tmp/pw/node_modules/playwright-core');
+const ROOT='/workspace/pool-critic-ext/exterior-garden-3d/4b', OUT='/tmp/poolcrit';
+const view=fs.readFileSync(ROOT+'/walk_exterior_wip/views/garden/cams/pool.json','utf8').trim();
+const srv=http.createServer((q,r)=>{const p=path.join(ROOT,decodeURIComponent(q.url.split('?')[0]));fs.readFile(p,(e,d)=>{if(e){r.writeHead(404);return r.end();}r.writeHead(200,{'Content-Type':{'.html':'text/html','.js':'text/javascript','.json':'application/json','.png':'image/png','.jpg':'image/jpeg'}[path.extname(p)]||'application/octet-stream'});r.end(d);});});
+srv.listen(0,async()=>{const port=srv.address().port;
+ const b=await chromium.launch({args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});
+ const pg=await b.newPage({viewport:{width:1280,height:720}});
+ pg.on('pageerror',e=>console.log('PAGEERR',String(e)));pg.on('requestfailed',q=>console.log('REQFAIL',q.url()));
+ await pg.goto(`http://127.0.0.1:${port}/walk_exterior_wip/rear_pass.html?view=${encodeURIComponent(view)}`);
+ await pg.waitForFunction(()=>document.title==='READY',null,{timeout:600000});
+ console.log('renderer', await pg.evaluate(()=>{const c=document.querySelector('canvas');const gl=c.getContext('webgl2');const d=gl&&gl.getExtension('WEBGL_debug_renderer_info');return d?gl.getParameter(d.UNMASKED_RENDERER_WEBGL):'?'}));
+ await pg.waitForTimeout(1500); await pg.screenshot({path:OUT+'/still_a.png'});
+ await pg.waitForTimeout(1000); await pg.screenshot({path:OUT+'/still_b.png'});
+ // live wall-clock: re-render twice 1 s apart without __T (Water2 uses its own clock)
+ await pg.evaluate(()=>{window.__R=()=>{};}); 
+ const live=async n=>{await pg.evaluate(()=>{delete window.__T; window.__frame(0,0); delete window.__T;}); await pg.evaluate(()=>window.__frame(0,0)); };
+ await pg.evaluate(()=>window.__frame(5,0)); await pg.screenshot({path:OUT+'/frame_t5.png'});
+ await pg.evaluate(()=>window.__frame(6,0)); await pg.screenshot({path:OUT+'/frame_t6.png'});
+ console.log('waters',await pg.evaluate(()=>JSON.stringify((window.__WATERS||[]).map(w=>[w.material.uniforms.config.value.toArray(),w.material.uniforms.reflectivity.value]))));
+ await b.close();srv.close();});
