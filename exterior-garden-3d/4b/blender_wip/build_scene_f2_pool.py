@@ -121,7 +121,7 @@ if LV == 0:
 if LV >= ORDER.index('boxes'):
     for k,v in dict(stone='stone',stone_rf='stone',glass='glass',water='water',lawn='lawn',hedge='foliage',paving='paving',deck='paving',
                     bronze='bronze',soffit='soffit',coping='paving',pooltile='water',leaf='foliage',palmleaf='foliage',bark='bronze',render='soffit',
-                    led='soffit',ground='paving',balglass='glass',furniture='placeholder',cushion='soffit',context_lawn='lawn',planter_soil='foliage',interior='glass',
+                    led='soffit',ground='paving',balglass='glass',furniture='placeholder',cushion='soffit',context_lawn='lawn',poolglow='water',planter_soil='foliage',interior='glass',
                     glass_clear='glass',pool_stone='stone',grassblade='lawn',grasstall='lawn',leaf_olive='foliage',leaf_frangi='foliage',
                     leaf_hedge_a='foliage',leaf_hedge_b='foliage',leaf_hedge_c='foliage',int_floor='paving',int_glow='soffit',int_lamp='soffit',
                     int_fabric='soffit',int_rug='paving',int_fire='soffit',int_art='bronze',wood='bronze',sheer='soffit',leaf_pine='foliage').items(): MATCLASS[k]=v
@@ -155,7 +155,9 @@ if LV >= ORDER.index('boxes'):
     box('RF_MEP_screen_front', 3.3,7.44, 22.3,22.5, RF0,RF0+1.5,'stone_rf',C,'RF plan MEP 3.80 x 15.70 (open roof zone); 1.5 m screen wall height assumed')
     box('RF_MEP_screen_left', 3.3,3.5, 9.95,22.5, RF0,RF0+1.5,'stone_rf',C,'RF plan MEP zone edge; screen height assumed')
     box('RF_lift', 10.6,12.3, 9.95,11.9, RF0,RF1,'stone_rf',C,'RF plan lift (NTS)')
-    box('RF_canopy', 3.3,12.0, 3.4,10.3, RF1,RF1+H['canopy'],'soffit',C,'image ELEV-REAR/ROOF-TERRACE + p26: floating canopy; extent read from image', bevel=0.01)
+    # critic batch (c), 2026-11-10: the canopy floated a full storey above the FF roof; ELEV-REAR shows the main roof as a thin slab directly over
+    # the FF with only a small set-back RF box above. Dropped one storey: it now sits on the FF roof (RF0) as the cantilevered roof edge.
+    box('RF_canopy', 3.3,12.0, 3.4,10.3, RF0,RF0+H['canopy'],'soffit',C,'image ELEV-REAR/ROOF-TERRACE + p26: floating canopy; extent read from image', bevel=0.01)
     # render-sourced: carport + stone pier + tall stone fin
     cx0,cx1,cz0,cz1 = CARPORT
     box('CARPORT_canopy (render-sourced, not on plan)', cx0+0.05,cx1, GF_FRONT_LEFT_Z,cz1-0.3, H['carport_top']-H['carport_th'],H['carport_top'],'soffit',C,'RENDER-SOURCED p25 + EXT-4b-ELEV-FRONT/GARDEN-FRONT; footprint = CAD parking zone', bevel=0.01)
@@ -176,28 +178,37 @@ if LV >= ORDER.index('space'):
         box(f'GROUND_paving_plot_{i}', a,b,c,d, -0.10,0.0,'paving',C,'CAD site hardscape, cut around the pool basin')
     box('GROUND_street_verge', -6,SITE_W+6, SITE_D,SITE_D+6, -0.15,-0.02,'paving',C,'image ELEV-FRONT street edge (context, outside plot)')
     for i,(a,b,c,d) in enumerate([(-6,SITE_W+6,-30,PZ0-_cp),(-6,PX0-_cp,PZ0-_cp,0),(PX1+_cp,SITE_W+6,PZ0-_cp,0)]):   # lawn flush with the coping on the far side (EXT-4b-POOL)
-        box(f'CONTEXT_lawn_beyond_plot_{i} (NOT PLOT)', a,b,c,d, -0.12,GF0-0.02,'context_lawn',C,'image EXT-4b-POOL/p26: lawn flush with pool terrace; off-plot context (M30)')
+        box(f'CONTEXT_lawn_beyond_plot_{i} (NOT PLOT)', a,b,c,d, -0.12,-0.01,'context_lawn',C,'image p26/EXT-4b-POOL: lawn at grade, basin face ~0.45 m above it (critic 2026-11-10 point 3); off-plot context (M30)')
     for l in [b for b in M['boxes'] if b['cat']=='lawn']:
         box(l['id'].upper()+'_bed', l['x0'],l['x1'],l['z0'],l['z1'], 0,0.05,'lawn',C,'CAD V4 Source landscape rect')
     # raised rear deck at GF FFL with pool cut (pool 9.50 x 2.40 CAD); coping 0.30
     cp = 0.30; DZ0 = PZ0-cp   # pool pass: thin coping 0.30 (CAD pool-coping width)   # Q4 F1: coping 0.30 -> 0.42 (reference stone edge reads heavier; assumed, not CAD)
     box('DECK_rear_strip', 2.9,15.9, PZ1+cp,GF_Z0, 0,GF0,'deck',C,'image: raised deck; CAD z between pool & facade')
-    box('DECK_left_of_pool', 2.9,PX0-cp, 0,PZ1+cp, 0,GF0,'deck',C,'image deck (pool ends), inside plot')
-    box('DECK_terrace_right', PX1+cp,15.9, 0,PZ1+cp, 0,GF0,'deck',C,'image deck (pool ends), inside plot')
+    box('DECK_left_of_pool', 2.9,PX0-cp, DZ0,PZ1+cp, 0,GF0,'deck',C,'image deck (pool ends), inside plot')
+    box('DECK_terrace_right', PX1+cp,15.9, DZ0,PZ1+cp, 0,GF0,'deck',C,'image deck (pool ends), inside plot')
     # WIP realism (p26): the raised pool box reads as a travertine FACE under a thicker, slightly overhanging coping cap
     # (shadow line), with the water brimming just under the cap. Outline/position of pool + coping unchanged (CAD).
     CAP0 = GF0-0.035   # pool pass: coping is a thin 35 mm cap flush with the deck (no raised box face)
     for nm,(a,b,c,d) in dict(n=(PX0-cp,PX1+cp,DZ0,PZ0), s=(PX0-cp,PX1+cp,PZ1,PZ1+cp), w=(PX0-cp,PX0,PZ0,PZ1), e=(PX1,PX1+cp,PZ0,PZ1)).items():
         box(f'POOL_coping_{nm}', a,b,c,d, -1.2,CAP0,'pool_stone',C,'raised pool box face per p26/ELEV-REAR (travertine); coping width assumed 0.30', bevel=0.005)
         oh = (0,0,0,0)
-        box(f'POOL_coping_cap_{nm}', a+oh[0],b+oh[1],c+oh[2],d+oh[3], CAP0,GF0+0.003,'coping',C,'coping cap 0.11 thick, 35 mm overhang (shadow line) per p26 - image-read', bevel=0.008)
+        box(f'POOL_coping_cap_{nm}', a+oh[0],b+oh[1],c+oh[2],d+oh[3], CAP0,GF0+0.003,'pool_stone',C,'coping cap 0.11 thick, 35 mm overhang (shadow line) per p26 - image-read', bevel=0.008)
     box('POOL_floor', PX0,PX1, PZ0,PZ1, -1.25,-1.2,'pooltile',C,'depth NOT in source (display 1.6 m)')
     for nm,(a,b,c,d) in dict(n=(PX0,PX1,PZ0,PZ0+0.02), s=(PX0,PX1,PZ1-0.02,PZ1), w=(PX0,PX0+0.02,PZ0,PZ1), e=(PX1-0.02,PX1,PZ0,PZ1)).items():
         box(f'POOL_wall_{nm}', a,b,c,d, -1.2,CAP0+0.005,'pooltile',C,'pool shell display')
     WL = GF0-0.03   # pool pass: water 3 cm under the flush coping top   # water level just under the cap (was 0.09 below the coping top -> pool read as an empty slab)
-    wo = add_mesh('POOL_water (CAD 9.50 x 2.40)', [(PX0,-PZ1,WL),(PX1,-PZ1,WL),(PX1,-PZ0,WL),(PX0,-PZ0,WL)], [(0,1,2,3)], 'water', C, 'CAD 9.50 x 2.40')
+    wo = add_mesh('POOL_water (8.40 x 2.80, image overrides CAD per Colin, M29)', [(PX0,-PZ1,WL),(PX1,-PZ1,WL),(PX1,-PZ0,WL),(PX0,-PZ0,WL)], [(0,1,2,3)], 'water', C, 'CAD 9.50 x 2.40')
+    wo = wo if wo is not None else bpy.data.objects.get('POOL_water (8.40 x 2.80, image overrides CAD per Colin, M29)')
+    if wo is not None: wo.visible_shadow = False   # pool pass: water casts no shadow, so sunlight reaches the light tiled basin (Cycles caustics off)
+    for nm,(a,b,c,d) in dict(n=(PX0,PX1,PZ0,PZ0+0.012), s=(PX0,PX1,PZ1-0.012,PZ1), w=(PX0,PX0+0.012,PZ0,PZ1), e=(PX1-0.012,PX1,PZ0,PZ1)).items():
+        box(f'POOL_waterline_glow_{nm}', a,b,c,d, WL-0.07,WL-0.04,'poolglow',C,'critic T6/B: aqua waterline glow under the coping (p26)')
+    # CAD loungers + side table (V4 GF TERRACE symbols at the pool's east end, x ~13-15.8; z moved with the pool, M29/M30). Sizes assumed.
+    for i,x in enumerate((13.05, 14.30)):
+        box(f'TERRACE_lounger_{i}', x,x+0.70, 1.6,3.6, GF0,GF0+0.32,'cushion',C,'CAD V4 GF terrace lounger symbol (illustrative)', bevel=0.04)
+        box(f'TERRACE_lounger_back_{i}', x,x+0.70, 1.6,2.1, GF0+0.32,GF0+0.62,'cushion',C,'CAD symbol; back rest assumption', bevel=0.04)
+    box('TERRACE_side_table', 13.85,14.20, 2.0,2.35, GF0,GF0+0.45,'furniture',C,'CAD V4 GF terrace side table symbol')
     # steps from deck down to lawn (image ELEV-REAR: wide steps at plan-right end)
-    for i in range(0):   # pool pass: steps removed (lawn now flush; image shows no step block at the pool)
+    for i in range(3):   # steps from the raised terrace down to the lawn (critic T5 / p26 / EXT-4b-POOL)
         box(f'DECK_step_{i}', PX1+cp,15.9, PZ0-0.0-(i+1)*0.32, PZ0-i*0.32, 0, GF0-(i+1)*0.15+0.15 - 0.15, 'deck', C, 'image ELEV-REAR/p26 steps (3 risers 0.15 read from image)')
     # courtyard: water feature + planter island at GF FFL
     isl = M['boxes'][[b['id'] for b in M['boxes']].index('courtyard-planter-island')]
@@ -565,8 +576,9 @@ if LV >= ORDER.index('models'):
     box('RF_sofa_short', 11.0,13.6, 8.6,9.4, RF0,RF0+0.42,'cushion',C,'RF plan L-sofa', bevel=0.05)
     box('RF_sofa_back', 14.3,14.5, 5.2,9.4, RF0+0.42,RF0+0.8,'cushion',C,'RF plan', bevel=0.04)
     # --- pool-deck lounge (ELEV-REAR: sofa on terrace, plan-right)
-    box('DECK_sofa', 13.2,15.4, 1.6,2.4, GF0,GF0+0.42,'cushion',C,'image ELEV-REAR / p26 outdoor sofa (illustrative)', bevel=0.05)
-    box('DECK_sofa_back', 13.2,15.4, 2.25,2.4, GF0+0.42,GF0+0.8,'cushion',C,'image', bevel=0.04)
+    if False:   # pool pass: lounge furniture is image-only for this brief (M31, flagged for Colin) -> not modelled
+     box('DECK_sofa', 13.2,15.4, 1.6,2.4, GF0,GF0+0.42,'cushion',C,'image ELEV-REAR / p26 outdoor sofa (illustrative)', bevel=0.05)
+     box('DECK_sofa_back', 13.2,15.4, 2.25,2.4, GF0+0.42,GF0+0.8,'cushion',C,'image', bevel=0.04)
     # --- gates (bronze slatted, p25/ELEV-FRONT)
     for nm,(a,b) in dict(PED=GATE, SERVICE=SERVICE_GATE).items():
         n=int((b-a)/0.12)
@@ -685,11 +697,11 @@ if LV >= ORDER.index('models'):
     # ---------------- WIP realism pass: real grass (GN, instanced, camera-limited) ----------------
     lawn_clump = grass_clump('GRASSSRC_lawn', 22, 0.05, 0.11, 0.006, 0.35, 'grassblade', 31)
     tall_clump = grass_clump('GRASSSRC_tall', 34, 0.10, 0.62, 0.010, 0.9, 'grasstall', 32)
-    ctx = bpy.data.objects['CONTEXT_lawn_beyond_plot (NOT PLOT)']
+    ctx = bpy.data.objects['CONTEXT_lawn_beyond_plot_0 (NOT PLOT)']   # pool pass: grass only on the main far lawn, not the strips beside the pool
     # rear lawn: mown, taller toward the side hedges (x ~ -0.3 / SITE_W+0.3) and the far edge (y ~ 12), patchy colour
-    gn_grass(ctx, lawn_clump, 260.0, 3.5, 1, edge=(-0.25, SITE_W+0.25, 999.0, 2.0, 4.5))
+    pass   # critic: mown lawn, not tufts -> no GN tufts on the rear context lawn (procedural lawn material only)
     for l in [b for b in M['boxes'] if b['cat']=='lawn']:   # CAD planted strips -> ornamental tall grass
-        gn_grass(bpy.data.objects[l['id'].upper()+'_bed'], tall_clump, 22.0, 4.0, 40+int(l['id'][-1]))
+        gn_grass(bpy.data.objects[l['id'].upper()+'_bed'], lawn_clump, 60.0, 3.5, 40+int(l['id'][-1]))   # pool pass / critic (c): short lawn, no tall meadow hiding the pool and terrace
 
 # ============================ STEP 3d: MATERIALS + STEP 4: GRIME (procedural, Cycles) ============================
 GRIME = LV >= ORDER.index('grime')
@@ -934,7 +946,8 @@ def M_foliage(rgb_dark, rgb_light, alpha_wave=False):
             m.blend_method='HASHED' if hasattr(m,'blend_method') else None
         return m
     return f
-BUILD.update(stone=M_stone, stone_rf=M_stone, paving=M_paving, deck=M_paving, coping=M_flat((.88,.83,.74),.6,'stone'),
+BUILD.update(stone=M_stone, stone_rf=M_stone, paving=M_paving, deck=M_flat((.84,.76,.62),.6,'paving'),   # critic: warm cream terrace
+    coping=M_flat((.88,.83,.74),.6,'stone'),
     soffit=M_flat((.80,.75,.68),.55,'render'), render=M_flat((.80,.75,.68),.55,'render'),   # warm pale render (refs), was near-white
  bronze=M_flat((.20,.14,.09),.45,'metal',metal=0.6),
     glass=M_glass, water=M_water, pooltile=M_flat((.55,.85,.88),.2), lawn=M_lawn, context_lawn=M_lawn,
@@ -1047,14 +1060,18 @@ def M_pooltile(name):
     b.inputs['Emission Color'].default_value=(0.5,0.95,0.95,1); links.new(math_(nodes,links,'MULTIPLY', caus, 0.25), b.inputs['Emission Strength'])
     bump = N(nodes,'ShaderNodeBump', **{'Strength':0.15,'Distance':0.002}); links.new(br.outputs['Fac'], bump.inputs['Height']); links.new(bump.outputs['Normal'], b.inputs['Normal'])
     return m
+def M_poolglow(name):
+    m,nodes,links,b,P = base(name); b.inputs['Base Color'].default_value=(.6,.95,1,1); b.inputs['Emission Color'].default_value=(.45,.95,1,1); b.inputs['Emission Strength'].default_value=6.0
+    return m
+BUILD['poolglow'] = M_poolglow
 def M_water2(name):
     m,nodes,links,b,P = base(name); b.inputs['Base Color'].default_value=(.80,.97,.97,1); b.inputs['Transmission Weight'].default_value=1.0
     b.inputs['Roughness'].default_value=0.015; b.inputs['IOR'].default_value=1.33
     mp = N(nodes,'ShaderNodeMapping'); mp.inputs['Scale'].default_value=(1.0,2.2,1.0); links.new(P, mp.inputs['Vector'])
     n = N(nodes,'ShaderNodeTexNoise', **{'Scale':2.6,'Detail':7.0,'Roughness':0.55}); links.new(mp.outputs[0], n.inputs['Vector'])
     bump = N(nodes,'ShaderNodeBump', **{'Strength':0.18,'Distance':0.02}); links.new(n.outputs['Fac'], bump.inputs['Height']); links.new(bump.outputs['Normal'], b.inputs['Normal'])
-    sc_ = N(nodes,'ShaderNodeBsdfDiffuse'); sc_.inputs['Color'].default_value=(0.25,0.72,0.76,1)   # stands in for in-water scattering
-    _to_out(nodes, links, _mixshader(nodes, links, 0.08, b.outputs[0], sc_.outputs[0]))   # pool pass: mostly clear (was 0.30 diffuse -> dark teal)
+    sc_ = N(nodes,'ShaderNodeBsdfDiffuse'); sc_.inputs['Color'].default_value=(0.32,0.80,0.82,1)   # stands in for in-water scattering
+    _to_out(nodes, links, _mixshader(nodes, links, 0.22, b.outputs[0], sc_.outputs[0]))   # pool pass: bright aqua in-water scatter stand-in (the low sun leaves the 1.6 m basin floor in its own wall shadow)
     return m
 BUILD.update(
     glass_clear=M_glass_clear, pool_stone=M_stone, pooltile=M_pooltile, water=M_water2,

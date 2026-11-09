@@ -18,10 +18,10 @@ srv.listen(0, async () => {
   await pg.waitForFunction(() => document.title === 'READY', null, { timeout: +(process.env.TO||300000) });
   await pg.waitForTimeout(1500);
   const N = +frames;
-  if (!N) { await pg.screenshot({ path: out }); }
+  if (!N) { await pg.evaluate(() => { window.__capture = true; }); await pg.waitForTimeout(1500); await pg.screenshot({ path: out, timeout: 0 }); }   // stop the live loop so the screenshot can settle on SwiftShader
   else { fs.mkdirSync(out, { recursive: true }); const T = N / +fps;
     for (let i = 0; i < N; i++) { await pg.evaluate(([t, T]) => window.__frame(t, T), [i / +fps, T]);
-      await pg.screenshot({ path: path.join(out, `f_${String(i).padStart(4, '0')}.png`) }); if (i % 24 === 0) console.log('frame', i); } }
+      await pg.screenshot({ timeout: 0, path: path.join(out, `f_${String(i).padStart(4, '0')}.png`) }); if (i % 24 === 0) console.log('frame', i); } }
   if (errs.length) console.log('PAGE ERRORS:', errs.slice(0, 5).join(' | ')); else console.log('ok', out);
   await b.close(); srv.close();
 });

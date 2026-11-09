@@ -30,5 +30,22 @@
    0.15
   ],
   "lens": 30
+ },
+ {
+  "name": "elev_rear",
+  "file": "bl_elev_rear.png",
+  "ref": "EXT-4b-ELEV-REAR",
+  "pos": [
+   9.4,
+   24,
+   1.65
+  ],
+  "tgt": [
+   9.4,
+   -5,
+   5.4
+  ],
+  "lens": 36,
+  "level": true
  }
 ]

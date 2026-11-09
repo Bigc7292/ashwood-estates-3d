@@ -21,6 +21,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/rear_pass2_glazing.js"></script>
 <script src="./overrides/rear_pass3_water2.js"></script>
 <script src="./overrides/rear_pool2.js"></script>
+<script src="./overrides/rear_pass4_critic_b.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -75,16 +76,18 @@ MAT.bronze_dark = M_({color:0x3a2c20, roughness:.55, metalness:.35});   // slat 
 MAT.led = M_({color:0xfff2d6, emissive:0xffdcaa, emissiveIntensity:2.4});   // soffit LED lines (front step 4)
 // step 6 glazing (front pass 8): dark clear glass so the lit rooms behind read through it
 if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
-  MAT.glass = M_({color:0x23201c, roughness:.04, metalness:.6, transparent:true, opacity:.32});
-  MAT.interior_wood = M_({color:0x6e4a2c, roughness:.6, emissive:0x8a5226, emissiveIntensity:.55});
-  MAT.interior_stone = M_({color:0xb79d7c, roughness:.8, emissive:0x7a5530, emissiveIntensity:.45});
-  MAT.interior_ceiling = M_({color:0xffe6c0, emissive:0xffc98a, emissiveIntensity:1.1});
-  MAT.interior_floor = M_({color:0x4a3a2c, roughness:.4, emissive:0x3a2614, emissiveIntensity:.3});
+  // critic batch (a), 2026-11-10: clear physical glass (transmission 0.9, low tint) instead of dark tinted glass; rooms behind are pale and lit, not brown
+  MAT.glass = new THREE.MeshPhysicalMaterial({color:0xf3f7f7, transmission:0.9, roughness:0.03, metalness:0, ior:1.5, thickness:0.02, specularIntensity:1, transparent:true});
+  MAT.interior_wood = M_({color:0xd6c4a8, roughness:.6, emissive:0x6a5034, emissiveIntensity:.35});
+  MAT.interior_stone = M_({color:0xebe3d5, roughness:.8, emissive:0x7a6a50, emissiveIntensity:.35});
+  MAT.interior_ceiling = M_({color:0xfff6e8, emissive:0xffe4bc, emissiveIntensity:.9});
+  MAT.interior_floor = M_({color:0xcfc0a8, roughness:.4, emissive:0x4a3e2e, emissiveIntensity:.25});
   MAT.slat_timber = M_({color:0xa8784a, roughness:.6, emissive:0x6a3e16, emissiveIntensity:.35});   // front pass 11 warm lit timber slats
   MAT.door_timber = M_({color:0x5a3a22, roughness:.55, emissive:0x2a160a, emissiveIntensity:.25});   // front pass 10 timber entry door
-  MAT.interior_lobby = M_({color:0xd9b98c, roughness:.7, emissive:0xe0a868, emissiveIntensity:.9});   // front pass 9 lit GF lobby
+  MAT.interior_lobby = M_({color:0xf0e6d6, roughness:.7, emissive:0xd8bc94, emissiveIntensity:.6});   // front pass 9 lit GF lobby
 }
 MAT.terrace_stone = M_({map:tex(g=>{ noise(g,'#eadcc2',.07,5000); g.strokeStyle='rgba(170,150,120,.22)'; g.lineWidth=1; for(let y=0;y<256;y+=32){ g.beginPath(); g.moveTo(0,y); g.lineTo(256,y); g.stroke(); for(let x=((y/32)%2)*96;x<256;x+=192){ g.beginPath(); g.moveTo(x,y); g.lineTo(x,y+32); g.stroke(); } } }, 2.4), roughness:.75});   // warm cream large-format planks, joints parallel to the facade, low-contrast grout (critic T4)
+MAT.lounger = M_({color:0xf2ede4, roughness:.9});   // cushion white (CAD loungers)
 MAT.pool_face = M_({map:tStone, roughness:.85, color:0xf0e2c8});   // warm travertine basin face (critic T2/B2)
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
@@ -104,6 +107,7 @@ function subtractRect(r, h){   // axis-aligned rect minus rect -> up to 4 rects 
 function addBox(b, x0, z0, x1, z1){
   const w=Math.max(x1-x0,.02), d=Math.max(z1-z0,.02), h=Math.max(b.y1-b.y0,.02);
   let m = MAT[b.mat] || ph;
+  if (b.cat==='rf_wall' || b.cat==='rf_roof') { const rm = window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.rf_core_mat; if (rm && MAT[rm]) m = MAT[rm]; }   // critic (b): RF core not grey
   if (b.cat==='gf_wall'||b.cat==='ff_wall'||b.cat==='rf_wall') m = texRepeat(m, Math.max(w,d), h);
   else if (['ground','lawn','balcony'].includes(b.cat)) m = texRepeat(m, w, d);
   const mesh = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), m);
@@ -131,7 +135,7 @@ const tl = new THREE.TextureLoader();
 // mosaic pool tile (pale aqua 2.5 cm-look tiles, grout lines) - procedural, no image assets
 const P2 = !!(window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.pool2);   // pool pass (2026-11-10): bright clear aqua, flush coping, waterline band, glints
 const mosaic = (base, grout, jit) => tex(g=>{ g.fillStyle=grout; g.fillRect(0,0,256,256); for(let y=0;y<256;y+=16) for(let x=0;x<256;x+=16){ const v=Math.random()*jit-jit/2; g.fillStyle=`rgb(${base[0]+v},${base[1]+v},${base[2]+v})`; g.fillRect(x+1,y+1,14,14); } }, 0.4);
-const tTileHi = mosaic([118,206,218],'#e6f5f6',16), tTileLo = mosaic([86,186,204],'#d8eef1',16), tTileFloor = mosaic([104,198,214],'#e2f3f5',14), tBand = mosaic([22,78,140],'#c4dbe6',26);
+const tTileHi = mosaic([118,206,218],'#e6f5f6',16), tTileLo = mosaic([86,186,204],'#d8eef1',16), tTileFloor = mosaic([104,198,214],'#e2f3f5',14), tBand = mosaic([40,150,190],'#d4eef2',24);
 const tTile = tex(g=>{ g.fillStyle='#d6eeee'; g.fillRect(0,0,256,256);   // turquoise mosaic like the p26 / POOL references
   for(let y=0;y<256;y+=16) for(let x=0;x<256;x+=16){ const v=Math.random()*22-11; g.fillStyle=`rgb(${48+v},${172+v},${190+v})`; g.fillRect(x+1,y+1,14,14); } }, 0.4);
 // caustics: soft bright network on the pool floor, animated by scrolling two layers in opposite directions
@@ -150,6 +154,8 @@ for (const w of M.water) {
   if (B.wall==='tile') { floorM.emissiveIntensity = .55; floorM.emissiveMap = tCau1; floorM.emissiveMap.repeat.set(W_/2.2, D_/2.2); animated.push(floorM.emissiveMap); if (P2) { tCau2.repeat.set(1.6, 0.5); animated.push(tCau2); } }
   if (P2 && B.wall==='tile') { floorM.map = tTileFloor.clone(); floorM.map.needsUpdate = true; floorM.map.repeat.set(W_/0.4, D_/0.4); floorM.emissiveIntensity = .38; floorM.roughness = .3; }
   if (P2 && B.wall==='tile') {   // walls: pale upper, slightly deeper lower (reads as depth through the water), dark-blue waterline mosaic band 0.17 m
+    { const gm2 = M_({color:0x9ff4ff, emissive:0x7ff0ff, emissiveIntensity:1.6, roughness:.4});   // critic T6: aqua waterline glow line just under the coping (p26)
+      for (const [x0,z0,x1,z1] of [[w.x0,w.z0,w.x1,w.z0+.012],[w.x0,w.z1-.012,w.x1,w.z1],[w.x0,w.z0,w.x0+.012,w.z1],[w.x1-.012,w.z0,w.x1,w.z1]]) { const m=new THREE.Mesh(new THREE.BoxGeometry(x1-x0,.03,z1-z0), gm2); m.position.set((x0+x1)/2,-0.075,(z0+z1)/2); group.add(m); } }
     const bands = [[-0.20, 0.01, tBand], [-0.75, -0.20, tTileHi], [-B.depth, -0.75, tTileLo]];
     for (const [ya, yb, tt] of bands) for (const [x0,z0,x1,z1] of [[w.x0-.05,w.z0-.05,w.x1+.05,w.z0],[w.x0-.05,w.z1,w.x1+.05,w.z1+.05],[w.x0-.05,w.z0,w.x0,w.z1],[w.x1,w.z0,w.x1+.05,w.z1]]) {
       const L = Math.max(x1-x0, z1-z0), mt = M_({map:tt.clone(), roughness:.25, emissive:0xbff6ff, emissiveMap:tCau2, emissiveIntensity: tt===tBand ? .10 : .22}); mt.map.needsUpdate = true; mt.map.repeat.set(L/0.4, (yb-ya)/0.4);   // walls carry the second (counter-scrolling) caustic layer, weaker
@@ -262,7 +268,7 @@ window.__LEAFSETS = [];
     tg.add(im); window.__LEAFSETS.push(tg); } }
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
-{ const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
+{ const [SW,SD]=M.meta.site_m, R=100, outM=M_({color: P2 ? 0x6f8a45 : 0xc9c6bd, roughness:1});   // P2 (critic T9): neighbouring gardens read as lawn, not a blank tan plane
   for (const [x0,z0,x1,z1] of [[cx-R,cz-R,cx+R,0],[cx-R,SD,cx+R,cz+R],[cx-R,0,0,SD],[SW,0,cx+R,SD]].flatMap(r=>basinRects.reduce((acc,h)=>acc.flatMap(q=>subtractRect(q,h)),[r]))) {   // pool pass: ring cut where a basin crosses the plot edge
     const out = new THREE.Mesh(new THREE.PlaneGeometry(x1-x0, z1-z0), outM); out.rotation.x=-Math.PI/2; out.position.set((x0+x1)/2, (P2 && z1<=0) ? -0.52 : -0.06,(z0+z1)/2); out.receiveShadow=true; scene.add(out); } }   // P2: rear ring 0.45 m below the pool terrace (critic T2, p26)
 // cameras ------------------------------------------------------------------------------------

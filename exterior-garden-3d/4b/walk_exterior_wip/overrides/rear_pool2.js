@@ -23,3 +23,17 @@ _O.add.push(
 );
 for (const b of _O.add) if (b.id === 'context-lawn-rear') { b.y0 = -0.50; b.y1 = -0.45; }   // rear lawn at grade, 0.45 m below the terrace
 // pool-platform top is the coping band on the far side; its z -2.14 face is the exposed basin face
+// critic pool review T8 (2026-11-10): the V4 GF plan draws 2 loungers and a side table on the TERRACE at the pool's east end (x ~13-15.8 m).
+// Placed on the east-end terrace at the plan x; z moved with the pool (Colin override M29/M30). Sizes are assumptions (lounger 0.70 x 2.00 m).
+_O.add.push(
+  {id:'lounger-1',      cat:'furniture', mat:'lounger', x0:13.05, x1:13.75, z0:1.60, z1:3.60, y0:0.0, y1:0.32, status:'CAD V4 GF terrace symbol (illustrative), z moved with pool'},
+  {id:'lounger-1-back', cat:'furniture', mat:'lounger', x0:13.05, x1:13.75, z0:1.60, z1:2.10, y0:0.32, y1:0.62, status:'CAD symbol, back rest assumption'},
+  {id:'lounger-2',      cat:'furniture', mat:'lounger', x0:14.30, x1:15.00, z0:1.60, z1:3.60, y0:0.0, y1:0.32, status:'CAD V4 GF terrace symbol (illustrative), z moved with pool'},
+  {id:'lounger-2-back', cat:'furniture', mat:'lounger', x0:14.30, x1:15.00, z0:1.60, z1:2.10, y0:0.32, y1:0.62, status:'CAD symbol, back rest assumption'},
+  {id:'side-table',     cat:'furniture', mat:'bronze_dark', x0:13.85, x1:14.20, z0:2.00, z1:2.35, y0:0.0, y1:0.45, status:'CAD V4 GF terrace symbol (illustrative)'}
+);
+// critic T9: denser surroundings beyond the rear boundary (tree/hedge belt standing in for neighbouring gardens); image-read, off-plot context
+_O.shrubRows = (_O.shrubRows || []).concat([
+  {id:'context-tree-belt', x0:-6, z0:-16, x1:24, z1:-16, h:4.5, r:1.3, color:0x3f5f2a, status:'off-plot context (critic T9)'},
+  {id:'context-hedge-rear', x0:-4, z0:-12, x1:22, z1:-12, h:1.6, r:0.5, color:0x46662e, flowers:0xc8407e, status:'off-plot context (critic T9)'}
+]);
