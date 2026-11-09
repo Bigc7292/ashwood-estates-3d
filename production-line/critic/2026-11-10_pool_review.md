@@ -4,6 +4,9 @@ Reviewer: Ashwood Critic (lane 5, independent; never builds). Labels: concept vi
 Inputs (read-only, own worktree of `lane/exterior` @ ff8315a): hand-off `production-line/handoffs/L2-exterior_2026-11-10.md`; `walk_exterior_wip/views/garden/shots/pool_pass3_side_by_side.png` (pass 3, b14a910); `blender_wip/f1_box_render/sbs_pool.png` + `view_swimming_pool.png` (F1, cc26030).
 References: approved `EXT-4b-POOL_GENERATED-SOURCE-CONDITIONED.png`, `EXT-4b-GARDEN-BACK_...png`; brochure p26 (`source-refs/REF-4b-p26-rear-render-crop_no-title-logo.png`, `4b/evidence/crop_p26_4B_pool_detail.png`); V4 CAD `active/approved-cad-v4/png/FP-4B-GF_V4_preview.png` (via ACTIVE_PIPELINE.json). p25 is the front/street view (no pool); backups p29/30, p33/34 not re-opened this pass.
 
+## Ruling M25 applied (integrator, 2026-11-10)
+All exterior views are judged against the CAD heights (11.6 m tower, CAD FF level); the 9.73 m tower and +0.50 m FF raise are reverted. Any silhouette difference from the reference that comes from this height set is a logged mismatch, not a defect. None of the pool defects below depends on tower or FF height: T11 is about balcony slab edge thickness and the balustrade, not level. Verdicts unchanged.
+
 ## Verdicts
 | Item | Verdict | Score |
 |---|---|---|
