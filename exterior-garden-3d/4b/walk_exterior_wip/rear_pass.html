@@ -20,6 +20,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/rear_pass1_base.js"></script>
 <script src="./overrides/rear_pass2_glazing.js"></script>
 <script src="./overrides/rear_pass3_water2.js"></script>
+<script src="./overrides/rear_pool2.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -31,7 +32,7 @@ if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.hide_cats) M.boxes = M.boxe
 const FIN = !!(window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.finish);   // step 4 finish (front view)
 const W = innerWidth, Hh = innerHeight;
 const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
-renderer.setPixelRatio(1); renderer.setSize(W,Hh);
+renderer.setPixelRatio(Q.get('phone')==='1' ? Math.min(devicePixelRatio, 1.5) : 1); renderer.setSize(W,Hh);
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = FIN ? 1.0 : 1.05;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -83,6 +84,7 @@ if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
   MAT.door_timber = M_({color:0x5a3a22, roughness:.55, emissive:0x2a160a, emissiveIntensity:.25});   // front pass 10 timber entry door
   MAT.interior_lobby = M_({color:0xd9b98c, roughness:.7, emissive:0xe0a868, emissiveIntensity:.9});   // front pass 9 lit GF lobby
 }
+MAT.terrace_stone = M_({map:tex(g=>{ noise(g,'#ece3d2',.08,5000); g.strokeStyle='rgba(150,135,110,.35)'; g.lineWidth=1; for(let i=0;i<=256;i+=128){ g.beginPath(); g.moveTo(i,0); g.lineTo(i,256); g.stroke(); } for(let i=0;i<=256;i+=64){ g.beginPath(); g.moveTo(0,i); g.lineTo(256,i); g.stroke(); } }, 2.4), roughness:.75});   // pool pass: large pale travertine-look slabs (procedural)
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
@@ -111,7 +113,7 @@ function addBox(b, x0, z0, x1, z1){
 for (const b of M.boxes) {
   if (hideCats.has(b.cat)) continue;
   // ground slabs get a hole cut where a water basin is dug, so the basin is visible (previously water sat on top of the paving)
-  const pieces = b.cat==='ground' ? basinRects.reduce((acc,h)=>acc.flatMap(r=>subtractRect(r,h)), [[b.x0,b.z0,b.x1,b.z1]]) : [[b.x0,b.z0,b.x1,b.z1]];
+  const pieces = (b.cat==='ground' || b.cut_basin) ? basinRects.reduce((acc,h)=>acc.flatMap(r=>subtractRect(r,h)), [[b.x0,b.z0,b.x1,b.z1]]) : [[b.x0,b.z0,b.x1,b.z1]];
   for (const [x0,z0,x1,z1] of pieces) addBox(b, x0, z0, x1, z1);
 }
 for (const p of M.polys) { const s=new THREE.Shape(p.pts.map(([x,z])=>new THREE.Vector2(x,-z)));
@@ -121,13 +123,18 @@ for (const p of M.polys) { const s=new THREE.Shape(p.pts.map(([x,z])=>new THREE.
 // water — three.js Water2 (examples/jsm/objects/Water2.js, r160, vendored) on the water surfaces drawn in the approved plan.
 // Water2 reflects the scene and REFRACTS what is under it, so it needs a real basin underneath to read as water.
 const useWater2 = Q.get('flatwater')!=='1';
-const W2O = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.water2) || {};   // rear pass 3: pool Water2 tuning
+const W2O = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.water2) || {};
+const PHONE = Q.get('phone')==='1';   // phone version: smaller Water2 reflection/refraction targets, capped pixel ratio
+const W2TEX = PHONE ? (W2O.texPhone || 256) : (W2O.tex || 1024);   // rear pass 3: pool Water2 tuning
 const tl = new THREE.TextureLoader();
 // mosaic pool tile (pale aqua 2.5 cm-look tiles, grout lines) - procedural, no image assets
+const P2 = !!(window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.pool2);   // pool pass (2026-11-10): bright clear aqua, flush coping, waterline band, glints
+const mosaic = (base, grout, jit) => tex(g=>{ g.fillStyle=grout; g.fillRect(0,0,256,256); for(let y=0;y<256;y+=16) for(let x=0;x<256;x+=16){ const v=Math.random()*jit-jit/2; g.fillStyle=`rgb(${base[0]+v},${base[1]+v},${base[2]+v})`; g.fillRect(x+1,y+1,14,14); } }, 0.4);
+const tTileHi = mosaic([118,206,218],'#e6f5f6',16), tTileLo = mosaic([86,186,204],'#d8eef1',16), tTileFloor = mosaic([104,198,214],'#e2f3f5',14), tBand = mosaic([22,78,140],'#c4dbe6',26);
 const tTile = tex(g=>{ g.fillStyle='#d6eeee'; g.fillRect(0,0,256,256);   // turquoise mosaic like the p26 / POOL references
   for(let y=0;y<256;y+=16) for(let x=0;x<256;x+=16){ const v=Math.random()*22-11; g.fillStyle=`rgb(${48+v},${172+v},${190+v})`; g.fillRect(x+1,y+1,14,14); } }, 0.4);
 // caustics: soft bright network on the pool floor, animated by scrolling two layers in opposite directions
-function causticCanvas(){ return tex(g=>{ g.fillStyle='#000'; g.fillRect(0,0,256,256); g.strokeStyle='rgba(255,255,255,.55)'; g.lineCap='round';
+function causticCanvas(){ return tex(g=>{ if (P2) g.filter='blur(1.6px)'; g.fillStyle='#000'; g.fillRect(0,0,256,256); g.strokeStyle='rgba(255,255,255,.55)'; g.lineCap='round';
   const pts=[...Array(42)].map(()=>[Math.random()*256,Math.random()*256]);
   for (let i=0;i<256;i+=4) for (let j=0;j<256;j+=4){ let a=1e9,b=1e9; for(const [px,py] of pts){ for(const ox of [-256,0,256]) for(const oy of [-256,0,256]){ const d=Math.hypot(i-px-ox,j-py-oy); if(d<a){b=a;a=d;} else if(d<b) b=d; } }
     const e=b-a; if (e<5){ g.fillStyle=`rgba(255,255,255,${(1-e/5)*.5})`; g.fillRect(i,j,4,4); } } }, 1.6); }
@@ -135,32 +142,43 @@ const tCau1 = causticCanvas(), tCau2 = causticCanvas(); tCau1.colorSpace = tCau2
 const animated = [];
 for (const w of M.water) {
   const B = BASIN[w.id] || {depth:0.05, wall:'stone', coping:0};
-  const W_ = w.x1-w.x0, D_ = w.z1-w.z0, yW = -0.06;                       // water line 6 cm below the coping
+  const W_ = w.x1-w.x0, D_ = w.z1-w.z0, yW = (P2 && B.wall==='tile') ? -0.025 : -0.06;   // P2: water flush, 2.5 cm under the coping top                       // water line 6 cm below the coping
   // basin: floor + 4 inner walls (tile for the pool, stone for the courtyard pond)
   const wallM = B.wall==='tile' ? texRepeat(M_({map:tTile, roughness:.35}), Math.max(W_,D_), B.depth) : texRepeat(MAT.stone, Math.max(W_,D_), B.depth);
   const floorM = B.wall==='tile' ? texRepeat(M_({map:tTile, roughness:.35, emissive:0xbff6ff, emissiveIntensity:.0, emissiveMap:tCau1}), W_, D_) : M_({color:0x3d4a3f, roughness:.9});
-  if (B.wall==='tile') { floorM.emissiveIntensity = .55; floorM.emissiveMap = tCau1; floorM.emissiveMap.repeat.set(W_/2.2, D_/2.2); animated.push(floorM.emissiveMap); }
+  if (B.wall==='tile') { floorM.emissiveIntensity = .55; floorM.emissiveMap = tCau1; floorM.emissiveMap.repeat.set(W_/2.2, D_/2.2); animated.push(floorM.emissiveMap); if (P2) { tCau2.repeat.set(1.6, 0.5); animated.push(tCau2); } }
+  if (P2 && B.wall==='tile') { floorM.map = tTileFloor.clone(); floorM.map.needsUpdate = true; floorM.map.repeat.set(W_/0.4, D_/0.4); floorM.emissiveIntensity = .38; floorM.roughness = .3; }
+  if (P2 && B.wall==='tile') {   // walls: pale upper, slightly deeper lower (reads as depth through the water), dark-blue waterline mosaic band 0.17 m
+    const bands = [[-0.20, 0.01, tBand], [-0.75, -0.20, tTileHi], [-B.depth, -0.75, tTileLo]];
+    for (const [ya, yb, tt] of bands) for (const [x0,z0,x1,z1] of [[w.x0-.05,w.z0-.05,w.x1+.05,w.z0],[w.x0-.05,w.z1,w.x1+.05,w.z1+.05],[w.x0-.05,w.z0,w.x0,w.z1],[w.x1,w.z0,w.x1+.05,w.z1]]) {
+      const L = Math.max(x1-x0, z1-z0), mt = M_({map:tt.clone(), roughness:.25, emissive:0xbff6ff, emissiveMap:tCau2, emissiveIntensity: tt===tBand ? .10 : .22}); mt.map.needsUpdate = true; mt.map.repeat.set(L/0.4, (yb-ya)/0.4);   // walls carry the second (counter-scrolling) caustic layer, weaker
+      const m = new THREE.Mesh(new THREE.BoxGeometry(x1-x0, yb-ya, z1-z0), mt); m.position.set((x0+x1)/2, (ya+yb)/2, (z0+z1)/2); m.receiveShadow = true; group.add(m); } }
   const fl = new THREE.Mesh(new THREE.BoxGeometry(W_, .05, D_), floorM); fl.position.set(w.x0+W_/2, -B.depth-.025, w.z0+D_/2); fl.receiveShadow=true; group.add(fl);
-  for (const [x0,z0,x1,z1] of [[w.x0-.05,w.z0-.05,w.x1+.05,w.z0],[w.x0-.05,w.z1,w.x1+.05,w.z1+.05],[w.x0-.05,w.z0,w.x0,w.z1],[w.x1,w.z0,w.x1+.05,w.z1]]) {
+  if (!(P2 && B.wall==='tile')) for (const [x0,z0,x1,z1] of [[w.x0-.05,w.z0-.05,w.x1+.05,w.z0],[w.x0-.05,w.z1,w.x1+.05,w.z1+.05],[w.x0-.05,w.z0,w.x0,w.z1],[w.x1,w.z0,w.x1+.05,w.z1]]) {
     const m = new THREE.Mesh(new THREE.BoxGeometry(x1-x0, B.depth, z1-z0), wallM); m.position.set((x0+x1)/2, -B.depth/2, (z0+z1)/2); m.receiveShadow=true; group.add(m); }
   // islands inside a basin (courtyard planter) get a stone base down to the basin floor
   for (const h of w.holes) { const m=new THREE.Mesh(new THREE.BoxGeometry(h[2]-h[0], B.depth, h[3]-h[1]), MAT.stone); m.position.set((h[0]+h[2])/2, -B.depth/2, (h[1]+h[3])/2); group.add(m); }
   // stone coping ring, flush with the paving (+2 cm), width assumed 0.30 m
   if (B.coping) { const c=B.coping;
     for (const [x0,z0,x1,z1] of [[w.x0-c,w.z0-c,w.x1+c,w.z0],[w.x0-c,w.z1,w.x1+c,w.z1+c],[w.x0-c,w.z0,w.x0,w.z1],[w.x1,w.z0,w.x1+c,w.z1]]) {
-      const m=new THREE.Mesh(new THREE.BoxGeometry(x1-x0,.07,z1-z0), MAT.coping); m.position.set((x0+x1)/2, -0.05+.035+.02, (z0+z1)/2); m.castShadow=m.receiveShadow=true; group.add(m); } }
+      const cm = P2 ? (MAT.coping_pale = MAT.coping_pale || M_({color:0xeee6d6, roughness:.7})) : MAT.coping, ch = P2 ? .04 : .07, cy = P2 ? .005-.02 : -0.05+.035+.02;   // P2: thin pale coping, top flush with the terrace (+5 mm)
+      const m=new THREE.Mesh(new THREE.BoxGeometry(x1-x0,ch,z1-z0), cm); m.position.set((x0+x1)/2, cy, (z0+z1)/2); m.castShadow=m.receiveShadow=true; group.add(m); } }
   // the water surface
   const s = new THREE.Shape([[w.x0,w.z0],[w.x1,w.z0],[w.x1,w.z1],[w.x0,w.z1]].map(([x,z])=>new THREE.Vector2(x,-z)));
   for (const h of w.holes) s.holes.push(new THREE.Path([[h[0],h[1]],[h[2],h[1]],[h[2],h[3]],[h[0],h[3]]].map(([x,z])=>new THREE.Vector2(x,-z)).reverse()));
   const g = new THREE.ShapeGeometry(s); g.rotateX(-Math.PI/2);
   let mesh;
   if (useWater2) mesh = new Water(g, {
-      color: B.wall==='tile' ? 0xd8f6f8 : 0xc7d8cc,       // Water2 tints the refracted basin; pale so the tile reads turquoise through it
+      color: B.wall==='tile' ? ((P2 && W2O.color) || 0xd8f6f8) : 0xc7d8cc,       // Water2 tints the refracted basin; pale so the tile reads turquoise through it
       scale: (B.wall==='tile' && W2O.scale) || (B.wall==='tile' ? 2.2 : 3.5), flowDirection: new THREE.Vector2(.6,.25), flowSpeed: (B.wall==='tile' && W2O.flowSpeed) || .02, reflectivity: (B.wall==='tile' && W2O.reflectivity) || .035,
-      textureWidth: 1024, textureHeight: 1024,
+      textureWidth: W2TEX, textureHeight: W2TEX,
       normalMap0: tl.load('../model/vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), normalMap1: tl.load('../model/vendor/three/examples/textures/water/Water_2_M_Normal.jpg')});
   else mesh = new THREE.Mesh(g, M_({color:0x6fc3cf, roughness:.1, metalness:.2}));
   mesh.position.y = yW; group.add(mesh);
+  if (P2 && B.wall==='tile') {   // sun glints: additive specular-only layer (black base) with scrolling Water normals, reads as sparkle from the pool camera
+    const nm = tl.load('../model/vendor/three/examples/textures/water/Water_1_M_Normal.jpg'); nm.wrapS = nm.wrapT = THREE.RepeatWrapping; nm.repeat.set(W_/1.6, D_/1.6);
+    const gm = new THREE.MeshStandardMaterial({color:0x000000, roughness:.13, metalness:0, normalMap:nm, normalScale:new THREE.Vector2(.9,.9), transparent:true, blending:THREE.AdditiveBlending, depthWrite:false});
+    const gl = new THREE.Mesh(g.clone(), gm); gl.position.y = yW + 0.004; group.add(gl); (window.__GLINTS = window.__GLINTS || []).push(nm); }
   if (useWater2) { (window.__WATERS = window.__WATERS || []).push(mesh); const ob = mesh.onBeforeRender, fs = (B.wall==='tile' && W2O.flowSpeed) || .02;
     // step 7: deterministic Water2 flow for frame capture (Water2 otherwise advances on wall-clock delta)
     mesh.onBeforeRender = function(...a){ ob.apply(this, a); if (window.__T !== undefined) { const c = this.material.uniforms['config'].value, cyc = 0.15; c.x = (fs*window.__T) % cyc; c.y = (c.x + cyc/2) % cyc; } }; }
@@ -241,7 +259,7 @@ window.__LEAFSETS = [];
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
 { const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
-  for (const [x0,z0,x1,z1] of [[cx-R,cz-R,cx+R,0],[cx-R,SD,cx+R,cz+R],[cx-R,0,0,SD],[SW,0,cx+R,SD]]) {
+  for (const [x0,z0,x1,z1] of [[cx-R,cz-R,cx+R,0],[cx-R,SD,cx+R,cz+R],[cx-R,0,0,SD],[SW,0,cx+R,SD]].flatMap(r=>basinRects.reduce((acc,h)=>acc.flatMap(q=>subtractRect(q,h)),[r]))) {   // pool pass: ring cut where a basin crosses the plot edge
     const out = new THREE.Mesh(new THREE.PlaneGeometry(x1-x0, z1-z0), outM); out.rotation.x=-Math.PI/2; out.position.set((x0+x1)/2,-0.06,(z0+z1)/2); out.receiveShadow=true; scene.add(out); } }
 // cameras ------------------------------------------------------------------------------------
 const VIEWS = JSON.parse(Q.get('view') ? Q.get('view') : '{"name":"aerial","pos":[-14,30,48],"tgt":[9.4,3,15],"fov":40}');
@@ -283,7 +301,7 @@ function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if
   for (const l of M.labels) { const v=new THREE.Vector3(l.x,l.y,l.z).project(cam); if (v.z>1) continue;
     const d=document.createElement('div'); d.textContent=l.t; d.style.left=((v.x+1)/2*W)+'px'; d.style.top=((1-v.y)/2*Hh)+'px'; L.appendChild(d);} }
 let n=0;
-function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
+function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const n of (window.__GLINTS||[])) n.offset.set(t*.021, t*.013); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
   renderer.render(scene,cam); labels(); if(++n>=12 && Q.get('view')){ document.title='READY'; return; } requestAnimationFrame(loop); }
 loop();
 // step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.
@@ -296,7 +314,7 @@ window.__frame = (t, T) => {
   window.__PALMS.forEach((pg,i)=>{ pg.rotation.z = 0.006*gust*Math.sin(t*0.8+i); pg.rotation.x = 0.004*gust*Math.sin(t*0.6+i*2); });
   (window.__LEAFSETS||[]).forEach((g,i)=>{ g.rotation.z = 0.012*gust*Math.sin(t*1.3+i); g.rotation.x = 0.008*gust*Math.sin(t*0.9+i); });
   for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
-  window.__T = t;
+  window.__T = t; for (const n of (window.__GLINTS||[])) n.offset.set(t*.021, t*.013);
   const k = T ? t/T : 0, e = k*k*(3-2*k);   // rear step 7: sun moves lower and warmer across the clip (visible shadow + colour change)
   sun.position.set(_sun0.x - 14*e, _sun0.y - 7*e, _sun0.z + 6*e); sun.intensity = _sunI0*(1 - 0.25*e); sun.color.copy(_sunC0).lerp(new THREE.Color(0xff9a52), e);
   if (VIEWS.push && cam.isPerspectiveCamera) { cam.position.fromArray(VIEWS.pos).lerp(new THREE.Vector3(...VIEWS.push), e); cam.lookAt(new THREE.Vector3(...VIEWS.tgt)); }
