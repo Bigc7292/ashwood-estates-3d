@@ -9,7 +9,7 @@
  *    - refresh: every WATER_PERF.refreshMs while still, so door / sway / sun changes still reach the reflections (assumption).
  * WATER_PERF.force = true renders the passes every frame (used by the QA bench to measure the "camera moving" cost).
  */
-export const WATER2_RES = 512;
+export const WATER2_RES = 1024;
 export const WATER_PERF = {force:false, refreshMs:1000, stats:{passes:0, skipped:0}};
 export function throttleWater(water, {flowSpeed = .03} = {}){
   const orig = water.onBeforeRender, cfg = water.material.uniforms.config.value, half = cfg.z, cycle = 2*half;
