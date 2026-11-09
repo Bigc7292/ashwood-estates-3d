@@ -11,12 +11,11 @@
  *   DA4  island planter: travertine body inset 15 mm under a 0.10 m wide x 0.06 m coping; coping top floorY + 0.25 m
  *        (0.295 m above the water line); the coping's outer edge = the CAD island rectangle
  *   DA5  planting soil top floorY + 0.21 m, covered with ~300 instanced ornamental-grass tufts (0.15-0.32 m) + 7 stones
- *   DA6  tree: single cloud-pruned Japanese black pine, ~2.5 m above the soil (round 2: lowered from 3.4 m to match
- *        the reference's low, wide crown; trunk splits at 0.6-1.6 m), crown ~3.3 m wide, 8 flat foliage pads,
- *        trunk base dia ~0.30 m (+ root flare); placed at the island centre. ASSUMPTION: proportions read from the concept image only
+ *   DA6  tree: single cloud-pruned Japanese black pine, ~3.4 m above the soil (top ~3.6 m above paving),
+ *        crown ~3.3 m wide, 8 flat foliage pads, trunk base dia ~0.30 m (+ root flare); placed at the island centre
  *   DA7  tree yaw: opts.treeYaw (default 0 => the "front" of the tree faces +Z)
  *   DA8  water: three.js Water2 (vendored r160), pale blue-grey tint, very slow flow, reflectivity 0.40 (+ fresnel)
- *   DA9  bench (buildBench, round 2): natural oak, long and low, 2.00 x 0.38 x 0.40 m; 50 mm plank on two slim 0.08 m legs (reference bench)
+ *   DA9  bench (buildBench): natural oak, 1.60 x 0.40 x 0.45 m; 70 mm plank on two 0.30 m wide block legs
  *   DA10 textures are procedural canvases (no downloaded assets). Travertine panel 1.2 x 0.6 m; basin limestone 0.6 m.
  *   DA11 subtle sway: whole tree rotates <= 0.25 deg about its base (update(dt, t))
  *
@@ -189,18 +188,18 @@ function taperTube(THREE, curve, segs, radial, rFn, vScale = .5){
 
 // ---------------------------------------------------------------- the pine
 // Tree-local frame: origin = soil surface at the trunk, +Y up, +X = viewer's right in the reference, +Z towards the viewer.
-const PADS = [   // [cx, cy, cz, rx, rz, thickness, yaw]   (flat tiered clouds, wide and low, from the reference silhouette)
-  [-1.25, 0.98,  .18, .74, .42, .22,  .3],   // 0 low left (long low arm)
-  [ 1.30, 1.12, -.05, .76, .44, .22, -.2],   // 1 low right
-  [  .05, 1.42, -.62, .58, .38, .20,  .9],   // 2 rear (depth)
-  [ -.82, 1.66, -.12, .68, .42, .22,  .1],   // 3 mid left
-  [  .70, 1.76,  .20, .66, .42, .22, -.4],   // 4 mid right
-  [ -.05, 2.08,  .02, .72, .46, .22, .25],   // 5 upper (wide)
-  [ -.56, 2.02, -.38, .48, .34, .20,  .4],   // 6 upper rear left
-  [  .04, 2.42,  .00, .50, .40, .24,  .2],   // 7 apex
+const PADS = [   // [cx, cy, cz, rx, rz, thickness, yaw]   (flat tiered clouds, from the reference silhouette)
+  [-1.10, 1.30,  .18, .58, .46, .24,  .3],   // 0 low left (long low arm)
+  [ 1.20, 1.52, -.05, .62, .48, .25, -.2],   // 1 low right
+  [  .05, 1.80, -.62, .50, .40, .22,  .9],   // 2 rear (depth)
+  [ -.72, 2.12, -.12, .58, .46, .24,  .1],   // 3 mid left
+  [  .62, 2.28,  .20, .58, .46, .24, -.4],   // 4 mid right
+  [ -.02, 2.70,  .02, .70, .52, .24, .25],   // 5 upper (wide)
+  [ -.62, 2.55, -.38, .42, .36, .22,  .4],   // 6 upper rear left
+  [  .04, 3.12,  .00, .44, .38, .26,  .2],   // 7 apex
 ];
-const TRUNK = [[0, -.10, 0], [.05, .25, .04], [.16, .50, .06], [.12, .72, 0], [-.05, .90, -.06], [-.12, 1.10, -.02], [-.08, 1.35, .02], [.02, 1.70, 0], [.04, 2.00, -.02], [.02, 2.30, 0]];
-const BRANCH_FROM = [.62, .78, 1.00, 1.15, 1.25, 1.60, 1.50];   // trunk heights the pad arms leave from (pads 0..6): low split, as in the reference
+const TRUNK = [[0, -.10, 0], [.04, .28, .02], [.15, .62, .04], [.16, .90, 0], [.05, 1.18, -.03], [-.06, 1.45, -.02], [-.03, 1.75, .02], [.06, 2.15, 0], [.05, 2.55, -.02], [.02, 3.00, 0]];
+const BRANCH_FROM = [.95, 1.12, 1.35, 1.55, 1.75, 2.25, 2.10];   // trunk heights the pad arms leave from (pads 0..6)
 
 function buildPine(THREE, seed = 4242){
   const R = rng(seed), V = (a) => new THREE.Vector3(...a), tree = new THREE.Group(); tree.name = 'courtyard-pine';
@@ -436,13 +435,13 @@ export function buildCourtyard(THREE, opts = {}){
 }
 
 // ---------------------------------------------------------------- bench (separate; the viewer places it)
-export function buildBench(THREE, {length = 2.0, depth = .38, height = .40, plank = .05} = {}){
+export function buildBench(THREE, {length = 1.6, depth = .4, height = .45, plank = .07} = {}){
   const g = new THREE.Group(); g.name = 'courtyard-bench';
   const oakT = oakTexture(THREE);
   const oakM = new THREE.MeshStandardMaterial({map:oakT, color:'#d6c0a2', roughness:.62});
   const top = new THREE.Mesh(worldBox(THREE, length, plank, depth, 1.6, .4), oakM); top.position.y = height - plank/2;
-  const legH = height - plank, legW = .08, legD = depth - .06;
-  const legs = [-1, 1].map(s => { const m = new THREE.Mesh(worldBox(THREE, legW, legH, legD, 1.6, .4), oakM); m.position.set(s*(length/2 - .25), legH/2, 0); return m; });
+  const legH = height - plank, legW = .30, legD = depth - .06;
+  const legs = [-1, 1].map(s => { const m = new THREE.Mesh(worldBox(THREE, legW, legH, legD, 1.6, .4), oakM); m.position.set(s*(length/2 - .22), legH/2, 0); return m; });
   [top, ...legs].forEach(m => { m.castShadow = m.receiveShadow = true; g.add(m); });
   return g;
 }
