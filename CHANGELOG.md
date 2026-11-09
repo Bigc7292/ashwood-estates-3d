@@ -90,3 +90,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: crown size x0.57 (left palms) and x0.40 (right palm), same trunk tops; widths now ~170 px and ~145 px against the reference's ~170 and ~130.
 - Why: critic single fix on pass 3 (crowns too big).
 - Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 5, palm crown colour
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (loads the pass 5 override), new `overrides/front_v2_pass5_palm_colour.js`, `views/front_v2/shots/front_v2_pass5_side_by_side.png`, `views/front_v2/STEP_LOG.md`.
+- What: frond colours darkened and desaturated to the ELEV-FRONT crown sample (median RGB 74,80,61); shape, scale, trunks and camera unchanged.
+- Why: critic single fix on pass 4 (crowns bright lime).
+- Status: REVIEW-PENDING (critic).
