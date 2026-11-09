@@ -1,0 +1,1 @@
+Progress R4 (06:56): r4 live shots reviewed: dollhouse lid (join bug), bedroom cams inside walls (room only ~3.2 m deep; cams now at 0.85/1.6 m in-room, ~3 m from headboards, 1.3 m, 70°), living walls overexposed + arch soffit blown, art too pale. Fixes: darker generated art, daylight lamp pushed back + 180 W, bake expo 1.35; re-baking.

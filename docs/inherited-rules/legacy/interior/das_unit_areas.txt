@@ -1,0 +1,15 @@
+554:APT G.11 = 44.3m² + 30.7m² = 75.0m²
+555:APT G.12 = 43.2m² + 29.6m² = 72.8m²
+556:APT G.13 = 43.1m² + 25.9m² = 69.0m²                                                                        Above is an extract from the proposed ground floor plan at
+557:APT G.14 = 55.0m² + 35.1m² = 90.1m²
+734:                    APT DU.01 = 60.12 m²                                            APT DU.01 = 52.93 m²                                       APT DU.01 = 113.05 m² (3-Bed)
+735:                    APT DU.02 = 49.07 m²                                            APT DU.02 = 46.88 m²                                       APT DU.02 = 95.95 m² (2-Bed)
+736:                    APT DU.03 = 50.40 m²                                            APT DU.03 = 48.20 m²                                       APT DU.03 = 98.60 m² (2-Bed)
+737:                    APT DU.04 = 61.25 m²                                            APT DU.04 = 53.92 m²                                       APT DU.04 = 115.17 m² (3-Bed)
+738:                    APT DU.05 = 52.34 m²                                            APT DU.05 = 54.07 m²                                       APT DU.05 = 106.41 m² (3-Bed)
+739:                    APT DU.06 = 65.45 m²                                            APT DU.06 = 50.50 m²                                       APT DU.06 = 115.95 m² (3-Bed)
+740:                    APT DU.07 = 57.65 m²                                            APT DU.07 = 59.15 m²                                       APT DU.07 = 116.80 m² (3-Bed)
+741:                    APT DU.08 = 49.78 m²                                            APT DU.08 = 51.97 m²                                       APT DU.08 = 101.75 m² (3-Bed)
+742:                    APT DU.09 = 56.71 m²                                            APT DU.09 = 49.42 m²                                       APT DU.09 = 106.13 m² (3-Bed)
+821:enable the future installation of a stair lift to enable access up to the higher level of the apartments. Below is an image-showing how apartment No. DU.04 on the fifth floor has been designed to
+837:                                                                                of Apartment DU.04 on the fifth floor
