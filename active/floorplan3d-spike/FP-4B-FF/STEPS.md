@@ -46,3 +46,9 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 ## Loop
 - Pass 1: steps 1 to 2 in progress. Steps 3 to 7 pending.
 - Loop 2 (step 2): labels corrected (r5L). Step-2 lane r6/r7 reviewed above, scale check failed, not applied.
+
+## Loop 3 (step 2): doorway closures and room separation, result
+- Applied the four step-2 closures as ASSUMED wall closures (C1 to C4, 4 crop px thick, crop px frame; C2 and C3 coincide with the traced lightwell and open-to-below outlines). Script and output: r6L_step2/sep.py, r6L_step2/diag_components.png.
+- Result: FAIL. The r5L wall raster is not closed. Flood fill from the label seeds gives one component covering almost the whole plate, so rooms do not separate. The outer shell has gaps (top-left and top edge), and many interior partitions are thin or broken. Four closures are not enough.
+- Also: 5 of 14 label seeds fall on wall pixels, so seeds need snapping to the nearest free pixel.
+- Next: re-trace the r5L wall raster with a closed outer shell and full partition coverage, then re-run the separation. Not marked done. Step 2 stays WIP.
