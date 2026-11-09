@@ -232,6 +232,15 @@ let cam;
 if (VIEWS.ortho) { const s=VIEWS.ortho, a=W/Hh; cam=new THREE.OrthographicCamera(-s*a/2,s*a/2,s/2,-s/2,0.1,500); }
 else cam = new THREE.PerspectiveCamera(VIEWS.fov||45, W/Hh, 0.1, 500);
 cam.position.set(...VIEWS.pos); if (VIEWS.up) cam.up.set(...VIEWS.up); cam.lookAt(new THREE.Vector3(...VIEWS.tgt));
+// step 6 pass 13: vertical shift ("keystone" / shift lens). Same camera position and same target at the frame centre,
+// but the camera is held level and the frustum is shifted up, so verticals stay vertical as in ELEV-FRONT.
+// Enabled with view.shift=true; walk mode and older stills are unchanged.
+if (VIEWS.shift && cam.isPerspectiveCamera) {
+  const T = new THREE.Vector3(...VIEWS.tgt), P = cam.position, dh = Math.hypot(T.x-P.x, T.z-P.z);
+  cam.lookAt(new THREE.Vector3(T.x, P.y, T.z)); cam.updateProjectionMatrix();
+  const e = cam.projectionMatrix.elements; e[9] = e[5]*(T.y-P.y)/dh;   // target row back to the frame centre
+  cam.projectionMatrixInverse.copy(cam.projectionMatrix).invert();
+}
 // walk mode (WIP): drag to look, WASD / arrows to walk at eye height. No collision, no sourced start point.
 const EYE=1.6, SPEED=3.0, keys={}; let yaw=0, pitch=0, drag=false, lx=0, ly=0;
 if (!Q.get('view')) {
