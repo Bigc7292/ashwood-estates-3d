@@ -9,7 +9,7 @@ Owner: thread "Finish ground floor interior steps 5–7". Loop tracker: STATUS.m
 | 2 Layout | DONE (carried from v2) | V4 GF plan via data/fp-4b-gf.plan.json | FP-4B-GF/data/ | n/a |
 | 3 Blockout | DONE (carried from v2) | data/ | index.html | n/a |
 | 4 Grime / finish | DONE (v2 clean finish, Q3 KEEP verdicts) | index.html, verify/gf_polish_2026-11-09/ | index.html | Q4 critic: PASS furniture, media wall, pool basin, lighting; FIX entry streak (F2) |
-| 5 Printed matter | WIP, NOT STARTED | brochure p15–p17, p24 signage; V4 GF labels | none yet | Must check the source images before writing "none in source" |
+| 5 Printed matter | DONE: none in source | canonical/references/ref-p15-living.png, ref-p15-dressing.png, ref-p16-bedroom.png | no room signage or readable text in the interior renders. Only mark: a small spiral brand logo on ref-p16-bedroom.png (top right, on the door). Brand watermark, not a room sign: not reproduced in the viewer | Labels only if visible in source: none. p17 and p24 are text-only in the brochure notes (materials), no sign images found in the repo |
 | 6 Critique | BLOCKED on 5 and on F2/F3 fixes | side-by-side with references | none yet | Independent critic lane must sign off |
 | 7 Motion | BLOCKED on 6 | walkthrough path (walk speed unsourced: Q3 open issue 2) | none yet | needs headless render to video |
 
