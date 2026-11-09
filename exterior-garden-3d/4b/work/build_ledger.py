@@ -1,0 +1,45 @@
+import json
+from pathlib import Path
+O=Path('/workspace/exterior-garden-3d/4b'); M=json.loads((O/'model/data/model.json').read_text())
+H=M['meta']['heights_display_only']
+B={b['id']:b for b in M['boxes']}
+def dims(b): return f"~{b['x1']-b['x0']:.2f} × ~{b['z1']-b['z0']:.2f} m plan; height {b['y1']-b['y0']:.2f} m (display assumption)"
+V4='active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg'
+CAL='source-evidence/calibration/4B-GF_source_span_calibration.json (fit 28.145 px/m, max residual 1.7 %, ±3 % working)'
+E=[]
+def add(id_,element,dimensions,dim_source,material,mat_status,evidence,notes=''):
+    E.append(dict(id=id_,element=element,dimensions=dimensions,dimension_source=dim_source,material=material,material_status=mat_status,evidence=evidence,notes=notes))
+add('site','Site / plot (site-diagram rectangle)', f"~{M['meta']['site_m'][0]:.2f} × ~{M['meta']['site_m'][1]:.2f} m (V4 labels ~18.7 × ~29.9 m)", f'{V4} <rect 107,54,527,841> + {CAL}', 'n/a','n/a','V4 GF site diagram; FF V4 labels ~18.8 m','V4: "derived site diagram spans, NOT a verified plot survey". No survey plot boundary.')
+add('paving','Site paving / hardscape (all non-lawn site area)','= site rectangle',f'{V4} site fill #e3dfcf','Light beige stone paving slabs','observed (style) — same-villa render','brochure p26 (pool deck/terrace paving), p25 (forecourt); consistent p30, p34','Joint pattern/format, levels, falls UNKNOWN; render p26 shows a raised deck + steps not drawn in plan.')
+for i in range(1,9):
+    b=B[f'lawn-{i}']; add(f'lawn-{i}',f'Lawn / planting strip {i}',dims(b).split(';')[0],f'{V4} <rect fill=#9caf73> ("Source landscape")','Lawn grass','observed — same-villa render (rear lawn p26); placement per plan','brochure p26; plan crop FP-4B-GF','Plan strips also carry hedge/shrub planting in source crop; shrub species/heights not modelled.')
+t=[x for x in M['trees']]
+add('trees','Trees ×13 (12 site + 1 courtyard planter)','canopy radius from plan symbol (≈1.3–2.0 m); trunk/canopy height display-only (4 m / 3 m courtyard)',f'{V4} tree symbols (circles); positions confirmed in untouched source crop','Generic neutral canopy placeholder','UNKNOWN species — plan symbols are generic; renders p25/p26 show date palms + broadleaf trees but cannot be matched to positions','plan crop FP-4B-GF; brochure p25/p26','No trees added beyond plan symbols.')
+add('gf-walls','GF structural walls (587 rects)','XY from approved V4 structural_wall_poche (spike trace); height 3.60 m display',f'active/floorplan3d-spike/FP-4B-GF/data/fp-4b-gf.plan.json (from {V4}) + {CAL}','Warm beige travertine-like stone cladding','observed — same-villa renders','brochure p25 (front), p26 (rear); style consistent p29/30, p33/34','Stone species/format not verified (p17 lists travertine as project material, interior palette).')
+add('gf-glazing','GF glazing (12 plan cues)','XY from V4 glazing cues; full storey height display',f'fp-4b-gf.plan.json WINS (from {V4})','Clear glass, dark bronze frames','observed — same-villa renders','brochure p25/p26','Frame sizes/mullion spacing unknown; heights assumed.')
+add('gf-floor','GF floor plate polygon','~12.6 × ~22.0 m',f'{V4} floor polygon 195,188…196,723','Light beige internal floor (only visible through glass)','assumed','p17 "light beige marble/porcelain" (interior palette)','')
+add('swimming-pool','Swimming pool (water surface)','9.50 × 2.40 m (transcript) / ~9.49 × ~2.38 m (calibrated)',f'{V4} <rect 196,87,267,67 fill=url(#pool)>; rooms_index ashwood-estates/4b/gf/swimming-pool; calibration span','Turquoise water (Water2), light stone coping','water/coping observed — same-villa render p26; coping width 0.30 m assumed','brochure p26; plan crop FP-4B-GF','Depth, shell, tile finish, coping width, deck level NOT in source. Render p26 shows raised deck + steps.')
+add('courtyard-water','Courtyard water feature + planter island','~4.16 × ~3.70 m; island ~1.42 m sq',f'{V4} <rect 430,410,117,104 fill=url(#pool)> + island','Water (Water2) + stone planter','water observed in plan only (no render shows courtyard); stone assumed','plan crop FP-4B-GF/FF','Unlabelled in canonical index (no canonical record).')
+add('terrace-gf','TERRACE (pool side)','extent UNKNOWN (label only)',f'{V4} text "TERRACE" at crop 494,166','Paving (as site)','observed type (p26 terrace paving + loungers); extent unknown','brochure p26','Not delineated; no canonical room record for GF terrace in 4B (spike: anchors_without_canonical_record).')
+add('outdoor-terrace-gf','OUTDOOR TERRACE (by lift/courtyard)','extent UNKNOWN (label only)',f'{V4} text "OUTDOOR TERRACE" at crop 496,359','Paving (as site)','assumed','plan only','No canonical record.')
+add('driveway','Driveway / parking (2 cars in plan)','~7.4 × ~6.1 m zone (x 107–315, y 723–895 crop px)',f'{V4} car symbols + VEHICLE ENTRY label','Paving (same as site)','assumed — render p25 shows paved forecourt, finish not resolvable','brochure p25','Car symbols not modelled.')
+for k in ['ff-balcony-rear','ff-balcony-front-l','ff-balcony-front-r']:
+    b=B[k]; add(k,'FF balcony '+k.split('-',2)[2],dims(b).split(';')[0],'FF untouched source crop + FP-4B-FF V4 (BALCONY / UNKNOWN labels); FF→GF mapping via site-diagram boxes (scale 0.953/0.959)','Stone paving; rear: frameless glass balustrade; front: stone parapet','rear balustrade observed p26; front parapet observed p25 (approx.)','brochure p25/p26','Balcony dims are UNKNOWN in source; extents traced. Balustrade height 1.10 m assumed.')
+add('ff-walls','FF walls (traced)','XY traced from untouched FF crop (lum<175, 5 px open); height 3.40 m display','source-evidence/plan-crops/FP-4B-FF_untouched_board_crop.png; FF V4 envelope ~13.1 × ~23.9 m','Travertine-like stone','observed — renders p25/p26','brochure p25/p26','FF trace is NOT an approved CAD contour; FF→GF alignment uses site-diagram boxes (pool check: ≤0.15 m).')
+add('ff-glazing','FF glazing (perimeter gaps)','envelope edges without traced wall','inferred from FF plan gaps','Clear glass','observed (p26 rear full-height glass)','brochure p26','Exact glazing extents unverified.')
+add('ff-slat-screen','FF front vertical slat screen','~3.9 m wide × FF height (display)','location inferred: FF V4 "OPEN TO BELOW" front zone','Dark bronze/timber vertical slats','observed — same-villa render p25','brochure p25 (also p29, p33)','Location/extent inferred from render-to-plan reading; not in plan.')
+add('slabs','GF/FF roof slabs + soffits','FF envelope (with courtyard void); 0.40 m / 0.45 m thick display','FF V4 envelope 138..523 × 141..844 FF crop px','Cream/light render soffit with linear lighting','observed — renders p25/p26','brochure p25/p26','Render shows deep overhangs beyond envelope; overhang depth unknown, not modelled.')
+add('rf-core','RF core (MEP, stair, lift, powder, pantry)','RF plan is NOT TO SCALE; placed by board offset + LIFT anchor alignment; height 3.0 m display','source-evidence/plan-crops/FP-4B-RF_untouched_board_crop.png (calibration_status NTS_conflicting_source_spans)','Neutral grey PLACEHOLDER','unknown','—','Do not read dimensions from it.')
+add('rf-terrace','RF terrace + glass balustrade + canopy','extent UNKNOWN (NTS)','RF V4 "TERRACE / UNKNOWN"','Balustrade glass (p26), canopy grey PLACEHOLDER','balustrade/canopy observed p26; extents assumed','brochure p26','')
+add('carport-canopy','Carport canopy','~7.4 × ~5.6 m, top 3.0 m (assumed)','NOT IN PLAN — render p25 only','Neutral grey PLACEHOLDER','observed in render only; geometry unknown','brochure p25 (also p29, p33)','Flagged discrepancy: plan shows open parking, render shows a canopy.')
+add('boundary','Boundary walls (sides) / front wall / gates','sides 1.80 m, front wall 1.20 m, gates 1.80 m (all assumed); positions from site diagram + V4 entry labels','V4 site diagram (NOT verified) + VEHICLE/PEDESTRIAN/SERVICE ENTRY labels','Front wall beige stone + dark bronze vertical-bar gates; side walls grey PLACEHOLDER','front observed p25; sides unknown','brochure p25','Rear boundary unknown (not modelled).')
+L=dict(villa='ashwood-estates/4b', status='CONCEPT — not survey-verified, not construction-ready, not certified',
+  inputs=dict(pipeline='/workspace/plan-visuals-archive/ACTIVE_PIPELINE.json', approved_v4=['4B-GF','4B-FF','4B-RF'], hashes_checked=True, superseded_used=False),
+  display_only_heights_m=H, elements=E)
+(O/'ledger/element_ledger.json').write_text(json.dumps(L,indent=1,ensure_ascii=False))
+md=['# Ashwood 4B — exterior/garden element ledger','','**Concept visualisation: not survey-verified, not construction-ready, not certified.** `~` = calibration-derived/approximate (±3 % working). All heights are display assumptions: '+', '.join(f'{k} {v} m' for k,v in H.items())+'.','',
+    '| Element | Dimensions | Dimension source | Material | Observed / assumed | Evidence |','|---|---|---|---|---|---|']
+for e in E: md.append(f"| {e['element']} | {e['dimensions']} | {e['dimension_source']} | {e['material']} | {e['material_status']} | {e['evidence']} |")
+md+=['','Notes per element are in `element_ledger.json`.']
+(O/'ledger/element_ledger.md').write_text('\n'.join(md))
+print(len(E))

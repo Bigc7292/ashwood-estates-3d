@@ -1,0 +1,386 @@
+[
+ {
+  "name": "aerial",
+  "file": "preview_01_aerial.png",
+  "title": "Preview 1 \u00b7 Aerial (north-west, garden side)",
+  "pos": [
+   -13,
+   30,
+   -12
+  ],
+  "tgt": [
+   9.4,
+   2,
+   14
+  ],
+  "fov": 42,
+  "sub": "Aerial over rear garden, pool and house.",
+  "sun": [
+   -14,
+   26,
+   -16
+  ]
+ },
+ {
+  "name": "front_approach",
+  "file": "preview_02_front_approach.png",
+  "title": "Preview 2 \u00b7 Front approach (street, eye level) \u2014 cf. brochure p25",
+  "pos": [
+   7.5,
+   1.7,
+   46
+  ],
+  "tgt": [
+   9.2,
+   4.6,
+   20
+  ],
+  "fov": 48,
+  "sub": "Street-side approach."
+ },
+ {
+  "name": "garden_pool",
+  "file": "preview_03_garden_pool_side.png",
+  "title": "Preview 3 \u00b7 Garden / pool side (eye level) \u2014 cf. brochure p26",
+  "pos": [
+   9.4,
+   1.7,
+   -17
+  ],
+  "tgt": [
+   9.4,
+   4.4,
+   8
+  ],
+  "fov": 48,
+  "sub": "Rear garden & pool.",
+  "sun": [
+   -14,
+   26,
+   -16
+  ]
+ },
+ {
+  "name": "annotated",
+  "file": "preview_04_aerial_annotated.png",
+  "title": "Preview 4 \u00b7 Annotated aerial (front, south-east)",
+  "pos": [
+   34,
+   28,
+   52
+  ],
+  "tgt": [
+   9.4,
+   2,
+   15
+  ],
+  "fov": 40,
+  "labels": true,
+  "sub": "Labels mark plan-sourced vs placeholder elements."
+ },
+ {
+  "name": "elev_front",
+  "file": "elevation_front.png",
+  "title": "Elevation \u00b7 Front (street, +z) \u2014 orthographic",
+  "ortho": 14,
+  "pos": [
+   9.36,
+   5.8,
+   90
+  ],
+  "tgt": [
+   9.36,
+   5.8,
+   0
+  ],
+  "hide": "trees,boundary,gate",
+  "sub": "Trees and boundary hidden for clarity."
+ },
+ {
+  "name": "elev_rear",
+  "file": "elevation_rear.png",
+  "title": "Elevation \u00b7 Rear (garden/pool, \u2212z) \u2014 orthographic",
+  "ortho": 14,
+  "pos": [
+   9.36,
+   5.8,
+   -70
+  ],
+  "tgt": [
+   9.36,
+   5.8,
+   15
+  ],
+  "hide": "trees,boundary,gate",
+  "sub": "Trees and boundary hidden for clarity.",
+  "sun": [
+   -14,
+   26,
+   -16
+  ]
+ },
+ {
+  "name": "elev_left",
+  "file": "elevation_left.png",
+  "title": "Elevation \u00b7 Left side (plan west, \u2212x) \u2014 orthographic",
+  "ortho": 19,
+  "pos": [
+   -70,
+   5.8,
+   14.94
+  ],
+  "tgt": [
+   9.36,
+   5.8,
+   14.94
+  ],
+  "hide": "trees,boundary,gate",
+  "sub": "Trees and boundary hidden for clarity.",
+  "sun": [
+   -25,
+   22,
+   8
+  ]
+ },
+ {
+  "name": "elev_right",
+  "file": "elevation_right.png",
+  "title": "Elevation \u00b7 Right side (plan east, +x) \u2014 orthographic",
+  "ortho": 19,
+  "pos": [
+   90,
+   5.8,
+   14.94
+  ],
+  "tgt": [
+   9.36,
+   5.8,
+   14.94
+  ],
+  "hide": "trees,boundary,gate",
+  "sub": "Trees and boundary hidden for clarity.",
+  "sun": [
+   35,
+   22,
+   8
+  ]
+ },
+ {
+  "name": "front_garden",
+  "file": "view_front_garden.png",
+  "title": "Front garden / forecourt (street side)",
+  "pos": [
+   17,
+   7,
+   40
+  ],
+  "tgt": [
+   9,
+   0.5,
+   25
+  ],
+  "fov": 50,
+  "sub": "Front lawn strip, driveway, entries."
+ },
+ {
+  "name": "back_garden",
+  "file": "view_back_garden.png",
+  "title": "Back garden (rear lawns, pool deck)",
+  "pos": [
+   1.5,
+   6.5,
+   -9
+  ],
+  "tgt": [
+   10,
+   0,
+   7
+  ],
+  "fov": 52,
+  "sub": "Rear lawns (plan rects) and paving.",
+  "sun": [
+   -14,
+   26,
+   -16
+  ]
+ },
+ {
+  "name": "pool",
+  "file": "view_swimming_pool.png",
+  "title": "Swimming pool \u2014 9.50 \u00d7 2.40 m (plan transcript + calibration span)",
+  "pos": [
+   17.5,
+   3.0,
+   -1.5
+  ],
+  "tgt": [
+   8,
+   0,
+   2.4
+  ],
+  "fov": 50,
+  "sub": "Pool present in source plan & p26 render. Depth/coping/levels not in source.",
+  "sun": [
+   -14,
+   26,
+   -16
+  ]
+ },
+ {
+  "name": "terrace",
+  "file": "view_terrace_pool_side.png",
+  "title": "Outdoor space \u00b7 TERRACE (V4 label beside pool; extent unknown)",
+  "pos": [
+   5,
+   2.4,
+   0.5
+  ],
+  "tgt": [
+   14,
+   1,
+   4.5
+  ],
+  "fov": 55,
+  "sub": "Terrace extent not delineated in source; shown as plan paving.",
+  "sun": [
+   -14,
+   26,
+   -16
+  ]
+ },
+ {
+  "name": "outdoor_terrace",
+  "file": "view_outdoor_terrace_courtyard.png",
+  "title": "Outdoor space \u00b7 OUTDOOR TERRACE + courtyard water feature",
+  "pos": [
+   13.5,
+   21,
+   17.2
+  ],
+  "tgt": [
+   13.5,
+   0,
+   14.4
+  ],
+  "fov": 50,
+  "sub": "Near-vertical view through the plan courtyard void (FF slab/roof opening): water feature + planter island + plan tree; outdoor terrace extent unknown."
+ },
+ {
+  "name": "paving",
+  "file": "view_paving_plan_top.png",
+  "title": "Outdoor space \u00b7 Paving & lawn layout (top-down, orthographic)",
+  "ortho": 32,
+  "pos": [
+   9.36,
+   80,
+   14.94
+  ],
+  "tgt": [
+   9.36,
+   0,
+   14.94
+  ],
+  "up": [
+   0,
+   0,
+   -1
+  ],
+  "hide": "trees",
+  "sub": "Paving = V4 site hardscape; lawn = V4 'source landscape' rects."
+ },
+ {
+  "name": "driveway",
+  "file": "view_driveway.png",
+  "title": "Outdoor space \u00b7 Driveway / parking + carport canopy PLACEHOLDER",
+  "pos": [
+   1.0,
+   3.2,
+   37
+  ],
+  "tgt": [
+   5.5,
+   1,
+   25
+  ],
+  "fov": 55,
+  "sub": "Driveway per V4 vehicle entry/cars; canopy is render-only (p25), grey placeholder."
+ },
+ {
+  "name": "boundary",
+  "file": "view_boundary_walls.png",
+  "title": "Outdoor space \u00b7 Boundary walls & gates (site diagram NOT verified)",
+  "pos": [
+   -7,
+   6,
+   40
+  ],
+  "tgt": [
+   9,
+   1,
+   22
+  ],
+  "fov": 52,
+  "sub": "Front wall/gates: render-p25 type, positions from V4 entry labels. Side walls: grey placeholders."
+ },
+ {
+  "name": "balconies",
+  "file": "view_ff_rear_balcony.png",
+  "title": "Outdoor space \u00b7 FF rear balcony (glass balustrade per p26)",
+  "pos": [
+   9.4,
+   7.5,
+   -8
+  ],
+  "tgt": [
+   9.4,
+   4.6,
+   4
+  ],
+  "fov": 55,
+  "sub": "Balcony extent traced from FF plan; balustrade height assumed.",
+  "sun": [
+   -14,
+   26,
+   -16
+  ]
+ },
+ {
+  "name": "front_balconies",
+  "file": "view_ff_front_balconies.png",
+  "title": "Outdoor space \u00b7 FF front balconies (plan labels; finishes assumed)",
+  "pos": [
+   12,
+   9,
+   36
+  ],
+  "tgt": [
+   9.4,
+   4.6,
+   27
+  ],
+  "fov": 55,
+  "sub": "Front balcony extents traced from FF plan; parapets assumed."
+ },
+ {
+  "name": "rf_terrace",
+  "file": "view_rf_terrace.png",
+  "title": "Outdoor space \u00b7 Roof terrace (RF plan is NOT TO SCALE)",
+  "pos": [
+   9.4,
+   15.5,
+   -7
+  ],
+  "tgt": [
+   9.4,
+   8,
+   9
+  ],
+  "fov": 50,
+  "sub": "RF core/canopy = grey NTS placeholders; terrace extent unknown.",
+  "sun": [
+   -14,
+   26,
+   -16
+  ]
+ }
+]

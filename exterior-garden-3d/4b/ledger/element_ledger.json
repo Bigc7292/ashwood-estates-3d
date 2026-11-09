@@ -1,0 +1,329 @@
+{
+ "villa": "ashwood-estates/4b",
+ "status": "CONCEPT — not survey-verified, not construction-ready, not certified",
+ "inputs": {
+  "pipeline": "/workspace/plan-visuals-archive/ACTIVE_PIPELINE.json",
+  "approved_v4": [
+   "4B-GF",
+   "4B-FF",
+   "4B-RF"
+  ],
+  "hashes_checked": true,
+  "superseded_used": false
+ },
+ "display_only_heights_m": {
+  "plinth": 0.0,
+  "gf": 3.6,
+  "slab": 0.4,
+  "ff": 3.4,
+  "rf": 3.0,
+  "roof_slab": 0.45,
+  "balustrade": 1.1,
+  "boundary_side": 1.8,
+  "boundary_front": 1.2,
+  "gate": 1.8,
+  "canopy_carport": 3.0
+ },
+ "elements": [
+  {
+   "id": "site",
+   "element": "Site / plot (site-diagram rectangle)",
+   "dimensions": "~18.72 × ~29.88 m (V4 labels ~18.7 × ~29.9 m)",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect 107,54,527,841> + source-evidence/calibration/4B-GF_source_span_calibration.json (fit 28.145 px/m, max residual 1.7 %, ±3 % working)",
+   "material": "n/a",
+   "material_status": "n/a",
+   "evidence": "V4 GF site diagram; FF V4 labels ~18.8 m",
+   "notes": "V4: \"derived site diagram spans, NOT a verified plot survey\". No survey plot boundary."
+  },
+  {
+   "id": "paving",
+   "element": "Site paving / hardscape (all non-lawn site area)",
+   "dimensions": "= site rectangle",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg site fill #e3dfcf",
+   "material": "Light beige stone paving slabs",
+   "material_status": "observed (style) — same-villa render",
+   "evidence": "brochure p26 (pool deck/terrace paving), p25 (forecourt); consistent p30, p34",
+   "notes": "Joint pattern/format, levels, falls UNKNOWN; render p26 shows a raised deck + steps not drawn in plan."
+  },
+  {
+   "id": "lawn-1",
+   "element": "Lawn / planting strip 1",
+   "dimensions": "~2.74 × ~2.31 m plan",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect fill=#9caf73> (\"Source landscape\")",
+   "material": "Lawn grass",
+   "material_status": "observed — same-villa render (rear lawn p26); placement per plan",
+   "evidence": "brochure p26; plan crop FP-4B-GF",
+   "notes": "Plan strips also carry hedge/shrub planting in source crop; shrub species/heights not modelled."
+  },
+  {
+   "id": "lawn-2",
+   "element": "Lawn / planting strip 2",
+   "dimensions": "~1.60 × ~12.26 m plan",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect fill=#9caf73> (\"Source landscape\")",
+   "material": "Lawn grass",
+   "material_status": "observed — same-villa render (rear lawn p26); placement per plan",
+   "evidence": "brochure p26; plan crop FP-4B-GF",
+   "notes": "Plan strips also carry hedge/shrub planting in source crop; shrub species/heights not modelled."
+  },
+  {
+   "id": "lawn-3",
+   "element": "Lawn / planting strip 3",
+   "dimensions": "~2.81 × ~1.53 m plan",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect fill=#9caf73> (\"Source landscape\")",
+   "material": "Lawn grass",
+   "material_status": "observed — same-villa render (rear lawn p26); placement per plan",
+   "evidence": "brochure p26; plan crop FP-4B-GF",
+   "notes": "Plan strips also carry hedge/shrub planting in source crop; shrub species/heights not modelled."
+  },
+  {
+   "id": "lawn-4",
+   "element": "Lawn / planting strip 4",
+   "dimensions": "~3.55 × ~2.49 m plan",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect fill=#9caf73> (\"Source landscape\")",
+   "material": "Lawn grass",
+   "material_status": "observed — same-villa render (rear lawn p26); placement per plan",
+   "evidence": "brochure p26; plan crop FP-4B-GF",
+   "notes": "Plan strips also carry hedge/shrub planting in source crop; shrub species/heights not modelled."
+  },
+  {
+   "id": "lawn-5",
+   "element": "Lawn / planting strip 5",
+   "dimensions": "~1.39 × ~13.96 m plan",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect fill=#9caf73> (\"Source landscape\")",
+   "material": "Lawn grass",
+   "material_status": "observed — same-villa render (rear lawn p26); placement per plan",
+   "evidence": "brochure p26; plan crop FP-4B-GF",
+   "notes": "Plan strips also carry hedge/shrub planting in source crop; shrub species/heights not modelled."
+  },
+  {
+   "id": "lawn-6",
+   "element": "Lawn / planting strip 6",
+   "dimensions": "~1.38 × ~10.73 m plan",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect fill=#9caf73> (\"Source landscape\")",
+   "material": "Lawn grass",
+   "material_status": "observed — same-villa render (rear lawn p26); placement per plan",
+   "evidence": "brochure p26; plan crop FP-4B-GF",
+   "notes": "Plan strips also carry hedge/shrub planting in source crop; shrub species/heights not modelled."
+  },
+  {
+   "id": "lawn-7",
+   "element": "Lawn / planting strip 7",
+   "dimensions": "~1.39 × ~3.94 m plan",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect fill=#9caf73> (\"Source landscape\")",
+   "material": "Lawn grass",
+   "material_status": "observed — same-villa render (rear lawn p26); placement per plan",
+   "evidence": "brochure p26; plan crop FP-4B-GF",
+   "notes": "Plan strips also carry hedge/shrub planting in source crop; shrub species/heights not modelled."
+  },
+  {
+   "id": "lawn-8",
+   "element": "Lawn / planting strip 8",
+   "dimensions": "~5.69 × ~2.03 m plan",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect fill=#9caf73> (\"Source landscape\")",
+   "material": "Lawn grass",
+   "material_status": "observed — same-villa render (rear lawn p26); placement per plan",
+   "evidence": "brochure p26; plan crop FP-4B-GF",
+   "notes": "Plan strips also carry hedge/shrub planting in source crop; shrub species/heights not modelled."
+  },
+  {
+   "id": "trees",
+   "element": "Trees ×13 (12 site + 1 courtyard planter)",
+   "dimensions": "canopy radius from plan symbol (≈1.3–2.0 m); trunk/canopy height display-only (4 m / 3 m courtyard)",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg tree symbols (circles); positions confirmed in untouched source crop",
+   "material": "Generic neutral canopy placeholder",
+   "material_status": "UNKNOWN species — plan symbols are generic; renders p25/p26 show date palms + broadleaf trees but cannot be matched to positions",
+   "evidence": "plan crop FP-4B-GF; brochure p25/p26",
+   "notes": "No trees added beyond plan symbols."
+  },
+  {
+   "id": "gf-walls",
+   "element": "GF structural walls (587 rects)",
+   "dimensions": "XY from approved V4 structural_wall_poche (spike trace); height 3.60 m display",
+   "dimension_source": "active/floorplan3d-spike/FP-4B-GF/data/fp-4b-gf.plan.json (from active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg) + source-evidence/calibration/4B-GF_source_span_calibration.json (fit 28.145 px/m, max residual 1.7 %, ±3 % working)",
+   "material": "Warm beige travertine-like stone cladding",
+   "material_status": "observed — same-villa renders",
+   "evidence": "brochure p25 (front), p26 (rear); style consistent p29/30, p33/34",
+   "notes": "Stone species/format not verified (p17 lists travertine as project material, interior palette)."
+  },
+  {
+   "id": "gf-glazing",
+   "element": "GF glazing (12 plan cues)",
+   "dimensions": "XY from V4 glazing cues; full storey height display",
+   "dimension_source": "fp-4b-gf.plan.json WINS (from active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg)",
+   "material": "Clear glass, dark bronze frames",
+   "material_status": "observed — same-villa renders",
+   "evidence": "brochure p25/p26",
+   "notes": "Frame sizes/mullion spacing unknown; heights assumed."
+  },
+  {
+   "id": "gf-floor",
+   "element": "GF floor plate polygon",
+   "dimensions": "~12.6 × ~22.0 m",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg floor polygon 195,188…196,723",
+   "material": "Light beige internal floor (only visible through glass)",
+   "material_status": "assumed",
+   "evidence": "p17 \"light beige marble/porcelain\" (interior palette)",
+   "notes": ""
+  },
+  {
+   "id": "swimming-pool",
+   "element": "Swimming pool (water surface)",
+   "dimensions": "9.50 × 2.40 m (transcript) / ~9.49 × ~2.38 m (calibrated)",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect 196,87,267,67 fill=url(#pool)>; rooms_index ashwood-estates/4b/gf/swimming-pool; calibration span",
+   "material": "Turquoise water (Water2), light stone coping",
+   "material_status": "water/coping observed — same-villa render p26; coping width 0.30 m assumed",
+   "evidence": "brochure p26; plan crop FP-4B-GF",
+   "notes": "Depth, shell, tile finish, coping width, deck level NOT in source. Render p26 shows raised deck + steps."
+  },
+  {
+   "id": "courtyard-water",
+   "element": "Courtyard water feature + planter island",
+   "dimensions": "~4.16 × ~3.70 m; island ~1.42 m sq",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg <rect 430,410,117,104 fill=url(#pool)> + island",
+   "material": "Water (Water2) + stone planter",
+   "material_status": "water observed in plan only (no render shows courtyard); stone assumed",
+   "evidence": "plan crop FP-4B-GF/FF",
+   "notes": "Unlabelled in canonical index (no canonical record)."
+  },
+  {
+   "id": "terrace-gf",
+   "element": "TERRACE (pool side)",
+   "dimensions": "extent UNKNOWN (label only)",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg text \"TERRACE\" at crop 494,166",
+   "material": "Paving (as site)",
+   "material_status": "observed type (p26 terrace paving + loungers); extent unknown",
+   "evidence": "brochure p26",
+   "notes": "Not delineated; no canonical room record for GF terrace in 4B (spike: anchors_without_canonical_record)."
+  },
+  {
+   "id": "outdoor-terrace-gf",
+   "element": "OUTDOOR TERRACE (by lift/courtyard)",
+   "dimensions": "extent UNKNOWN (label only)",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg text \"OUTDOOR TERRACE\" at crop 496,359",
+   "material": "Paving (as site)",
+   "material_status": "assumed",
+   "evidence": "plan only",
+   "notes": "No canonical record."
+  },
+  {
+   "id": "driveway",
+   "element": "Driveway / parking (2 cars in plan)",
+   "dimensions": "~7.4 × ~6.1 m zone (x 107–315, y 723–895 crop px)",
+   "dimension_source": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg car symbols + VEHICLE ENTRY label",
+   "material": "Paving (same as site)",
+   "material_status": "assumed — render p25 shows paved forecourt, finish not resolvable",
+   "evidence": "brochure p25",
+   "notes": "Car symbols not modelled."
+  },
+  {
+   "id": "ff-balcony-rear",
+   "element": "FF balcony rear",
+   "dimensions": "~12.83 × ~1.64 m plan",
+   "dimension_source": "FF untouched source crop + FP-4B-FF V4 (BALCONY / UNKNOWN labels); FF→GF mapping via site-diagram boxes (scale 0.953/0.959)",
+   "material": "Stone paving; rear: frameless glass balustrade; front: stone parapet",
+   "material_status": "rear balustrade observed p26; front parapet observed p25 (approx.)",
+   "evidence": "brochure p25/p26",
+   "notes": "Balcony dims are UNKNOWN in source; extents traced. Balustrade height 1.10 m assumed."
+  },
+  {
+   "id": "ff-balcony-front-l",
+   "element": "FF balcony front-l",
+   "dimensions": "~4.37 × ~1.12 m plan",
+   "dimension_source": "FF untouched source crop + FP-4B-FF V4 (BALCONY / UNKNOWN labels); FF→GF mapping via site-diagram boxes (scale 0.953/0.959)",
+   "material": "Stone paving; rear: frameless glass balustrade; front: stone parapet",
+   "material_status": "rear balustrade observed p26; front parapet observed p25 (approx.)",
+   "evidence": "brochure p25/p26",
+   "notes": "Balcony dims are UNKNOWN in source; extents traced. Balustrade height 1.10 m assumed."
+  },
+  {
+   "id": "ff-balcony-front-r",
+   "element": "FF balcony front-r",
+   "dimensions": "~4.74 × ~2.83 m plan",
+   "dimension_source": "FF untouched source crop + FP-4B-FF V4 (BALCONY / UNKNOWN labels); FF→GF mapping via site-diagram boxes (scale 0.953/0.959)",
+   "material": "Stone paving; rear: frameless glass balustrade; front: stone parapet",
+   "material_status": "rear balustrade observed p26; front parapet observed p25 (approx.)",
+   "evidence": "brochure p25/p26",
+   "notes": "Balcony dims are UNKNOWN in source; extents traced. Balustrade height 1.10 m assumed."
+  },
+  {
+   "id": "ff-walls",
+   "element": "FF walls (traced)",
+   "dimensions": "XY traced from untouched FF crop (lum<175, 5 px open); height 3.40 m display",
+   "dimension_source": "source-evidence/plan-crops/FP-4B-FF_untouched_board_crop.png; FF V4 envelope ~13.1 × ~23.9 m",
+   "material": "Travertine-like stone",
+   "material_status": "observed — renders p25/p26",
+   "evidence": "brochure p25/p26",
+   "notes": "FF trace is NOT an approved CAD contour; FF→GF alignment uses site-diagram boxes (pool check: ≤0.15 m)."
+  },
+  {
+   "id": "ff-glazing",
+   "element": "FF glazing (perimeter gaps)",
+   "dimensions": "envelope edges without traced wall",
+   "dimension_source": "inferred from FF plan gaps",
+   "material": "Clear glass",
+   "material_status": "observed (p26 rear full-height glass)",
+   "evidence": "brochure p26",
+   "notes": "Exact glazing extents unverified."
+  },
+  {
+   "id": "ff-slat-screen",
+   "element": "FF front vertical slat screen",
+   "dimensions": "~3.9 m wide × FF height (display)",
+   "dimension_source": "location inferred: FF V4 \"OPEN TO BELOW\" front zone",
+   "material": "Dark bronze/timber vertical slats",
+   "material_status": "observed — same-villa render p25",
+   "evidence": "brochure p25 (also p29, p33)",
+   "notes": "Location/extent inferred from render-to-plan reading; not in plan."
+  },
+  {
+   "id": "slabs",
+   "element": "GF/FF roof slabs + soffits",
+   "dimensions": "FF envelope (with courtyard void); 0.40 m / 0.45 m thick display",
+   "dimension_source": "FF V4 envelope 138..523 × 141..844 FF crop px",
+   "material": "Cream/light render soffit with linear lighting",
+   "material_status": "observed — renders p25/p26",
+   "evidence": "brochure p25/p26",
+   "notes": "Render shows deep overhangs beyond envelope; overhang depth unknown, not modelled."
+  },
+  {
+   "id": "rf-core",
+   "element": "RF core (MEP, stair, lift, powder, pantry)",
+   "dimensions": "RF plan is NOT TO SCALE; placed by board offset + LIFT anchor alignment; height 3.0 m display",
+   "dimension_source": "source-evidence/plan-crops/FP-4B-RF_untouched_board_crop.png (calibration_status NTS_conflicting_source_spans)",
+   "material": "Neutral grey PLACEHOLDER",
+   "material_status": "unknown",
+   "evidence": "—",
+   "notes": "Do not read dimensions from it."
+  },
+  {
+   "id": "rf-terrace",
+   "element": "RF terrace + glass balustrade + canopy",
+   "dimensions": "extent UNKNOWN (NTS)",
+   "dimension_source": "RF V4 \"TERRACE / UNKNOWN\"",
+   "material": "Balustrade glass (p26), canopy grey PLACEHOLDER",
+   "material_status": "balustrade/canopy observed p26; extents assumed",
+   "evidence": "brochure p26",
+   "notes": ""
+  },
+  {
+   "id": "carport-canopy",
+   "element": "Carport canopy",
+   "dimensions": "~7.4 × ~5.6 m, top 3.0 m (assumed)",
+   "dimension_source": "NOT IN PLAN — render p25 only",
+   "material": "Neutral grey PLACEHOLDER",
+   "material_status": "observed in render only; geometry unknown",
+   "evidence": "brochure p25 (also p29, p33)",
+   "notes": "Flagged discrepancy: plan shows open parking, render shows a canopy."
+  },
+  {
+   "id": "boundary",
+   "element": "Boundary walls (sides) / front wall / gates",
+   "dimensions": "sides 1.80 m, front wall 1.20 m, gates 1.80 m (all assumed); positions from site diagram + V4 entry labels",
+   "dimension_source": "V4 site diagram (NOT verified) + VEHICLE/PEDESTRIAN/SERVICE ENTRY labels",
+   "material": "Front wall beige stone + dark bronze vertical-bar gates; side walls grey PLACEHOLDER",
+   "material_status": "front observed p25; sides unknown",
+   "evidence": "brochure p25",
+   "notes": "Rear boundary unknown (not modelled)."
+  }
+ ]
+}

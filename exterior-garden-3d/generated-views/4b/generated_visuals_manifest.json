@@ -1,0 +1,893 @@
+{
+ "schema": "exterior_generated_visuals_v1",
+ "project_id": "ashwood-estates",
+ "villa_id": "4b",
+ "created_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+ "villa_selection_rationale": "4B has the strongest exterior evidence: same-villa front (p25) and rear (p26) renders; 2 of 3 floors approx_calibrated, GF calibration has 8 spans incl. pool with residuals <=1.02%; plan 2-bay parking matches 2-car carport in render. 5B also has 2/3 calibrated and 3-car consistency but no dedicated GF calibration evidence; 6B has only 1/3 calibrated and render shows 3 cars vs 2-bay plan.",
+ "pool_decision": "INCLUDED: pool labelled on 4B GF plan (9.50 x 2.40 transcript) and visible in same-villa render p26.",
+ "orientation_note": "No verified north point used; left/right defined as seen from the street facing the front elevation (left = vehicular entrance side).",
+ "disclaimer": "AI-generated concept visualisation, not survey-verified",
+ "separation_note": "Kept separate from brochure marketing renders; brochure crops in source-refs/ are references only.",
+ "counts": {
+  "generated_available": 10,
+  "source_missing": 10,
+  "source_verified_views": 0
+ },
+ "rejected_first_pass": "_rejected_first_pass/ (4 images; not deliverables)",
+ "assets": [
+  {
+   "asset_id": "EXT-4b-ELEV-FRONT",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "ELEV-FRONT",
+   "view_title": "Front (street) elevation",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-ELEV-FRONT_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "45e1f38580cb8e2b95b7d4846ad2aa0570c7a3b50e785151f8a0259ae27d9632",
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "Straight-on street elevation of the p25 villa; carport left (2 bays), central pedestrian gate/double-height entry, multipurpose block and low stone wall right; no cars/people/text.",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 27,
+     "board_crop_bbox_px": [
+      120,
+      350,
+      830,
+      1370
+     ],
+     "calibration": "approx_calibrated (~28.15 px/m, ±3% working allowance, not survey)"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 25,
+     "path": "extracts/pages/page110-25.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-p25-front-render-crop_no-title-logo.png",
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-GF-plan-crop.png"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 25,
+     "observed_fact": "Warm beige travertine-like stone cladding, deep flat cantilevered roof slab with soffit light line, bronze/timber vertical slatted FF screen, flat carport canopy at front-left, slatted metal pedestrian gate, low stone boundary wall, date palms and flowering shrubs",
+     "inferred_application": "Used as the material/planting palette for all views",
+     "uncertainty": "Material species/products not verified; brochure is illustrative"
+    },
+    {
+     "source_page": 27,
+     "observed_fact": "GF plan front edge: P01/P02 parking (vehicular entrance) left, pedestrian entrance centre, multipurpose room and service entrance right",
+     "inferred_application": "Left-to-right order of frontage",
+     "uncertainty": "Openings/heights unverified"
+    }
+   ],
+   "assumptions": [
+    "Near-orthographic eye-level framing inferred; massing follows render p25",
+    "Cars, people and golf cart from render deliberately removed"
+   ],
+   "layout_check_against_plan": "PASS (visual): carport left with two bays, central gate, right-hand stone block and low wall match GF plan order and p25 render.",
+   "conflicts": [
+    "Near-replica of brochure render p25 composition; must not be presented as a marketing render"
+   ],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "Only brochure marketing render/plan context exists; no survey/photo of this view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  },
+  {
+   "asset_id": "EXT-4b-ELEV-REAR",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "ELEV-REAR",
+   "view_title": "Rear (garden) elevation",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-ELEV-REAR_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "fe6779218de4f5c4d96b5d8e5f2ce4e7e73d762c19a089d5fa1a41a675ca0dfb",
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "Straight-on rear elevation of the p26 villa with pool, terrace, FF glass balcony, roof canopy slab.",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 27,
+     "board_crop_bbox_px": [
+      120,
+      350,
+      830,
+      1370
+     ],
+     "calibration": "approx_calibrated (~28.15 px/m, ±3% working allowance, not survey)"
+    },
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-FF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-FF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 28,
+     "board_crop_bbox_px": [
+      980,
+      370,
+      1630,
+      1370
+     ],
+     "calibration": "approx_calibrated"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 26,
+     "path": "extracts/pages/page110-26.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-p26-rear-render-crop_no-title-logo.png",
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-GF-plan-crop.png"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 26,
+     "observed_fact": "Rear: full-height GF glazing, full-width FF balcony with frameless glass balustrade, roof-level canopy slab, long rectangular pool along rear, stone terrace with steps, lawn, hedges, palms",
+     "inferred_application": "Rear, garden and pool views",
+     "uncertainty": "Render may not match final construction"
+    },
+    {
+     "source_page": 27,
+     "observed_fact": "Pool 9.50 x 2.40 (brochure transcript) across rear, terrace label beside it; FF rear full-width BALCONY (p28)",
+     "inferred_application": "Pool on viewer right, terrace viewer left (mirror of plan from garden side)",
+     "uncertainty": "Pool rendered shorter/wider than 9.5x2.4 proportion would suggest"
+    }
+   ],
+   "assumptions": [
+    "Lawn depth and boundary hedging inferred from render"
+   ],
+   "layout_check_against_plan": "PASS with caveat: pool/terrace sides consistent with mirrored plan; pool proportion approximate.",
+   "conflicts": [
+    "Near-replica of brochure render p26 composition"
+   ],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "Only brochure marketing render/plan context exists; no survey/photo of this view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  },
+  {
+   "asset_id": "EXT-4b-ELEV-LEFT",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "ELEV-LEFT",
+   "view_title": "Left side elevation (vehicular/carport side; plan-left)",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png",
+   "sha256": "f3275da9159e8bd1c9ef80aedab2f2cd9525f07a8e62f7ffbdaf85f7d43c6ea3",
+   "method": "GENERATED-CONCEPT",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "Side elevation inferred: long stone wall, few narrow windows, carport canopy at street end, balcony slab at rear end, planted side strip. Regenerated once to remove invented street and enclosed garage.",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 27,
+     "board_crop_bbox_px": [
+      120,
+      350,
+      830,
+      1370
+     ],
+     "calibration": "approx_calibrated (~28.15 px/m, ±3% working allowance, not survey)"
+    },
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-FF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-FF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 28,
+     "board_crop_bbox_px": [
+      980,
+      370,
+      1630,
+      1370
+     ],
+     "calibration": "approx_calibrated"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 25,
+     "path": "extracts/pages/page110-25.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    },
+    {
+     "page": 26,
+     "path": "extracts/pages/page110-26.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "generated ELEV-FRONT",
+    "generated ELEV-REAR",
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-GF-plan-crop.png",
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-p25-front-render-crop_no-title-logo.png"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 27,
+     "observed_fact": "Plan-left side: planted strip with row of trees along boundary; kitchen/pantry/maid rooms on this side; carport at front-left",
+     "inferred_application": "Mostly solid side wall with planting strip and carport at the street end",
+     "uncertainty": "No source side elevation exists; window positions, sizes and heights unknown"
+    }
+   ],
+   "assumptions": [
+    "ENTIRE ELEVATION IS A LOGICAL INFERENCE - no source side view",
+    "Window count/positions invented for plausibility",
+    "FF balconies at both ends inferred from FF plan balconies (front-left bedroom balcony, rear balcony)"
+   ],
+   "layout_check_against_plan": "PARTIAL: carport at street end and pool at rear end correct; foreground lawn shown along the full side whereas plan shows a narrow planted/paved strip; carport back wall reads semi-enclosed.",
+   "conflicts": [
+    "First pass (rejected) invented a public road along the side"
+   ],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "No source-verified image exists for this exact view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  },
+  {
+   "asset_id": "EXT-4b-ELEV-RIGHT",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "ELEV-RIGHT",
+   "view_title": "Right side elevation (service-entrance side; plan-right)",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-ELEV-RIGHT_GENERATED-CONCEPT.png",
+   "sha256": "2ace2ddd276f581c294a50ae99cd68890e1102fe7902c4f55f58ec1bbd3da7f4",
+   "method": "GENERATED-CONCEPT",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "Side elevation inferred: multipurpose block and service gate at street end, mid-side courtyard opening with water feature/tree, roof canopy towards rear. Regenerated once to remove invented street.",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 27,
+     "board_crop_bbox_px": [
+      120,
+      350,
+      830,
+      1370
+     ],
+     "calibration": "approx_calibrated (~28.15 px/m, ±3% working allowance, not survey)"
+    },
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-FF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-FF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 28,
+     "board_crop_bbox_px": [
+      980,
+      370,
+      1630,
+      1370
+     ],
+     "calibration": "approx_calibrated"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 25,
+     "path": "extracts/pages/page110-25.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    },
+    {
+     "page": 26,
+     "path": "extracts/pages/page110-26.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "generated ELEV-FRONT",
+    "generated ELEV-REAR",
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-GF-plan-crop.png"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 27,
+     "observed_fact": "Plan-right: multipurpose room front-right, office/gym, open courtyard water feature with central planter beside lift (\"OUTDOOR TERRACE\"), side path and planted strip, service entrance",
+     "inferred_application": "Courtyard shown as glazed recess mid-side; service gate at street end",
+     "uncertainty": "No source side view; whether courtyard is visible from the side path is unverified"
+    }
+   ],
+   "assumptions": [
+    "ENTIRE ELEVATION IS A LOGICAL INFERENCE",
+    "Window positions/heights invented",
+    "Lawn in foreground inferred (plan shows path + planting)"
+   ],
+   "layout_check_against_plan": "PARTIAL: element order (service gate front, courtyard mid, rear end) matches plan; courtyard depicted as a glazed interior-like recess; foreground lawn not on plan.",
+   "conflicts": [
+    "First pass (rejected) invented a public road along the side"
+   ],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "No source-verified image exists for this exact view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  },
+  {
+   "asset_id": "EXT-4b-GARDEN-FRONT",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "GARDEN-FRONT",
+   "view_title": "Front garden / forecourt",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-GARDEN-FRONT_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "1e8908122dbdbdec9825ce59cda6257b4cf9e5cd3852e2b353823dd6105af37d",
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "Three-quarter street view: driveway under carport, central gate path, low stone wall with planted strip and shade tree, service gate right.",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 27,
+     "board_crop_bbox_px": [
+      120,
+      350,
+      830,
+      1370
+     ],
+     "calibration": "approx_calibrated (~28.15 px/m, ±3% working allowance, not survey)"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 25,
+     "path": "extracts/pages/page110-25.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "generated ELEV-FRONT",
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-GF-plan-crop.png"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 25,
+     "observed_fact": "Warm beige travertine-like stone cladding, deep flat cantilevered roof slab with soffit light line, bronze/timber vertical slatted FF screen, flat carport canopy at front-left, slatted metal pedestrian gate, low stone boundary wall, date palms and flowering shrubs",
+     "inferred_application": "Used as the material/planting palette for all views",
+     "uncertainty": "Material species/products not verified; brochure is illustrative"
+    },
+    {
+     "source_page": 27,
+     "observed_fact": "Front strip: 2 parking bays, pedestrian path, planting/large tree at right front, service entrance",
+     "inferred_application": "Forecourt layout",
+     "uncertainty": "Paving pattern and plant species not specified"
+    }
+   ],
+   "assumptions": [
+    "Plant species generic (grasses, pink groundcover, shrubs) from render",
+    "Street kerb in foreground inferred (front of plot does face the street per plan entrances)"
+   ],
+   "layout_check_against_plan": "PASS (visual): carport left, gate centre, planted wall and service gate right.",
+   "conflicts": [],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "Only brochure marketing render/plan context exists; no survey/photo of this view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  },
+  {
+   "asset_id": "EXT-4b-GARDEN-BACK",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "GARDEN-BACK",
+   "view_title": "Back garden",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-GARDEN-BACK_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "47b7a112200147b9ab371e84772d41a7ee178504bc45d6682e33d5e636b504f3",
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "Three-quarter view from rear lawn corner: lawn, pool, terrace, palms, hedges.",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 27,
+     "board_crop_bbox_px": [
+      120,
+      350,
+      830,
+      1370
+     ],
+     "calibration": "approx_calibrated (~28.15 px/m, ±3% working allowance, not survey)"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 26,
+     "path": "extracts/pages/page110-26.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "generated ELEV-REAR",
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-p26-rear-render-crop_no-title-logo.png"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 26,
+     "observed_fact": "Rear: full-height GF glazing, full-width FF balcony with frameless glass balustrade, roof-level canopy slab, long rectangular pool along rear, stone terrace with steps, lawn, hedges, palms",
+     "inferred_application": "Rear, garden and pool views",
+     "uncertainty": "Render may not match final construction"
+    }
+   ],
+   "assumptions": [
+    "Bougainvillea-like pink accents inferred from render colours; species unverified",
+    "Lawn depth beyond pool unknown; plan shows only a narrow strip behind the pool"
+   ],
+   "layout_check_against_plan": "PARTIAL: lawn shown deeper than the plan suggests (plan: pool near rear boundary); otherwise consistent with p26.",
+   "conflicts": [
+    "Garden depth behind pool: plan vs render p26 disagree (render shows wide lawn); render followed for mood"
+   ],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "Only brochure marketing render/plan context exists; no survey/photo of this view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  },
+  {
+   "asset_id": "EXT-4b-OUTDOOR-SITE",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "OUTDOOR-SITE",
+   "view_title": "Outdoor spaces overview: driveway, paving, side paths, boundary walls, courtyard, pool",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-OUTDOOR-SITE_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "fb0adbee2202ba0ef2c471d4c59a76b12849f13770d1fad31568375ba9d5175b",
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "High oblique aerial of the whole plot following the GF plan. Regenerated once (first pass had a second pool and wrong plot proportions).",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 27,
+     "board_crop_bbox_px": [
+      120,
+      350,
+      830,
+      1370
+     ],
+     "calibration": "approx_calibrated (~28.15 px/m, ±3% working allowance, not survey)"
+    },
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-RF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-RF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 28,
+     "board_crop_bbox_px": [
+      1820,
+      455,
+      2300,
+      1250
+     ],
+     "calibration": "NTS_conflicting_source_spans"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 25,
+     "path": "extracts/pages/page110-25.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    },
+    {
+     "page": 26,
+     "path": "extracts/pages/page110-26.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-GF-plan-crop.png",
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-GF-V4-preview-site-crop.png",
+    "generated ELEV-FRONT"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 27,
+     "observed_fact": "Plot ~18.7 m x ~29.9 m (V4 derived spans, not survey); building near full width; narrow planted side strips; front parking, central path, rear pool + terrace; enclosed courtyard water feature",
+     "inferred_application": "Aerial layout",
+     "uncertainty": "Plot spans are calibration-derived only"
+    }
+   ],
+   "assumptions": [
+    "Boundary wall heights/material inferred from p25 low stone wall",
+    "Roof terrace canopy not clearly shown"
+   ],
+   "layout_check_against_plan": "PASS with caveats: single rear pool, courtyard inside footprint, multipurpose block front-right, two-bay carport front-left, side strips both sides. Plot proportion slightly wider than ~1.6:1.",
+   "conflicts": [
+    "First pass rejected: invented second pool, oversized plot"
+   ],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "Only brochure marketing render/plan context exists; no survey/photo of this view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  },
+  {
+   "asset_id": "EXT-4b-OUTDOOR-ROOF-TERRACE",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "OUTDOOR-ROOF-TERRACE",
+   "view_title": "Roof terrace",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-OUTDOOR-ROOF-TERRACE_GENERATED-CONCEPT.png",
+   "sha256": "ef50f48d3878df946668d30e5ee7b39ee6be8d64348c54103a68bda968fd39fd",
+   "method": "GENERATED-CONCEPT",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "Roof terrace with dining for ~8, L-sofa, round tables, long counter, canopy slab, glass balustrade.",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-RF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-RF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 28,
+     "board_crop_bbox_px": [
+      1820,
+      455,
+      2300,
+      1250
+     ],
+     "calibration": "NTS_conflicting_source_spans"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 26,
+     "path": "extracts/pages/page110-26.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-RF-plan-crop.png",
+    "generated ELEV-REAR"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 28,
+     "observed_fact": "RF plan: TERRACE at rear with dining table (~8-10 seats), L-shaped lounge, round tables, long counter; lift, stair, powder, pantry, MEP; p26 shows roof canopy slab",
+     "inferred_application": "Furniture arrangement and canopy",
+     "uncertainty": "RF plan is NTS (conflicting spans); balustrade type inferred from FF balcony"
+    }
+   ],
+   "assumptions": [
+    "No source roof-terrace render exists; finishes inferred",
+    "Glass balustrade inferred"
+   ],
+   "layout_check_against_plan": "PARTIAL: furniture types match RF plan; stair shown as an open external stair, whereas the plan places the stair inside the enclosed core.",
+   "conflicts": [
+    "Stair depiction does not match RF plan"
+   ],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "No source-verified image exists for this exact view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  },
+  {
+   "asset_id": "EXT-4b-OUTDOOR-COURTYARD",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "OUTDOOR-COURTYARD",
+   "view_title": "GF side courtyard / outdoor terrace with water feature",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-OUTDOOR-COURTYARD_GENERATED-CONCEPT.png",
+   "sha256": "d8abe4db098fc8e2c6eea38a469dcc53123778463597cadcda310df817548c76",
+   "method": "GENERATED-CONCEPT",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "Square open-to-sky courtyard with shallow reflecting water feature and central planter tree, paved strip by lift core.",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 27,
+     "board_crop_bbox_px": [
+      120,
+      350,
+      830,
+      1370
+     ],
+     "calibration": "approx_calibrated (~28.15 px/m, ±3% working allowance, not survey)"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 25,
+     "path": "extracts/pages/page110-25.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "/workspace/exterior-garden-3d/generated-views/4b/source-refs/REF-4b-GF-plan-crop.png",
+    "generated ELEV-FRONT"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 27,
+     "observed_fact": "GF plan: \"OUTDOOR TERRACE\" label by lift; square water feature with square central planter between lift and office/gym",
+     "inferred_application": "Courtyard composition",
+     "uncertainty": "Not in canonical rooms_index for 4b (only labelled on plan); wall heights/glazing unverified"
+    }
+   ],
+   "assumptions": [
+    "Tree species (shown bonsai/pine-like) invented",
+    "Bench and glazing extent inferred"
+   ],
+   "layout_check_against_plan": "PARTIAL: square pool + central planter matches plan; enclosure on all sides and amount of glazing are assumptions (plan suggests one side open to the side strip).",
+   "conflicts": [
+    "4B GF TERRACE and OUTDOOR TERRACE labels are on the plan but missing from canonical/rooms_index.json for villa 4b"
+   ],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "No source-verified image exists for this exact view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  },
+  {
+   "asset_id": "EXT-4b-POOL",
+   "project_id": "ashwood-estates",
+   "villa_id": "4b",
+   "view_id": "POOL",
+   "view_title": "Swimming pool",
+   "output_path": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-POOL_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "b50e708b2cbe4c8dc46b28d612d97cfff2dca54d7d5601d3486462abff294bd9",
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "generator": "Grok Bot GenerateImage (included, no paid credits requested)",
+   "prompt_summary": "End-of-pool view along a long narrow lap pool beside the rear glazing. Regenerated once (first pass duplicated the rear elevation).",
+   "negative_constraints": "No text, logos, watermarks, people, cars; no extra storeys, pools or structures; no photograph styling; no invented dimensions.",
+   "source_plans": [
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 27,
+     "board_crop_bbox_px": [
+      120,
+      350,
+      830,
+      1370
+     ],
+     "calibration": "approx_calibrated (~28.15 px/m, ±3% working allowance, not survey)"
+    },
+    {
+     "plan_path": "active/approved-cad-v4/svg/FP-4B-FF_V4_portrait.svg",
+     "source_crop": "source-evidence/plan-crops/FP-4B-FF_untouched_board_crop.png",
+     "source_pdf": "original/ashwood-residences_brochure.pdf",
+     "pdf_page": 28,
+     "board_crop_bbox_px": [
+      980,
+      370,
+      1630,
+      1370
+     ],
+     "calibration": "approx_calibrated"
+    }
+   ],
+   "brochure_renders": [
+    {
+     "page": 26,
+     "path": "extracts/pages/page110-26.png",
+     "crop_px_used_as_ref": [
+      0,
+      340,
+      2934,
+      1650
+     ],
+     "note": "title text and logo cropped out"
+    }
+   ],
+   "reference_paths": [
+    "generated ELEV-REAR"
+   ],
+   "output_dimensions": [
+    1280,
+    720
+   ],
+   "timestamp_Asia_Dubai": "2026-11-09T07:30:43+04:00",
+   "observed_facts": [
+    {
+     "source_page": 27,
+     "observed_fact": "SWIMMING POOL 9.50 x 2.40 (brochure transcript, ~4:1) at rear; calibrated span residual <1%",
+     "inferred_application": "Pool included (shown in both plan and same-villa render p26)",
+     "uncertainty": "Depth, coping and step position unknown"
+    },
+    {
+     "source_page": 26,
+     "observed_fact": "Rear: full-height GF glazing, full-width FF balcony with frameless glass balustrade, roof-level canopy slab, long rectangular pool along rear, stone terrace with steps, lawn, hedges, palms",
+     "inferred_application": "Rear, garden and pool views",
+     "uncertainty": "Render may not match final construction"
+    }
+   ],
+   "assumptions": [
+    "Step location inferred",
+    "Pool edge raised above lawn as in p26"
+   ],
+   "layout_check_against_plan": "MISMATCH FLAGGED: pool still reads ~3:1 rather than ~4:1 after one regeneration; pool sits slightly away from facade (plan shows ~1 m gap, so acceptable).",
+   "conflicts": [
+    "Proportion not fully corrected; needs review"
+   ],
+   "label_burned": "AI-generated concept visualisation, not survey-verified",
+   "review_status": "needs-review",
+   "source_missing": true,
+   "source_missing_note": "Only brochure marketing render/plan context exists; no survey/photo of this view",
+   "generated_available": true,
+   "excluded_sources": [
+    "superseded_2026-11-09/",
+    "cad-redraw-v3"
+   ]
+  }
+ ]
+}
