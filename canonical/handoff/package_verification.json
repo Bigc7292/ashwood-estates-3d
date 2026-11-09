@@ -1,0 +1,12 @@
+{
+  "timestamp_Asia_Dubai": "2026-11-09T06:09:29.857094+04:00",
+  "floor_count": 9,
+  "room_or_space_count": 135,
+  "interior_view_handoff_count": 112,
+  "source_reference_paths_checked": 82,
+  "missing_referenced_paths": [],
+  "generated_visuals": 0,
+  "verified_room_interior_matches": 0,
+  "legacy_unresolved_labels": 79,
+  "geometry_review_required_floor_count": 9
+}

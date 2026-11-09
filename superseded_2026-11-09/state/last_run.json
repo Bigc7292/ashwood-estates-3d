@@ -1,0 +1,17 @@
+{
+  "status": "complete_verified",
+  "hold_zip_and_previews": true,
+  "zip": "/workspace/plan-visuals-archive/Ashwood_Estates_plan_visuals_archive.zip",
+  "source_sha256": "a716d74af71a117145a12e058876220a185b6424bf06c082aded539fbb76ca1b",
+  "attachment_path": "/home/box/agent-data/agents/0088b415-4514-42b5-ae81-55b8ac28798b/attachments/f1abf5757fe2781876cde02bc52c3765c8c27ff621e5abfb3e2adbcced5cab93.pdf",
+  "attachment_matches_original": true,
+  "pages": 38,
+  "floorplan_assets": 9,
+  "verified_at_asia_dubai": "2026-11-09 05:30:00 Asia/Dubai (UTC+4)",
+  "zip_bytes": 103437027,
+  "zip_testzip": "OK",
+  "cad_redraw_v2": "complete_with_limitations",
+  "cad_v2_folder": "/workspace/plan-visuals-archive/cad-redraw-v2",
+  "style_ref_8d2454_present": false,
+  "updated_at_asia_dubai": "2026-11-09 05:41:10 Asia/Dubai (UTC+4)"
+}

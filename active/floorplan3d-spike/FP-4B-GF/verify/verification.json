@@ -1,0 +1,680 @@
+{
+  "started_Asia_Dubai": "2026-11-09T08:23:32+04:00",
+  "base": "http://127.0.0.1:43751/",
+  "webgl2": true,
+  "info_after_enter": {
+    "inited": true,
+    "active": true,
+    "mode": "orbit",
+    "cut": 3,
+    "walls": 587,
+    "wins": 12,
+    "doorsData": 6,
+    "doors3d": 6,
+    "doorsOpen": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "colliders": 600,
+    "anchors": 18,
+    "water": {
+      "mode": "water2",
+      "count": 2,
+      "error": null,
+      "surfaces": [
+        {
+          "id": "swimming-pool",
+          "mode": "water2"
+        },
+        {
+          "id": "courtyard-water-feature-1",
+          "mode": "water2"
+        }
+      ]
+    },
+    "labels": 18,
+    "cam": [
+      8.988771049900599,
+      24.569307536394977,
+      13.304659381504313
+    ]
+  },
+  "flyto": {
+    "kitchen_cam_before": [
+      5.230999999999999,
+      15.277500000000002,
+      -5.0070000000000014
+    ],
+    "kitchen_cam_after": [
+      -0.3753560000000009,
+      7.789110000000001,
+      4.1806920000000005
+    ],
+    "moved": true
+  },
+  "doors": {
+    "before": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "after_toggle_door4": [
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+    ],
+    "changed": true
+  },
+  "cut_after_click": 1.2,
+  "furniture_runtime": {
+    "state": 43,
+    "meshes": 43,
+    "plan": 43
+  },
+  "rooms_runtime": [
+    {
+      "id": "plate",
+      "mat": "tile800",
+      "area": 334.74
+    },
+    {
+      "id": "living-dining",
+      "mat": "tile800",
+      "area": 63.62
+    },
+    {
+      "id": "show-kitchen",
+      "mat": "tile800",
+      "area": 10.55
+    },
+    {
+      "id": "pantry",
+      "mat": "tile800",
+      "area": 4.38
+    },
+    {
+      "id": "powder",
+      "mat": "terrazzo",
+      "area": 6.18
+    },
+    {
+      "id": "kitchen",
+      "mat": "tile800",
+      "area": 11.98
+    },
+    {
+      "id": "laundry",
+      "mat": "terrazzo",
+      "area": 3.72
+    },
+    {
+      "id": "k-store",
+      "mat": "tile800",
+      "area": 2.91
+    },
+    {
+      "id": "dress",
+      "mat": "tile800",
+      "area": 1.94
+    },
+    {
+      "id": "maid-room",
+      "mat": "tile800",
+      "area": 6.13
+    },
+    {
+      "id": "maid-bath",
+      "mat": "terrazzo",
+      "area": 3.13
+    },
+    {
+      "id": "double-height-entry",
+      "mat": "tile800",
+      "area": 10.68
+    },
+    {
+      "id": "office-gym",
+      "mat": "tile800",
+      "area": 15.1
+    },
+    {
+      "id": "bath",
+      "mat": "terrazzo",
+      "area": 5.07
+    },
+    {
+      "id": "multipurpose",
+      "mat": "tile800",
+      "area": 18.05
+    },
+    {
+      "id": "lift",
+      "mat": "tile800",
+      "area": 1.67
+    },
+    {
+      "id": "outdoor-terrace",
+      "mat": "antislip",
+      "area": 30.63
+    }
+  ],
+  "qa_top_ortho": {
+    "cx": 7275,
+    "cy": 10126,
+    "visH_m": 29.9472,
+    "canvasW": 1064,
+    "canvasH": 874
+  },
+  "info_final_desktop": {
+    "inited": true,
+    "active": true,
+    "mode": "orbit",
+    "cut": 3,
+    "walls": 587,
+    "wins": 12,
+    "doorsData": 6,
+    "doors3d": 6,
+    "doorsOpen": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "colliders": 600,
+    "anchors": 18,
+    "water": {
+      "mode": "water2",
+      "count": 2,
+      "error": null,
+      "surfaces": [
+        {
+          "id": "swimming-pool",
+          "mode": "water2"
+        },
+        {
+          "id": "courtyard-water-feature-1",
+          "mode": "water2"
+        }
+      ]
+    },
+    "labels": 18,
+    "cam": [
+      0,
+      1715.8046115762302,
+      -1.377
+    ]
+  },
+  "flat_fallback_info": {
+    "mode": "flat",
+    "count": 2,
+    "error": null,
+    "surfaces": [
+      {
+        "id": "swimming-pool",
+        "mode": "flat"
+      },
+      {
+        "id": "courtyard-water-feature-1",
+        "mode": "flat"
+      }
+    ]
+  },
+  "mobile_coarse_pointer": true,
+  "walk": {
+    "joystick_box": {
+      "x": 28,
+      "y": 1012,
+      "width": 130,
+      "height": 130
+    },
+    "cam_before": [
+      0.435,
+      1.6,
+      6.031
+    ],
+    "cam_after": [
+      0.435,
+      1.6,
+      5.205979931640623
+    ],
+    "moved_m": 0.8250200683593771,
+    "mode": "walk"
+  },
+  "hero": {
+    "base": "http://127.0.0.1:43751/",
+    "shots": [
+      {
+        "name": "v2_01_hero_living_dining_pool",
+        "png": "verify/v2_01_hero_living_dining_pool.png",
+        "canvas": [
+          1920,
+          1080
+        ],
+        "camera_mm_m": [
+          7959,
+          5809,
+          1.6
+        ],
+        "target_mm_m": [
+          6111,
+          906,
+          1.0
+        ],
+        "fov": 60,
+        "cut_m": 3,
+        "caption": "Living / dining toward the pool (eye level 1.6 m)"
+      },
+      {
+        "name": "v2_02_hero_living_sofa_pool",
+        "png": "verify/v2_02_hero_living_sofa_pool.png",
+        "canvas": [
+          1920,
+          1080
+        ],
+        "camera_mm_m": [
+          13857,
+          5596,
+          1.5
+        ],
+        "target_mm_m": [
+          8243,
+          -515,
+          0.9
+        ],
+        "fov": 62,
+        "cut_m": 3,
+        "caption": "Living: sectional sofa, coffee table, dining beyond, pool through glazing"
+      },
+      {
+        "name": "v2_03_hero_show_kitchen_island",
+        "png": "verify/v2_03_hero_show_kitchen_island.png",
+        "canvas": [
+          1920,
+          1080
+        ],
+        "camera_mm_m": [
+          8669,
+          4814,
+          1.6
+        ],
+        "target_mm_m": [
+          3802,
+          7373,
+          0.9
+        ],
+        "fov": 62,
+        "cut_m": 3,
+        "caption": "Show kitchen: island + 3 stools, back counter"
+      },
+      {
+        "name": "v2_04_hero_kitchen",
+        "png": "verify/v2_04_hero_kitchen.png",
+        "canvas": [
+          1920,
+          1080
+        ],
+        "camera_mm_m": [
+          3056,
+          8083,
+          1.6
+        ],
+        "target_mm_m": [
+          5116,
+          12098,
+          0.8
+        ],
+        "fov": 68,
+        "cut_m": 3,
+        "caption": "Kitchen: U counters, tall storage run (from pantry)"
+      },
+      {
+        "name": "v2_05_hero_entry_stair",
+        "png": "verify/v2_05_hero_entry_stair.png",
+        "canvas": [
+          1920,
+          1080
+        ],
+        "camera_mm_m": [
+          9025,
+          19240,
+          1.6
+        ],
+        "target_mm_m": [
+          6751,
+          14940,
+          1.4
+        ],
+        "fov": 66,
+        "cut_m": 3,
+        "caption": "Double-height entry toward the stair (display-only stair massing)"
+      },
+      {
+        "name": "v2_06_hero_maid_room",
+        "png": "verify/v2_06_hero_maid_room.png",
+        "canvas": [
+          1920,
+          1080
+        ],
+        "camera_mm_m": [
+          4050,
+          16966,
+          1.6
+        ],
+        "target_mm_m": [
+          2345,
+          19240,
+          0.5
+        ],
+        "fov": 72,
+        "cut_m": 3,
+        "caption": "Maid room: bed + nightstand as drawn (bed length as traced)"
+      },
+      {
+        "name": "v2_07_hero_pool_terrace",
+        "png": "verify/v2_07_hero_pool_terrace.png",
+        "canvas": [
+          1920,
+          1080
+        ],
+        "camera_mm_m": [
+          16060,
+          -3358,
+          1.7
+        ],
+        "target_mm_m": [
+          6466,
+          -515,
+          0.2
+        ],
+        "fov": 58,
+        "cut_m": 3,
+        "caption": "Pool terrace: Water2 pool, terrace chairs, living glazing"
+      },
+      {
+        "name": "v2_08_birdseye_full_walls",
+        "png": "verify/v2_08_birdseye_full_walls.png",
+        "canvas": [
+          1920,
+          1080
+        ],
+        "camera_mm_m": [
+          19613,
+          28264,
+          27
+        ],
+        "target_mm_m": [
+          7959,
+          9789,
+          0
+        ],
+        "fov": 40,
+        "cut_m": 3,
+        "caption": "Bird's-eye oblique, full-height walls (3.0 m display-only)"
+      },
+      {
+        "name": "v2_09_birdseye_cut_walls",
+        "png": "verify/v2_09_birdseye_cut_walls.png",
+        "canvas": [
+          1920,
+          1080
+        ],
+        "camera_mm_m": [
+          19613,
+          28264,
+          27
+        ],
+        "target_mm_m": [
+          7959,
+          9789,
+          0
+        ],
+        "fov": 40,
+        "cut_m": 1.2,
+        "caption": "Bird's-eye oblique, cut walls (1.2 m)"
+      }
+    ],
+    "furniture": {
+      "state": 43,
+      "meshes": 43,
+      "plan": 43
+    }
+  },
+  "upstream_demo": {
+    "base": "http://127.0.0.1:42847/",
+    "shots": [
+      {
+        "name": "demo_01_living",
+        "png": "verify/demo_01_living.png",
+        "canvas": [
+          1920,
+          1122
+        ],
+        "camera_mm_m": [
+          9900,
+          10250,
+          1.6
+        ],
+        "target_mm_m": [
+          6000,
+          7300,
+          0.9
+        ],
+        "fov": 60,
+        "cut_m": 2.8,
+        "caption": "UPSTREAM DEMO (untouched data) - living, eye level"
+      },
+      {
+        "name": "demo_02_bedroom",
+        "png": "verify/demo_02_bedroom.png",
+        "canvas": [
+          1920,
+          1122
+        ],
+        "camera_mm_m": [
+          9950,
+          3150,
+          1.6
+        ],
+        "target_mm_m": [
+          7400,
+          700,
+          0.5
+        ],
+        "fov": 72,
+        "cut_m": 2.8,
+        "caption": "UPSTREAM DEMO - master bedroom"
+      },
+      {
+        "name": "demo_03_kitchen",
+        "png": "verify/demo_03_kitchen.png",
+        "canvas": [
+          1920,
+          1122
+        ],
+        "camera_mm_m": [
+          2050,
+          7800,
+          1.6
+        ],
+        "target_mm_m": [
+          500,
+          5600,
+          0.8
+        ],
+        "fov": 68,
+        "cut_m": 2.8,
+        "caption": "UPSTREAM DEMO - kitchen"
+      },
+      {
+        "name": "demo_08_birdseye_full_walls",
+        "png": "verify/demo_08_birdseye_full_walls.png",
+        "canvas": [
+          1920,
+          1122
+        ],
+        "camera_mm_m": [
+          13500,
+          17800,
+          21
+        ],
+        "target_mm_m": [
+          5900,
+          5300,
+          0
+        ],
+        "fov": 40,
+        "cut_m": 2.8,
+        "caption": "UPSTREAM DEMO - bird's-eye, full walls"
+      },
+      {
+        "name": "demo_09_birdseye_cut_walls",
+        "png": "verify/demo_09_birdseye_cut_walls.png",
+        "canvas": [
+          1920,
+          1122
+        ],
+        "camera_mm_m": [
+          13500,
+          17800,
+          21
+        ],
+        "target_mm_m": [
+          5900,
+          5300,
+          0
+        ],
+        "fov": 40,
+        "cut_m": 1.2,
+        "caption": "UPSTREAM DEMO - bird's-eye, cut walls"
+      }
+    ],
+    "furniture": {
+      "state": 46,
+      "meshes": 46
+    }
+  },
+  "network": {
+    "total_requests": 57,
+    "non_localhost_requests": [],
+    "offline_pass": true,
+    "distinct_paths": [
+      "/data/fp-4b-gf.plan.js",
+      "/index.html",
+      "/index.html?water=flat",
+      "/vendor/three/build/three.module.js",
+      "/vendor/three/examples/jsm/controls/OrbitControls.js",
+      "/vendor/three/examples/jsm/controls/PointerLockControls.js",
+      "/vendor/three/examples/jsm/environments/RoomEnvironment.js",
+      "/vendor/three/examples/jsm/geometries/RoundedBoxGeometry.js",
+      "/vendor/three/examples/jsm/objects/Reflector.js",
+      "/vendor/three/examples/jsm/objects/Refractor.js",
+      "/vendor/three/examples/jsm/objects/Water2.js",
+      "/vendor/three/examples/jsm/renderers/CSS2DRenderer.js",
+      "/vendor/three/examples/textures/water/Water_1_M_Normal.jpg",
+      "/vendor/three/examples/textures/water/Water_2_M_Normal.jpg",
+      "http://127.0.0.1:42847/index.html",
+      "http://127.0.0.1:42847/vendor/three/build/three.module.js",
+      "http://127.0.0.1:42847/vendor/three/examples/jsm/controls/OrbitControls.js",
+      "http://127.0.0.1:42847/vendor/three/examples/jsm/controls/PointerLockControls.js",
+      "http://127.0.0.1:42847/vendor/three/examples/jsm/environments/RoomEnvironment.js",
+      "http://127.0.0.1:42847/vendor/three/examples/jsm/geometries/RoundedBoxGeometry.js",
+      "http://127.0.0.1:42847/vendor/three/examples/jsm/renderers/CSS2DRenderer.js"
+    ]
+  },
+  "console_errors": [],
+  "console_warnings": [],
+  "geometry_comparison": {
+    "pixel_mm": 34.26,
+    "tolerance_px": 2,
+    "tolerance_mm": 68.5,
+    "v4_wall_px": 25226,
+    "3d_dark_cap_px": 29621,
+    "IoU_exact": 0.7468,
+    "precision_within_tol": 0.8172,
+    "recall_within_tol": 0.9986,
+    "note": "3D wall caps segmented by darkness (lum<95, neutral); glazing frames/door leaves/shadows can add or hide a few pixels.",
+    "v4_wall_components": 14,
+    "components_recall_ge_0.95": 14,
+    "component_recalls": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.993,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "water_comparison": {
+    "v4_water_px": 30694,
+    "3d_blue_px": 30367,
+    "IoU": 0.9881,
+    "note": "Water2 tint segmented as blue>red+8 and green>red+4 (pale reflective tint); walls/shadows can occlude water edges in the top render."
+  },
+  "screenshots": [
+    "active/floorplan3d-spike/FP-4B-GF/verify/01_2d_plan_view.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/02_3d_perspective_iso_ui.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/03_3d_top_view_ui.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/04_flyto_swimming_pool_water2_ui.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/05_flyto_kitchen_ui.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/06_cut_walls_iso_ui.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/09_qa_top_ortho_3d.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/10_flat_water_fallback_pool_ui.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/11_walk_start_entry_joystick.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/12_walk_after_joystick.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/13_overlay_3d_top_vs_v4_walls.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/14_side_by_side_v4_vs_3d_top.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/demo_01_living.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/demo_02_bedroom.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/demo_03_kitchen.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/demo_08_birdseye_full_walls.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/demo_09_birdseye_cut_walls.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_01_hero_living_dining_pool.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_01_hero_living_dining_pool_raw.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_02_hero_living_sofa_pool.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_02_hero_living_sofa_pool_raw.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_03_hero_show_kitchen_island.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_03_hero_show_kitchen_island_raw.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_04_hero_kitchen.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_04_hero_kitchen_raw.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_05_hero_entry_stair.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_05_hero_entry_stair_raw.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_06_hero_maid_room.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_06_hero_maid_room_raw.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_07_hero_pool_terrace.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_07_hero_pool_terrace_raw.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_08_birdseye_full_walls.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_08_birdseye_full_walls_raw.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_09_birdseye_cut_walls.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_09_birdseye_cut_walls_raw.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_20_side_by_side_spike_vs_upstream_demo.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/v2_21_v1_vs_v2.png"
+  ],
+  "upstream_demo_harness": {
+    "upstream_index_sha256": "66432359c7043ca35f2318c33a4b81bcb179df968d0e94b235d323881d2ca353",
+    "changes": [
+      "importmap -> local vendored three r160 (same files as the spike)",
+      "read-only camera/capture hook appended before window.View3D"
+    ],
+    "served_from": "temporary dir (not shipped)"
+  }
+}

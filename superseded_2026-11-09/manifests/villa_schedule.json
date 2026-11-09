@@ -1,0 +1,33 @@
+{
+  "source_page": 24,
+  "building_configuration": {
+    "statement": "185 Villas and a Clubhouse",
+    "counts": {
+      "4 Bedroom Villa": 108,
+      "5 Bedroom Villa": 47,
+      "6 Bedroom Villa": 30
+    }
+  },
+  "villa_types": [
+    {
+      "type": "4 Bedroom Villa",
+      "plot_area": "561.49 - 826.53 SQ.M. / 6,043.82 - 8,896.37 SQ.FT.",
+      "saleable_area": "567.12 SQ.M. / 6,104.43 SQ.FT.",
+      "height": "G+1+R (14m)"
+    },
+    {
+      "type": "5 Bedroom Villa",
+      "plot_area": "831.06 - 1,140 SQ.M. / 8,945.45 - 12,270.86 SQ.FT.",
+      "saleable_area": "711.27 SQ.M. / 7,656.05 SQ.FT.",
+      "height": "G+1+R (14m)"
+    },
+    {
+      "type": "6 Bedroom Villa",
+      "plot_area": "999.87 - 1,560.96 SQ.M. / 10,762.51 - 16,802.03 SQ.FT.",
+      "saleable_area": "852.70 SQ.M. / 9,178.39 SQ.FT.",
+      "height": "G+1+R (14m)"
+    }
+  ],
+  "confidence": 0.93,
+  "ambiguity": "Plan pages also show alternate text-layer area totals; p24 preferred."
+}

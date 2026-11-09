@@ -1,0 +1,237 @@
+{
+  "schema_version": "2.0",
+  "project_id": "ashwood-estates",
+  "updated_at_Asia_Dubai": "2026-11-09T06:49:50.425166+04:00",
+  "approved_by_user_message": "pt16u",
+  "status": "ONLY_APPROVED_V4_INPUTS_ACTIVE",
+  "active_root": "active/approved-cad-v4",
+  "plan_count": 9,
+  "plans": [
+    {
+      "id": "4B-GF",
+      "svg": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+      "pdf": "active/approved-cad-v4/pdf/FP-4B-GF_V4_portrait.pdf",
+      "preview": "active/approved-cad-v4/png/FP-4B-GF_V4_preview.png",
+      "long7680": "active/approved-cad-v4/png/FP-4B-GF_V4_long7680.png",
+      "source_pdf_page": 27,
+      "source_board_crop_pixels": [
+        120,
+        350,
+        830,
+        1370
+      ],
+      "source_crop": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+      "calibration_status": "approx_calibrated",
+      "sha256": {
+        "svg": "7f1e9fa6984cb6946c9b8d38d7c0f1daac010eb9a25209aa44b335ec08815554",
+        "pdf": "0febd2285ca86b795bfa1fda337158e1241c5149e1166afbbe50d6f1719b5c65",
+        "preview": "c7bff2b3c9452ff21405798e17acabc12f8b97493c7a884eb41eb1c1604970a2",
+        "long7680": "50bd01b9eb96c2e289c970eb57962026d93a44a55f8035ba2704dbffd0276623"
+      }
+    },
+    {
+      "id": "4B-FF",
+      "svg": "active/approved-cad-v4/svg/FP-4B-FF_V4_portrait.svg",
+      "pdf": "active/approved-cad-v4/pdf/FP-4B-FF_V4_portrait.pdf",
+      "preview": "active/approved-cad-v4/png/FP-4B-FF_V4_preview.png",
+      "long7680": "active/approved-cad-v4/png/FP-4B-FF_V4_long7680.png",
+      "source_pdf_page": 28,
+      "source_board_crop_pixels": [
+        980,
+        370,
+        1630,
+        1370
+      ],
+      "source_crop": "source-evidence/plan-crops/FP-4B-FF_untouched_board_crop.png",
+      "calibration_status": "approx_calibrated",
+      "sha256": {
+        "svg": "927be9ea0c48d6410e960189c6fdc17d8f3a35d2ed20ef1942882aceb3246ba4",
+        "pdf": "ab03888ce62f3b7a1b3b91dab3a4a42cbce6d8520827af3038ac8216adf41ab5",
+        "preview": "de41ba68d6093db35d4bbe8707fac4c044ab1b14c8c546d6a6aa25b5313d447e",
+        "long7680": "722364e739f0ce2890c6a874626fd92b0a8e3693fc34f63651367334b43efe02"
+      }
+    },
+    {
+      "id": "4B-RF",
+      "svg": "active/approved-cad-v4/svg/FP-4B-RF_V4_portrait.svg",
+      "pdf": "active/approved-cad-v4/pdf/FP-4B-RF_V4_portrait.pdf",
+      "preview": "active/approved-cad-v4/png/FP-4B-RF_V4_preview.png",
+      "long7680": "active/approved-cad-v4/png/FP-4B-RF_V4_long7680.png",
+      "source_pdf_page": 28,
+      "source_board_crop_pixels": [
+        1820,
+        455,
+        2300,
+        1250
+      ],
+      "source_crop": "source-evidence/plan-crops/FP-4B-RF_untouched_board_crop.png",
+      "calibration_status": "NTS_conflicting_source_spans",
+      "sha256": {
+        "svg": "db50a39f34033ff7490b5adbf5d609583d1e33dd08884d76ef4534fd60c60735",
+        "pdf": "bf17938c6c18b367695e03c1f20986cd99ffc306a6c2a5f90fa99d74e7be3afc",
+        "preview": "8f05d20e884b0d4f76d62fb79b6148e8e1ffce67eec167af11cc300feaa177f1",
+        "long7680": "7cfbda50c29169ad205f1cf955c2a87371e6ba0f9f27f5aa961153269aec51c9"
+      }
+    },
+    {
+      "id": "5B-GF",
+      "svg": "active/approved-cad-v4/svg/FP-5B-GF_V4_portrait.svg",
+      "pdf": "active/approved-cad-v4/pdf/FP-5B-GF_V4_portrait.pdf",
+      "preview": "active/approved-cad-v4/png/FP-5B-GF_V4_preview.png",
+      "long7680": "active/approved-cad-v4/png/FP-5B-GF_V4_long7680.png",
+      "source_pdf_page": 31,
+      "source_board_crop_pixels": [
+        55,
+        220,
+        665,
+        1300
+      ],
+      "source_crop": "source-evidence/plan-crops/FP-5B-GF_untouched_board_crop.png",
+      "calibration_status": "approx_calibrated",
+      "sha256": {
+        "svg": "5df82e1396fe1d16897a3ab1447f45c9b6bddced618e04aa3251f41d2ffc2d44",
+        "pdf": "dc4cd4fc61465b2c03513fd26c95d0f1f4636850f9d1d3a28f870b2a05e5e149",
+        "preview": "56eb7ff3ad60c2c40dc36ece793c1ae9978b14a8dabf5690f4e1bd9390f39e3b",
+        "long7680": "45132f28cd33bec0f55ac9907935408c32b4b6d1da27984ae6840dae10098a24"
+      }
+    },
+    {
+      "id": "5B-FF",
+      "svg": "active/approved-cad-v4/svg/FP-5B-FF_V4_portrait.svg",
+      "pdf": "active/approved-cad-v4/pdf/FP-5B-FF_V4_portrait.pdf",
+      "preview": "active/approved-cad-v4/png/FP-5B-FF_V4_preview.png",
+      "long7680": "active/approved-cad-v4/png/FP-5B-FF_V4_long7680.png",
+      "source_pdf_page": 32,
+      "source_board_crop_pixels": [
+        760,
+        220,
+        1380,
+        1300
+      ],
+      "source_crop": "source-evidence/plan-crops/FP-5B-FF_untouched_board_crop.png",
+      "calibration_status": "approx_calibrated",
+      "sha256": {
+        "svg": "39a857ca728683ccb0f9246d8dbe570ee5faa79e7341f3d9deb97d0f14f930fd",
+        "pdf": "5a2caa425cef76fd431fedd11c3c289394c37f9e9e7b1577cafd9a0db66a9a2b",
+        "preview": "d42e76439200d16b807ed7125e1839dc8699bf4fcc8c318330a268f192c3de3e",
+        "long7680": "43f3e1ce13c74cb99a22a4e41955f10c7be9c1aef3004f6a3f4a7afa03dba35b"
+      }
+    },
+    {
+      "id": "5B-RF",
+      "svg": "active/approved-cad-v4/svg/FP-5B-RF_V4_portrait.svg",
+      "pdf": "active/approved-cad-v4/pdf/FP-5B-RF_V4_portrait.pdf",
+      "preview": "active/approved-cad-v4/png/FP-5B-RF_V4_preview.png",
+      "long7680": "active/approved-cad-v4/png/FP-5B-RF_V4_long7680.png",
+      "source_pdf_page": 32,
+      "source_board_crop_pixels": [
+        1520,
+        320,
+        1920,
+        1180
+      ],
+      "source_crop": "source-evidence/plan-crops/FP-5B-RF_untouched_board_crop.png",
+      "calibration_status": "NTS_conflicting_source_spans",
+      "sha256": {
+        "svg": "cd2e9318d4d558806bf73731650f62df7eed3c6628005a522291a06c67a95162",
+        "pdf": "e45cee8dcd075b615f57a0136afb575a7be8500b03ad189e45bde3ef6a24db74",
+        "preview": "6374218f7dcfe6477d895e43ec720bc9b10d433817bf0ef632ee96433e15088d",
+        "long7680": "065978f1c7f3c9ccfd80b66154e7d16e60092ae82cad56117af43d0c210779a5"
+      }
+    },
+    {
+      "id": "6B-GF",
+      "svg": "active/approved-cad-v4/svg/FP-6B-GF_V4_portrait.svg",
+      "pdf": "active/approved-cad-v4/pdf/FP-6B-GF_V4_portrait.pdf",
+      "preview": "active/approved-cad-v4/png/FP-6B-GF_V4_preview.png",
+      "long7680": "active/approved-cad-v4/png/FP-6B-GF_V4_long7680.png",
+      "source_pdf_page": 35,
+      "source_board_crop_pixels": [
+        0,
+        185,
+        595,
+        1135
+      ],
+      "source_crop": "source-evidence/plan-crops/FP-6B-GF_untouched_board_crop.png",
+      "calibration_status": "NTS_conflicting_source_spans",
+      "sha256": {
+        "svg": "0087fc63ffa8476caa27ec1ee8fb445922ed09a0e8210da7b38e26b6f92f4255",
+        "pdf": "d6f4dd4c9c60025f547e421855b3a78d5058b537aec7d3ebadcc730e7d8bccb1",
+        "preview": "dfa44aeb5899fa80d8cb51ced8d62357f27e852af6f8b090ca8b960a54622745",
+        "long7680": "2b3281ad824f477dac75743e172b19d4adc012f56c583d31fb917c6604ea5cb2"
+      }
+    },
+    {
+      "id": "6B-FF",
+      "svg": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "pdf": "active/approved-cad-v4/pdf/FP-6B-FF_V4_portrait.pdf",
+      "preview": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "long7680": "active/approved-cad-v4/png/FP-6B-FF_V4_long7680.png",
+      "source_pdf_page": 36,
+      "source_board_crop_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_crop": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "calibration_status": "approx_calibrated",
+      "sha256": {
+        "svg": "5a515983aeb84350315e465ad61583c5f8359559fa228a638b1f8b782d2c5fe7",
+        "pdf": "d4e06204359a3bd9abc0b12e821c4ea5729dbb2263d8b626c9f208f59664bd27",
+        "preview": "805f9122a1da6d161e757efff66f2e63fd4e97ab283664d4dd26008abc9b087e",
+        "long7680": "796cb00c1547a319df512a98892d568159820cc6f81eb7fb971ae68a1e20a21f"
+      }
+    },
+    {
+      "id": "6B-RF",
+      "svg": "active/approved-cad-v4/svg/FP-6B-RF_V4_portrait.svg",
+      "pdf": "active/approved-cad-v4/pdf/FP-6B-RF_V4_portrait.pdf",
+      "preview": "active/approved-cad-v4/png/FP-6B-RF_V4_preview.png",
+      "long7680": "active/approved-cad-v4/png/FP-6B-RF_V4_long7680.png",
+      "source_pdf_page": 36,
+      "source_board_crop_pixels": [
+        1270,
+        280,
+        1720,
+        1050
+      ],
+      "source_crop": "source-evidence/plan-crops/FP-6B-RF_untouched_board_crop.png",
+      "calibration_status": "NTS_insufficient_unambiguous_independent_spans",
+      "sha256": {
+        "svg": "539ad84ec9d8d0ea71d7ee1d3a69fc299b34dcd981b6fb7d871e63e91a15fa0e",
+        "pdf": "1f15f4a797ee6bb13b0016e4240666aac766edc694e7a3cd52ff9e2da6eaec27",
+        "preview": "d7a50cde755db94e3a69d9137167aaed2308ca21b14fd9defd6d9e88c64fc872",
+        "long7680": "130ed6c8e58cc408699c1b0251f28e41e621a57c7b7001681cacb79cfae24663"
+      }
+    }
+  ],
+  "canonical_index": "canonical/project_index.json",
+  "original_source": "original/ashwood-residences_brochure.pdf",
+  "source_evidence_root": "source-evidence",
+  "derived_illustration_policy": "One 4B-GF cutaway illustration only; review before any batch. Derived illustrations are not authoritative XY inputs.",
+  "fallback_policy": "FAIL CLOSED: missing approved asset is an error; never select a prior release.",
+  "no_native_3d_model_deliverable": true,
+  "review_pending_stages": [
+    {
+      "id": "floorplan3d-spike/FP-4B-GF",
+      "stage": "floorplan3d_viewer_spike",
+      "status": "REVIEW_PENDING_NOT_APPROVED",
+      "plan_id": "4B-GF",
+      "root": "active/floorplan3d-spike/FP-4B-GF",
+      "entry": "active/floorplan3d-spike/FP-4B-GF/index.html",
+      "manifest": "active/floorplan3d-spike/FP-4B-GF/manifest.json",
+      "readme": "active/floorplan3d-spike/FP-4B-GF/README.md",
+      "verification": "active/floorplan3d-spike/FP-4B-GF/verify/verification.json",
+      "adapter": "scripts/v4_to_floorplan3d.py",
+      "input_svg_sha256": "7f1e9fa6984cb6946c9b8d38d7c0f1daac010eb9a25209aa44b335ec08815554",
+      "registered_at_Asia_Dubai": "2026-11-09T07:30:51+04:00",
+      "policy": "Derived viewer only; approved V4 remains authoritative XY. Do not batch other floors before user approval. Not survey-verified, not construction-ready, not certified CAD.",
+      "version": "v2",
+      "v2_rebuilt_at_Asia_Dubai": "2026-11-09T08:01:10+04:00",
+      "v2_note": "Rebuilt after user rejection of v1 (looked 2D): derived room polygons, source-symbol furniture, per-room floor materials with evidence status, full walls, shadows/RoomEnvironment/warm daylight, eye-level hero renders. Still REVIEW_PENDING.",
+      "previous_version": "active/floorplan3d-spike/FP-4B-GF/v1 (kept for comparison, superseded)",
+      "readings": "source-evidence/floorplan3d-readings/FP-4B-GF.json"
+    }
+  ]
+}

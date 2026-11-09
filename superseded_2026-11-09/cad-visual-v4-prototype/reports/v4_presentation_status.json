@@ -1,0 +1,37 @@
+{
+  "status": "ONE_REWORKED_PRESENTATION_PROTOTYPE_NOT_NINE_REPLACEMENTS",
+  "structural_wall_paths_unchanged": 13,
+  "print_paper_mm": [
+    297,
+    420
+  ],
+  "scale": "Approximate calibration-derived 1:100 at A3 actual-size print",
+  "calibration_evidence": "cad-redraw-v3/final/calibration/scale_feasibility.json",
+  "exterior_values": "Approximate derived schematic site/wall alignment spans, NOT source-stated or verified plot survey",
+  "new_illustrative_content": [
+    "Clean symbols replacing only source-evidenced dining/sofa/office/vehicle/terrace/bed footprints",
+    "Proposed warm neutral tile/paver hatch and wood-tone furniture graphics",
+    "Source-located tree symbols with layered foliage texture",
+    "Closed blue source water geometry with restrained ripple shading"
+  ],
+  "source_geometry_limits": [
+    "Native low-resolution source; fine opening/fixture contours remain source-limited",
+    "Maid-room dimensional conflict unresolved",
+    "Source site outline is not verified legal plot boundary"
+  ],
+  "not_done": [
+    "No replacement of other eight sheets with this new style",
+    "No interior image generation",
+    "No 3D",
+    "No ZIP delivery"
+  ],
+  "template_comparison_required": false,
+  "template_comparison_completed": "Actual template, actual previous V3 sheet, and actual rendered V4 PDF preview visually compared.",
+  "remaining_style_gap": "V4 is a cleaner rich vector illustration, not photorealistic material rendering equal to the reference; native source fixture detail remains rough and source-limited.",
+  "canonical_handoff_note": "canonical/project_index.json exists from earlier pass; it still points to nine V3 drafts. V4 is a separate unapproved prototype, not silently promoted.",
+  "pdf_text_outside_page": [],
+  "paper_dimensions_verified_mm": [
+    297.0000023735894,
+    419.999988132053
+  ]
+}

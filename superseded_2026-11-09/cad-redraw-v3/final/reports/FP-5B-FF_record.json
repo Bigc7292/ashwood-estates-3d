@@ -1,0 +1,241 @@
+{
+  "id": "5B-FF",
+  "page": 32,
+  "xref": 384,
+  "source_board_crop_pixels": [
+    760,
+    220,
+    1380,
+    1300
+  ],
+  "native_crop_size": [
+    620,
+    1080
+  ],
+  "svg_sheet": "cad-redraw-v3/final/svg/FP-5B-FF_CAD_style_sheet.svg",
+  "svg_plan": "cad-redraw-v3/final/svg/FP-5B-FF_CAD_style_plan.svg",
+  "sheet_preview": "cad-redraw-v3/final/png/FP-5B-FF_CAD_style_sheet_preview.png",
+  "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+  "exterior": {
+    "building_metric_lengths_sourced": 0,
+    "building_guide_sides_unknown": 4,
+    "site_metric_lengths_sourced": 0,
+    "site_guide_sides_unknown": 4,
+    "plot_boundary_established": false,
+    "roof_plot_not_shown": false
+  },
+  "source_limited": true,
+  "native_CAD": false,
+  "metric_scale_established": false,
+  "room_transcripts": [
+    [
+      "MASTER SUITE",
+      "5.30 \u00d7 5.40",
+      182.4609375,
+      303.75
+    ],
+    [
+      "FAMILY LIVING",
+      "4.70 \u00d7 5.40",
+      293.203125,
+      303.75
+    ],
+    [
+      "LOBBY",
+      "3.20 \u00d7 1.80",
+      209.8828125,
+      348.046875
+    ],
+    [
+      "M. DRESSING",
+      "4.10 \u00d7 5.70",
+      168.75,
+      488.3203125
+    ],
+    [
+      "M. BATH",
+      "4.10 \u00d7 3.20",
+      168.75,
+      544.21875
+    ],
+    [
+      "CORRIDOR",
+      "1.80 \u00d7 16.00",
+      291.09375,
+      488.3203125
+    ],
+    [
+      "LIFT",
+      "1.60 \u00d7 1.80",
+      244.6875,
+      644.4140625
+    ],
+    [
+      "J. BATH",
+      "3.90 \u00d7 2.00",
+      164.53125,
+      638.0859375
+    ],
+    [
+      "J. DRESSING",
+      "5.65 \u00d7 2.40",
+      170.859375,
+      701.3671875
+    ],
+    [
+      "JUNIOR SUITE",
+      "5.65 \u00d7 4.50",
+      181.40625,
+      836.3671875
+    ],
+    [
+      "BEDROOM 1",
+      "4.70 \u00d7 4.10",
+      420.8203125,
+      582.1875
+    ],
+    [
+      "BATH 1",
+      "2.90 \u00d7 1.80",
+      420.8203125,
+      700.3125
+    ],
+    [
+      "DRESS",
+      "1.80 \u00d7 1.80",
+      378.6328125,
+      761.484375
+    ],
+    [
+      "BATH 2",
+      "2.90 \u00d7 1.80",
+      421.875,
+      762.5390625
+    ],
+    [
+      "BEDROOM 2",
+      "4.70 \u00d7 4.60",
+      377.578125,
+      838.4765625
+    ],
+    [
+      "BALCONY",
+      "UNKNOWN",
+      230.9765625,
+      160.3125
+    ],
+    [
+      "BALCONY",
+      "UNKNOWN",
+      411.328125,
+      555.8203125
+    ],
+    [
+      "BALCONY",
+      "UNKNOWN",
+      210.9375,
+      879.609375
+    ],
+    [
+      "BALCONY",
+      "UNKNOWN",
+      387.0703125,
+      894.375
+    ]
+  ],
+  "dimension_text_checks": [
+    {
+      "room": "MASTER SUITE",
+      "value": "5.30 \u00d7 5.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "FAMILY LIVING",
+      "value": "4.70 \u00d7 5.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "LOBBY",
+      "value": "3.20 \u00d7 1.80",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "M. DRESSING",
+      "value": "4.10 \u00d7 5.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "M. BATH",
+      "value": "4.10 \u00d7 3.20",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "CORRIDOR",
+      "value": "1.80 \u00d7 16.00",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "LIFT",
+      "value": "1.60 \u00d7 1.80",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "J. BATH",
+      "value": "3.90 \u00d7 2.00",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "J. DRESSING",
+      "value": "5.65 \u00d7 2.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "JUNIOR SUITE",
+      "value": "5.65 \u00d7 4.50",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "BEDROOM 1",
+      "value": "4.70 \u00d7 4.10",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "BATH 1",
+      "value": "2.90 \u00d7 1.80",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "DRESS",
+      "value": "1.80 \u00d7 1.80",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "BATH 2",
+      "value": "2.90 \u00d7 1.80",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "BEDROOM 2",
+      "value": "4.70 \u00d7 4.60",
+      "numbers_in_page_text": true
+    }
+  ],
+  "text_outside_sheet": [],
+  "embedded_rasters": 0,
+  "layer_counts": {
+    "source_floor_and_surface_shapes": 262,
+    "source_secondary_shading": 157,
+    "source_fine_linework": 180,
+    "source_furnishings": 157,
+    "landscape_245": 22,
+    "water_0_202": 0,
+    "water_1_0": 0,
+    "water_1_170": 0,
+    "water_1_202": 0,
+    "water_1_source_detail": 6,
+    "source_wall_poche": 41
+  },
+  "conflicts": [
+    "Context pool: GF overlay says 9.00 \u00d7 2.50; FF overlay says 9.50 \u00d7 2.40."
+  ]
+}

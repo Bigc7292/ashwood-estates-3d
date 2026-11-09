@@ -1,0 +1,302 @@
+{
+  "id": "6B-GF",
+  "page": 35,
+  "xref": 598,
+  "source_board_crop_pixels": [
+    0,
+    185,
+    595,
+    1135
+  ],
+  "native_crop_size": [
+    595,
+    950
+  ],
+  "svg_sheet": "cad-redraw-v3/final/svg/FP-6B-GF_CAD_style_sheet.svg",
+  "svg_plan": "cad-redraw-v3/final/svg/FP-6B-GF_CAD_style_plan.svg",
+  "sheet_preview": "cad-redraw-v3/final/png/FP-6B-GF_CAD_style_sheet_preview.png",
+  "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+  "exterior": {
+    "building_metric_lengths_sourced": 0,
+    "building_guide_sides_unknown": 4,
+    "site_metric_lengths_sourced": 0,
+    "site_guide_sides_unknown": 4,
+    "plot_boundary_established": false,
+    "roof_plot_not_shown": false
+  },
+  "source_limited": true,
+  "native_CAD": false,
+  "metric_scale_established": false,
+  "room_transcripts": [
+    [
+      "SWIMMING POOL",
+      "9.50 \u00d7 2.40",
+      211,
+      82
+    ],
+    [
+      "LIVING / DINING",
+      "14.80 \u00d7 5.70",
+      191,
+      189
+    ],
+    [
+      "SHOW KITCHEN",
+      "5.80 \u00d7 2.70",
+      193,
+      325
+    ],
+    [
+      "PANTRY",
+      "2.30 \u00d7 2.85",
+      126,
+      390
+    ],
+    [
+      "POWDER",
+      "3.75 \u00d7 2.00",
+      191,
+      371
+    ],
+    [
+      "KITCHEN",
+      "4.00 \u00d7 3.55",
+      141,
+      437
+    ],
+    [
+      "K. STORE",
+      "2.10 \u00d7 2.30",
+      128,
+      506
+    ],
+    [
+      "LAUNDRY",
+      "2.10 \u00d7 2.40",
+      126,
+      574
+    ],
+    [
+      "LIFT",
+      "1.90 \u00d7 1.80",
+      209,
+      550
+    ],
+    [
+      "G. STORE",
+      "1.90 \u00d7 1.70",
+      209,
+      594
+    ],
+    [
+      "SERVICE ENTRY",
+      "3.80 \u00d7 1.50",
+      174,
+      626
+    ],
+    [
+      "DRIVER BATH",
+      "1.70 \u00d7 1.40",
+      126,
+      673
+    ],
+    [
+      "DRIVER ROOM",
+      "2.20 \u00d7 2.40",
+      130,
+      708
+    ],
+    [
+      "MAID BATH",
+      "2.00 \u00d7 1.50",
+      210,
+      669
+    ],
+    [
+      "MAID ROOM",
+      "3.10 \u00d7 2.40",
+      180,
+      709
+    ],
+    [
+      "G. BATH",
+      "2.50 \u00d7 2.50",
+      349,
+      535
+    ],
+    [
+      "G. DRESSING",
+      "2.76 \u00d7 2.10",
+      348,
+      580
+    ],
+    [
+      "GUEST BEDROOM",
+      "4.20 \u00d7 4.70",
+      411,
+      598
+    ],
+    [
+      "DOUBLE-HEIGHT ENTRY",
+      "3.60 \u00d7 3.60",
+      274,
+      684
+    ],
+    [
+      "MULTIPURPOSE",
+      "4.90 \u00d7 4.00",
+      418,
+      659
+    ],
+    [
+      "OFFICE / GYM",
+      "6.90 \u00d7 4.10",
+      420,
+      759
+    ],
+    [
+      "TERRACE",
+      "UNKNOWN",
+      369,
+      150
+    ],
+    [
+      "TERRACE",
+      "UNKNOWN",
+      373,
+      311
+    ]
+  ],
+  "dimension_text_checks": [
+    {
+      "room": "SWIMMING POOL",
+      "value": "9.50 \u00d7 2.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "LIVING / DINING",
+      "value": "14.80 \u00d7 5.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "SHOW KITCHEN",
+      "value": "5.80 \u00d7 2.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "PANTRY",
+      "value": "2.30 \u00d7 2.85",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "POWDER",
+      "value": "3.75 \u00d7 2.00",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "KITCHEN",
+      "value": "4.00 \u00d7 3.55",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "K. STORE",
+      "value": "2.10 \u00d7 2.30",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "LAUNDRY",
+      "value": "2.10 \u00d7 2.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "LIFT",
+      "value": "1.90 \u00d7 1.80",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "G. STORE",
+      "value": "1.90 \u00d7 1.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "SERVICE ENTRY",
+      "value": "3.80 \u00d7 1.50",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "DRIVER BATH",
+      "value": "1.70 \u00d7 1.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "DRIVER ROOM",
+      "value": "2.20 \u00d7 2.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "MAID BATH",
+      "value": "2.00 \u00d7 1.50",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "MAID ROOM",
+      "value": "3.10 \u00d7 2.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "G. BATH",
+      "value": "2.50 \u00d7 2.50",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "G. DRESSING",
+      "value": "2.76 \u00d7 2.10",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "GUEST BEDROOM",
+      "value": "4.20 \u00d7 4.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "DOUBLE-HEIGHT ENTRY",
+      "value": "3.60 \u00d7 3.60",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "MULTIPURPOSE",
+      "value": "4.90 \u00d7 4.00",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "OFFICE / GYM",
+      "value": "6.90 \u00d7 4.10",
+      "numbers_in_page_text": true
+    }
+  ],
+  "text_outside_sheet": [],
+  "embedded_rasters": 0,
+  "layer_counts": {
+    "source_floor_and_surface_shapes": 406,
+    "source_secondary_shading": 380,
+    "source_fine_linework": 461,
+    "source_furnishings": 153,
+    "landscape_245": 20,
+    "landscape_220": 21,
+    "landscape_202": 26,
+    "landscape_183": 42,
+    "landscape_165": 50,
+    "water_0_0": 2,
+    "water_0_170": 6,
+    "water_0_202": 22,
+    "water_0_source_planting": 0,
+    "water_0_source_detail": 27,
+    "water_1_0": 4,
+    "water_1_170": 21,
+    "water_1_202": 95,
+    "water_1_source_planting": 1,
+    "water_1_source_detail": 19,
+    "source_wall_poche": 46
+  },
+  "conflicts": []
+}

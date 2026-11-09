@@ -1,0 +1,239 @@
+{
+  "started_Asia_Dubai": "2026-11-09T07:24:12+04:00",
+  "base": "http://127.0.0.1:41483/",
+  "webgl2": true,
+  "info_after_enter": {
+    "inited": true,
+    "active": true,
+    "mode": "orbit",
+    "cut": 3,
+    "walls": 587,
+    "wins": 12,
+    "doorsData": 6,
+    "doors3d": 6,
+    "doorsOpen": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "colliders": 599,
+    "anchors": 18,
+    "water": {
+      "mode": "water2",
+      "count": 2,
+      "error": null,
+      "surfaces": [
+        {
+          "id": "swimming-pool",
+          "mode": "water2"
+        },
+        {
+          "id": "courtyard-water-feature-1",
+          "mode": "water2"
+        }
+      ]
+    },
+    "labels": 18,
+    "cam": [
+      8.988771049900599,
+      24.569307536394977,
+      13.304659381504313
+    ]
+  },
+  "flyto": {
+    "kitchen_cam_before": [
+      5.230999999999999,
+      15.277500000000002,
+      -5.007000000000003
+    ],
+    "kitchen_cam_after": [
+      -0.5780000000000007,
+      7.7700000000000005,
+      4.206
+    ],
+    "moved": true
+  },
+  "doors": {
+    "before": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "after_toggle_door4": [
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+    ]
+  },
+  "qa_top_ortho": {
+    "cx": 7275,
+    "cy": 10126,
+    "visH_m": 29.9472,
+    "canvasW": 1064,
+    "canvasH": 874
+  },
+  "info_final_desktop": {
+    "inited": true,
+    "active": true,
+    "mode": "orbit",
+    "cut": 3,
+    "walls": 587,
+    "wins": 12,
+    "doorsData": 6,
+    "doors3d": 6,
+    "doorsOpen": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "colliders": 599,
+    "anchors": 18,
+    "water": {
+      "mode": "water2",
+      "count": 2,
+      "error": null,
+      "surfaces": [
+        {
+          "id": "swimming-pool",
+          "mode": "water2"
+        },
+        {
+          "id": "courtyard-water-feature-1",
+          "mode": "water2"
+        }
+      ]
+    },
+    "labels": 18,
+    "cam": [
+      4.422718878023434e-18,
+      44.99998550846042,
+      -0.03611424029444819
+    ]
+  },
+  "flat_fallback_info": {
+    "mode": "flat",
+    "count": 2,
+    "error": null,
+    "surfaces": [
+      {
+        "id": "swimming-pool",
+        "mode": "flat"
+      },
+      {
+        "id": "courtyard-water-feature-1",
+        "mode": "flat"
+      }
+    ]
+  },
+  "mobile_coarse_pointer": true,
+  "walk": {
+    "joystick_box": {
+      "x": 28,
+      "y": 1012,
+      "width": 130,
+      "height": 130
+    },
+    "cam_before": [
+      0.435,
+      1.6,
+      6.031
+    ],
+    "cam_after": [
+      0.435,
+      1.6,
+      5.399599999999999
+    ],
+    "moved_m": 0.6314000000000011,
+    "mode": "walk"
+  },
+  "network": {
+    "total_requests": 37,
+    "non_localhost_requests": [],
+    "offline_pass": true,
+    "distinct_paths": [
+      "/data/fp-4b-gf.plan.js",
+      "/index.html",
+      "/index.html?water=flat",
+      "/vendor/three/build/three.module.js",
+      "/vendor/three/examples/jsm/controls/OrbitControls.js",
+      "/vendor/three/examples/jsm/controls/PointerLockControls.js",
+      "/vendor/three/examples/jsm/environments/RoomEnvironment.js",
+      "/vendor/three/examples/jsm/geometries/RoundedBoxGeometry.js",
+      "/vendor/three/examples/jsm/objects/Reflector.js",
+      "/vendor/three/examples/jsm/objects/Refractor.js",
+      "/vendor/three/examples/jsm/objects/Water2.js",
+      "/vendor/three/examples/jsm/renderers/CSS2DRenderer.js",
+      "/vendor/three/examples/textures/water/Water_1_M_Normal.jpg",
+      "/vendor/three/examples/textures/water/Water_2_M_Normal.jpg"
+    ]
+  },
+  "console_errors": [],
+  "console_warnings": [],
+  "geometry_comparison": {
+    "pixel_mm": 34.26,
+    "tolerance_px": 2,
+    "tolerance_mm": 68.5,
+    "v4_wall_px": 25226,
+    "3d_dark_cap_px": 29255,
+    "IoU_exact": 0.7535,
+    "precision_within_tol": 0.8183,
+    "recall_within_tol": 0.9986,
+    "note": "3D wall caps segmented by darkness (lum<95, neutral); glazing frames/door leaves/shadows can add or hide a few pixels.",
+    "v4_wall_components": 14,
+    "components_recall_ge_0.95": 14,
+    "component_recalls": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.992,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "water_comparison": {
+    "v4_water_px": 30694,
+    "3d_blue_px": 30348,
+    "IoU": 0.9887,
+    "IoU_per_surface_local": {
+      "swimming-pool": 0.9822,
+      "courtyard-water-feature-1": 1.0
+    },
+    "note": "Water2 tint segmented as blue>red+8 and green>red+4 (pale reflective tint); wall shadow on the courtyard east edge darkens a strip."
+  },
+  "screenshots": [
+    "active/floorplan3d-spike/FP-4B-GF/verify/01_2d_plan_view.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/02_3d_perspective_iso.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/03_3d_top_view.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/04_flyto_swimming_pool_water2.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/05_flyto_kitchen.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/06_flyto_office_gym_doors.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/07_door_cue4_closed.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/08_cut_walls_iso_both_water2_surfaces.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/09_qa_top_ortho_3d.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/10_flat_water_fallback_pool.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/11_walk_start_entry_joystick.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/12_walk_after_joystick.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/13_overlay_3d_top_vs_v4_walls.png",
+    "active/floorplan3d-spike/FP-4B-GF/verify/14_side_by_side_v4_vs_3d_top.png"
+  ]
+}

@@ -1,0 +1,10 @@
+# Free / open-source Python deps for Plan & Visuals Archivist local processing
+pymupdf>=1.24.0
+Pillow>=10.0.0
+pypdf>=4.0.0
+pdfminer.six>=20221105
+
+# System packages (Debian/Ubuntu), not pip:
+#   poppler-utils  (pdftotext, pdftoppm, pdfinfo, pdfimages, pdftocairo)
+# Optional:
+#   qpdf, ghostscript

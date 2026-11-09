@@ -1,0 +1,106 @@
+{
+  "id": "6B-RF",
+  "version": "V4",
+  "status": "USER_APPROVED_SOURCE_LIMITED_PRESENTATION",
+  "source_pdf_page": 36,
+  "source_xref": 598,
+  "source_board_crop_pixels": [
+    1270,
+    280,
+    1720,
+    1050
+  ],
+  "native_source_pixels": [
+    450,
+    770
+  ],
+  "svg": "active/approved-cad-v4/svg/FP-6B-RF_V4_portrait.svg",
+  "pdf": "active/approved-cad-v4/pdf/FP-6B-RF_V4_portrait.pdf",
+  "preview": "active/approved-cad-v4/png/FP-6B-RF_V4_preview.png",
+  "long7680": "active/approved-cad-v4/png/FP-6B-RF_V4_long7680.png",
+  "source_comparison": "active/approved-cad-v4/qa/FP-6B-RF_source_vs_v4.png",
+  "geometry": "Original native raster underlay retained with continuous tonal mapping; exact prior source-wall contour paths unchanged. No generative structural geometry.",
+  "hybrid_svg": true,
+  "source_wall_paths_preserved": 13,
+  "source_specific_symbol_definitions": {
+    "dining": [
+      [
+        154,
+        107,
+        26,
+        66,
+        3
+      ]
+    ],
+    "L": [
+      [
+        248,
+        109,
+        72,
+        73,
+        "br"
+      ]
+    ],
+    "coffee": [
+      [
+        253,
+        128,
+        27,
+        27
+      ]
+    ],
+    "round": [
+      [
+        245,
+        161,
+        10
+      ],
+      [
+        270,
+        101,
+        9
+      ],
+      [
+        248,
+        102,
+        5
+      ]
+    ],
+    "bars": [
+      [
+        61,
+        93,
+        18,
+        88
+      ]
+    ]
+  },
+  "calibration": {
+    "status": "NTS_insufficient_unambiguous_independent_spans",
+    "px_per_m": null,
+    "spans": [],
+    "reason": "MEP region is irregular/open and source labels ambiguous; reliable independent orthogonal room endpoints not established."
+  },
+  "paper_mm": [
+    297,
+    420
+  ],
+  "pdf_physical_mm": [
+    297.0000023735894,
+    419.999988132053
+  ],
+  "scale_bar_metric_length_m": null,
+  "scale_bar_physical_length_mm": null,
+  "exterior_metric_status": "unknown_NTS",
+  "plot_boundary_verified": false,
+  "room_dimension_status": "brochure_overlay_transcripts_with_flags",
+  "clipped_pdf_text_spans": [],
+  "native_CAD": false,
+  "user_approved": true,
+  "remaining_limits": [
+    "Room-label layer disagreements and unreadable dimensions remain flagged",
+    "Fixture/door/stair detail remains native-raster limited; not metrically certified",
+    "Replacement furniture/plant/material graphics are illustrative within evidenced source locations",
+    "Envelope guides are bounding spans, not a surveyed perimeter profile; no arbitrary interior station grid"
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "checked_count": 9,
+  "check_scope": "bounded visual source-versus-output review of all nine, not survey or native CAD certification",
+  "all_status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+  "records": [
+    {
+      "floor_id": "ashwood-estates/4b/gf",
+      "asset_id": "4B-GF",
+      "source_vs_output_review": "performed: all nine comparison images visually opened",
+      "source_comparison_path": "active/approved-cad-v4/png/FP-4B-GF_V4_preview.png",
+      "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+      "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+      "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+      "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+      "numeric_perimeter_source_count": 0,
+      "plot_boundary_verified": false,
+      "disagreements": [],
+      "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+      "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+    },
+    {
+      "floor_id": "ashwood-estates/4b/ff",
+      "asset_id": "4B-FF",
+      "source_vs_output_review": "performed: all nine comparison images visually opened",
+      "source_comparison_path": "active/approved-cad-v4/qa/FP-4B-FF_source_vs_v4.png",
+      "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+      "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+      "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+      "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+      "numeric_perimeter_source_count": 0,
+      "plot_boundary_verified": false,
+      "disagreements": [
+        "Bedroom 1, upper bath and junior-suite overlay values differ from board labels."
+      ],
+      "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+      "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+    },
+    {
+      "floor_id": "ashwood-estates/4b/rf",
+      "asset_id": "4B-RF",
+      "source_vs_output_review": "performed: all nine comparison images visually opened",
+      "source_comparison_path": "active/approved-cad-v4/qa/FP-4B-RF_source_vs_v4.png",
+      "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+      "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+      "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+      "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+      "numeric_perimeter_source_count": 0,
+      "plot_boundary_verified": false,
+      "disagreements": [
+        "MEP board reads 3.00 × 12.80; overlay reads 3.80 × 15.70.",
+        "Lift and service-room labels also differ; do not resolve by scaling."
+      ],
+      "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+      "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+    },
+    {
+      "floor_id": "ashwood-estates/5b/gf",
+      "asset_id": "5B-GF",
+      "source_vs_output_review": "performed: all nine comparison images visually opened",
+      "source_comparison_path": "active/approved-cad-v4/qa/FP-5B-GF_source_vs_v4.png",
+      "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+      "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+      "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+      "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+      "numeric_perimeter_source_count": 0,
+      "plot_boundary_verified": false,
+      "disagreements": [],
+      "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+      "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+    },
+    {
+      "floor_id": "ashwood-estates/5b/ff",
+      "asset_id": "5B-FF",
+      "source_vs_output_review": "performed: all nine comparison images visually opened",
+      "source_comparison_path": "active/approved-cad-v4/qa/FP-5B-FF_source_vs_v4.png",
+      "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+      "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+      "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+      "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+      "numeric_perimeter_source_count": 0,
+      "plot_boundary_verified": false,
+      "disagreements": [
+        "Context pool: GF overlay says 9.00 × 2.50; FF overlay says 9.50 × 2.40."
+      ],
+      "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+      "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+    },
+    {
+      "floor_id": "ashwood-estates/5b/rf",
+      "asset_id": "5B-RF",
+      "source_vs_output_review": "performed: all nine comparison images visually opened",
+      "source_comparison_path": "active/approved-cad-v4/qa/FP-5B-RF_source_vs_v4.png",
+      "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+      "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+      "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+      "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+      "numeric_perimeter_source_count": 0,
+      "plot_boundary_verified": false,
+      "disagreements": [],
+      "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+      "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+    },
+    {
+      "floor_id": "ashwood-estates/6b/gf",
+      "asset_id": "6B-GF",
+      "source_vs_output_review": "performed: all nine comparison images visually opened",
+      "source_comparison_path": "active/approved-cad-v4/qa/FP-6B-GF_source_vs_v4.png",
+      "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+      "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+      "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+      "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+      "numeric_perimeter_source_count": 0,
+      "plot_boundary_verified": false,
+      "disagreements": [],
+      "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+      "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+    },
+    {
+      "floor_id": "ashwood-estates/6b/ff",
+      "asset_id": "6B-FF",
+      "source_vs_output_review": "performed: all nine comparison images visually opened",
+      "source_comparison_path": "active/approved-cad-v4/qa/FP-6B-FF_source_vs_v4.png",
+      "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+      "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+      "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+      "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+      "numeric_perimeter_source_count": 0,
+      "plot_boundary_verified": false,
+      "disagreements": [],
+      "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+      "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+    },
+    {
+      "floor_id": "ashwood-estates/6b/rf",
+      "asset_id": "6B-RF",
+      "source_vs_output_review": "performed: all nine comparison images visually opened",
+      "source_comparison_path": "active/approved-cad-v4/qa/FP-6B-RF_source_vs_v4.png",
+      "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+      "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+      "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+      "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+      "numeric_perimeter_source_count": 0,
+      "plot_boundary_verified": false,
+      "disagreements": [
+        "Second MEP-zone board dimension is too blurred to verify.",
+        "Service-room board labels differ/are unclear; overlay values retained with †."
+      ],
+      "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+      "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+    }
+  ]
+}

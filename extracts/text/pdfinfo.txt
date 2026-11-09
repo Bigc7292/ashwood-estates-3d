@@ -1,0 +1,19 @@
+Title:           Ashwood Estates Brochure V20-D_1
+Creator:         Adobe Illustrator 29.7 (Macintosh)
+Producer:        iLovePDF
+CreationDate:    Sat Sep  6 12:15:14 2025 +04
+ModDate:         Mon Sep  8 09:28:47 2025 +04
+Custom Metadata: no
+Metadata Stream: no
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           38
+Encrypted:       no
+Page size:       1920 x 1080 pts
+Page rot:        0
+File size:       6738589 bytes
+Optimized:       no
+PDF version:     1.6

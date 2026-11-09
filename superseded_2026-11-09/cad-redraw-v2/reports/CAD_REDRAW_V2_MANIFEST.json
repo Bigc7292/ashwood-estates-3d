@@ -1,0 +1,363 @@
+{
+  "generated_at": "2026-11-09 05:38:28 Asia/Dubai (UTC+4)",
+  "source_pdf_sha256": "a716d74af71a117145a12e058876220a185b6424bf06c082aded539fbb76ca1b",
+  "blocker_pdf_vectors": "Plan pages contain essentially no wall vector paths (UI fills only). Floor plans are embedded rasters (NAGA marketing boards).",
+  "method_summary": "Crop per-floor panels from embedded boards \u2192 strip branding \u2192 contour-trace walls to SVG \u2192 colored presentation PNG (native + Lanczos long-edge 7680) \u2192 overlay vs brochure page clips.",
+  "assets": [
+    {
+      "asset_id": "FP-4B-GF",
+      "villa_type": "4 Bedroom Villa",
+      "floor": "Ground Floor",
+      "brochure_page": 27,
+      "panel_source": "cad-redraw-v2/source_rasters/FP-4B-GF_naga_panel.png",
+      "wall_paths_traced": 293,
+      "svg": "cad-redraw-v2/svg/FP-4B-GF_walls_traced.svg",
+      "png_native": "cad-redraw-v2/png/FP-4B-GF_presentation_native.png",
+      "png_long7680": "cad-redraw-v2/png/FP-4B-GF_presentation_long7680.png",
+      "native_size": [
+        874,
+        1292
+      ],
+      "long7680_meta": {
+        "native_w": 874,
+        "native_h": 1292,
+        "native_long_edge": 1292,
+        "requested_long_edge": 7680,
+        "output": "lanczos_upscale",
+        "scale": 5.944272445820434,
+        "out_w": 5195,
+        "out_h": 7680,
+        "warning": "Upscale does not add architectural detail; pixels interpolated from source raster."
+      },
+      "overlay": "cad-redraw-v2/overlays/FP-4B-GF_overlay_compare.png",
+      "overlay_diff_mean": 18.94,
+      "method": {
+        "geometry": "cropped from brochure-embedded NAGA marketing plan board raster (not PDF vector walls \u2014 those absent)",
+        "vectors": "OpenCV contour trace of dark wall poch\u00e9 from board raster",
+        "presentation": "branding-stripped colored board panel on white surround; source colors retained",
+        "not_done": "No invented dimension chains/north/scale; no watermark copy; no generative redraw"
+      },
+      "confidence_geometry": 0.82,
+      "uncertainty": "Board vs brochure page framing/furniture styling differ; wall mask may include some dark furniture/cars; text on board may be partially illegible at native res.",
+      "svg_bytes": 45471,
+      "wall_trace_version": "v2_adaptive+canny"
+    },
+    {
+      "asset_id": "FP-4B-FF",
+      "villa_type": "4 Bedroom Villa",
+      "floor": "First Floor",
+      "brochure_page": 28,
+      "panel_source": "cad-redraw-v2/source_rasters/FP-4B-FF_naga_panel.png",
+      "wall_paths_traced": 219,
+      "svg": "cad-redraw-v2/svg/FP-4B-FF_walls_traced.svg",
+      "png_native": "cad-redraw-v2/png/FP-4B-FF_presentation_native.png",
+      "png_long7680": "cad-redraw-v2/png/FP-4B-FF_presentation_long7680.png",
+      "native_size": [
+        874,
+        1292
+      ],
+      "long7680_meta": {
+        "native_w": 874,
+        "native_h": 1292,
+        "native_long_edge": 1292,
+        "requested_long_edge": 7680,
+        "output": "lanczos_upscale",
+        "scale": 5.944272445820434,
+        "out_w": 5195,
+        "out_h": 7680,
+        "warning": "Upscale does not add architectural detail; pixels interpolated from source raster."
+      },
+      "overlay": "cad-redraw-v2/overlays/FP-4B-FF_overlay_compare.png",
+      "overlay_diff_mean": 18.71,
+      "method": {
+        "geometry": "cropped from brochure-embedded NAGA marketing plan board raster (not PDF vector walls \u2014 those absent)",
+        "vectors": "OpenCV contour trace of dark wall poch\u00e9 from board raster",
+        "presentation": "branding-stripped colored board panel on white surround; source colors retained",
+        "not_done": "No invented dimension chains/north/scale; no watermark copy; no generative redraw"
+      },
+      "confidence_geometry": 0.82,
+      "uncertainty": "Board vs brochure page framing/furniture styling differ; wall mask may include some dark furniture/cars; text on board may be partially illegible at native res.",
+      "svg_bytes": 40248,
+      "wall_trace_version": "v2_adaptive+canny"
+    },
+    {
+      "asset_id": "FP-4B-RF",
+      "villa_type": "4 Bedroom Villa",
+      "floor": "Roof Floor",
+      "brochure_page": 28,
+      "panel_source": "cad-redraw-v2/source_rasters/FP-4B-RF_naga_panel.png",
+      "wall_paths_traced": 85,
+      "svg": "cad-redraw-v2/svg/FP-4B-RF_walls_traced.svg",
+      "png_native": "cad-redraw-v2/png/FP-4B-RF_presentation_native.png",
+      "png_long7680": "cad-redraw-v2/png/FP-4B-RF_presentation_long7680.png",
+      "native_size": [
+        874,
+        1292
+      ],
+      "long7680_meta": {
+        "native_w": 874,
+        "native_h": 1292,
+        "native_long_edge": 1292,
+        "requested_long_edge": 7680,
+        "output": "lanczos_upscale",
+        "scale": 5.944272445820434,
+        "out_w": 5195,
+        "out_h": 7680,
+        "warning": "Upscale does not add architectural detail; pixels interpolated from source raster."
+      },
+      "overlay": "cad-redraw-v2/overlays/FP-4B-RF_overlay_compare.png",
+      "overlay_diff_mean": 18.33,
+      "method": {
+        "geometry": "cropped from brochure-embedded NAGA marketing plan board raster (not PDF vector walls \u2014 those absent)",
+        "vectors": "OpenCV contour trace of dark wall poch\u00e9 from board raster",
+        "presentation": "branding-stripped colored board panel on white surround; source colors retained",
+        "not_done": "No invented dimension chains/north/scale; no watermark copy; no generative redraw"
+      },
+      "confidence_geometry": 0.82,
+      "uncertainty": "Board vs brochure page framing/furniture styling differ; wall mask may include some dark furniture/cars; text on board may be partially illegible at native res.",
+      "svg_bytes": 10498,
+      "wall_trace_version": "v2_adaptive+canny"
+    },
+    {
+      "asset_id": "FP-5B-GF",
+      "villa_type": "5 Bedroom Villa",
+      "floor": "Ground Floor",
+      "brochure_page": 31,
+      "panel_source": "cad-redraw-v2/source_rasters/FP-5B-GF_naga_panel.png",
+      "wall_paths_traced": 294,
+      "svg": "cad-redraw-v2/svg/FP-5B-GF_walls_traced.svg",
+      "png_native": "cad-redraw-v2/png/FP-5B-GF_presentation_native.png",
+      "png_long7680": "cad-redraw-v2/png/FP-5B-GF_presentation_long7680.png",
+      "native_size": [
+        769,
+        1131
+      ],
+      "long7680_meta": {
+        "native_w": 769,
+        "native_h": 1131,
+        "native_long_edge": 1131,
+        "requested_long_edge": 7680,
+        "output": "lanczos_upscale",
+        "scale": 6.790450928381963,
+        "out_w": 5222,
+        "out_h": 7680,
+        "warning": "Upscale does not add architectural detail; pixels interpolated from source raster."
+      },
+      "overlay": "cad-redraw-v2/overlays/FP-5B-GF_overlay_compare.png",
+      "overlay_diff_mean": 19.66,
+      "method": {
+        "geometry": "cropped from brochure-embedded NAGA marketing plan board raster (not PDF vector walls \u2014 those absent)",
+        "vectors": "OpenCV contour trace of dark wall poch\u00e9 from board raster",
+        "presentation": "branding-stripped colored board panel on white surround; source colors retained",
+        "not_done": "No invented dimension chains/north/scale; no watermark copy; no generative redraw"
+      },
+      "confidence_geometry": 0.82,
+      "uncertainty": "Board vs brochure page framing/furniture styling differ; wall mask may include some dark furniture/cars; text on board may be partially illegible at native res.",
+      "svg_bytes": 47060,
+      "wall_trace_version": "v2_adaptive+canny"
+    },
+    {
+      "asset_id": "FP-5B-FF",
+      "villa_type": "5 Bedroom Villa",
+      "floor": "First Floor",
+      "brochure_page": 32,
+      "panel_source": "cad-redraw-v2/source_rasters/FP-5B-FF_naga_panel.png",
+      "wall_paths_traced": 170,
+      "svg": "cad-redraw-v2/svg/FP-5B-FF_walls_traced.svg",
+      "png_native": "cad-redraw-v2/png/FP-5B-FF_presentation_native.png",
+      "png_long7680": "cad-redraw-v2/png/FP-5B-FF_presentation_long7680.png",
+      "native_size": [
+        769,
+        1131
+      ],
+      "long7680_meta": {
+        "native_w": 769,
+        "native_h": 1131,
+        "native_long_edge": 1131,
+        "requested_long_edge": 7680,
+        "output": "lanczos_upscale",
+        "scale": 6.790450928381963,
+        "out_w": 5222,
+        "out_h": 7680,
+        "warning": "Upscale does not add architectural detail; pixels interpolated from source raster."
+      },
+      "overlay": "cad-redraw-v2/overlays/FP-5B-FF_overlay_compare.png",
+      "overlay_diff_mean": 14.51,
+      "method": {
+        "geometry": "cropped from brochure-embedded NAGA marketing plan board raster (not PDF vector walls \u2014 those absent)",
+        "vectors": "OpenCV contour trace of dark wall poch\u00e9 from board raster",
+        "presentation": "branding-stripped colored board panel on white surround; source colors retained",
+        "not_done": "No invented dimension chains/north/scale; no watermark copy; no generative redraw"
+      },
+      "confidence_geometry": 0.82,
+      "uncertainty": "Board vs brochure page framing/furniture styling differ; wall mask may include some dark furniture/cars; text on board may be partially illegible at native res.",
+      "svg_bytes": 24988,
+      "wall_trace_version": "v2_adaptive+canny"
+    },
+    {
+      "asset_id": "FP-5B-RF",
+      "villa_type": "5 Bedroom Villa",
+      "floor": "Roof Floor",
+      "brochure_page": 32,
+      "panel_source": "cad-redraw-v2/source_rasters/FP-5B-RF_naga_panel.png",
+      "wall_paths_traced": 50,
+      "svg": "cad-redraw-v2/svg/FP-5B-RF_walls_traced.svg",
+      "png_native": "cad-redraw-v2/png/FP-5B-RF_presentation_native.png",
+      "png_long7680": "cad-redraw-v2/png/FP-5B-RF_presentation_long7680.png",
+      "native_size": [
+        770,
+        1131
+      ],
+      "long7680_meta": {
+        "native_w": 770,
+        "native_h": 1131,
+        "native_long_edge": 1131,
+        "requested_long_edge": 7680,
+        "output": "lanczos_upscale",
+        "scale": 6.790450928381963,
+        "out_w": 5229,
+        "out_h": 7680,
+        "warning": "Upscale does not add architectural detail; pixels interpolated from source raster."
+      },
+      "overlay": "cad-redraw-v2/overlays/FP-5B-RF_overlay_compare.png",
+      "overlay_diff_mean": 13.95,
+      "method": {
+        "geometry": "cropped from brochure-embedded NAGA marketing plan board raster (not PDF vector walls \u2014 those absent)",
+        "vectors": "OpenCV contour trace of dark wall poch\u00e9 from board raster",
+        "presentation": "branding-stripped colored board panel on white surround; source colors retained",
+        "not_done": "No invented dimension chains/north/scale; no watermark copy; no generative redraw"
+      },
+      "confidence_geometry": 0.82,
+      "uncertainty": "Board vs brochure page framing/furniture styling differ; wall mask may include some dark furniture/cars; text on board may be partially illegible at native res.",
+      "svg_bytes": 8192,
+      "wall_trace_version": "v2_adaptive+canny"
+    },
+    {
+      "asset_id": "FP-6B-GF",
+      "villa_type": "6 Bedroom Villa",
+      "floor": "Ground Floor",
+      "brochure_page": 35,
+      "panel_source": "cad-redraw-v2/source_rasters/FP-6B-GF_naga_panel.png",
+      "wall_paths_traced": 252,
+      "svg": "cad-redraw-v2/svg/FP-6B-GF_walls_traced.svg",
+      "png_native": "cad-redraw-v2/png/FP-6B-GF_presentation_native.png",
+      "png_long7680": "cad-redraw-v2/png/FP-6B-GF_presentation_long7680.png",
+      "native_size": [
+        674,
+        986
+      ],
+      "long7680_meta": {
+        "native_w": 674,
+        "native_h": 986,
+        "native_long_edge": 986,
+        "requested_long_edge": 7680,
+        "output": "lanczos_upscale",
+        "scale": 7.789046653144016,
+        "out_w": 5250,
+        "out_h": 7680,
+        "warning": "Upscale does not add architectural detail; pixels interpolated from source raster."
+      },
+      "overlay": "cad-redraw-v2/overlays/FP-6B-GF_overlay_compare.png",
+      "overlay_diff_mean": 20.41,
+      "method": {
+        "geometry": "cropped from brochure-embedded NAGA marketing plan board raster (not PDF vector walls \u2014 those absent)",
+        "vectors": "OpenCV contour trace of dark wall poch\u00e9 from board raster",
+        "presentation": "branding-stripped colored board panel on white surround; source colors retained",
+        "not_done": "No invented dimension chains/north/scale; no watermark copy; no generative redraw"
+      },
+      "confidence_geometry": 0.82,
+      "uncertainty": "Board vs brochure page framing/furniture styling differ; wall mask may include some dark furniture/cars; text on board may be partially illegible at native res.",
+      "svg_bytes": 39727,
+      "wall_trace_version": "v2_adaptive+canny"
+    },
+    {
+      "asset_id": "FP-6B-FF",
+      "villa_type": "6 Bedroom Villa",
+      "floor": "First Floor",
+      "brochure_page": 36,
+      "panel_source": "cad-redraw-v2/source_rasters/FP-6B-FF_naga_panel.png",
+      "wall_paths_traced": 225,
+      "svg": "cad-redraw-v2/svg/FP-6B-FF_walls_traced.svg",
+      "png_native": "cad-redraw-v2/png/FP-6B-FF_presentation_native.png",
+      "png_long7680": "cad-redraw-v2/png/FP-6B-FF_presentation_long7680.png",
+      "native_size": [
+        674,
+        986
+      ],
+      "long7680_meta": {
+        "native_w": 674,
+        "native_h": 986,
+        "native_long_edge": 986,
+        "requested_long_edge": 7680,
+        "output": "lanczos_upscale",
+        "scale": 7.789046653144016,
+        "out_w": 5250,
+        "out_h": 7680,
+        "warning": "Upscale does not add architectural detail; pixels interpolated from source raster."
+      },
+      "overlay": "cad-redraw-v2/overlays/FP-6B-FF_overlay_compare.png",
+      "overlay_diff_mean": 17.88,
+      "method": {
+        "geometry": "cropped from brochure-embedded NAGA marketing plan board raster (not PDF vector walls \u2014 those absent)",
+        "vectors": "OpenCV contour trace of dark wall poch\u00e9 from board raster",
+        "presentation": "branding-stripped colored board panel on white surround; source colors retained",
+        "not_done": "No invented dimension chains/north/scale; no watermark copy; no generative redraw"
+      },
+      "confidence_geometry": 0.82,
+      "uncertainty": "Board vs brochure page framing/furniture styling differ; wall mask may include some dark furniture/cars; text on board may be partially illegible at native res.",
+      "svg_bytes": 36822,
+      "wall_trace_version": "v2_adaptive+canny"
+    },
+    {
+      "asset_id": "FP-6B-RF",
+      "villa_type": "6 Bedroom Villa",
+      "floor": "Roof Floor",
+      "brochure_page": 36,
+      "panel_source": "cad-redraw-v2/source_rasters/FP-6B-RF_naga_panel.png",
+      "wall_paths_traced": 55,
+      "svg": "cad-redraw-v2/svg/FP-6B-RF_walls_traced.svg",
+      "png_native": "cad-redraw-v2/png/FP-6B-RF_presentation_native.png",
+      "png_long7680": "cad-redraw-v2/png/FP-6B-RF_presentation_long7680.png",
+      "native_size": [
+        676,
+        986
+      ],
+      "long7680_meta": {
+        "native_w": 676,
+        "native_h": 986,
+        "native_long_edge": 986,
+        "requested_long_edge": 7680,
+        "output": "lanczos_upscale",
+        "scale": 7.789046653144016,
+        "out_w": 5265,
+        "out_h": 7680,
+        "warning": "Upscale does not add architectural detail; pixels interpolated from source raster."
+      },
+      "overlay": "cad-redraw-v2/overlays/FP-6B-RF_overlay_compare.png",
+      "overlay_diff_mean": 17.19,
+      "method": {
+        "geometry": "cropped from brochure-embedded NAGA marketing plan board raster (not PDF vector walls \u2014 those absent)",
+        "vectors": "OpenCV contour trace of dark wall poch\u00e9 from board raster",
+        "presentation": "branding-stripped colored board panel on white surround; source colors retained",
+        "not_done": "No invented dimension chains/north/scale; no watermark copy; no generative redraw"
+      },
+      "confidence_geometry": 0.82,
+      "uncertainty": "Board vs brochure page framing/furniture styling differ; wall mask may include some dark furniture/cars; text on board may be partially illegible at native res.",
+      "svg_bytes": 8337,
+      "wall_trace_version": "v2_adaptive+canny"
+    }
+  ],
+  "style_reference": {
+    "requested_style_path": "/home/box/agent-data/agents/0088b415-4514-42b5-ae81-55b8ac28798b/attachments/8d2454fb357f0ad2a079711bccad3ff6cc1799d25e7fb87fd14c0dc3605d2807.png",
+    "status_at_run": "requested 8d2454fb\u2026png STILL ABSENT; openart-thumbnail named in media index but not materialized; prior agent PNGs in attachments are NOT the style example",
+    "style_guidance_applied": "User prompt + NAGA board presentation already matching: orthographic, white bg, thick dark walls, muted green landscape, blue pool, furniture, labels \u2014 STYLE ONLY from example when available; geometry locked to Ashwood brochure boards",
+    "forbidden_from_style_example": "geometry, dimensions, scale bar, north arrow, pool/garage layout, watermark/branding, garbled text"
+  },
+  "updated_at": "2026-11-09 05:41:10 Asia/Dubai (UTC+4)",
+  "limitations_extra": [
+    "SVG wall traces are contour extractions from board rasters \u2014 may include dark furniture/cars; not clean architectural layer separation.",
+    "Native presentation resolution is board-panel limited (~670\u2013870 px wide); 7680 long-edge files are Lanczos upscales without new detail.",
+    "Overlay |diff| vs brochure page clips is elevated because board panel vs brochure marketing framing/furniture differ; use overlay for QC not pixel identity.",
+    "Equal-third panel crops may clip edge labels on some boards."
+  ]
+}

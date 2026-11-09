@@ -1,0 +1,6 @@
+{
+  "requested_style_path": "/home/box/agent-data/agents/0088b415-4514-42b5-ae81-55b8ac28798b/attachments/8d2454fb357f0ad2a079711bccad3ff6cc1799d25e7fb87fd14c0dc3605d2807.png",
+  "status_at_run": "file not present on box during processing; media index named openart-thumbnail_\u2026; attachments instead held prior agent PNGs",
+  "style_guidance_applied": "User prompt + NAGA board presentation already matching: orthographic, white bg, thick dark walls, muted green landscape, blue pool, furniture, labels \u2014 STYLE ONLY from example when available; geometry locked to Ashwood brochure boards",
+  "forbidden_from_style_example": "geometry, dimensions, scale bar, north arrow, pool/garage layout, watermark/branding, garbled text"
+}

@@ -1,0 +1,1411 @@
+{
+ "plan_id": "4B-GF",
+ "units": "crop px of source board crop [120,350,830,1370] (same as approved V4 source_space)",
+ "read_by": "Plan & Visuals Archivist spike v2, 2026-11-09 (Asia/Dubai)",
+ "method_rooms": "Room polygon = traced V4 wall inner faces, read from the 2x wall raster, closed with straight segments across openings (closures_px). Derived, not stated in source.",
+ "method_furniture": "Each item read from an approved V4 furniture glyph or V4 fine-detail trace and cross-checked against the brochure crop; type mapped to the nearest upstream Floorplan 3D model.",
+ "rooms": [
+  {
+   "anchor_id": "living-dining",
+   "poly_px": [
+    [
+     198,
+     191
+    ],
+    [
+     548,
+     191
+    ],
+    [
+     548,
+     335
+    ],
+    [
+     198,
+     335
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      198,
+      335,
+      409,
+      335
+     ],
+     "why": "open-plan split from show kitchen; y=335 = calibrated living/dining depth endpoint (5.10 m)"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project-wide, not room-specific)",
+   "mat_evidence": "p17 materials board: \"Light Beige Marble or Porcelain - General Flooring\"; p24 Interior (Summary): \"Floors: Porcelain\". Mapped to upstream \"tile800\" (large-format light tile).",
+   "note": ""
+  },
+  {
+   "anchor_id": "show-kitchen",
+   "poly_px": [
+    [
+     198,
+     335
+    ],
+    [
+     357,
+     335
+    ],
+    [
+     357,
+     392
+    ],
+    [
+     252,
+     392
+    ],
+    [
+     252,
+     379
+    ],
+    [
+     198,
+     379
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      198,
+      335,
+      357,
+      335
+     ],
+     "why": "open-plan split (shared with living/dining)"
+    },
+    {
+     "seg": [
+      357,
+      335,
+      357,
+      392
+     ],
+     "why": "open side to stair hall, aligned with powder block east face"
+    },
+    {
+     "seg": [
+      222,
+      379,
+      252,
+      379
+     ],
+     "why": "pantry opening"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project-wide, not room-specific)",
+   "mat_evidence": "p17 materials board: \"Light Beige Marble or Porcelain - General Flooring\"; p24 Interior (Summary): \"Floors: Porcelain\". Mapped to upstream \"tile800\" (large-format light tile).",
+   "note": "brochure labels overlap in the open plan (5.10 + 2.70 m > traced depth); derived area is smaller than label 5.70 x 2.70"
+  },
+  {
+   "anchor_id": "pantry",
+   "poly_px": [
+    [
+     198,
+     379
+    ],
+    [
+     249,
+     379
+    ],
+    [
+     249,
+     447
+    ],
+    [
+     198,
+     447
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      222,
+      379,
+      249,
+      379
+     ],
+     "why": "pantry opening to show kitchen"
+    },
+    {
+     "seg": [
+      198,
+      447,
+      249,
+      447
+     ],
+     "why": "open side to kitchen"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project-wide, not room-specific)",
+   "mat_evidence": "p17 materials board: \"Light Beige Marble or Porcelain - General Flooring\"; p24 Interior (Summary): \"Floors: Porcelain\". Mapped to upstream \"tile800\" (large-format light tile).",
+   "note": ""
+  },
+  {
+   "anchor_id": "powder",
+   "poly_px": [
+    [
+     253,
+     397
+    ],
+    [
+     355,
+     397
+    ],
+    [
+     355,
+     445
+    ],
+    [
+     253,
+     445
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      355,
+      400,
+      355,
+      445
+     ],
+     "why": "powder entrance (east side, no door symbol in trace)"
+    }
+   ],
+   "outdoor": false,
+   "mat": "terrazzo",
+   "mat_status": "observed (project-wide wet-area spec, decoded text)",
+   "mat_evidence": "p24 Interior (Summary) wet-area line, glyph-shifted in the PDF text layer, decodes to \"Wet areas: Terrazzo Porcelain / Porcelain Concrete Look\". Mapped to upstream \"terrazzo\".",
+   "note": ""
+  },
+  {
+   "anchor_id": "kitchen",
+   "poly_px": [
+    [
+     198,
+     447
+    ],
+    [
+     311,
+     447
+    ],
+    [
+     311,
+     531
+    ],
+    [
+     198,
+     531
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      198,
+      447,
+      249,
+      447
+     ],
+     "why": "open side to pantry"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project-wide, not room-specific)",
+   "mat_evidence": "p17 materials board: \"Light Beige Marble or Porcelain - General Flooring\"; p24 Interior (Summary): \"Floors: Porcelain\". Mapped to upstream \"tile800\" (large-format light tile).",
+   "note": ""
+  },
+  {
+   "anchor_id": "laundry",
+   "poly_px": [
+    [
+     252,
+     537
+    ],
+    [
+     311,
+     537
+    ],
+    [
+     311,
+     587
+    ],
+    [
+     252,
+     587
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      252,
+      537,
+      252,
+      560
+     ],
+     "why": "laundry doorway (no door symbol)"
+    }
+   ],
+   "outdoor": false,
+   "mat": "terrazzo",
+   "mat_status": "observed (project-wide wet-area spec, decoded text)",
+   "mat_evidence": "p24 Interior (Summary) wet-area line, glyph-shifted in the PDF text layer, decodes to \"Wet areas: Terrazzo Porcelain / Porcelain Concrete Look\". Mapped to upstream \"terrazzo\".",
+   "note": ""
+  },
+  {
+   "anchor_id": "k-store",
+   "poly_px": [
+    [
+     252,
+     590
+    ],
+    [
+     311,
+     590
+    ],
+    [
+     311,
+     629
+    ],
+    [
+     252,
+     629
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      252,
+      597,
+      252,
+      628
+     ],
+     "why": "store doorway (no door symbol)"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project-wide, not room-specific)",
+   "mat_evidence": "p17 materials board: \"Light Beige Marble or Porcelain - General Flooring\"; p24 Interior (Summary): \"Floors: Porcelain\". Mapped to upstream \"tile800\" (large-format light tile).",
+   "note": ""
+  },
+  {
+   "anchor_id": "dress",
+   "poly_px": [
+    [
+     258,
+     634
+    ],
+    [
+     311,
+     634
+    ],
+    [
+     311,
+     663
+    ],
+    [
+     258,
+     663
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      258,
+      634,
+      258,
+      663
+     ],
+     "why": "open side to maid room"
+    },
+    {
+     "seg": [
+      258,
+      663,
+      272,
+      663
+     ],
+     "why": "opening to maid bath"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project reference render, not matched to this villa)",
+   "mat_evidence": "p15 dressing render (canonical/references/ref-p15-dressing.png): light beige floor; plus p24 \"Floors: Porcelain\". Mapped to \"tile800\".",
+   "note": ""
+  },
+  {
+   "anchor_id": "maid-room",
+   "poly_px": [
+    [
+     198,
+     635
+    ],
+    [
+     258,
+     635
+    ],
+    [
+     258,
+     716
+    ],
+    [
+     198,
+     716
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      244,
+      635,
+      258,
+      635
+     ],
+     "why": "gap beside maid-room door"
+    },
+    {
+     "seg": [
+      258,
+      635,
+      258,
+      663
+     ],
+     "why": "open side to dress"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project-wide, not room-specific)",
+   "mat_evidence": "p17 materials board: \"Light Beige Marble or Porcelain - General Flooring\"; p24 Interior (Summary): \"Floors: Porcelain\". Mapped to upstream \"tile800\" (large-format light tile).",
+   "note": "V4 shows UNKNOWN*; brochure crop label reads 2.10 x 3.10 m. East side = thin traced wall x258-261."
+  },
+  {
+   "anchor_id": "maid-bath",
+   "poly_px": [
+    [
+     262,
+     663
+    ],
+    [
+     272,
+     663
+    ],
+    [
+     272,
+     666
+    ],
+    [
+     311,
+     666
+    ],
+    [
+     311,
+     716
+    ],
+    [
+     262,
+     716
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      262,
+      663,
+      272,
+      663
+     ],
+     "why": "opening from dress (no door symbol)"
+    }
+   ],
+   "outdoor": false,
+   "mat": "terrazzo",
+   "mat_status": "observed (project-wide wet-area spec, decoded text)",
+   "mat_evidence": "p24 Interior (Summary) wet-area line, glyph-shifted in the PDF text layer, decodes to \"Wet areas: Terrazzo Porcelain / Porcelain Concrete Look\". Mapped to upstream \"terrazzo\".",
+   "note": "west side = thin traced wall x258-261; includes the narrow fixture strip"
+  },
+  {
+   "anchor_id": "double-height-entry",
+   "poly_px": [
+    [
+     318,
+     618
+    ],
+    [
+     409,
+     618
+    ],
+    [
+     409,
+     711
+    ],
+    [
+     318,
+     711
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      318,
+      618,
+      409,
+      618
+     ],
+     "why": "open side to stair hall (south end of stair run)"
+    },
+    {
+     "seg": [
+      405,
+      711,
+      409,
+      711
+     ],
+     "why": "gap beside entry door"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project-wide, not room-specific)",
+   "mat_evidence": "p17 materials board: \"Light Beige Marble or Porcelain - General Flooring\"; p24 Interior (Summary): \"Floors: Porcelain\". Mapped to upstream \"tile800\" (large-format light tile).",
+   "note": ""
+  },
+  {
+   "anchor_id": "office-gym",
+   "poly_px": [
+    [
+     417,
+     539
+    ],
+    [
+     547,
+     539
+    ],
+    [
+     547,
+     631
+    ],
+    [
+     417,
+     631
+    ]
+   ],
+   "closures_px": [],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project-wide, not room-specific)",
+   "mat_evidence": "p17 materials board: \"Light Beige Marble or Porcelain - General Flooring\"; p24 Interior (Summary): \"Floors: Porcelain\". Mapped to upstream \"tile800\" (large-format light tile).",
+   "note": ""
+  },
+  {
+   "anchor_id": "bath",
+   "poly_px": [
+    [
+     465,
+     637
+    ],
+    [
+     547,
+     637
+    ],
+    [
+     547,
+     686
+    ],
+    [
+     465,
+     686
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      465,
+      637,
+      465,
+      652
+     ],
+     "why": "bath doorway (no door symbol)"
+    }
+   ],
+   "outdoor": false,
+   "mat": "terrazzo",
+   "mat_status": "observed (project-wide wet-area spec, decoded text)",
+   "mat_evidence": "p24 Interior (Summary) wet-area line, glyph-shifted in the PDF text layer, decodes to \"Wet areas: Terrazzo Porcelain / Porcelain Concrete Look\". Mapped to upstream \"terrazzo\".",
+   "note": ""
+  },
+  {
+   "anchor_id": "multipurpose",
+   "poly_px": [
+    [
+     417,
+     693
+    ],
+    [
+     547,
+     693
+    ],
+    [
+     547,
+     803
+    ],
+    [
+     417,
+     803
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      417,
+      752,
+      417,
+      762
+     ],
+     "why": "small gap in traced west wall"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "observed (project-wide, not room-specific)",
+   "mat_evidence": "p17 materials board: \"Light Beige Marble or Porcelain - General Flooring\"; p24 Interior (Summary): \"Floors: Porcelain\". Mapped to upstream \"tile800\" (large-format light tile).",
+   "note": ""
+  },
+  {
+   "anchor_id": "lift",
+   "poly_px": [
+    [
+     416,
+     339
+    ],
+    [
+     455,
+     339
+    ],
+    [
+     455,
+     373
+    ],
+    [
+     416,
+     373
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      416,
+      350,
+      416,
+      372
+     ],
+     "why": "lift door opening"
+    }
+   ],
+   "outdoor": false,
+   "mat": "tile800",
+   "mat_status": "assumed",
+   "mat_evidence": "No lift-car finish evidence; upstream \"tile800\" used.",
+   "note": ""
+  },
+  {
+   "anchor_id": "outdoor-terrace",
+   "poly_px": [
+    [
+     461,
+     337
+    ],
+    [
+     548,
+     337
+    ],
+    [
+     548,
+     532
+    ],
+    [
+     413,
+     532
+    ],
+    [
+     413,
+     380
+    ],
+    [
+     461,
+     380
+    ]
+   ],
+   "closures_px": [
+    {
+     "seg": [
+      548,
+      345,
+      548,
+      532
+     ],
+     "why": "east boundary only partly traced (dotted line)"
+    }
+   ],
+   "outdoor": true,
+   "mat": "antislip",
+   "mat_status": "assumed",
+   "mat_evidence": "No outdoor-floor finish evidence in brochure text; upstream \"antislip\" (300 anti-slip tile) used.",
+   "note": "courtyard; water feature sits on this floor"
+  }
+ ],
+ "furniture": [
+  {
+   "type": "chair",
+   "name": "Dining chair 1",
+   "center_px": [
+    273,
+    239
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3444 (chair glyph translate(273,239) rotate(0)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Dining chair 2",
+   "center_px": [
+    273,
+    284
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element #3445 (chair glyph translate(273,284) rotate(180)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Dining chair 3",
+   "center_px": [
+    293,
+    239
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3446 (chair glyph translate(293,239) rotate(0)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Dining chair 4",
+   "center_px": [
+    293,
+    284
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element #3447 (chair glyph translate(293,284) rotate(180)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Dining chair 5",
+   "center_px": [
+    314,
+    239
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3448 (chair glyph translate(314,239) rotate(0)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Dining chair 6",
+   "center_px": [
+    314,
+    284
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element #3449 (chair glyph translate(314,284) rotate(180)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Dining chair 7",
+   "center_px": [
+    334,
+    239
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3450 (chair glyph translate(334,239) rotate(0)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Dining chair 8",
+   "center_px": [
+    334,
+    284
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element #3451 (chair glyph translate(334,284) rotate(180)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Dining chair 9",
+   "center_px": [
+    253,
+    261
+   ],
+   "rot": 270,
+   "evidence": "approved V4 SVG source_space element #3452 (chair glyph translate(253,261) rotate(-90)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Dining chair 10",
+   "center_px": [
+    355,
+    261
+   ],
+   "rot": 90,
+   "evidence": "approved V4 SVG source_space element #3453 (chair glyph translate(355,261) rotate(90)); 10 chairs drawn around the table in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "table",
+   "name": "Dining table",
+   "center_px": [
+    302.5,
+    261.5
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3455 rect 83x31 px; table drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    83,
+    31
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "sofa",
+   "name": "Sectional sofa - long side",
+   "center_px": [
+    420.0,
+    269.5
+   ],
+   "rot": 270,
+   "evidence": "approved V4 SVG source_space element #3463-3466,3470 (seat + 3 cushions; back side inferred as the outer side of the L, seats facing the coffee table); L-sofa drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    87,
+    22
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "sofa",
+   "name": "Sectional sofa - short side",
+   "center_px": [
+    458.0,
+    304.5
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element #3467-3469,3471 (seat + 2 cushions; back on outer (south) side, inferred)",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    56,
+    21
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "coffeetable",
+   "name": "Coffee table",
+   "center_px": [
+    476.0,
+    263.0
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3472-3473 square 34 px; square table drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    34,
+    34
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "armchair",
+   "name": "Armchair (north)",
+   "center_px": [
+    474,
+    216
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3474 chair glyph; chair drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    22,
+    22
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "sidetable",
+   "name": "Round side table",
+   "center_px": [
+    501,
+    216
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3475 circle r=8; round table drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    16,
+    16
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "armchair",
+   "name": "Armchair (south-east)",
+   "center_px": [
+    505,
+    294
+   ],
+   "rot": 20,
+   "evidence": "approved V4 SVG source_space element #3476 chair glyph rotate(20); round item drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    30,
+    30
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "island",
+   "name": "Kitchen island (cooktop symbol on top, not modelled separately)",
+   "center_px": [
+    303.5,
+    328.5
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element #3478-3483 island 109x23 px with 4-ring cooktop; island drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    109,
+    23
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "barstool",
+   "name": "Bar stool 1",
+   "center_px": [
+    307,
+    311
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3484 stool glyph; 3 stools drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    11,
+    10
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "barstool",
+   "name": "Bar stool 2",
+   "center_px": [
+    329,
+    311
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3485 stool glyph; 3 stools drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    11,
+    10
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "barstool",
+   "name": "Bar stool 3",
+   "center_px": [
+    350,
+    311
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3486 stool glyph; 3 stools drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    11,
+    10
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "counter",
+   "name": "Show-kitchen back counter (with sink notch)",
+   "center_px": [
+    305.0,
+    383.0
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element fine-detail trace (group doors_stairs_glazing_and_fine_detail) white counter with sink notch; counter drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    106,
+    14
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "counter",
+   "name": "Kitchen counter - north run",
+   "center_px": [
+    280.5,
+    456.5
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element fine-detail trace U-shaped counter; light counter shape in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    61,
+    15
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "counter",
+   "name": "Kitchen counter - east run",
+   "center_px": [
+    303.5,
+    489.5
+   ],
+   "rot": 90,
+   "evidence": "approved V4 SVG source_space element fine-detail trace U-shaped counter",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    51,
+    15
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "counter",
+   "name": "Kitchen counter - south run",
+   "center_px": [
+    280.5,
+    521.5
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element fine-detail trace U-shaped counter",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    61,
+    13
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "cabinet",
+   "name": "Pantry / kitchen tall storage run",
+   "center_px": [
+    210.5,
+    452.5
+   ],
+   "rot": 270,
+   "evidence": "approved V4 SVG source_space element fine-detail trace white strip x206-215; white band drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol (type interpreted as storage), size approximate",
+   "size_px_object_frame": [
+    147,
+    9
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "washer",
+   "name": "Washer",
+   "center_px": [
+    267.0,
+    579.0
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element fine-detail trace square; two appliances drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    14,
+    14
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "dryer",
+   "name": "Dryer",
+   "center_px": [
+    291.5,
+    579.0
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element fine-detail trace square; two appliances drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol (washer vs dryer not distinguishable), size approximate",
+   "size_px_object_frame": [
+    15,
+    14
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "wardrobe",
+   "name": "Dress wardrobe",
+   "center_px": [
+    303.0,
+    646.5
+   ],
+   "rot": 90,
+   "evidence": "approved V4 SVG source_space element fine-detail trace two stacked units on east wall; drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    31,
+    16
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "bed",
+   "name": "Maid-room bed",
+   "center_px": [
+    235.0,
+    700.5
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element #3493-3496 bed with pillow strip at south; bed drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol; traced length 1.10 m is short for a bed - kept as drawn, size approximate",
+   "size_px_object_frame": [
+    36,
+    31
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "nightstand",
+   "name": "Maid-room nightstand",
+   "center_px": [
+    211.5,
+    708.0
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element fine-detail trace small unit beside bed",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    11,
+    14
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "table",
+   "name": "Office / meeting table",
+   "center_px": [
+    497.5,
+    585.5
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3488 rect 25x61 px; table drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    25,
+    61
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Office chair 1",
+   "center_px": [
+    476,
+    567
+   ],
+   "rot": 270,
+   "evidence": "approved V4 SVG source_space element #3489 chair glyph rotate(-90); 3+1 chairs drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    11,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Office chair 2",
+   "center_px": [
+    476,
+    589
+   ],
+   "rot": 270,
+   "evidence": "approved V4 SVG source_space element #3490 chair glyph rotate(-90); 3+1 chairs drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    11,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Office chair 3",
+   "center_px": [
+    476,
+    610
+   ],
+   "rot": 270,
+   "evidence": "approved V4 SVG source_space element #3491 chair glyph rotate(-90); 3+1 chairs drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    11,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "chair",
+   "name": "Office chair 4",
+   "center_px": [
+    530,
+    589
+   ],
+   "rot": 90,
+   "evidence": "approved V4 SVG source_space element #3492 chair glyph rotate(90); 3+1 chairs drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    11,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "vanity",
+   "name": "Powder vanity",
+   "center_px": [
+    259.0,
+    419.5
+   ],
+   "rot": 270,
+   "evidence": "approved V4 SVG source_space element fine-detail trace counter on powder west wall; drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    45,
+    10
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "toilet",
+   "name": "Powder WC",
+   "center_px": [
+    284,
+    435
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element fine-detail trace WC shape at x281-288,y429-438; WC drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol; symbol too small to measure, upstream default 400x650 mm used",
+   "size_px_object_frame": [
+    11.3,
+    18.3
+   ],
+   "size_source": "upstream default 400x650 mm (symbol too small)"
+  },
+  {
+   "type": "toilet",
+   "name": "Bath WC",
+   "center_px": [
+    478,
+    677
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element fine-detail trace WC shape at x471-485,y673-685; drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol; upstream default 400x650 mm used",
+   "size_px_object_frame": [
+    11.3,
+    18.3
+   ],
+   "size_source": "upstream default 400x650 mm (symbol too small)"
+  },
+  {
+   "type": "vanity",
+   "name": "Bath vanity",
+   "center_px": [
+    501.5,
+    677.0
+   ],
+   "rot": 180,
+   "evidence": "approved V4 SVG source_space element fine-detail trace counter on bath south wall; drawn in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    29,
+    10
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  },
+  {
+   "type": "armchair",
+   "name": "Pool-terrace chair 1",
+   "center_px": [
+    495,
+    98
+   ],
+   "rot": 340,
+   "evidence": "approved V4 SVG source_space element #3497 chair glyph rotate(-20); chairs drawn by pool in brochure source crop source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "armchair",
+   "name": "Pool-terrace chair 2",
+   "center_px": [
+    494,
+    142
+   ],
+   "rot": 20,
+   "evidence": "approved V4 SVG source_space element #3499 chair glyph rotate(20)",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    13,
+    13
+   ],
+   "size_source": "V4 glyph local rect (pre-rotation)"
+  },
+  {
+   "type": "sidetable",
+   "name": "Pool-terrace side table",
+   "center_px": [
+    492.5,
+    122.5
+   ],
+   "rot": 0,
+   "evidence": "approved V4 SVG source_space element #3498 square 17 px",
+   "status": "source plan symbol, size approximate",
+   "size_px_object_frame": [
+    17,
+    17
+   ],
+   "size_source": "V4 plan bbox (swapped for 90/270 rotation)"
+  }
+ ],
+ "skipped_furniture": [
+  {
+   "item": "2 cars (garage/driveway)",
+   "why": "vehicles, not furniture; no upstream model"
+  },
+  {
+   "item": "rug / console outline beside sofa",
+   "why": "faint outline only in brochure crop, not in approved V4; ambiguous"
+  },
+  {
+   "item": "K. Store small fixture (x298-311,y590-597)",
+   "why": "too small/ambiguous to classify"
+  },
+  {
+   "item": "Maid-bath fixtures (incl. small fixture at x262-272)",
+   "why": "shapes ambiguous at source resolution (~28 px/m); not classified"
+  },
+  {
+   "item": "Bath east strip (x520-546,y681-686) and office west strip",
+   "why": "too thin/ambiguous"
+  },
+  {
+   "item": "Pool steps/benches, trees, planting",
+   "why": "landscape/water graphics, not furniture"
+  }
+ ],
+ "stairs": [
+  {
+   "id": "main-stair",
+   "rect_px": [
+    319,
+    450,
+    357,
+    573
+   ],
+   "treads": 16,
+   "tread_lines_from": "approved V4 #3426-3442 (15 tread lines + stringer)",
+   "rise_direction": "toward north (ASSUMED; source arrow ambiguous)",
+   "status": "display-only massing: riser height = display wall height / treads; not a stair design"
+  }
+ ],
+ "no_polygon": [
+  {
+   "anchor_id": "swimming-pool",
+   "why": "water surface (Water2), not a room floor"
+  },
+  {
+   "anchor_id": "terrace",
+   "why": "outdoor, no enclosing walls in trace"
+  }
+ ],
+ "furniture_convention": "rot: degrees clockwise in plan (upstream Floorplan 3D convention); rot 0 = back/headboard/tank toward plan north (-y). size_px_object_frame = [width along front, depth front-to-back] in crop px; mm = px x 1000/px_per_m."
+}

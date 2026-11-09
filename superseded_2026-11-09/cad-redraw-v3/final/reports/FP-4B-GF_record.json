@@ -1,0 +1,209 @@
+{
+  "id": "4B-GF",
+  "page": 27,
+  "xref": 313,
+  "source_board_crop_pixels": [
+    120,
+    350,
+    830,
+    1370
+  ],
+  "native_crop_size": [
+    710,
+    1020
+  ],
+  "svg_sheet": "cad-redraw-v3/final/svg/FP-4B-GF_CAD_style_sheet.svg",
+  "svg_plan": "cad-redraw-v3/final/svg/FP-4B-GF_CAD_style_plan.svg",
+  "sheet_preview": "cad-redraw-v3/final/png/FP-4B-GF_CAD_style_sheet_preview.png",
+  "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+  "exterior": {
+    "building_metric_lengths_sourced": 0,
+    "building_guide_sides_unknown": 4,
+    "site_metric_lengths_sourced": 0,
+    "site_guide_sides_unknown": 4,
+    "plot_boundary_established": false,
+    "roof_plot_not_shown": false
+  },
+  "source_limited": true,
+  "native_CAD": false,
+  "metric_scale_established": false,
+  "room_transcripts": [
+    [
+      "Swimming pool",
+      "9.50 \u00d7 2.40",
+      0,
+      0
+    ],
+    [
+      "Living / dining",
+      "12.40 \u00d7 5.10",
+      0,
+      0
+    ],
+    [
+      "Show kitchen",
+      "5.70 \u00d7 2.70",
+      0,
+      0
+    ],
+    [
+      "Pantry",
+      "1.70 \u00d7 2.45",
+      0,
+      0
+    ],
+    [
+      "Powder",
+      "3.65 \u00d7 1.70",
+      0,
+      0
+    ],
+    [
+      "Kitchen",
+      "4.00 \u00d7 3.00",
+      0,
+      0
+    ],
+    [
+      "Laundry",
+      "2.20 \u00d7 1.80",
+      0,
+      0
+    ],
+    [
+      "Kitchen storage",
+      "2.20 \u00d7 1.40",
+      0,
+      0
+    ],
+    [
+      "Office / gym",
+      "4.60 \u00d7 3.40",
+      0,
+      0
+    ],
+    [
+      "Bath",
+      "2.90 \u00d7 1.70",
+      0,
+      0
+    ],
+    [
+      "Double-height entry",
+      "3.29 \u00d7 3.30",
+      0,
+      0
+    ],
+    [
+      "Multipurpose",
+      "4.60 \u00d7 3.90",
+      0,
+      0
+    ],
+    [
+      "Dress",
+      "1.90 \u00d7 1.10",
+      0,
+      0
+    ],
+    [
+      "Maid room",
+      "UNKNOWN *",
+      0,
+      0
+    ],
+    [
+      "Maid bath",
+      "1.70 \u00d7 1.90",
+      0,
+      0
+    ],
+    [
+      "Lift",
+      "1.50 \u00d7 1.70",
+      0,
+      0
+    ]
+  ],
+  "dimension_text_checks": [
+    {
+      "room": "Swimming pool",
+      "value": "9.50 \u00d7 2.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Living / dining",
+      "value": "12.40 \u00d7 5.10",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Show kitchen",
+      "value": "5.70 \u00d7 2.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Pantry",
+      "value": "1.70 \u00d7 2.45",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Powder",
+      "value": "3.65 \u00d7 1.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Kitchen",
+      "value": "4.00 \u00d7 3.00",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Laundry",
+      "value": "2.20 \u00d7 1.80",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Kitchen storage",
+      "value": "2.20 \u00d7 1.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Office / gym",
+      "value": "4.60 \u00d7 3.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Bath",
+      "value": "2.90 \u00d7 1.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Double-height entry",
+      "value": "3.29 \u00d7 3.30",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Multipurpose",
+      "value": "4.60 \u00d7 3.90",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Dress",
+      "value": "1.90 \u00d7 1.10",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Maid bath",
+      "value": "1.70 \u00d7 1.90",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "Lift",
+      "value": "1.50 \u00d7 1.70",
+      "numbers_in_page_text": true
+    }
+  ],
+  "text_outside_sheet": [],
+  "embedded_rasters": 0,
+  "layer_counts": {},
+  "conflicts": []
+}

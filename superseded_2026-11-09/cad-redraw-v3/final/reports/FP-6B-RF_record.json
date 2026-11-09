@@ -1,0 +1,103 @@
+{
+  "id": "6B-RF",
+  "page": 36,
+  "xref": 598,
+  "source_board_crop_pixels": [
+    1270,
+    280,
+    1720,
+    1050
+  ],
+  "native_crop_size": [
+    450,
+    770
+  ],
+  "svg_sheet": "cad-redraw-v3/final/svg/FP-6B-RF_CAD_style_sheet.svg",
+  "svg_plan": "cad-redraw-v3/final/svg/FP-6B-RF_CAD_style_plan.svg",
+  "sheet_preview": "cad-redraw-v3/final/png/FP-6B-RF_CAD_style_sheet_preview.png",
+  "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+  "exterior": {
+    "building_metric_lengths_sourced": 0,
+    "building_guide_sides_unknown": 4,
+    "site_metric_lengths_sourced": 0,
+    "site_guide_sides_unknown": 0,
+    "plot_boundary_established": false,
+    "roof_plot_not_shown": true
+  },
+  "source_limited": true,
+  "native_CAD": false,
+  "metric_scale_established": false,
+  "room_transcripts": [
+    [
+      "MEP 1",
+      "3.80 \u00d7 15.70",
+      68,
+      382
+    ],
+    [
+      "MEP 2",
+      "UNREADABLE",
+      236,
+      606
+    ],
+    [
+      "LIFT",
+      "1.60 \u00d7 1.80",
+      144,
+      455
+    ],
+    [
+      "POWDER",
+      "1.50 \u00d7 2.40 \u2020",
+      143,
+      494
+    ],
+    [
+      "PANTRY",
+      "2.00 \u00d7 2.40 \u2020",
+      186,
+      494
+    ],
+    [
+      "TERRACE",
+      "UNKNOWN",
+      167,
+      197
+    ]
+  ],
+  "dimension_text_checks": [
+    {
+      "room": "MEP 1",
+      "value": "3.80 \u00d7 15.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "LIFT",
+      "value": "1.60 \u00d7 1.80",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "POWDER",
+      "value": "1.50 \u00d7 2.40 \u2020",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "PANTRY",
+      "value": "2.00 \u00d7 2.40 \u2020",
+      "numbers_in_page_text": true
+    }
+  ],
+  "text_outside_sheet": [],
+  "embedded_rasters": 0,
+  "layer_counts": {
+    "source_floor_and_surface_shapes": 47,
+    "source_secondary_shading": 45,
+    "source_fine_linework": 161,
+    "source_furnishings": 48,
+    "source_wall_poche": 13
+  },
+  "conflicts": [
+    "Second MEP-zone board dimension is too blurred to verify.",
+    "Service-room board labels differ/are unclear; overlay values retained with \u2020."
+  ]
+}

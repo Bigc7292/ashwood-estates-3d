@@ -1,0 +1,21 @@
+{
+  "processed_at": "2026-11-09 05:27:18 Asia/Dubai (UTC+4)",
+  "source_pdf": "/workspace/plan-visuals-archive/original/ashwood-residences_brochure.pdf",
+  "source_sha256": "a716d74af71a117145a12e058876220a185b6424bf06c082aded539fbb76ca1b",
+  "pages_total": 38,
+  "pages_inspected_text": 38,
+  "pages_inspected_visual_renders": 38,
+  "distinct_floorplan_cadstyle_assets": 9,
+  "villa_types_with_plans": 3,
+  "measured_drawing_pages": [
+    27,
+    28,
+    31,
+    32,
+    35,
+    36
+  ],
+  "provenance_caveat": "WITHDRAWN \u2014 chat attachment and processed original are byte-identical SHA256 a716d74af71a117145a12e058876220a185b6424bf06c082aded539fbb76ca1b",
+  "attachment_path": "/home/box/agent-data/agents/0088b415-4514-42b5-ae81-55b8ac28798b/attachments/f1abf5757fe2781876cde02bc52c3765c8c27ff621e5abfb3e2adbcced5cab93.pdf",
+  "provenance_verified_at": "2026-11-09 05:30:00 Asia/Dubai (UTC+4)"
+}

@@ -1,0 +1,9 @@
+# Ashwood approved evidence index
+
+The sole input selector is `../ACTIVE_PIPELINE.json`. The nine approved V4 drawings are in `active/approved-cad-v4/` (all paths archive-root-relative). No prior release is active or selectable. Source crops moved to `source-evidence/plan-crops/`; original PDF and extracts remain unchanged. Historical assets and unresolved legacy labels are outside the pipeline in the superseded archive.
+
+`project_index.json`, `floors_index.json`, `rooms_index.json` and per-floor indices identify 9 floors and 135 room/space records, including outdoor features. Label bboxes are NOT room polygons. `handoff/missing_interior_visuals.json` / `.csv` provide 112 missing room-view placeholders; zero verified room-to-interior-photo matches and no generated interiors. `references/source_style_evidence.json` separates observed brochure cues from logical proposed decor. Floor assignment is source-panel supported, not guessed; old unresolved labels are not active rooms.
+
+Five approximate calibration-derived 1:100 PDFs: 4B GF/FF A3; 5B GF/FF and 6B FF A2. Print 100% actual size, no fit. Four NTS: 6B GF and all roofs. No source-stated numeric perimeter chains or verified plot bounds. Approximate exterior bounding spans are derived, not surveyed. +/-3% is a declared working allowance, not a guarantee. Exact openings, stair counts, heights, room polygons and conflicting labels remain unresolved. 7680px export does not create native source detail; eight drawings are hybrid raster/vector presentations.
+
+User approved these 2D presentations (pt16u). ONE source-constrained 3D-looking cutaway plan illustration is in review; it does not improve factual dimensional precision and is not an authoritative 3D model. No interior generation, no bot contact, no batch 3D, no ZIP delivery.

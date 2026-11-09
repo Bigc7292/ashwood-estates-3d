@@ -1,0 +1,15 @@
+{
+  "checked_at_Asia_Dubai": "2026-11-09T08:01:13.011476+04:00",
+  "approved_input_count": 9,
+  "approved_artwork_hashes_unchanged": true,
+  "checked_live_reference_count": 2448,
+  "stale_release_reference_files": [],
+  "missing_referenced_paths": [
+    "active/floorplan3d-spike/FP-4B-GF/README.md",
+    "active/floorplan3d-spike/FP-4B-GF/verify/verification.json"
+  ],
+  "default_input_resolver": "scripts/active_inputs.py",
+  "fallback_enabled": false,
+  "retired_archive_is_input": false,
+  "old_zip_is_current": false
+}

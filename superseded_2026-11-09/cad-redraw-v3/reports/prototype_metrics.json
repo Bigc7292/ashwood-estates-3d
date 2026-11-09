@@ -1,0 +1,312 @@
+{
+  "status": "prototype_only",
+  "assets_redrawn": 1,
+  "all_nine_completed": false,
+  "source_xref": 313,
+  "source_crop_board_pixels": [
+    120,
+    350,
+    830,
+    1370
+  ],
+  "crop_native_size": [
+    710,
+    1020
+  ],
+  "wall_pixel_count": 24049,
+  "wall_capture_rois": [
+    [
+      189,
+      222,
+      200,
+      475
+    ],
+    [
+      189,
+      510,
+      200,
+      538
+    ],
+    [
+      196,
+      528,
+      224,
+      538
+    ],
+    [
+      189,
+      575,
+      201,
+      676
+    ],
+    [
+      190,
+      698,
+      201,
+      725
+    ],
+    [
+      148,
+      699,
+      198,
+      725
+    ],
+    [
+      196,
+      716,
+      317,
+      726
+    ],
+    [
+      307,
+      445,
+      319,
+      725
+    ],
+    [
+      197,
+      627,
+      221,
+      635
+    ],
+    [
+      245,
+      625,
+      315,
+      635
+    ],
+    [
+      256,
+      661,
+      266,
+      721
+    ],
+    [
+      293,
+      661,
+      315,
+      670
+    ],
+    [
+      245,
+      557,
+      254,
+      604
+    ],
+    [
+      249,
+      585,
+      313,
+      594
+    ],
+    [
+      293,
+      590,
+      315,
+      603
+    ],
+    [
+      248,
+      532,
+      313,
+      542
+    ],
+    [
+      247,
+      375,
+      256,
+      449
+    ],
+    [
+      250,
+      441,
+      360,
+      450
+    ],
+    [
+      299,
+      413,
+      306,
+      446
+    ],
+    [
+      251,
+      392,
+      359,
+      400
+    ],
+    [
+      351,
+      380,
+      362,
+      402
+    ],
+    [
+      196,
+      374,
+      223,
+      381
+    ],
+    [
+      197,
+      331,
+      217,
+      341
+    ],
+    [
+      408,
+      332,
+      465,
+      342
+    ],
+    [
+      456,
+      335,
+      465,
+      393
+    ],
+    [
+      409,
+      382,
+      465,
+      394
+    ],
+    [
+      408,
+      337,
+      417,
+      353
+    ],
+    [
+      408,
+      376,
+      417,
+      393
+    ],
+    [
+      531,
+      164,
+      556,
+      191
+    ],
+    [
+      531,
+      335,
+      556,
+      360
+    ],
+    [
+      546,
+      189,
+      557,
+      807
+    ],
+    [
+      408,
+      182,
+      464,
+      192
+    ],
+    [
+      409,
+      530,
+      458,
+      541
+    ],
+    [
+      531,
+      529,
+      554,
+      541
+    ],
+    [
+      408,
+      537,
+      419,
+      641
+    ],
+    [
+      416,
+      633,
+      436,
+      644
+    ],
+    [
+      459,
+      633,
+      552,
+      645
+    ],
+    [
+      459,
+      684,
+      553,
+      695
+    ],
+    [
+      458,
+      665,
+      466,
+      692
+    ],
+    [
+      515,
+      657,
+      522,
+      691
+    ],
+    [
+      408,
+      687,
+      435,
+      695
+    ],
+    [
+      408,
+      691,
+      418,
+      750
+    ],
+    [
+      408,
+      759,
+      419,
+      808
+    ],
+    [
+      416,
+      801,
+      515,
+      813
+    ],
+    [
+      537,
+      800,
+      552,
+      813
+    ]
+  ],
+  "layer_paths": {
+    "planting_220": 8,
+    "planting_205": 16,
+    "planting_185": 35,
+    "planting_165": 46,
+    "pool_texture_172": 15,
+    "pool_texture_193": 11,
+    "pool_texture_210": 0,
+    "exterior_furniture": 1,
+    "exterior_furniture_outlines": 31,
+    "courtyard_texture_181": 20,
+    "courtyard_texture_203": 35,
+    "courtyard_plant_205": 2,
+    "courtyard_plant_182": 12,
+    "furniture_silhouettes": 77,
+    "doors_stairs_glazing_and_fine_detail": 512,
+    "structural_wall_poche": 13,
+    "source_drive_paving_and_cars": 167,
+    "source_vehicle_linework": 88
+  },
+  "svg_has_embedded_raster": false,
+  "style_reference_sha256": "9571eeeb8f1198dc8fbf5dc965711ad4f03a436d977333d2bfe011629dd926a1",
+  "notes": "Contours preserve source pixel geometry; not semantic editable CAD or measured survey. High-res raster is a vector render from low-resolution source trace; no architectural information is added."
+}

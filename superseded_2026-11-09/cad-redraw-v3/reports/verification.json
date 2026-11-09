@@ -1,0 +1,61 @@
+{
+  "status": "PARTIAL_PROTOTYPE_NOT_NINE_COMPLETED",
+  "svg_parse": true,
+  "embedded_raster_images": 0,
+  "pool_white_knockout_pixels": 0,
+  "text_spans_outside_sheet": [],
+  "wall_source_mask_pixels": 24049,
+  "rendered_vector_wall_mask_iou": 0.9857,
+  "iou_scope": "Source-selected wall pixels versus simplified vector rendering only; NOT a semantic accuracy or survey metric.",
+  "source_rooms_accounted": [
+    "Swimming pool",
+    "Family living/dining",
+    "Show kitchen",
+    "Pantry",
+    "Powder",
+    "Kitchen",
+    "Laundry",
+    "K.storage",
+    "Office/gym",
+    "Bath",
+    "Double-height entrance",
+    "Multipurpose",
+    "Dress",
+    "Maid room (dimension held)",
+    "Maid bath",
+    "Lift"
+  ],
+  "source_stair_tread_rows": [
+    454,
+    463,
+    471,
+    479,
+    487,
+    496,
+    504,
+    513,
+    521,
+    529,
+    538,
+    546,
+    555,
+    563,
+    572
+  ],
+  "uncompleted_floors": [
+    "4B-FF",
+    "4B-RF",
+    "5B-GF",
+    "5B-FF",
+    "5B-RF",
+    "6B-GF",
+    "6B-FF",
+    "6B-RF"
+  ],
+  "remaining_review": [
+    "Low-resolution vehicle/furniture contours remain irregular.",
+    "Fine cupboards/fixtures and some opening strokes are approximate source traces.",
+    "No calibrated world-coordinate model or verified plot/perimeter dimensions.",
+    "No final professional or construction-grade acceptance."
+  ]
+}

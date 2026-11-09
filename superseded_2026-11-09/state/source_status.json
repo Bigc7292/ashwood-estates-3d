@@ -1,0 +1,9 @@
+{
+  "exists": true,
+  "expected_path": "/home/box/agent-data/agents/0088b415-4514-42b5-ae81-55b8ac28798b/attachments/f1abf5757fe2781876cde02bc52c3765c8c27ff621e5abfb3e2adbcced5cab93.pdf",
+  "content_sha256": "a716d74af71a117145a12e058876220a185b6424bf06c082aded539fbb76ca1b",
+  "matches_processed_original": true,
+  "verified_at_asia_dubai": "2026-11-09 05:30:00 Asia/Dubai (UTC+4)",
+  "external_style_refs_supplied": false,
+  "note": "Attachment present and byte-identical to archive original; provenance caveat cleared."
+}

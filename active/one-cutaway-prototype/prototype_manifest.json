@@ -1,0 +1,86 @@
+{
+  "prototype_id": "4B-GF-cutaway-001",
+  "created_at_Asia_Dubai": "2026-11-09T06:55:30.874786+04:00",
+  "status": "ONE_PROTOTYPE_REVIEW_REQUIRED_NOT_APPROVED",
+  "authoritative_2D_input": "active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg",
+  "plan_version": "approved-V4",
+  "source_input_sha256": "7f1e9fa6984cb6946c9b8d38d7c0f1daac010eb9a25209aa44b335ec08815554",
+  "output_type": "3D CAD-style plan illustration \u2014 source-constrained, not certified/native CAD",
+  "no_native_model_scene_mesh_saved": true,
+  "other_floors_generated": 0,
+  "source_facts": {
+    "brochure_page": 27,
+    "room_label_text": "Transcribed labels retained, not geometry-certified",
+    "actual_wall_ceiling_door_window_heights": "UNKNOWN",
+    "wall_opening_stair_XY": "Copied from approved 2D presentation; no added structural geometry or reconstructed opening widths"
+  },
+  "derived": {
+    "source_calibration_px_per_m": 28.145127436281857,
+    "calibration_status": "approximate derived; not survey-certified",
+    "site_diagram_bounding_spans_m_approx": [
+      18.7,
+      29.9
+    ],
+    "verified_plot_boundary": false,
+    "perspective_image_metric_scale": null,
+    "projection": "Parallel orthographic axonometric; azimuth18deg, elevation55deg; source XY unchanged",
+    "projection_matrix_xy": [
+      [
+        0.9510565162951535,
+        0.3090169943749474
+      ],
+      [
+        -0.25313190266227803,
+        0.7790598895575419
+      ]
+    ]
+  },
+  "assumed_display_parameters": {
+    "wall_cut": {
+      "value": 0.8,
+      "units": "m-equivalent in approximate source calibration",
+      "provenance": "ASSUMED_DISPLAY_ONLY",
+      "represents_actual_wall_height": false,
+      "purpose": "low cut wall visualization; no ceiling claim"
+    },
+    "presentation_base_depth": {
+      "units": "image pixels",
+      "provenance": "graphic plate only, not a slab specification"
+    },
+    "surface_shading": "illustrative only"
+  },
+  "verification": {
+    "wall_contour_count": 13,
+    "flattened_wall_raster_changed_pixel_count": 0,
+    "max_XY_inverse_projection_error_source_pixels": 1.7053025658242404e-13,
+    "approved_plan_hash_pass": true,
+    "door_glazing_floor_cue_paths_copied": 33,
+    "native_source_detail_not_enhanced": true
+  },
+  "outputs": {
+    "svg": "active/one-cutaway-prototype/FP-4B-GF_cutaway_plan_prototype.svg",
+    "preview": "active/one-cutaway-prototype/FP-4B-GF_cutaway_plan_preview.png",
+    "long7680": "active/one-cutaway-prototype/FP-4B-GF_cutaway_plan_long7680.png",
+    "comparison": "active/one-cutaway-prototype/FP-4B-GF_approved2D_vs_cutaway.png",
+    "XY_QA": "active/one-cutaway-prototype/qa/FP-4B-GF_XY_wall_identity.png",
+    "features": "active/one-cutaway-prototype/FP-4B-GF_planar_features.json"
+  },
+  "image_dimensions_pixels": {
+    "preview": [
+      2057,
+      2400
+    ],
+    "long7680": [
+      6583,
+      7680
+    ]
+  },
+  "limitations": [
+    "No new factual dimensional precision is created by this illustration.",
+    "Some native source small fixture/glazing/door/stair detail remains trace-limited.",
+    "No exact opening heights/widths or tread/riser count is certified.",
+    "Maid-room dimension conflict stays UNKNOWN.",
+    "Furniture and material symbols inherited from approved illustrative plan, not new interior design.",
+    "Wall face height, shaded base and illumination are graphic conventions, not source evidence."
+  ]
+}

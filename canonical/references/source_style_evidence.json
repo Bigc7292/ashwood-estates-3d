@@ -1,0 +1,210 @@
+{
+  "references": [
+    {
+      "reference_id": "ref-p15-dressing",
+      "source_page": 15,
+      "source_bbox_pdf_points": [
+        0,
+        0,
+        890,
+        1080
+      ],
+      "bbox_kind": "manually selected visible visual panel, not plan-room bounds",
+      "path": "canonical/references/ref-p15-dressing.png",
+      "observed_category": "dressing",
+      "observed_visible_cues": [
+        "Wood-toned and glass-fronted joinery",
+        "Dark metal-framed centre island",
+        "Light beige floor",
+        "Rectangular suspended linear luminaire"
+      ],
+      "material_species_or_product_verified": false,
+      "villa_id": null,
+      "floor_id": null,
+      "room_id": null,
+      "match_status": "unknown",
+      "scope": "project brochure reference only; not matched to any villa/floor/room"
+    },
+    {
+      "reference_id": "ref-p15-living",
+      "source_page": 15,
+      "source_bbox_pdf_points": [
+        1123,
+        130,
+        1700,
+        950
+      ],
+      "bbox_kind": "manually selected visible visual panel, not plan-room bounds",
+      "path": "canonical/references/ref-p15-living.png",
+      "observed_category": "living",
+      "observed_visible_cues": [
+        "Light stone-like TV/feature wall",
+        "Cream and muted green seating",
+        "Glass-rod chandelier",
+        "Dark TV and narrow linear fireplace"
+      ],
+      "material_species_or_product_verified": false,
+      "villa_id": null,
+      "floor_id": null,
+      "room_id": null,
+      "match_status": "unknown",
+      "scope": "project brochure reference only; not matched to any villa/floor/room"
+    },
+    {
+      "reference_id": "ref-p16-bedroom",
+      "source_page": 16,
+      "source_bbox_pdf_points": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "bbox_kind": "manually selected visible visual panel, not plan-room bounds",
+      "path": "canonical/references/ref-p16-bedroom.png",
+      "observed_category": "bedroom",
+      "observed_visible_cues": [
+        "Cream upholstered headboard and bench",
+        "Wood-toned wall panelling",
+        "Grey/cream textiles",
+        "Full-height glazing",
+        "Black linear ceiling-light slots"
+      ],
+      "material_species_or_product_verified": false,
+      "villa_id": null,
+      "floor_id": null,
+      "room_id": null,
+      "match_status": "unknown",
+      "scope": "project brochure reference only; not matched to any villa/floor/room"
+    },
+    {
+      "reference_id": "ref-p17-materials",
+      "source_page": 17,
+      "source_bbox_pdf_points": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "path": "extracts/pages/page110-17.png",
+      "description_path": "extracts/text/pages/page_17.txt",
+      "source_stated_material_alternatives": [
+        "Recon veneer joinery",
+        "Calacatta marble or porcelain feature material",
+        "Textured paint general walls",
+        "Clear glass",
+        "Bronze metal ironmongery",
+        "Travertine stone feature material",
+        "White paint walls and ceiling",
+        "Light beige marble or porcelain general flooring",
+        "Stainless steel ironmongery"
+      ],
+      "scope": "Project-wide illustrated material palette, not a verified finish schedule for each room",
+      "disclaimer": "Illustrative materials may change; final selections may differ.",
+      "match_status": "source_present_project_level"
+    },
+    {
+      "reference_id": "ref-4b-p25-exterior",
+      "source_page": 25,
+      "source_bbox_pdf_points": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "path": "extracts/pages/page110-25.png",
+      "villa_id": "4b",
+      "floor_id": null,
+      "room_id": null,
+      "scope": "Villa-type exterior context; NOT room-interior evidence",
+      "match_status": "villa_type_context_only"
+    },
+    {
+      "reference_id": "ref-4b-p26-exterior",
+      "source_page": 26,
+      "source_bbox_pdf_points": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "path": "extracts/pages/page110-26.png",
+      "villa_id": "4b",
+      "floor_id": null,
+      "room_id": null,
+      "scope": "Villa-type exterior context; NOT room-interior evidence",
+      "match_status": "villa_type_context_only"
+    },
+    {
+      "reference_id": "ref-5b-p29-exterior",
+      "source_page": 29,
+      "source_bbox_pdf_points": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "path": "extracts/pages/page110-29.png",
+      "villa_id": "5b",
+      "floor_id": null,
+      "room_id": null,
+      "scope": "Villa-type exterior context; NOT room-interior evidence",
+      "match_status": "villa_type_context_only"
+    },
+    {
+      "reference_id": "ref-5b-p30-exterior",
+      "source_page": 30,
+      "source_bbox_pdf_points": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "path": "extracts/pages/page110-30.png",
+      "villa_id": "5b",
+      "floor_id": null,
+      "room_id": null,
+      "scope": "Villa-type exterior context; NOT room-interior evidence",
+      "match_status": "villa_type_context_only"
+    },
+    {
+      "reference_id": "ref-6b-p33-exterior",
+      "source_page": 33,
+      "source_bbox_pdf_points": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "path": "extracts/pages/page110-33.png",
+      "villa_id": "6b",
+      "floor_id": null,
+      "room_id": null,
+      "scope": "Villa-type exterior context; NOT room-interior evidence",
+      "match_status": "villa_type_context_only"
+    },
+    {
+      "reference_id": "ref-6b-p34-exterior",
+      "source_page": 34,
+      "source_bbox_pdf_points": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "path": "extracts/pages/page110-34.png",
+      "villa_id": "6b",
+      "floor_id": null,
+      "room_id": null,
+      "scope": "Villa-type exterior context; NOT room-interior evidence",
+      "match_status": "villa_type_context_only"
+    }
+  ],
+  "legacy_inventory_corrections": [
+    "Page 15 contains a dressing view (left) and double-height/living view (right), not a single generic living view.",
+    "Page 16 is a bedroom view, NOT a kitchen view as legacy page classification stated."
+  ],
+  "inference_policy": {
+    "allowed": "Logically extrapolate decor, furnishing palette and lighting from factual brochure cues, keeping every extrapolation labelled as proposed/inferred.",
+    "forbidden": "Treat generic project imagery as a verified room match; change structural geometry; invent metric dimensions or material product specifications."
+  }
+}

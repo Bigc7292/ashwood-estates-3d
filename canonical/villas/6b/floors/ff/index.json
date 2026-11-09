@@ -1,0 +1,2370 @@
+{
+  "project_id": "ashwood-estates",
+  "villa_id": "6b",
+  "floor_id": "ff",
+  "floor_stable_id": "ashwood-estates/6b/ff",
+  "description_path": "canonical/villas/6b/floors/ff/DESCRIPTION.md",
+  "source_pdf_page": 36,
+  "source_embedded_xref": 598,
+  "source_board_crop_bbox_pixels": [
+    595,
+    185,
+    1170,
+    1135
+  ],
+  "source_plan_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+  "source_text_path": "extracts/text/pages/page_36.txt",
+  "drawing_sheet_svg": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+  "drawing_plan_svg": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+  "drawing_preview": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+  "drawing_sheet_long7680": "active/approved-cad-v4/png/FP-6B-FF_V4_long7680.png",
+  "drawing_plan_long7680": "active/approved-cad-v4/png/FP-6B-FF_V4_long7680.png",
+  "scale_status": "approx_calibrated",
+  "scale_alternative_pdf": null,
+  "scale_evidence": "source-evidence/calibration/4B-GF_source_span_calibration.json",
+  "geometry_qa": {
+    "floor_id": "ashwood-estates/6b/ff",
+    "asset_id": "6B-FF",
+    "source_vs_output_review": "performed: all nine comparison images visually opened",
+    "source_comparison_path": "active/approved-cad-v4/qa/FP-6B-FF_source_vs_v4.png",
+    "macro_wall_room_stair_location": "source-derived arrangement retained at presentation level; no survey validation",
+    "doors_and_openings": "source pixel contours retained; faint door arcs/glazing strokes may be incomplete or irregular. Exact swing/width not certified.",
+    "stairs": "stairwell location retained; some thin source tread strokes are weak/missing in exported contours. Tread/riser count and geometry require review.",
+    "labels": "room-local source transcripts added; limited native source quality leaves occasional residual source glyph fragments. Conflicting values flagged.",
+    "numeric_perimeter_source_count": 0,
+    "plot_boundary_verified": false,
+    "disagreements": [],
+    "status": "SOURCE_LIMITED_REVIEW_REQUIRED",
+    "critical_use_restriction": "Not ready for dimensionally faithful 3D/interior reconstruction without opening/stair/room-boundary review."
+  },
+  "room_count_including_outdoor_features": 25,
+  "rooms": [
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/master-suite",
+      "label": "MASTER SUITE",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies master suite on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 5.70 × 5.70 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        707,
+        459,
+        757,
+        480
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p16-bedroom"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "5.70 × 5.70",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/master-suite/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          707,
+          459,
+          757,
+          480
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/family-living",
+      "label": "FAMILY LIVING",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies family living on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 4.80 × 5.70 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        816,
+        459,
+        866,
+        480
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p15-living"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "4.80 × 5.70",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/family-living/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          816,
+          459,
+          866,
+          480
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/lobby",
+      "label": "LOBBY",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies lobby on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 3.80 × 1.90 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        734,
+        506,
+        784,
+        527
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "3.80 × 1.90",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/lobby/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          734,
+          506,
+          784,
+          527
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/m-dressing",
+      "label": "M. DRESSING",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies m. dressing on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 4.00 × 6.00 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        702,
+        635,
+        752,
+        656
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p15-dressing"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "4.00 × 6.00",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/m-dressing/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          702,
+          635,
+          752,
+          656
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/m-bath",
+      "label": "M. BATH",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies m. bath on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 4.00 × 3.50 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        702,
+        682,
+        752,
+        703
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "4.00 × 3.50",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/m-bath/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          702,
+          682,
+          752,
+          703
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/lift",
+      "label": "LIFT",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies lift on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 1.90 × 1.80 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        770,
+        727,
+        820,
+        748
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "1.90 × 1.80",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/lift/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          770,
+          727,
+          820,
+          748
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/corridor",
+      "label": "CORRIDOR",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies corridor on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 1.80 × 16.00 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        818,
+        632,
+        868,
+        653
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "1.80 × 16.00",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/corridor/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          818,
+          632,
+          868,
+          653
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/bath-1",
+      "label": "BATH 1",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies bath 1 on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 2.80 × 2.40 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        689,
+        776,
+        739,
+        797
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "2.80 × 2.40",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/bath-1/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          689,
+          776,
+          739,
+          797
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/dressing",
+      "label": "DRESSING",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies dressing on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 2.80 × 2.40 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        749,
+        776,
+        799,
+        797
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p15-dressing"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "2.80 × 2.40",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/dressing/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          749,
+          776,
+          799,
+          797
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/bedroom-1",
+      "label": "BEDROOM 1",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies bedroom 1 on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 6.00 × 5.00 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        773,
+        826,
+        823,
+        847
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p16-bedroom"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "6.00 × 5.00",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/bedroom-1/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          773,
+          826,
+          823,
+          847
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/junior-suite",
+      "label": "JUNIOR SUITE",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies junior suite on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 5.30 × 4.70 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        990,
+        693,
+        1040,
+        714
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p16-bedroom"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "5.30 × 4.70",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/junior-suite/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          990,
+          693,
+          1040,
+          714
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/j-bath",
+      "label": "J. BATH",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies j. bath on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 2.40 × 2.40 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        909,
+        713,
+        959,
+        734
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "2.40 × 2.40",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/j-bath/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          909,
+          713,
+          959,
+          734
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/j-dress",
+      "label": "J. DRESS",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies j. dress on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 2.70 × 2.30 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        908,
+        760,
+        958,
+        781
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p15-dressing"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "2.70 × 2.30",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/j-dress/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          908,
+          760,
+          958,
+          781
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/bath-2",
+      "label": "BATH 2",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies bath 2 on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 2.10 × 2.75 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        898,
+        863,
+        948,
+        884
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "2.10 × 2.75",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/bath-2/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          898,
+          863,
+          948,
+          884
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/dress-2",
+      "label": "DRESS 2",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies dress 2 on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 1.70 × 2.90 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        943,
+        863,
+        993,
+        884
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p15-dressing"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "1.70 × 2.90",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/dress-2/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          943,
+          863,
+          993,
+          884
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/bedroom-2",
+      "label": "BEDROOM 2",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies bedroom 2 on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 3.85 × 4.00 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        943,
+        900,
+        993,
+        921
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p16-bedroom"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "3.85 × 4.00",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/bedroom-2/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          943,
+          900,
+          993,
+          921
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/dress-3",
+      "label": "DRESS 3",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies dress 3 on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 1.70 × 2.90 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        999,
+        863,
+        1049,
+        884
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p15-dressing"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "1.70 × 2.90",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/dress-3/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          999,
+          863,
+          1049,
+          884
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/bath-3",
+      "label": "BATH 3",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies bath 3 on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 2.05 × 2.65 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        1041,
+        863,
+        1091,
+        884
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "2.05 × 2.65",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/bath-3/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          1041,
+          863,
+          1091,
+          884
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/bedroom-3",
+      "label": "BEDROOM 3",
+      "space_type": "interior_or_service_space",
+      "description": "Source plan identifies bedroom 3 on the FF of the 6-bedroom villa. Brochure-overlay dimension transcript: 3.80 × 4.00 metres; not remeasured.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        994,
+        900,
+        1044,
+        921
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "ambiguous",
+      "source_candidate_visual_refs": [
+        "ref-p16-bedroom"
+      ],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "3.80 × 4.00",
+      "dimension_status": "brochure_transcript_not_geometry_certified",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/bedroom-3/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          994,
+          900,
+          1044,
+          921
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/balcony",
+      "label": "BALCONY",
+      "space_type": "outdoor_feature",
+      "description": "Source plan identifies balcony on the FF of the 6-bedroom villa. Dimensions are unknown/unreadable.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        747,
+        329,
+        797,
+        350
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "UNKNOWN",
+      "dimension_status": "unknown",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/balcony/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          747,
+          329,
+          797,
+          350
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/terrace",
+      "label": "TERRACE",
+      "space_type": "outdoor_feature",
+      "description": "Source plan identifies terrace on the FF of the 6-bedroom villa. Dimensions are unknown/unreadable.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        927,
+        327,
+        977,
+        348
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "UNKNOWN",
+      "dimension_status": "unknown",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/terrace/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          927,
+          327,
+          977,
+          348
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/terrace",
+      "label": "TERRACE",
+      "space_type": "outdoor_feature",
+      "description": "Source plan identifies terrace on the FF of the 6-bedroom villa. Dimensions are unknown/unreadable.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        909,
+        487,
+        959,
+        508
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "UNKNOWN",
+      "dimension_status": "unknown",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/terrace/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          909,
+          487,
+          959,
+          508
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/balcony",
+      "label": "BALCONY",
+      "space_type": "outdoor_feature",
+      "description": "Source plan identifies balcony on the FF of the 6-bedroom villa. Dimensions are unknown/unreadable.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        990,
+        671,
+        1040,
+        692
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "UNKNOWN",
+      "dimension_status": "unknown",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/balcony/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          990,
+          671,
+          1040,
+          692
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/balcony",
+      "label": "BALCONY",
+      "space_type": "outdoor_feature",
+      "description": "Source plan identifies balcony on the FF of the 6-bedroom villa. Dimensions are unknown/unreadable.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        716,
+        938,
+        766,
+        959
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "UNKNOWN",
+      "dimension_status": "unknown",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/balcony/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          716,
+          938,
+          766,
+          959
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    },
+    {
+      "project_id": "ashwood-estates",
+      "villa_id": "6b",
+      "floor_id": "ff",
+      "floor_stable_id": "ashwood-estates/6b/ff",
+      "room_id": "ashwood-estates/6b/ff/balcony",
+      "label": "BALCONY",
+      "space_type": "outdoor_feature",
+      "description": "Source plan identifies balcony on the FF of the 6-bedroom villa. Dimensions are unknown/unreadable.",
+      "description_status": "source_label_based_only",
+      "source_page": 36,
+      "source_pdf": "original/ashwood-residences_brochure.pdf",
+      "source_embedded_xref": 598,
+      "source_board_crop_bbox_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "source_label_reference_bbox": [
+        955,
+        996,
+        1005,
+        1017
+      ],
+      "source_label_bbox_coordinate_system": "original embedded-board pixels; approximate label region, NOT room polygon",
+      "room_polygon": null,
+      "room_polygon_status": "not delineated",
+      "plan_source_path": "source-evidence/plan-crops/FP-6B-FF_untouched_board_crop.png",
+      "cad_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_plan_svg_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "cad_preview_path": "active/approved-cad-v4/png/FP-6B-FF_V4_preview.png",
+      "source_room_plan_crop_available": false,
+      "source_verified_room_interior_visual_status": "missing",
+      "source_verified_room_interior_visual_present": false,
+      "source_candidate_match_status": "unknown",
+      "source_candidate_visual_refs": [],
+      "project_material_reference": "ref-p17-materials",
+      "same_villa_context_refs": [
+        "ref-6b-p33-exterior",
+        "ref-6b-p34-exterior"
+      ],
+      "same_villa_interior_style_reference_verified": false,
+      "dimension_transcript": "UNKNOWN",
+      "dimension_status": "unknown",
+      "perimeter_numeric_status": "unknown_source",
+      "geometry_status": "source_limited_approved_presentation; precise_openings_stair_counts_room_polygons_unverified",
+      "floor_assignment_confidence": "source-supported: anchored to named floor panel",
+      "room_outline_confidence": "not established",
+      "uncertainties": [
+        "No independently delineated room polygon",
+        "Opening widths, exact door swings, wall thicknesses and stair riser/tread count not metrically verified",
+        "No verified room-to-interior-photo match",
+        "No verified ceiling height or camera pose"
+      ],
+      "logical_inference_cues": {
+        "allowed": "Use referenced project material alternatives and visible brochure decor as a coherent proposed style; label all unobserved decor as inferred.",
+        "structural_lock": "Do not alter openings, walls, room adjacency or invent missing dimensions. Return geometry gaps for review.",
+        "style_transfer_scope": "Project-level cues; same-villa interior match is not proven."
+      },
+      "generated_available": false,
+      "generated_paths": [],
+      "view_id": "ashwood-estates/6b/ff/balcony/view-unassigned-001",
+      "view_requirement_status": "camera/view brief not specified",
+      "ready_status": "ready_for_evidence_review_and_proposed_decor; blocked_for_claimed_dimensionally_faithful_render",
+      "cad_user_approved": true,
+      "plan_version": "approved-V4",
+      "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+      "plan_approval_evidence": "pt16u",
+      "plan_user_approved": true,
+      "dimension_provenance": {
+        "kind": "source_label_transcription_not_measured_geometry",
+        "units": "metres when numeric",
+        "source_pdf_page": 36,
+        "source_bbox": [
+          955,
+          996,
+          1005,
+          1017
+        ],
+        "bbox_scope": "approximate source label reference, not room polygon",
+        "dimensionally_verified": false,
+        "missing_or_conflicting_values": "retain UNKNOWN/unreadable and existing disagreement flags"
+      },
+      "style_match_provenance": {
+        "scope": "project-style evidence / inferred transferable cue only",
+        "same_room_verified_match": false,
+        "same_villa_interior_match_verified": false,
+        "does_not_establish_specific_product_finish_or_camera": true
+      },
+      "concept_visual_eligibility": "Eligible for an explicitly proposed concept from available plan/style evidence; missing same-room photo is not disqualifying. Exact geometry/heights remain review-required."
+    }
+  ],
+  "cad_user_approved": true,
+  "plan_version": "approved-V4",
+  "plan_path": "active/approved-cad-v4/svg/FP-6B-FF_V4_portrait.svg",
+  "plan_approval_evidence": "pt16u",
+  "plan_user_approved": true
+}

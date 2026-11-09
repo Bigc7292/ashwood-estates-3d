@@ -1,0 +1,18 @@
+# Virtualenvs / deps
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+
+# Superseded archive ZIP (99MB; over 95MB GitHub soft-push comfort; excluded per Optimizer Bot backup rule)
+superseded_2026-11-09/Ashwood_Estates_plan_visuals_archive.zip
+
+# Optimizer incremental cache (regenerable; keep scripts + reports)
+optimizer/.verify_cache.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~

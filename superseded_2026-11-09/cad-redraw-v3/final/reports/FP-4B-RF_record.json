@@ -1,0 +1,97 @@
+{
+  "id": "4B-RF",
+  "page": 28,
+  "xref": 439,
+  "source_board_crop_pixels": [
+    1820,
+    455,
+    2300,
+    1250
+  ],
+  "native_crop_size": [
+    480,
+    795
+  ],
+  "svg_sheet": "cad-redraw-v3/final/svg/FP-4B-RF_CAD_style_sheet.svg",
+  "svg_plan": "cad-redraw-v3/final/svg/FP-4B-RF_CAD_style_plan.svg",
+  "sheet_preview": "cad-redraw-v3/final/png/FP-4B-RF_CAD_style_sheet_preview.png",
+  "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+  "exterior": {
+    "building_metric_lengths_sourced": 0,
+    "building_guide_sides_unknown": 4,
+    "site_metric_lengths_sourced": 0,
+    "site_guide_sides_unknown": 0,
+    "plot_boundary_established": false,
+    "roof_plot_not_shown": true
+  },
+  "source_limited": true,
+  "native_CAD": false,
+  "metric_scale_established": false,
+  "room_transcripts": [
+    [
+      "MEP",
+      "3.80 \u00d7 15.70 \u2020",
+      134,
+      421
+    ],
+    [
+      "LIFT",
+      "1.60 \u00d7 1.80 \u2020",
+      321,
+      291
+    ],
+    [
+      "POWDER",
+      "1.50 \u00d7 2.40 \u2020",
+      223,
+      520
+    ],
+    [
+      "PANTRY",
+      "2.00 \u00d7 2.40 \u2020",
+      268,
+      519
+    ],
+    [
+      "TERRACE",
+      "UNKNOWN",
+      273,
+      193
+    ]
+  ],
+  "dimension_text_checks": [
+    {
+      "room": "MEP",
+      "value": "3.80 \u00d7 15.70 \u2020",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "LIFT",
+      "value": "1.60 \u00d7 1.80 \u2020",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "POWDER",
+      "value": "1.50 \u00d7 2.40 \u2020",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "PANTRY",
+      "value": "2.00 \u00d7 2.40 \u2020",
+      "numbers_in_page_text": true
+    }
+  ],
+  "text_outside_sheet": [],
+  "embedded_rasters": 0,
+  "layer_counts": {
+    "source_floor_and_surface_shapes": 43,
+    "source_secondary_shading": 48,
+    "source_fine_linework": 167,
+    "source_furnishings": 57,
+    "source_wall_poche": 11
+  },
+  "conflicts": [
+    "MEP board reads 3.00 \u00d7 12.80; overlay reads 3.80 \u00d7 15.70.",
+    "Lift and service-room labels also differ; do not resolve by scaling."
+  ]
+}

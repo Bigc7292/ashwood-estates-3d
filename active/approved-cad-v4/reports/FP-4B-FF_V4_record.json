@@ -1,0 +1,252 @@
+{
+  "id": "4B-FF",
+  "version": "V4",
+  "status": "USER_APPROVED_SOURCE_LIMITED_PRESENTATION",
+  "source_pdf_page": 28,
+  "source_xref": 439,
+  "source_board_crop_pixels": [
+    980,
+    370,
+    1630,
+    1370
+  ],
+  "native_source_pixels": [
+    650,
+    1000
+  ],
+  "svg": "active/approved-cad-v4/svg/FP-4B-FF_V4_portrait.svg",
+  "pdf": "active/approved-cad-v4/pdf/FP-4B-FF_V4_portrait.pdf",
+  "preview": "active/approved-cad-v4/png/FP-4B-FF_V4_preview.png",
+  "long7680": "active/approved-cad-v4/png/FP-4B-FF_V4_long7680.png",
+  "source_comparison": "active/approved-cad-v4/qa/FP-4B-FF_source_vs_v4.png",
+  "geometry": "Original native raster underlay retained with continuous tonal mapping; exact prior source-wall contour paths unchanged. No generative structural geometry.",
+  "hybrid_svg": true,
+  "source_wall_paths_preserved": 26,
+  "source_specific_symbol_definitions": {
+    "beds": [
+      [
+        164,
+        237,
+        73,
+        65,
+        "left"
+      ],
+      [
+        164,
+        664,
+        73,
+        65,
+        "left"
+      ],
+      [
+        414,
+        679,
+        82,
+        61,
+        "right"
+      ],
+      [
+        447,
+        226,
+        58,
+        24,
+        "right"
+      ],
+      [
+        447,
+        278,
+        58,
+        24,
+        "right"
+      ]
+    ],
+    "rugs": [
+      [
+        157,
+        227,
+        87,
+        85
+      ],
+      [
+        157,
+        653,
+        87,
+        82
+      ],
+      [
+        402,
+        666,
+        104,
+        81
+      ],
+      [
+        440,
+        218,
+        69,
+        90
+      ]
+    ],
+    "L": [
+      [
+        304,
+        210,
+        78,
+        96,
+        "tr"
+      ]
+    ],
+    "round": [
+      [
+        326,
+        296,
+        13
+      ]
+    ],
+    "coffee": [
+      [
+        321,
+        247,
+        34,
+        34
+      ]
+    ]
+  },
+  "calibration": {
+    "status": "approx_calibrated",
+    "px_per_m": 29.356099218484538,
+    "test_fit_px_per_m_not_accepted": null,
+    "max_abs_residual_percent": 1.768,
+    "axis_fits_px_per_m": {
+      "x": 29.49798771446727,
+      "y": 29.261097716635938
+    },
+    "spans": [
+      {
+        "feature": "Master width",
+        "a": [
+          148,
+          250
+        ],
+        "b": [
+          267,
+          250
+        ],
+        "source_m": 4,
+        "pixels": 119.0,
+        "axis": "x",
+        "px_per_m": 29.75,
+        "relative_residual_percent": 1.342
+      },
+      {
+        "feature": "Master depth",
+        "a": [
+          170,
+          196
+        ],
+        "b": [
+          170,
+          346
+        ],
+        "source_m": 5.1,
+        "pixels": 150.0,
+        "axis": "y",
+        "px_per_m": 29.411764705882355,
+        "relative_residual_percent": 0.19
+      },
+      {
+        "feature": "Family width",
+        "a": [
+          274,
+          230
+        ],
+        "b": [
+          392,
+          230
+        ],
+        "source_m": 4,
+        "pixels": 118.0,
+        "axis": "x",
+        "px_per_m": 29.5,
+        "relative_residual_percent": 0.49
+      },
+      {
+        "feature": "Family depth",
+        "a": [
+          350,
+          196
+        ],
+        "b": [
+          350,
+          346
+        ],
+        "source_m": 5.1,
+        "pixels": 150.0,
+        "axis": "y",
+        "px_per_m": 29.411764705882355,
+        "relative_residual_percent": 0.19
+      },
+      {
+        "feature": "Lower bedroom width",
+        "a": [
+          148,
+          640
+        ],
+        "b": [
+          262,
+          640
+        ],
+        "source_m": 3.9,
+        "pixels": 114.0,
+        "axis": "x",
+        "px_per_m": 29.23076923076923,
+        "relative_residual_percent": -0.427
+      },
+      {
+        "feature": "Lower bedroom depth",
+        "a": [
+          175,
+          621
+        ],
+        "b": [
+          175,
+          745
+        ],
+        "source_m": 4.3,
+        "pixels": 124.0,
+        "axis": "y",
+        "px_per_m": 28.837209302325583,
+        "relative_residual_percent": -1.768
+      }
+    ],
+    "working_allowance_percent": 3,
+    "cross_floor_alignment_check": {
+      "against": "4B-GF",
+      "expected_px_per_m_after_native_board_resolution": 29.278088074606764,
+      "observed_px_per_m": 29.356099218484538,
+      "relative_difference_percent": 0.2664489008947113,
+      "scope": "Visible contextual site/pool alignment corroboration only; independent room spans govern acceptance."
+    }
+  },
+  "paper_mm": [
+    297,
+    420
+  ],
+  "pdf_physical_mm": [
+    297.0000023735894,
+    419.999988132053
+  ],
+  "scale_bar_metric_length_m": 5,
+  "scale_bar_physical_length_mm": 50,
+  "exterior_metric_status": "approximate_derived_schematic_envelope_and_site_spans",
+  "plot_boundary_verified": false,
+  "room_dimension_status": "brochure_overlay_transcripts_with_flags",
+  "clipped_pdf_text_spans": [],
+  "native_CAD": false,
+  "user_approved": true,
+  "remaining_limits": [
+    "Room-label layer disagreements and unreadable dimensions remain flagged",
+    "Fixture/door/stair detail remains native-raster limited; not metrically certified",
+    "Replacement furniture/plant/material graphics are illustrative within evidenced source locations",
+    "Envelope guides are bounding spans, not a surveyed perimeter profile; no arbitrary interior station grid"
+  ]
+}

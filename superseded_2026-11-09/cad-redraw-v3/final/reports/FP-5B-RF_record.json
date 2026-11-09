@@ -1,0 +1,94 @@
+{
+  "id": "5B-RF",
+  "page": 32,
+  "xref": 384,
+  "source_board_crop_pixels": [
+    1520,
+    320,
+    1920,
+    1180
+  ],
+  "native_crop_size": [
+    400,
+    860
+  ],
+  "svg_sheet": "cad-redraw-v3/final/svg/FP-5B-RF_CAD_style_sheet.svg",
+  "svg_plan": "cad-redraw-v3/final/svg/FP-5B-RF_CAD_style_plan.svg",
+  "sheet_preview": "cad-redraw-v3/final/png/FP-5B-RF_CAD_style_sheet_preview.png",
+  "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+  "exterior": {
+    "building_metric_lengths_sourced": 0,
+    "building_guide_sides_unknown": 4,
+    "site_metric_lengths_sourced": 0,
+    "site_guide_sides_unknown": 0,
+    "plot_boundary_established": false,
+    "roof_plot_not_shown": true
+  },
+  "source_limited": true,
+  "native_CAD": false,
+  "metric_scale_established": false,
+  "room_transcripts": [
+    [
+      "MEP",
+      "3.80 \u00d7 15.70",
+      78,
+      473
+    ],
+    [
+      "LIFT",
+      "1.60 \u00d7 1.80",
+      154,
+      539
+    ],
+    [
+      "POWDER",
+      "1.50 \u00d7 2.40",
+      154,
+      596
+    ],
+    [
+      "PANTRY",
+      "2.00 \u00d7 2.40",
+      198,
+      595
+    ],
+    [
+      "TERRACE",
+      "UNKNOWN",
+      176,
+      216
+    ]
+  ],
+  "dimension_text_checks": [
+    {
+      "room": "MEP",
+      "value": "3.80 \u00d7 15.70",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "LIFT",
+      "value": "1.60 \u00d7 1.80",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "POWDER",
+      "value": "1.50 \u00d7 2.40",
+      "numbers_in_page_text": true
+    },
+    {
+      "room": "PANTRY",
+      "value": "2.00 \u00d7 2.40",
+      "numbers_in_page_text": true
+    }
+  ],
+  "text_outside_sheet": [],
+  "embedded_rasters": 0,
+  "layer_counts": {
+    "source_floor_and_surface_shapes": 68,
+    "source_secondary_shading": 49,
+    "source_fine_linework": 103,
+    "source_furnishings": 71,
+    "source_wall_poche": 12
+  },
+  "conflicts": []
+}

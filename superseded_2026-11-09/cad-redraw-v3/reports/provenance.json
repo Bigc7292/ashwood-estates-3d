@@ -1,0 +1,18 @@
+{
+  "source_pdf_sha256": "a716d74af71a117145a12e058876220a185b6424bf06c082aded539fbb76ca1b",
+  "embedded_image_xref": 313,
+  "embedded_decoded_size": [
+    2360,
+    1667
+  ],
+  "v3_crop_exact_pixel_match_to_direct_pdf_jpeg_decode": true,
+  "crop_box_native_board_pixels": [
+    120,
+    350,
+    830,
+    1370
+  ],
+  "source_page": 27,
+  "style_reference_only": true,
+  "prior_board_comparison": "Prior saved raw board differed in 0.015 mean channel intensity due JPEG decoder; V3 now always extracts and decodes original embedded image directly."
+}

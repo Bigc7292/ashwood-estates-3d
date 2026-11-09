@@ -1,0 +1,771 @@
+{
+  "status": "independent_approximate_source_calibration_not_survey",
+  "endpoint_units": "native source-crop pixels, inner structural faces where identifiable; manually read precision approximately 1–2 pixels",
+  "metric_units": "metres, brochure overlay room/pool transcripts",
+  "acceptance_rule": "At least four independent orthogonal spans from two rooms/features, max fit residual <=3%, x/y fit mismatch <3%; rejects contradictory cases. This is a feasibility rule, not proof of real-world accuracy.",
+  "working_allowance_note": "Declared conservative ±3% working allowance is NOT a guarantee, survey accuracy or statistical confidence interval. Source room labels may be inaccurate.",
+  "calibrated_count": 5,
+  "NTS_count": 4,
+  "floors": {
+    "4B-GF": {
+      "status": "approx_calibrated",
+      "px_per_m": 28.145127436281857,
+      "spans": [
+        {
+          "feature": "Living/dining clear width",
+          "axis": "x",
+          "a": [
+            198,
+            215
+          ],
+          "b": [
+            547,
+            215
+          ],
+          "source_m": 12.4,
+          "pixels": 349.0,
+          "pixels_per_m": 28.14516129032258,
+          "fit_relative_residual_percent": 0.0
+        },
+        {
+          "feature": "Living/dining clear depth",
+          "axis": "y",
+          "a": [
+            390,
+            190
+          ],
+          "b": [
+            390,
+            335
+          ],
+          "source_m": 5.1,
+          "pixels": 145.0,
+          "pixels_per_m": 28.43137254901961,
+          "fit_relative_residual_percent": 1.017
+        },
+        {
+          "feature": "Pool water width",
+          "axis": "x",
+          "a": [
+            196,
+            120
+          ],
+          "b": [
+            463,
+            120
+          ],
+          "source_m": 9.5,
+          "pixels": 267.0,
+          "pixels_per_m": 28.105263157894736,
+          "fit_relative_residual_percent": -0.142
+        },
+        {
+          "feature": "Pool water depth",
+          "axis": "y",
+          "a": [
+            350,
+            87
+          ],
+          "b": [
+            350,
+            154
+          ],
+          "source_m": 2.4,
+          "pixels": 67.0,
+          "pixels_per_m": 27.916666666666668,
+          "fit_relative_residual_percent": -0.812
+        },
+        {
+          "feature": "Office clear width",
+          "axis": "x",
+          "a": [
+            417,
+            555
+          ],
+          "b": [
+            547,
+            555
+          ],
+          "source_m": 4.6,
+          "pixels": 130.0,
+          "pixels_per_m": 28.260869565217394,
+          "fit_relative_residual_percent": 0.411
+        },
+        {
+          "feature": "Office clear depth",
+          "axis": "y",
+          "a": [
+            535,
+            539
+          ],
+          "b": [
+            535,
+            634
+          ],
+          "source_m": 3.4,
+          "pixels": 95.0,
+          "pixels_per_m": 27.941176470588236,
+          "fit_relative_residual_percent": -0.725
+        },
+        {
+          "feature": "Kitchen clear width",
+          "axis": "x",
+          "a": [
+            199,
+            490
+          ],
+          "b": [
+            312,
+            490
+          ],
+          "source_m": 4.0,
+          "pixels": 113.0,
+          "pixels_per_m": 28.25,
+          "fit_relative_residual_percent": 0.373
+        },
+        {
+          "feature": "Kitchen clear depth",
+          "axis": "y",
+          "a": [
+            280,
+            449
+          ],
+          "b": [
+            280,
+            532
+          ],
+          "source_m": 3.0,
+          "pixels": 83.0,
+          "pixels_per_m": 27.666666666666668,
+          "fit_relative_residual_percent": -1.7
+        }
+      ],
+      "max_abs_residual_percent": 1.7,
+      "source_report": "source-evidence/calibration/4B-GF_source_span_calibration.json",
+      "working_allowance_percent": 3
+    },
+    "4B-FF": {
+      "status": "approx_calibrated",
+      "px_per_m": 29.356099218484538,
+      "test_fit_px_per_m_not_accepted": null,
+      "max_abs_residual_percent": 1.768,
+      "axis_fits_px_per_m": {
+        "x": 29.49798771446727,
+        "y": 29.261097716635938
+      },
+      "spans": [
+        {
+          "feature": "Master width",
+          "a": [
+            148,
+            250
+          ],
+          "b": [
+            267,
+            250
+          ],
+          "source_m": 4,
+          "pixels": 119.0,
+          "axis": "x",
+          "px_per_m": 29.75,
+          "relative_residual_percent": 1.342
+        },
+        {
+          "feature": "Master depth",
+          "a": [
+            170,
+            196
+          ],
+          "b": [
+            170,
+            346
+          ],
+          "source_m": 5.1,
+          "pixels": 150.0,
+          "axis": "y",
+          "px_per_m": 29.411764705882355,
+          "relative_residual_percent": 0.19
+        },
+        {
+          "feature": "Family width",
+          "a": [
+            274,
+            230
+          ],
+          "b": [
+            392,
+            230
+          ],
+          "source_m": 4,
+          "pixels": 118.0,
+          "axis": "x",
+          "px_per_m": 29.5,
+          "relative_residual_percent": 0.49
+        },
+        {
+          "feature": "Family depth",
+          "a": [
+            350,
+            196
+          ],
+          "b": [
+            350,
+            346
+          ],
+          "source_m": 5.1,
+          "pixels": 150.0,
+          "axis": "y",
+          "px_per_m": 29.411764705882355,
+          "relative_residual_percent": 0.19
+        },
+        {
+          "feature": "Lower bedroom width",
+          "a": [
+            148,
+            640
+          ],
+          "b": [
+            262,
+            640
+          ],
+          "source_m": 3.9,
+          "pixels": 114.0,
+          "axis": "x",
+          "px_per_m": 29.23076923076923,
+          "relative_residual_percent": -0.427
+        },
+        {
+          "feature": "Lower bedroom depth",
+          "a": [
+            175,
+            621
+          ],
+          "b": [
+            175,
+            745
+          ],
+          "source_m": 4.3,
+          "pixels": 124.0,
+          "axis": "y",
+          "px_per_m": 28.837209302325583,
+          "relative_residual_percent": -1.768
+        }
+      ],
+      "working_allowance_percent": 3,
+      "cross_floor_alignment_check": {
+        "against": "4B-GF",
+        "expected_px_per_m_after_native_board_resolution": 29.278088074606764,
+        "observed_px_per_m": 29.356099218484538,
+        "relative_difference_percent": 0.2664489008947113,
+        "scope": "Visible contextual site/pool alignment corroboration only; independent room spans govern acceptance."
+      }
+    },
+    "5B-GF": {
+      "status": "approx_calibrated",
+      "px_per_m": 25.193498452012385,
+      "test_fit_px_per_m_not_accepted": null,
+      "max_abs_residual_percent": 1.252,
+      "axis_fits_px_per_m": {
+        "x": 25.192622206069416,
+        "y": 25.196506550218338
+      },
+      "spans": [
+        {
+          "feature": "Pool width",
+          "a": [
+            133,
+            80
+          ],
+          "b": [
+            360,
+            80
+          ],
+          "source_m": 9,
+          "pixels": 227.0,
+          "axis": "x",
+          "px_per_m": 25.22222222222222,
+          "relative_residual_percent": 0.114
+        },
+        {
+          "feature": "Pool depth",
+          "a": [
+            300,
+            55
+          ],
+          "b": [
+            300,
+            118
+          ],
+          "source_m": 2.5,
+          "pixels": 63.0,
+          "axis": "y",
+          "px_per_m": 25.2,
+          "relative_residual_percent": 0.026
+        },
+        {
+          "feature": "Kitchen clear width",
+          "a": [
+            132,
+            490
+          ],
+          "b": [
+            221,
+            490
+          ],
+          "source_m": 3.5,
+          "pixels": 89.0,
+          "axis": "x",
+          "px_per_m": 25.428571428571427,
+          "relative_residual_percent": 0.933
+        },
+        {
+          "feature": "Kitchen clear depth",
+          "a": [
+            200,
+            433
+          ],
+          "b": [
+            200,
+            509
+          ],
+          "source_m": 3,
+          "pixels": 76.0,
+          "axis": "y",
+          "px_per_m": 25.333333333333332,
+          "relative_residual_percent": 0.555
+        },
+        {
+          "feature": "Guest bedroom width",
+          "a": [
+            351,
+            600
+          ],
+          "b": [
+            453,
+            600
+          ],
+          "source_m": 4.1,
+          "pixels": 102.0,
+          "axis": "x",
+          "px_per_m": 24.878048780487806,
+          "relative_residual_percent": -1.252
+        },
+        {
+          "feature": "Guest bedroom depth",
+          "a": [
+            400,
+            575
+          ],
+          "b": [
+            400,
+            678
+          ],
+          "source_m": 4.1,
+          "pixels": 103.0,
+          "axis": "y",
+          "px_per_m": 25.121951219512198,
+          "relative_residual_percent": -0.284
+        }
+      ],
+      "working_allowance_percent": 3
+    },
+    "5B-FF": {
+      "status": "approx_calibrated",
+      "px_per_m": 25.079563182527295,
+      "test_fit_px_per_m_not_accepted": null,
+      "max_abs_residual_percent": 0.811,
+      "axis_fits_px_per_m": {
+        "x": 25.111598246313267,
+        "y": 25.044594300630845
+      },
+      "spans": [
+        {
+          "feature": "Master width",
+          "a": [
+            118,
+            250
+          ],
+          "b": [
+            252,
+            250
+          ],
+          "source_m": 5.3,
+          "pixels": 134.0,
+          "axis": "x",
+          "px_per_m": 25.28301886792453,
+          "relative_residual_percent": 0.811
+        },
+        {
+          "feature": "Master depth",
+          "a": [
+            130,
+            182
+          ],
+          "b": [
+            130,
+            317
+          ],
+          "source_m": 5.4,
+          "pixels": 135.0,
+          "axis": "y",
+          "px_per_m": 25.0,
+          "relative_residual_percent": -0.317
+        },
+        {
+          "feature": "Bedroom 1 width",
+          "a": [
+            351,
+            620
+          ],
+          "b": [
+            468,
+            620
+          ],
+          "source_m": 4.7,
+          "pixels": 117.0,
+          "axis": "x",
+          "px_per_m": 24.893617021276594,
+          "relative_residual_percent": -0.741
+        },
+        {
+          "feature": "Bedroom 1 depth",
+          "a": [
+            450,
+            575
+          ],
+          "b": [
+            450,
+            678
+          ],
+          "source_m": 4.1,
+          "pixels": 103.0,
+          "axis": "y",
+          "px_per_m": 25.121951219512198,
+          "relative_residual_percent": 0.169
+        }
+      ],
+      "working_allowance_percent": 3,
+      "cross_floor_alignment_check": {
+        "against": "5B-GF",
+        "expected_px_per_m_after_native_board_resolution": 25.193498452012385,
+        "observed_px_per_m": 25.079563182527295,
+        "relative_difference_percent": -0.4522407624415803,
+        "scope": "Visible contextual site/pool alignment corroboration only; independent room spans govern acceptance."
+      }
+    },
+    "6B-GF": {
+      "status": "NTS_conflicting_source_spans",
+      "px_per_m": null,
+      "test_fit_px_per_m_not_accepted": 21.99157247820862,
+      "max_abs_residual_percent": 15.575,
+      "axis_fits_px_per_m": {
+        "x": 21.820163047865044,
+        "y": 22.516531734750632
+      },
+      "spans": [
+        {
+          "feature": "Kitchen width",
+          "a": [
+            99,
+            435
+          ],
+          "b": [
+            185,
+            435
+          ],
+          "source_m": 4,
+          "pixels": 86.0,
+          "axis": "x",
+          "px_per_m": 21.5,
+          "relative_residual_percent": -2.235
+        },
+        {
+          "feature": "Kitchen depth",
+          "a": [
+            175,
+            403
+          ],
+          "b": [
+            175,
+            478
+          ],
+          "source_m": 3.55,
+          "pixels": 75.0,
+          "axis": "y",
+          "px_per_m": 21.126760563380284,
+          "relative_residual_percent": -3.932
+        },
+        {
+          "feature": "Guest bedroom width",
+          "a": [
+            380,
+            570
+          ],
+          "b": [
+            469,
+            570
+          ],
+          "source_m": 4.2,
+          "pixels": 89.0,
+          "axis": "x",
+          "px_per_m": 21.19047619047619,
+          "relative_residual_percent": -3.643
+        },
+        {
+          "feature": "Guest bedroom depth",
+          "a": [
+            450,
+            502
+          ],
+          "b": [
+            450,
+            608
+          ],
+          "source_m": 4.7,
+          "pixels": 106.0,
+          "axis": "y",
+          "px_per_m": 22.5531914893617,
+          "relative_residual_percent": 2.554
+        },
+        {
+          "feature": "Pool width disputed label",
+          "a": [
+            109,
+            80
+          ],
+          "b": [
+            318,
+            80
+          ],
+          "source_m": 9.5,
+          "pixels": 209.0,
+          "axis": "x",
+          "px_per_m": 22.0,
+          "relative_residual_percent": 0.038
+        },
+        {
+          "feature": "Pool depth disputed label",
+          "a": [
+            290,
+            54
+          ],
+          "b": [
+            290,
+            115
+          ],
+          "source_m": 2.4,
+          "pixels": 61.0,
+          "axis": "y",
+          "px_per_m": 25.416666666666668,
+          "relative_residual_percent": 15.575
+        }
+      ],
+      "working_allowance_percent": null
+    },
+    "6B-FF": {
+      "status": "approx_calibrated",
+      "px_per_m": 21.541212534059945,
+      "test_fit_px_per_m_not_accepted": null,
+      "max_abs_residual_percent": 1.454,
+      "axis_fits_px_per_m": {
+        "x": 21.473389935804512,
+        "y": 21.623523498366424
+      },
+      "spans": [
+        {
+          "feature": "Master width",
+          "a": [
+            91,
+            250
+          ],
+          "b": [
+            212,
+            250
+          ],
+          "source_m": 5.7,
+          "pixels": 121.0,
+          "axis": "x",
+          "px_per_m": 21.228070175438596,
+          "relative_residual_percent": -1.454
+        },
+        {
+          "feature": "Master depth",
+          "a": [
+            115,
+            174
+          ],
+          "b": [
+            115,
+            297
+          ],
+          "source_m": 5.7,
+          "pixels": 123.0,
+          "axis": "y",
+          "px_per_m": 21.57894736842105,
+          "relative_residual_percent": 0.175
+        },
+        {
+          "feature": "Bedroom 1 width",
+          "a": [
+            90,
+            690
+          ],
+          "b": [
+            220,
+            690
+          ],
+          "source_m": 6,
+          "pixels": 130.0,
+          "axis": "x",
+          "px_per_m": 21.666666666666668,
+          "relative_residual_percent": 0.582
+        },
+        {
+          "feature": "Bedroom 1 depth",
+          "a": [
+            200,
+            631
+          ],
+          "b": [
+            200,
+            740
+          ],
+          "source_m": 5,
+          "pixels": 109.0,
+          "axis": "y",
+          "px_per_m": 21.8,
+          "relative_residual_percent": 1.201
+        },
+        {
+          "feature": "Junior width",
+          "a": [
+            369,
+            535
+          ],
+          "b": [
+            483,
+            535
+          ],
+          "source_m": 5.3,
+          "pixels": 114.0,
+          "axis": "x",
+          "px_per_m": 21.50943396226415,
+          "relative_residual_percent": -0.148
+        },
+        {
+          "feature": "Junior depth",
+          "a": [
+            450,
+            508
+          ],
+          "b": [
+            450,
+            609
+          ],
+          "source_m": 4.7,
+          "pixels": 101.0,
+          "axis": "y",
+          "px_per_m": 21.48936170212766,
+          "relative_residual_percent": -0.241
+        }
+      ],
+      "working_allowance_percent": 3
+    },
+    "4B-RF": {
+      "status": "NTS_conflicting_source_spans",
+      "px_per_m": null,
+      "test_fit_px_per_m_not_accepted": 22.765109416318552,
+      "max_abs_residual_percent": 30.625,
+      "axis_fits_px_per_m": {
+        "x": 29.736842105263158,
+        "y": 22.356687898089174
+      },
+      "spans": [
+        {
+          "feature": "MEP width ambiguous overlay",
+          "a": [
+            75,
+            420
+          ],
+          "b": [
+            188,
+            420
+          ],
+          "source_m": 3.8,
+          "pixels": 113.0,
+          "axis": "x",
+          "px_per_m": 29.736842105263158,
+          "relative_residual_percent": 30.625
+        },
+        {
+          "feature": "MEP depth ambiguous overlay",
+          "a": [
+            130,
+            271
+          ],
+          "b": [
+            130,
+            622
+          ],
+          "source_m": 15.7,
+          "pixels": 351.0,
+          "axis": "y",
+          "px_per_m": 22.356687898089174,
+          "relative_residual_percent": -1.794
+        }
+      ],
+      "working_allowance_percent": null
+    },
+    "5B-RF": {
+      "status": "NTS_conflicting_source_spans",
+      "px_per_m": null,
+      "test_fit_px_per_m_not_accepted": 25.327099222013565,
+      "max_abs_residual_percent": 7.021,
+      "axis_fits_px_per_m": {
+        "x": 27.105263157894736,
+        "y": 25.222929936305732
+      },
+      "spans": [
+        {
+          "feature": "MEP width",
+          "a": [
+            28,
+            470
+          ],
+          "b": [
+            131,
+            470
+          ],
+          "source_m": 3.8,
+          "pixels": 103.0,
+          "axis": "x",
+          "px_per_m": 27.10526315789474,
+          "relative_residual_percent": 7.021
+        },
+        {
+          "feature": "MEP depth",
+          "a": [
+            78,
+            278
+          ],
+          "b": [
+            78,
+            674
+          ],
+          "source_m": 15.7,
+          "pixels": 396.0,
+          "axis": "y",
+          "px_per_m": 25.222929936305732,
+          "relative_residual_percent": -0.411
+        }
+      ],
+      "working_allowance_percent": null
+    },
+    "6B-RF": {
+      "status": "NTS_insufficient_unambiguous_independent_spans",
+      "px_per_m": null,
+      "spans": [],
+      "reason": "MEP region is irregular/open and source labels ambiguous; reliable independent orthogonal room endpoints not established."
+    }
+  }
+}

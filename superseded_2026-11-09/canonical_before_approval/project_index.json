@@ -1,0 +1,33 @@
+{
+  "project_id": "ashwood-estates",
+  "source_name": "Ashwood Estates brochure",
+  "updated_at_Asia_Dubai": "2026-11-09T06:09:29.857094+04:00",
+  "root_paths_relative_to": "/workspace/plan-visuals-archive",
+  "source_pdf": "original/ashwood-residences_brochure.pdf",
+  "source_sha256": "a716d74af71a117145a12e058876220a185b6424bf06c082aded539fbb76ca1b",
+  "villa_ids": [
+    "4b",
+    "5b",
+    "6b"
+  ],
+  "floor_index": "canonical/floors_index.json",
+  "room_index": "canonical/rooms_index.json",
+  "style_evidence": "canonical/references/source_style_evidence.json",
+  "missing_visuals_json": "canonical/handoff/missing_interior_visuals.json",
+  "missing_visuals_csv": "canonical/handoff/missing_interior_visuals.csv",
+  "qa_index": "canonical/handoff/drawing_geometry_QA.json",
+  "unresolved_legacy_labels": "canonical/unresolved_legacy_room_labels.json",
+  "floor_count": 9,
+  "room_or_space_count": 135,
+  "interior_or_service_missing_view_count": 112,
+  "verified_room_interior_visual_matches": 0,
+  "generated_visual_count": 0,
+  "legacy_unresolved_label_count": 79,
+  "approx_calibrated_floor_count": 1,
+  "scale_unvalidated_or_blocked_floor_count": 8,
+  "exterior_numeric_source_coverage": "0 of 9 plans",
+  "status": "ORGANIZED_SOURCE_EVIDENCE_HANDOFF_READY; GEOMETRY_REVIEW_AND_ROOM_MATCHING_REQUIRED",
+  "zip_delivered": false,
+  "3d_started": false,
+  "stage2_contacted": false
+}

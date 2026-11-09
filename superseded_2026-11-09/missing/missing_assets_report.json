@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-11-09 05:30:00 Asia/Dubai (UTC+4)",
+  "building": "Ashwood Estates (Jumeirah Golf Estates)",
+  "identifiable_villa_types": [
+    "4 Bedroom Villa",
+    "5 Bedroom Villa",
+    "6 Bedroom Villa"
+  ],
+  "floors_present_per_type": [
+    "Ground Floor",
+    "First Floor",
+    "Roof Floor"
+  ],
+  "floors_not_disclosed": [
+    "No basement/lower-ground plans in brochure. No floors beyond G/1/Roof disclosed."
+  ],
+  "missing_or_incomplete": [
+    {
+      "item": "Native CAD (DXF/DWG)",
+      "status": "absent"
+    },
+    {
+      "item": "Construction sections/elevations set",
+      "status": "absent_from_this_pdf"
+    },
+    {
+      "item": "North arrow / explicit scale bar",
+      "status": "not_clearly_present"
+    },
+    {
+      "item": "Per-room photos keyed to plan labels",
+      "status": "not_mapped"
+    },
+    {
+      "item": "Clubhouse floorplans",
+      "status": "absent"
+    },
+    {
+      "item": "Unit-level variants within type",
+      "status": "undisclosed"
+    },
+    {
+      "item": "External style references",
+      "status": "absent"
+    }
+  ],
+  "provenance": {
+    "attachment_sha256": "a716d74af71a117145a12e058876220a185b6424bf06c082aded539fbb76ca1b",
+    "status": "byte_identical_to_processed_original",
+    "verified_at": "2026-11-09 05:30:00 Asia/Dubai (UTC+4)"
+  }
+}

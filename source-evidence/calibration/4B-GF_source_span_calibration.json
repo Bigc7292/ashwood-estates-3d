@@ -1,0 +1,221 @@
+{
+  "status": "APPROXIMATE_CALIBRATION_PROTOTYPE_ONLY",
+  "source": "PDF page27 / xref313 / board crop [120,350,830,1370]",
+  "span_endpoint_units": "native cropped-source pixels; x right, y down",
+  "source_dimensions_units": "metres; brochure overlay transcripts",
+  "spans": [
+    {
+      "feature": "Living/dining clear width",
+      "axis": "x",
+      "a": [
+        198,
+        215
+      ],
+      "b": [
+        547,
+        215
+      ],
+      "source_m": 12.4,
+      "pixels": 349.0,
+      "pixels_per_m": 28.14516129032258,
+      "fit_relative_residual_percent": 0.0
+    },
+    {
+      "feature": "Living/dining clear depth",
+      "axis": "y",
+      "a": [
+        390,
+        190
+      ],
+      "b": [
+        390,
+        335
+      ],
+      "source_m": 5.1,
+      "pixels": 145.0,
+      "pixels_per_m": 28.43137254901961,
+      "fit_relative_residual_percent": 1.017
+    },
+    {
+      "feature": "Pool water width",
+      "axis": "x",
+      "a": [
+        196,
+        120
+      ],
+      "b": [
+        463,
+        120
+      ],
+      "source_m": 9.5,
+      "pixels": 267.0,
+      "pixels_per_m": 28.105263157894736,
+      "fit_relative_residual_percent": -0.142
+    },
+    {
+      "feature": "Pool water depth",
+      "axis": "y",
+      "a": [
+        350,
+        87
+      ],
+      "b": [
+        350,
+        154
+      ],
+      "source_m": 2.4,
+      "pixels": 67.0,
+      "pixels_per_m": 27.916666666666668,
+      "fit_relative_residual_percent": -0.812
+    },
+    {
+      "feature": "Office clear width",
+      "axis": "x",
+      "a": [
+        417,
+        555
+      ],
+      "b": [
+        547,
+        555
+      ],
+      "source_m": 4.6,
+      "pixels": 130.0,
+      "pixels_per_m": 28.260869565217394,
+      "fit_relative_residual_percent": 0.411
+    },
+    {
+      "feature": "Office clear depth",
+      "axis": "y",
+      "a": [
+        535,
+        539
+      ],
+      "b": [
+        535,
+        634
+      ],
+      "source_m": 3.4,
+      "pixels": 95.0,
+      "pixels_per_m": 27.941176470588236,
+      "fit_relative_residual_percent": -0.725
+    },
+    {
+      "feature": "Kitchen clear width",
+      "axis": "x",
+      "a": [
+        199,
+        490
+      ],
+      "b": [
+        312,
+        490
+      ],
+      "source_m": 4.0,
+      "pixels": 113.0,
+      "pixels_per_m": 28.25,
+      "fit_relative_residual_percent": 0.373
+    },
+    {
+      "feature": "Kitchen clear depth",
+      "axis": "y",
+      "a": [
+        280,
+        449
+      ],
+      "b": [
+        280,
+        532
+      ],
+      "source_m": 3.0,
+      "pixels": 83.0,
+      "pixels_per_m": 27.666666666666668,
+      "fit_relative_residual_percent": -1.7
+    }
+  ],
+  "fit_px_per_m": 28.145127436281857,
+  "axis_fits_px_per_m": {
+    "x": 28.14702848810328,
+    "y": 28.13491305178674
+  },
+  "max_abs_span_residual_percent": 1.7,
+  "working_uncertainty_percent": 3,
+  "uncertainty_note": "Conservative engineering-working allowance, not a statistical confidence interval; native endpoint uncertainty about 1–2 pixels plus marketing-label accuracy unknown.",
+  "cross_floor_context_check": {
+    "feature": "4B FF contextual pool width",
+    "xref": 439,
+    "endpoints_crop_pixels": [
+      [
+        146,
+        120
+      ],
+      [
+        423,
+        120
+      ]
+    ],
+    "brochure_overlay_m": 9.5,
+    "observed_px_per_m": 29.157894736842106,
+    "normalized_to_xref313_resolution": 28.02958516454068,
+    "note": "Cross-floor context/resolution check only, NOT an independent FF geometry calibration."
+  },
+  "paper_mm": [
+    420,
+    594
+  ],
+  "svg_physical_dimensions": "420mm × 594mm",
+  "pdf_points": [
+    0.0,
+    0.0,
+    1190.55126953125,
+    1683.779541015625
+  ],
+  "pdf_physical_mm": [
+    420.0000311957465,
+    594.0000047471788
+  ],
+  "approx_calibrated_count": 1,
+  "demonstrably_not_calibratable_count": 1,
+  "not_yet_independently_validated_count": 7,
+  "blocked_example": {
+    "id": "4B-RF",
+    "status": "NOT_CALIBRATABLE_FROM_CURRENT_OVERLAY_PAIR",
+    "feature": "MEP inner rectangle",
+    "endpoints_crop_pixels": {
+      "x": [
+        [
+          75,
+          420
+        ],
+        [
+          188,
+          420
+        ]
+      ],
+      "y": [
+        [
+          130,
+          271
+        ],
+        [
+          130,
+          622
+        ]
+      ]
+    },
+    "brochure_overlay_m": [
+      3.8,
+      15.7
+    ],
+    "board_label_m": [
+      3.0,
+      12.8
+    ],
+    "overlay_px_per_m": [
+      29.736842105263158,
+      22.356687898089174
+    ],
+    "reason": "Isotropic x/y fit inconsistent; embedded-board and overlay dimensions disagree. Do not choose a convenient scale silently."
+  },
+  "other_floor_status": "Retain NTS; no calibration propagated from one villa/floor to others."
+}

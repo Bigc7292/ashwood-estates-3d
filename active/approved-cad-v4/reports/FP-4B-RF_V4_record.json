@@ -1,0 +1,145 @@
+{
+  "id": "4B-RF",
+  "version": "V4",
+  "status": "USER_APPROVED_SOURCE_LIMITED_PRESENTATION",
+  "source_pdf_page": 28,
+  "source_xref": 439,
+  "source_board_crop_pixels": [
+    1820,
+    455,
+    2300,
+    1250
+  ],
+  "native_source_pixels": [
+    480,
+    795
+  ],
+  "svg": "active/approved-cad-v4/svg/FP-4B-RF_V4_portrait.svg",
+  "pdf": "active/approved-cad-v4/pdf/FP-4B-RF_V4_portrait.pdf",
+  "preview": "active/approved-cad-v4/png/FP-4B-RF_V4_preview.png",
+  "long7680": "active/approved-cad-v4/png/FP-4B-RF_V4_long7680.png",
+  "source_comparison": "active/approved-cad-v4/qa/FP-4B-RF_source_vs_v4.png",
+  "geometry": "Original native raster underlay retained with continuous tonal mapping; exact prior source-wall contour paths unchanged. No generative structural geometry.",
+  "hybrid_svg": true,
+  "source_wall_paths_preserved": 11,
+  "source_specific_symbol_definitions": {
+    "dining": [
+      [
+        198,
+        146,
+        29,
+        83,
+        4
+      ]
+    ],
+    "L": [
+      [
+        314,
+        149,
+        84,
+        94,
+        "br"
+      ]
+    ],
+    "coffee": [
+      [
+        313,
+        166,
+        33,
+        33
+      ]
+    ],
+    "round": [
+      [
+        299,
+        218,
+        13
+      ],
+      [
+        329,
+        134,
+        11
+      ],
+      [
+        305,
+        135,
+        7
+      ]
+    ],
+    "bars": [
+      [
+        107,
+        132,
+        27,
+        110
+      ]
+    ]
+  },
+  "calibration": {
+    "status": "NTS_conflicting_source_spans",
+    "px_per_m": null,
+    "test_fit_px_per_m_not_accepted": 22.765109416318552,
+    "max_abs_residual_percent": 30.625,
+    "axis_fits_px_per_m": {
+      "x": 29.736842105263158,
+      "y": 22.356687898089174
+    },
+    "spans": [
+      {
+        "feature": "MEP width ambiguous overlay",
+        "a": [
+          75,
+          420
+        ],
+        "b": [
+          188,
+          420
+        ],
+        "source_m": 3.8,
+        "pixels": 113.0,
+        "axis": "x",
+        "px_per_m": 29.736842105263158,
+        "relative_residual_percent": 30.625
+      },
+      {
+        "feature": "MEP depth ambiguous overlay",
+        "a": [
+          130,
+          271
+        ],
+        "b": [
+          130,
+          622
+        ],
+        "source_m": 15.7,
+        "pixels": 351.0,
+        "axis": "y",
+        "px_per_m": 22.356687898089174,
+        "relative_residual_percent": -1.794
+      }
+    ],
+    "working_allowance_percent": null
+  },
+  "paper_mm": [
+    297,
+    420
+  ],
+  "pdf_physical_mm": [
+    297.0000023735894,
+    419.999988132053
+  ],
+  "scale_bar_metric_length_m": null,
+  "scale_bar_physical_length_mm": null,
+  "exterior_metric_status": "unknown_NTS",
+  "plot_boundary_verified": false,
+  "room_dimension_status": "brochure_overlay_transcripts_with_flags",
+  "clipped_pdf_text_spans": [],
+  "native_CAD": false,
+  "user_approved": true,
+  "remaining_limits": [
+    "Room-label layer disagreements and unreadable dimensions remain flagged",
+    "Fixture/door/stair detail remains native-raster limited; not metrically certified",
+    "Replacement furniture/plant/material graphics are illustrative within evidenced source locations",
+    "Envelope guides are bounding spans, not a surveyed perimeter profile; no arbitrary interior station grid"
+  ]
+}

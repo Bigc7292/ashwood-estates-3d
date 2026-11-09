@@ -1,0 +1,1841 @@
+{
+  "source_sha256": "a716d74af71a117145a12e058876220a185b6424bf06c082aded539fbb76ca1b",
+  "status": "9 SOURCE-LIMITED PRESENTATION SHEETS; NOT NATIVE CAD",
+  "records": [
+    {
+      "id": "4B-GF",
+      "page": 27,
+      "xref": 313,
+      "source_board_crop_pixels": [
+        120,
+        350,
+        830,
+        1370
+      ],
+      "native_crop_size": [
+        710,
+        1020
+      ],
+      "svg_sheet": "cad-redraw-v3/final/svg/FP-4B-GF_CAD_style_sheet.svg",
+      "svg_plan": "cad-redraw-v3/final/svg/FP-4B-GF_CAD_style_plan.svg",
+      "sheet_preview": "cad-redraw-v3/final/png/FP-4B-GF_CAD_style_sheet_preview.png",
+      "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+      "exterior": {
+        "building_metric_lengths_sourced": 0,
+        "building_guide_sides_unknown": 4,
+        "site_metric_lengths_sourced": 0,
+        "site_guide_sides_unknown": 4,
+        "plot_boundary_established": false,
+        "roof_plot_not_shown": false
+      },
+      "source_limited": true,
+      "native_CAD": false,
+      "metric_scale_established": false,
+      "room_transcripts": [
+        [
+          "Swimming pool",
+          "9.50 \u00d7 2.40",
+          0,
+          0
+        ],
+        [
+          "Living / dining",
+          "12.40 \u00d7 5.10",
+          0,
+          0
+        ],
+        [
+          "Show kitchen",
+          "5.70 \u00d7 2.70",
+          0,
+          0
+        ],
+        [
+          "Pantry",
+          "1.70 \u00d7 2.45",
+          0,
+          0
+        ],
+        [
+          "Powder",
+          "3.65 \u00d7 1.70",
+          0,
+          0
+        ],
+        [
+          "Kitchen",
+          "4.00 \u00d7 3.00",
+          0,
+          0
+        ],
+        [
+          "Laundry",
+          "2.20 \u00d7 1.80",
+          0,
+          0
+        ],
+        [
+          "Kitchen storage",
+          "2.20 \u00d7 1.40",
+          0,
+          0
+        ],
+        [
+          "Office / gym",
+          "4.60 \u00d7 3.40",
+          0,
+          0
+        ],
+        [
+          "Bath",
+          "2.90 \u00d7 1.70",
+          0,
+          0
+        ],
+        [
+          "Double-height entry",
+          "3.29 \u00d7 3.30",
+          0,
+          0
+        ],
+        [
+          "Multipurpose",
+          "4.60 \u00d7 3.90",
+          0,
+          0
+        ],
+        [
+          "Dress",
+          "1.90 \u00d7 1.10",
+          0,
+          0
+        ],
+        [
+          "Maid room",
+          "UNKNOWN *",
+          0,
+          0
+        ],
+        [
+          "Maid bath",
+          "1.70 \u00d7 1.90",
+          0,
+          0
+        ],
+        [
+          "Lift",
+          "1.50 \u00d7 1.70",
+          0,
+          0
+        ]
+      ],
+      "dimension_text_checks": [
+        {
+          "room": "Swimming pool",
+          "value": "9.50 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Living / dining",
+          "value": "12.40 \u00d7 5.10",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Show kitchen",
+          "value": "5.70 \u00d7 2.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Pantry",
+          "value": "1.70 \u00d7 2.45",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Powder",
+          "value": "3.65 \u00d7 1.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Kitchen",
+          "value": "4.00 \u00d7 3.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Laundry",
+          "value": "2.20 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Kitchen storage",
+          "value": "2.20 \u00d7 1.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Office / gym",
+          "value": "4.60 \u00d7 3.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Bath",
+          "value": "2.90 \u00d7 1.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Double-height entry",
+          "value": "3.29 \u00d7 3.30",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Multipurpose",
+          "value": "4.60 \u00d7 3.90",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Dress",
+          "value": "1.90 \u00d7 1.10",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Maid bath",
+          "value": "1.70 \u00d7 1.90",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "Lift",
+          "value": "1.50 \u00d7 1.70",
+          "numbers_in_page_text": true
+        }
+      ],
+      "text_outside_sheet": [],
+      "embedded_rasters": 0,
+      "layer_counts": {},
+      "conflicts": []
+    },
+    {
+      "id": "4B-FF",
+      "page": 28,
+      "xref": 439,
+      "source_board_crop_pixels": [
+        980,
+        370,
+        1630,
+        1370
+      ],
+      "native_crop_size": [
+        650,
+        1000
+      ],
+      "svg_sheet": "cad-redraw-v3/final/svg/FP-4B-FF_CAD_style_sheet.svg",
+      "svg_plan": "cad-redraw-v3/final/svg/FP-4B-FF_CAD_style_plan.svg",
+      "sheet_preview": "cad-redraw-v3/final/png/FP-4B-FF_CAD_style_sheet_preview.png",
+      "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+      "exterior": {
+        "building_metric_lengths_sourced": 0,
+        "building_guide_sides_unknown": 4,
+        "site_metric_lengths_sourced": 0,
+        "site_guide_sides_unknown": 4,
+        "plot_boundary_established": false,
+        "roof_plot_not_shown": false
+      },
+      "source_limited": true,
+      "native_CAD": false,
+      "metric_scale_established": false,
+      "room_transcripts": [
+        [
+          "MASTER SUITE",
+          "4.00 \u00d7 5.10",
+          199,
+          322
+        ],
+        [
+          "FAMILY LIVING",
+          "4.00 \u00d7 5.10",
+          330,
+          322
+        ],
+        [
+          "BEDROOM 1",
+          "4.00 \u00d7 5.10 \u2020",
+          460,
+          328
+        ],
+        [
+          "M. DRESSING",
+          "4.00 \u00d7 3.50",
+          207,
+          401
+        ],
+        [
+          "M. BATH",
+          "4.00 \u00d7 2.70",
+          206,
+          478
+        ],
+        [
+          "CORRIDOR",
+          "3.30 \u00d7 10.10",
+          341,
+          539
+        ],
+        [
+          "LIFT",
+          "1.50 \u00d7 1.70",
+          398,
+          376
+        ],
+        [
+          "BATH 1",
+          "3.00 \u00d7 2.30 \u2020",
+          461,
+          380
+        ],
+        [
+          "BATH 2",
+          "2.30 \u00d7 2.50",
+          169,
+          580
+        ],
+        [
+          "DRESS",
+          "1.70 \u00d7 2.00",
+          235,
+          583
+        ],
+        [
+          "BEDROOM 2",
+          "3.90 \u00d7 4.30",
+          236,
+          638
+        ],
+        [
+          "J. DRESS",
+          "2.00 \u00d7 2.80",
+          408,
+          596
+        ],
+        [
+          "J. BATH",
+          "2.50 \u00d7 2.60",
+          486,
+          596
+        ],
+        [
+          "JUNIOR SUITE",
+          "4.60 \u00d7 4.00 \u2020",
+          415,
+          640
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          329,
+          172
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          211,
+          766
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          437,
+          812
+        ]
+      ],
+      "dimension_text_checks": [
+        {
+          "room": "MASTER SUITE",
+          "value": "4.00 \u00d7 5.10",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "FAMILY LIVING",
+          "value": "4.00 \u00d7 5.10",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BEDROOM 1",
+          "value": "4.00 \u00d7 5.10 \u2020",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "M. DRESSING",
+          "value": "4.00 \u00d7 3.50",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "M. BATH",
+          "value": "4.00 \u00d7 2.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "CORRIDOR",
+          "value": "3.30 \u00d7 10.10",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIFT",
+          "value": "1.50 \u00d7 1.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BATH 1",
+          "value": "3.00 \u00d7 2.30 \u2020",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BATH 2",
+          "value": "2.30 \u00d7 2.50",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "DRESS",
+          "value": "1.70 \u00d7 2.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BEDROOM 2",
+          "value": "3.90 \u00d7 4.30",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "J. DRESS",
+          "value": "2.00 \u00d7 2.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "J. BATH",
+          "value": "2.50 \u00d7 2.60",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "JUNIOR SUITE",
+          "value": "4.60 \u00d7 4.00 \u2020",
+          "numbers_in_page_text": true
+        }
+      ],
+      "text_outside_sheet": [],
+      "embedded_rasters": 0,
+      "layer_counts": {
+        "source_floor_and_surface_shapes": 302,
+        "source_secondary_shading": 227,
+        "source_fine_linework": 340,
+        "source_furnishings": 162,
+        "landscape_245": 8,
+        "landscape_220": 48,
+        "landscape_202": 104,
+        "landscape_183": 0,
+        "landscape_165": 0,
+        "water_0_0": 0,
+        "water_0_170": 4,
+        "water_0_202": 3,
+        "water_0_source_detail": 46,
+        "water_1_170": 0,
+        "water_1_202": 3,
+        "water_1_source_planting": 1,
+        "water_1_source_detail": 3,
+        "source_wall_poche": 26
+      },
+      "conflicts": [
+        "Bedroom 1, upper bath and junior-suite overlay values differ from board labels."
+      ]
+    },
+    {
+      "id": "4B-RF",
+      "page": 28,
+      "xref": 439,
+      "source_board_crop_pixels": [
+        1820,
+        455,
+        2300,
+        1250
+      ],
+      "native_crop_size": [
+        480,
+        795
+      ],
+      "svg_sheet": "cad-redraw-v3/final/svg/FP-4B-RF_CAD_style_sheet.svg",
+      "svg_plan": "cad-redraw-v3/final/svg/FP-4B-RF_CAD_style_plan.svg",
+      "sheet_preview": "cad-redraw-v3/final/png/FP-4B-RF_CAD_style_sheet_preview.png",
+      "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+      "exterior": {
+        "building_metric_lengths_sourced": 0,
+        "building_guide_sides_unknown": 4,
+        "site_metric_lengths_sourced": 0,
+        "site_guide_sides_unknown": 0,
+        "plot_boundary_established": false,
+        "roof_plot_not_shown": true
+      },
+      "source_limited": true,
+      "native_CAD": false,
+      "metric_scale_established": false,
+      "room_transcripts": [
+        [
+          "MEP",
+          "3.80 \u00d7 15.70 \u2020",
+          134,
+          421
+        ],
+        [
+          "LIFT",
+          "1.60 \u00d7 1.80 \u2020",
+          321,
+          291
+        ],
+        [
+          "POWDER",
+          "1.50 \u00d7 2.40 \u2020",
+          223,
+          520
+        ],
+        [
+          "PANTRY",
+          "2.00 \u00d7 2.40 \u2020",
+          268,
+          519
+        ],
+        [
+          "TERRACE",
+          "UNKNOWN",
+          273,
+          193
+        ]
+      ],
+      "dimension_text_checks": [
+        {
+          "room": "MEP",
+          "value": "3.80 \u00d7 15.70 \u2020",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIFT",
+          "value": "1.60 \u00d7 1.80 \u2020",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "POWDER",
+          "value": "1.50 \u00d7 2.40 \u2020",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "PANTRY",
+          "value": "2.00 \u00d7 2.40 \u2020",
+          "numbers_in_page_text": true
+        }
+      ],
+      "text_outside_sheet": [],
+      "embedded_rasters": 0,
+      "layer_counts": {
+        "source_floor_and_surface_shapes": 43,
+        "source_secondary_shading": 48,
+        "source_fine_linework": 167,
+        "source_furnishings": 57,
+        "source_wall_poche": 11
+      },
+      "conflicts": [
+        "MEP board reads 3.00 \u00d7 12.80; overlay reads 3.80 \u00d7 15.70.",
+        "Lift and service-room labels also differ; do not resolve by scaling."
+      ]
+    },
+    {
+      "id": "5B-GF",
+      "page": 31,
+      "xref": 384,
+      "source_board_crop_pixels": [
+        55,
+        220,
+        665,
+        1300
+      ],
+      "native_crop_size": [
+        610,
+        1080
+      ],
+      "svg_sheet": "cad-redraw-v3/final/svg/FP-5B-GF_CAD_style_sheet.svg",
+      "svg_plan": "cad-redraw-v3/final/svg/FP-5B-GF_CAD_style_plan.svg",
+      "sheet_preview": "cad-redraw-v3/final/png/FP-5B-GF_CAD_style_sheet_preview.png",
+      "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+      "exterior": {
+        "building_metric_lengths_sourced": 0,
+        "building_guide_sides_unknown": 4,
+        "site_metric_lengths_sourced": 0,
+        "site_guide_sides_unknown": 4,
+        "plot_boundary_established": false,
+        "roof_plot_not_shown": false
+      },
+      "source_limited": true,
+      "native_CAD": false,
+      "metric_scale_established": false,
+      "room_transcripts": [
+        [
+          "SWIMMING POOL",
+          "9.00 \u00d7 2.50",
+          243.6328125,
+          85.4296875
+        ],
+        [
+          "LIVING / DINING",
+          "9.00 \u00d7 5.40",
+          229.921875,
+          197.2265625
+        ],
+        [
+          "SHOW KITCHEN",
+          "5.30 \u00d7 2.70",
+          229.921875,
+          348.046875
+        ],
+        [
+          "PANTRY",
+          "1.70 \u00d7 2.60",
+          163.4765625,
+          398.671875
+        ],
+        [
+          "POWDER",
+          "3.30 \u00d7 1.70",
+          226.7578125,
+          398.671875
+        ],
+        [
+          "KITCHEN",
+          "3.50 \u00d7 3.00",
+          174.0234375,
+          466.171875
+        ],
+        [
+          "K. STORAGE",
+          "1.70 \u00d7 1.80",
+          193.0078125,
+          538.9453125
+        ],
+        [
+          "LAUNDRY",
+          "1.70 \u00d7 1.80",
+          194.0625,
+          577.96875
+        ],
+        [
+          "MAID BATH",
+          "1.50 \u00d7 2.00",
+          196.171875,
+          635.9765625
+        ],
+        [
+          "MAID ROOM",
+          "3.30 \u00d7 2.40",
+          181.40625,
+          693.984375
+        ],
+        [
+          "LIFT",
+          "1.60 \u00d7 1.80",
+          242.578125,
+          632.8125
+        ],
+        [
+          "GUEST BEDROOM",
+          "4.10 \u00d7 4.10",
+          423.984375,
+          664.453125
+        ],
+        [
+          "G. DRESS",
+          "2.30 \u00d7 1.60",
+          422.9296875,
+          699.2578125
+        ],
+        [
+          "G. BATH",
+          "2.15 \u00d7 2.20",
+          425.0390625,
+          753.046875
+        ],
+        [
+          "MULTIPURPOSE",
+          "5.00 \u00d7 4.50",
+          196.171875,
+          792.0703125
+        ],
+        [
+          "DOUBLE-HEIGHT ENTRY",
+          "3.00 \u00d7 3.40",
+          304.8046875,
+          766.7578125
+        ],
+        [
+          "OFFICE",
+          "4.00 \u00d7 4.00",
+          411.328125,
+          864.84375
+        ],
+        [
+          "TERRACE",
+          "UNKNOWN",
+          225.703125,
+          158.203125
+        ],
+        [
+          "OUTDOOR TERRACE",
+          "UNKNOWN",
+          340.6640625,
+          346.9921875
+        ]
+      ],
+      "dimension_text_checks": [
+        {
+          "room": "SWIMMING POOL",
+          "value": "9.00 \u00d7 2.50",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIVING / DINING",
+          "value": "9.00 \u00d7 5.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "SHOW KITCHEN",
+          "value": "5.30 \u00d7 2.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "PANTRY",
+          "value": "1.70 \u00d7 2.60",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "POWDER",
+          "value": "3.30 \u00d7 1.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "KITCHEN",
+          "value": "3.50 \u00d7 3.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "K. STORAGE",
+          "value": "1.70 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LAUNDRY",
+          "value": "1.70 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "MAID BATH",
+          "value": "1.50 \u00d7 2.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "MAID ROOM",
+          "value": "3.30 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIFT",
+          "value": "1.60 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "GUEST BEDROOM",
+          "value": "4.10 \u00d7 4.10",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "G. DRESS",
+          "value": "2.30 \u00d7 1.60",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "G. BATH",
+          "value": "2.15 \u00d7 2.20",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "MULTIPURPOSE",
+          "value": "5.00 \u00d7 4.50",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "DOUBLE-HEIGHT ENTRY",
+          "value": "3.00 \u00d7 3.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "OFFICE",
+          "value": "4.00 \u00d7 4.00",
+          "numbers_in_page_text": true
+        }
+      ],
+      "text_outside_sheet": [],
+      "embedded_rasters": 0,
+      "layer_counts": {
+        "source_floor_and_surface_shapes": 388,
+        "source_secondary_shading": 322,
+        "source_fine_linework": 521,
+        "source_furnishings": 137,
+        "landscape_245": 22,
+        "landscape_220": 18,
+        "landscape_202": 18,
+        "landscape_183": 39,
+        "landscape_165": 41,
+        "water_0_0": 12,
+        "water_0_170": 10,
+        "water_0_202": 50,
+        "water_0_source_detail": 10,
+        "water_1_0": 4,
+        "water_1_170": 27,
+        "water_1_202": 85,
+        "water_1_source_planting": 1,
+        "water_1_source_detail": 17,
+        "source_wall_poche": 37
+      },
+      "conflicts": []
+    },
+    {
+      "id": "5B-FF",
+      "page": 32,
+      "xref": 384,
+      "source_board_crop_pixels": [
+        760,
+        220,
+        1380,
+        1300
+      ],
+      "native_crop_size": [
+        620,
+        1080
+      ],
+      "svg_sheet": "cad-redraw-v3/final/svg/FP-5B-FF_CAD_style_sheet.svg",
+      "svg_plan": "cad-redraw-v3/final/svg/FP-5B-FF_CAD_style_plan.svg",
+      "sheet_preview": "cad-redraw-v3/final/png/FP-5B-FF_CAD_style_sheet_preview.png",
+      "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+      "exterior": {
+        "building_metric_lengths_sourced": 0,
+        "building_guide_sides_unknown": 4,
+        "site_metric_lengths_sourced": 0,
+        "site_guide_sides_unknown": 4,
+        "plot_boundary_established": false,
+        "roof_plot_not_shown": false
+      },
+      "source_limited": true,
+      "native_CAD": false,
+      "metric_scale_established": false,
+      "room_transcripts": [
+        [
+          "MASTER SUITE",
+          "5.30 \u00d7 5.40",
+          182.4609375,
+          303.75
+        ],
+        [
+          "FAMILY LIVING",
+          "4.70 \u00d7 5.40",
+          293.203125,
+          303.75
+        ],
+        [
+          "LOBBY",
+          "3.20 \u00d7 1.80",
+          209.8828125,
+          348.046875
+        ],
+        [
+          "M. DRESSING",
+          "4.10 \u00d7 5.70",
+          168.75,
+          488.3203125
+        ],
+        [
+          "M. BATH",
+          "4.10 \u00d7 3.20",
+          168.75,
+          544.21875
+        ],
+        [
+          "CORRIDOR",
+          "1.80 \u00d7 16.00",
+          291.09375,
+          488.3203125
+        ],
+        [
+          "LIFT",
+          "1.60 \u00d7 1.80",
+          244.6875,
+          644.4140625
+        ],
+        [
+          "J. BATH",
+          "3.90 \u00d7 2.00",
+          164.53125,
+          638.0859375
+        ],
+        [
+          "J. DRESSING",
+          "5.65 \u00d7 2.40",
+          170.859375,
+          701.3671875
+        ],
+        [
+          "JUNIOR SUITE",
+          "5.65 \u00d7 4.50",
+          181.40625,
+          836.3671875
+        ],
+        [
+          "BEDROOM 1",
+          "4.70 \u00d7 4.10",
+          420.8203125,
+          582.1875
+        ],
+        [
+          "BATH 1",
+          "2.90 \u00d7 1.80",
+          420.8203125,
+          700.3125
+        ],
+        [
+          "DRESS",
+          "1.80 \u00d7 1.80",
+          378.6328125,
+          761.484375
+        ],
+        [
+          "BATH 2",
+          "2.90 \u00d7 1.80",
+          421.875,
+          762.5390625
+        ],
+        [
+          "BEDROOM 2",
+          "4.70 \u00d7 4.60",
+          377.578125,
+          838.4765625
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          230.9765625,
+          160.3125
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          411.328125,
+          555.8203125
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          210.9375,
+          879.609375
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          387.0703125,
+          894.375
+        ]
+      ],
+      "dimension_text_checks": [
+        {
+          "room": "MASTER SUITE",
+          "value": "5.30 \u00d7 5.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "FAMILY LIVING",
+          "value": "4.70 \u00d7 5.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LOBBY",
+          "value": "3.20 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "M. DRESSING",
+          "value": "4.10 \u00d7 5.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "M. BATH",
+          "value": "4.10 \u00d7 3.20",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "CORRIDOR",
+          "value": "1.80 \u00d7 16.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIFT",
+          "value": "1.60 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "J. BATH",
+          "value": "3.90 \u00d7 2.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "J. DRESSING",
+          "value": "5.65 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "JUNIOR SUITE",
+          "value": "5.65 \u00d7 4.50",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BEDROOM 1",
+          "value": "4.70 \u00d7 4.10",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BATH 1",
+          "value": "2.90 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "DRESS",
+          "value": "1.80 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BATH 2",
+          "value": "2.90 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BEDROOM 2",
+          "value": "4.70 \u00d7 4.60",
+          "numbers_in_page_text": true
+        }
+      ],
+      "text_outside_sheet": [],
+      "embedded_rasters": 0,
+      "layer_counts": {
+        "source_floor_and_surface_shapes": 262,
+        "source_secondary_shading": 157,
+        "source_fine_linework": 180,
+        "source_furnishings": 157,
+        "landscape_245": 22,
+        "water_0_202": 0,
+        "water_1_0": 0,
+        "water_1_170": 0,
+        "water_1_202": 0,
+        "water_1_source_detail": 6,
+        "source_wall_poche": 41
+      },
+      "conflicts": [
+        "Context pool: GF overlay says 9.00 \u00d7 2.50; FF overlay says 9.50 \u00d7 2.40."
+      ]
+    },
+    {
+      "id": "5B-RF",
+      "page": 32,
+      "xref": 384,
+      "source_board_crop_pixels": [
+        1520,
+        320,
+        1920,
+        1180
+      ],
+      "native_crop_size": [
+        400,
+        860
+      ],
+      "svg_sheet": "cad-redraw-v3/final/svg/FP-5B-RF_CAD_style_sheet.svg",
+      "svg_plan": "cad-redraw-v3/final/svg/FP-5B-RF_CAD_style_plan.svg",
+      "sheet_preview": "cad-redraw-v3/final/png/FP-5B-RF_CAD_style_sheet_preview.png",
+      "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+      "exterior": {
+        "building_metric_lengths_sourced": 0,
+        "building_guide_sides_unknown": 4,
+        "site_metric_lengths_sourced": 0,
+        "site_guide_sides_unknown": 0,
+        "plot_boundary_established": false,
+        "roof_plot_not_shown": true
+      },
+      "source_limited": true,
+      "native_CAD": false,
+      "metric_scale_established": false,
+      "room_transcripts": [
+        [
+          "MEP",
+          "3.80 \u00d7 15.70",
+          78,
+          473
+        ],
+        [
+          "LIFT",
+          "1.60 \u00d7 1.80",
+          154,
+          539
+        ],
+        [
+          "POWDER",
+          "1.50 \u00d7 2.40",
+          154,
+          596
+        ],
+        [
+          "PANTRY",
+          "2.00 \u00d7 2.40",
+          198,
+          595
+        ],
+        [
+          "TERRACE",
+          "UNKNOWN",
+          176,
+          216
+        ]
+      ],
+      "dimension_text_checks": [
+        {
+          "room": "MEP",
+          "value": "3.80 \u00d7 15.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIFT",
+          "value": "1.60 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "POWDER",
+          "value": "1.50 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "PANTRY",
+          "value": "2.00 \u00d7 2.40",
+          "numbers_in_page_text": true
+        }
+      ],
+      "text_outside_sheet": [],
+      "embedded_rasters": 0,
+      "layer_counts": {
+        "source_floor_and_surface_shapes": 68,
+        "source_secondary_shading": 49,
+        "source_fine_linework": 103,
+        "source_furnishings": 71,
+        "source_wall_poche": 12
+      },
+      "conflicts": []
+    },
+    {
+      "id": "6B-GF",
+      "page": 35,
+      "xref": 598,
+      "source_board_crop_pixels": [
+        0,
+        185,
+        595,
+        1135
+      ],
+      "native_crop_size": [
+        595,
+        950
+      ],
+      "svg_sheet": "cad-redraw-v3/final/svg/FP-6B-GF_CAD_style_sheet.svg",
+      "svg_plan": "cad-redraw-v3/final/svg/FP-6B-GF_CAD_style_plan.svg",
+      "sheet_preview": "cad-redraw-v3/final/png/FP-6B-GF_CAD_style_sheet_preview.png",
+      "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+      "exterior": {
+        "building_metric_lengths_sourced": 0,
+        "building_guide_sides_unknown": 4,
+        "site_metric_lengths_sourced": 0,
+        "site_guide_sides_unknown": 4,
+        "plot_boundary_established": false,
+        "roof_plot_not_shown": false
+      },
+      "source_limited": true,
+      "native_CAD": false,
+      "metric_scale_established": false,
+      "room_transcripts": [
+        [
+          "SWIMMING POOL",
+          "9.50 \u00d7 2.40",
+          211,
+          82
+        ],
+        [
+          "LIVING / DINING",
+          "14.80 \u00d7 5.70",
+          191,
+          189
+        ],
+        [
+          "SHOW KITCHEN",
+          "5.80 \u00d7 2.70",
+          193,
+          325
+        ],
+        [
+          "PANTRY",
+          "2.30 \u00d7 2.85",
+          126,
+          390
+        ],
+        [
+          "POWDER",
+          "3.75 \u00d7 2.00",
+          191,
+          371
+        ],
+        [
+          "KITCHEN",
+          "4.00 \u00d7 3.55",
+          141,
+          437
+        ],
+        [
+          "K. STORE",
+          "2.10 \u00d7 2.30",
+          128,
+          506
+        ],
+        [
+          "LAUNDRY",
+          "2.10 \u00d7 2.40",
+          126,
+          574
+        ],
+        [
+          "LIFT",
+          "1.90 \u00d7 1.80",
+          209,
+          550
+        ],
+        [
+          "G. STORE",
+          "1.90 \u00d7 1.70",
+          209,
+          594
+        ],
+        [
+          "SERVICE ENTRY",
+          "3.80 \u00d7 1.50",
+          174,
+          626
+        ],
+        [
+          "DRIVER BATH",
+          "1.70 \u00d7 1.40",
+          126,
+          673
+        ],
+        [
+          "DRIVER ROOM",
+          "2.20 \u00d7 2.40",
+          130,
+          708
+        ],
+        [
+          "MAID BATH",
+          "2.00 \u00d7 1.50",
+          210,
+          669
+        ],
+        [
+          "MAID ROOM",
+          "3.10 \u00d7 2.40",
+          180,
+          709
+        ],
+        [
+          "G. BATH",
+          "2.50 \u00d7 2.50",
+          349,
+          535
+        ],
+        [
+          "G. DRESSING",
+          "2.76 \u00d7 2.10",
+          348,
+          580
+        ],
+        [
+          "GUEST BEDROOM",
+          "4.20 \u00d7 4.70",
+          411,
+          598
+        ],
+        [
+          "DOUBLE-HEIGHT ENTRY",
+          "3.60 \u00d7 3.60",
+          274,
+          684
+        ],
+        [
+          "MULTIPURPOSE",
+          "4.90 \u00d7 4.00",
+          418,
+          659
+        ],
+        [
+          "OFFICE / GYM",
+          "6.90 \u00d7 4.10",
+          420,
+          759
+        ],
+        [
+          "TERRACE",
+          "UNKNOWN",
+          369,
+          150
+        ],
+        [
+          "TERRACE",
+          "UNKNOWN",
+          373,
+          311
+        ]
+      ],
+      "dimension_text_checks": [
+        {
+          "room": "SWIMMING POOL",
+          "value": "9.50 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIVING / DINING",
+          "value": "14.80 \u00d7 5.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "SHOW KITCHEN",
+          "value": "5.80 \u00d7 2.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "PANTRY",
+          "value": "2.30 \u00d7 2.85",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "POWDER",
+          "value": "3.75 \u00d7 2.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "KITCHEN",
+          "value": "4.00 \u00d7 3.55",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "K. STORE",
+          "value": "2.10 \u00d7 2.30",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LAUNDRY",
+          "value": "2.10 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIFT",
+          "value": "1.90 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "G. STORE",
+          "value": "1.90 \u00d7 1.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "SERVICE ENTRY",
+          "value": "3.80 \u00d7 1.50",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "DRIVER BATH",
+          "value": "1.70 \u00d7 1.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "DRIVER ROOM",
+          "value": "2.20 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "MAID BATH",
+          "value": "2.00 \u00d7 1.50",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "MAID ROOM",
+          "value": "3.10 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "G. BATH",
+          "value": "2.50 \u00d7 2.50",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "G. DRESSING",
+          "value": "2.76 \u00d7 2.10",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "GUEST BEDROOM",
+          "value": "4.20 \u00d7 4.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "DOUBLE-HEIGHT ENTRY",
+          "value": "3.60 \u00d7 3.60",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "MULTIPURPOSE",
+          "value": "4.90 \u00d7 4.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "OFFICE / GYM",
+          "value": "6.90 \u00d7 4.10",
+          "numbers_in_page_text": true
+        }
+      ],
+      "text_outside_sheet": [],
+      "embedded_rasters": 0,
+      "layer_counts": {
+        "source_floor_and_surface_shapes": 406,
+        "source_secondary_shading": 380,
+        "source_fine_linework": 461,
+        "source_furnishings": 153,
+        "landscape_245": 20,
+        "landscape_220": 21,
+        "landscape_202": 26,
+        "landscape_183": 42,
+        "landscape_165": 50,
+        "water_0_0": 2,
+        "water_0_170": 6,
+        "water_0_202": 22,
+        "water_0_source_planting": 0,
+        "water_0_source_detail": 27,
+        "water_1_0": 4,
+        "water_1_170": 21,
+        "water_1_202": 95,
+        "water_1_source_planting": 1,
+        "water_1_source_detail": 19,
+        "source_wall_poche": 46
+      },
+      "conflicts": []
+    },
+    {
+      "id": "6B-FF",
+      "page": 36,
+      "xref": 598,
+      "source_board_crop_pixels": [
+        595,
+        185,
+        1170,
+        1135
+      ],
+      "native_crop_size": [
+        575,
+        950
+      ],
+      "svg_sheet": "cad-redraw-v3/final/svg/FP-6B-FF_CAD_style_sheet.svg",
+      "svg_plan": "cad-redraw-v3/final/svg/FP-6B-FF_CAD_style_plan.svg",
+      "sheet_preview": "cad-redraw-v3/final/png/FP-6B-FF_CAD_style_sheet_preview.png",
+      "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+      "exterior": {
+        "building_metric_lengths_sourced": 0,
+        "building_guide_sides_unknown": 4,
+        "site_metric_lengths_sourced": 0,
+        "site_guide_sides_unknown": 4,
+        "plot_boundary_established": false,
+        "roof_plot_not_shown": false
+      },
+      "source_limited": true,
+      "native_CAD": false,
+      "metric_scale_established": false,
+      "room_transcripts": [
+        [
+          "MASTER SUITE",
+          "5.70 \u00d7 5.70",
+          137,
+          283
+        ],
+        [
+          "FAMILY LIVING",
+          "4.80 \u00d7 5.70",
+          246,
+          283
+        ],
+        [
+          "LOBBY",
+          "3.80 \u00d7 1.90",
+          164,
+          330
+        ],
+        [
+          "M. DRESSING",
+          "4.00 \u00d7 6.00",
+          132,
+          459
+        ],
+        [
+          "M. BATH",
+          "4.00 \u00d7 3.50",
+          132,
+          506
+        ],
+        [
+          "LIFT",
+          "1.90 \u00d7 1.80",
+          200,
+          551
+        ],
+        [
+          "CORRIDOR",
+          "1.80 \u00d7 16.00",
+          248,
+          456
+        ],
+        [
+          "BATH 1",
+          "2.80 \u00d7 2.40",
+          119,
+          600
+        ],
+        [
+          "DRESSING",
+          "2.80 \u00d7 2.40",
+          179,
+          600
+        ],
+        [
+          "BEDROOM 1",
+          "6.00 \u00d7 5.00",
+          203,
+          650
+        ],
+        [
+          "JUNIOR SUITE",
+          "5.30 \u00d7 4.70",
+          420,
+          517
+        ],
+        [
+          "J. BATH",
+          "2.40 \u00d7 2.40",
+          339,
+          537
+        ],
+        [
+          "J. DRESS",
+          "2.70 \u00d7 2.30",
+          338,
+          584
+        ],
+        [
+          "BATH 2",
+          "2.10 \u00d7 2.75",
+          328,
+          687
+        ],
+        [
+          "DRESS 2",
+          "1.70 \u00d7 2.90",
+          373,
+          687
+        ],
+        [
+          "BEDROOM 2",
+          "3.85 \u00d7 4.00",
+          373,
+          724
+        ],
+        [
+          "DRESS 3",
+          "1.70 \u00d7 2.90",
+          429,
+          687
+        ],
+        [
+          "BATH 3",
+          "2.05 \u00d7 2.65",
+          471,
+          687
+        ],
+        [
+          "BEDROOM 3",
+          "3.80 \u00d7 4.00",
+          424,
+          724
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          177,
+          153
+        ],
+        [
+          "TERRACE",
+          "UNKNOWN",
+          357,
+          151
+        ],
+        [
+          "TERRACE",
+          "UNKNOWN",
+          339,
+          311
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          420,
+          495
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          146,
+          762
+        ],
+        [
+          "BALCONY",
+          "UNKNOWN",
+          385,
+          820
+        ]
+      ],
+      "dimension_text_checks": [
+        {
+          "room": "MASTER SUITE",
+          "value": "5.70 \u00d7 5.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "FAMILY LIVING",
+          "value": "4.80 \u00d7 5.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LOBBY",
+          "value": "3.80 \u00d7 1.90",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "M. DRESSING",
+          "value": "4.00 \u00d7 6.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "M. BATH",
+          "value": "4.00 \u00d7 3.50",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIFT",
+          "value": "1.90 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "CORRIDOR",
+          "value": "1.80 \u00d7 16.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BATH 1",
+          "value": "2.80 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "DRESSING",
+          "value": "2.80 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BEDROOM 1",
+          "value": "6.00 \u00d7 5.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "JUNIOR SUITE",
+          "value": "5.30 \u00d7 4.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "J. BATH",
+          "value": "2.40 \u00d7 2.40",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "J. DRESS",
+          "value": "2.70 \u00d7 2.30",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BATH 2",
+          "value": "2.10 \u00d7 2.75",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "DRESS 2",
+          "value": "1.70 \u00d7 2.90",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BEDROOM 2",
+          "value": "3.85 \u00d7 4.00",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "DRESS 3",
+          "value": "1.70 \u00d7 2.90",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BATH 3",
+          "value": "2.05 \u00d7 2.65",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "BEDROOM 3",
+          "value": "3.80 \u00d7 4.00",
+          "numbers_in_page_text": true
+        }
+      ],
+      "text_outside_sheet": [],
+      "embedded_rasters": 0,
+      "layer_counts": {
+        "source_floor_and_surface_shapes": 279,
+        "source_secondary_shading": 217,
+        "source_fine_linework": 279,
+        "source_furnishings": 232,
+        "landscape_245": 19,
+        "landscape_220": 74,
+        "landscape_202": 61,
+        "landscape_183": 1,
+        "landscape_165": 0,
+        "water_0_170": 0,
+        "water_0_202": 15,
+        "water_0_source_detail": 2,
+        "water_1_170": 0,
+        "water_1_202": 9,
+        "water_1_source_planting": 1,
+        "water_1_source_detail": 2,
+        "source_wall_poche": 49
+      },
+      "conflicts": []
+    },
+    {
+      "id": "6B-RF",
+      "page": 36,
+      "xref": 598,
+      "source_board_crop_pixels": [
+        1270,
+        280,
+        1720,
+        1050
+      ],
+      "native_crop_size": [
+        450,
+        770
+      ],
+      "svg_sheet": "cad-redraw-v3/final/svg/FP-6B-RF_CAD_style_sheet.svg",
+      "svg_plan": "cad-redraw-v3/final/svg/FP-6B-RF_CAD_style_plan.svg",
+      "sheet_preview": "cad-redraw-v3/final/png/FP-6B-RF_CAD_style_sheet_preview.png",
+      "method": "Geometry-locked raster-origin vector contour layers; source-aligned text transcriptions. No embedded image in SVG.",
+      "exterior": {
+        "building_metric_lengths_sourced": 0,
+        "building_guide_sides_unknown": 4,
+        "site_metric_lengths_sourced": 0,
+        "site_guide_sides_unknown": 0,
+        "plot_boundary_established": false,
+        "roof_plot_not_shown": true
+      },
+      "source_limited": true,
+      "native_CAD": false,
+      "metric_scale_established": false,
+      "room_transcripts": [
+        [
+          "MEP 1",
+          "3.80 \u00d7 15.70",
+          68,
+          382
+        ],
+        [
+          "MEP 2",
+          "UNREADABLE",
+          236,
+          606
+        ],
+        [
+          "LIFT",
+          "1.60 \u00d7 1.80",
+          144,
+          455
+        ],
+        [
+          "POWDER",
+          "1.50 \u00d7 2.40 \u2020",
+          143,
+          494
+        ],
+        [
+          "PANTRY",
+          "2.00 \u00d7 2.40 \u2020",
+          186,
+          494
+        ],
+        [
+          "TERRACE",
+          "UNKNOWN",
+          167,
+          197
+        ]
+      ],
+      "dimension_text_checks": [
+        {
+          "room": "MEP 1",
+          "value": "3.80 \u00d7 15.70",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "LIFT",
+          "value": "1.60 \u00d7 1.80",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "POWDER",
+          "value": "1.50 \u00d7 2.40 \u2020",
+          "numbers_in_page_text": true
+        },
+        {
+          "room": "PANTRY",
+          "value": "2.00 \u00d7 2.40 \u2020",
+          "numbers_in_page_text": true
+        }
+      ],
+      "text_outside_sheet": [],
+      "embedded_rasters": 0,
+      "layer_counts": {
+        "source_floor_and_surface_shapes": 47,
+        "source_secondary_shading": 45,
+        "source_fine_linework": 161,
+        "source_furnishings": 48,
+        "source_wall_poche": 13
+      },
+      "conflicts": [
+        "Second MEP-zone board dimension is too blurred to verify.",
+        "Service-room board labels differ/are unclear; overlay values retained with \u2020."
+      ]
+    }
+  ]
+}

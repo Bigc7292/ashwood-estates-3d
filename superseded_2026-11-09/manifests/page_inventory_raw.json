@@ -1,0 +1,514 @@
+[
+  {
+    "page": 1,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 15,
+    "n_images": 1,
+    "n_drawings": 23,
+    "n_words": 2,
+    "kinds": [],
+    "text_preview": "ASHWOOD ESTATES"
+  },
+  {
+    "page": 2,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 33,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 4,
+    "kinds": [],
+    "text_preview": "LIMITLESS VIEWS, REGAL LIFESTYLE."
+  },
+  {
+    "page": 3,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 32,
+    "n_images": 1,
+    "n_drawings": 14,
+    "n_words": 4,
+    "kinds": [],
+    "text_preview": "JUMEIRAH GOLF ESTATES MASTERPLAN"
+  },
+  {
+    "page": 4,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 811,
+    "n_images": 1,
+    "n_drawings": 15,
+    "n_words": 98,
+    "kinds": [
+      "room_labels"
+    ],
+    "text_preview": "WHERE LEGACY EVOLVES, AND ESTATE LIVING IS REIMAGINED Jumeirah Golf Estates, where tree-lined boulevards, championship fairways and sculpted greenery have long shaped a lifestyle of grace and belonging. For generations, \u0133\u0196\u0384\u012e\u00e5\u018a\u0384\u015c\u01d6\u010e\u0182\u010e\u0108\u0384\u0126\u00e5\u0151\u0133\u0149\u0133\u010e\u018a\u0384\u0153\u015c\u0196\u0384\u0143\u019e\u018a\u0196\u0384\u012e\u015c\u0151\u010e\u018a\u035a \u0384\u0100\u019e\u0196\u0384\u017f\u0182\u010e\u018a\u0196\u0133\u0127\u010e\u0384\u00e5\u0153\u0108\u0384\u00e5\u0384 destination that speaks for itself. \u00b6\u017f\u015c\u0153\u0384\u0196\u012e\u010e\u0384\u010e\u01bb\u017f\u00e5\u0153\u018a\u0133\u015c\u0153\u0384\u015c\u0126\u0384\u0196\u012e\u010e\u0384\u017f\u0182\u015c\u0143\u010e\u0101\u0196\u035a \u0384\u00e5\u0384\u0153\u010e\u01b6\u0384\u01b5\u0133\u018a\u0133\u015c\u0153\u0384\u00e5\u0182\u0133\u018a\u010e\u018a\u035b Jumeirah Golf Estates: The "
+  },
+  {
+    "page": 5,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 575,
+    "n_images": 0,
+    "n_drawings": 97,
+    "n_words": 97,
+    "kinds": [
+      "areas"
+    ],
+    "text_preview": "BIN ZAYED ROAD DUBAI EXPO CITY INVESTMENT PARK EMIRATES ROAD S ROAD SHEIKH MOHAMMED BIN ZAYED ROAD AL QOUZ INDUSTRIAL AREA SHEIKH ZAYED ROAD BURJ KHALIFA DUBAI FRAME WASL GATE SHEIKH ZAYED ROAD PALM ISLAND JABEL ALI FREE ZONE DUBAI PRODUCTION CITY DUBAI - AL AIN ROAD AL MAKTOUM INTERNATIONAL AIRPORT DUBAI DEIRA INTERNATIONAL AIRPORT AL KHAIL ROAD DUBAI METRO RED LINE GREEN LINE FUTURE BLUE LINE JU"
+  },
+  {
+    "page": 6,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 903,
+    "n_images": 1,
+    "n_drawings": 45,
+    "n_words": 139,
+    "kinds": [
+      "room_labels"
+    ],
+    "text_preview": "AN ADDRESS OF TIMELESS DISTINCTION 1. Town Center 2. Golf Clubhouse 3.Mandarin Oriental Hotel 4. Tennis Stadium 5. Golf View Apartments 6. Etihad Rail Station 7. TOD 8. Central Park 9. Golf Course 10. Driving Range 11. Equestrian Center 12. Equestrian Trail 13. Equestrian Village 14. School 15. Pinewood Village 16. Central Park Apartments 17. Ashwood Estates 18. Hilltop Mansions 19. Pinewood Estat"
+  },
+  {
+    "page": 7,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 182,
+    "n_images": 2,
+    "n_drawings": 32,
+    "n_words": 24,
+    "kinds": [
+      "context"
+    ],
+    "text_preview": "\u0003 \u0002 \u0001 \u0001 AMENITIES TYPOLOGIES A B Main Entrance International School Cycle Track Pocket Gardens Jogging Track Green Islands\u0309 \u0384 \u010e\u0108\u0182\u015c\u015c\u0151\u0384\u00cd\u0133\u0149\u0149\u00e5\u018a\u030a \u0384 \u010e\u0108\u0182\u015c\u015c\u0151\u0384\u00cd\u0133\u0149\u0149\u00e5\u018a\u030b \u0384 \u010e\u0108\u0182\u015c\u015c\u0151\u0384\u00cd\u0133\u0149\u0149\u00e5\u018a C Mosque"
+  },
+  {
+    "page": 8,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 0,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 0,
+    "kinds": [],
+    "text_preview": ""
+  },
+  {
+    "page": 9,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 613,
+    "n_images": 1,
+    "n_drawings": 15,
+    "n_words": 64,
+    "kinds": [],
+    "text_preview": "ASHWOOD ESTATES: A GRAND STATEMENT IN THE HEART OF THE MASTERPLAN Nestled within Jumeirah Golf Estates: The Next Chapter, \u0001\u018a\u012e\u01b6\u015c\u015c\u0108\u0384*\u018a\u0196\u00e5\u0196\u010e\u018a\u0384\u010e\u0151\u010e\u0182\u0127\u010e\u018a\u0384\u00e5\u018a\u0384\u0196\u012e\u010e\u0384\u0101\u0182\u015c\u01b6\u0153\u0384\u0143\u010e\u01b6\u010e\u0149\u0384\u015c\u0126\u0384\u0196\u012e\u010e\u0384 \u0101\u015c\u0151\u0151\u019e\u0153\u0133\u0196\u01bc\u037d\u018a\u0384\u0153\u010e\u01b6\u0384\u010e\u0182\u00e5\u035f \u0384N\u0196\u0384\u0133\u018a\u0384\u00e5\u0384\u017f\u0182\u0133\u01b5\u00e5\u0196\u010e\u0384\u012e\u00e5\u01b5\u010e\u0153\u0384\u015c\u0126\u0384\u0182\u010e\u01d9\u0153\u010e\u0151\u010e\u0153\u0196\u035a \u0384 thoughtfully placed within one of the most expansive and ambitious residential landscapes in Dubai. Surrounded by sculpted greenery and opening out to sweeping golf co"
+  },
+  {
+    "page": 10,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 618,
+    "n_images": 2,
+    "n_drawings": 16,
+    "n_words": 54,
+    "kinds": [],
+    "text_preview": "WHERE NATURE FRAMES A LIFE OF PRIVILEGE \u0001\u0196\u0384\u0001\u018a\u012e\u01b6\u015c\u015c\u0108\u0384*\u018a\u0196\u00e5\u0196\u010e\u018a\u035a \u0384\u0196\u012e\u010e\u0384\u015c\u019e\u0196\u0108\u015c\u015c\u0182\u018a\u0384\u0133\u018a\u0153\u037d\u0196\u0384\u00e5\u0153\u0384\u00e5\u0126\u0196\u010e\u0182\u0196\u012e\u015c\u019e\u0127\u012e\u0196\u035a \u0384\u0133\u0196\u037d\u018a\u0384\u00e5\u0153\u0384\u010e\u01bb\u0196\u010e\u0153\u018a\u0133\u015c\u0153\u0384\u015c\u0126\u0384\u012e\u015c\u0151\u010e\u035f \u0384\u00af\u012e\u0133\u018a\u0384\u010e\u01bb\u0101\u0149\u019e\u018a\u0133\u01b5\u010e\u0384\u012e\u00e5\u01b5\u010e\u0153\u0384\u015c\u0126\u0384\u0306\u030d\u030a \u0384\u01b5\u0133\u0149\u0149\u00e5\u018a\u0384\u0133\u018a designed with nature at its core. Lush gardens unfold from every residence, with villas overlooking serene lakes, \u0149\u00e5\u0153\u0108\u018a\u0101\u00e5\u017f\u010e\u0108\u0384\u017f\u015c\u015c\u0149\u018a\u0384\u00e5\u0153\u0108\u0384\u0196\u012e\u010e\u0384\u010e\u018a\u0196\u00e5\u0196\u010e\u037d\u018a\u0384\u018a\u01b6\u010e\u010e\u017f\u0133\u0153\u0127\u0384\u0127\u015c\u0149\u0126\u018a\u0101\u00e5\u017f\u010e\u0384\u0196\u012e\u00e5\u0196\u0384\u018a\u0196\u0182\u010e\u0196\u0101\u012e\u010e\u018a\u0384\u0133\u0153\u0196\u015c\u0384\u0196\u012e\u010e\u0384\u012e\u015c\u0182\u0133\u01c6\u015c\u0153\u035f Quiet walkways, lined with mature p"
+  },
+  {
+    "page": 11,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 547,
+    "n_images": 1,
+    "n_drawings": 15,
+    "n_words": 52,
+    "kinds": [],
+    "text_preview": "CRAFTED IN LIGHT, ROOTED IN PLACE At Ashwood Estates, architecture becomes atmosphere. \u00af\u012e\u0182\u015c\u019e\u0127\u012e\u0384\u00e5\u0384\u0182\u010e\u01d9\u0153\u010e\u0108\u0384\u0133\u0153\u0196\u010e\u0182\u017f\u0149\u00e5\u01bc\u0384\u015c\u0126\u0384\u018a\u017f\u00e5\u0101\u010e\u035a \u0384\u018a\u012e\u00e5\u0108\u015c\u01b6\u0384\u00e5\u0153\u0108\u0384\u018a\u0196\u0182\u019e\u0101\u0196\u019e\u0182\u010e\u035a each residence is carefully attuned to its surroundings. \u0149\u010e\u00e5\u0153\u0384\u00e5\u0182\u0101\u012e\u0133\u0196\u010e\u0101\u0196\u019e\u0182\u00e5\u0149\u0384\u0149\u0133\u0153\u010e\u018a\u0384\u00e5\u0153\u0108\u0384\u0149\u015c\u01b6\u035a \u0384\u010e\u01bb\u017f\u00e5\u0153\u018a\u0133\u01b5\u010e\u0384\u017f\u0182\u015c\u01d9\u0149\u010e\u018a\u0384\u010e\u01b5\u015c\u0146\u010e enduring sophistication. Warm-toned materials and natural textures soften the aesthetic, creating smooth transitions between indoor comfo"
+  },
+  {
+    "page": 12,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 0,
+    "n_images": 1,
+    "n_drawings": 15,
+    "n_words": 0,
+    "kinds": [],
+    "text_preview": ""
+  },
+  {
+    "page": 13,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 0,
+    "n_images": 1,
+    "n_drawings": 14,
+    "n_words": 0,
+    "kinds": [],
+    "text_preview": ""
+  },
+  {
+    "page": 14,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 0,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 0,
+    "kinds": [],
+    "text_preview": ""
+  },
+  {
+    "page": 15,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 0,
+    "n_images": 2,
+    "n_drawings": 15,
+    "n_words": 0,
+    "kinds": [],
+    "text_preview": ""
+  },
+  {
+    "page": 16,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 0,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 0,
+    "kinds": [],
+    "text_preview": ""
+  },
+  {
+    "page": 17,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 423,
+    "n_images": 1,
+    "n_drawings": 22,
+    "n_words": 48,
+    "kinds": [],
+    "text_preview": "INTERIORS TAILORED TO A REGAL WAY OF LIFE Recon Veneer Joinery Calacatta marble or Porcelain Feature Material Textured Paint General Walls Clear Glass Bronze Metal Ironmongery Travertine Stone Feature Material White Paint Walls & Ceiling Light Beige Marble or Porcelain General Flooring Stainless Steel Ironmongery $\u0133\u018a\u0101\u0149\u00e5\u0133\u0151\u010e\u0182\u0359 \u0384N\u0153\u0196\u010e\u0182\u0133\u015c\u0182\u0384\u0151\u00e5\u0196\u010e\u0182\u0133\u00e5\u0149\u018a\u0384\u018a\u012e\u015c\u01b6\u0153\u0384\u00e5\u0182\u010e\u0384\u0126\u015c\u0182\u0384\u0133\u0149\u0149\u019e\u018a\u0196\u0182\u00e5\u0196\u0133\u015c\u0153\u0384\u015c\u0153\u0149\u01bc\u0384\u00e5\u0153\u0108\u0384\u0151\u00e5\u01bc\u0384\u0101\u012e\u00e5\u0153\u0127\u010e\u035f \u0384A\u0133\u0153\u00e5"
+  },
+  {
+    "page": 18,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 550,
+    "n_images": 2,
+    "n_drawings": 16,
+    "n_words": 72,
+    "kinds": [
+      "floorplan_candidate",
+      "room_labels",
+      "areas"
+    ],
+    "text_preview": "A PRIVATE SANCTUARY CRAFTED FOR THOSE WHO SEEK QUIET LUXURY \u2022 Grand foyers and formal reception \u01c6\u015c\u0153\u010e\u018a\u0384\u0196\u012e\u00e5\u0196\u0384\u0101\u0182\u010e\u00e5\u0196\u010e\u0384\u00e5\u0384 \u0149\u00e5\u018a\u0196\u0133\u0153\u0127\u0384\u01d9\u0182\u018a\u0196\u0384\u0133\u0151\u017f\u0182\u010e\u018a\u018a\u0133\u015c\u0153 \u2022 Spacious bedrooms, each with an en-suite bathroom and built-in wardrobes \u2022 Open-plan dining and living areas that encourage connection \u2022 Elevators in every \u01b5\u0133\u0149\u0149\u00e5\u0384\u0126\u015c\u0182\u0384\u010e\u01d6\u015c\u0182\u0196\u0149\u010e\u018a\u018a\u0384 movement across levels \u2022 Stylishly tiled guest bathrooms crafted \u01b6\u0133\u0196\u012e\u0384\u017f\u0182\u010e\u0151\u0133\u019e\u0151\u0384\u01d9\u0153"
+  },
+  {
+    "page": 19,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 394,
+    "n_images": 2,
+    "n_drawings": 16,
+    "n_words": 40,
+    "kinds": [
+      "room_labels"
+    ],
+    "text_preview": "WHERE LIMITLESS VIEWS DEFINE OUTDOOR LIVING At Ashwood Estates, each villa unfolds into a private expanse of curated nature: gated gardens for moments of \u018a\u0196\u0133\u0149\u0149\u0153\u010e\u018a\u018a\u035a \u0384 \u0099\u0384\u01c6\u015c\u0153\u010e\u018a\u0384\u0126\u015c\u0182\u0384\u0149\u010e\u0133\u018a\u019e\u0182\u010e\u0149\u01bc\u0384\u00e5\u0126\u0196\u010e\u0182\u0153\u015c\u015c\u0153\u018a\u0384\u00e5\u0153\u0108\u0384\u0100\u00e5\u0149\u0101\u015c\u0153\u0133\u010e\u018a\u0384 that welcome sunrises and twilight teas. \u0001\u0384\u018a\u012e\u0133\u0151\u0151\u010e\u0182\u0133\u0153\u0127\u0384\u017f\u015c\u015c\u0149\u0384\u00e5\u0153\u0101\u012e\u015c\u0182\u018a\u0384\u0196\u012e\u010e\u0384\u018a\u0101\u010e\u0153\u010e\u035a \u0384\u01da\u015c\u01b6\u0133\u0153\u0127\u0384\u0133\u0153\u0196\u015c\u0384\u0133\u0153\u01d9\u0153\u0133\u0196\u01bc\u0384 \u0127\u015c\u0149\u0126\u0384\u0101\u015c\u019e\u0182\u018a\u010e\u0384\u01b5\u0133\u010e\u01b6\u018a\u0384\u0196\u012e\u00e5\u0196\u0384\u0182\u010e\u0108\u010e\u01d9\u0153\u010e\u0384\u01b6\u012e\u00e5\u0196\u0384\u0133\u0196\u0384\u0151\u010e\u00e5\u0153\u018a\u0384\u0196\u015c\u0384\u0149\u0133\u01b5\u010e\u0384 connected to the land."
+  },
+  {
+    "page": 20,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 242,
+    "n_images": 1,
+    "n_drawings": 75,
+    "n_words": 36,
+    "kinds": [],
+    "text_preview": "BEYOND THE VILLA GATES, A LIFE OF QUIET LUXURY AWAITS Country Club Equestrian Centre Jogging Track Tennis Stadium 18 Hole Golf Course Central Park Cycling Track Mandarin Oriental Hotel International School Hospital Metro Station Etihad Rail"
+  },
+  {
+    "page": 21,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 187,
+    "n_images": 1,
+    "n_drawings": 36,
+    "n_words": 23,
+    "kinds": [],
+    "text_preview": "EXCLUSIVE SERVICES CRAFTED FOR ASHWOOD ESTATES Country Club Membership Concierge Services EV Charging Provision Guest Valet Parking Dedicated Waste Management Home Watch Security"
+  },
+  {
+    "page": 22,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 0,
+    "n_images": 2,
+    "n_drawings": 16,
+    "n_words": 0,
+    "kinds": [],
+    "text_preview": ""
+  },
+  {
+    "page": 23,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 16,
+    "n_images": 1,
+    "n_drawings": 14,
+    "n_words": 2,
+    "kinds": [
+      "floorplan_candidate"
+    ],
+    "text_preview": "VILLA FLOORPLANS"
+  },
+  {
+    "page": 24,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 1575,
+    "n_images": 0,
+    "n_drawings": 19,
+    "n_words": 219,
+    "kinds": [
+      "room_labels",
+      "areas",
+      "context"
+    ],
+    "text_preview": "SIZE PER VILLA TYPE BUILDING CONFIGURATION 4 Bedroom Villa 185 Villas and a Clubhouse 5 Bedroom Villa 6 Bedroom Villa Plot Area Plot Area Plot Area Cooling VRF based ducted system Building Heights G+1+R (14m) Smart Home Features Fully integrated home automation Bedrooms 4 Bedrooms 5 Bedrooms 6 Bedrooms Metering Electrical meter, Water meter & LPG meter for each villa 8IGLRMGEP\u0003\bTIGM\u01fbGEXMSR Combina"
+  },
+  {
+    "page": 25,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 15,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 3,
+    "kinds": [
+      "room_labels"
+    ],
+    "text_preview": "4 BEDROOM VILLA"
+  },
+  {
+    "page": 26,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 15,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 3,
+    "kinds": [
+      "room_labels"
+    ],
+    "text_preview": "4 BEDROOM VILLA"
+  },
+  {
+    "page": 27,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 985,
+    "n_images": 22,
+    "n_drawings": 42,
+    "n_words": 165,
+    "kinds": [
+      "floorplan_candidate",
+      "room_labels",
+      "areas"
+    ],
+    "text_preview": "4 BEDROOM VILLA: ASHWOOD ESTATES Ground Floor First Floor Roof Floor Plot Area Total Saleable Area 263.01 Sq.m 260.19 Sq.m 43.92 Sq.m Min. 561.49 Sq.m Max. 826.53 Sq.m 263.01 Sq.m 2831.02 Sq.ft 2800.66 Sq.ft 472.75 Sq.ft 6,043.82 Sq.ft 8,896.37 Sq.ft 2831.02 Sq.ft ASHWOOD ESTATES: 4 BEDROOM VILLA Ground Floor First Floor Roof Floor Plot Area Total Saleable Area 263.01 Sq.m 260.19 Sq.m 43.92 Sq.m M"
+  },
+  {
+    "page": 28,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 973,
+    "n_images": 66,
+    "n_drawings": 57,
+    "n_words": 175,
+    "kinds": [
+      "floorplan_candidate",
+      "room_labels",
+      "areas"
+    ],
+    "text_preview": "ASHWOOD ESTATES: 4 BEDROOM VILLA GROUND FLOOR FIRST FLOOR ROOF FLOOR SWIMMING POOL 9.50m x 2.40m FAMILY LIVING 4.00m x 5.10m *$\u009atti 4.00m x 5.10m MASTER SUITE 4.00m x 5.10m M. DRESSING 4.00m x 3.50m CORRIDOR 3.30m x 10.10m i\u035f \u0384 \u0001\u00afI 4.00m x 2.70m \u0001a tk\u00d4 \u0001a tk\u00d4 \u0001\u00afI 2.30m x 2.50m DRESS 1.70m x 2.00m *$\u009atti 3.90m x 4.30m J. DRESS 2.00m x 2.80m ]\u035f \u0384 \u0001\u00afI 2.50m x 2.60m J. SUITE 4.60m x 4.00m \u0001\u00afI 3.00m x "
+  },
+  {
+    "page": 29,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 15,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 3,
+    "kinds": [
+      "room_labels"
+    ],
+    "text_preview": "5 BEDROOM VILLA"
+  },
+  {
+    "page": 30,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 15,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 3,
+    "kinds": [
+      "room_labels"
+    ],
+    "text_preview": "5 BEDROOM VILLA"
+  },
+  {
+    "page": 31,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 722,
+    "n_images": 22,
+    "n_drawings": 39,
+    "n_words": 128,
+    "kinds": [
+      "floorplan_candidate",
+      "room_labels",
+      "areas"
+    ],
+    "text_preview": "ASHWOOD ESTATES: 5 BEDROOM VILLA Ground Floor First Floor Roof Floor Plot Area Total Saleable Area 326.01 Sq.m 328.24 Sq.m 57.02 Sq.m Min. 831.06 Sq.m Max. 1,140 Sq.m 711.27 Sq.m 3509.14 Sq.ft 3533.15 Sq.ft 613.76 Sq.ft 8,945.45 Sq.ft 12,270.86 Sq.ft 7656.05 Sq.ft GROUND FLOOR SWIMMING POOL 9.00m x 2.50m FAMILY LIVING/DINING 9.00m x 5.40m SHOW KITCHEN 5.30m x 2.70m PANTRY 1.70m x 2.60m P. ROOM 3.3"
+  },
+  {
+    "page": 32,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 785,
+    "n_images": 44,
+    "n_drawings": 50,
+    "n_words": 146,
+    "kinds": [
+      "floorplan_candidate",
+      "room_labels",
+      "areas"
+    ],
+    "text_preview": "FIRST FLOOR ROOF FLOOR SWIMMING POOL 9.50m x 2.40m FAMILY LIVING 4.70m x 5.40m MASTER SUITE 5.30m x 5.40m at \u00d4 3.20m x 1.80m M. DRESSING 4.10m x 5.70m i\u035f \u0384 \u0001\u00afI 4.10m x 3.20m *$\u009atti 4.70m x 4.10m TERRACE MEP 3.80m x 15.70m PANTRY 2.00m x 2.40m P. ROOM 1.50m x 2.40m LIFT 1.60m x 1.80m \u0001\u00afI 2.90m x 1.80m DRESS 1.80m x 1.80m ]\u035f \u0384 \u0001\u00afI 3.90m x 2.00m LIFT 1.60m x 1.80m J. DRESSING 5.65m x 2.40m J. SUITE 5"
+  },
+  {
+    "page": 33,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 15,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 3,
+    "kinds": [
+      "room_labels"
+    ],
+    "text_preview": "6 BEDROOM VILLA"
+  },
+  {
+    "page": 34,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 15,
+    "n_images": 1,
+    "n_drawings": 13,
+    "n_words": 3,
+    "kinds": [
+      "room_labels"
+    ],
+    "text_preview": "6 BEDROOM VILLA"
+  },
+  {
+    "page": 35,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 836,
+    "n_images": 21,
+    "n_drawings": 44,
+    "n_words": 150,
+    "kinds": [
+      "floorplan_candidate",
+      "room_labels",
+      "areas"
+    ],
+    "text_preview": "ASHWOOD ESTATES: 6 BEDROOM VILLA GROUND FLOOR Ground Floor First Floor Roof Floor Plot Area Total Saleable Area 404.49 Sq.m 392.33 Sq.m 55.88 Sq.m Min. 999.87 Sq.m Max. 1,560.96 Sq.m 852.70 Sq.m 4353.89 Sq.ft 4223.00 Sq.ft 601.49 Sq.ft 10,762.51 Sq.ft 16,802.03 Sq.ft 9178.39 Sq.ft SWIMMING POOL 9.50m x 2.40m FAMILY LIVING/DINING 14.80m x 5.70m SHOW KITCHEN 5.80m x 2.70m POWDER R. 3.75m x 2.00m PAN"
+  },
+  {
+    "page": 36,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 841,
+    "n_images": 43,
+    "n_drawings": 53,
+    "n_words": 157,
+    "kinds": [
+      "floorplan_candidate",
+      "room_labels",
+      "areas"
+    ],
+    "text_preview": "FIRST FLOOR ROOF FLOOR SWIMMING POOL 9.50m x 2.40m MASTER SUITE 5.70m x 5.70m \u0001a tk\u00d4 FAMILY LIVING 4.80m x 5.70m at \u00d4 3.80m x 1.90m M. DRESSING 4.00m x 6.00m i\u035f \u0384 \u0001\u00afI 4.00m x 3.50m \u0001\u00afI 2.80m x 2.40m DRESSING 2.80m x 2.40m LIFT 1.90m x 1.80m ]\u035f \u0384 \u0001\u00afI 2.40m x 2.40m J. DRESS 2.70m x 2.30m J. SUITE 5.30m x 4.70m CORRIDOR 1.80m x 16.00m DRESS 1.70m x 2.90m *$\u009atti 3.85m x 4.00m *$\u009atti 3.80m x 4.00m DRES"
+  },
+  {
+    "page": 37,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 807,
+    "n_images": 0,
+    "n_drawings": 66,
+    "n_words": 101,
+    "kinds": [],
+    "text_preview": "WASL IN NUMBERS \u00ce\u00e5\u018a\u0149\u0384\u0133\u018a\u0384\u015c\u0153\u010e\u0384\u015c\u0126\u0384$\u019e\u0100\u00e5\u0133\u037d\u018a\u0384\u0149\u00e5\u0182\u0127\u010e\u018a\u0196\u0384\u00e5\u0153\u0108\u0384\u0151\u015c\u018a\u0196\u0384\u0182\u010e\u018a\u017f\u010e\u0101\u0196\u010e\u0108\u0384\u0182\u010e\u00e5\u0149\u0384\u010e\u018a\u0196\u00e5\u0196\u010e\u0384\u00e5\u018a\u018a\u010e\u0196\u0384\u0151\u00e5\u0153\u00e5\u0127\u010e\u0151\u010e\u0153\u0196\u0384 groups, entrusted with a mandate from the Government of Dubai to transform and \u010e\u0153\u0182\u0133\u0101\u012e\u0384\u0196\u012e\u010e\u0384\u0101\u0133\u0196\u01bc\u037d\u018a\u0384\u0149\u00e5\u0153\u0108\u018a\u0101\u00e5\u017f\u010e\u035f With an extensive portfolio of residential communities, commercial properties, industrial land and world-class leisure destinations, Wasl has become a name synonymous with quality, credibility and"
+  },
+  {
+    "page": 38,
+    "width_pt": 1920.0,
+    "height_pt": 1080.0,
+    "coord_origin": "PDF bottom-left (PyMuPDF uses top-left in get_pixmap; text bbox y from top in dict? note: MediaBox origin bottom-left; pymupdf Rect y0 top)",
+    "text_len": 0,
+    "n_images": 0,
+    "n_drawings": 277,
+    "n_words": 0,
+    "kinds": [],
+    "text_preview": ""
+  }
+]
