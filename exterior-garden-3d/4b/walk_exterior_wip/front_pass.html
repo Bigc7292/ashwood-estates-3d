@@ -18,6 +18,11 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_pass1_carport.js"></script>
 <script src="./overrides/front_pass2_tower.js"></script>
 <script src="./overrides/front_pass3_palms.js"></script>
+<script src="./overrides/front_pass5_slats.js"></script>
+<script src="./overrides/front_pass6_hedges.js"></script>
+<script src="./overrides/front_pass7_ground.js"></script>
+<script src="./overrides/front_step4_finish.js"></script>
+<script src="./overrides/front_pass8_glazing.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -25,21 +30,23 @@ import { OrbitControls } from '../model/vendor/three/examples/jsm/controls/Orbit
 const M = window.MODEL, Q = new URLSearchParams(location.search);
 if (window.MODEL_OVERRIDES) { const O = window.MODEL_OVERRIDES; M.boxes = M.boxes.filter(b => !(O.remove||[]).includes(b.id)).concat(O.add||[]); }
 if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.remove_plain_trees) M.trees = M.trees.filter(t => t.courtyard);
+if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.hide_cats) M.boxes = M.boxes.filter(b => !window.MODEL_OVERRIDES.hide_cats.includes(b.cat));
+const FIN = !!(window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.finish);   // step 4 finish (front view)
 const W = innerWidth, Hh = innerHeight;
 const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
 renderer.setPixelRatio(1); renderer.setSize(W,Hh);
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = FIN ? 1.0 : 1.05;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 document.body.prepend(renderer.domElement);
 const scene = new THREE.Scene();
 // sky gradient (brochure renders: clear blue sky, warm low sun) — style cue only
 { const c=document.createElement('canvas'); c.width=2; c.height=256; const g=c.getContext('2d');
-  const gr=g.createLinearGradient(0,0,0,256); gr.addColorStop(0,'#3f87bd'); gr.addColorStop(.7,'#9cc7de'); gr.addColorStop(1,'#dfe9ea');
+  const gr=g.createLinearGradient(0,0,0,256); if (FIN) { gr.addColorStop(0,'#4f92c2'); gr.addColorStop(.65,'#a8cfe0'); gr.addColorStop(1,'#eae2d0'); } else { gr.addColorStop(0,'#3f87bd'); gr.addColorStop(.7,'#9cc7de'); gr.addColorStop(1,'#dfe9ea'); }
   g.fillStyle=gr; g.fillRect(0,0,2,256); const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; scene.background=t; }
-scene.add(new THREE.HemisphereLight(0xe6f0ff, 0xb8a888, 1.25)); scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-const sun = new THREE.DirectionalLight(0xfff0d8, 2.4);
-sun.position.set(-18, 30, 22); sun.castShadow = true; sun.shadow.mapSize.set(2048,2048);
+scene.add(FIN ? new THREE.HemisphereLight(0xdde7f4, 0xc29f78, 1.0) : new THREE.HemisphereLight(0xe6f0ff, 0xb8a888, 1.25)); scene.add(new THREE.AmbientLight(0xffffff, FIN ? 0.25 : 0.35));
+const sun = new THREE.DirectionalLight(FIN ? 0xffcf98 : 0xfff0d8, FIN ? 2.9 : 2.4);
+if (FIN) sun.position.set(-26, 15, 42); else sun.position.set(-18, 30, 22); sun.castShadow = true; sun.shadow.mapSize.set(2048,2048);
 Object.assign(sun.shadow.camera,{left:-30,right:30,top:30,bottom:-30,near:1,far:120}); sun.shadow.bias=-0.0004;
 const cx = M.meta.site_m[0]/2, cz = M.meta.site_m[1]/2;
 sun.target.position.set(cx,0,cz); scene.add(sun, sun.target);
@@ -48,7 +55,7 @@ const _V0 = Q.get('view') ? JSON.parse(Q.get('view')) : {}; if (_V0.sun) sun.pos
 function tex(draw, rep){ const c=document.createElement('canvas'); c.width=c.height=256; draw(c.getContext('2d'));
   const t=new THREE.CanvasTexture(c); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.colorSpace=THREE.SRGBColorSpace; t.userData.rep=rep; return t; }
 function noise(g,base,var_,n){ g.fillStyle=base; g.fillRect(0,0,256,256); for(let i=0;i<n;i++){ const v=(Math.random()-.5)*var_; g.fillStyle=`rgba(${v>0?255:60},${v>0?245:50},${v>0?225:35},${Math.abs(v)})`; g.fillRect(Math.random()*256,Math.random()*256,1+Math.random()*3,1+Math.random()*2);} }
-const tStone = tex(g=>{ noise(g,'#d8c7a8',.18,9000); g.strokeStyle='rgba(120,100,70,.35)'; g.lineWidth=1.2;
+const tStone = tex(g=>{ noise(g, FIN ? '#d2bd9c' : '#d8c7a8',.18,9000); g.strokeStyle='rgba(120,100,70,.35)'; g.lineWidth=1.2;
   for(let y=0;y<256;y+=32){ g.beginPath(); g.moveTo(0,y); g.lineTo(256,y); g.stroke(); for(let x=((y/32)%2)*64;x<256;x+=128){ g.beginPath(); g.moveTo(x,y); g.lineTo(x,y+32); g.stroke(); } }
   g.strokeStyle='rgba(150,125,90,.25)'; for(let i=0;i<40;i++){ g.beginPath(); const y=Math.random()*256; g.moveTo(0,y); g.lineTo(256,y+Math.random()*4-2); g.stroke(); } }, 2.4);
 const tPave = tex(g=>{ noise(g,'#e2d6c0',.14,7000); g.strokeStyle='rgba(130,115,90,.45)'; g.lineWidth=1.5;
@@ -60,12 +67,23 @@ function M_(o){ return new THREE.MeshStandardMaterial(o); }
 const MAT = {
   stone: M_({map:tStone, roughness:.85}), paving: M_({map:tPave, roughness:.9}), paving_inner: M_({color:0xe8dfcf, roughness:.6}),
   coping: M_({color:0xe7dcc6, roughness:.8}), lawn: M_({map:tLawn, roughness:1}), soffit: M_({color:0xeee6d6, roughness:.75}),
-  glass: M_({color:0x6f8f9c, roughness:.05, metalness:.3, transparent:true, opacity:.42}),
+  glass: FIN ? M_({color:0x8a7a66, roughness:.05, metalness:.3, transparent:true, opacity:.55, emissive:0x7a5326, emissiveIntensity:.55}) : M_({color:0x6f8f9c, roughness:.05, metalness:.3, transparent:true, opacity:.42}),
   glass_balustrade: M_({color:0xa9c6cf, roughness:.05, metalness:.1, transparent:true, opacity:.28}),
   bronze_slats: M_({map:tSlat, roughness:.6, metalness:.2}), bronze_bars: M_({map:tBars, transparent:true, alphaTest:.5, side:THREE.DoubleSide, roughness:.5, metalness:.4, color:0x5a4a38}),
   placeholder: M_({color:0xa7a9ab, roughness:.9}), planter: M_({color:0xbfae8f})
 };
 const ph = M_({color:0xa7a9ab, roughness:.9});
+MAT.bronze_dark = M_({color:0x3a2c20, roughness:.55, metalness:.35});   // slat screen (front pass 5)
+MAT.led = M_({color:0xfff2d6, emissive:0xffdcaa, emissiveIntensity:2.4});   // soffit LED lines (front step 4)
+// step 6 glazing (front pass 8): dark clear glass so the lit rooms behind read through it
+if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
+  MAT.glass = M_({color:0x23201c, roughness:.04, metalness:.6, transparent:true, opacity:.32});
+  MAT.interior_wood = M_({color:0x6e4a2c, roughness:.6, emissive:0x8a5226, emissiveIntensity:.55});
+  MAT.interior_stone = M_({color:0xb79d7c, roughness:.8, emissive:0x7a5530, emissiveIntensity:.45});
+  MAT.interior_ceiling = M_({color:0xffe6c0, emissive:0xffc98a, emissiveIntensity:1.1});
+  MAT.interior_floor = M_({color:0x4a3a2c, roughness:.4, emissive:0x3a2614, emissiveIntensity:.3});
+}
+MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
 const hideCats = new Set((Q.get('hide')||'').split(',').filter(Boolean));
@@ -179,6 +197,20 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
       pg.add(f); }
     const crownBall = new THREE.Mesh(new THREE.SphereGeometry(.35,10,8), trunkPM); crownBall.position.copy(top); pg.add(crownBall);
   } }
+// shrub rows (front pass 5): clumped spheres along a line, slight random size/colour so they read as planting
+{ const R = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.shrubRows) || [];
+  let seed = 7; const rnd = ()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+  for (const row of R) {
+    const len = Math.hypot(row.x1-row.x0, row.z1-row.z0), n = Math.max(2, Math.round(len/(row.r*0.9)));
+    const base = new THREE.Color(row.color);
+    for (let i=0;i<n;i++){ const t = n===1?0.5:i/(n-1);
+      for (let k=0;k<2;k++){ const rr = row.r*(0.75+0.5*rnd()), c = base.clone().offsetHSL(0,0,(rnd()-.5)*0.08);
+        const m = new THREE.Mesh(new THREE.IcosahedronGeometry(rr,1), new THREE.MeshStandardMaterial({color:c, roughness:1, flatShading:true}));
+        const cy = Math.max(rr*0.8, row.h - rr*(0.9+0.4*rnd()));
+        m.position.set(row.x0+(row.x1-row.x0)*t+(rnd()-.5)*row.r*0.6, cy, row.z0+(row.z1-row.z0)*t+(rnd()-.5)*row.r*0.6);
+        m.scale.y = Math.min(1.25, row.h/(2*rr)+0.4); m.castShadow=true; m.receiveShadow=true; group.add(m);
+        if (row.flowers && rnd()<0.7){ const f=new THREE.Mesh(new THREE.IcosahedronGeometry(rr*0.35,0), new THREE.MeshStandardMaterial({color:row.flowers, roughness:.9}));
+          f.position.set(m.position.x+(rnd()-.5)*rr, cy+rr*0.7, m.position.z+(rnd()-.5)*rr); group.add(f); } } } } }
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
 { const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});

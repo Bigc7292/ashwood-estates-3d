@@ -20,6 +20,7 @@ Six lanes of AI workers run in parallel on separate tasks. Everything follows `A
 4. Never touch `ACTIVE_PIPELINE.json`, `active/approved-cad-v4/`, or `superseded_2026-11-09/`.
 5. Branch: `claude/rules-and-status`. Every change set is logged in `CHANGELOG.md` and pushed by the integrator in the same turn.
 6. If two lanes need the same file, the queue says which lane goes first. The other lane waits.
+7. Each lane may work on its own `lane/<name>` branch; the integrator merges into `claude/rules-and-status`. `scripts/verify_active_pipeline.py` rewrites `active/pipeline_verification.json`: only the integrator runs it, in its own worktree.
 
 ## Flow
 Queue item → builder lane (2 or 3, or 4 for the viewer) → critic lane (5) reviews against the references → integrator (6) logs, commits and pushes → Colin's review.
