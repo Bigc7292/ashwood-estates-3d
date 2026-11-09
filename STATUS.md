@@ -1,6 +1,6 @@
 # Current status (handoff)
 
-Checked 2026-11-09 21:30 Asia/Dubai. Read with `AGENTS.md`. Update this file at the end of every session.
+Checked 2026-11-10 02:10 Asia/Dubai. Read with `AGENTS.md`. Update this file at the end of every session.
 
 ## Where the work is
 - GitHub: `Bigc7292/ashwood-estates-3d` (private). Last work snapshot: `main` @ `6f55b79` (2026-11-09 16:39 Dubai, "WIP: final agent reports").
@@ -25,15 +25,20 @@ Checked 2026-11-09 21:30 Asia/Dubai. Read with `AGENTS.md`. Update this file at 
 | Explorable 4-bed web model | Only the ground floor exists; FF and RF not started | |
 
 ## 7-step loop tracker (Colin, 2026-11-09 23:07: start at 1, run to 7, loop until done)
-Updated 2026-11-09 23:15 Dubai by the integrator. These are the integrator's reading of each lane, and the lanes have been asked to confirm.
+Refreshed 2026-11-10 02:10 Dubai by the integrator, from the lane step logs after the catch-up merge.
 | Lane / item | Current step | Loop | Latest output | Gate |
 |---|---|---|---|---|
-| Exterior 4B, Blender (official renders) | 6 Critique (step 5: none in source) | 1 | `blender_wip/build_scene_f1.py`, not rendered | Needs a render on Colin's PC |
-| Exterior 4B, walkable web, front view (exterior lane; single builder; fixer's v6 retired) | 6 Critique, pass 8 glazing (steps 1–4 critic-passed; 5 none in source) | 1 | `walk_exterior_wip/front_pass.html`, gate log `views/front/STEP_LOG.md` | Pass 8 waiting on critic |
-| Fixer: F2 entry streak (GF) / F1 glazing (ext) | 3 and 6 / 4 | 1 | in progress / not started | — |
-| Interior GF viewer v2 (lane/gf-interior, thread "Finish ground floor interior steps 5–7") | 4 Finish done; 5 Printed matter next | 1 | `FP-4B-GF/index.html`, `courtyard_feature_r2.js` not integrated | REVIEW-PENDING |
-| Interior FF | 2 Layout (lane-confirmed; doorways closed by hand, ASSUMED); step 1 logged in `FP-4B-FF/STEPS.md` | 1 | `FP-4B-FF/standalone_r4.html` | CRITIC-FAIL on the last check; r4 not re-checked |
-| Interior RF (lane/roof-floor, thread "Build villa roof floor in 3D") | 2 Layout (step 1 passed; scale GF 35.53 mm/px per Colin) | 1 | `FP-4B-RF/STEPS.md`, draft PR #3 | — |
+| Exterior front view (lane/exterior) | 6 Critique, pass 17 (steps 1–4 critic-passed; 5 none in source) | 2 | `walk_exterior_wip/front_pass.html`, `views/front/STEP_LOG.md` | Pass 17 waiting on critic; passes 8–16 CRITIC-FAIL notes answered |
+| Exterior rear + garden (lane/exterior) | 6 Critique, pass 3 (Water2 pool reflections) | 1 | `walk_exterior_wip/rear_pass.html`, `views/rear`, `views/garden` | REVIEW-PENDING. The integrator's headless check crashed in software GL, so not yet verified |
+| Exterior step 7 motion | 7, provisional 10 s video | 1 | `4b/step7_motion/EXT-4b_STEP7_garden-pool_motion_PROVISIONAL.mp4` | Provisional, critic reviewed with the rear passes |
+| Exterior Blender (F1) | Box render of the F1 script done | 1 | `blender_wip/f1_box_render/`, `build_scene_f2_pool.py` | REVIEW-PENDING |
+| Pool (M29/M30, Colin: image overrides CAD, garden enlarged) | 6 | 1 | `4b/pool_pass/` (Water2 proven by frame diffs) | REVIEW-PENDING |
+| GF interior (lane/gf-interior) | 6 Critique (5 none in source); r3 with F2 + Q7 courtyard | 1 | `FP-4B-GF/index_r3.html` | r3 step 6 CRITIC-FAIL, back to fixes |
+| FF interior (lane/first-floor) | 2 Layout, r7 (doors D8/D10–D12, 3 showers) | 1 | `FP-4B-FF/r5_step2`–`r7`; enhanced plan `production-line/enhanced-plans/4b-ff/` | r6 CRITIC-FAIL 8/10; r7 waiting on critic |
+| RF (lane/roof-floor) | 2 Layout partly passed (bbox at 35.53 mm/px); 3 blocked on the RF raster trace | 1 | `FP-4B-RF/STEPS.md` | Blocked: raster trace |
+| Interior refs (lane/interior-refs) | Q11 reference sets GF/FF/RF | 1 | `production-line/interior-refs/` | GF r2 9 pass / 6 fail; FF/RF 14 pass / 4 fail |
+| Viewer hub (lane/4-viewer) | Checks + hub pages | 1 | `production-line/viewer/` | REVIEW-PENDING |
+| Public WIP preview (lane/preview) | Deployed by that lane (says Colin authorised, pt65u) | — | https://ashwood-preview.vercel.app | — |
 
 ## Open issues
 - **M24 OPEN:** rear GF stone pier / FF stone panel may be mirrored vs brochure p26 (check the M16 reading first).
