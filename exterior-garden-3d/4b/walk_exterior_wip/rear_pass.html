@@ -84,7 +84,8 @@ if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
   MAT.door_timber = M_({color:0x5a3a22, roughness:.55, emissive:0x2a160a, emissiveIntensity:.25});   // front pass 10 timber entry door
   MAT.interior_lobby = M_({color:0xd9b98c, roughness:.7, emissive:0xe0a868, emissiveIntensity:.9});   // front pass 9 lit GF lobby
 }
-MAT.terrace_stone = M_({map:tex(g=>{ noise(g,'#ece3d2',.08,5000); g.strokeStyle='rgba(150,135,110,.35)'; g.lineWidth=1; for(let i=0;i<=256;i+=128){ g.beginPath(); g.moveTo(i,0); g.lineTo(i,256); g.stroke(); } for(let i=0;i<=256;i+=64){ g.beginPath(); g.moveTo(0,i); g.lineTo(256,i); g.stroke(); } }, 2.4), roughness:.75});   // pool pass: large pale travertine-look slabs (procedural)
+MAT.terrace_stone = M_({map:tex(g=>{ noise(g,'#eadcc2',.07,5000); g.strokeStyle='rgba(170,150,120,.22)'; g.lineWidth=1; for(let y=0;y<256;y+=32){ g.beginPath(); g.moveTo(0,y); g.lineTo(256,y); g.stroke(); for(let x=((y/32)%2)*96;x<256;x+=192){ g.beginPath(); g.moveTo(x,y); g.lineTo(x,y+32); g.stroke(); } } }, 2.4), roughness:.75});   // warm cream large-format planks, joints parallel to the facade, low-contrast grout (critic T4)
+MAT.pool_face = M_({map:tStone, roughness:.85, color:0xf0e2c8});   // warm travertine basin face (critic T2/B2)
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
@@ -166,7 +167,10 @@ for (const w of M.water) {
   // the water surface
   const s = new THREE.Shape([[w.x0,w.z0],[w.x1,w.z0],[w.x1,w.z1],[w.x0,w.z1]].map(([x,z])=>new THREE.Vector2(x,-z)));
   for (const h of w.holes) s.holes.push(new THREE.Path([[h[0],h[1]],[h[2],h[1]],[h[2],h[3]],[h[0],h[3]]].map(([x,z])=>new THREE.Vector2(x,-z)).reverse()));
-  const g = new THREE.ShapeGeometry(s); g.rotateX(-Math.PI/2);
+  // Water2 fix (critic T1, 2026-11-10): Water2's Reflector/Refractor take their plane from the MESH transform and assume the geometry lies in XY
+  // with normal +Z. The geometry was rotated in place (normal +Y, mesh rotation 0), so both targets mirrored/clipped across a vertical plane and
+  // contributed nothing. Now: flat XY geometry + mesh.rotation.x = -PI/2 (same footprint).
+  const g = new THREE.ShapeGeometry(s);
   let mesh;
   if (useWater2) mesh = new Water(g, {
       color: B.wall==='tile' ? ((P2 && W2O.color) || 0xd8f6f8) : 0xc7d8cc,       // Water2 tints the refracted basin; pale so the tile reads turquoise through it
@@ -174,11 +178,11 @@ for (const w of M.water) {
       textureWidth: W2TEX, textureHeight: W2TEX,
       normalMap0: tl.load('../model/vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), normalMap1: tl.load('../model/vendor/three/examples/textures/water/Water_2_M_Normal.jpg')});
   else mesh = new THREE.Mesh(g, M_({color:0x6fc3cf, roughness:.1, metalness:.2}));
-  mesh.position.y = yW; group.add(mesh);
+  mesh.rotation.x = -Math.PI/2; mesh.position.y = yW; group.add(mesh); window.__WATERMESH = window.__WATERMESH || []; window.__WATERMESH.push(mesh);
   if (P2 && B.wall==='tile') {   // sun glints: additive specular-only layer (black base) with scrolling Water normals, reads as sparkle from the pool camera
     const nm = tl.load('../model/vendor/three/examples/textures/water/Water_1_M_Normal.jpg'); nm.wrapS = nm.wrapT = THREE.RepeatWrapping; nm.repeat.set(W_/1.6, D_/1.6);
     const gm = new THREE.MeshStandardMaterial({color:0x000000, roughness:.13, metalness:0, normalMap:nm, normalScale:new THREE.Vector2(.9,.9), transparent:true, blending:THREE.AdditiveBlending, depthWrite:false});
-    const gl = new THREE.Mesh(g.clone(), gm); gl.position.y = yW + 0.004; group.add(gl); (window.__GLINTS = window.__GLINTS || []).push(nm); }
+    const gl = new THREE.Mesh(g.clone(), gm); gl.rotation.x = -Math.PI/2; gl.position.y = yW + 0.004; group.add(gl); (window.__GLINTS = window.__GLINTS || []).push(nm); }
   if (useWater2) { (window.__WATERS = window.__WATERS || []).push(mesh); const ob = mesh.onBeforeRender, fs = (B.wall==='tile' && W2O.flowSpeed) || .02;
     // step 7: deterministic Water2 flow for frame capture (Water2 otherwise advances on wall-clock delta)
     mesh.onBeforeRender = function(...a){ ob.apply(this, a); if (window.__T !== undefined) { const c = this.material.uniforms['config'].value, cyc = 0.15; c.x = (fs*window.__T) % cyc; c.y = (c.x + cyc/2) % cyc; } }; }
@@ -260,7 +264,7 @@ window.__LEAFSETS = [];
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
 { const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
   for (const [x0,z0,x1,z1] of [[cx-R,cz-R,cx+R,0],[cx-R,SD,cx+R,cz+R],[cx-R,0,0,SD],[SW,0,cx+R,SD]].flatMap(r=>basinRects.reduce((acc,h)=>acc.flatMap(q=>subtractRect(q,h)),[r]))) {   // pool pass: ring cut where a basin crosses the plot edge
-    const out = new THREE.Mesh(new THREE.PlaneGeometry(x1-x0, z1-z0), outM); out.rotation.x=-Math.PI/2; out.position.set((x0+x1)/2,-0.06,(z0+z1)/2); out.receiveShadow=true; scene.add(out); } }
+    const out = new THREE.Mesh(new THREE.PlaneGeometry(x1-x0, z1-z0), outM); out.rotation.x=-Math.PI/2; out.position.set((x0+x1)/2, (P2 && z1<=0) ? -0.52 : -0.06,(z0+z1)/2); out.receiveShadow=true; scene.add(out); } }   // P2: rear ring 0.45 m below the pool terrace (critic T2, p26)
 // cameras ------------------------------------------------------------------------------------
 const VIEWS = JSON.parse(Q.get('view') ? Q.get('view') : '{"name":"aerial","pos":[-14,30,48],"tgt":[9.4,3,15],"fov":40}');
 document.getElementById('vname').textContent = VIEWS.title || VIEWS.name;
@@ -302,12 +306,13 @@ function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if
     const d=document.createElement('div'); d.textContent=l.t; d.style.left=((v.x+1)/2*W)+'px'; d.style.top=((1-v.y)/2*Hh)+'px'; L.appendChild(d);} }
 let n=0;
 function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const n of (window.__GLINTS||[])) n.offset.set(t*.021, t*.013); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
-  renderer.render(scene,cam); labels(); if(++n>=12 && Q.get('view')){ document.title='READY'; return; } requestAnimationFrame(loop); }
+  if (!window.__capture) { renderer.render(scene,cam); labels(); }   // view mode keeps animating (Water2, caustics); frame capture sets __capture and drives __frame
+  if(++n===12 && Q.get('view')) document.title='READY'; requestAnimationFrame(loop); }
 loop();
 // step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.
 // Driven by a headless frame grabber; does nothing in walk mode. Motion amounts are display assumptions.
 const _sun0 = sun.position.clone(), _sunI0 = sun.intensity, _sunC0 = sun.color.clone();
-window.__frame = (t, T) => {
+window.__frame = (t, T) => { window.__capture = true;
   const gust = 0.6 + 0.4*Math.sin(t*0.45);
   for (const f of window.__FRONDS) { f.quaternion.copy(f.userData.q0); const ph=f.userData.ph;
     f.rotateX(gust*0.07*Math.sin(t*1.7+ph)); f.rotateZ(gust*0.035*Math.sin(t*1.1+ph*1.3)); }

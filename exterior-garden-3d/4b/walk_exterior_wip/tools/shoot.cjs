@@ -14,7 +14,7 @@ srv.listen(0, async () => {
   const b = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
   const pg = await b.newPage({ viewport: { width: +w, height: +h } });
   const errs = []; pg.on('pageerror', e => { errs.push(String(e)); console.log('PAGEERR', String(e)); }); pg.on('requestfailed', q => console.log('REQFAIL', q.url())); pg.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
-  await pg.goto(`http://127.0.0.1:${port}/walk_exterior_wip/${page_}?view=${encodeURIComponent(view)}`);
+  await pg.goto(`http://127.0.0.1:${port}/walk_exterior_wip/${page_}?view=${encodeURIComponent(view)}`, { waitUntil: 'commit', timeout: 0 });
   await pg.waitForFunction(() => document.title === 'READY', null, { timeout: +(process.env.TO||300000) });
   await pg.waitForTimeout(1500);
   const N = +frames;

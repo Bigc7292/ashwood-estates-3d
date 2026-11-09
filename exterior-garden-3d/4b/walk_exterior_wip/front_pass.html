@@ -289,12 +289,13 @@ function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if
     const d=document.createElement('div'); d.textContent=l.t; d.style.left=((v.x+1)/2*W)+'px'; d.style.top=((1-v.y)/2*Hh)+'px'; L.appendChild(d);} }
 let n=0;
 function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
-  renderer.render(scene,cam); labels(); if(++n>=12 && Q.get('view')){ document.title='READY'; return; } requestAnimationFrame(loop); }
+  if (!window.__capture) { renderer.render(scene,cam); labels(); }   // view mode keeps animating (Water2, caustics); frame capture sets __capture and drives __frame
+  if(++n===12 && Q.get('view')) document.title='READY'; requestAnimationFrame(loop); }
 loop();
 // step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.
 // Driven by a headless frame grabber; does nothing in walk mode. Motion amounts are display assumptions.
 const _sun0 = sun.position.clone(), _sunI0 = sun.intensity;
-window.__frame = (t, T) => {
+window.__frame = (t, T) => { window.__capture = true;
   const gust = 0.6 + 0.4*Math.sin(t*0.45);
   for (const f of window.__FRONDS) { f.quaternion.copy(f.userData.q0); const ph=f.userData.ph;
     f.rotateX(gust*0.07*Math.sin(t*1.7+ph)); f.rotateZ(gust*0.035*Math.sin(t*1.1+ph*1.3)); }

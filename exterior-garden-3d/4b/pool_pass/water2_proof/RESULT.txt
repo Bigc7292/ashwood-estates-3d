@@ -1,0 +1,3 @@
+t5_vs_t6 mean 4.07 max 55
+water_vs_hidden mean 24.89 max 121
+pool box RGB mean [107.0, 143.8, 145.2] std [45.7, 34.6, 34.3]
