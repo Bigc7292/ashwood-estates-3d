@@ -14,7 +14,7 @@ Owner key: L1 facts, L2 exterior, L3 interior, L4 viewer, L5 critic, L6 integrat
 | Q8 | L4 | Walkable exterior viewer from the lane-2 model, once it has a critic pass | Q6 | QUEUED |
 | Q9 | L6 | Log every lane's hand-off in CHANGELOG.md; push to claude/rules-and-status | every item | ONGOING |
 
-## Q4 critic verdicts (reported 18:08 by the critic lane; hand-off file NOT yet in the repo)
+## Q4 critic verdicts (hand-off in production-line/handoffs/Q4.md, commit 212c79f; verified by integrator 18:10)
 
 | Item | Verdict (as reported) | Queued fix |
 |---|---|---|
@@ -24,5 +24,5 @@ Owner key: L1 facts, L2 exterior, L3 interior, L4 viewer, L5 critic, L6 integrat
 | Courtyard round 1 (tree, bench) | not ready to integrate | F3 (L3): tree and bench fix before Q7 |
 | M24 back pier side | the critic says brochure p26 and the rear elevation both put the pier left of centre, which contradicts the mismatch note (right of centre). WIP rear render not yet checked | F4 (L1): re-check M24 against p26 and the elevation, then correct the mismatch log |
 
-Status: Q4 REVIEW-PENDING until its hand-off file is committed.
+Verification: the integrator opened the referenced images. The brochure p26 render and the rear elevation both put the GF stone panel at roughly 0.29–0.44 of the building width, left of centre, so the M24 note (right of centre) is wrong for the references. Walk speed line confirmed at index.html line 3191. Status: Q4 REVIEW-PENDING (verdicts verified against references; the WIP rear render check for M24 is still open under F4).
 
