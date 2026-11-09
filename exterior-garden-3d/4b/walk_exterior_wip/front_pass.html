@@ -22,6 +22,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_pass6_hedges.js"></script>
 <script src="./overrides/front_pass7_ground.js"></script>
 <script src="./overrides/front_step4_finish.js"></script>
+<script src="./overrides/front_pass8_glazing.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -74,6 +75,14 @@ const MAT = {
 const ph = M_({color:0xa7a9ab, roughness:.9});
 MAT.bronze_dark = M_({color:0x3a2c20, roughness:.55, metalness:.35});   // slat screen (front pass 5)
 MAT.led = M_({color:0xfff2d6, emissive:0xffdcaa, emissiveIntensity:2.4});   // soffit LED lines (front step 4)
+// step 6 glazing (front pass 8): dark clear glass so the lit rooms behind read through it
+if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
+  MAT.glass = M_({color:0x23201c, roughness:.04, metalness:.6, transparent:true, opacity:.32});
+  MAT.interior_wood = M_({color:0x6e4a2c, roughness:.6, emissive:0x8a5226, emissiveIntensity:.55});
+  MAT.interior_stone = M_({color:0xb79d7c, roughness:.8, emissive:0x7a5530, emissiveIntensity:.45});
+  MAT.interior_ceiling = M_({color:0xffe6c0, emissive:0xffc98a, emissiveIntensity:1.1});
+  MAT.interior_floor = M_({color:0x4a3a2c, roughness:.4, emissive:0x3a2614, emissiveIntensity:.3});
+}
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
