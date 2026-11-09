@@ -1,0 +1,16 @@
+{
+ "source": "active/approved-cad-v4/svg/FP-4B-RF_V4_portrait.svg, id source_wall_poche (11 paths)",
+ "method": "same as FP-4B-GF/adapter/v4_to_floorplan3d.py; validated on GF (14541 x 22997 mm vs plan json 14550 x 23006)",
+ "mm_per_crop_px": 35.53012869683798,
+ "scale_status": "ASSUMPTION: GF value (Colin 2026-11-09 18:40); no RF-specific calibration",
+ "wall_bbox_crop_px": [
+  65.5,
+  62.5,
+  445.75,
+  704.75
+ ],
+ "wall_bbox_mm": [
+  13510,
+  22819
+ ]
+}
