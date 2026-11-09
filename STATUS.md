@@ -31,9 +31,9 @@ Updated 2026-11-09 23:15 Dubai by the integrator. These are the integrator's rea
 | Exterior 4B, Blender (official renders) | 6 Critique (step 5: none in source) | 1 | `blender_wip/build_scene_f1.py`, not rendered | Needs a render on Colin's PC |
 | Exterior 4B, walkable web (exterior lane; fixer's v5/v6 retired in its favour) | 6 Critique, front camera passes | 1 | `walk_exterior_wip/front_pass.html` | REVIEW-PENDING |
 | Fixer: F2 entry streak (GF) / F1 glazing (ext) | 3 and 6 / 4 | 1 | in progress / not started | — |
-| Interior GF viewer v2 | 4 Finish done; 5 Printed matter next | 1 | `FP-4B-GF/index.html`, `courtyard_feature_r2.js` not integrated | REVIEW-PENDING |
+| Interior GF viewer v2 (lane/gf-interior, thread "Finish ground floor interior steps 5–7") | 4 Finish done; 5 Printed matter next | 1 | `FP-4B-GF/index.html`, `courtyard_feature_r2.js` not integrated | REVIEW-PENDING |
 | Interior FF | 2 Layout (lane-confirmed; doorways closed by hand, ASSUMED); step 1 logged in `FP-4B-FF/STEPS.md` | 1 | `FP-4B-FF/standalone_r4.html` | CRITIC-FAIL on the last check; r4 not re-checked |
-| Interior RF | 1 Reference not started | 0 | — | — |
+| Interior RF (lane/roof-floor, thread "Build villa roof floor in 3D") | running; step not yet reported | 1 | — | — |
 
 ## Open issues
 - **M24 OPEN:** rear GF stone pier / FF stone panel may be mirrored vs brochure p26 (check the M16 reading first).
