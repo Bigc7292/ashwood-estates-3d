@@ -126,3 +126,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: gate bars from near-black to the sampled dark bronze of ELEV-FRONT's bars (RGB 36,25,17; model 32,17,8), metalness 0. The critic's "warm timber" read was checked on a crop: the warmth is the lit lobby behind the bars.
 - Why: critic single fix after pass 6.
 - Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 8, gate top rail and finer bars
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (`mat_tune` gains `from`, `barPitch`, `barWidth`; loads pass 8), new `overrides/front_v2_pass8_gate_rail.js`, `views/front_v2/shots/front_v2_pass8_side_by_side.png`, `views/front_v2/shots/front_v2_pass8_gate_crop.png`, `views/front_v2/STEP_LOG.md`.
+- What: gate display height 1.8 m (assumption) -> 1.33 m read from ELEV-FRONT (derived), with a dark top rail; bar pitch about 2/3 of before to match ~19 bars across. CAD footprint unchanged; colour from pass 7.
+- Why: critic single fix after pass 7.
+- Status: REVIEW-PENDING (critic).
