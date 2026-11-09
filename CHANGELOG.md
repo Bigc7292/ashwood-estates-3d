@@ -96,3 +96,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: frond colours darkened and desaturated to the ELEV-FRONT crown sample (median RGB 74,80,61); shape, scale, trunks and camera unchanged.
 - Why: critic single fix on pass 4 (crowns bright lime).
 - Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): M45 carport left edge logged (no model change)
+- Files: `exterior-garden-3d/4b/mismatches/mismatch_log.md` (M45), `exterior-garden-3d/4b/walk_exterior_wip/views/front_v2/STEP_LOG.md`.
+- What: the critic asked whether the carport should run to the left frame edge as in ELEV-FRONT. The model's carport already starts at the CAD plot's left boundary (x 0.0); matching the image needs roof ~1.9 m past the plot (derived). Logged as a CAD-vs-image conflict; the carport was not extended. Pass 5 critic PASS logged.
+- Why: critic request; CAD decides footprint.
+- Status: REVIEW-PENDING (Colin's ruling on M45).
