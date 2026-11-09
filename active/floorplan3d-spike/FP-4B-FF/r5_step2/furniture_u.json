@@ -1,0 +1,11 @@
+[
+ {"id":"bed-master","room":"Master Suite","kind":"double bed (footprint)","rect_u":[164,237,237,302],"source":"SOURCE: V4 SVG rect x164 y237 73x65"},
+ {"id":"bed-bed2","room":"Bedroom 2","kind":"double bed (footprint)","rect_u":[164,664,237,729],"source":"SOURCE: V4 SVG rect x164 y664 73x65"},
+ {"id":"bed-junior","room":"Junior Suite","kind":"double bed (footprint)","rect_u":[414,679,496,740],"source":"SOURCE: V4 SVG rect x414 y679 82x61"},
+ {"id":"bed-bed1-a","room":"Bedroom 1","kind":"single bed (footprint)","rect_u":[447,226,505,250],"source":"SOURCE: V4 SVG rect x447 y226 58x24"},
+ {"id":"bed-bed1-b","room":"Bedroom 1","kind":"single bed (footprint)","rect_u":[447,278,505,302],"source":"SOURCE: V4 SVG rect x447 y278 58x24"},
+ {"id":"sofa-living-a","room":"Family Living","kind":"sofa, L-leg (footprint)","rect_u":[304,210,382,228],"source":"SOURCE: V4 SVG rect x304 y210 78x18"},
+ {"id":"sofa-living-b","room":"Family Living","kind":"sofa, L-leg (footprint)","rect_u":[364,228,382,306],"source":"SOURCE: V4 SVG rect x364 y210 18x96 (overlap with leg a removed)"},
+ {"id":"coffee-table-living","room":"Family Living","kind":"coffee table (footprint)","rect_u":[321,247,355,281],"source":"SOURCE: V4 SVG rect x321 y247 34x34"},
+ {"id":"round-table-living","room":"Family Living","kind":"round table (footprint)","circle_u":[326,296,13],"source":"SOURCE: V4 SVG circle cx326 cy296 r13"}
+]
