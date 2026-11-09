@@ -1,0 +1,649 @@
+{
+ "page": "index.html",
+ "r3": null,
+ "info": {
+  "inited": true,
+  "active": true,
+  "mode": "orbit",
+  "cut": 3,
+  "walls": 587,
+  "wins": 12,
+  "doorsData": 6,
+  "doors3d": 6,
+  "doorsOpen": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "colliders": 600,
+  "anchors": 18,
+  "water": {
+   "mode": "lite",
+   "count": 2,
+   "error": null,
+   "surfaces": [
+    {
+     "id": "swimming-pool",
+     "mode": "lite"
+    },
+    {
+     "id": "courtyard-water-feature-1",
+     "mode": "lite"
+    }
+   ]
+  },
+  "labels": 18,
+  "cam": [
+   8.988771049900599,
+   24.569307536394977,
+   13.304659381504313
+  ]
+ },
+ "shots": [
+  {
+   "id": "room_living-dining",
+   "room": "living-dining",
+   "label": "living-dining",
+   "p": [
+    3269,
+    3500,
+    1.6
+   ],
+   "t": [
+    14212,
+    3500,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_living-dining_rev",
+   "room": "living-dining",
+   "label": "living-dining (reverse)",
+   "p": [
+    12720,
+    3500,
+    1.6
+   ],
+   "t": [
+    1777,
+    3500,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_show-kitchen",
+   "room": "show-kitchen",
+   "label": "show-kitchen",
+   "p": [
+    2227,
+    7254,
+    1.6
+   ],
+   "t": [
+    7124,
+    7254,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_show-kitchen_rev",
+   "room": "show-kitchen",
+   "label": "show-kitchen (reverse)",
+   "p": [
+    6446,
+    7254,
+    1.6
+   ],
+   "t": [
+    1475,
+    7254,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_pantry",
+   "room": "pantry",
+   "label": "pantry",
+   "p": [
+    2683,
+    8071,
+    1.6
+   ],
+   "t": [
+    2683,
+    10037,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_pantry_rev",
+   "room": "pantry",
+   "label": "pantry (reverse)",
+   "p": [
+    2683,
+    9587,
+    1.6
+   ],
+   "t": [
+    2683,
+    7621,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_powder",
+   "room": "powder",
+   "label": "powder",
+   "p": [
+    4181,
+    9114,
+    1.6
+   ],
+   "t": [
+    7355,
+    9114,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_powder_rev",
+   "room": "powder",
+   "label": "powder (reverse)",
+   "p": [
+    6905,
+    9114,
+    1.6
+   ],
+   "t": [
+    3731,
+    9114,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_kitchen",
+   "room": "kitchen",
+   "label": "kitchen",
+   "p": [
+    2259,
+    11530,
+    1.6
+   ],
+   "t": [
+    5791,
+    11530,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_kitchen_rev",
+   "room": "kitchen",
+   "label": "kitchen (reverse)",
+   "p": [
+    5309,
+    11530,
+    1.6
+   ],
+   "t": [
+    1777,
+    11530,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_laundry",
+   "room": "laundry",
+   "label": "laundry",
+   "p": [
+    4145,
+    14123,
+    1.6
+   ],
+   "t": [
+    5791,
+    14123,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_laundry_rev",
+   "room": "laundry",
+   "label": "laundry (reverse)",
+   "p": [
+    5341,
+    14123,
+    1.6
+   ],
+   "t": [
+    3695,
+    14123,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_k-store",
+   "room": "k-store",
+   "label": "k-store",
+   "p": [
+    4145,
+    15811,
+    1.6
+   ],
+   "t": [
+    5791,
+    15811,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_k-store_rev",
+   "room": "k-store",
+   "label": "k-store (reverse)",
+   "p": [
+    5341,
+    15811,
+    1.6
+   ],
+   "t": [
+    3695,
+    15811,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_dress",
+   "room": "dress",
+   "label": "dress",
+   "p": [
+    4358,
+    17197,
+    1.6
+   ],
+   "t": [
+    5791,
+    17197,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_dress_rev",
+   "room": "dress",
+   "label": "dress (reverse)",
+   "p": [
+    5341,
+    17197,
+    1.6
+   ],
+   "t": [
+    3908,
+    17197,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_maid-room",
+   "room": "maid-room",
+   "label": "maid-room",
+   "p": [
+    2843,
+    17167,
+    1.6
+   ],
+   "t": [
+    2843,
+    19595,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_maid-room_rev",
+   "room": "maid-room",
+   "label": "maid-room (reverse)",
+   "p": [
+    2843,
+    19145,
+    1.6
+   ],
+   "t": [
+    2843,
+    16717,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_maid-bath",
+   "room": "maid-bath",
+   "label": "maid-bath",
+   "p": [
+    4749,
+    18162,
+    1.6
+   ],
+   "t": [
+    4749,
+    19317,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_maid-bath_rev",
+   "room": "maid-bath",
+   "label": "maid-bath (reverse)",
+   "p": [
+    4749,
+    19091,
+    1.6
+   ],
+   "t": [
+    4749,
+    17434,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_double-height-entry",
+   "room": "double-height-entry",
+   "label": "double-height-entry",
+   "p": [
+    7657,
+    16563,
+    1.6
+   ],
+   "t": [
+    7657,
+    19417,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_double-height-entry_rev",
+   "room": "double-height-entry",
+   "label": "double-height-entry (reverse)",
+   "p": [
+    7657,
+    18967,
+    1.6
+   ],
+   "t": [
+    7657,
+    16113,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_office-gym",
+   "room": "office-gym",
+   "label": "office-gym",
+   "p": [
+    10112,
+    14941,
+    1.6
+   ],
+   "t": [
+    14177,
+    14941,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_office-gym_rev",
+   "room": "office-gym",
+   "label": "office-gym (reverse)",
+   "p": [
+    13623,
+    14941,
+    1.6
+   ],
+   "t": [
+    9558,
+    14941,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_bath",
+   "room": "bath",
+   "label": "bath",
+   "p": [
+    11713,
+    17659,
+    1.6
+   ],
+   "t": [
+    14177,
+    17659,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_bath_rev",
+   "room": "bath",
+   "label": "bath (reverse)",
+   "p": [
+    13727,
+    17659,
+    1.6
+   ],
+   "t": [
+    11263,
+    17659,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_multipurpose",
+   "room": "multipurpose",
+   "label": "multipurpose",
+   "p": [
+    10112,
+    20732,
+    1.6
+   ],
+   "t": [
+    14177,
+    20732,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_multipurpose_rev",
+   "room": "multipurpose",
+   "label": "multipurpose (reverse)",
+   "p": [
+    13623,
+    20732,
+    1.6
+   ],
+   "t": [
+    9558,
+    20732,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_lift",
+   "room": "lift",
+   "label": "lift",
+   "p": [
+    9972,
+    6804,
+    1.6
+   ],
+   "t": [
+    10908,
+    6804,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_lift_rev",
+   "room": "lift",
+   "label": "lift (reverse)",
+   "p": [
+    10458,
+    6804,
+    1.6
+   ],
+   "t": [
+    9522,
+    6804,
+    1.1
+   ],
+   "fov": 80
+  },
+  {
+   "id": "room_outdoor-terrace",
+   "room": "outdoor-terrace",
+   "label": "outdoor-terrace",
+   "p": [
+    11583,
+    6579,
+    1.6
+   ],
+   "t": [
+    11583,
+    12412,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "room_outdoor-terrace_rev",
+   "room": "outdoor-terrace",
+   "label": "outdoor-terrace (reverse)",
+   "p": [
+    11583,
+    11580,
+    1.6
+   ],
+   "t": [
+    11583,
+    5484,
+    1.1
+   ],
+   "fov": 66
+  },
+  {
+   "id": "f2_entry_wall_oblique",
+   "room": "double-height-entry",
+   "label": "Entry west travertine wall (F2), oblique",
+   "p": [
+    8900,
+    19150,
+    1.6
+   ],
+   "t": [
+    6040,
+    16600,
+    2.4
+   ],
+   "fov": 62
+  },
+  {
+   "id": "f2_entry_void_up",
+   "room": "double-height-entry",
+   "label": "Entry double-height void, looking up the travertine wall (F2)",
+   "p": [
+    8700,
+    18900,
+    1.6
+   ],
+   "t": [
+    6040,
+    17200,
+    4.2
+   ],
+   "fov": 68
+  },
+  {
+   "id": "q7_courtyard_from_living",
+   "room": "outdoor-terrace",
+   "label": "Courtyard from the terrace edge, eye level (Q7)",
+   "p": [
+    9650,
+    7900,
+    1.6
+   ],
+   "t": [
+    11938,
+    10570,
+    0.9
+   ],
+   "fov": 62
+  },
+  {
+   "id": "q7_courtyard_from_south",
+   "room": "outdoor-terrace",
+   "label": "Courtyard from the south, eye level (Q7)",
+   "p": [
+    13900,
+    12900,
+    1.6
+   ],
+   "t": [
+    11600,
+    9800,
+    1
+   ],
+   "fov": 62
+  },
+  {
+   "id": "q7_courtyard_from_entry_side",
+   "room": "outdoor-terrace",
+   "label": "Courtyard looking east from the west glazing line (Q7)",
+   "p": [
+    9600,
+    12700,
+    1.6
+   ],
+   "t": [
+    12649,
+    9860,
+    1.2
+   ],
+   "fov": 62
+  }
+ ],
+ "bench": {
+  "msPerFrame": 2,
+  "fpsEquiv": 493.8,
+  "calls": 96,
+  "tris": 94858,
+  "w": 1280,
+  "h": 800
+ },
+ "console_errors": [],
+ "external_requests_blocked": []
+}
