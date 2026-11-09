@@ -9,7 +9,7 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 | 1 Reference | `step1_reference/generated_approved/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png` | locked camera `left_lock.json`, `shots/left_lock_side_by_side.png` | critic: framing rows and ends match | DONE (critic: lock PASS on framing) |
 | 2 Layout | approved V4 CAD via `model/data/model.js` | left facade x 1.46, z 2.84-26.88 | ends match at the locked camera | DONE (inherited footprint), pending critic |
 | 3 Blockout | steps 1 + 2 | pass 1 RF plant strip, pass 2 central block, pass 3 base, pass 4 planting, pass 5 canopies, pass 6 canopy volume, pass 7 canopy row, pass 8 verge trees, pass 9 plan trees low, pass 10 grass layer, pass 11 FF openings, pass 12 carport opening, pass 13 carport back wall | critic, one fix per pass | PASS loop 1 (critic, 6998a8a) |
-| 4 Grime / finish | step 3 | pass 14 carport wall tone | side by side | IN PROGRESS (loop 1) |
+| 4 Grime / finish | step 3 | pass 14 carport wall tone, pass 15 curtains | side by side | IN PROGRESS (loop 1) |
 | 5 Printed matter | ELEV-LEFT | | Q1 record | to check |
 | 6 Critique | | | | NOT STARTED |
 | 7 Motion | | | | NOT STARTED |
@@ -29,4 +29,5 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - Step 3 pass 11 (this commit): three tall FF windows (z 12.0-13.1 / 16.9-17.6 / 19.6-20.4, Y 4.0-6.82) in a thin stone skin on the central block; balcony bays open to the CAD FF glass at z 3.1-7.6 and 21.7-24.4 with glass rails (4.0-4.95 m) and bronze caps (M35). Windows read dark; the reference shows pale curtains (finish step). Critic (f3f9341): openings PASS; next fix carport opening.
 - Step 3 pass 12 (this commit): boundary wall ends at z 21.0; carport opening to z 26.45; travertine pillar z 26.45-27.66 with coping; paved apron; planting stops at the opening (image-read, projected at the wall line). Residual: the opening shows through to sky/gate where the reference shows a lit timber back wall. Critic (dc6464b): opening PASS; next fix back wall.
 - Step 3 pass 13 (this commit): flat-colour lit timber back wall inside the carport (x 7.2-7.39, z 21.0-30.5, 0-3.0 m); no sky through the opening. Critic (6998a8a): step 3 gate PASSED.
-- Step 4 pass 14 (this commit): carport back wall recoloured (MAT.timber_lit in left_pass.html) to the tone sampled from ELEV-LEFT: reference median RGB ~118,76,44 in the carport opening; model now renders ~119,83,50 (was 130,80,38). Awaiting critic.
+- Step 4 pass 14 (this commit): carport back wall recoloured (MAT.timber_lit in left_pass.html) to the tone sampled from ELEV-LEFT: reference median RGB ~118,76,44 in the carport opening; model now renders ~119,83,50 (was 130,80,38). Critic (31ee909): wall tone PASS; next fix black windows.
+- Step 4 pass 15 (this commit): FF window panes now clear glass with a flat pale curtain panel just inside (x 3.00-3.03); reference median inside the windows ~140-150 grey-cream, model ~152-159. Residual: no dark window frames yet. Awaiting critic.
