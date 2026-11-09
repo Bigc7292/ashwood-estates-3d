@@ -28,6 +28,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_pass12_tower_cap.js"></script>
 <script src="./overrides/front_pass14_tower_height.js"></script>
 <script src="./overrides/front_pass15_roof_row.js"></script>
+<script src="./overrides/front_pass16_multistem_tree.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -221,6 +222,27 @@ window.__FRONDS = []; window.__PALMS = [];
         m.scale.y = Math.min(1.25, row.h/(2*rr)+0.4); m.castShadow=true; m.receiveShadow=true; group.add(m);
         if (row.flowers && rnd()<0.7){ const f=new THREE.Mesh(new THREE.IcosahedronGeometry(rr*0.35,0), new THREE.MeshStandardMaterial({color:row.flowers, roughness:.9}));
           f.position.set(m.position.x+(rnd()-.5)*rr, cy+rr*0.7, m.position.z+(rnd()-.5)*rr); group.add(f); } } } } }
+// multi-stem trees (front pass 16): thin curved stems + an airy canopy of many small leaf clusters (instanced), gaps let sky/stone through
+window.__LEAFSETS = [];
+{ const T = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.multiStemTrees) || [];
+  let seed = 11; const rnd = ()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+  const barkM = new THREE.MeshStandardMaterial({color:0x6a5a48, roughness:.9});
+  for (const t of T) { const tg = new THREE.Group(); tg.position.set(t.x, 0, t.z); group.add(tg);
+    const tips = [];
+    for (let i=0;i<t.stems;i++){ const a = i/t.stems*Math.PI*2 + rnd()*0.5, r = t.spread*(0.22+0.18*rnd());
+      const tip = new THREE.Vector3(Math.cos(a)*r, t.top*(0.62+0.12*rnd()), Math.sin(a)*r*0.6); tips.push(tip);
+      const crv = new THREE.CatmullRomCurve3([new THREE.Vector3((rnd()-.5)*.25,0,(rnd()-.5)*.2), new THREE.Vector3(tip.x*0.25, t.top*0.3, tip.z*0.25), new THREE.Vector3(tip.x*0.7, t.top*0.52, tip.z*0.7), tip]);
+      const m = new THREE.Mesh(new THREE.TubeGeometry(crv, 16, 0.045+0.02*rnd(), 6, false), barkM); m.castShadow = true; tg.add(m); }
+    const leafG = new THREE.IcosahedronGeometry(0.16, 1), leafM = new THREE.MeshStandardMaterial({roughness:.95, color:0xffffff});
+    const im = new THREE.InstancedMesh(leafG, leafM, t.clusters); im.castShadow = true; im.receiveShadow = true;
+    const d = new THREE.Object3D(), base = new THREE.Color(t.color);
+    for (let k=0;k<t.clusters;k++){ const tip = tips[k % tips.length];
+      // clusters gather in loose clumps around each stem tip, flattened into an umbrella; some hang lower at the edges
+      const u = rnd()*Math.PI*2, v = Math.acos(2*rnd()-1), rr = (0.35+0.75*rnd())*t.spread*0.24;
+      d.position.set(tip.x + Math.sin(v)*Math.cos(u)*rr*1.3, Math.min(t.top - 0.12, tip.y + 0.35 + Math.cos(v)*rr*0.55), tip.z + Math.sin(v)*Math.sin(u)*rr*0.8);
+      d.rotation.set(rnd()*3, rnd()*3, rnd()*3); const sc = 0.7 + 0.8*rnd(); d.scale.set(sc*1.3, sc*0.8, sc); d.updateMatrix();
+      im.setMatrixAt(k, d.matrix); im.setColorAt(k, base.clone().offsetHSL((rnd()-.5)*0.03, (rnd()-.5)*0.1, (rnd()-.5)*0.12)); }
+    tg.add(im); window.__LEAFSETS.push(tg); } }
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
 { const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
@@ -277,6 +299,7 @@ window.__frame = (t, T) => {
   for (const f of window.__FRONDS) { f.quaternion.copy(f.userData.q0); const ph=f.userData.ph;
     f.rotateX(gust*0.07*Math.sin(t*1.7+ph)); f.rotateZ(gust*0.035*Math.sin(t*1.1+ph*1.3)); }
   window.__PALMS.forEach((pg,i)=>{ pg.rotation.z = 0.006*gust*Math.sin(t*0.8+i); pg.rotation.x = 0.004*gust*Math.sin(t*0.6+i*2); });
+  (window.__LEAFSETS||[]).forEach((g,i)=>{ g.rotation.z = 0.012*gust*Math.sin(t*1.3+i); g.rotation.x = 0.008*gust*Math.sin(t*0.9+i); });
   for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
   const k = T ? t/T : 0;   // sun drifts slightly lower and warmer across the clip
   sun.position.set(_sun0.x - 4*k, _sun0.y - 3*k, _sun0.z); sun.intensity = _sunI0*(1 - 0.15*k);
