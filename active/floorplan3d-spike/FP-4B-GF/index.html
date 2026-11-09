@@ -2769,7 +2769,8 @@ function buildFeatures(top){
 }
 // DA: display ceilings. The plan is one floor, so with no first floor the stair hall / corridors / entry were open to the
 // sky. A flat display ceiling at H covers the house outline (holes: open courtyard, stair well, entry void); the
-// double-height entry and the stair well get inward-facing linings from H to 2H and a ceiling at 2H. The first floor
+// double-height entry and the stair well get inward-facing linings from H to 2H and a ceiling at 2H.
+// ASSUMPTION (Q4 critic, unsourced): the 6.0 m entry lining height and the soffit edge are display values, not CAD or brochure sourced. The first floor
 // itself is NOT modelled. Outline = traced outer wall faces (approx.), with a small canopy over the entry glazing.
 const CEIL_OUTLINE = [[1528, 640], [14372, 640], [14372, 22899], [9238, 22899], [9238, 19879], [1528, 19879]];
 function buildCeilings(){
