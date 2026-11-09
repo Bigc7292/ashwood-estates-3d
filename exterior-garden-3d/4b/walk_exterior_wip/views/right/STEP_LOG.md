@@ -15,4 +15,5 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 | 7 Motion | | | | NOT STARTED |
 
 ## Pass history
-- Lock (this commit): camera solved and locked, awaiting critic.
+- Lock (103ccf4): critic FAIL, right end solved to the rear overhang (x 1120) instead of the main wall end.
+- Lock re-solve (this commit): ends 143 / 1033, camera pos (42.6, 1.6, 13.45), target (15.88, 4.66, 13.45). Awaiting critic.
