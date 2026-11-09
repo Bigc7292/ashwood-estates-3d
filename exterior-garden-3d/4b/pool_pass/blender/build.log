@@ -1,0 +1,11 @@
+DEBUG:BlenderGIS.core.checkdeps:GDAL Python binding unavailable
+DEBUG:BlenderGIS.core.checkdeps:PyProj unavailable
+DEBUG:BlenderGIS.core.checkdeps:Pillow unavailable
+DEBUG:BlenderGIS.core.checkdeps:ImageIO Freeimage plugin available
+Blender 4.2.3 LTS (hash 0e22e4fcea03 built 2024-10-14 23:31:34)
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "f2_pool.blend"
+BUILT grime 466
+
+Blender quit
+BUILD_EXIT=0

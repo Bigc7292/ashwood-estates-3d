@@ -1,0 +1,51 @@
+[
+ {
+  "name": "pool",
+  "file": "bl_pool_ref.png",
+  "ref": "EXT-4b-POOL",
+  "pos": [
+   18.0,
+   2.6,
+   1.65
+  ],
+  "tgt": [
+   6.0,
+   -3.2,
+   2.4
+  ],
+  "lens": 20,
+  "level": true
+ },
+ {
+  "name": "pool_coping_cu",
+  "file": "bl_pool_coping_cu.png",
+  "pos": [
+   13.4,
+   -2.9,
+   1.35
+  ],
+  "tgt": [
+   10.4,
+   -0.6,
+   0.15
+  ],
+  "lens": 30
+ },
+ {
+  "name": "elev_rear",
+  "file": "bl_elev_rear.png",
+  "ref": "EXT-4b-ELEV-REAR",
+  "pos": [
+   9.4,
+   24,
+   1.65
+  ],
+  "tgt": [
+   9.4,
+   -5,
+   5.4
+  ],
+  "lens": 36,
+  "level": true
+ }
+]

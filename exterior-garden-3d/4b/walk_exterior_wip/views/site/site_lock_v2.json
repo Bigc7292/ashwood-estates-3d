@@ -1,0 +1,24 @@
+{
+  "view": "OUTDOOR-SITE",
+  "status": "LOCKED v2 (re-solved after the rear garden was enlarged, M30 + Colin 23:29 pool ruling)",
+  "locked": "2026-11-10 Asia/Dubai (v2), lane 2 cloud builder",
+  "reference_image": "exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-OUTDOOR-SITE_GENERATED-SOURCE-CONDITIONED.png",
+  "page": "exterior-garden-3d/4b/walk_exterior_wip/site_pass.html",
+  "coordinate_system": "model/data/model.js (metres; x across plot, y up, z plot depth; street side is +z, at the image bottom).",
+  "view_param": {
+    "pos": [
+      10.121,
+      22.143,
+      56.135
+    ],
+    "tgt": [
+      9.36,
+      0,
+      17.191
+    ],
+    "fov": 26.71
+  },
+  "solve_method": "Least squares on 4 plot corners: rear wall tops now at the enlarged-garden rear wall (x 0 / 18.72, y 1.8, z -9.0; M30, shared_pool_v3.js) at (450,30) / (876,31), front ground corners (x 0 / 18.72, y 0, z 29.88) at (222,642) / (1062,642) of 1280x720; target on the ground at x 9.36. Residuals ~11 px. v1 (rear wall at CAD z 0) superseded: views/site/site_lock.json kept for the record.",
+  "known_conflicts": "M42 smaller but still there: model roof front edge now spans x 328-936 (608 px) vs the reference's ~430-715 (285 px); roof rear edge at y ~-35 (reference ~107). The shared pool v3 (z -3.83..-0.23) projects to x 492-732, rows 109-143 but stays hidden under the CAD FF roof at this camera.",
+  "label": "assumption-derived camera; reference is an AI-generated concept image, not a photograph or survey. Concept visualisation, not survey-verified, not construction-ready, not certified CAD."
+}
