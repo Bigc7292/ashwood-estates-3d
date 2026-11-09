@@ -1,0 +1,23 @@
+[
+ {"id":"D1-master","type":"door","axis":"x","at":267,"span":[317,345],"rooms":["Master Suite","Corridor"],"evidence":"wall gap + swing arc","confidence":"high"},
+ {"id":"D2-bed1","type":"door","axis":"x","at":392,"span":[317,345],"rooms":["Bedroom 1","Corridor"],"evidence":"wall gap + swing arc","confidence":"high"},
+ {"id":"D3-bath1","type":"door","axis":"y","at":350,"span":[428.5,453.8],"rooms":["Bath 1","Bedroom 1"],"evidence":"wall gap + swing arc","confidence":"medium"},
+ {"id":"D4-lift","type":"door","axis":"y","at":347,"span":[391.6,416.3],"rooms":["Lift","Corridor"],"evidence":"hairline in lift wall, no swing","confidence":"low"},
+ {"id":"D5-mdress","type":"door","axis":"y","at":349,"span":[215,247.8],"rooms":["M. Dressing","Master Suite"],"evidence":"wall gap (open passage, no swing)","confidence":"medium"},
+ {"id":"D6-mbath","type":"door","axis":"y","at":453,"span":[180,196],"rooms":["M. Bath","M. Dressing"],"evidence":"wall gap + leaf hairline","confidence":"low"},
+ {"id":"D7-bath2","type":"door","axis":"x","at":219,"span":[571,595],"rooms":["Bath 2","Dress"],"evidence":"wall gap + swing arc","confidence":"medium"},
+ {"id":"D8-bed2","type":"door","axis":"x","at":271,"span":[609,640],"rooms":["Bedroom 2","Corridor"],"evidence":"wall gap + swing arc","confidence":"medium"},
+ {"id":"D9-junior","type":"door","axis":"x","at":372,"span":[611,637],"rooms":["Junior Suite","Corridor"],"evidence":"wall gap","confidence":"medium"},
+ {"id":"D10-jdress","type":"door","axis":"y","at":610,"span":[400,437],"rooms":["J. Dress","Junior Suite"],"evidence":"wall gap + swing arc","confidence":"medium"},
+ {"id":"D11-jbath","type":"door","axis":"x","at":437.5,"span":[587,611],"rooms":["J. Bath","J. Dress"],"evidence":"wall gap","confidence":"medium"},
+ {"id":"W1-master-N","type":"window","axis":"y","at":197,"span":[169,189.5],"rooms":["Master Suite","Balcony N"],"evidence":"no poche in facade, glazing hairlines","confidence":"medium"},
+ {"id":"W2-master-N","type":"window","axis":"y","at":197,"span":[199.5,262],"rooms":["Master Suite","Balcony N"],"evidence":"no poche in facade, glazing hairlines","confidence":"medium"},
+ {"id":"W3-living-N","type":"window","axis":"y","at":197,"span":[273,337.5],"rooms":["Family Living","Balcony N"],"evidence":"no poche in facade, glazing hairlines","confidence":"medium"},
+ {"id":"W4-living-N","type":"window","axis":"y","at":197,"span":[348.5,367.5],"rooms":["Family Living","Balcony N"],"evidence":"no poche in facade, glazing hairlines","confidence":"medium"},
+ {"id":"W5-bed1-N","type":"window","axis":"y","at":197,"span":[428,493.5],"rooms":["Bedroom 1","Balcony N"],"evidence":"no poche in facade, glazing hairlines","confidence":"medium"},
+ {"id":"W6-mbath-W","type":"window","axis":"x","at":145,"span":[495,517.5],"rooms":["M. Bath"],"evidence":"no poche in west wall","confidence":"medium"},
+ {"id":"W7-bath2-W","type":"window","axis":"x","at":145,"span":[575,598.5],"rooms":["Bath 2"],"evidence":"no poche in west wall","confidence":"medium"},
+ {"id":"W8-bath1-E","type":"window","axis":"x","at":517,"span":[371,382.5],"rooms":["Bath 1"],"evidence":"no poche in east wall","confidence":"medium"},
+ {"id":"W9-bed2-S","type":"window","axis":"y","at":753,"span":[213.5,255],"rooms":["Bedroom 2","Balcony SW"],"evidence":"no poche in facade, glazing hairlines","confidence":"medium"},
+ {"id":"W10-junior-S","type":"window","axis":"y","at":753,"span":[378,511],"rooms":["Junior Suite","Balcony SE"],"evidence":"no poche in facade, glazing hairlines","confidence":"medium"}
+]
