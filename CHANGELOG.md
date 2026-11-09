@@ -84,3 +84,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: palm fronds rebuilt as filled, denser leaflet shapes in three wider rings so the crowns read as solid leafy masses like ELEV-FRONT; trunks, heights and the locked camera unchanged. Pass 2 critic PASS logged.
 - Why: critic single fix after v2 pass 2.
 - Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 4, palm crowns scaled to reference
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (optional `palm_style.wByCrown`: frond width scales with crown; off by default), new `overrides/front_v2_pass4_palm_scale.js`, `views/front_v2/shots/front_v2_pass4_side_by_side.png`, `views/front_v2/STEP_LOG.md`.
+- What: crown size x0.57 (left palms) and x0.40 (right palm), same trunk tops; widths now ~170 px and ~145 px against the reference's ~170 and ~130.
+- Why: critic single fix on pass 3 (crowns too big).
+- Status: REVIEW-PENDING (critic).
