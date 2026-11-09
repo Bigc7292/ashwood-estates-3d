@@ -1,6 +1,0 @@
-{
-  "replaced": true,
-  "note": "Hand-written before.json replaced. Authoritative like-for-like medians are in bench.json.",
-  "bench": "production-line/viewer/baseline/bench.json",
-  "measured_at_utc": "2026-11-09T21:20:29.897Z"
-}

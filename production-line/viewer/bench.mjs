@@ -43,7 +43,8 @@ const PAIRS = [
   },
   {
     id: 'ff',
-    source: { root: '/tmp/ff_src/active/floorplan3d-spike/FP-4B-FF', path: '/index.html', kind: 'fp3d' },
+    // Like-for-like: source index rewritten to load plan r4 (same blob as the fork).
+    source: { root: '/tmp/ff_r4_src', path: '/index.html', kind: 'fp3d' },
     fork: { root: REPO, path: '/production-line/viewer/ff/index.html', kind: 'fp3d' },
   },
   {
@@ -126,11 +127,26 @@ async function oneRun(browser, target) {
       window.__BENCH.renderCount = 0;
     }
   });
+  function procCpuSec(proc) {
+    try {
+      if (!proc?.pid) return null;
+      const stat = readFileSync(`/proc/${proc.pid}/stat`, 'utf8');
+      const parts = stat.split(')');
+      const rest = parts.slice(1).join(')').trim().split(/\s+/);
+      // utime stime cutime cstime are fields 14-17 (1-based) → indices 11-14 after comm
+      const ticks = (+rest[11] || 0) + (+rest[12] || 0) + (+rest[13] || 0) + (+rest[14] || 0);
+      const hz = 100; // Linux USER_HZ typical
+      return ticks / hz;
+    } catch { return null; }
+  }
+  const browserProc = browser.process?.() || null;
+  const proc0 = procCpuSec(browserProc);
   const cpu0 = await cdp.send('Performance.getMetrics');
   const idleStart = Date.now();
   await page.waitForTimeout(10000);
   const idleMs = Date.now() - idleStart;
   const cpu1 = await cdp.send('Performance.getMetrics');
+  const proc1 = procCpuSec(browserProc);
   const idleFrames = await page.evaluate(() => {
     if (window.__LANE4_OPT__?.renderCount) return window.__LANE4_OPT__.renderCount();
     if (window.__LANE4_FRONT__?.info) return window.__LANE4_FRONT__.info().renderCount || 0;
@@ -146,9 +162,15 @@ async function oneRun(browser, target) {
   const task1 = metric(cpu1, 'TaskDuration');
   const script0 = metric(cpu0, 'ScriptDuration');
   const script1 = metric(cpu1, 'ScriptDuration');
-  const idleCpuSec = (task0 != null && task1 != null)
-    ? +(task1 - task0).toFixed(4)
-    : (script0 != null && script1 != null ? +(script1 - script0).toFixed(4) : null);
+  // Prefer process CPU (utime+stime+children) over 10s idle; fall back to CDP TaskDuration.
+  let idleCpuSec = (proc0 != null && proc1 != null) ? +(proc1 - proc0).toFixed(4) : null;
+  let idleCpuNote = 'process CPU (utime+stime+cutime+cstime)/USER_HZ over ~10s idle; software WebGL (SwiftShader)';
+  if (idleCpuSec == null) {
+    idleCpuSec = (task0 != null && task1 != null)
+      ? +(task1 - task0).toFixed(4)
+      : (script0 != null && script1 != null ? +(script1 - script0).toFixed(4) : null);
+    idleCpuNote = 'CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)';
+  }
 
   const info = await page.evaluate(() => {
     const qa = window.__FP3D_QA__?.info?.();
@@ -176,7 +198,7 @@ async function oneRun(browser, target) {
     idleMs,
     idleFrames,
     idleCpuSec,
-    idleCpuNote: 'CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)',
+    idleCpuNote,
     consoleErrors: errors.slice(0, 12),
     failedRequests: failed.filter((u) => !u.includes('favicon')).slice(0, 8),
     info,
@@ -232,12 +254,8 @@ for (const pair of PAIRS) {
 await browser.close();
 writeFileSync(join(OUT, 'bench.json'), JSON.stringify(report, null, 2));
 // Replace hand-written before.json with pointer to bench
-writeFileSync(join(OUT, 'before.json'), JSON.stringify({
-  replaced: true,
-  note: 'Hand-written before.json deleted/replaced. Use bench.json (like-for-like source vs fork, median of 3).',
-  bench: 'production-line/viewer/baseline/bench.json',
-  measured_at_utc: report.measured_at_utc,
-}, null, 2));
+// Hand-written before.json removed (critic). Authoritative evidence is bench.json only.
+try { unlinkSync(join(OUT, 'before.json')); } catch {}
 writeFileSync(join(OUT, 'after.json'), JSON.stringify({
   note: 'See bench.json for authoritative like-for-like medians. after.json retained as pointer.',
   bench: 'production-line/viewer/baseline/bench.json',

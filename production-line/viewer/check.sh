@@ -83,7 +83,8 @@ fi
 
 # 8) static evidence files
 [[ -f production-line/viewer/baseline/bench.json ]] && pass "baseline bench.json" || fail "missing bench.json"
-[[ -f production-line/viewer/baseline/before.json ]] && pass "baseline before.json" || fail "missing before.json"
+# Hand-written before.json deleted; bench.json is the like-for-like evidence.
+[[ ! -f production-line/viewer/baseline/before.json ]] && pass "hand-written before.json deleted" || fail "before.json still present (delete it; use bench.json)"
 [[ -f production-line/viewer/baseline/after.json ]] && pass "baseline after.json" || fail "missing after.json"
 
 # FF must load r4 by name
