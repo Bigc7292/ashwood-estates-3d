@@ -114,3 +114,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: the carport left-edge item (logged as M45 at 0913a07) is now M47, because M45 is the rear lane's rear height gap; the FF screen item (logged as M46 at 9a99327) is now M48. M47 marked RESOLVED: CAD extent kept, no overhang past the plot line, per Colin's "Keep on as u are" (23:44) as read by the coordinator; noted as a reading of his words.
 - Why: coordinator relay of Colin's reply; avoid ID collisions across lanes.
 - Status: DONE (M47); M48 REVIEW-PENDING (Colin).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 6, layered palm crowns
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (loads pass 6), new `overrides/front_v2_pass6_palm_ring.js`, `views/front_v2/shots/front_v2_pass6_side_by_side.png`, `views/front_v2/STEP_LOG.md`.
+- What: an extra 16-frond ring per palm crown, inside the outer length, so crowns read dense and layered; scale, colour, trunks and camera unchanged. Logged the coordinator's M48 working default (keep CAD) and the M90+ ID range for front/site items.
+- Why: critic single fix (crowns sparser than the reference).
+- Status: REVIEW-PENDING (critic).
