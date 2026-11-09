@@ -1,0 +1,165 @@
+{
+ "schema": "ashwood_interior_refs_v1",
+ "project_id": "ashwood-estates",
+ "villa_id": "4b",
+ "floor_id": "rf",
+ "created_Asia_Dubai": "2026-11-10T00:27:42+04:00",
+ "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+ "branch": "lane/interior-refs",
+ "guard": {
+  "handoff_guard": "exit 0 (records=112 verified=0 ambiguous=35 unknown=77 eligible=112 breaches=0)",
+  "verify_active_pipeline": "exit 0; active/pipeline_verification.json restored after run"
+ },
+ "overlay": "/workspace/plan-visuals-archive/optimizer/handoff_overlay.json",
+ "approved_plan": {
+  "path": "active/approved-cad-v4/png/FP-4B-RF_V4_long7680.png",
+  "svg": "active/approved-cad-v4/svg/FP-4B-RF_V4_portrait.svg",
+  "sha256": "7cfbda50c29169ad205f1cf955c2a87371e6ba0f9f27f5aa961153269aec51c9",
+  "source_pdf_page": 28
+ },
+ "style_guide": "production-line/interior-refs/4b-gf/style-guide/ashwood-4b_interior_style_guide.json",
+ "counts": {
+  "rooms_in_overlay": 4,
+  "images": 4,
+  "pass1_accepted": 1,
+  "regenerated": 3,
+  "verified_matches": 0
+ },
+ "excluded": [
+  {
+   "space": "roof terrace (TERRACE, dimension UNKNOWN on plan)",
+   "reason": "Outdoor; not an interior/service record in optimizer/handoff_overlay.json; exterior lane"
+  },
+  {
+   "space": "stair core on RF",
+   "reason": "Not a separate record in the overlay; not generated"
+  }
+ ],
+ "assets": [
+  {
+   "room_id": "ashwood-estates/4b/rf/mep",
+   "view_id": "ashwood-estates/4b/rf/mep/view-unassigned-001",
+   "room_label": "MEP (plant)",
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "file": "production-line/interior-refs/4b-rf/images/4b-rf-mep__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "433b1b5417073dedb95d9107f651c43dcceff7f01075bc1f04b83f4885756558",
+   "size_px": [
+    1280,
+    781
+   ],
+   "cad_check_crop": "production-line/interior-refs/4b-rf/cad-check/4b-rf-mep__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
+   "result": "regenerated",
+   "generation_pass": 2,
+   "raw_source_box_path": "/workspace/irw/rf/raw/4b-rf-mep_pass2_RAW.jpg",
+   "raw_sha256": "cd37b99e299d77c647681d1619b714a35e48376d22dcb8d508b483e5e7e2cff5",
+   "references": [
+    "V4 plan crop (cad-check/)",
+    "4b-gf/style-guide/refs/style-p17-materials_swatches.png"
+   ],
+   "match_status": "unknown",
+   "generation_eligibility": "eligible_evidence_led_concept",
+   "dimension_transcript": "3.80 \u00d7 15.70 \u2020",
+   "ceiling_height": null,
+   "room_polygon": null,
+   "observed": "3.80x15.70 m label (flagged uncertain, plan not to scale); large enclosed room west of the stair; three shaft/hatch symbols on the west wall",
+   "assumed": "Room proportions, hatch sizes, finishes, lighting; all plant equipment omitted (none drawn)",
+   "mismatches": "Pass 1 rejected: shafts drawn as three open lift-style doors. Pass 2: recess/opening at the far right not checked against the plan; drawn room shape is not a simple rectangle",
+   "review_status": "needs-review",
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+  },
+  {
+   "room_id": "ashwood-estates/4b/rf/lift",
+   "view_id": "ashwood-estates/4b/rf/lift/view-unassigned-001",
+   "room_label": "Lift (roof)",
+   "method": "GENERATED-CONCEPT",
+   "file": "production-line/interior-refs/4b-rf/images/4b-rf-lift__view-unassigned-001__GENERATED-CONCEPT.png",
+   "sha256": "5adc516ee7693e3373f9eac1e1ad1dc91dacd1142d3edba1bb9525e82cf78d32",
+   "size_px": [
+    864,
+    1201
+   ],
+   "cad_check_crop": "production-line/interior-refs/4b-rf/cad-check/4b-rf-lift__view-unassigned-001__GENERATED-CONCEPT__V4-plan-crop__EVIDENCE.png",
+   "result": "regenerated",
+   "generation_pass": 2,
+   "raw_source_box_path": "/workspace/irw/rf/raw/4b-rf-lift_pass2_RAW.jpg",
+   "raw_sha256": "8b8310066fdd37d4f7c14d928b8452ac7535b6e313169b739337238e3a035eb4",
+   "references": [
+    "V4 plan crop (cad-check/)",
+    "4b-gf/style-guide/refs/style-p17-materials_swatches.png"
+   ],
+   "match_status": "unknown",
+   "generation_eligibility": "eligible_evidence_led_concept",
+   "dimension_transcript": "1.60 \u00d7 1.80 \u2020",
+   "ceiling_height": null,
+   "room_polygon": null,
+   "observed": "1.60x1.80 m label (flagged uncertain); brochure p24 'Lift with direct roof access'",
+   "assumed": "Car interior entirely assumed (no source image)",
+   "mismatches": "Pass 1 rejected: glass side panel in the car. Pass 2: landing indicator shows invented digits '67' (printed matter not in source; ignore)",
+   "review_status": "needs-review",
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+  },
+  {
+   "room_id": "ashwood-estates/4b/rf/powder",
+   "view_id": "ashwood-estates/4b/rf/powder/view-unassigned-001",
+   "room_label": "Powder (roof)",
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "file": "production-line/interior-refs/4b-rf/images/4b-rf-powder__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "3fea4e317298bd9573ba4a3e7ea3cbe661dbc077f007f761b5b1ae571b35e31f",
+   "size_px": [
+    864,
+    1221
+   ],
+   "cad_check_crop": "production-line/interior-refs/4b-rf/cad-check/4b-rf-powder__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
+   "result": "pass",
+   "generation_pass": 1,
+   "raw_source_box_path": "/workspace/irw/rf/raw/4b-rf-powder_pass1_RAW.jpg",
+   "raw_sha256": "5078d93aa7719e4e073438d10402997877d80034c26ece9d76735dded8bc1b18",
+   "references": [
+    "V4 plan crop (cad-check/)",
+    "4b-gf/style-guide/refs/style-p17-materials_swatches.png",
+    "brochure p24 'Interior (Summary)' text, applied via prompt (extracts/text/pages/page_24.txt)"
+   ],
+   "match_status": "unknown",
+   "generation_eligibility": "eligible_evidence_led_concept",
+   "dimension_transcript": "1.50 \u00d7 2.40 \u2020",
+   "ceiling_height": null,
+   "room_polygon": null,
+   "observed": "1.50x2.40 m label (flagged uncertain); basin symbol at the NW; WC towards the south; door on the north from the stair lobby; no window",
+   "assumed": "Calacatta panel, terrazzo floor, bronze fittings",
+   "mismatches": "None found",
+   "review_status": "needs-review",
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+  },
+  {
+   "room_id": "ashwood-estates/4b/rf/pantry",
+   "view_id": "ashwood-estates/4b/rf/pantry/view-unassigned-001",
+   "room_label": "Pantry (roof)",
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "file": "production-line/interior-refs/4b-rf/images/4b-rf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "5a83c62912741a5074d9ea76b84b6aeedcdb56fc788e93038ff47f30cfdd4412",
+   "size_px": [
+    1152,
+    946
+   ],
+   "cad_check_crop": "production-line/interior-refs/4b-rf/cad-check/4b-rf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
+   "result": "regenerated",
+   "generation_pass": 2,
+   "raw_source_box_path": "/workspace/irw/rf/raw/4b-rf-pantry_pass2_RAW.jpg",
+   "raw_sha256": "3a4ac38470c6192fb6a44e3ac78eda93b4394e384ae79789650723b47ea76c01",
+   "references": [
+    "V4 plan crop (cad-check/)",
+    "4b-gf/style-guide/refs/style-p17-materials_swatches.png"
+   ],
+   "match_status": "unknown",
+   "generation_eligibility": "eligible_evidence_led_concept",
+   "dimension_transcript": "2.00 \u00d7 2.40 \u2020",
+   "ceiling_height": null,
+   "room_polygon": null,
+   "observed": "2.00x2.40 m label (flagged uncertain); single counter run on the south wall; open to the stair lobby on the north",
+   "assumed": "Sink, under-counter fridge, cabinet style, finishes",
+   "mismatches": "Pass 1 rejected: U-shaped counters. Pass 2: sink and fridge are not drawn on the plan",
+   "review_status": "needs-review",
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+  }
+ ]
+}
