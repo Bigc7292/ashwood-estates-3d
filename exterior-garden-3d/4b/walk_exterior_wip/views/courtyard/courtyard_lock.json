@@ -1,0 +1,12 @@
+{
+  "view": "OUTDOOR-COURTYARD",
+  "status": "LOCK DRAFT, pass 1 (camera framing only; model content not yet matching)",
+  "locked": "2026-11-09 Asia/Dubai, lane exterior-roof-courtyard",
+  "reference_image": "exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-OUTDOOR-COURTYARD_GENERATED-CONCEPT.png",
+  "page": "exterior-garden-3d/4b/walk_exterior_wip/roof_courtyard_pass.html",
+  "coordinate_system": "model/data/model.js (metres; x across plot, y up, z plot depth)",
+  "view_param": {"name": "courtyard", "title": "OUTDOOR-COURTYARD", "pos": [13.4, 1.6, 9.5], "tgt": [13.4, 3.4, 20.0], "fov": 40},
+  "solve_method": "ASSUMPTION for pass 1: camera placed on the paving at the pond's near edge (courtyard water feature z0 12.65), centred on the pond x (11.48-15.63). Pitch and distance to be solved by matching the pine and the pond edge against the reference in later passes.",
+  "check": "Side-by-side at 1280x720: pond near edge and bonsai crown on the same lines in both. One fix per critic pass; camera stays locked once basically identical.",
+  "label": "assumption-derived camera; reference is an AI-generated concept image, not a photograph or survey"
+}
