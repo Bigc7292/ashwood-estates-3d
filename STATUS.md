@@ -28,14 +28,15 @@ Checked 2026-11-10 02:10 Asia/Dubai. Read with `AGENTS.md`. Update this file at 
 Refreshed 2026-11-10 02:10 Dubai by the integrator, from the lane step logs after the catch-up merge.
 | Lane / item | Current step | Loop | Latest output | Gate |
 |---|---|---|---|---|
-| Exterior front view (lane/exterior) | 6 Critique, pass 17 (steps 1–4 critic-passed; 5 none in source) | 2 | `walk_exterior_wip/front_pass.html`, `views/front/STEP_LOG.md` | Pass 17 waiting on critic; passes 8–16 CRITIC-FAIL notes answered |
+| Exterior front view | 6 Critique, loop 2: **WAITING ON COLIN'S DECISION** | 2 | Last lane pass is 16 (`50ec220`). Pass 17 (`front_pass17_critic_d.js`, loaded by `front_pass.html`) came from an outside Grok agent on lane/exterior. It failed step 6 (terracotta instead of cream travertine, dusk light, camera off lock) and is **not** the accepted front state. It stays in the tree, and nothing is overwritten | CRITIC-FAIL (pass 17) |
+| Exterior left side view (our exterior lane, now working here) | started | 1 | — | — |
 | Exterior rear + garden (lane/exterior) | 6 Critique, pass 3 (Water2 pool reflections) | 1 | `walk_exterior_wip/rear_pass.html`, `views/rear`, `views/garden` | REVIEW-PENDING. The integrator's headless check crashed in software GL, so not yet verified |
 | Exterior step 7 motion | 7, provisional 10 s video | 1 | `4b/step7_motion/EXT-4b_STEP7_garden-pool_motion_PROVISIONAL.mp4` | Provisional, critic reviewed with the rear passes |
 | Exterior Blender (F1) | Box render of the F1 script done | 1 | `blender_wip/f1_box_render/`, `build_scene_f2_pool.py` | REVIEW-PENDING |
 | Pool (M29/M30, Colin: image overrides CAD, garden enlarged) | 6 | 1 | `4b/pool_pass/` (Water2 proven by frame diffs) | REVIEW-PENDING |
 | GF interior (lane/gf-interior) | 6 Critique (5 none in source); r3 with F2 + Q7 courtyard | 1 | `FP-4B-GF/index_r3.html` | r3 step 6 CRITIC-FAIL, back to fixes |
-| FF interior (lane/first-floor) | 2 Layout, r7 (doors D8/D10–D12, 3 showers) | 1 | `FP-4B-FF/r5_step2`–`r7`; enhanced plan `production-line/enhanced-plans/4b-ff/` | r6 CRITIC-FAIL 8/10; r7 waiting on critic |
-| RF (lane/roof-floor) | 2 Layout partly passed (bbox at 35.53 mm/px); 3 blocked on the RF raster trace | 1 | `FP-4B-RF/STEPS.md` | Blocked: raster trace |
+| FF interior (lane/first-floor) | 2 Layout, r5L; steps 3–7 cleared to go | 2 | r5L files (label anchors fixed), `FP-4B-FF/STEPS.md`. Scale settled at 35.53 mm/px (assumption); the outside r6/r7 files used 34.03 and are not applied | REVIEW-PENDING |
+| RF (lane/roof-floor) | 3 Blockout (step 2 passed on the dimension check; RF walls extracted from the approved sheet) | 1 | `FP-4B-RF/STEPS.md`, `b3b889e` | In progress |
 | Interior refs (lane/interior-refs) | Q11 reference sets GF/FF/RF | 1 | `production-line/interior-refs/` | GF r2 9 pass / 6 fail; FF/RF 14 pass / 4 fail |
 | Viewer hub (lane/4-viewer) | Checks + hub pages | 1 | `production-line/viewer/` | REVIEW-PENDING |
 | Public WIP preview (lane/preview) | Deployed by that lane (says Colin authorised, pt65u) | — | https://ashwood-preview.vercel.app | — |
