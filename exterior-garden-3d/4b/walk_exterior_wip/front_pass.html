@@ -17,12 +17,14 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="../model/data/model.js"></script>
 <script src="./overrides/front_pass1_carport.js"></script>
 <script src="./overrides/front_pass2_tower.js"></script>
+<script src="./overrides/front_pass3_palms.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
 import { OrbitControls } from '../model/vendor/three/examples/jsm/controls/OrbitControls.js';
 const M = window.MODEL, Q = new URLSearchParams(location.search);
 if (window.MODEL_OVERRIDES) { const O = window.MODEL_OVERRIDES; M.boxes = M.boxes.filter(b => !(O.remove||[]).includes(b.id)).concat(O.add||[]); }
+if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.remove_plain_trees) M.trees = M.trees.filter(t => t.courtyard);
 const W = innerWidth, Hh = innerHeight;
 const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
 renderer.setPixelRatio(1); renderer.setSize(W,Hh);
@@ -148,6 +150,33 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
   const ht = t.courtyard ? 3.0 : 4.0;
   const tr = new THREE.Mesh(new THREE.CylinderGeometry(.12,.16,ht,8), trunkM); tr.position.set(t.x, (t.courtyard?0.45:0)+ht/2, t.z); tr.castShadow=true; group.add(tr);
   const cn = new THREE.Mesh(new THREE.SphereGeometry(t.r,18,12), canopyM); cn.scale.y=.8; cn.position.set(t.x, (t.courtyard?0.45:0)+ht+t.r*.5, t.z); cn.castShadow=true; group.add(cn); }
+// palms (front pass 3): tapered ringed trunk + crown of leaflet fronds (procedural, no image assets)
+{ const P = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.palms) || [];
+  const frondTex = (()=>{ const c=document.createElement('canvas'); c.width=64; c.height=256; const g=c.getContext('2d');
+    g.clearRect(0,0,64,256); g.strokeStyle='#3e5a2a'; g.lineWidth=3; g.beginPath(); g.moveTo(32,0); g.lineTo(32,256); g.stroke();
+    for (let y=8;y<250;y+=7){ const w=26*Math.sin(Math.PI*y/256)+4; g.strokeStyle=(y%14?'#4b6a30':'#3f5e2a'); g.lineWidth=2.2;
+      g.beginPath(); g.moveTo(32,y); g.lineTo(32-w,y+14); g.stroke(); g.beginPath(); g.moveTo(32,y); g.lineTo(32+w,y+14); g.stroke(); }
+    const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; return t; })();
+  const frondM = new THREE.MeshStandardMaterial({map:frondTex, alphaTest:.45, transparent:false, side:THREE.DoubleSide, roughness:.85});
+  const trunkTex = tex(g=>{ g.fillStyle='#8a7a62'; g.fillRect(0,0,256,256); for(let y=0;y<256;y+=10){ g.fillStyle='rgba(60,48,34,.55)'; g.fillRect(0,y,256,3);} }, 1.0);
+  const trunkPM = new THREE.MeshStandardMaterial({map:trunkTex, roughness:.95});
+  for (const p of P) {
+    const pg = new THREE.Group(); pg.position.set(p.x, 0, p.z); group.add(pg);
+    const tg = new THREE.CylinderGeometry(.22,.32,p.trunk,10,8); tg.translate(0,p.trunk/2,0);
+    const pos = tg.attributes.position; for (let i=0;i<pos.count;i++){ const y=pos.getY(i), k=(y/p.trunk)**2; pos.setX(i,pos.getX(i)+p.lean[0]*k*p.trunk); pos.setZ(i,pos.getZ(i)+p.lean[1]*k*p.trunk); }
+    tg.computeVertexNormals(); const tr=new THREE.Mesh(tg, trunkPM); tr.castShadow=true; pg.add(tr);
+    const top = new THREE.Vector3(p.lean[0]*p.trunk, p.trunk, p.lean[1]*p.trunk);
+    const N = 32;
+    for (let i=0;i<N;i++){ const L = p.crown*(0.75+0.25*Math.random()), W = 1.25;
+      const fg = new THREE.PlaneGeometry(W, L, 1, 6); fg.translate(0, L/2, 0);
+      const fp = fg.attributes.position; for (let j=0;j<fp.count;j++){ const y=fp.getY(j); fp.setZ(j, -0.38*(y*y)/L); }   // droop toward the tip
+      fg.computeVertexNormals();
+      const f = new THREE.Mesh(fg, frondM); f.castShadow=true;
+      const yaw = i/N*Math.PI*2 + Math.random()*0.2, up = (i%3===0) ? 0.85 : (i%3===1 ? 1.35 : 1.8);   // radians from vertical
+      f.position.copy(top); f.rotation.set(0, yaw, 0, 'YXZ'); f.rotateX(up);
+      pg.add(f); }
+    const crownBall = new THREE.Mesh(new THREE.SphereGeometry(.35,10,8), trunkPM); crownBall.position.copy(top); pg.add(crownBall);
+  } }
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
 { const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
