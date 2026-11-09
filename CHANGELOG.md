@@ -2,6 +2,10 @@
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
 
+## 2026-11-09 (Asia/Dubai), Kaggle GPU render prep
+
+- **Kaggle GPU render kit** (Colin, 23:30 Dubai, "use the GPU"). Added `exterior-garden-3d/4b/kaggle_gpu/` with `README.md`, `install_blender.sh` (headless Blender via apt) and `render_gpu.py` (opens a saved scene, renders one Cycles frame on GPU, falls back to CPU). Scene source is `blender_wip/build_scene_f1.py`; `build_scene_ORIG_backup.py` unchanged. Status: WIP, not run. Blocked: the Kaggle connector is signed out and the sandbox proxy returns 403 for kaggle.com, so no GPU quota was checked or used. Notebook and dataset not created (private only, when access works). Labels: concept visualisation, not survey-verified, not construction-ready, not certified CAD.
+
 ## 2026-11-09 (Asia/Dubai)
 
 - **Rules and handoff** (branch `claude/rules-and-status`, PR #1). Added `AGENTS.md` (with `CLAUDE.md` and `GROK.md` copies) and `STATUS.md`. Copied the Legacy and Axis3D rule files into `docs/inherited-rules/`. Status: DONE, draft PR.
