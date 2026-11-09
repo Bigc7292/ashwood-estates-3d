@@ -13,3 +13,16 @@ Owner key: L1 facts, L2 exterior, L3 interior, L4 viewer, L5 critic, L6 integrat
 | Q7 | L3 | Courtyard module: integrate as a separate build file, then critic | Q4 | QUEUED |
 | Q8 | L4 | Walkable exterior viewer from the lane-2 model, once it has a critic pass | Q6 | QUEUED |
 | Q9 | L6 | Log every lane's hand-off in CHANGELOG.md; push to claude/rules-and-status | every item | ONGOING |
+
+## Q4 critic verdicts (reported 18:08 by the critic lane; hand-off file NOT yet in the repo)
+
+| Item | Verdict (as reported) | Queued fix |
+|---|---|---|
+| Exterior WIP, back garden and pool views (`blender_wip/`) | CRITIC-FAIL on appearance: palms, balcony screen, glazing, pool coping | F1 (L2): fix palms, balcony screen, glazing and pool coping, then re-critique |
+| GF viewer: furniture, media wall, pool basin, lighting | PASS | none |
+| GF viewer: entry travertine streak, entry ceiling lining, walk speed 3.2/7.0 m/s | FIX | F2 (L3): fix the streak and label the ceiling as an assumption. Walk speed is Colin's choice (his clone) |
+| Courtyard round 1 (tree, bench) | not ready to integrate | F3 (L3): tree and bench fix before Q7 |
+| M24 back pier side | the critic says brochure p26 and the rear elevation both put the pier left of centre, which contradicts the mismatch note (right of centre). WIP rear render not yet checked | F4 (L1): re-check M24 against p26 and the elevation, then correct the mismatch log |
+
+Status: Q4 REVIEW-PENDING until its hand-off file is committed.
+
