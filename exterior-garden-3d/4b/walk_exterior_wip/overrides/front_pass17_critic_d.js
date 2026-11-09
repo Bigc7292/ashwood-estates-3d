@@ -14,9 +14,9 @@
   O.add = O.add.filter(b => !b.id.startsWith('ff-slat-'));
   O.remove.push('ff-parapet-front-r');
   const X0 = 5.4, X1 = 11.04, Y0 = 4.0, Y1 = 7.4, Z0 = 24.68, Z1 = 24.76;
-  const gaps = [0.11, 0.19, 0.11, 0.11, 0.27, 0.15, 0.11, 0.21, 0.13, 0.11, 0.33, 0.12, 0.17];   // irregular rhythm (image-read)
+  const gaps = [0.07, 0.12, 0.07, 0.07, 0.17, 0.09, 0.07, 0.13, 0.08, 0.07, 0.21, 0.08, 0.11];   // irregular rhythm (image-read)
   let x = X0, i = 0;
-  while (x + 0.05 <= X1) { const w = (i % 5 === 2) ? 0.09 : 0.05;
+  while (x + 0.05 <= X1) { const w = (i % 5 === 2) ? 0.08 : 0.04;
     O.add.push({id:'ff-grid-v-'+i, cat:'slats', mat:'bronze_dark', x0:x, x1:Math.min(x+w, X1), z0:Z0, z1:Z1, y0:Y0, y1:Y1, status:'pass17_image_read_irregular_grid'});
     x += w + gaps[i % gaps.length]; i++; }
   [[Y0, 0.08], [4.95, 0.05], [5.62, 0.07], [6.48, 0.05], [Y1-0.08, 0.08]].forEach(([y, h], k) =>

@@ -96,7 +96,7 @@ if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
 }
 // critic (d) defect 7 (pass 17): dusk. Low warm sun, warm sky, stronger soffit/carport/lobby/interior emissives. Display assumption.
 if ((window.MODEL_OVERRIDES||{}).dusk && !_V0.sun) {
-  sun.position.set(-34, 7, 40); sun.color.set(0xff9a5c); sun.intensity = 1.7; renderer.toneMappingExposure = 0.95;
+  sun.position.set(-34, 7, 40); sun.color.set(0xffb27e); sun.intensity = 1.5; renderer.toneMappingExposure = 0.95;
   scene.children.forEach(o => { if (o.isHemisphereLight) { o.color.set(0x9fb0d0); o.groundColor.set(0x8a6a4c); o.intensity = 0.75; } if (o.isAmbientLight) o.intensity = 0.18; });
   { const c=document.createElement('canvas'); c.width=2; c.height=256; const g=c.getContext('2d'); const gr=g.createLinearGradient(0,0,0,256);
     gr.addColorStop(0,'#2f4f7e'); gr.addColorStop(.55,'#8a9fbf'); gr.addColorStop(.85,'#e8b48a'); gr.addColorStop(1,'#f3c99a');

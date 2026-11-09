@@ -614,18 +614,31 @@ if LV >= ORDER.index('models'):
     hedge('HEDGE_front_bed', 9.9,15.3, SITE_D-0.9,SITE_D-0.35, 0.8, 'image GARDEN-FRONT planted bed (CAD front lawn rect)')
     # WIP realism: p26 / ELEV-REAR / GARDEN-BACK show the rear lawn bounded by walls with a narrow band of shrubs/ivy, not
     # 6 m-deep green blocks. Off-plot context only (NOT PLOT): 1.15 m shrub strips in front of 2.2 m context walls.
-    # critic pool review: denser boundary planting -> layered, varied-height shrub masses + broadleaf small trees along both context walls (off-plot)
-    for side,(a,b) in dict(L=(-1.4,-0.2), R=(SITE_W+0.2,SITE_W+1.4)).items():
-        z = -0.6
-        for k,(ln,ht) in enumerate([(3.2,2.3),(2.6,1.8),(3.8,2.6),(2.4,2.0),(3.4,2.4),(3.0,1.9),(3.6,2.5)]):
-            hedge(f'HEDGE_context_layer_{side}{k}', a,b, z-ln,z, ht, 'critic pool review: denser boundary planting (off-plot context, illustrative)'); z -= ln
-        for k,zz in enumerate((-3.5,-9.0,-15.5)):
-            broadleaf(f'CONTEXT_boundary_tree_{side}{k}', (a+b)/2, zz, 1.6, 4.2+k*0.4, 'critic pool review: boundary small trees (off-plot context, illustrative)')
+    # M30 resolved by Colin 2026-11-10 (~01:25 Dubai): garden enlarged beyond the CAD plot boundary (concept only, not survey-verified).
+    # CAD rear boundary z 0 (site diagram); new rear boundary z -9.0 (wall to -9.25): ~5.7 m lawn beyond the far coping + ~1.2 m planting strip.
+    # Side walls continue to the new rear wall. Dense, layered boundary planting inside the walls (critic pool review). Image-read assumptions.
+    ZB = -9.0; _s30 = 'M30: garden enlarged beyond the CAD plot boundary per Colin 2026-11-10; concept only, not survey-verified'
+    box('WALL_side_left_ext (M30)', -0.25,0, ZB-0.25,0, -0.12,H['side_wall'],'stone',C,_s30)
+    box('WALL_side_right_ext (M30)', SITE_W,SITE_W+0.25, ZB-0.25,0, -0.12,H['side_wall'],'stone',C,_s30)
+    box('WALL_rear_new (M30)', -0.25,SITE_W+0.25, ZB-0.25,ZB, -0.12,H['side_wall'],'stone',C,_s30)
+    for side,(a,b,z) in dict(L=(0.15,1.25,-2.6), R=(SITE_W-1.25,SITE_W-0.15,-3.6)).items():   # right strip starts behind the pool camera (x 18, z -2.6)
+        for k,(ln,ht) in enumerate([(1.4,2.3),(1.1,1.8),(1.6,2.6),(1.0,2.0),(1.5,2.4),(1.2,1.9),(1.3,2.5)]):
+            if z - ln < ZB + 1.1: ln = z - (ZB + 1.1)
+            if ln <= 0.2: break
+            hedge(f'HEDGE_garden_side_{side}{k}', a,b, z-ln,z, ht, _s30); z -= ln
+        for k,zz in enumerate((-4.2,-7.4)):
+            broadleaf(f'GARDEN_side_tree_{side}{k}', (a+b)/2, zz, 1.5, 4.2+k*0.5, _s30)
+    x = 0.15
+    for k,(ln,ht) in enumerate([(2.6,2.2),(2.0,2.6),(3.0,2.0),(2.4,2.5),(2.8,2.1),(2.2,2.7),(3.4,2.2)]):
+        x1 = min(x+ln, SITE_W-0.15); hedge(f'HEDGE_garden_rear_{k}', x,x1, ZB+0.05,ZB+1.1, ht, _s30); x = x1
+        if x >= SITE_W-0.2: break
+    for k,xx in enumerate((1.6, 9.4, 17.0)):
+        broadleaf(f'GARDEN_rear_tree_{k}', xx, ZB+0.7, 1.7, 4.6-0.4*(k==1), _s30)
     if False:
      hedge('HEDGE_context_rear_left', -1.4,-0.25, -28,-0.3, 1.7, 'image p26/ELEV-REAR/GARDEN-BACK shrub band along wall (off-plot context)')
      hedge('HEDGE_context_rear_right', SITE_W+0.25,SITE_W+1.4, -28,-0.3, 1.7, 'image p26/ELEV-REAR/GARDEN-BACK shrub band along wall (off-plot context)')
-    box('CONTEXT_wall_rear_left (NOT PLOT)', -1.65,-1.4, -28,0, 0,H['side_wall'],'stone','models','image p26/GARDEN-BACK boundary wall beside lawn (off-plot context)')
-    box('CONTEXT_wall_rear_right (NOT PLOT)', SITE_W+1.4,SITE_W+1.65, -28,0, 0,H['side_wall'],'stone','models','image p26/GARDEN-BACK boundary wall beside lawn (off-plot context)')
+    if False: box('CONTEXT_wall_rear_left (NOT PLOT)', -1.65,-1.4, -28,0, 0,H['side_wall'],'stone','models','image p26/GARDEN-BACK boundary wall beside lawn (off-plot context)')
+    if False: box('CONTEXT_wall_rear_right (NOT PLOT)', SITE_W+1.4,SITE_W+1.65, -28,0, 0,H['side_wall'],'stone','models','image p26/GARDEN-BACK boundary wall beside lawn (off-plot context)')
     for k,(x,z) in enumerate([(-3,-6),(22,-5),(-4,-11),(23,-11)]):
         palm(f'CONTEXT_palm_{k}', x, z, random.uniform(7,8.5), 'image ELEV-REAR context palms (off-plot)')
     # ---------------- WIP 2026-11-09 realism pass: life behind the glazing (p26 / ELEV-REAR / GARDEN-BACK / POOL / GARDEN-FRONT) ----------------
