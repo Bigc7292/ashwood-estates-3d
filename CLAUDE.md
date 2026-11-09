@@ -49,6 +49,14 @@ Rules for all seven steps:
 - Furniture only where the V4 plan or brochure crop draws a symbol; every room polygon, material and item carries its evidence status.
 - Fully offline (vendored three.js r160 + Water2), no CDN, no account.
 
+## Change log and push rule (Colin, 2026-11-09 17:41, set in stone)
+- **Every edit to the code base is documented and pushed.** Any change to a file in this repo (code, data, docs, rules, renders, viewer) gets, in the same turn:
+  1. One entry in `CHANGELOG.md` at the repo root: date (Asia/Dubai), files changed, what changed, why, and status (DONE / WIP / REVIEW-PENDING).
+  2. A commit on the working branch with that entry included.
+  3. A push to GitHub (`git push -u origin <branch>`). No edit is left only on disk or only in a chat.
+- If an edit is not finished, the entry says WIP and names what is left.
+- Changes to `main` happen only when Colin says so.
+
 ## Pipeline for every change set
 0. READ: this file, `STATUS.md`, the relevant README/pipeline doc, the latest critic findings.
 1. FACTS: source every number or mark it NOT FOUND / assumption.
@@ -56,7 +64,7 @@ Rules for all seven steps:
 3. CHECK: run the verify scripts; headless screenshots (before/after, same cameras).
 4. CRITIC: an independent critic (not the builder) compares against the references and lists defects. A bot's own "it looks right" is not a score; the orchestrator looks at the image before it counts.
 5. EXPORT (when relevant): GLB plus phone GLB; Khronos glTF validator 0 errors; size budgets.
-6. DELIVER: commit + push, update `STATUS.md` and the CHANGELOG, one short message to Colin with screenshots.
+6. DELIVER: CHANGELOG entry, commit + push (see the change log rule above), update `STATUS.md`, one short message to Colin with screenshots.
 
 ## Lessons (Barclay + Kimi + Ashwood)
 - Tiled photo textures read as rubble or rain at building scale: use flat colours or procedural materials.
