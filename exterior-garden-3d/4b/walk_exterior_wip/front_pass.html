@@ -18,6 +18,8 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_pass1_carport.js"></script>
 <script src="./overrides/front_pass2_tower.js"></script>
 <script src="./overrides/front_pass3_palms.js"></script>
+<script src="./overrides/front_pass5_slats.js"></script>
+<!-- hedge row is pass 6: <script src="./overrides/front_pass6_hedges.js"></script> -->
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -66,6 +68,7 @@ const MAT = {
   placeholder: M_({color:0xa7a9ab, roughness:.9}), planter: M_({color:0xbfae8f})
 };
 const ph = M_({color:0xa7a9ab, roughness:.9});
+MAT.bronze_dark = M_({color:0x3a2c20, roughness:.55, metalness:.35});   // slat screen (front pass 5)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
 const hideCats = new Set((Q.get('hide')||'').split(',').filter(Boolean));
@@ -179,6 +182,20 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
       pg.add(f); }
     const crownBall = new THREE.Mesh(new THREE.SphereGeometry(.35,10,8), trunkPM); crownBall.position.copy(top); pg.add(crownBall);
   } }
+// shrub rows (front pass 5): clumped spheres along a line, slight random size/colour so they read as planting
+{ const R = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.shrubRows) || [];
+  let seed = 7; const rnd = ()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+  for (const row of R) {
+    const len = Math.hypot(row.x1-row.x0, row.z1-row.z0), n = Math.max(2, Math.round(len/(row.r*0.9)));
+    const base = new THREE.Color(row.color);
+    for (let i=0;i<n;i++){ const t = n===1?0.5:i/(n-1);
+      for (let k=0;k<2;k++){ const rr = row.r*(0.75+0.5*rnd()), c = base.clone().offsetHSL(0,0,(rnd()-.5)*0.08);
+        const m = new THREE.Mesh(new THREE.IcosahedronGeometry(rr,1), new THREE.MeshStandardMaterial({color:c, roughness:1, flatShading:true}));
+        const cy = Math.max(rr*0.8, row.h - rr*(0.9+0.4*rnd()));
+        m.position.set(row.x0+(row.x1-row.x0)*t+(rnd()-.5)*row.r*0.6, cy, row.z0+(row.z1-row.z0)*t+(rnd()-.5)*row.r*0.6);
+        m.scale.y = Math.min(1.25, row.h/(2*rr)+0.4); m.castShadow=true; m.receiveShadow=true; group.add(m);
+        if (row.flowers && rnd()<0.7){ const f=new THREE.Mesh(new THREE.IcosahedronGeometry(rr*0.35,0), new THREE.MeshStandardMaterial({color:row.flowers, roughness:.9}));
+          f.position.set(m.position.x+(rnd()-.5)*rr, cy+rr*0.7, m.position.z+(rnd()-.5)*rr); group.add(f); } } } } }
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
 { const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
