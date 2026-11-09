@@ -26,7 +26,9 @@ bpy.ops.wm.read_factory_settings(use_empty=True)
 sc = bpy.context.scene
 
 # ---------------- heights (image-read appearance; NOT in CAD) ----------------
-H = dict(gf_ffl=0.45, gf_clear=3.5, slab=0.50, ff_clear=3.3, roof=0.70, rf_core=3.0, canopy=0.35,
+# M25-SET (per Archivist (integrator), stated as delegated by Colin, 2026-11-10; reversible): heights above GF FFL now match model.js
+# (FF slab 3.6-4.0, FF 4.0-7.4, roof slab 7.4-7.85, RF core roof 10.85, tower 11.6). Was gf_clear 3.5, slab 0.50, ff_clear 3.3, roof 0.70 (image-read).
+H = dict(gf_ffl=0.45, gf_clear=3.6, slab=0.40, ff_clear=3.4, roof=0.45, rf_core=3.0, canopy=0.35,
          side_wall=2.2, front_wall=1.3, gate=1.9, carport_top=3.45, carport_th=0.35, fin_top=11.6, balustrade=1.1, parapet=1.2)
 GF0 = H['gf_ffl']; GF1 = GF0 + H['gf_clear']; FF0 = GF1 + H['slab']; FF1 = FF0 + H['ff_clear']; RF0 = FF1 + H['roof']; RF1 = RF0 + H['rf_core']
 
@@ -162,7 +164,7 @@ if LV >= ORDER.index('boxes'):
     cx0,cx1,cz0,cz1 = CARPORT
     box('CARPORT_canopy (render-sourced, not on plan)', cx0+0.05,cx1, GF_FRONT_LEFT_Z,cz1-0.3, H['carport_top']-H['carport_th'],H['carport_top'],'soffit',C,'RENDER-SOURCED p25 + EXT-4b-ELEV-FRONT/GARDEN-FRONT; footprint = CAD parking zone', bevel=0.01)
     box('CARPORT_pier (render-sourced)', cx1-0.6,cx1, cz1-0.9,cz1-0.3, 0,H['carport_top']-H['carport_th'],'stone',C,'RENDER-SOURCED p25/ELEV-FRONT: stone pier at gate side')
-    box('STONE_FIN (render-sourced, not on plan)', 15.38,15.88, 19.0,GF_Z1+0.06, GF0,H['fin_top'],'stone',C,'RENDER-SOURCED p25/ELEV-FRONT: tall stone blade at front-right')
+    box('STONE_FIN (render-sourced, not on plan)', 15.38,15.88, 19.0,GF_Z1+0.06, GF0,GF0+H['fin_top'],'stone',C,'M25-SET 11.6 m above GF FFL; RENDER-SOURCED p25/ELEV-FRONT: tall stone blade at front-right')
     # boundary walls: sides tall stone (image), front low stone + gates (image p25)
     box('WALL_side_left', -0.25,0, 0,SITE_D, 0,H['side_wall'],'stone',C,'image OUTDOOR-SITE/ELEV-LEFT; line = CAD site diagram (not survey)')
     box('WALL_side_right', SITE_W,SITE_W+0.25, 0,SITE_D, 0,H['side_wall'],'stone',C,'image OUTDOOR-SITE/ELEV-RIGHT; CAD site line')
@@ -205,7 +207,7 @@ if LV >= ORDER.index('space'):
     # CAD loungers + side table (V4 GF TERRACE symbols at the pool's east end, x ~13-15.8; z moved with the pool, M29/M30). Sizes assumed.
     for i,x in enumerate((13.05, 14.30)):
         box(f'TERRACE_lounger_{i}', x,x+0.70, 1.6,3.6, GF0,GF0+0.32,'cushion',C,'CAD V4 GF terrace lounger symbol (illustrative)', bevel=0.04)
-        box(f'TERRACE_lounger_back_{i}', x,x+0.70, 1.6,2.1, GF0+0.32,GF0+0.62,'cushion',C,'CAD symbol; back rest assumption', bevel=0.04)
+        box(f'TERRACE_lounger_back_{i}', x,x+0.70, 3.1,3.6, GF0+0.32,GF0+0.62,'cushion',C,'CAD symbol; back rest assumption', bevel=0.04)
     box('TERRACE_side_table', 13.85,14.20, 2.0,2.35, GF0,GF0+0.45,'furniture',C,'CAD V4 GF terrace side table symbol')
     # steps from deck down to lawn (image ELEV-REAR: wide steps at plan-right end)
     for i in range(3):   # steps from the raised terrace down to the lawn (critic T5 / p26 / EXT-4b-POOL)
@@ -612,8 +614,16 @@ if LV >= ORDER.index('models'):
     hedge('HEDGE_front_bed', 9.9,15.3, SITE_D-0.9,SITE_D-0.35, 0.8, 'image GARDEN-FRONT planted bed (CAD front lawn rect)')
     # WIP realism: p26 / ELEV-REAR / GARDEN-BACK show the rear lawn bounded by walls with a narrow band of shrubs/ivy, not
     # 6 m-deep green blocks. Off-plot context only (NOT PLOT): 1.15 m shrub strips in front of 2.2 m context walls.
-    hedge('HEDGE_context_rear_left', -1.4,-0.25, -28,-0.3, 1.7, 'image p26/ELEV-REAR/GARDEN-BACK shrub band along wall (off-plot context)')
-    hedge('HEDGE_context_rear_right', SITE_W+0.25,SITE_W+1.4, -28,-0.3, 1.7, 'image p26/ELEV-REAR/GARDEN-BACK shrub band along wall (off-plot context)')
+    # critic pool review: denser boundary planting -> layered, varied-height shrub masses + broadleaf small trees along both context walls (off-plot)
+    for side,(a,b) in dict(L=(-1.4,-0.2), R=(SITE_W+0.2,SITE_W+1.4)).items():
+        z = -0.6
+        for k,(ln,ht) in enumerate([(3.2,2.3),(2.6,1.8),(3.8,2.6),(2.4,2.0),(3.4,2.4),(3.0,1.9),(3.6,2.5)]):
+            hedge(f'HEDGE_context_layer_{side}{k}', a,b, z-ln,z, ht, 'critic pool review: denser boundary planting (off-plot context, illustrative)'); z -= ln
+        for k,zz in enumerate((-3.5,-9.0,-15.5)):
+            broadleaf(f'CONTEXT_boundary_tree_{side}{k}', (a+b)/2, zz, 1.6, 4.2+k*0.4, 'critic pool review: boundary small trees (off-plot context, illustrative)')
+    if False:
+     hedge('HEDGE_context_rear_left', -1.4,-0.25, -28,-0.3, 1.7, 'image p26/ELEV-REAR/GARDEN-BACK shrub band along wall (off-plot context)')
+     hedge('HEDGE_context_rear_right', SITE_W+0.25,SITE_W+1.4, -28,-0.3, 1.7, 'image p26/ELEV-REAR/GARDEN-BACK shrub band along wall (off-plot context)')
     box('CONTEXT_wall_rear_left (NOT PLOT)', -1.65,-1.4, -28,0, 0,H['side_wall'],'stone','models','image p26/GARDEN-BACK boundary wall beside lawn (off-plot context)')
     box('CONTEXT_wall_rear_right (NOT PLOT)', SITE_W+1.4,SITE_W+1.65, -28,0, 0,H['side_wall'],'stone','models','image p26/GARDEN-BACK boundary wall beside lawn (off-plot context)')
     for k,(x,z) in enumerate([(-3,-6),(22,-5),(-4,-11),(23,-11)]):
@@ -1096,7 +1106,7 @@ sky = wn.new('ShaderNodeTexSky')
 # Blender 4.x 'NISHITA' == Blender 5.x 'SINGLE_SCATTERING' (renamed)
 sky.sky_type = 'NISHITA' if 'NISHITA' in [i.identifier for i in sky.bl_rna.properties['sky_type'].enum_items] else 'SINGLE_SCATTERING'
 # Late-afternoon light (all approved images + p25/p26 are warm, low sun, deep blue sky; old setup was flat midday-looking)
-sky.sun_elevation=math.radians(20); sky.sun_rotation=math.radians(200); sky.sun_intensity=0.5; sky.sun_disc=False
+sky.sun_elevation=math.radians(14); sky.sun_rotation=math.radians(215); sky.sun_intensity=0.5; sky.sun_disc=False
 sky.air_density=1.0
 if hasattr(sky,'dust_density'): sky.dust_density=0.35
 if hasattr(sky,'aerosol_density'): sky.aerosol_density=0.35
@@ -1121,8 +1131,8 @@ mx1 = wn.new('ShaderNodeMath'); mx1.operation='MAXIMUM'; wl.new(lp_.outputs['Is 
 mx2 = wn.new('ShaderNodeMath'); mx2.operation='MAXIMUM'; mx2.use_clamp=True; wl.new(mx1.outputs[0], mx2.inputs[0]); wl.new(lp_.outputs['Is Transmission Ray'], mx2.inputs[1])
 ms_ = wn.new('ShaderNodeMixShader'); wl.new(mx2.outputs[0], ms_.inputs[0]); wl.new(wn['Background'].outputs[0], ms_.inputs[1]); wl.new(bg2.outputs[0], ms_.inputs[2])
 wl.new(ms_.outputs[0], wn['World Output'].inputs['Surface'])
-sun = bpy.data.lights.new('SUN','SUN'); sun.energy=6.5; sun.color=(1.0,0.78,0.55); sun.angle=math.radians(0.8)
-so = bpy.data.objects.new('SUN', sun); sc.collection.objects.link(so); so.rotation_euler=(math.radians(68), 0, math.radians(200))
+sun = bpy.data.lights.new('SUN','SUN'); sun.energy=6.0; sun.color=(1.0,0.70,0.45); sun.angle=math.radians(0.8)
+so = bpy.data.objects.new('SUN', sun); sc.collection.objects.link(so); so.rotation_euler=(math.radians(76), 0, math.radians(215))   # critic: warm late-afternoon, sun ~14 deg elevation (was 22 deg)
 sc.render.engine='CYCLES'; sc.cycles.samples=32; sc.cycles.use_denoising=True; sc.cycles.device='CPU'
 sc.render.resolution_x=1280; sc.render.resolution_y=720; sc.view_settings.view_transform='AgX'; sc.view_settings.look='AgX - High Contrast'
 sc.view_settings.exposure=-0.35; sc.cycles.max_bounces=6; sc.cycles.transparent_max_bounces=12; sc.render.use_persistent_data=True

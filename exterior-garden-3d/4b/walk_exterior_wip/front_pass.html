@@ -29,6 +29,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <!-- pass 14 (9.73 m tower) and pass 15 (+0.50 m FF) reverted 2026-11-10: M25 shared heights -->
 <script src="./overrides/front_m25_shared_heights.js"></script>
 <script src="./overrides/front_pass16_multistem_tree.js"></script>
+<script src="./overrides/front_pass17_critic_d.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -92,6 +93,16 @@ if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
   MAT.slat_timber = M_({color:0xa8784a, roughness:.6, emissive:0x6a3e16, emissiveIntensity:.35});   // front pass 11 warm lit timber slats
   MAT.door_timber = M_({color:0x5a3a22, roughness:.55, emissive:0x2a160a, emissiveIntensity:.25});   // front pass 10 timber entry door
   MAT.interior_lobby = M_({color:0xf0e6d6, roughness:.7, emissive:0xd8bc94, emissiveIntensity:.6});   // front pass 9 lit GF lobby
+}
+// critic (d) defect 7 (pass 17): dusk. Low warm sun, warm sky, stronger soffit/carport/lobby/interior emissives. Display assumption.
+if ((window.MODEL_OVERRIDES||{}).dusk && !_V0.sun) {
+  sun.position.set(-34, 7, 40); sun.color.set(0xff9a5c); sun.intensity = 1.7; renderer.toneMappingExposure = 0.95;
+  scene.children.forEach(o => { if (o.isHemisphereLight) { o.color.set(0x9fb0d0); o.groundColor.set(0x8a6a4c); o.intensity = 0.75; } if (o.isAmbientLight) o.intensity = 0.18; });
+  { const c=document.createElement('canvas'); c.width=2; c.height=256; const g=c.getContext('2d'); const gr=g.createLinearGradient(0,0,0,256);
+    gr.addColorStop(0,'#2f4f7e'); gr.addColorStop(.55,'#8a9fbf'); gr.addColorStop(.85,'#e8b48a'); gr.addColorStop(1,'#f3c99a');
+    g.fillStyle=gr; g.fillRect(0,0,2,256); const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; scene.background=t; }
+  MAT.led.emissiveIntensity = 4.5;
+  for (const k of ['interior_ceiling','interior_lobby','interior_wood','interior_stone','interior_floor']) if (MAT[k]) MAT[k].emissiveIntensity *= 1.8;
 }
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
