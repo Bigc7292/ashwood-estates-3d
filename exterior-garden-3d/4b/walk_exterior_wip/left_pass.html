@@ -21,6 +21,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/left_pass3_base.js"></script>
 <script src="./overrides/left_pass4_planting.js"></script>
 <script src="./overrides/left_pass5_canopies.js"></script>
+<script src="./overrides/left_pass6_canopy_volume.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -236,13 +237,13 @@ window.__LEAFSETS = [];
       const tip = new THREE.Vector3(Math.cos(a)*r, t.top*(0.62+0.12*rnd()), Math.sin(a)*r*0.6); tips.push(tip);
       const crv = new THREE.CatmullRomCurve3([new THREE.Vector3((rnd()-.5)*.25,0,(rnd()-.5)*.2), new THREE.Vector3(tip.x*0.25, t.top*0.3, tip.z*0.25), new THREE.Vector3(tip.x*0.7, t.top*0.52, tip.z*0.7), tip]);
       const m = new THREE.Mesh(new THREE.TubeGeometry(crv, 16, 0.045+0.02*rnd(), 6, false), barkM); m.castShadow = true; tg.add(m); }
-    const leafG = new THREE.IcosahedronGeometry(0.16, 1), leafM = new THREE.MeshStandardMaterial({roughness:.95, color:0xffffff});
+    const leafG = new THREE.IcosahedronGeometry(0.16*(t.leaf||1), 1), leafM = new THREE.MeshStandardMaterial({roughness:.95, color:0xffffff});
     const im = new THREE.InstancedMesh(leafG, leafM, t.clusters); im.castShadow = true; im.receiveShadow = true;
     const d = new THREE.Object3D(), base = new THREE.Color(t.color);
     for (let k=0;k<t.clusters;k++){ const tip = tips[k % tips.length];
       // clusters gather in loose clumps around each stem tip, flattened into an umbrella; some hang lower at the edges
       const u = rnd()*Math.PI*2, v = Math.acos(2*rnd()-1), rr = (0.35+0.75*rnd())*t.spread*0.24;
-      d.position.set(tip.x + Math.sin(v)*Math.cos(u)*rr*1.3, Math.min(t.top - 0.12, tip.y + 0.35 + Math.cos(v)*rr*0.55), tip.z + Math.sin(v)*Math.sin(u)*rr*0.8);
+      d.position.set(tip.x + Math.sin(v)*Math.cos(u)*rr*1.3, Math.min(t.top - 0.12, tip.y + 0.35 + Math.cos(v)*rr*0.55*(t.depth||1)), tip.z + Math.sin(v)*Math.sin(u)*rr*0.8);
       d.rotation.set(rnd()*3, rnd()*3, rnd()*3); const sc = 0.7 + 0.8*rnd(); d.scale.set(sc*1.3, sc*0.8, sc); d.updateMatrix();
       im.setMatrixAt(k, d.matrix); im.setColorAt(k, base.clone().offsetHSL((rnd()-.5)*0.03, (rnd()-.5)*0.1, (rnd()-.5)*0.12)); }
     tg.add(im); window.__LEAFSETS.push(tg); } }

@@ -8,7 +8,7 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 |---|---|---|---|---|
 | 1 Reference | `step1_reference/generated_approved/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png` | locked camera `left_lock.json`, `shots/left_lock_side_by_side.png` | critic: framing rows and ends match | DONE (critic: lock PASS on framing) |
 | 2 Layout | approved V4 CAD via `model/data/model.js` | left facade x 1.46, z 2.84-26.88 | ends match at the locked camera | DONE (inherited footprint), pending critic |
-| 3 Blockout | steps 1 + 2 | pass 1 RF plant strip, pass 2 central block, pass 3 base, pass 4 planting, pass 5 canopies | critic, one fix per pass | IN PROGRESS (loop 1) |
+| 3 Blockout | steps 1 + 2 | pass 1 RF plant strip, pass 2 central block, pass 3 base, pass 4 planting, pass 5 canopies, pass 6 canopy volume | critic, one fix per pass | IN PROGRESS (loop 1) |
 | 4 Grime / finish | | | | NOT STARTED |
 | 5 Printed matter | ELEV-LEFT | | Q1 record | to check |
 | 6 Critique | | | | NOT STARTED |
@@ -20,4 +20,5 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - Step 3 pass 2 (this commit): central travertine block raised above the FF overhang slabs: stone parapet block x 2.85-4.0, z 7.6-21.7, top 8.94 m (derived, M34). Slab overhangs unchanged. Critic (435f6c3): block PASS; next fix the base band.
 - Step 3 pass 3 (this commit): grey placeholder boundary replaced by a travertine wall on the CAD line (x -0.25-0), top 2.0 m on the reference row, with coping; planting band at its foot; off-plot gravel strip and lawn (context). Residual: the reference's wall base sits lower (~30 px), as if the wall were nearer the camera. Critic (6f55371): wall PASS, base drift accepted as residual; next fix layered planting.
 - Step 3 pass 4 (this commit): three layered shrub rows (1.35/0.75/0.45 m) along the wall foot and four small multi-stem trees in front of the wall (z 2.5/8.1/12.5/17.7, tops ~3.4 m), image-read, off-plot context. Critic (6f55371->13fff91): planting PASS; next fix canopy shapes.
-- Step 3 pass 5 (this commit): plan-tree lollipop spheres replaced by irregular multi-stem canopies at the CAD plan-symbol positions (sizes varied, assumption); pass 4's four image-read front trees dropped as doubles of plan trees 1/3/4/5 (CAD decides positions). Awaiting critic.
+- Step 3 pass 5 (this commit): plan-tree lollipop spheres replaced by irregular multi-stem canopies at the CAD plan-symbol positions (sizes varied, assumption); pass 4's four image-read front trees dropped as doubles of plan trees 1/3/4/5 (CAD decides positions). Critic (3b5b382): shapes PASS; next fix crown volume.
+- Step 3 pass 6 (this commit): same CAD trunks and tops; spread x1.5, 3x leaf clusters, larger clusters, deeper crowns (builder options leaf/depth added in left_pass.html). Residual: crowns now read slightly blobby and sit a little high. Awaiting critic.
