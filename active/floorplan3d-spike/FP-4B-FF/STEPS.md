@@ -15,6 +15,19 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - Blocker: room polygons not yet separated. Flood fill and watershed from label seeds leak through open doorways. Doorway gaps must be found and closed first.
 - Status: WIP, blocked on doorway closures.
 
+### Step 2 review of the step-2 lane's r6/r7 output (unverified input, checked by me)
+- Took as candidate inputs (not yet applied to my builds): 14 room polygons (rooms_u.json), 22 openings (openings_u.json), 44 furniture footprints (furniture_u.json), 4 closures (closures_u.json). Source: r7_step2/ and r6_step2/ in this folder, from the step-2 lane.
+- Checked: room count is 14 and matches the source labels. Polygon areas compared with the stated room dimensions from the approved FF SVG labels, converting SVG units to m² at 35.53 mm per crop px (1 SVG unit = 1.147 crop px, so 30.98 mm per SVG unit).
+- Failed check: every polygon comes out about 17% smaller in area than its stated dimensions (for example Master Suite 16.4 m² against 4.00 x 5.10 m = 20.4 m²; Junior Suite 15.2 m² against 18.4 m²). The error is consistent across rooms, which points to a unit or scale conversion in the step-2 builder, not to room shape. Not applied. Needs the fixer's verified factor before use.
+- Not taken yet: furniture and openings. They depend on the polygon scale being fixed first.
+
+### Scale check (loop 2, settled by me, not by the fixer)
+- The r6/r7 builder does not use 35.53. Its MM_PER_U = 13100 / 385 = 34.03 mm per SVG unit, taken from the drawn "ENVELOPE ~ 13.1 m" dimension line (385 u wide). So the 17 to 20% area shortfall comes from r6/r7 using 34.03, not 35.53.
+- Envelope at 35.53 mm per crop px (my raster outer walls, 379 x 646 px): width 13.47 m against the drawn 13.1 m (+2.8%, inside the 3% working allowance); height 22.95 m against 23.9 m (-4.0%, just outside it). Verdict: holds to within about 3 to 4%. Built at 35.53 as the GF calibration says, and the height gap is logged, not fixed.
+- Per-room check at 35.53, polygon bounding box over stated size (width, depth): Master Suite 1.02, 1.04; Family Living 1.05, 1.05; Bedroom 1 1.03, 1.15; M. Dressing 1.04, 1.04; M. Bath 1.04, 1.04; Corridor 1.07, 1.02; Lift 1.03, 1.01; Bath 1 1.02, 1.04; Bath 2 1.04, 1.03; Dress 0.99, 1.11; Bedroom 2 1.02, 1.12; J. Dress 1.05, 1.00; J. Bath 1.01, 1.03; Junior Suite 1.03, 1.05.
+- ASSUMPTION (Colin may overrule): at 35.53 the polygons are 1 to 5% larger than stated room sizes in most rooms (Bedroom 1 and Bedroom 2 depth about 12% over). The likely cause is that stated sizes are clear sizes inside finished faces, and the polygons are traced to wall centrelines or include wall thickness. Using 34.03 instead would make rooms about 10% under. 35.53 is kept.
+- Status: scale settled at 35.53 as an ASSUMPTION. Steps 3 to 7 can proceed on this basis.
+
 ## Step 3: Blockout
 - Not started (needs step 2 room polygons).
 
@@ -32,3 +45,4 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 
 ## Loop
 - Pass 1: steps 1 to 2 in progress. Steps 3 to 7 pending.
+- Loop 2 (step 2): labels corrected (r5L). Step-2 lane r6/r7 reviewed above, scale check failed, not applied.

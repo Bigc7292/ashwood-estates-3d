@@ -1,0 +1,68 @@
+{
+ "tool": "GenerateImage (built-in, no paid credits requested)",
+ "generated_Asia_Dubai": "2026-11-10",
+ "pass": 2,
+ "pass1_prompts": "Bigc7292/ashwood-plan-visuals-archive @ af451f3 generated-interiors/ashwood-estates/4b/generated_visuals_manifest.json",
+ "rooms": {
+  "pantry": {
+   "aspect_ratio": "3:4",
+   "references": [
+    "plan-crop",
+    "p17-materials"
+   ],
+   "prompt": "Photorealistic eye-level interior visualisation of a narrow galley pantry, 1.70 m wide x 2.45 m long, in a modern villa. Camera stands at the open end (connected to the show kitchen) looking straight down the length of the pantry. Along the RIGHT long wall: one continuous counter run with light-veneer base cabinets and a pale stone-look worktop, with plain open shelves above (no sink). The LEFT long wall is a plain solid white painted wall with NO window and no opening. The far end is open, continuing into a working kitchen beyond (counter continues along the right wall). Restrained service-room finish: white paint walls and ceiling, light beige porcelain floor tiles, simple light recon veneer units, stainless steel handles, plain flush ceiling light. Match the attached floor-plan crop for layout; use the attached brochure material board only for materials and colours. No people, no text, no watermark, no logo. Do not add windows, doors, skylights or openings not described. Do not imply a specific ceiling height."
+  },
+  "kitchen": {
+   "aspect_ratio": "4:3",
+   "references": [
+    "plan-crop",
+    "p17-materials"
+   ],
+   "prompt": "Photorealistic eye-level interior visualisation of a closed working (back) kitchen, 4.00 x 3.00 m, in a modern villa. Camera stands in the doorway at the near-left corner looking across the room. LEFT wall (exterior wall): a long continuous counter with base cabinets runs the full length of the wall beneath a wide horizontal window. On the RIGHT side of the floor: a U-shaped counter run (one leg along the far wall, one along the right wall, one short leg near the camera), with a sink and an induction hob set into the counters. The floor aisle is between the left counter and the U. Restrained service finish: white paint walls and ceiling, light beige porcelain floor, simple light recon veneer cabinets, pale stone-look worktops, stainless steel handles and appliances, plain flush ceiling light. Match the attached floor-plan crop for layout and the window on the left wall; use the attached brochure material board only for materials and colours. No people, no text, no watermark, no logo. Do not add windows, doors or openings not described. No upper wall cabinets over the window. Do not imply a specific ceiling height."
+  },
+  "powder": {
+   "aspect_ratio": "4:3",
+   "references": [
+    "plan-crop",
+    "p17-materials",
+    "p24-spec-text"
+   ],
+   "prompt": "Photorealistic eye-level interior visualisation of an elongated guest powder room, 3.65 m long x 1.70 m wide, in a modern luxury villa, no window. Camera stands at the right (east) end looking along the length of the room. Along the LEFT long wall, nearest the camera: a floating recon walnut-veneer vanity with a stone top and TWO separate basins side by side, bronze taps, a mirror above. Beyond the vanity a short partition wall divides off the far end, where a wall-hung white WC sits against the same left wall in its own compartment. Wet-area finish per brochure: terrazzo-look porcelain floor and porcelain concrete-look wall tiles in warm light grey-beige, one Calacatta marble feature panel behind the vanity, black slim linear ceiling light slots, warm lighting, wood-look aluminium framed door with brass handle. Match the attached floor-plan crop for layout; use the attached brochure images only for materials and colours. No people, no text, no watermark, no logo. Do not add windows or openings not described. Do not imply a specific ceiling height."
+  },
+  "maid-room": {
+   "aspect_ratio": "4:3",
+   "references": [
+    "plan-crop",
+    "p17-materials"
+   ],
+   "prompt": "Photorealistic eye-level interior visualisation of a modest maid's bedroom in a modern villa. Camera stands just inside the door in the north-east corner looking south. The FAR wall (south): a single bed with its headboard against the middle of this wall, bed running toward the camera, with a small bedside unit to the right of the bed in the far-right corner. The RIGHT wall (west, exterior): one tall window with a plain white roller blind, located about halfway along the wall. The LEFT wall: a slim built-in light-veneer wardrobe strip. Restrained service finish: white paint walls and ceiling, light beige porcelain floor, simple light recon veneer furniture, stainless steel handles, plain flush ceiling light, grey and cream bedding. Match the attached floor-plan crop for layout and the window position; use the attached brochure material board only for materials and colours. No people, no text, no watermark, no logo. Do not add windows or openings not described. Do not imply a specific room size or ceiling height."
+  },
+  "office-gym": {
+   "aspect_ratio": "16:9",
+   "references": [
+    "plan-crop",
+    "p15-living",
+    "p17-materials"
+   ],
+   "prompt": "Photorealistic eye-level interior visualisation of a ground-floor home office, 4.60 x 3.40 m, in a modern luxury villa. Camera stands near the door in the south-west corner looking north toward the internal courtyard. The far (north) wall is a wide floor-to-ceiling glazed wall looking onto a private courtyard with a water feature and a planted island. In the middle of the room: one long rectangular light-wood work table, oriented north-south, with exactly THREE upholstered chairs along its left side and exactly ONE chair on its right side (four chairs total). Walls in greige textured paint, light beige marble/porcelain large-format floor, recon walnut veneer joinery on one side wall, black slim linear recessed ceiling light slots, warm soft lighting, cream and muted sage upholstery. Match the attached floor-plan crop for layout and glazing; use the attached brochure images only for materials and colours. No people, no text, no watermark, no logo. No gym equipment, no TV. Do not add windows or openings not described. Do not imply a specific ceiling height."
+  },
+  "bath": {
+   "aspect_ratio": "4:3",
+   "references": [
+    "plan-crop",
+    "p17-materials",
+    "p24-spec-text"
+   ],
+   "prompt": "Photorealistic eye-level interior visualisation of a compact bathroom, 2.90 x 1.70 m, in a modern luxury villa, no window. Camera stands at the door looking at the long far wall. Along that far wall in a row from left to right: a floating recon walnut-veneer vanity with a stone top and one basin and a mirror above, then a wall-hung white WC, then a walk-in shower at the right end with a clear glass screen and a linear floor drain. Wet-area finish per brochure: terrazzo-look porcelain floor, porcelain concrete-look wall tiles in warm light grey-beige, one Calacatta marble feature panel behind the vanity only, bronze taps, black slim linear ceiling light slot, warm lighting. Match the attached floor-plan crop for layout; use the attached brochure material board only for materials and colours. No people, no text, no watermark, no logo. Do not add windows or openings not described. Do not imply a specific ceiling height."
+  },
+  "maid-bath": {
+   "aspect_ratio": "3:4",
+   "references": [
+    "plan-crop",
+    "p17-materials",
+    "p24-spec-text"
+   ],
+   "prompt": "Photorealistic eye-level interior visualisation of a small maid's bathroom, 1.70 x 1.90 m, in a modern villa, no window. Camera stands at the door in the north-west corner looking into the room. On the RIGHT (east) wall near the top: a small wall-hung basin with a plain mirror. On the far (south) wall: a white WC. In the far-left area: a simple shower with a clear glass screen. Restrained service wet-area finish per brochure: porcelain concrete-look wall and floor tiles in light warm grey, white ceiling, stainless steel taps, plain flush ceiling light. Match the attached floor-plan crop for layout; use the attached brochure material board only for materials and colours. No people, no text, no watermark, no logo. Do not add windows or openings not described. Do not imply a specific ceiling height."
+  }
+ }
+}

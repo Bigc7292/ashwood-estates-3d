@@ -9,13 +9,22 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
 - Note 2: the sheet states the roof floor area as 43.92 m². Roof floor room labels are read from the sheet, not from the brochure.
 - Status: PASS WITH NOTES (Colin to confirm note 1).
 
-## Step 2 Layout: GATE LOGGED, BLOCKED ON SCALE
-- Room list (from sheet labels): POWDER, PANTRY, LIFT, TERRACE, and the roof-floor room set on the sheet. Dimensions carry the sheet's own dagger flags (†) and are not verified.
-- Scale: GF viewer uses px_per_m = 28.145 (35.53 mm per crop px), derived from the GF sheet calibration in `FP-4B-GF/data/fp-4b-gf.plan.json`. The RF sheet has no metric scale bar and states "Independent source spans conflict or reliable endpoints are unavailable; no calibration forced." So the RF scale is NOT established. Using 35.53 mm/px for RF is an ASSUMPTION until a calibration from the RF sheet itself is found.
-- Status: BLOCKED. Needs a decision on scale (use GF calibration as an assumption, or wait for a RF-specific calibration).
+## Step 2 Layout: PASS (dimension check, method validated; overlay not possible)
+- Scale: 35.53 mm per crop px. GF value, applied to RF as an ASSUMPTION (Colin 2026-11-09 18:40: "THE SCALE SHOULD BE LIKE THE GROUND FLOOR").
+- RF walls extracted exactly from the approved sheet, group `source_wall_poche` (11 paths): `adapter/rf_wall_extract.py`, output `data/rf_walls_summary.json`, `data/rf_wall_mask_1x.png`.
+- Method check on GF: the same extraction gives 14541 x 22997 mm against 14550 x 23006 mm in `FP-4B-GF/data/fp-4b-gf.plan.json`. Under 0.3 px.
+- Wall bounding boxes at 35.53 mm/px:
+  - GF: 14.54 x 23.00 m (plan json 14.55 x 23.01)
+  - FF: 13.58 x 24.95 m (group `source_wall_poche`, 26 paths)
+  - RF: 13.51 x 22.82 m (group `source_wall_poche`, 11 paths)
+- RF fits inside the GF and FF envelope on both axes. This is consistent, not proven: each sheet is a separate crop with its own frame, so no shared origin exists and a true overlay can't be made from the sheets alone.
+- Stated RF pieces: 3.80 x 15.70 m run, 43.92 m2 roof floor. Both are dimensions the sheet gives, not traced.
+- Sheet legend "UNAPPROVED / NOT SURVEY CAD" logged as a presentation label; the sheet is approved in ACTIVE_PIPELINE.json (pt16u).
 
-## Step 3 Blockout: NOT STARTED
-Blocked by step 2 scale decision.
+## Step 3 Blockout: STARTED (walls available; no blockout built yet)
+- Walls: the vector poche is now available, so the blockout can be built from it.
+- Still to do: rectangle-decompose the RF wall mask into boxes (as GF did), place rooms, then add furniture from the labelled markers, which are not extracted yet.
+- Status: IN PROGRESS.
 
 ## Steps 4 to 7: NOT STARTED
 - Step 4 Grime / finish, step 5 Printed matter, step 6 Critique (independent critic, side-by-side with brochure p15 to p17 and V4 RF plan), step 7 Motion.
@@ -23,4 +32,4 @@ Blocked by step 2 scale decision.
 - Viewer target: match `FP-4B-GF/` v2 in rooms, furniture, materials and lighting.
 
 ## Loop tracker
-Loop 1. Current step: 2 (blocked on scale).
+Loop 1. Current step: 3 (walls extracted; blockout in progress).

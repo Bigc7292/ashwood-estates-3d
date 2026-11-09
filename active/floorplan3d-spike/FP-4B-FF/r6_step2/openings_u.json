@@ -1,0 +1,470 @@
+[
+ {
+  "id": "D1-master",
+  "type": "door",
+  "axis": "x",
+  "at": 267,
+  "span": [
+   317,
+   345
+  ],
+  "rooms": [
+   "Master Suite",
+   "Corridor"
+  ],
+  "evidence": "wall gap + swing arc",
+  "confidence": "high",
+  "swing": {
+   "status": "READ from drawn arc",
+   "hinge_u": [
+    267,
+    345
+   ],
+   "opens_toward": "west (-x)",
+   "arc_score": 0.96,
+   "runner_up_score": 0.65
+  }
+ },
+ {
+  "id": "D2-bed1",
+  "type": "door",
+  "axis": "x",
+  "at": 392,
+  "span": [
+   317,
+   345
+  ],
+  "rooms": [
+   "Bedroom 1",
+   "Corridor"
+  ],
+  "evidence": "wall gap + swing arc",
+  "confidence": "high",
+  "swing": {
+   "status": "READ from drawn arc",
+   "hinge_u": [
+    392,
+    345
+   ],
+   "opens_toward": "east (+x)",
+   "arc_score": 1.0,
+   "runner_up_score": 0.43
+  }
+ },
+ {
+  "id": "D3-bath1",
+  "type": "door",
+  "axis": "y",
+  "at": 350,
+  "span": [
+   428.5,
+   453.8
+  ],
+  "rooms": [
+   "Bath 1",
+   "Bedroom 1"
+  ],
+  "evidence": "wall gap + leaf line x~428 y350-372 + arc",
+  "confidence": "high",
+  "swing": {
+   "status": "READ from drawn arc",
+   "hinge_u": [
+    428.5,
+    350
+   ],
+   "opens_toward": "south (+y, plan down)",
+   "arc_score": 0.91,
+   "runner_up_score": 0.26
+  }
+ },
+ {
+  "id": "D4-lift",
+  "type": "door",
+  "axis": "x",
+  "at": 371,
+  "span": [
+   365,
+   390
+  ],
+  "rooms": [
+   "Lift",
+   "Corridor"
+  ],
+  "evidence": "gap in lift west wall (x368-374) y365-390; lift north wall y347-353 is solid poche x368-428",
+  "confidence": "high",
+  "swing": {
+   "status": "NO ARC: lift door, none drawn"
+  }
+ },
+ {
+  "id": "D5-mdress",
+  "type": "door",
+  "axis": "y",
+  "at": 348,
+  "span": [
+   214,
+   248
+  ],
+  "rooms": [
+   "M. Dressing",
+   "Master Suite"
+  ],
+  "evidence": "wall gap (open passage, no arc)",
+  "confidence": "medium",
+  "swing": {
+   "status": "NO ARC drawn (open passage / leaf hairline only)"
+  }
+ },
+ {
+  "id": "D6-mbath",
+  "type": "door",
+  "axis": "y",
+  "at": 455,
+  "span": [
+   210,
+   248
+  ],
+  "rooms": [
+   "M. Bath",
+   "M. Dressing"
+  ],
+  "evidence": "wall gap x210-248; leaf/track hairline x210-232",
+  "confidence": "medium",
+  "swing": {
+   "status": "NO ARC drawn (open passage / leaf hairline only)"
+  }
+ },
+ {
+  "id": "D7-bath2",
+  "type": "door",
+  "axis": "x",
+  "at": 220,
+  "span": [
+   571,
+   595
+  ],
+  "rooms": [
+   "Bath 2",
+   "Dress"
+  ],
+  "evidence": "wall gap + swing arc",
+  "confidence": "medium",
+  "swing": {
+   "status": "READ from drawn arc",
+   "hinge_u": [
+    220,
+    571
+   ],
+   "opens_toward": "west (-x)",
+   "arc_score": 1.0,
+   "runner_up_score": 0.35
+  }
+ },
+ {
+  "id": "D8-bed2",
+  "type": "door",
+  "axis": "x",
+  "at": 267,
+  "span": [
+   609,
+   640
+  ],
+  "rooms": [
+   "Bedroom 2",
+   "Corridor"
+  ],
+  "evidence": "wall gap + swing arc",
+  "confidence": "medium",
+  "swing": {
+   "status": "NOT FOUND: arc too faint/ambiguous to read hinge side",
+   "arc_scores_top2": [
+    [
+     0.65,
+     "a",
+     -1
+    ],
+    [
+     0.52,
+     "b",
+     1
+    ]
+   ]
+  }
+ },
+ {
+  "id": "D9-junior",
+  "type": "door",
+  "axis": "x",
+  "at": 372,
+  "span": [
+   611,
+   637
+  ],
+  "rooms": [
+   "J. Dress (lobby)",
+   "Corridor"
+  ],
+  "evidence": "wall gap + swing arc",
+  "confidence": "medium",
+  "swing": {
+   "status": "READ from drawn arc",
+   "hinge_u": [
+    372,
+    611
+   ],
+   "opens_toward": "east (+x)",
+   "arc_score": 0.7,
+   "runner_up_score": 0.43
+  }
+ },
+ {
+  "id": "D10-jdress",
+  "type": "door",
+  "axis": "y",
+  "at": 610,
+  "span": [
+   407,
+   437
+  ],
+  "rooms": [
+   "J. Dress wardrobe zone",
+   "J. Dress lobby"
+  ],
+  "evidence": "wall gap + swing arc; internal to J. Dress per stated 2.00 x 2.80 m",
+  "confidence": "medium",
+  "swing": {
+   "status": "NOT FOUND: arc too faint/ambiguous to read hinge side",
+   "arc_scores_top2": [
+    [
+     0.48,
+     "a",
+     1
+    ],
+    [
+     0.35,
+     "b",
+     1
+    ]
+   ]
+  }
+ },
+ {
+  "id": "D11-jbath",
+  "type": "door",
+  "axis": "x",
+  "at": 437.5,
+  "span": [
+   580,
+   610
+  ],
+  "rooms": [
+   "J. Bath",
+   "J. Dress"
+  ],
+  "evidence": "wall gap + swing arc",
+  "confidence": "medium",
+  "swing": {
+   "status": "NOT FOUND: arc too faint/ambiguous to read hinge side",
+   "arc_scores_top2": [
+    [
+     0.48,
+     "b",
+     1
+    ],
+    [
+     0.26,
+     "a",
+     -1
+    ]
+   ]
+  }
+ },
+ {
+  "id": "D12-dress",
+  "type": "door",
+  "axis": "y",
+  "at": 610,
+  "span": [
+   222,
+   237
+  ],
+  "rooms": [
+   "Dress",
+   "Bedroom 2"
+  ],
+  "evidence": "gap in Dress south wall (dark y608-612 x237-262); arc near (235,608) u",
+  "confidence": "low",
+  "swing": {
+   "status": "NOT FOUND: arc too faint/ambiguous to read hinge side",
+   "arc_scores_top2": [
+    [
+     0.43,
+     "a",
+     -1
+    ],
+    [
+     0.39,
+     "a",
+     1
+    ]
+   ]
+  }
+ },
+ {
+  "id": "W1-master-N",
+  "type": "window",
+  "axis": "y",
+  "at": 197,
+  "span": [
+   169,
+   189.5
+  ],
+  "rooms": [
+   "Master Suite",
+   "Balcony N"
+  ],
+  "evidence": "no poche in facade, glazing hairlines",
+  "confidence": "medium"
+ },
+ {
+  "id": "W2-master-N",
+  "type": "window",
+  "axis": "y",
+  "at": 197,
+  "span": [
+   199.5,
+   262
+  ],
+  "rooms": [
+   "Master Suite",
+   "Balcony N"
+  ],
+  "evidence": "no poche in facade, glazing hairlines",
+  "confidence": "medium"
+ },
+ {
+  "id": "W3-living-N",
+  "type": "window",
+  "axis": "y",
+  "at": 197,
+  "span": [
+   273,
+   337.5
+  ],
+  "rooms": [
+   "Family Living",
+   "Balcony N"
+  ],
+  "evidence": "no poche in facade, glazing hairlines",
+  "confidence": "medium"
+ },
+ {
+  "id": "W4-living-N",
+  "type": "window",
+  "axis": "y",
+  "at": 197,
+  "span": [
+   348.5,
+   367.5
+  ],
+  "rooms": [
+   "Family Living",
+   "Balcony N"
+  ],
+  "evidence": "no poche in facade, glazing hairlines",
+  "confidence": "medium"
+ },
+ {
+  "id": "W5-bed1-N",
+  "type": "window",
+  "axis": "y",
+  "at": 197,
+  "span": [
+   428,
+   493.5
+  ],
+  "rooms": [
+   "Bedroom 1",
+   "Balcony N"
+  ],
+  "evidence": "no poche in facade, glazing hairlines",
+  "confidence": "medium"
+ },
+ {
+  "id": "W6-mbath-W",
+  "type": "window",
+  "axis": "x",
+  "at": 145,
+  "span": [
+   495,
+   517.5
+  ],
+  "rooms": [
+   "M. Bath"
+  ],
+  "evidence": "no poche in west wall",
+  "confidence": "medium"
+ },
+ {
+  "id": "W7-bath2-W",
+  "type": "window",
+  "axis": "x",
+  "at": 145,
+  "span": [
+   575,
+   598.5
+  ],
+  "rooms": [
+   "Bath 2"
+  ],
+  "evidence": "no poche in west wall",
+  "confidence": "medium"
+ },
+ {
+  "id": "W8-bath1-E",
+  "type": "window",
+  "axis": "x",
+  "at": 517,
+  "span": [
+   371,
+   382.5
+  ],
+  "rooms": [
+   "Bath 1"
+  ],
+  "evidence": "no poche in east wall",
+  "confidence": "medium"
+ },
+ {
+  "id": "W9-bed2-S",
+  "type": "window",
+  "axis": "y",
+  "at": 748,
+  "span": [
+   150,
+   262
+  ],
+  "rooms": [
+   "Bedroom 2",
+   "Balcony SW"
+  ],
+  "evidence": "drawn window line with frame markers x150-262 at y~748 (full width, re-measured r6)",
+  "confidence": "high"
+ },
+ {
+  "id": "W10-junior-S",
+  "type": "window",
+  "axis": "y",
+  "at": 759.5,
+  "span": [
+   378,
+   511
+  ],
+  "rooms": [
+   "Junior Suite",
+   "Balcony SE"
+  ],
+  "evidence": "no poche in facade, glazing hairlines; r6: line re-located to the drawn glazing line y758.5-761",
+  "confidence": "medium"
+ }
+]

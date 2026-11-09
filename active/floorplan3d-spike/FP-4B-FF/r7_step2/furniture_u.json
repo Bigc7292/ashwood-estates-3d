@@ -1,0 +1,614 @@
+[
+ {
+  "id": "bed-master",
+  "room": "Master Suite",
+  "kind": "double bed",
+  "rect_u": [
+   164,
+   237,
+   237,
+   302
+  ],
+  "source": "SOURCE: V4 SVG rect"
+ },
+ {
+  "id": "bed-bed2",
+  "room": "Bedroom 2",
+  "kind": "double bed",
+  "rect_u": [
+   164,
+   664,
+   237,
+   729
+  ],
+  "source": "SOURCE: V4 SVG rect"
+ },
+ {
+  "id": "bed-junior",
+  "room": "Junior Suite",
+  "kind": "double bed",
+  "rect_u": [
+   414,
+   679,
+   496,
+   740
+  ],
+  "source": "SOURCE: V4 SVG rect"
+ },
+ {
+  "id": "bed-bed1-a",
+  "room": "Bedroom 1",
+  "kind": "single bed",
+  "rect_u": [
+   447,
+   226,
+   505,
+   250
+  ],
+  "source": "SOURCE: V4 SVG rect"
+ },
+ {
+  "id": "bed-bed1-b",
+  "room": "Bedroom 1",
+  "kind": "single bed",
+  "rect_u": [
+   447,
+   278,
+   505,
+   302
+  ],
+  "source": "SOURCE: V4 SVG rect"
+ },
+ {
+  "id": "sofa-living-a",
+  "room": "Family Living",
+  "kind": "sofa, L-leg",
+  "rect_u": [
+   304,
+   210,
+   382,
+   228
+  ],
+  "source": "SOURCE: V4 SVG rect"
+ },
+ {
+  "id": "sofa-living-b",
+  "room": "Family Living",
+  "kind": "sofa, L-leg",
+  "rect_u": [
+   364,
+   228,
+   382,
+   306
+  ],
+  "source": "SOURCE: V4 SVG rect"
+ },
+ {
+  "id": "coffee-table-living",
+  "room": "Family Living",
+  "kind": "coffee table",
+  "rect_u": [
+   321,
+   247,
+   355,
+   281
+  ],
+  "source": "SOURCE: V4 SVG rect"
+ },
+ {
+  "id": "round-table-living",
+  "room": "Family Living",
+  "kind": "round table",
+  "circle_u": [
+   326,
+   296,
+   13
+  ],
+  "source": "SOURCE: V4 SVG circle"
+ },
+ {
+  "id": "armchair-master",
+  "room": "Master Suite",
+  "kind": "armchair (drawn rotated; bbox)",
+  "rect_u": [
+   234.2,
+   208.5,
+   258.0,
+   233.8
+  ],
+  "source": "MEASURED: V4 raster white symbol bbox"
+ },
+ {
+  "id": "side-table-master",
+  "room": "Master Suite",
+  "kind": "round side table",
+  "circle_u": [
+   223.6,
+   214.9,
+   6.2
+  ],
+  "source": "MEASURED: V4 raster white symbol"
+ },
+ {
+  "id": "tub-mbath",
+  "room": "M. Bath",
+  "kind": "bath tub",
+  "rect_u": [
+   189,
+   512,
+   249,
+   536
+  ],
+  "source": "MEASURED: V4 raster outline (+-2 u)"
+ },
+ {
+  "id": "vanity-mbath",
+  "room": "M. Bath",
+  "kind": "vanity counter",
+  "rect_u": [
+   249.5,
+   459.5,
+   265.8,
+   511
+  ],
+  "source": "MEASURED: V4 raster white symbol"
+ },
+ {
+  "id": "basin-mbath-a",
+  "room": "M. Bath",
+  "kind": "basin",
+  "rect_u": [
+   253,
+   470.2,
+   262.5,
+   482.2
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "basin-mbath-b",
+  "room": "M. Bath",
+  "kind": "basin",
+  "rect_u": [
+   253,
+   496,
+   262.2,
+   508
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wc-mbath",
+  "room": "M. Bath",
+  "kind": "WC",
+  "rect_u": [
+   153,
+   463,
+   173,
+   481
+  ],
+  "source": "MEASURED: V4 raster symbol (+-2 u)"
+ },
+ {
+  "id": "vanity-bath1",
+  "room": "Bath 1",
+  "kind": "vanity counter",
+  "rect_u": [
+   425.8,
+   402,
+   478.8,
+   416.5
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "basin-bath1",
+  "room": "Bath 1",
+  "kind": "basin",
+  "rect_u": [
+   433.2,
+   404,
+   445.2,
+   413.5
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wc-bath1",
+  "room": "Bath 1",
+  "kind": "WC",
+  "rect_u": [
+   460,
+   390,
+   478,
+   413
+  ],
+  "source": "MEASURED: V4 raster symbol (+-2 u)"
+ },
+ {
+  "id": "vanity-bath2",
+  "room": "Bath 2",
+  "kind": "vanity counter",
+  "rect_u": [
+   183.5,
+   603.5,
+   215.8,
+   617.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "basin-bath2",
+  "room": "Bath 2",
+  "kind": "basin",
+  "rect_u": [
+   194,
+   606,
+   205.2,
+   614.2
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "cabinet-bath2",
+  "room": "Bath 2",
+  "kind": "cabinet/counter",
+  "rect_u": [
+   151.5,
+   606.2,
+   180.8,
+   617.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wc-bath2",
+  "room": "Bath 2",
+  "kind": "WC",
+  "rect_u": [
+   194,
+   549,
+   210,
+   568
+  ],
+  "source": "MEASURED: V4 raster symbol (+-2 u)"
+ },
+ {
+  "id": "vanity-jbath",
+  "room": "J. Bath",
+  "kind": "vanity counter",
+  "rect_u": [
+   439.8,
+   561.5,
+   478.8,
+   576
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "basin-jbath",
+  "room": "J. Bath",
+  "kind": "basin",
+  "rect_u": [
+   453.2,
+   565,
+   465.5,
+   574.2
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wc-jbath",
+  "room": "J. Bath",
+  "kind": "WC",
+  "rect_u": [
+   449,
+   612,
+   469,
+   633
+  ],
+  "source": "MEASURED: V4 raster symbol (+-2 u)"
+ },
+ {
+  "id": "wardrobe-mdress-n",
+  "room": "M. Dressing",
+  "kind": "wardrobe",
+  "rect_u": [
+   150.5,
+   351.5,
+   210,
+   366.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wardrobe-mdress-w",
+  "room": "M. Dressing",
+  "kind": "wardrobe",
+  "rect_u": [
+   150.5,
+   368.5,
+   167,
+   451.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wardrobe-mdress-s",
+  "room": "M. Dressing",
+  "kind": "wardrobe",
+  "rect_u": [
+   168.2,
+   435.5,
+   210,
+   451.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wardrobe-mdress-e",
+  "room": "M. Dressing",
+  "kind": "wardrobe",
+  "rect_u": [
+   250.2,
+   351.5,
+   265.8,
+   451.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wardrobe-bed1",
+  "room": "Bedroom 1",
+  "kind": "wardrobe (recess)",
+  "rect_u": [
+   460.8,
+   348.5,
+   510.8,
+   363.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wardrobe-bed2",
+  "room": "Bedroom 2",
+  "kind": "wardrobe",
+  "rect_u": [
+   151.5,
+   623,
+   215.8,
+   643
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wardrobe-dress-n",
+  "room": "Dress",
+  "kind": "wardrobe",
+  "rect_u": [
+   222,
+   546.8,
+   251.2,
+   562.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wardrobe-dress-e",
+  "room": "Dress",
+  "kind": "wardrobe",
+  "rect_u": [
+   252.2,
+   546.5,
+   268.8,
+   600.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wardrobe-jdress-n",
+  "room": "J. Dress",
+  "kind": "wardrobe",
+  "rect_u": [
+   378.5,
+   561.5,
+   435,
+   577
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "wardrobe-jdress-w",
+  "room": "J. Dress",
+  "kind": "wardrobe",
+  "rect_u": [
+   378.5,
+   578.5,
+   394,
+   600.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "joinery-strip-master",
+  "room": "Master Suite",
+  "kind": "joinery strip (function NOT FOUND)",
+  "rect_u": [
+   255.5,
+   244,
+   265.8,
+   301.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "joinery-strip-living",
+  "room": "Family Living",
+  "kind": "joinery strip (function NOT FOUND)",
+  "rect_u": [
+   273.5,
+   237.2,
+   284,
+   294
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "joinery-strip-bed1",
+  "room": "Bedroom 1",
+  "kind": "joinery strip (function NOT FOUND)",
+  "rect_u": [
+   396.5,
+   199.5,
+   409.2,
+   301.8
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "joinery-strip-bed2",
+  "room": "Bedroom 2",
+  "kind": "joinery strip (function NOT FOUND)",
+  "rect_u": [
+   252.2,
+   664.5,
+   262.8,
+   722
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "joinery-strip-junior",
+  "room": "Junior Suite",
+  "kind": "joinery strip (function NOT FOUND)",
+  "rect_u": [
+   378.8,
+   671.5,
+   391.8,
+   729.2
+  ],
+  "source": "MEASURED: V4 raster"
+ },
+ {
+  "id": "shower-mbath",
+  "room": "M. Bath",
+  "kind": "shower enclosure (tray footprint)",
+  "rect_u": [
+   149.8,
+   493.0,
+   184.0,
+   537.2
+  ],
+  "source": "MEASURED: N partition y490.25-493 x150-185; E screen line x184-186 y511.25-537.2; W wall/W6 window; S wall 537.2",
+  "screens_u": [
+   {
+    "axis": "x",
+    "at": 185,
+    "span": [
+     511.25,
+     537.2
+    ],
+    "kind": "screen line (thin dark line; glass per critic reading)"
+   }
+  ],
+  "door": {
+   "axis": "x",
+   "at": 185,
+   "span": [
+    493.0,
+    511.25
+   ],
+   "width_mm": 621,
+   "swing": {
+    "status": "READ from drawn arc (builder arc score 0.74 vs 0.48)",
+    "hinge_u": [
+     185,
+     493.0
+    ],
+    "opens_toward": "west (-x), into the shower"
+   }
+  },
+  "crop": "r7_step2/closeups/mbath_shower.png"
+ },
+ {
+  "id": "shower-bath1",
+  "room": "Bath 1",
+  "kind": "shower zone behind glass (footprint)",
+  "rect_u": [
+   481.25,
+   368.25,
+   511.25,
+   417.0
+  ],
+  "source": "MEASURED: glass line x479.25-481.25 y387.75-417; E wall face 511.25 (W8 window y371-383 inside zone); N wardrobe-recess wall 368.25; S wall 417",
+  "screens_u": [
+   {
+    "axis": "x",
+    "at": 480.2,
+    "span": [
+     387.75,
+     417.0
+    ],
+    "kind": "glass line"
+   }
+  ],
+  "door": {
+   "axis": "x",
+   "at": 480.2,
+   "span": [
+    368.25,
+    387.75
+   ],
+   "width_mm": 663,
+   "swing": {
+    "status": "NO ARC drawn (open entry)"
+   }
+  },
+  "crop": "r7_step2/closeups/bath1_shower.png"
+ },
+ {
+  "id": "shower-jbath",
+  "room": "J. Bath",
+  "kind": "shower zone behind glass (footprint)",
+  "rect_u": [
+   481.25,
+   560.8,
+   511.25,
+   636.5
+  ],
+  "source": "MEASURED: line x479.25-481.25 y560.8-588.75 and 608-636.5 (central opening 588.75-608); E wall 511.25; N/S walls; 1.02 x 2.58 m",
+  "screens_u": [
+   {
+    "axis": "x",
+    "at": 480.5,
+    "span": [
+     560.8,
+     588.75
+    ],
+    "kind": "glass/screen line"
+   },
+   {
+    "axis": "x",
+    "at": 480.5,
+    "span": [
+     608.0,
+     636.5
+    ],
+    "kind": "glass/screen line"
+   }
+  ],
+  "door": {
+   "axis": "x",
+   "at": 480.5,
+   "span": [
+    588.75,
+    608.0
+   ],
+   "width_mm": 655,
+   "swing": {
+    "status": "NO ARC drawn (open central gap)"
+   }
+  },
+  "crop": "r7_step2/closeups/jbath_shower.png"
+ }
+]

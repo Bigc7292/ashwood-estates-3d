@@ -1,0 +1,3 @@
+[
+ {"id":"E1-void-west-edge","type":"NOT FOUND: glazing or balustrade","axis":"x","at":373,"span":[405,552],"rooms":["Corridor","courtyard void"],"evidence":"Drawn as a dark line (x368.5-372) plus a lighter parallel line (~x376) with light infill and panel ticks at y~455 and ~500. The same double-line-with-ticks symbol is used for the N facade sliding glazing (W1, x170-220), which leans glazing, but the V4 legend has no glazing or balustrade entry and the sheet does not say whether the courtyard void is enclosed. Not classified.","confidence":"n/a","crop":"r6_step2/evidence/E1_void_west_edge.png"}
+]
