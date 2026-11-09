@@ -26,6 +26,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/left_pass8_verge_trees.js"></script>
 <script src="./overrides/left_pass9_plan_trees_low.js"></script>
 <script src="./overrides/left_pass10_grass_layer.js"></script>
+<script src="./overrides/left_pass11_ff_openings.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -100,6 +101,7 @@ if ((window.MODEL_OVERRIDES||{}).dusk && !_V0.sun) {
   MAT.led.emissiveIntensity = 4.5;
   for (const k of ['interior_ceiling','interior_lobby','interior_wood','interior_stone','interior_floor']) if (MAT[k]) MAT[k].emissiveIntensity *= 1.8;
 }
+MAT.window_dark = M_({color:0x3a3e42, roughness:.08, metalness:.55, emissive:0x1a1814, emissiveIntensity:.4});   // left pass 11 FF window panes
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
