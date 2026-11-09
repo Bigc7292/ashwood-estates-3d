@@ -1,18 +1,14 @@
-# Virtualenvs / deps
-.venv/
-node_modules/
+# Caches only (Colin 2026-11-09: back up everything else, incl .venv and ZIP)
 __pycache__/
 *.pyc
 *.pyo
-
-# Superseded archive ZIP (99MB; over 95MB GitHub soft-push comfort; excluded per Optimizer Bot backup rule)
-superseded_2026-11-09/Ashwood_Estates_plan_visuals_archive.zip
-
-# Optimizer incremental cache (regenerable; keep scripts + reports)
 optimizer/.verify_cache.json
 
-# OS / editor noise
+# OS noise
 .DS_Store
 Thumbs.db
 *.swp
 *~
+
+# Over GitHub 100MB hard limit; regenerate with: pip install playwright && playwright install
+.venv/lib/python3.13/site-packages/playwright/driver/node
