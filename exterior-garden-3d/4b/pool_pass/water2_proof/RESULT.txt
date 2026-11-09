@@ -1,0 +1,7 @@
+Water2 animation/visibility proof (SwiftShader headless chromium, 1280x720, pool_ref camera, pool box x600-920 y500-600)
+Re-run 2026-11-10 after the critic pool fixes (glow strip, loungers, glass, late-afternoon sun):
+t5_vs_t6 mean 5.27 max 78        (window.__frame(5,10) vs __frame(6,10): water surface moves)
+water_vs_hidden mean 23.45 max 122 (Water2 + glint meshes shown vs hidden at t=6: Water2 contributes)
+pool box RGB mean [111.1, 147.9, 146.3] std [46.1, 32.7, 34.5]
+Previous run (eb425d1): t5/t6 mean 4.07, shown/hidden mean 24.89.
+Files: wp_t5.png, wp_t6.png, wp_t6_hidden.png, diff_t5_t6_x8.png (abs diff x8). Tools: walk_exterior_wip/tools/water_probe.cjs, water_diff.py.

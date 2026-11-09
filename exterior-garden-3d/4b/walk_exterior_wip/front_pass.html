@@ -1,0 +1,320 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Ashwood 4B front pass (WIP)</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Arial,Helvetica,sans-serif}
+#cap{position:absolute;left:0;right:0;bottom:0;background:rgba(20,28,24,.82);color:#fff;padding:9px 16px;font-size:15px;line-height:1.35}
+#cap b{color:#ffd58a}
+#title{position:absolute;left:0;top:0;background:rgba(20,28,24,.78);color:#fff;padding:8px 14px;font-size:15px}
+#labels div{position:absolute;transform:translate(-50%,-100%);background:rgba(255,255,255,.88);border:1px solid #556;color:#123;font-size:12px;padding:2px 5px;white-space:nowrap}
+</style>
+<script type="importmap">{"imports":{"three":"../model/vendor/three/build/three.module.js"}}</script>
+</head><body>
+<div id="title">GENERATED 3D CONCEPT · Ashwood Estates 4-bedroom villa (4B) · <span id="vname"></span></div>
+<div id="labels"></div>
+<div id="cap"><b>Concept visualisation: not survey-verified, not construction-ready, not certified</b><br>
+<span id="sub">Layout: approved CAD V4 (pt16u) + 4B-GF span calibration (~, ±3%). Heights, levels, RF (NTS) and grey placeholder items are display assumptions. Not a marketing render.</span></div>
+<script src="../model/data/model.js"></script>
+<script src="./overrides/front_pass1_carport.js"></script>
+<script src="./overrides/front_pass2_tower.js"></script>
+<script src="./overrides/front_pass3_palms.js"></script>
+<script src="./overrides/front_pass5_slats.js"></script>
+<script src="./overrides/front_pass6_hedges.js"></script>
+<script src="./overrides/front_pass7_ground.js"></script>
+<script src="./overrides/front_step4_finish.js"></script>
+<script src="./overrides/front_pass8_glazing.js"></script>
+<script src="./overrides/front_pass9_gf_glazing.js"></script>
+<script src="./overrides/front_pass11_slats.js"></script>
+<script src="./overrides/front_pass12_tower_cap.js"></script>
+<!-- pass 14 (9.73 m tower) and pass 15 (+0.50 m FF) reverted 2026-11-10: M25 shared heights -->
+<script src="./overrides/front_m25_shared_heights.js"></script>
+<script src="./overrides/front_pass16_multistem_tree.js"></script>
+<script src="./overrides/front_pass17_critic_d.js"></script>
+<script type="module">
+import * as THREE from 'three';
+import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
+import { OrbitControls } from '../model/vendor/three/examples/jsm/controls/OrbitControls.js';
+const M = window.MODEL, Q = new URLSearchParams(location.search);
+if (window.MODEL_OVERRIDES) { const O = window.MODEL_OVERRIDES; M.boxes = M.boxes.filter(b => !(O.remove||[]).includes(b.id)).concat(O.add||[]); }
+if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.remove_plain_trees) M.trees = M.trees.filter(t => t.courtyard);
+if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.hide_cats) M.boxes = M.boxes.filter(b => !window.MODEL_OVERRIDES.hide_cats.includes(b.cat));
+const FIN = !!(window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.finish);   // step 4 finish (front view)
+const W = innerWidth, Hh = innerHeight;
+const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
+renderer.setPixelRatio(1); renderer.setSize(W,Hh);
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = FIN ? 1.0 : 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.prepend(renderer.domElement);
+const scene = new THREE.Scene();
+// sky gradient (brochure renders: clear blue sky, warm low sun) — style cue only
+{ const c=document.createElement('canvas'); c.width=2; c.height=256; const g=c.getContext('2d');
+  const gr=g.createLinearGradient(0,0,0,256); if (FIN) { gr.addColorStop(0,'#4f92c2'); gr.addColorStop(.65,'#a8cfe0'); gr.addColorStop(1,'#eae2d0'); } else { gr.addColorStop(0,'#3f87bd'); gr.addColorStop(.7,'#9cc7de'); gr.addColorStop(1,'#dfe9ea'); }
+  g.fillStyle=gr; g.fillRect(0,0,2,256); const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; scene.background=t; }
+scene.add(FIN ? new THREE.HemisphereLight(0xdde7f4, 0xc29f78, 1.0) : new THREE.HemisphereLight(0xe6f0ff, 0xb8a888, 1.25)); scene.add(new THREE.AmbientLight(0xffffff, FIN ? 0.25 : 0.35));
+const sun = new THREE.DirectionalLight(FIN ? 0xffcf98 : 0xfff0d8, FIN ? 2.9 : 2.4);
+if (FIN) sun.position.set(-26, 15, 42); else sun.position.set(-18, 30, 22); sun.castShadow = true; sun.shadow.mapSize.set(2048,2048);
+Object.assign(sun.shadow.camera,{left:-30,right:30,top:30,bottom:-30,near:1,far:120}); sun.shadow.bias=-0.0004;
+const cx = M.meta.site_m[0]/2, cz = M.meta.site_m[1]/2;
+sun.target.position.set(cx,0,cz); scene.add(sun, sun.target);
+const _V0 = Q.get('view') ? JSON.parse(Q.get('view')) : {}; if (_V0.sun) sun.position.set(..._V0.sun);
+// procedural textures (no image assets) -------------------------------------------------
+function tex(draw, rep){ const c=document.createElement('canvas'); c.width=c.height=256; draw(c.getContext('2d'));
+  const t=new THREE.CanvasTexture(c); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.colorSpace=THREE.SRGBColorSpace; t.userData.rep=rep; return t; }
+function noise(g,base,var_,n){ g.fillStyle=base; g.fillRect(0,0,256,256); for(let i=0;i<n;i++){ const v=(Math.random()-.5)*var_; g.fillStyle=`rgba(${v>0?255:60},${v>0?245:50},${v>0?225:35},${Math.abs(v)})`; g.fillRect(Math.random()*256,Math.random()*256,1+Math.random()*3,1+Math.random()*2);} }
+const tStone = tex(g=>{ noise(g, FIN ? '#d2bd9c' : '#d8c7a8',.18,9000); g.strokeStyle='rgba(120,100,70,.35)'; g.lineWidth=1.2;
+  for(let y=0;y<256;y+=32){ g.beginPath(); g.moveTo(0,y); g.lineTo(256,y); g.stroke(); for(let x=((y/32)%2)*64;x<256;x+=128){ g.beginPath(); g.moveTo(x,y); g.lineTo(x,y+32); g.stroke(); } }
+  g.strokeStyle='rgba(150,125,90,.25)'; for(let i=0;i<40;i++){ g.beginPath(); const y=Math.random()*256; g.moveTo(0,y); g.lineTo(256,y+Math.random()*4-2); g.stroke(); } }, 2.4);
+const tPave = tex(g=>{ noise(g,'#e2d6c0',.14,7000); g.strokeStyle='rgba(130,115,90,.45)'; g.lineWidth=1.5;
+  for(let i=0;i<=256;i+=64){ g.beginPath(); g.moveTo(i,0); g.lineTo(i,256); g.stroke(); g.beginPath(); g.moveTo(0,i); g.lineTo(256,i); g.stroke(); } }, 3.2);
+const tLawn = tex(g=>{ g.fillStyle='#5f7e34'; g.fillRect(0,0,256,256); for(let i=0;i<14000;i++){ const s=Math.random(); g.fillStyle=`rgba(${60+s*70},${95+s*70},${30+s*30},.55)`; g.fillRect(Math.random()*256,Math.random()*256,1,2+Math.random()*3);} }, 3);
+const tSlat = tex(g=>{ g.fillStyle='#3a2a1c'; g.fillRect(0,0,256,256); for(let x=0;x<256;x+=16){ g.fillStyle='#7a5636'; g.fillRect(x,0,9,256); g.fillStyle='rgba(255,220,170,.15)'; g.fillRect(x,0,2,256);} }, 0.6);
+const tBars = tex(g=>{ g.clearRect(0,0,256,256); for(let x=0;x<256;x+=21){ g.fillStyle='#2e2a24'; g.fillRect(x,0,8,256);} }, 0.35);
+function M_(o){ return new THREE.MeshStandardMaterial(o); }
+const MAT = {
+  stone: M_({map:tStone, roughness:.85}), paving: M_({map:tPave, roughness:.9}), paving_inner: M_({color:0xe8dfcf, roughness:.6}),
+  coping: M_({color:0xe7dcc6, roughness:.8}), lawn: M_({map:tLawn, roughness:1}), soffit: M_({color:0xeee6d6, roughness:.75}),
+  glass: FIN ? M_({color:0x8a7a66, roughness:.05, metalness:.3, transparent:true, opacity:.55, emissive:0x7a5326, emissiveIntensity:.55}) : M_({color:0x6f8f9c, roughness:.05, metalness:.3, transparent:true, opacity:.42}),
+  glass_balustrade: M_({color:0xa9c6cf, roughness:.05, metalness:.1, transparent:true, opacity:.28}),
+  bronze_slats: M_({map:tSlat, roughness:.6, metalness:.2}), bronze_bars: M_({map:tBars, transparent:true, alphaTest:.5, side:THREE.DoubleSide, roughness:.5, metalness:.4, color:0x5a4a38}),
+  placeholder: M_({color:0xa7a9ab, roughness:.9}), planter: M_({color:0xbfae8f})
+};
+const ph = M_({color:0xa7a9ab, roughness:.9});
+MAT.bronze_dark = M_({color:0x3a2c20, roughness:.55, metalness:.35});   // slat screen (front pass 5)
+MAT.led = M_({color:0xfff2d6, emissive:0xffdcaa, emissiveIntensity:2.4});   // soffit LED lines (front step 4)
+// step 6 glazing (front pass 8): dark clear glass so the lit rooms behind read through it
+if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
+  // critic batch (a), 2026-11-10: clear physical glass (transmission 0.9, low tint) instead of dark tinted glass; rooms behind are pale and lit, not brown
+  MAT.glass = new THREE.MeshPhysicalMaterial({color:0xf3f7f7, transmission:0.9, roughness:0.03, metalness:0, ior:1.5, thickness:0.02, specularIntensity:1, transparent:true});
+  MAT.interior_wood = M_({color:0xd6c4a8, roughness:.6, emissive:0x6a5034, emissiveIntensity:.35});
+  MAT.interior_stone = M_({color:0xebe3d5, roughness:.8, emissive:0x7a6a50, emissiveIntensity:.35});
+  MAT.interior_ceiling = M_({color:0xfff6e8, emissive:0xffe4bc, emissiveIntensity:.9});
+  MAT.interior_floor = M_({color:0xcfc0a8, roughness:.4, emissive:0x4a3e2e, emissiveIntensity:.25});
+  MAT.slat_timber = M_({color:0xa8784a, roughness:.6, emissive:0x6a3e16, emissiveIntensity:.35});   // front pass 11 warm lit timber slats
+  MAT.door_timber = M_({color:0x5a3a22, roughness:.55, emissive:0x2a160a, emissiveIntensity:.25});   // front pass 10 timber entry door
+  MAT.interior_lobby = M_({color:0xf0e6d6, roughness:.7, emissive:0xd8bc94, emissiveIntensity:.6});   // front pass 9 lit GF lobby
+}
+// critic (d) defect 7 (pass 17): dusk. Low warm sun, warm sky, stronger soffit/carport/lobby/interior emissives. Display assumption.
+if ((window.MODEL_OVERRIDES||{}).dusk && !_V0.sun) {
+  sun.position.set(-34, 7, 40); sun.color.set(0xffb27e); sun.intensity = 1.5; renderer.toneMappingExposure = 0.95;
+  scene.children.forEach(o => { if (o.isHemisphereLight) { o.color.set(0x9fb0d0); o.groundColor.set(0x8a6a4c); o.intensity = 0.75; } if (o.isAmbientLight) o.intensity = 0.18; });
+  { const c=document.createElement('canvas'); c.width=2; c.height=256; const g=c.getContext('2d'); const gr=g.createLinearGradient(0,0,0,256);
+    gr.addColorStop(0,'#2f4f7e'); gr.addColorStop(.55,'#8a9fbf'); gr.addColorStop(.85,'#e8b48a'); gr.addColorStop(1,'#f3c99a');
+    g.fillStyle=gr; g.fillRect(0,0,2,256); const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; scene.background=t; }
+  MAT.led.emissiveIntensity = 4.5;
+  for (const k of ['interior_ceiling','interior_lobby','interior_wood','interior_stone','interior_floor']) if (MAT[k]) MAT[k].emissiveIntensity *= 1.8;
+}
+MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
+function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
+const group = new THREE.Group(); scene.add(group);
+const hideCats = new Set((Q.get('hide')||'').split(',').filter(Boolean));
+// Water basins (DISPLAY ASSUMPTIONS - the plan gives the water outlines only, no depths):
+// pool 1.4 m deep with mosaic tile + stone coping; courtyard feature a 0.4 m stone-lined pond.
+const BASIN = {'swimming-pool':{depth:1.4, wall:'tile', coping:0.30}, 'courtyard-water-feature':{depth:0.40, wall:'stone', coping:0}};
+const basinRects = M.water.filter(w=>BASIN[w.id]).map(w=>[w.x0,w.z0,w.x1,w.z1]);
+function subtractRect(r, h){   // axis-aligned rect minus rect -> up to 4 rects ([x0,z0,x1,z1])
+  if (h[0]>=r[2]||h[2]<=r[0]||h[1]>=r[3]||h[3]<=r[1]) return [r];
+  const [x0,z0,x1,z1]=r, hx0=Math.max(h[0],x0), hx1=Math.min(h[2],x1), hz0=Math.max(h[1],z0), hz1=Math.min(h[3],z1), out=[];
+  if (hz0>z0) out.push([x0,z0,x1,hz0]); if (hz1<z1) out.push([x0,hz1,x1,z1]);
+  if (hx0>x0) out.push([x0,hz0,hx0,hz1]); if (hx1<x1) out.push([hx1,hz0,x1,hz1]);
+  return out;
+}
+function addBox(b, x0, z0, x1, z1){
+  const w=Math.max(x1-x0,.02), d=Math.max(z1-z0,.02), h=Math.max(b.y1-b.y0,.02);
+  let m = MAT[b.mat] || ph;
+  if (b.cat==='gf_wall'||b.cat==='ff_wall'||b.cat==='rf_wall') m = texRepeat(m, Math.max(w,d), h);
+  else if (['ground','lawn','balcony'].includes(b.cat)) m = texRepeat(m, w, d);
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), m);
+  mesh.position.set(x0+w/2, b.y0+h/2, z0+d/2);
+  mesh.castShadow = !b.mat.startsWith('glass') && b.cat!=='ground' && b.cat!=='lawn'; mesh.receiveShadow = true;
+  group.add(mesh);
+}
+for (const b of M.boxes) {
+  if (hideCats.has(b.cat)) continue;
+  // ground slabs get a hole cut where a water basin is dug, so the basin is visible (previously water sat on top of the paving)
+  const pieces = b.cat==='ground' ? basinRects.reduce((acc,h)=>acc.flatMap(r=>subtractRect(r,h)), [[b.x0,b.z0,b.x1,b.z1]]) : [[b.x0,b.z0,b.x1,b.z1]];
+  for (const [x0,z0,x1,z1] of pieces) addBox(b, x0, z0, x1, z1);
+}
+for (const p of M.polys) { const s=new THREE.Shape(p.pts.map(([x,z])=>new THREE.Vector2(x,-z)));
+  for (const h of (p.holes||[])) s.holes.push(new THREE.Path(h.map(([x,z])=>new THREE.Vector2(x,-z))));
+  const g=new THREE.ExtrudeGeometry(s,{depth:p.y1-p.y0,bevelEnabled:false}); g.rotateX(-Math.PI/2);
+  const mesh=new THREE.Mesh(g,MAT[p.mat]); mesh.position.y=p.y0; mesh.receiveShadow=true; mesh.castShadow=true; group.add(mesh); }
+// water — three.js Water2 (examples/jsm/objects/Water2.js, r160, vendored) on the water surfaces drawn in the approved plan.
+// Water2 reflects the scene and REFRACTS what is under it, so it needs a real basin underneath to read as water.
+const useWater2 = Q.get('flatwater')!=='1';
+const tl = new THREE.TextureLoader();
+// mosaic pool tile (pale aqua 2.5 cm-look tiles, grout lines) - procedural, no image assets
+const tTile = tex(g=>{ g.fillStyle='#d6eeee'; g.fillRect(0,0,256,256);   // turquoise mosaic like the p26 / POOL references
+  for(let y=0;y<256;y+=16) for(let x=0;x<256;x+=16){ const v=Math.random()*22-11; g.fillStyle=`rgb(${48+v},${172+v},${190+v})`; g.fillRect(x+1,y+1,14,14); } }, 0.4);
+// caustics: soft bright network on the pool floor, animated by scrolling two layers in opposite directions
+function causticCanvas(){ return tex(g=>{ g.fillStyle='#000'; g.fillRect(0,0,256,256); g.strokeStyle='rgba(255,255,255,.55)'; g.lineCap='round';
+  const pts=[...Array(42)].map(()=>[Math.random()*256,Math.random()*256]);
+  for (let i=0;i<256;i+=4) for (let j=0;j<256;j+=4){ let a=1e9,b=1e9; for(const [px,py] of pts){ for(const ox of [-256,0,256]) for(const oy of [-256,0,256]){ const d=Math.hypot(i-px-ox,j-py-oy); if(d<a){b=a;a=d;} else if(d<b) b=d; } }
+    const e=b-a; if (e<5){ g.fillStyle=`rgba(255,255,255,${(1-e/5)*.5})`; g.fillRect(i,j,4,4); } } }, 1.6); }
+const tCau1 = causticCanvas(), tCau2 = causticCanvas(); tCau1.colorSpace = tCau2.colorSpace = THREE.NoColorSpace;
+const animated = [];
+for (const w of M.water) {
+  const B = BASIN[w.id] || {depth:0.05, wall:'stone', coping:0};
+  const W_ = w.x1-w.x0, D_ = w.z1-w.z0, yW = -0.06;                       // water line 6 cm below the coping
+  // basin: floor + 4 inner walls (tile for the pool, stone for the courtyard pond)
+  const wallM = B.wall==='tile' ? texRepeat(M_({map:tTile, roughness:.35}), Math.max(W_,D_), B.depth) : texRepeat(MAT.stone, Math.max(W_,D_), B.depth);
+  const floorM = B.wall==='tile' ? texRepeat(M_({map:tTile, roughness:.35, emissive:0xbff6ff, emissiveIntensity:.0, emissiveMap:tCau1}), W_, D_) : M_({color:0x3d4a3f, roughness:.9});
+  if (B.wall==='tile') { floorM.emissiveIntensity = .55; floorM.emissiveMap = tCau1; floorM.emissiveMap.repeat.set(W_/2.2, D_/2.2); animated.push(floorM.emissiveMap); }
+  const fl = new THREE.Mesh(new THREE.BoxGeometry(W_, .05, D_), floorM); fl.position.set(w.x0+W_/2, -B.depth-.025, w.z0+D_/2); fl.receiveShadow=true; group.add(fl);
+  for (const [x0,z0,x1,z1] of [[w.x0-.05,w.z0-.05,w.x1+.05,w.z0],[w.x0-.05,w.z1,w.x1+.05,w.z1+.05],[w.x0-.05,w.z0,w.x0,w.z1],[w.x1,w.z0,w.x1+.05,w.z1]]) {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(x1-x0, B.depth, z1-z0), wallM); m.position.set((x0+x1)/2, -B.depth/2, (z0+z1)/2); m.receiveShadow=true; group.add(m); }
+  // islands inside a basin (courtyard planter) get a stone base down to the basin floor
+  for (const h of w.holes) { const m=new THREE.Mesh(new THREE.BoxGeometry(h[2]-h[0], B.depth, h[3]-h[1]), MAT.stone); m.position.set((h[0]+h[2])/2, -B.depth/2, (h[1]+h[3])/2); group.add(m); }
+  // stone coping ring, flush with the paving (+2 cm), width assumed 0.30 m
+  if (B.coping) { const c=B.coping;
+    for (const [x0,z0,x1,z1] of [[w.x0-c,w.z0-c,w.x1+c,w.z0],[w.x0-c,w.z1,w.x1+c,w.z1+c],[w.x0-c,w.z0,w.x0,w.z1],[w.x1,w.z0,w.x1+c,w.z1]]) {
+      const m=new THREE.Mesh(new THREE.BoxGeometry(x1-x0,.07,z1-z0), MAT.coping); m.position.set((x0+x1)/2, -0.05+.035+.02, (z0+z1)/2); m.castShadow=m.receiveShadow=true; group.add(m); } }
+  // the water surface
+  const s = new THREE.Shape([[w.x0,w.z0],[w.x1,w.z0],[w.x1,w.z1],[w.x0,w.z1]].map(([x,z])=>new THREE.Vector2(x,-z)));
+  for (const h of w.holes) s.holes.push(new THREE.Path([[h[0],h[1]],[h[2],h[1]],[h[2],h[3]],[h[0],h[3]]].map(([x,z])=>new THREE.Vector2(x,-z)).reverse()));
+  const g = new THREE.ShapeGeometry(s); g.rotateX(-Math.PI/2);
+  let mesh;
+  if (useWater2) mesh = new Water(g, {
+      color: B.wall==='tile' ? 0xd8f6f8 : 0xc7d8cc,       // Water2 tints the refracted basin; pale so the tile reads turquoise through it
+      scale: B.wall==='tile' ? 2.2 : 3.5, flowDirection: new THREE.Vector2(.6,.25), flowSpeed: .02, reflectivity: .035,
+      textureWidth: 1024, textureHeight: 1024,
+      normalMap0: tl.load('../model/vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), normalMap1: tl.load('../model/vendor/three/examples/textures/water/Water_2_M_Normal.jpg')});
+  else mesh = new THREE.Mesh(g, M_({color:0x6fc3cf, roughness:.1, metalness:.2}));
+  mesh.position.y = yW; group.add(mesh);
+}
+const clock = new THREE.Clock();
+// trees: generic neutral canopy placeholders at plan-symbol positions (species/height unknown)
+const trunkM = M_({color:0x6b5a46}), canopyM = M_({color:0x6f8a5a, roughness:1, transparent:true, opacity:.92});
+for (const t of M.trees) { if (hideCats.has('trees')) break;
+  const ht = t.courtyard ? 3.0 : 4.0;
+  const tr = new THREE.Mesh(new THREE.CylinderGeometry(.12,.16,ht,8), trunkM); tr.position.set(t.x, (t.courtyard?0.45:0)+ht/2, t.z); tr.castShadow=true; group.add(tr);
+  const cn = new THREE.Mesh(new THREE.SphereGeometry(t.r,18,12), canopyM); cn.scale.y=.8; cn.position.set(t.x, (t.courtyard?0.45:0)+ht+t.r*.5, t.z); cn.castShadow=true; group.add(cn); }
+window.__FRONDS = []; window.__PALMS = [];
+// palms (front pass 3): tapered ringed trunk + crown of leaflet fronds (procedural, no image assets)
+{ const P = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.palms) || [];
+  const frondTex = (()=>{ const c=document.createElement('canvas'); c.width=64; c.height=256; const g=c.getContext('2d');
+    g.clearRect(0,0,64,256); g.strokeStyle='#3e5a2a'; g.lineWidth=3; g.beginPath(); g.moveTo(32,0); g.lineTo(32,256); g.stroke();
+    for (let y=6;y<252;y+=7){ const w=29*Math.sin(Math.PI*y/256)+3; g.strokeStyle=(y%14?'#4b6a30':'#3f5e2a'); g.lineWidth=1.6;
+      g.beginPath(); g.moveTo(32,y); g.lineTo(32-w,y+22); g.stroke(); g.beginPath(); g.moveTo(32,y); g.lineTo(32+w,y+22); g.stroke(); }
+    const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; return t; })();
+  const frondM = new THREE.MeshStandardMaterial({map:frondTex, alphaTest:.45, transparent:false, side:THREE.DoubleSide, roughness:.85});
+  const trunkTex = tex(g=>{ g.fillStyle='#8a7a62'; g.fillRect(0,0,256,256); for(let y=0;y<256;y+=10){ g.fillStyle='rgba(60,48,34,.55)'; g.fillRect(0,y,256,3);} }, 1.0);
+  const trunkPM = new THREE.MeshStandardMaterial({map:trunkTex, roughness:.95});
+  for (const p of P) {
+    const pg = new THREE.Group(); pg.position.set(p.x, 0, p.z); group.add(pg); window.__PALMS.push(pg);
+    const tg = new THREE.CylinderGeometry(.22,.32,p.trunk,10,8); tg.translate(0,p.trunk/2,0);
+    const pos = tg.attributes.position; for (let i=0;i<pos.count;i++){ const y=pos.getY(i), k=(y/p.trunk)**2; pos.setX(i,pos.getX(i)+p.lean[0]*k*p.trunk); pos.setZ(i,pos.getZ(i)+p.lean[1]*k*p.trunk); }
+    tg.computeVertexNormals(); const tr=new THREE.Mesh(tg, trunkPM); tr.castShadow=true; pg.add(tr);
+    const top = new THREE.Vector3(p.lean[0]*p.trunk, p.trunk, p.lean[1]*p.trunk);
+    // fuller, drooping crown: outer arching fronds with V-folded hanging leaflets + an inner ring of short upright fronds
+    const rings = [ {n:30, len:1.00, up:[0.7,1.0,1.35], droop:0.55, w:1.15}, {n:6, len:0.55, up:[0.35,0.55,0.7], droop:0.25, w:0.9} ];
+    for (const R of rings) for (let i=0;i<R.n;i++){ const L = p.crown*R.len*(0.8+0.2*Math.random()), W = R.w;
+      const fg = new THREE.PlaneGeometry(W, L, 4, 10); fg.translate(0, L/2, 0);
+      const fp = fg.attributes.position; for (let j=0;j<fp.count;j++){ const y=fp.getY(j), x=fp.getX(j), t=y/L;
+        fp.setZ(j, R.droop*L*t*t + 0.22*Math.abs(x)*(0.3+t)); }     // arch down toward the tip; leaflets hang in a V
+      fg.computeVertexNormals();
+      const f = new THREE.Mesh(fg, frondM); f.castShadow=true;
+      const yaw = i/R.n*Math.PI*2 + Math.random()*0.25, up = R.up[i%3] + (Math.random()-.5)*0.15;
+      f.position.copy(top); f.rotation.set(0, yaw, 0, 'YXZ'); f.rotateX(up);
+      f.userData.q0=f.quaternion.clone(); f.userData.ph=Math.random()*6.283; window.__FRONDS.push(f);   // step 7 motion
+      pg.add(f); }
+    const crownBall = new THREE.Mesh(new THREE.SphereGeometry(.35,10,8), trunkPM); crownBall.position.copy(top); pg.add(crownBall);
+  } }
+// shrub rows (front pass 5): clumped spheres along a line, slight random size/colour so they read as planting
+{ const R = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.shrubRows) || [];
+  let seed = 7; const rnd = ()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+  for (const row of R) {
+    const len = Math.hypot(row.x1-row.x0, row.z1-row.z0), n = Math.max(2, Math.round(len/(row.r*0.9)));
+    const base = new THREE.Color(row.color);
+    for (let i=0;i<n;i++){ const t = n===1?0.5:i/(n-1);
+      for (let k=0;k<2;k++){ const rr = row.r*(0.75+0.5*rnd()), c = base.clone().offsetHSL(0,0,(rnd()-.5)*0.08);
+        const m = new THREE.Mesh(new THREE.IcosahedronGeometry(rr,1), new THREE.MeshStandardMaterial({color:c, roughness:1, flatShading:true}));
+        const cy = Math.max(rr*0.8, row.h - rr*(0.9+0.4*rnd()));
+        m.position.set(row.x0+(row.x1-row.x0)*t+(rnd()-.5)*row.r*0.6, cy, row.z0+(row.z1-row.z0)*t+(rnd()-.5)*row.r*0.6);
+        m.scale.y = Math.min(1.25, row.h/(2*rr)+0.4); m.castShadow=true; m.receiveShadow=true; group.add(m);
+        if (row.flowers && rnd()<0.7){ const f=new THREE.Mesh(new THREE.IcosahedronGeometry(rr*0.35,0), new THREE.MeshStandardMaterial({color:row.flowers, roughness:.9}));
+          f.position.set(m.position.x+(rnd()-.5)*rr, cy+rr*0.7, m.position.z+(rnd()-.5)*rr); group.add(f); } } } } }
+// multi-stem trees (front pass 16): thin curved stems + an airy canopy of many small leaf clusters (instanced), gaps let sky/stone through
+window.__LEAFSETS = [];
+{ const T = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.multiStemTrees) || [];
+  let seed = 11; const rnd = ()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+  const barkM = new THREE.MeshStandardMaterial({color:0x6a5a48, roughness:.9});
+  for (const t of T) { const tg = new THREE.Group(); tg.position.set(t.x, 0, t.z); group.add(tg);
+    const tips = [];
+    for (let i=0;i<t.stems;i++){ const a = i/t.stems*Math.PI*2 + rnd()*0.5, r = t.spread*(0.22+0.18*rnd());
+      const tip = new THREE.Vector3(Math.cos(a)*r, t.top*(0.62+0.12*rnd()), Math.sin(a)*r*0.6); tips.push(tip);
+      const crv = new THREE.CatmullRomCurve3([new THREE.Vector3((rnd()-.5)*.25,0,(rnd()-.5)*.2), new THREE.Vector3(tip.x*0.25, t.top*0.3, tip.z*0.25), new THREE.Vector3(tip.x*0.7, t.top*0.52, tip.z*0.7), tip]);
+      const m = new THREE.Mesh(new THREE.TubeGeometry(crv, 16, 0.045+0.02*rnd(), 6, false), barkM); m.castShadow = true; tg.add(m); }
+    const leafG = new THREE.IcosahedronGeometry(0.16, 1), leafM = new THREE.MeshStandardMaterial({roughness:.95, color:0xffffff});
+    const im = new THREE.InstancedMesh(leafG, leafM, t.clusters); im.castShadow = true; im.receiveShadow = true;
+    const d = new THREE.Object3D(), base = new THREE.Color(t.color);
+    for (let k=0;k<t.clusters;k++){ const tip = tips[k % tips.length];
+      // clusters gather in loose clumps around each stem tip, flattened into an umbrella; some hang lower at the edges
+      const u = rnd()*Math.PI*2, v = Math.acos(2*rnd()-1), rr = (0.35+0.75*rnd())*t.spread*0.24;
+      d.position.set(tip.x + Math.sin(v)*Math.cos(u)*rr*1.3, Math.min(t.top - 0.12, tip.y + 0.35 + Math.cos(v)*rr*0.55), tip.z + Math.sin(v)*Math.sin(u)*rr*0.8);
+      d.rotation.set(rnd()*3, rnd()*3, rnd()*3); const sc = 0.7 + 0.8*rnd(); d.scale.set(sc*1.3, sc*0.8, sc); d.updateMatrix();
+      im.setMatrixAt(k, d.matrix); im.setColorAt(k, base.clone().offsetHSL((rnd()-.5)*0.03, (rnd()-.5)*0.1, (rnd()-.5)*0.12)); }
+    tg.add(im); window.__LEAFSETS.push(tg); } }
+// surrounding neutral ground (outside site diagram = unknown context)
+// (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
+{ const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
+  for (const [x0,z0,x1,z1] of [[cx-R,cz-R,cx+R,0],[cx-R,SD,cx+R,cz+R],[cx-R,0,0,SD],[SW,0,cx+R,SD]]) {
+    const out = new THREE.Mesh(new THREE.PlaneGeometry(x1-x0, z1-z0), outM); out.rotation.x=-Math.PI/2; out.position.set((x0+x1)/2,-0.06,(z0+z1)/2); out.receiveShadow=true; scene.add(out); } }
+// cameras ------------------------------------------------------------------------------------
+const VIEWS = JSON.parse(Q.get('view') ? Q.get('view') : '{"name":"aerial","pos":[-14,30,48],"tgt":[9.4,3,15],"fov":40}');
+document.getElementById('vname').textContent = VIEWS.title || VIEWS.name;
+if (VIEWS.sub) document.getElementById('sub').textContent = VIEWS.sub;
+let cam;
+if (VIEWS.ortho) { const s=VIEWS.ortho, a=W/Hh; cam=new THREE.OrthographicCamera(-s*a/2,s*a/2,s/2,-s/2,0.1,500); }
+else cam = new THREE.PerspectiveCamera(VIEWS.fov||45, W/Hh, 0.1, 500);
+cam.position.set(...VIEWS.pos); if (VIEWS.up) cam.up.set(...VIEWS.up); cam.lookAt(new THREE.Vector3(...VIEWS.tgt));
+// step 6 pass 13: vertical shift ("keystone" / shift lens). Same camera position and same target at the frame centre,
+// but the camera is held level and the frustum is shifted up, so verticals stay vertical as in ELEV-FRONT.
+// Enabled with view.shift=true; walk mode and older stills are unchanged.
+if (VIEWS.shift && cam.isPerspectiveCamera) {
+  const T = new THREE.Vector3(...VIEWS.tgt), P = cam.position, dh = Math.hypot(T.x-P.x, T.z-P.z);
+  cam.lookAt(new THREE.Vector3(T.x, P.y, T.z)); cam.updateProjectionMatrix();
+  const e = cam.projectionMatrix.elements; e[9] = e[5]*(T.y-P.y)/dh;   // target row back to the frame centre
+  cam.projectionMatrixInverse.copy(cam.projectionMatrix).invert();
+}
+// walk mode (WIP): drag to look, WASD / arrows to walk at eye height. No collision, no sourced start point.
+const EYE=1.6, SPEED=3.0, keys={}; let yaw=0, pitch=0, drag=false, lx=0, ly=0;
+if (!Q.get('view')) {
+  cam.position.set(-6, EYE, 40); cam.rotation.order='YXZ';
+  const f0=new THREE.Vector3(9.4, EYE, 15).sub(cam.position); yaw=Math.atan2(-f0.x, -f0.z);
+  renderer.domElement.addEventListener('pointerdown', e=>{ drag=true; lx=e.clientX; ly=e.clientY; });
+  window.addEventListener('pointerup', ()=>{ drag=false; });
+  window.addEventListener('pointermove', e=>{ if(!drag) return; yaw-=(e.clientX-lx)*0.004; pitch=Math.max(-1.2, Math.min(1.2, pitch-(e.clientY-ly)*0.004)); lx=e.clientX; ly=e.clientY; });
+  window.addEventListener('keydown', e=>{ keys[e.key.toLowerCase()]=true; });
+  window.addEventListener('keyup', e=>{ keys[e.key.toLowerCase()]=false; });
+}
+let lastT=performance.now();
+function walkUpdate(){ const now=performance.now(), dt=Math.min(0.05,(now-lastT)/1000); lastT=now; if(Q.get('view')) return;
+  cam.rotation.set(pitch, yaw, 0, 'YXZ');
+  const fwd=new THREE.Vector3(-Math.sin(yaw),0,-Math.cos(yaw)), right=new THREE.Vector3(Math.cos(yaw),0,-Math.sin(yaw)), v=new THREE.Vector3();
+  if(keys['w']||keys['arrowup']) v.add(fwd); if(keys['s']||keys['arrowdown']) v.sub(fwd);
+  if(keys['d']||keys['arrowright']) v.add(right); if(keys['a']||keys['arrowleft']) v.sub(right);
+  if(v.lengthSq()>0) cam.position.addScaledVector(v.normalize(), SPEED*dt);
+  cam.position.y=EYE; }
+function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if(!VIEWS.labels) return;
+  for (const l of M.labels) { const v=new THREE.Vector3(l.x,l.y,l.z).project(cam); if (v.z>1) continue;
+    const d=document.createElement('div'); d.textContent=l.t; d.style.left=((v.x+1)/2*W)+'px'; d.style.top=((1-v.y)/2*Hh)+'px'; L.appendChild(d);} }
+let n=0;
+function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
+  if (!window.__capture) { renderer.render(scene,cam); labels(); }   // view mode keeps animating (Water2, caustics); frame capture sets __capture and drives __frame
+  if(++n===12 && Q.get('view')) document.title='READY'; requestAnimationFrame(loop); }
+loop();
+// step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.
+// Driven by a headless frame grabber; does nothing in walk mode. Motion amounts are display assumptions.
+const _sun0 = sun.position.clone(), _sunI0 = sun.intensity;
+window.__frame = (t, T) => { window.__capture = true;
+  const gust = 0.6 + 0.4*Math.sin(t*0.45);
+  for (const f of window.__FRONDS) { f.quaternion.copy(f.userData.q0); const ph=f.userData.ph;
+    f.rotateX(gust*0.07*Math.sin(t*1.7+ph)); f.rotateZ(gust*0.035*Math.sin(t*1.1+ph*1.3)); }
+  window.__PALMS.forEach((pg,i)=>{ pg.rotation.z = 0.006*gust*Math.sin(t*0.8+i); pg.rotation.x = 0.004*gust*Math.sin(t*0.6+i*2); });
+  (window.__LEAFSETS||[]).forEach((g,i)=>{ g.rotation.z = 0.012*gust*Math.sin(t*1.3+i); g.rotation.x = 0.008*gust*Math.sin(t*0.9+i); });
+  for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
+  const k = T ? t/T : 0;   // sun drifts slightly lower and warmer across the clip
+  sun.position.set(_sun0.x - 4*k, _sun0.y - 3*k, _sun0.z); sun.intensity = _sunI0*(1 - 0.15*k);
+  renderer.render(scene, cam); return true; };
+</script></body></html>

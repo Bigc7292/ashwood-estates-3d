@@ -1,0 +1,55 @@
+{
+  "note": "See bench.json for authoritative like-for-like medians. after.json retained as pointer.",
+  "bench": "production-line/viewer/baseline/bench.json",
+  "measured_at_utc": "2026-11-09T21:20:29.897Z",
+  "medians": {
+    "gf": {
+      "source": {
+        "loadMs": 13628,
+        "orbitFps": 0.7,
+        "idleFrames_10s": 11,
+        "idleCpuSec_10s": 11.1368,
+        "consoleErrors": 0
+      },
+      "fork": {
+        "loadMs": 21167,
+        "orbitFps": 0.9,
+        "idleFrames_10s": 6,
+        "idleCpuSec_10s": 11.3568,
+        "consoleErrors": 0
+      }
+    },
+    "ff": {
+      "source": {
+        "loadMs": 12599,
+        "orbitFps": 1.3,
+        "idleFrames_10s": 23,
+        "idleCpuSec_10s": 10.8506,
+        "consoleErrors": 0
+      },
+      "fork": {
+        "loadMs": 10701,
+        "orbitFps": 1.4,
+        "idleFrames_10s": 0,
+        "idleCpuSec_10s": 0.001,
+        "consoleErrors": 0
+      }
+    },
+    "exterior-front": {
+      "source": {
+        "loadMs": 21769,
+        "orbitFps": 1,
+        "idleFrames_10s": 34,
+        "idleCpuSec_10s": 11.3774,
+        "consoleErrors": 0
+      },
+      "fork": {
+        "loadMs": 24220,
+        "orbitFps": 1,
+        "idleFrames_10s": 6,
+        "idleCpuSec_10s": 10.7771,
+        "consoleErrors": 0
+      }
+    }
+  }
+}

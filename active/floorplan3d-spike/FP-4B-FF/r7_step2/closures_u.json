@@ -1,0 +1,6 @@
+[
+ {"id":"C1","axis":"y","at":349,"span":[271.8,368.5],"rooms":["Family Living","Corridor"],"line":"DERIVED: open plan on V4; closed on the line of the M. Dressing north wall (y347.5-349.8) and lift north wall (y347-354)"},
+ {"id":"C2","axis":"x","at":370.8,"span":[420,552],"rooms":["Corridor","courtyard-void edge"],"line":"DERIVED: closed on the drawn double line at the courtyard-void west edge (x370.8-376)"},
+ {"id":"C3","axis":"y","at":638,"span":[271.8,368.5],"rooms":["Corridor","open-to-below-1"],"line":"DERIVED: closed on the drawn top edge of the OPEN TO BELOW box"},
+ {"id":"C4","axis":"y","at":640,"span":[377.8,437],"rooms":["J. Dress","Junior Suite"],"line":"DERIVED: closed on the continuation of the J. Bath south wall (y636.5-642.8); J. Dress stated 2.00 x 2.80 m needs this depth"}
+]

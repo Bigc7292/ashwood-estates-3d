@@ -1,0 +1,28 @@
+{
+  "view": "ELEV-FRONT",
+  "status": "LOCKED (camera framing only; model content not yet matching)",
+  "locked": "2026-11-09 Asia/Dubai",
+  "reference_image": "exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-ELEV-FRONT_GENERATED-SOURCE-CONDITIONED.png",
+  "coordinate_system": "model/data/model.js (metres; x across plot, y up, z plot depth; street side is +z)",
+  "camera": {
+    "position": [8.57, 1.6, 45.4],
+    "target": [8.57, 4.5, 26.9],
+    "up": [0, 1, 0],
+    "vertical_fov_deg": 40,
+    "aspect": "16:9",
+    "render_size_px": [1280, 720],
+    "near": 0.1,
+    "far": 500
+  },
+  "derived": {
+    "distance_to_facade_plane_m": 18.5,
+    "facade_plane_z_m": 26.9,
+    "lens_height_m": 1.6,
+    "pitch_up_deg": 8.9,
+    "blender_equivalent": "sensor_fit VERTICAL, sensor_height 24 mm -> focal length 33.0 mm; camera at (x, -z, y) in Blender Z-up"
+  },
+  "solve_method": "Facade plane and extents from model gf_wall/ff_wall/rf_wall boxes (x 1.46-16.0 m, z max 26.9 m, top 10.85 m). Reference read as one-point, near-frontal perspective: roof and slab edges are level and the carport soffit lines converge to one central point, so no yaw. Distance set by matching the facade height in pixels; aim and x offset set by matching roof slab top (y=145) and facade base (y=465) at 960x540, and house left/right edges.",
+  "check": "Side-by-side at 960x540: roof slab top and facade base on the same lines in both; house left/right extents within about 15 px.",
+  "label": "assumption-derived camera; reference is an AI-generated concept image, not a photograph or survey",
+  "evidence": "front_lock_side_by_side.png"
+}

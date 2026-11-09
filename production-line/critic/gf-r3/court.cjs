@@ -1,0 +1,15 @@
+const fs=require('fs');const {chromium}=require('/tmp/pw/node_modules/playwright-core');
+(async()=>{const br=await chromium.launch({executablePath:process.env.HOME+'/.cache/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell',args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist','--enable-webgl']});
+const pg=await (await br.newContext({viewport:{width:1280,height:800}})).newPage();
+pg.on('pageerror',e=>console.log('PAGEERR',String(e)));
+await pg.goto('http://127.0.0.1:18791/index_r3.html');await pg.waitForFunction(()=>window.__FP3D_QA__&&typeof setView==='function',null,{timeout:60000});
+await pg.evaluate("setView('3d')");await pg.waitForFunction(()=>window.__FP3D_QA__.info().inited,null,{timeout:120000});await pg.waitForTimeout(6000);
+await pg.evaluate('__FP3D_QA__.settle(); __FP3D_QA__.labels(false); __FP3D_QA__.size(1280,800); 0');
+console.log(JSON.stringify(await pg.evaluate('__FP3D_QA__.r3()')).slice(0,400));
+console.log(JSON.stringify(await pg.evaluate('__FP3D_QA__.info().water')));
+await pg.evaluate(()=>{__FP3D_QA__.look([9650,7900,1.6],[11938,10570,.9],62);return 0});
+const save=async n=>{const r=await pg.evaluate('__FP3D_QA__.still()');fs.writeFileSync(n,Buffer.from(r.png.split(',')[1],'base64'));};
+await save('court_warm.png'); await save('court_a.png'); await pg.waitForTimeout(1000); await save('court_b.png');
+const t=await pg.evaluate('__FP3D_QA__.topOrtho(1)'); console.log(JSON.stringify(t));
+const r=await pg.evaluate('__FP3D_QA__.png()'); fs.writeFileSync('top_r3.png',Buffer.from(r.split(',')[1],'base64'));
+await br.close();})().catch(e=>{console.error(e);process.exit(1)});
