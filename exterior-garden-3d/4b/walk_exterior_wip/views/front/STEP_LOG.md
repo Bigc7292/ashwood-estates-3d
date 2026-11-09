@@ -24,6 +24,7 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - Pass 7 (3f5121f): ground relief. Critic: PASS on placement; step 3 blockout complete apart from M12.
 - Step 4 finish: warm travertine, low warm dusk sun and sky, warm glow behind glazing, LED lines in the carport and roof soffits. M26: RF block hidden in the front view only (display assumption per Colin, M12 stays open). Critic: PASS (981cafa).
 - Step 5: none in source (Q1).
-- Step 6 pass 8 (this commit): glazing. Dark clear glass with warm-lit rooms behind (timber back wall and ceiling glow behind the FF slat screen; lit lobby behind the GF entry glass). Interior depths and finishes are display assumptions. Awaiting critic.
+- Step 6 pass 8 (this commit): glazing. Dark clear glass with warm-lit rooms behind (timber back wall and ceiling glow behind the FF slat screen; lit lobby behind the GF entry glass). Interior depths and finishes are display assumptions. Critic (bbe1b36): closer, FAIL; next fix the GF glazing.
+- Step 6 loop 2 pass 9 (this commit): GF glazing band widened to the entry recess walls (x 7.50-10.70, M27) with two bronze mullions and a transom; brown panel replaced by a lit lobby. Also added: step 7 motion hook (window.__frame) in front_pass.html, inactive in stills and walk mode. Awaiting critic.
 
-Current position: step 6 (critique), loop 1. Pass 8 (glazing) awaiting critic.
+Current position: step 6 (critique), loop 1. Step 6 loop 2, pass 9 (GF glazing) awaiting critic.

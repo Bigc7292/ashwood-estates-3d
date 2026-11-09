@@ -23,6 +23,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_pass7_ground.js"></script>
 <script src="./overrides/front_step4_finish.js"></script>
 <script src="./overrides/front_pass8_glazing.js"></script>
+<script src="./overrides/front_pass9_gf_glazing.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -82,6 +83,7 @@ if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
   MAT.interior_stone = M_({color:0xb79d7c, roughness:.8, emissive:0x7a5530, emissiveIntensity:.45});
   MAT.interior_ceiling = M_({color:0xffe6c0, emissive:0xffc98a, emissiveIntensity:1.1});
   MAT.interior_floor = M_({color:0x4a3a2c, roughness:.4, emissive:0x3a2614, emissiveIntensity:.3});
+  MAT.interior_lobby = M_({color:0xd9b98c, roughness:.7, emissive:0xe0a868, emissiveIntensity:.9});   // front pass 9 lit GF lobby
 }
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
@@ -168,6 +170,7 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
   const ht = t.courtyard ? 3.0 : 4.0;
   const tr = new THREE.Mesh(new THREE.CylinderGeometry(.12,.16,ht,8), trunkM); tr.position.set(t.x, (t.courtyard?0.45:0)+ht/2, t.z); tr.castShadow=true; group.add(tr);
   const cn = new THREE.Mesh(new THREE.SphereGeometry(t.r,18,12), canopyM); cn.scale.y=.8; cn.position.set(t.x, (t.courtyard?0.45:0)+ht+t.r*.5, t.z); cn.castShadow=true; group.add(cn); }
+window.__FRONDS = []; window.__PALMS = [];
 // palms (front pass 3): tapered ringed trunk + crown of leaflet fronds (procedural, no image assets)
 { const P = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.palms) || [];
   const frondTex = (()=>{ const c=document.createElement('canvas'); c.width=64; c.height=256; const g=c.getContext('2d');
@@ -179,7 +182,7 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
   const trunkTex = tex(g=>{ g.fillStyle='#8a7a62'; g.fillRect(0,0,256,256); for(let y=0;y<256;y+=10){ g.fillStyle='rgba(60,48,34,.55)'; g.fillRect(0,y,256,3);} }, 1.0);
   const trunkPM = new THREE.MeshStandardMaterial({map:trunkTex, roughness:.95});
   for (const p of P) {
-    const pg = new THREE.Group(); pg.position.set(p.x, 0, p.z); group.add(pg);
+    const pg = new THREE.Group(); pg.position.set(p.x, 0, p.z); group.add(pg); window.__PALMS.push(pg);
     const tg = new THREE.CylinderGeometry(.22,.32,p.trunk,10,8); tg.translate(0,p.trunk/2,0);
     const pos = tg.attributes.position; for (let i=0;i<pos.count;i++){ const y=pos.getY(i), k=(y/p.trunk)**2; pos.setX(i,pos.getX(i)+p.lean[0]*k*p.trunk); pos.setZ(i,pos.getZ(i)+p.lean[1]*k*p.trunk); }
     tg.computeVertexNormals(); const tr=new THREE.Mesh(tg, trunkPM); tr.castShadow=true; pg.add(tr);
@@ -194,6 +197,7 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
       const f = new THREE.Mesh(fg, frondM); f.castShadow=true;
       const yaw = i/R.n*Math.PI*2 + Math.random()*0.25, up = R.up[i%3] + (Math.random()-.5)*0.15;
       f.position.copy(top); f.rotation.set(0, yaw, 0, 'YXZ'); f.rotateX(up);
+      f.userData.q0=f.quaternion.clone(); f.userData.ph=Math.random()*6.283; window.__FRONDS.push(f);   // step 7 motion
       pg.add(f); }
     const crownBall = new THREE.Mesh(new THREE.SphereGeometry(.35,10,8), trunkPM); crownBall.position.copy(top); pg.add(crownBall);
   } }
@@ -250,4 +254,16 @@ let n=0;
 function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
   renderer.render(scene,cam); labels(); if(++n>=12 && Q.get('view')){ document.title='READY'; return; } requestAnimationFrame(loop); }
 loop();
+// step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.
+// Driven by a headless frame grabber; does nothing in walk mode. Motion amounts are display assumptions.
+const _sun0 = sun.position.clone(), _sunI0 = sun.intensity;
+window.__frame = (t, T) => {
+  const gust = 0.6 + 0.4*Math.sin(t*0.45);
+  for (const f of window.__FRONDS) { f.quaternion.copy(f.userData.q0); const ph=f.userData.ph;
+    f.rotateX(gust*0.07*Math.sin(t*1.7+ph)); f.rotateZ(gust*0.035*Math.sin(t*1.1+ph*1.3)); }
+  window.__PALMS.forEach((pg,i)=>{ pg.rotation.z = 0.006*gust*Math.sin(t*0.8+i); pg.rotation.x = 0.004*gust*Math.sin(t*0.6+i*2); });
+  for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
+  const k = T ? t/T : 0;   // sun drifts slightly lower and warmer across the clip
+  sun.position.set(_sun0.x - 4*k, _sun0.y - 3*k, _sun0.z); sun.intensity = _sunI0*(1 - 0.15*k);
+  renderer.render(scene, cam); return true; };
 </script></body></html>
