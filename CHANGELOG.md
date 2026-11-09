@@ -108,3 +108,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: the critic asked whether the FF timber screen should run ~45 px further right as in ELEV-FRONT. The CAD V4 centre bay ends at x 11.038 (front glass) with a stone pier at x 10.97-11.58, and the right bay is set back behind a terrace; widening would cover the pier. Logged as a CAD-vs-image conflict; screen unchanged.
 - Why: critic request; CAD decides dimensions.
 - Status: REVIEW-PENDING (Colin's ruling on M46).
+
+## 2026-11-10 (Asia/Dubai): carport and screen mismatch IDs renumbered; carport closed per Colin
+- Files: `exterior-garden-3d/4b/mismatches/mismatch_log.md`, `exterior-garden-3d/4b/walk_exterior_wip/views/front_v2/STEP_LOG.md`.
+- What: the carport left-edge item (logged as M45 at 0913a07) is now M47, because M45 is the rear lane's rear height gap; the FF screen item (logged as M46 at 9a99327) is now M48. M47 marked RESOLVED: CAD extent kept, no overhang past the plot line, per Colin's "Keep on as u are" (23:44) as read by the coordinator; noted as a reading of his words.
+- Why: coordinator relay of Colin's reply; avoid ID collisions across lanes.
+- Status: DONE (M47); M48 REVIEW-PENDING (Colin).
