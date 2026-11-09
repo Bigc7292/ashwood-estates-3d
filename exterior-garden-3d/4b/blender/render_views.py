@@ -4,7 +4,7 @@ from mathutils import Vector
 a = sys.argv[sys.argv.index('--')+1:]
 OUT, SAMP, W, Hh = a[0], int(a[1]), int(a[2]), int(a[3]); ONLY = a[4].split(',') if len(a)>4 and a[4] else None
 os.makedirs(OUT, exist_ok=True)
-V = json.load(open(os.environ.get('VIEWS','/workspace/exterior-garden-3d/4b/blender/views_blender.json')))
+V = json.load(open(os.environ.get('VIEWS', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'views_blender.json'))))
 sc = bpy.context.scene; sc.cycles.samples = SAMP; sc.render.resolution_x = W; sc.render.resolution_y = Hh
 sc.render.image_settings.file_format='PNG'
 cam = bpy.data.cameras.new('CAM'); co = bpy.data.objects.new('CAM', cam); sc.collection.objects.link(co); sc.camera = co
@@ -19,8 +19,9 @@ for v in V:
     else: cam.type='PERSP'; cam.lens=v.get('lens',30)
     cam.clip_end = 500
     hd = math.atan2(-d.x, d.y) if d.xy.length>1e-3 else 0.0
-    if sun: sun.rotation_euler = (math.radians(64), 0, hd + math.radians(38))
-    if sky: sky.sun_rotation = hd + math.radians(38) + math.pi
+    # low, raking late-afternoon sun from one side of the camera (references are side-lit, not front-lit)
+    if sun: sun.rotation_euler = (math.radians(68), 0, hd + math.radians(52))
+    if sky: sky.sun_rotation = hd + math.radians(52) + math.pi
     sc.render.filepath = os.path.join(OUT, v['file'])
     bpy.ops.render.render(write_still=True)
     if v.get('labels'):

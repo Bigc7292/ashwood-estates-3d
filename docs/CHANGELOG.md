@@ -38,3 +38,5 @@ Ashwood is a separate project from Barclay House 3D. Orphan history keeps trees 
 - New renders in `active/floorplan3d-spike/FP-4B-GF/verify/`: 1920×1080 eye-level and bird's-eye shots (`v2_0*.png`), plus a side-by-side with the untouched upstream demo rendered locally (`v2_20_*`).
 - v1 kept in `active/floorplan3d-spike/FP-4B-GF/v1/` (superseded).
 - Still offline (vendored three r160 + Water2), MIT notices kept, zero cost. Labelled not survey-verified, not construction-ready, not certified CAD.
+
+- 2026-11-09: FP-4B-GF viewer - walk speed raised (3.2 m/s walk, 7.0 m/s run, real frame time with 50 ms collision substeps). UNREVIEWED work-in-progress from an interrupted sub-agent polishing the GF interior (furniture styling, feature walls, entry ceiling, pool basin, lighting); before-screenshots in active/floorplan3d-spike/FP-4B-GF/verify/gf_polish_2026-11-09/. Needs critic review before sign-off.

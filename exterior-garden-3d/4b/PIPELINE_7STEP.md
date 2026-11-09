@@ -30,6 +30,7 @@ Boxes first, then the space, the models and the materials, in that order. Propor
 - **Outputs:** cumulative blends `blender/4b_boxes|space|models|materials.blend`; gate snapshots `step3_blockout/gates/<substage>/`; `step3_blockout/PROPORTION_CHECK.md`; full 19-view set `step3_blockout/renders/` (captioned) + `step3_blockout/comparisons/compare_*.png` (vs matching generated image).
 - **Review check:** boxes stage matches CAD (site, GF, FF, pool, courtyard) and the image storey ratio before any detail; each sub-stage adds no massing change; side-by-sides read like the generated images in massing, materials and planting.
 - **Status:** DONE, awaiting Colin's review.
+- **Revision 2026-11-09 (after step-4 review found step-3 problems):** stone re-mapped per face as large-format travertine panels (was reading as siding); balustrades switched to clear glass (were using the opaque window-glass material); rear facade bays per ELEV-REAR/p26 (GF stone pier, FF stone panel + slat screen) and balcony planters; carport bronze fascia; front roof overhang 1.2 -> 2.0 m; RF core narrowed to the enclosed stair/corridor per the RF plan (MEP zone is open roof) with position unchanged (M12 still OPEN); palms with real leaflet geometry; fuller open tree crowns; calmer lawn; warm late-afternoon light like the references. CAD footprints unchanged. Mismatch log M12 updated, M16-M19 added. Re-rendered with Blender 5.2 (`blender/run_renders_win.sh`).
 
 ## Step 4: Grime
 All procedural, covering chipped paint, dust, drip marks, fingerprints, base dirt, and weathering on stone, render and metal.
@@ -37,6 +38,7 @@ All procedural, covering chipped paint, dust, drip marks, fingerprints, base dir
 - **Outputs:** `blender/4b_grime.blend`; `step4_grime/renders/` (19 captioned), `step4_grime/comparisons/compare_*.png`, `step4_grime/closeups/`.
 - **Review check:** grime present but subtle (no textures/images): base dirt <0.75 m, drips under slab edges, dust on up-faces, edge chips, bronze patina, stone weathering, glass fingerprints at hand height. Still reads like the generated images.
 - **Status:** DONE, awaiting Colin's review. **HOLD: waiting for the go-ahead to start step 5.**
+- **Revision 2026-11-09 (review found the grime mostly invisible or artificial):** drips now run down from the model's real slab/parapet/wall tops (old hard-coded levels missed them); base dirt above every walking level (ground, deck, FF balconies, roof terrace), vertical faces only; clustered edge chips that show on stone and render, rare on thin metal; bronze patina as broad bar-to-bar tonal variation (old version made an even dot pattern); glass hand smudges 0.8-1.7 m above EACH floor (were GF only); white specks on glass removed (they were caustic fireflies, not grime). Captioned close-ups now in `step4_grime/closeups/`; `4b_grime_register.json` now lists the grime spec, levels and per-material assignment.
 
 ## Step 5: Printed matter
 Signs, plaques, house numbers and any labels, made as prints first, then faded and peeled. Only include items visible in the source images; if there are none, record "none in source" and skip.

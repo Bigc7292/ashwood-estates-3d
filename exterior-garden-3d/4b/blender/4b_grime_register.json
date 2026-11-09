@@ -446,7 +446,19 @@
    "name": "RF_core",
    "collection": "massing",
    "material": "stone_rf",
-   "source": "RF plan (NTS) core incl. enclosed stair \u2014 CAD wins over open-stair image"
+   "source": "RF plan (NTS) enclosed stair/corridor core ~3.5 m wide \u2014 CAD wins over open-stair image"
+  },
+  {
+   "name": "RF_MEP_screen_front",
+   "collection": "massing",
+   "material": "stone_rf",
+   "source": "RF plan MEP 3.80 x 15.70 (open roof zone); 1.5 m screen wall height assumed"
+  },
+  {
+   "name": "RF_MEP_screen_left",
+   "collection": "massing",
+   "material": "stone_rf",
+   "source": "RF plan MEP zone edge; screen height assumed"
   },
   {
    "name": "RF_lift",
@@ -749,10 +761,46 @@
    "source": "CAD parking zone"
   },
   {
+   "name": "GF_rear_glazing_L",
+   "collection": "models",
+   "material": "glass",
+   "source": "image p26/ELEV-REAR left glazed bay; CAD WINS extent"
+  },
+  {
+   "name": "GF_rear_frame_L_m0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_frame_L_m1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_frame_L_head",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_frame_L_sill",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_stone_pier",
+   "collection": "models",
+   "material": "stone",
+   "source": "image p26/ELEV-REAR stone pier between glazed bays (position image-read)"
+  },
+  {
    "name": "GF_rear_glazing",
    "collection": "models",
    "material": "glass",
-   "source": "image p26/ELEV-REAR full-height glazing; CAD WINS 1777..9238"
+   "source": "image p26/ELEV-REAR wide sliding opening; CAD WINS extent"
   },
   {
    "name": "GF_rear_frame_m0",
@@ -768,18 +816,6 @@
   },
   {
    "name": "GF_rear_frame_m2",
-   "collection": "models",
-   "material": "bronze",
-   "source": "image bronze frames"
-  },
-  {
-   "name": "GF_rear_frame_m3",
-   "collection": "models",
-   "material": "bronze",
-   "source": "image bronze frames"
-  },
-  {
-   "name": "GF_rear_frame_m4",
    "collection": "models",
    "material": "bronze",
    "source": "image bronze frames"
@@ -917,55 +953,229 @@
    "source": "CAD WINS cue 13040..13821 / image"
   },
   {
-   "name": "FF_rear_glazing",
+   "name": "FF_rear_glazing_L",
    "collection": "models",
    "material": "glass",
-   "source": "image p26/ELEV-REAR"
+   "source": "image p26/ELEV-REAR FF left glazing"
   },
   {
-   "name": "FF_rear_frame_m0",
+   "name": "FF_rear_frame_L_m0",
    "collection": "models",
    "material": "bronze",
    "source": "image"
   },
   {
-   "name": "FF_rear_frame_m1",
+   "name": "FF_rear_frame_L_m1",
    "collection": "models",
    "material": "bronze",
    "source": "image"
   },
   {
-   "name": "FF_rear_frame_m2",
+   "name": "FF_rear_frame_L_m2",
    "collection": "models",
    "material": "bronze",
    "source": "image"
   },
   {
-   "name": "FF_rear_frame_m3",
+   "name": "FF_rear_frame_L_head",
    "collection": "models",
    "material": "bronze",
    "source": "image"
   },
   {
-   "name": "FF_rear_frame_m4",
+   "name": "FF_rear_frame_L_sill",
    "collection": "models",
    "material": "bronze",
    "source": "image"
   },
   {
-   "name": "FF_rear_frame_m5",
+   "name": "FF_rear_stone_panel",
+   "collection": "models",
+   "material": "stone",
+   "source": "image p26/ELEV-REAR stone panel (position image-read)"
+  },
+  {
+   "name": "FF_rear_glazing_mid",
+   "collection": "models",
+   "material": "glass",
+   "source": "image p26 glazing behind slat screen"
+  },
+  {
+   "name": "FF_rear_slat_0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_2",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_3",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_4",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_5",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_6",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_7",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_8",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_9",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_10",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_11",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_12",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_13",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_14",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_15",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_16",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_17",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_18",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_19",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_20",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_21",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_22",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_slat_23",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p26/ELEV-REAR vertical bronze/timber slat screen"
+  },
+  {
+   "name": "FF_rear_glazing_R",
+   "collection": "models",
+   "material": "glass",
+   "source": "image p26/ELEV-REAR FF right glazing"
+  },
+  {
+   "name": "FF_rear_frame_R_m0",
    "collection": "models",
    "material": "bronze",
    "source": "image"
   },
   {
-   "name": "FF_rear_frame_head",
+   "name": "FF_rear_frame_R_m1",
    "collection": "models",
    "material": "bronze",
    "source": "image"
   },
   {
-   "name": "FF_rear_frame_sill",
+   "name": "FF_rear_frame_R_m2",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_rear_frame_R_head",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_rear_frame_R_sill",
    "collection": "models",
    "material": "bronze",
    "source": "image"
@@ -979,8 +1189,32 @@
   {
    "name": "FF_balcony_balustrade_glass",
    "collection": "models",
-   "material": "glass",
-   "source": "image p26 frameless glass; height assumed"
+   "material": "balglass",
+   "source": "image p26 frameless CLEAR glass; height assumed"
+  },
+  {
+   "name": "FF_balcony_planter_L",
+   "collection": "models",
+   "material": "stone",
+   "source": "image p26 balcony planters (illustrative)"
+  },
+  {
+   "name": "FF_balcony_planting_L",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image p26 planting behind balustrade"
+  },
+  {
+   "name": "FF_balcony_planter_R",
+   "collection": "models",
+   "material": "stone",
+   "source": "image p26 balcony planters (illustrative)"
+  },
+  {
+   "name": "FF_balcony_planting_R",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image p26 planting behind balustrade"
   },
   {
    "name": "FF_rear_pier_left",
@@ -1333,8 +1567,8 @@
   {
    "name": "FF_front_left_balustrade",
    "collection": "models",
-   "material": "glass",
-   "source": "image ELEV-FRONT glass/planter balustrade"
+   "material": "balglass",
+   "source": "image ELEV-FRONT clear glass/planter balustrade"
   },
   {
    "name": "FF_front_right_box_parapet",
@@ -1393,13 +1627,13 @@
   {
    "name": "RF_balustrade_rear",
    "collection": "models",
-   "material": "glass",
-   "source": "image ROOF-TERRACE glass balustrade; RF edge NTS"
+   "material": "balglass",
+   "source": "image ROOF-TERRACE clear glass balustrade; RF edge NTS"
   },
   {
    "name": "RF_balustrade_right",
    "collection": "models",
-   "material": "glass",
+   "material": "balglass",
    "source": "image"
   },
   {
@@ -1799,6 +2033,18 @@
    "source": "image"
   },
   {
+   "name": "CARPORT_fascia_front",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/p25 bronze fascia"
+  },
+  {
+   "name": "CARPORT_fascia_side",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/p25 bronze fascia"
+  },
+  {
    "name": "LED_roof_rear",
    "collection": "models",
    "material": "led",
@@ -2032,5 +2278,44 @@
    "material": "bark/palmleaf",
    "source": "image ELEV-REAR context palms (off-plot)"
   }
- ]
+ ],
+ "grime": {
+  "spec": {
+   "base_dirt": "darker band within ~0.75 m above every walking level (0.0, 0.45, 4.45, 8.45), noise-broken, splash-back on walls/piers",
+   "drips": "vertical rain streaks running down up to 1.4 m below each slab/parapet/wall top (3.45, 4.45, 5.65, 8.45, 11.8, 1.3, 2.2) (stone, render, metal)",
+   "dust": "light dust on up-facing surfaces (ledges, slab tops, copings, deck)",
+   "edge_chips": "clustered chips on outside edges of render/soffit (grey concrete shows) and stone (fresh paler stone); sparse on metal",
+   "patina": "broad bronze tonal variation, browner/duller toward the bottom of each element (no dot pattern)",
+   "stone_weathering": "soft large blotches + slightly darker lower band",
+   "glass": "hand smudges 0.8-1.7 m above each floor level (roughness + faint haze); no specks"
+  },
+  "floor_levels_m": [
+   0.0,
+   0.45,
+   4.45,
+   8.45
+  ],
+  "drip_from_m": [
+   3.45,
+   4.45,
+   5.65,
+   8.45,
+   11.799999999999999,
+   1.3,
+   2.2
+  ],
+  "by_material": {
+   "stone": "stone",
+   "stone_rf": "stone",
+   "coping": "stone",
+   "soffit": "render",
+   "bronze": "metal",
+   "furniture": "metal",
+   "glass": "glass",
+   "balglass": "glass",
+   "paving": "paving",
+   "deck": "paving"
+  },
+  "method": "procedural Cycles shader nodes only (no image textures)"
+ }
 }

@@ -64,36 +64,81 @@ const ph = M_({color:0xa7a9ab, roughness:.9});
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
 const hideCats = new Set((Q.get('hide')||'').split(',').filter(Boolean));
-for (const b of M.boxes) {
-  if (hideCats.has(b.cat)) continue;
-  const w=Math.max(b.x1-b.x0,.02), d=Math.max(b.z1-b.z0,.02), h=Math.max(b.y1-b.y0,.02);
+// Water basins (DISPLAY ASSUMPTIONS - the plan gives the water outlines only, no depths):
+// pool 1.4 m deep with mosaic tile + stone coping; courtyard feature a 0.4 m stone-lined pond.
+const BASIN = {'swimming-pool':{depth:1.4, wall:'tile', coping:0.30}, 'courtyard-water-feature':{depth:0.40, wall:'stone', coping:0}};
+const basinRects = M.water.filter(w=>BASIN[w.id]).map(w=>[w.x0,w.z0,w.x1,w.z1]);
+function subtractRect(r, h){   // axis-aligned rect minus rect -> up to 4 rects ([x0,z0,x1,z1])
+  if (h[0]>=r[2]||h[2]<=r[0]||h[1]>=r[3]||h[3]<=r[1]) return [r];
+  const [x0,z0,x1,z1]=r, hx0=Math.max(h[0],x0), hx1=Math.min(h[2],x1), hz0=Math.max(h[1],z0), hz1=Math.min(h[3],z1), out=[];
+  if (hz0>z0) out.push([x0,z0,x1,hz0]); if (hz1<z1) out.push([x0,hz1,x1,z1]);
+  if (hx0>x0) out.push([x0,hz0,hx0,hz1]); if (hx1<x1) out.push([hx1,hz0,x1,hz1]);
+  return out;
+}
+function addBox(b, x0, z0, x1, z1){
+  const w=Math.max(x1-x0,.02), d=Math.max(z1-z0,.02), h=Math.max(b.y1-b.y0,.02);
   let m = MAT[b.mat] || ph;
   if (b.cat==='gf_wall'||b.cat==='ff_wall'||b.cat==='rf_wall') m = texRepeat(m, Math.max(w,d), h);
   else if (['ground','lawn','balcony'].includes(b.cat)) m = texRepeat(m, w, d);
   const mesh = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), m);
-  mesh.position.set(b.x0+w/2, b.y0+h/2, b.z0+d/2);
+  mesh.position.set(x0+w/2, b.y0+h/2, z0+d/2);
   mesh.castShadow = !b.mat.startsWith('glass') && b.cat!=='ground' && b.cat!=='lawn'; mesh.receiveShadow = true;
   group.add(mesh);
+}
+for (const b of M.boxes) {
+  if (hideCats.has(b.cat)) continue;
+  // ground slabs get a hole cut where a water basin is dug, so the basin is visible (previously water sat on top of the paving)
+  const pieces = b.cat==='ground' ? basinRects.reduce((acc,h)=>acc.flatMap(r=>subtractRect(r,h)), [[b.x0,b.z0,b.x1,b.z1]]) : [[b.x0,b.z0,b.x1,b.z1]];
+  for (const [x0,z0,x1,z1] of pieces) addBox(b, x0, z0, x1, z1);
 }
 for (const p of M.polys) { const s=new THREE.Shape(p.pts.map(([x,z])=>new THREE.Vector2(x,-z)));
   for (const h of (p.holes||[])) s.holes.push(new THREE.Path(h.map(([x,z])=>new THREE.Vector2(x,-z))));
   const g=new THREE.ExtrudeGeometry(s,{depth:p.y1-p.y0,bevelEnabled:false}); g.rotateX(-Math.PI/2);
   const mesh=new THREE.Mesh(g,MAT[p.mat]); mesh.position.y=p.y0; mesh.receiveShadow=true; mesh.castShadow=true; group.add(mesh); }
-// water — Water2 only for water surfaces drawn in the approved plan
+// water — three.js Water2 (examples/jsm/objects/Water2.js, r160, vendored) on the water surfaces drawn in the approved plan.
+// Water2 reflects the scene and REFRACTS what is under it, so it needs a real basin underneath to read as water.
 const useWater2 = Q.get('flatwater')!=='1';
 const tl = new THREE.TextureLoader();
+// mosaic pool tile (pale aqua 2.5 cm-look tiles, grout lines) - procedural, no image assets
+const tTile = tex(g=>{ g.fillStyle='#d6eeee'; g.fillRect(0,0,256,256);   // turquoise mosaic like the p26 / POOL references
+  for(let y=0;y<256;y+=16) for(let x=0;x<256;x+=16){ const v=Math.random()*22-11; g.fillStyle=`rgb(${48+v},${172+v},${190+v})`; g.fillRect(x+1,y+1,14,14); } }, 0.4);
+// caustics: soft bright network on the pool floor, animated by scrolling two layers in opposite directions
+function causticCanvas(){ return tex(g=>{ g.fillStyle='#000'; g.fillRect(0,0,256,256); g.strokeStyle='rgba(255,255,255,.55)'; g.lineCap='round';
+  const pts=[...Array(42)].map(()=>[Math.random()*256,Math.random()*256]);
+  for (let i=0;i<256;i+=4) for (let j=0;j<256;j+=4){ let a=1e9,b=1e9; for(const [px,py] of pts){ for(const ox of [-256,0,256]) for(const oy of [-256,0,256]){ const d=Math.hypot(i-px-ox,j-py-oy); if(d<a){b=a;a=d;} else if(d<b) b=d; } }
+    const e=b-a; if (e<5){ g.fillStyle=`rgba(255,255,255,${(1-e/5)*.5})`; g.fillRect(i,j,4,4); } } }, 1.6); }
+const tCau1 = causticCanvas(), tCau2 = causticCanvas(); tCau1.colorSpace = tCau2.colorSpace = THREE.NoColorSpace;
+const animated = [];
 for (const w of M.water) {
+  const B = BASIN[w.id] || {depth:0.05, wall:'stone', coping:0};
+  const W_ = w.x1-w.x0, D_ = w.z1-w.z0, yW = -0.06;                       // water line 6 cm below the coping
+  // basin: floor + 4 inner walls (tile for the pool, stone for the courtyard pond)
+  const wallM = B.wall==='tile' ? texRepeat(M_({map:tTile, roughness:.35}), Math.max(W_,D_), B.depth) : texRepeat(MAT.stone, Math.max(W_,D_), B.depth);
+  const floorM = B.wall==='tile' ? texRepeat(M_({map:tTile, roughness:.35, emissive:0xbff6ff, emissiveIntensity:.0, emissiveMap:tCau1}), W_, D_) : M_({color:0x3d4a3f, roughness:.9});
+  if (B.wall==='tile') { floorM.emissiveIntensity = .55; floorM.emissiveMap = tCau1; floorM.emissiveMap.repeat.set(W_/2.2, D_/2.2); animated.push(floorM.emissiveMap); }
+  const fl = new THREE.Mesh(new THREE.BoxGeometry(W_, .05, D_), floorM); fl.position.set(w.x0+W_/2, -B.depth-.025, w.z0+D_/2); fl.receiveShadow=true; group.add(fl);
+  for (const [x0,z0,x1,z1] of [[w.x0-.05,w.z0-.05,w.x1+.05,w.z0],[w.x0-.05,w.z1,w.x1+.05,w.z1+.05],[w.x0-.05,w.z0,w.x0,w.z1],[w.x1,w.z0,w.x1+.05,w.z1]]) {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(x1-x0, B.depth, z1-z0), wallM); m.position.set((x0+x1)/2, -B.depth/2, (z0+z1)/2); m.receiveShadow=true; group.add(m); }
+  // islands inside a basin (courtyard planter) get a stone base down to the basin floor
+  for (const h of w.holes) { const m=new THREE.Mesh(new THREE.BoxGeometry(h[2]-h[0], B.depth, h[3]-h[1]), MAT.stone); m.position.set((h[0]+h[2])/2, -B.depth/2, (h[1]+h[3])/2); group.add(m); }
+  // stone coping ring, flush with the paving (+2 cm), width assumed 0.30 m
+  if (B.coping) { const c=B.coping;
+    for (const [x0,z0,x1,z1] of [[w.x0-c,w.z0-c,w.x1+c,w.z0],[w.x0-c,w.z1,w.x1+c,w.z1+c],[w.x0-c,w.z0,w.x0,w.z1],[w.x1,w.z0,w.x1+c,w.z1]]) {
+      const m=new THREE.Mesh(new THREE.BoxGeometry(x1-x0,.07,z1-z0), MAT.coping); m.position.set((x0+x1)/2, -0.05+.035+.02, (z0+z1)/2); m.castShadow=m.receiveShadow=true; group.add(m); } }
+  // the water surface
   const s = new THREE.Shape([[w.x0,w.z0],[w.x1,w.z0],[w.x1,w.z1],[w.x0,w.z1]].map(([x,z])=>new THREE.Vector2(x,-z)));
   for (const h of w.holes) s.holes.push(new THREE.Path([[h[0],h[1]],[h[2],h[1]],[h[2],h[3]],[h[0],h[3]]].map(([x,z])=>new THREE.Vector2(x,-z)).reverse()));
   const g = new THREE.ShapeGeometry(s); g.rotateX(-Math.PI/2);
   let mesh;
-  if (useWater2) mesh = new Water(g, {color:0x9fd8df, scale:3, flowDirection:new THREE.Vector2(1,1), textureWidth:512, textureHeight:512,
-     normalMap0: tl.load('./vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), normalMap1: tl.load('./vendor/three/examples/textures/water/Water_2_M_Normal.jpg')});
+  if (useWater2) mesh = new Water(g, {
+      color: B.wall==='tile' ? 0xd8f6f8 : 0xc7d8cc,       // Water2 tints the refracted basin; pale so the tile reads turquoise through it
+      scale: B.wall==='tile' ? 2.2 : 3.5, flowDirection: new THREE.Vector2(.6,.25), flowSpeed: .02, reflectivity: .035,
+      textureWidth: 1024, textureHeight: 1024,
+      normalMap0: tl.load('./vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), normalMap1: tl.load('./vendor/three/examples/textures/water/Water_2_M_Normal.jpg')});
   else mesh = new THREE.Mesh(g, M_({color:0x6fc3cf, roughness:.1, metalness:.2}));
-  mesh.position.y = 0.035; group.add(mesh);
-  // pool shell floor (depth unknown -> shallow display tray, turquoise)
-  const fl = new THREE.Mesh(g.clone(), M_({color:0x5fb7c4})); fl.position.y=0.01; group.add(fl);
+  mesh.position.y = yW; group.add(mesh);
 }
+const clock = new THREE.Clock();
 // trees: generic neutral canopy placeholders at plan-symbol positions (species/height unknown)
 const trunkM = M_({color:0x6b5a46}), canopyM = M_({color:0x6f8a5a, roughness:1, transparent:true, opacity:.92});
 for (const t of M.trees) { if (hideCats.has('trees')) break;
@@ -101,7 +146,10 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
   const tr = new THREE.Mesh(new THREE.CylinderGeometry(.12,.16,ht,8), trunkM); tr.position.set(t.x, (t.courtyard?0.45:0)+ht/2, t.z); tr.castShadow=true; group.add(tr);
   const cn = new THREE.Mesh(new THREE.SphereGeometry(t.r,18,12), canopyM); cn.scale.y=.8; cn.position.set(t.x, (t.courtyard?0.45:0)+ht+t.r*.5, t.z); cn.castShadow=true; group.add(cn); }
 // surrounding neutral ground (outside site diagram = unknown context)
-const out = new THREE.Mesh(new THREE.PlaneGeometry(200,200), M_({color:0xc9c6bd, roughness:1})); out.rotation.x=-Math.PI/2; out.position.set(cx,-0.06,cz); out.receiveShadow=true; scene.add(out);
+// (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
+{ const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
+  for (const [x0,z0,x1,z1] of [[cx-R,cz-R,cx+R,0],[cx-R,SD,cx+R,cz+R],[cx-R,0,0,SD],[SW,0,cx+R,SD]]) {
+    const out = new THREE.Mesh(new THREE.PlaneGeometry(x1-x0, z1-z0), outM); out.rotation.x=-Math.PI/2; out.position.set((x0+x1)/2,-0.06,(z0+z1)/2); out.receiveShadow=true; scene.add(out); } }
 // cameras ------------------------------------------------------------------------------------
 const VIEWS = JSON.parse(Q.get('view') ? Q.get('view') : '{"name":"aerial","pos":[-14,30,48],"tgt":[9.4,3,15],"fov":40}');
 document.getElementById('vname').textContent = VIEWS.title || VIEWS.name;
@@ -115,6 +163,7 @@ function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if
   for (const l of M.labels) { const v=new THREE.Vector3(l.x,l.y,l.z).project(cam); if (v.z>1) continue;
     const d=document.createElement('div'); d.textContent=l.t; d.style.left=((v.x+1)/2*W)+'px'; d.style.top=((1-v.y)/2*Hh)+'px'; L.appendChild(d);} }
 let n=0;
-function loop(){ renderer.render(scene,cam); labels(); if(++n>=12 && Q.get('view')){ document.title='READY'; return; } requestAnimationFrame(loop); }
+function loop(){ const t=clock.getElapsedTime(); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
+  renderer.render(scene,cam); labels(); if(++n>=12 && Q.get('view')){ document.title='READY'; return; } requestAnimationFrame(loop); }
 loop();
 </script></body></html>

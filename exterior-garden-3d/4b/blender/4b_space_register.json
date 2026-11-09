@@ -446,7 +446,19 @@
    "name": "RF_core",
    "collection": "massing",
    "material": "stone_rf",
-   "source": "RF plan (NTS) core incl. enclosed stair \u2014 CAD wins over open-stair image"
+   "source": "RF plan (NTS) enclosed stair/corridor core ~3.5 m wide \u2014 CAD wins over open-stair image"
+  },
+  {
+   "name": "RF_MEP_screen_front",
+   "collection": "massing",
+   "material": "stone_rf",
+   "source": "RF plan MEP 3.80 x 15.70 (open roof zone); 1.5 m screen wall height assumed"
+  },
+  {
+   "name": "RF_MEP_screen_left",
+   "collection": "massing",
+   "material": "stone_rf",
+   "source": "RF plan MEP zone edge; screen height assumed"
   },
   {
    "name": "RF_lift",
