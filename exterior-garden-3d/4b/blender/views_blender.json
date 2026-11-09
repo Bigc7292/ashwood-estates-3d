@@ -1,0 +1,21 @@
+[
+ {"name":"aerial","file":"preview_01_aerial.png","ref":"EXT-4b-OUTDOOR-SITE","pos":[9.4,-50,34],"tgt":[9.4,-14.5,0.5],"lens":32},
+ {"name":"front_approach","file":"preview_02_front_approach.png","ref":"EXT-4b-GARDEN-FRONT","pos":[13.5,-46,2.2],"tgt":[8.5,-22,4.8],"lens":30},
+ {"name":"garden_pool","file":"preview_03_garden_pool_side.png","ref":"EXT-4b-ELEV-REAR","pos":[9.4,19,1.7],"tgt":[9.4,-6,5.0],"lens":32},
+ {"name":"annotated","file":"preview_04_aerial_annotated.png","ref":"EXT-4b-OUTDOOR-SITE","pos":[36,-50,30],"tgt":[9.4,-14.5,1.0],"lens":32,"labels":true},
+ {"name":"elev_front","file":"elevation_front.png","ref":"EXT-4b-ELEV-FRONT","pos":[9.0,-52,2.4],"tgt":[9.0,-20,5.4],"lens":38},
+ {"name":"elev_rear","file":"elevation_rear.png","ref":"EXT-4b-ELEV-REAR","pos":[9.4,24,2.2],"tgt":[9.4,-5,5.2],"lens":36},
+ {"name":"elev_left","file":"elevation_left.png","ref":"EXT-4b-ELEV-LEFT","pos":[-26,-15,2.2],"tgt":[9.4,-15,5.0],"lens":26},
+ {"name":"elev_right","file":"elevation_right.png","ref":"EXT-4b-ELEV-RIGHT","pos":[45,-15,2.2],"tgt":[9.4,-15,5.0],"lens":26},
+ {"name":"front_garden","file":"view_front_garden.png","ref":"EXT-4b-GARDEN-FRONT","pos":[16,-40,3.2],"tgt":[8,-25,2.4],"lens":26},
+ {"name":"back_garden","file":"view_back_garden.png","ref":"EXT-4b-GARDEN-BACK","pos":[21,11,1.8],"tgt":[8,-6,4.0],"lens":28},
+ {"name":"pool","file":"view_swimming_pool.png","ref":"EXT-4b-POOL","pos":[17.5,1.8,1.9],"tgt":[6,-2.6,1.4],"lens":22},
+ {"name":"terrace","file":"view_terrace_pool_side.png","ref":"EXT-4b-POOL","pos":[6.5,0.4,2.2],"tgt":[15,-3.2,1.2],"lens":22},
+ {"name":"outdoor_terrace","file":"view_outdoor_terrace_courtyard.png","ref":"EXT-4b-OUTDOOR-COURTYARD","pos":[15.6,-16.1,2.1],"tgt":[11.4,-13.0,1.9],"lens":14},
+ {"name":"paving","file":"view_paving_plan_top.png","ref":"EXT-4b-OUTDOOR-SITE","ortho":34,"pos":[9.36,-14.94,60],"tgt":[9.36,-14.94,0]},
+ {"name":"driveway","file":"view_driveway.png","ref":"EXT-4b-GARDEN-FRONT","pos":[1.5,-40,2.6],"tgt":[4.5,-26,1.8],"lens":26},
+ {"name":"boundary","file":"view_boundary_walls.png","ref":"EXT-4b-OUTDOOR-SITE","pos":[-7,-41,8],"tgt":[9,-20,1.0],"lens":26},
+ {"name":"balconies","file":"view_ff_rear_balcony.png","ref":"EXT-4b-ELEV-REAR","pos":[9.4,9,6.5],"tgt":[9.4,-4,5.4],"lens":24},
+ {"name":"front_balconies","file":"view_ff_front_balconies.png","ref":"EXT-4b-ELEV-FRONT","pos":[13,-41,9],"tgt":[9.4,-25,6.0],"lens":32},
+ {"name":"rf_terrace","file":"view_rf_terrace.png","ref":"EXT-4b-OUTDOOR-ROOF-TERRACE","pos":[15.0,-3.6,9.8],"tgt":[6.5,-8.6,9.6],"lens":18}
+]

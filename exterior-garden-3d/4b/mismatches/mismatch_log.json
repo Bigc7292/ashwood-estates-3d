@@ -1,0 +1,144 @@
+{
+ "rule_default": "image for appearance, CAD for footprint dimensions",
+ "mismatches": [
+  {
+   "id": "M1",
+   "item": "Carport canopy + stone pier",
+   "images": "p25, EXT-4b-ELEV-FRONT, GARDEN-FRONT, OUTDOOR-SITE show a flat 2-bay canopy with a stone pier",
+   "cad": "Not on V4 plan (parking zone only)",
+   "status": "RESOLVED",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "Modelled as CARPORT_canopy / CARPORT_pier, labelled RENDER-SOURCED, not on plan; footprint = CAD vehicle-entry zone x 0-7.6, z 23.6-29.3; top 3.45 m image-read"
+  },
+  {
+   "id": "M2",
+   "item": "Tall stone fin, front-right",
+   "images": "p25, ELEV-FRONT, GARDEN-FRONT",
+   "cad": "Not on plan",
+   "status": "RESOLVED",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "STONE_FIN 0.5 m blade on the CAD GF right edge, top 11.6 m image-read, labelled render-sourced"
+  },
+  {
+   "id": "M3",
+   "item": "Raised pool deck with steps",
+   "images": "p26, ELEV-REAR, POOL, GARDEN-BACK show a raised stone deck (~3 risers) with steps down to lawn",
+   "cad": "TERRACE zone between pool and facade; no levels",
+   "status": "RESOLVED",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "Deck +0.45 m (3 risers) in the CAD terrace/pool zone; steps at the plan-right end as in the images; pool coping 0.30"
+  },
+  {
+   "id": "M4",
+   "item": "Rear lawn depth",
+   "images": "GARDEN-BACK / ELEV-REAR show a deep lawn beyond the pool",
+   "cad": "Plot ends ~1.2 m behind the pool",
+   "status": "RESOLVED (rear boundary type still OPEN)",
+   "rule": "CAD wins for plot depth; image lawn kept only as off-plot context",
+   "resolution": "CONTEXT_lawn_beyond_plot labelled NOT PLOT (Y 0..+14). Rear boundary wall/fence type has no source and is not modelled",
+   "open_reason": "No source shows the rear boundary treatment"
+  },
+  {
+   "id": "M5",
+   "item": "Pool proportion",
+   "images": "EXT-4b-POOL reads ~3:1",
+   "cad": "9.50 x 2.40 m (~4:1)",
+   "status": "RESOLVED",
+   "rule": "CAD footprint dimensions win",
+   "resolution": "Pool kept at CAD 9.49 x 2.38 m; POOL image proportion logged as an image error"
+  },
+  {
+   "id": "M6",
+   "item": "Courtyard open side",
+   "images": "OUTDOOR-COURTYARD shows glazing on all sides (manifest: assumed)",
+   "cad": "GF right wall has a 2.3 m gap at z 14.05-16.34",
+   "status": "RESOLVED",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "Open side kept per CAD with side steps (ELEV-RIGHT); wall closed z 11.5-14.05; glazing west + south per image"
+  },
+  {
+   "id": "M7",
+   "item": "Roof stair (open vs enclosed)",
+   "images": "OUTDOOR-ROOF-TERRACE shows an open stair",
+   "cad": "RF plan shows the stair inside the enclosed core (RF NTS)",
+   "status": "RESOLVED",
+   "rule": "CAD wins for plan arrangement",
+   "resolution": "Stair enclosed in RF_core with a door to the terrace; image open stair logged as a deviation"
+  },
+  {
+   "id": "M8",
+   "item": "Side walls + planted strip",
+   "images": "ELEV-LEFT/RIGHT, OUTDOOR-SITE show tall stone boundary walls with planted strips",
+   "cad": "Site line + lawn strips on V4 site diagram (not survey)",
+   "status": "RESOLVED",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "2.2 m stone walls on the CAD site line; hedges/trees only inside CAD planted strips; side path = CAD hardscape. Lawn in front of side elevations (images) not modelled because it is not on the plan"
+  },
+  {
+   "id": "M9",
+   "item": "Courtyard ~0.3-0.5 m offset between floors",
+   "images": "n/a (traced FF vs GF)",
+   "cad": "FF void traced ~0.3-0.5 m off the GF water feature",
+   "status": "RESOLVED",
+   "rule": "Calibrated GF CAD is authoritative; FF void snapped to it",
+   "resolution": "FF void = GF water-feature rect 11.48-15.78 x 12.65-16.34; covered terrace strip z 11.5-12.65"
+  },
+  {
+   "id": "M10",
+   "item": "FF front slat screen extent",
+   "images": "ELEV-FRONT / GARDEN-FRONT: bronze slat screen across most of the FF front-left",
+   "cad": "CAD shows bedroom-2 glazing + OPEN TO BELOW, no screen",
+   "status": "RESOLVED",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "Slats across x 3.45-11.0 in front of glazing; CAD envelope unchanged"
+  },
+  {
+   "id": "M11",
+   "item": "Roof fascia / slab depth",
+   "images": "ELEV-REAR facade width/height ~1.5 (approx)",
+   "cad": "No sections",
+   "status": "RESOLVED (approx.)",
+   "rule": "Heights are image-read (no CAD heights)",
+   "resolution": "Roof fascia 0.70 m, FF slab 0.50 m; model ratio 1.62 vs image ~1.51 (perspective); within reading tolerance"
+  },
+  {
+   "id": "M12",
+   "item": "RF core visible from street",
+   "images": "ELEV-FRONT shows no RF volume above the front roof",
+   "cad": "RF plan (NTS) core reaches z ~22.5",
+   "status": "OPEN",
+   "rule": "CAD position kept",
+   "resolution": "RF_core kept at the RF-plan position, so it is visible above the front roof in model views",
+   "open_reason": "RF plan is NTS; can't confirm the core's set-back or height. Needs Colin's call: keep CAD or pull back/lower per image"
+  },
+  {
+   "id": "M13",
+   "item": "Side elevations content (windows, lawn)",
+   "images": "ELEV-LEFT/RIGHT are GENERATED-CONCEPT (pure inference)",
+   "cad": "CAD GF window cues only; FF side windows not traced",
+   "status": "OPEN",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "Narrow FF side windows placed image-read; GF side windows from CAD WINS",
+   "open_reason": "Generated side elevations are pure inference; no brochure side view exists"
+  },
+  {
+   "id": "M14",
+   "item": "Exterior finish schedule",
+   "images": "Warm travertine, bronze, frameless glass (images/brochure)",
+   "cad": "none",
+   "status": "OPEN",
+   "rule": "image appearance",
+   "resolution": "Materials are procedural look-alikes",
+   "open_reason": "No finish schedule in source; materials are appearance-only"
+  },
+  {
+   "id": "M15",
+   "item": "Courtyard tree species / trees generally",
+   "images": "Pine/bonsai in courtyard; date palms + broadleaf",
+   "cad": "tree positions only",
+   "status": "RESOLVED",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "Species/form from images at CAD positions"
+  }
+ ]
+}

@@ -1,0 +1,707 @@
+{
+ "villa": "4B",
+ "project": "ashwood-estates",
+ "created_Asia_Dubai": "2026-11-09T07:30+04:00",
+ "scope": "Evidence ledger only (STEP 1-2). No 3D build/render per scope change.",
+ "choice": {
+  "villa": "4B",
+  "reason": "4B-GF and 4B-FF are approx_calibrated (px/m 28.145 GF, 29.356 FF; residual <=1.8%) and the floorplan3d spike exists for 4B-GF; GF plan shows pool (labelled 9.50x2.40), rear terrace, outdoor terrace, courtyard water, driveway with 2 bays, 3 entrances, planting strips and 12 tree symbols; brochure p25 (front/driveway) and p26 (rear/pool/garden) are same-villa '4 BEDROOM VILLA' exterior renders. 5B has more labelled outdoor spaces (8 vs 5) and is also GF/FF calibrated, but 4B's pool calibration span, spike and default made it the stronger pick; 6B GF is NTS."
+ },
+ "scale": {
+  "gf_px_per_m": 28.145127436281857,
+  "ff_px_per_m": 29.356099218484538,
+  "working_uncertainty_percent": 3,
+  "ff_to_gf_registration": "gx=196+(fx-146)*0.9588; gy=87+(fy-92)*0.9588 (pool left edge & top; checked with lift: GF ~8.92 m vs FF ~8.96 m from pool top)",
+  "rf_registration": "NTS, rf->ff approx (x+80,y+90), checked with lift"
+ },
+ "inputs_used": [
+  "ACTIVE_PIPELINE.json",
+  "active/approved-cad-v4/svg/FP-4B-{GF,FF,RF}_V4_portrait.svg",
+  "active/approved-cad-v4/reports/FP-4B-FF_V4_record.json",
+  "source-evidence/calibration/4B-GF_source_span_calibration.json",
+  "source-evidence/plan-crops/FP-4B-{GF,FF,RF}_untouched_board_crop.png",
+  "canonical/rooms_index.json",
+  "canonical/floors_index.json",
+  "original/ashwood-residences_brochure.pdf pp.24-28"
+ ],
+ "status_legend": {
+  "observed": "drawn/labelled in plan or shown in same-villa render",
+  "observed_render_only": "in render, not in plans",
+  "observed_NTS": "in NTS plan",
+  "assumed": "not sourced",
+  "unknown": "not determinable"
+ },
+ "elements": [
+  {
+   "id": "plot",
+   "element": "Plot boundary",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px); SVG rect x107 y54 w527 h841",
+   "geometry": {
+    "px_gf": [
+     107,
+     54,
+     634,
+     895
+    ],
+    "size_m": "~18.72 x ~29.88"
+   },
+   "dimensions": "~18.72 m x ~29.88 m = ~559.5 m2 (brochure 4B plot range 561.49-826.53 m2; matches min plot within ~3% working uncertainty)",
+   "notes": "Which plot (corner/standard) this board represents is unknown."
+  },
+  {
+   "id": "pool",
+   "element": "Swimming pool (water)",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px); label 'SWIMMING POOL 9.50 x 2.40 m'; calibration span endpoints (196..463, 87..154); rooms_index ashwood-estates/4b/gf/swimming-pool",
+   "geometry": {
+    "px_gf": [
+     196,
+     87,
+     463,
+     154
+    ],
+    "size_m": "~9.49 x ~2.38"
+   },
+   "dimensions": "9.50 x 2.40 m (brochure transcript); plan-measured ~9.49 x ~2.38 m",
+   "height": "Water depth unknown. Render p26: raised coping/edge ~0.6-0.9 m above lawn (approximate, render-estimated)",
+   "material": "Render p26: light beige stone coping/surround, turquoise-lit water, in-pool loungers at west end; step ladder symbol near east end on plan (px ~415-460, 95-140)",
+   "notes": "Water surface outline = rectangle traced from plan."
+  },
+  {
+   "id": "courtyard_water",
+   "element": "Courtyard water feature with central planter",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) (blue water hatch, unlabelled); FF plan shows void over it; brochure p24 text -> evidence/crop_p24_heights_courtyard_materials_text.png 'private courtyard with a serene water feature'",
+   "geometry": {
+    "px_gf": [
+     430,
+     412,
+     550,
+     515
+    ],
+    "size_m": "~4.26 x ~3.66",
+    "central_planter": {
+     "px_gf": [
+      465,
+      440,
+      500,
+      475
+     ],
+     "size_m": "~1.24 x ~1.24"
+    }
+   },
+   "dimensions": "water ~4.26 x ~3.66 m (minus planter ~1.24 x ~1.24 m)",
+   "height": "unknown",
+   "notes": "Not in rooms_index (no label). Open to sky (FF void FF px 380-525 x 405-565). Not visible in either brochure render."
+  },
+  {
+   "id": "rear_terrace",
+   "element": "Rear terrace / pool deck paving",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) label 'TERRACE' ~(480,165)",
+   "geometry": {
+    "strip": {
+     "px_gf": [
+      192,
+      154,
+      530,
+      185
+     ],
+     "size_m": "~12.01 x ~1.1"
+    },
+    "east_pool_deck": {
+     "px_gf": [
+      463,
+      80,
+      530,
+      154
+     ],
+     "size_m": "~2.38 x ~2.63"
+    }
+   },
+   "dimensions": "strip ~12.01 x ~1.1 m; east deck ~2.38 x ~2.63 m",
+   "height": "Render p26: raised plinth with ~2-3 steps down to garden; step heights unknown",
+   "material": "Render p26: pale stone/limestone paving; outdoor sofa set (furniture not modelled as source geometry)",
+   "notes": "Under FF rear balcony overhang (FF balcony reaches GF px y~133)."
+  },
+  {
+   "id": "outdoor_terrace",
+   "element": "Covered outdoor terrace (beside lift)",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) label 'OUTDOOR TERRACE' ~(490,355); rooms_index lists no 4B GF outdoor-terrace entry (only pool) - index gap",
+   "geometry": {
+    "px_gf": [
+     460,
+     335,
+     553,
+     410
+    ],
+    "size_m": "~3.3 x ~2.66"
+   },
+   "dimensions": "~3.3 x ~2.66 m",
+   "notes": "Covered by FF bath above (FF px 415-525 x 345-405)."
+  },
+  {
+   "id": "driveway",
+   "element": "Driveway / car parking (2 bays P01, P02)",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) hatched paving with cars P01, P02; 'VEHICULAR ENTRANCE' marker ~x225; brochure p25 (4 BEDROOM VILLA front render) -> evidence/crop_p25_4B_front_street_driveway.png",
+   "geometry": {
+    "px_gf": [
+     150,
+     725,
+     315,
+     890
+    ],
+    "size_m": "~5.86 x ~5.86"
+   },
+   "dimensions": "~5.86 x ~5.86 m",
+   "material": "Render p25: dark grey paving/asphalt; plan hatch = paving (type unknown)"
+  },
+  {
+   "id": "carport_canopy",
+   "element": "Car porch canopy",
+   "status": "observed_render_only",
+   "source": "brochure p25 (4 BEDROOM VILLA front render) -> evidence/crop_p25_4B_front_street_driveway.png (flat cantilever canopy over 2 cars, slim column, downlights)",
+   "dimensions": "unknown; extent not drawn on GF/FF/RF plans",
+   "height": "unknown (render suggests ~3 m, unverified)",
+   "notes": "CONFLICT: canopy visible in p25 render but no outline on FF or RF plan. Extent must stay unknown/flagged."
+  },
+  {
+   "id": "pedestrian_path",
+   "element": "Pedestrian entrance path",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) 'PEDESTRIAN ENTRANCE' marker ~x372",
+   "geometry": {
+    "px_gf": [
+     318,
+     712,
+     410,
+     890
+    ],
+    "size_m": "~3.27 x ~6.32"
+   },
+   "dimensions": "~3.27 x ~6.32 m",
+   "material": "Render p25: slatted bronze gate + wall; paving type unknown"
+  },
+  {
+   "id": "service_path",
+   "element": "East side service path / stepping pavers",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) 'SERVICE ENTRANCE' marker ~x595; paver strip",
+   "geometry": {
+    "px_gf": [
+     555,
+     130,
+     598,
+     890
+    ],
+    "size_m": "~1.53 x ~27.0"
+   },
+   "dimensions": "~1.53 m wide x ~27.0 m long",
+   "material": "Plan: individual pavers; finish unknown"
+  },
+  {
+   "id": "planting_west",
+   "element": "West side planting strip",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) green hatch",
+   "geometry": {
+    "north": {
+     "px_gf": [
+      115,
+      60,
+      188,
+      545
+     ],
+     "size_m": "~2.59 x ~17.23"
+    },
+    "south_planter": {
+     "px_gf": [
+      150,
+      580,
+      192,
+      700
+     ],
+     "size_m": "~1.49 x ~4.26"
+    }
+   },
+   "dimensions": "~2.59 m wide x ~17.23 m; planter ~1.49 x ~4.26 m",
+   "material": "Species unknown; render p26 shows hedging/climbers on boundary walls and ornamental grasses (style cue only)"
+  },
+  {
+   "id": "planting_east",
+   "element": "East side planting strip",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) green hatch",
+   "geometry": {
+    "px_gf": [
+     598,
+     55,
+     634,
+     890
+    ],
+    "size_m": "~1.28 x ~29.67"
+   },
+   "dimensions": "~1.28 m wide x ~29.67 m"
+  },
+  {
+   "id": "trees",
+   "element": "Trees (plan canopy symbols)",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px); positions/radii from V4 SVG clipPaths tree0..tree11",
+   "geometry": [
+    {
+     "id": "tree0",
+     "centre_px": [
+      136,
+      93
+     ],
+     "canopy_diameter_m": "~3.5"
+    },
+    {
+     "id": "tree1",
+     "centre_px": [
+      569,
+      101
+     ],
+     "canopy_diameter_m": "~4.0"
+    },
+    {
+     "id": "tree2",
+     "centre_px": [
+      132,
+      278
+     ],
+     "canopy_diameter_m": "~2.9"
+    },
+    {
+     "id": "tree3",
+     "centre_px": [
+      133,
+      393
+     ],
+     "canopy_diameter_m": "~3.3"
+    },
+    {
+     "id": "tree4",
+     "centre_px": [
+      148,
+      522
+     ],
+     "canopy_diameter_m": "~3.1"
+    },
+    {
+     "id": "tree5",
+     "centre_px": [
+      158,
+      648
+     ],
+     "canopy_diameter_m": "~2.8"
+    },
+    {
+     "id": "tree6",
+     "centre_px": [
+      613,
+      309
+     ],
+     "canopy_diameter_m": "~3.0"
+    },
+    {
+     "id": "tree7",
+     "centre_px": [
+      614,
+      441
+     ],
+     "canopy_diameter_m": "~2.9"
+    },
+    {
+     "id": "tree8",
+     "centre_px": [
+      615,
+      574
+     ],
+     "canopy_diameter_m": "~3.1"
+    },
+    {
+     "id": "tree9",
+     "centre_px": [
+      616,
+      709
+     ],
+     "canopy_diameter_m": "~2.8"
+    },
+    {
+     "id": "tree10",
+     "centre_px": [
+      626,
+      828
+     ],
+     "canopy_diameter_m": "~2.6"
+    },
+    {
+     "id": "tree11",
+     "centre_px": [
+      421,
+      857
+     ],
+     "canopy_diameter_m": "~3.2"
+    }
+   ],
+   "notes": "Species/height unknown. Renders show date palms + broadleaf trees - style cue only; plan symbols are generic round canopies. Smaller shrub circles not individually indexed. Courtyard planter tree also shown (plan symbol in planter)."
+  },
+  {
+   "id": "lawn",
+   "element": "Lawn",
+   "status": "unknown",
+   "source": "brochure p26 (4 BEDROOM VILLA rear render) -> evidence/crop_p26_4B_rear_garden_pool.png, crop_p26_4B_pool_detail.png shows a lawn foreground; GF plan shows no lawn hatch",
+   "notes": "CONFLICT: plan has only ~1.2 m between pool and rear boundary (px y54-87); render lawn likely outside plot or artistic. Do not model lawn as source fact."
+  },
+  {
+   "id": "rear_margin",
+   "element": "Area between pool and rear boundary",
+   "status": "unknown",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px)",
+   "geometry": {
+    "px_gf": [
+     185,
+     54,
+     530,
+     87
+    ],
+    "size_m": "~12.26 x ~1.17"
+   },
+   "dimensions": "~1.17 m deep",
+   "notes": "Surface type not legible."
+  },
+  {
+   "id": "boundary_walls",
+   "element": "Boundary walls (side/rear)",
+   "status": "observed_line_assumed_build",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) boundary line; brochure p26 (4 BEDROOM VILLA rear render) -> evidence/crop_p26_4B_rear_garden_pool.png, crop_p26_4B_pool_detail.png planted stone walls both sides",
+   "dimensions": "lengths = plot edges",
+   "height": "unknown (render p26 suggests ~1.8-2.2 m, unverified)",
+   "material": "Render p26: stone/render wall with hedge/climber cover"
+  },
+  {
+   "id": "front_boundary",
+   "element": "Front boundary wall + gates",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) front line y~890 with gate markers; brochure p25 (4 BEDROOM VILLA front render) -> evidence/crop_p25_4B_front_street_driveway.png",
+   "dimensions": "~18.72 m frontage",
+   "height": "unknown (render p25 low wall ~1.2-1.5 m, unverified)",
+   "material": "Render p25: beige stone wall, vertical bronze/dark slatted pedestrian gate"
+  },
+  {
+   "id": "massing_gf",
+   "element": "Ground floor enclosed footprint",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px) outer wall line (approx, traced px)",
+   "geometry": {
+    "polygon_px_gf": [
+     [
+      192,
+      185
+     ],
+     [
+      553,
+      185
+     ],
+     [
+      553,
+      335
+     ],
+     [
+      460,
+      335
+     ],
+     [
+      460,
+      392
+     ],
+     [
+      410,
+      392
+     ],
+     [
+      410,
+      530
+     ],
+     [
+      555,
+      530
+     ],
+     [
+      555,
+      810
+     ],
+     [
+      410,
+      810
+     ],
+     [
+      410,
+      712
+     ],
+     [
+      318,
+      712
+     ],
+     [
+      318,
+      722
+     ],
+     [
+      192,
+      722
+     ]
+    ]
+   },
+   "dimensions": "bbox ~12.9 x ~22.21 m; traced area ~228.6 m2 (brochure GF 263.01-266.2 m2 saleable)",
+   "height": "assumed split (only total 14 m G+1+R is sourced): GF floor-to-floor unknown",
+   "material": "Brochure p24 + renders: stone cladding + paint on cement, floor-to-ceiling double glazing, aluminium frames, WPC fluted ceiling soffits"
+  },
+  {
+   "id": "massing_ff",
+   "element": "First floor enclosed footprint",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-FF_untouched_board_crop.png (FF px, registered to GF px via pool left edge + lift; FF scale 29.356 px/m) outer wall line (approx)",
+   "geometry": {
+    "polygon_px_ff": [
+     [
+      145,
+      195
+     ],
+     [
+      527,
+      195
+     ],
+     [
+      527,
+      405
+     ],
+     [
+      380,
+      405
+     ],
+     [
+      380,
+      565
+     ],
+     [
+      527,
+      565
+     ],
+     [
+      527,
+      765
+     ],
+     [
+      380,
+      765
+     ],
+     [
+      380,
+      800
+     ],
+     [
+      270,
+      800
+     ],
+     [
+      270,
+      760
+     ],
+     [
+      145,
+      760
+     ]
+    ],
+    "polygon_px_gf_registered": [
+     [
+      195.0,
+      185.8
+     ],
+     [
+      561.3,
+      185.8
+     ],
+     [
+      561.3,
+      387.1
+     ],
+     [
+      420.3,
+      387.1
+     ],
+     [
+      420.3,
+      540.5
+     ],
+     [
+      561.3,
+      540.5
+     ],
+     [
+      561.3,
+      732.2
+     ],
+     [
+      420.3,
+      732.2
+     ],
+     [
+      420.3,
+      765.8
+     ],
+     [
+      314.9,
+      765.8
+     ],
+     [
+      314.9,
+      727.4
+     ],
+     [
+      195.0,
+      727.4
+     ]
+    ]
+   },
+   "dimensions": "traced area ~229.1 m2 (brochure FF 252.6-260.19 m2)",
+   "height": "assumed split",
+   "notes": "Includes double-height 'OPEN TO BELOW' entrance volume. Courtyard void retained."
+  },
+  {
+   "id": "balconies_ff",
+   "element": "FF balconies (3)",
+   "status": "observed",
+   "source": "source-evidence/plan-crops/FP-4B-FF_untouched_board_crop.png (FF px, registered to GF px via pool left edge + lift; FF scale 29.356 px/m); rooms_index 4b/ff/balcony x3; brochure p26 (4 BEDROOM VILLA rear render) -> evidence/crop_p26_4B_rear_garden_pool.png, crop_p26_4B_pool_detail.png laminated glass balustrade on rear",
+   "geometry": [
+    {
+     "name": "rear",
+     "px_ff": [
+      145,
+      140,
+      527,
+      195
+     ],
+     "px_gf": [
+      195.0,
+      133.0,
+      561.3,
+      185.8
+     ]
+    },
+    {
+     "name": "front-west",
+     "px_ff": [
+      145,
+      760,
+      270,
+      800
+     ],
+     "px_gf": [
+      195.0,
+      727.4,
+      314.9,
+      765.8
+     ]
+    },
+    {
+     "name": "front-east",
+     "px_ff": [
+      380,
+      770,
+      527,
+      860
+     ],
+     "px_gf": [
+      420.3,
+      737.0,
+      561.3,
+      823.3
+     ]
+    }
+   ],
+   "dimensions": "rear ~13.01 x ~1.87 m; front-west ~4.26 x ~1.36 m; front-east ~5.01 x ~3.07 m",
+   "notes": "rooms_index dimension_transcript UNKNOWN for all three."
+  },
+  {
+   "id": "rf_core",
+   "element": "Roof floor enclosed core (MEP, stair, powder, pantry, lift)",
+   "status": "observed_NTS",
+   "source": "source-evidence/plan-crops/FP-4B-RF_untouched_board_crop.png (NTS; approx registered to FF via slab bounds, cross-checked by lift position) NTS_conflicting_source_spans",
+   "geometry": {
+    "core_px_rf": [
+     65,
+     265,
+     300,
+     630
+    ],
+    "lift_px_rf": [
+     295,
+     265,
+     345,
+     325
+    ],
+    "core_px_gf_approx": [
+     195.0,
+     339.2,
+     420.3,
+     689.1
+    ]
+   },
+   "dimensions": "MEP label '3.60 x 12.80 m'; lift 1.50 x 1.70 m; brochure RF 39.5/43.92 m2 (conflict)",
+   "height": "unknown",
+   "notes": "Registration approximate (NTS)."
+  },
+  {
+   "id": "rf_terrace",
+   "element": "Roof terrace",
+   "status": "observed_NTS",
+   "source": "source-evidence/plan-crops/FP-4B-RF_untouched_board_crop.png (NTS; approx registered to FF via slab bounds, cross-checked by lift position); rooms_index 4b/rf/terrace (UNKNOWN dims); label 'TERRACE'",
+   "geometry": {
+    "px_rf": [
+     65,
+     105,
+     445,
+     265
+    ]
+   },
+   "dimensions": "unknown (NTS)",
+   "notes": "Dashed rectangle over terrace (RF px ~140-420 x 150-350) likely overhead canopy; render p26 shows a floating flat roof canopy above the roof level - consistent but extent unverified."
+  },
+  {
+   "id": "building_height",
+   "element": "Overall building height",
+   "status": "observed",
+   "source": "brochure p24 text -> evidence/crop_p24_heights_courtyard_materials_text.png 'Building Heights G+1+R (14m)'",
+   "dimensions": "14 m overall (datum and whether it includes canopy/parapet unknown)",
+   "notes": "Per-floor heights, parapets, plinth and canopy heights are NOT sourced -> assumed when modelled."
+  },
+  {
+   "id": "facade_screens",
+   "element": "Facade elements (vertical slat screen, stone fins, cantilever roofs)",
+   "status": "observed_render_only",
+   "source": "brochure p25 (4 BEDROOM VILLA front render) -> evidence/crop_p25_4B_front_street_driveway.png; brochure p26 (4 BEDROOM VILLA rear render) -> evidence/crop_p26_4B_rear_garden_pool.png, crop_p26_4B_pool_detail.png",
+   "material": "bronze/dark-timber-look vertical slats on FF front, tall stone fin wall at east of front, deep cantilevered FF roof slab, glass balustrade rear balcony",
+   "notes": "Positions only qualitatively matched to plan."
+  },
+  {
+   "id": "garage",
+   "element": "Enclosed garage",
+   "status": "unknown",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px)",
+   "notes": "Not shown: plan shows open parking only. Do not add."
+  },
+  {
+   "id": "outdoor_kitchen_pergola_ground",
+   "element": "Ground-level pergola / outdoor kitchen / extra water",
+   "status": "unknown",
+   "source": "source-evidence/plan-crops/FP-4B-GF_untouched_board_crop.png (crop px, x right/y down; = brochure p27 xref313 board crop [120,350,830,1370]; V4 SVG active/approved-cad-v4/svg/FP-4B-GF_V4_portrait.svg group source_space uses same px)",
+   "notes": "Not shown; do not add."
+  }
+ ]
+}

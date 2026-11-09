@@ -1,0 +1,2 @@
+Third-party code vendored in model/vendor/three/: three.js r160 (three@0.160.0): build/three.module.js, examples/jsm/objects/{Water2,Reflector,Refractor}.js, examples/jsm/controls/OrbitControls.js, and examples/textures/water/Water_{1,2}_M_Normal.jpg. MIT License, Copyright © 2010-2023 three.js authors (full text: model/vendor/three/LICENSE). These were copied from the local npm tarball /workspace/fp3d-vendor (no CDN).
+Rendering tool (not distributed with the model): playwright-core (Apache-2.0) driving the local chrome-headless-shell.

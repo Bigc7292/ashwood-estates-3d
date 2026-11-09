@@ -1,0 +1,6 @@
+[
+ {"name":"cu_plinth_base_dirt","file":"closeup_01_rear_plinth_base_dirt_glass_fingerprints.png","pos":[5.0,-1.6,1.4],"tgt":[6.2,-4.8,1.0],"lens":28},
+ {"name":"cu_slab_drips","file":"closeup_02_rear_slab_edge_drips_stone_pier.png","pos":[2.0,-0.6,4.6],"tgt":[3.3,-3.2,4.3],"lens":30},
+ {"name":"cu_gate_patina","file":"closeup_03_front_gate_bronze_patina_wall_base.png","pos":[9.6,-33.0,1.4],"tgt":[9.3,-29.8,1.0],"lens":30},
+ {"name":"cu_carport_pier","file":"closeup_04_carport_pier_edge_chips_dust.png","pos":[9.5,-33.5,2.6],"tgt":[7.3,-29.4,2.2],"lens":30}
+]

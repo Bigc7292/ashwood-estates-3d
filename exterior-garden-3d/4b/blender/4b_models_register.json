@@ -1,0 +1,2036 @@
+{
+ "stage": "models",
+ "heights_image_read": {
+  "gf_ffl": 0.45,
+  "gf_clear": 3.5,
+  "slab": 0.5,
+  "ff_clear": 3.3,
+  "roof": 0.7,
+  "rf_core": 3.0,
+  "canopy": 0.35,
+  "side_wall": 2.2,
+  "front_wall": 1.3,
+  "gate": 1.9,
+  "carport_top": 3.45,
+  "carport_th": 0.35,
+  "fin_top": 11.6,
+  "balustrade": 1.1,
+  "parapet": 1.2
+ },
+ "levels": {
+  "GF0": 0.45,
+  "GF1": 3.95,
+  "FF0": 4.45,
+  "FF1": 7.75,
+  "RF0": 8.45,
+  "RF1": 11.45
+ },
+ "layout": [
+  {
+   "zone": "plot (CAD site diagram, not survey)",
+   "x": [
+    0,
+    18.72
+   ],
+   "z": [
+    0,
+    29.88
+   ],
+   "kind": "plot",
+   "image_ref": "OUTDOOR-SITE",
+   "cad_check": "V4 ~18.7 x ~29.9 m"
+  },
+  {
+   "zone": "GF footprint",
+   "x": [
+    3.13,
+    15.78
+   ],
+   "z": [
+    4.76,
+    26.79
+   ],
+   "kind": "building",
+   "image_ref": "OUTDOOR-SITE / ELEV-*",
+   "cad_check": "V4 GF floor polygon"
+  },
+  {
+   "zone": "FF envelope",
+   "x": [
+    2.92,
+    15.88
+   ],
+   "z": [
+    2.93,
+    24.0
+   ],
+   "kind": "building",
+   "image_ref": "ELEV-REAR / ELEV-FRONT",
+   "cad_check": "FF V4 envelope ~13.1 x ~23.9 m"
+  },
+  {
+   "zone": "courtyard (open to sky, open on plan-right 14.05-16.34)",
+   "x": [
+    11.48,
+    15.78
+   ],
+   "z": [
+    12.65,
+    16.34
+   ],
+   "kind": "outdoor",
+   "image_ref": "OUTDOOR-COURTYARD / ELEV-RIGHT",
+   "cad_check": "V4 water feature rect + GF wall gap"
+  },
+  {
+   "zone": "covered outdoor terrace",
+   "x": [
+    11.48,
+    15.78
+   ],
+   "z": [
+    11.5,
+    12.65
+   ],
+   "kind": "outdoor",
+   "image_ref": "OUTDOOR-COURTYARD",
+   "cad_check": "V4 OUTDOOR TERRACE label"
+  },
+  {
+   "zone": "pool 9.50 x 2.40",
+   "x": [
+    3.16,
+    12.65
+   ],
+   "z": [
+    1.17,
+    3.55
+   ],
+   "kind": "water",
+   "image_ref": "POOL / ELEV-REAR",
+   "cad_check": "CAD transcript + calibration span"
+  },
+  {
+   "zone": "raised rear deck +0.45 (pool terrace)",
+   "x": [
+    2.9,
+    15.9
+   ],
+   "z": [
+    0.87,
+    4.76
+   ],
+   "kind": "outdoor",
+   "image_ref": "ELEV-REAR / POOL / GARDEN-BACK",
+   "cad_check": "V4 TERRACE label; deck height image-read"
+  },
+  {
+   "zone": "carport / driveway",
+   "x": [
+    0.0,
+    7.6
+   ],
+   "z": [
+    23.6,
+    29.6
+   ],
+   "kind": "outdoor",
+   "image_ref": "ELEV-FRONT / GARDEN-FRONT",
+   "cad_check": "V4 2 car symbols + VEHICLE ENTRY"
+  },
+  {
+   "zone": "pedestrian entry path",
+   "x": [
+    7.6,
+    10.77
+   ],
+   "z": [
+    23.6,
+    29.88
+   ],
+   "kind": "outdoor",
+   "image_ref": "ELEV-FRONT / GARDEN-FRONT",
+   "cad_check": "V4 PEDESTRIAN ENTRY"
+  },
+  {
+   "zone": "front planted bed",
+   "x": [
+    9.73,
+    15.42
+   ],
+   "z": [
+    27.71,
+    29.74
+   ],
+   "kind": "planting",
+   "image_ref": "GARDEN-FRONT",
+   "cad_check": "V4 lawn rect 381,834,160,57"
+  },
+  {
+   "zone": "side/rear planted strip 1",
+   "x": [
+    0.14,
+    2.88
+   ],
+   "z": [
+    0.18,
+    2.49
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 2",
+   "x": [
+    0.14,
+    1.74
+   ],
+   "z": [
+    2.63,
+    14.89
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 3",
+   "x": [
+    0.14,
+    2.95
+   ],
+   "z": [
+    15.49,
+    17.02
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 4",
+   "x": [
+    15.06,
+    18.62
+   ],
+   "z": [
+    0.18,
+    2.67
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 5",
+   "x": [
+    17.23,
+    18.62
+   ],
+   "z": [
+    2.88,
+    16.84
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 6",
+   "x": [
+    17.27,
+    18.65
+   ],
+   "z": [
+    16.98,
+    27.71
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 7",
+   "x": [
+    1.56,
+    2.95
+   ],
+   "z": [
+    18.8,
+    22.74
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 8",
+   "x": [
+    9.73,
+    15.42
+   ],
+   "z": [
+    27.71,
+    29.74
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "off-plot context lawn (render p26 / ELEV-REAR) \u2014 NOT PLOT",
+   "x": [
+    -6,
+    24.72
+   ],
+   "z": [
+    -14,
+    0
+   ],
+   "kind": "context",
+   "image_ref": "ELEV-REAR / GARDEN-BACK",
+   "cad_check": "outside CAD plot; appearance only"
+  },
+  {
+   "zone": "RF core (enclosed stair/MEP; RF NTS)",
+   "x": [
+    3.01,
+    10.94
+   ],
+   "z": [
+    9.95,
+    22.5
+   ],
+   "kind": "building",
+   "image_ref": "OUTDOOR-ROOF-TERRACE",
+   "cad_check": "RF plan NTS, board-offset placement"
+  },
+  {
+   "zone": "RF terrace",
+   "x": [
+    3.01,
+    15.6
+   ],
+   "z": [
+    4.6,
+    9.95
+   ],
+   "kind": "outdoor",
+   "image_ref": "OUTDOOR-ROOF-TERRACE",
+   "cad_check": "RF TERRACE label (extent unknown)"
+  }
+ ],
+ "elements": [
+  {
+   "name": "CONTEXT_ground (neutral, outside plot)",
+   "collection": "context",
+   "material": "ground",
+   "source": "neutral context ground so views have a horizon; not a site claim"
+  },
+  {
+   "name": "GF_rear",
+   "collection": "massing",
+   "material": "stone",
+   "source": "CAD GF footprint; height image-read"
+  },
+  {
+   "name": "GF_mid",
+   "collection": "massing",
+   "material": "stone",
+   "source": "CAD GF footprint"
+  },
+  {
+   "name": "GF_front",
+   "collection": "massing",
+   "material": "stone",
+   "source": "CAD GF footprint"
+  },
+  {
+   "name": "GF_multipurpose",
+   "collection": "massing",
+   "material": "stone",
+   "source": "CAD V4 multipurpose block 410..551 x ..808"
+  },
+  {
+   "name": "GF_plinth",
+   "collection": "massing",
+   "material": "stone",
+   "source": "image: raised plinth/steps (p25/p26); CAD footprint"
+  },
+  {
+   "name": "SLAB_FF_r",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "FF V4 envelope; slab thickness image-read"
+  },
+  {
+   "name": "SLAB_FF_m",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "FF V4 envelope; slab thickness image-read"
+  },
+  {
+   "name": "SLAB_FF_t",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "FF V4 envelope; slab thickness image-read"
+  },
+  {
+   "name": "SLAB_FF_f",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "FF V4 envelope; slab thickness image-read"
+  },
+  {
+   "name": "SLAB_FF_front_ext",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "GF front roof under FF balconies (CAD)"
+  },
+  {
+   "name": "FF_rear",
+   "collection": "massing",
+   "material": "stone",
+   "source": "FF V4 envelope (rear balcony 2.93..4.76 open)"
+  },
+  {
+   "name": "FF_mid",
+   "collection": "massing",
+   "material": "stone",
+   "source": "FF V4 envelope beside courtyard void"
+  },
+  {
+   "name": "FF_front",
+   "collection": "massing",
+   "material": "stone",
+   "source": "FF V4 envelope; front recess for slat screen (image ELEV-FRONT)"
+  },
+  {
+   "name": "FF_front_left_bedroom",
+   "collection": "massing",
+   "material": "stone",
+   "source": "FF V4 bedroom 2 front"
+  },
+  {
+   "name": "FF_front_right_suite",
+   "collection": "massing",
+   "material": "stone",
+   "source": "FF V4 junior suite front"
+  },
+  {
+   "name": "ROOF_r",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "FF envelope + overhang read from ELEV-REAR/ELEV-FRONT (overhang not in CAD)"
+  },
+  {
+   "name": "ROOF_m",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "FF envelope + overhang read from ELEV-REAR/ELEV-FRONT (overhang not in CAD)"
+  },
+  {
+   "name": "ROOF_f",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "FF envelope + overhang read from ELEV-REAR/ELEV-FRONT (overhang not in CAD)"
+  },
+  {
+   "name": "ROOF_fr",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "FF envelope + overhang read from ELEV-REAR/ELEV-FRONT (overhang not in CAD)"
+  },
+  {
+   "name": "RF_core",
+   "collection": "massing",
+   "material": "stone_rf",
+   "source": "RF plan (NTS) core incl. enclosed stair \u2014 CAD wins over open-stair image"
+  },
+  {
+   "name": "RF_lift",
+   "collection": "massing",
+   "material": "stone_rf",
+   "source": "RF plan lift (NTS)"
+  },
+  {
+   "name": "RF_canopy",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "image ELEV-REAR/ROOF-TERRACE + p26: floating canopy; extent read from image"
+  },
+  {
+   "name": "CARPORT_canopy (render-sourced, not on plan)",
+   "collection": "massing",
+   "material": "soffit",
+   "source": "RENDER-SOURCED p25 + EXT-4b-ELEV-FRONT/GARDEN-FRONT; footprint = CAD parking zone"
+  },
+  {
+   "name": "CARPORT_pier (render-sourced)",
+   "collection": "massing",
+   "material": "stone",
+   "source": "RENDER-SOURCED p25/ELEV-FRONT: stone pier at gate side"
+  },
+  {
+   "name": "STONE_FIN (render-sourced, not on plan)",
+   "collection": "massing",
+   "material": "stone",
+   "source": "RENDER-SOURCED p25/ELEV-FRONT: tall stone blade at front-right"
+  },
+  {
+   "name": "WALL_side_left",
+   "collection": "massing",
+   "material": "stone",
+   "source": "image OUTDOOR-SITE/ELEV-LEFT; line = CAD site diagram (not survey)"
+  },
+  {
+   "name": "WALL_side_right",
+   "collection": "massing",
+   "material": "stone",
+   "source": "image OUTDOOR-SITE/ELEV-RIGHT; CAD site line"
+  },
+  {
+   "name": "WALL_front_right",
+   "collection": "massing",
+   "material": "stone",
+   "source": "image p25/ELEV-FRONT low stone wall"
+  },
+  {
+   "name": "WALL_front_end",
+   "collection": "massing",
+   "material": "stone",
+   "source": "image"
+  },
+  {
+   "name": "WALL_carport_back_left",
+   "collection": "massing",
+   "material": "stone",
+   "source": "image ELEV-FRONT: carport left stone wall"
+  },
+  {
+   "name": "GROUND_paving_plot",
+   "collection": "space",
+   "material": "paving",
+   "source": "CAD site hardscape"
+  },
+  {
+   "name": "GROUND_street_verge",
+   "collection": "space",
+   "material": "paving",
+   "source": "image ELEV-FRONT street edge (context, outside plot)"
+  },
+  {
+   "name": "CONTEXT_lawn_beyond_plot (NOT PLOT)",
+   "collection": "space",
+   "material": "context_lawn",
+   "source": "image ELEV-REAR/GARDEN-BACK + p26 lawn; outside CAD plot (CAD wins on plot depth)"
+  },
+  {
+   "name": "LAWN-1_bed",
+   "collection": "space",
+   "material": "lawn",
+   "source": "CAD V4 Source landscape rect"
+  },
+  {
+   "name": "LAWN-2_bed",
+   "collection": "space",
+   "material": "lawn",
+   "source": "CAD V4 Source landscape rect"
+  },
+  {
+   "name": "LAWN-3_bed",
+   "collection": "space",
+   "material": "lawn",
+   "source": "CAD V4 Source landscape rect"
+  },
+  {
+   "name": "LAWN-4_bed",
+   "collection": "space",
+   "material": "lawn",
+   "source": "CAD V4 Source landscape rect"
+  },
+  {
+   "name": "LAWN-5_bed",
+   "collection": "space",
+   "material": "lawn",
+   "source": "CAD V4 Source landscape rect"
+  },
+  {
+   "name": "LAWN-6_bed",
+   "collection": "space",
+   "material": "lawn",
+   "source": "CAD V4 Source landscape rect"
+  },
+  {
+   "name": "LAWN-7_bed",
+   "collection": "space",
+   "material": "lawn",
+   "source": "CAD V4 Source landscape rect"
+  },
+  {
+   "name": "LAWN-8_bed",
+   "collection": "space",
+   "material": "lawn",
+   "source": "CAD V4 Source landscape rect"
+  },
+  {
+   "name": "DECK_rear_strip",
+   "collection": "space",
+   "material": "deck",
+   "source": "image: raised deck; CAD z between pool & facade"
+  },
+  {
+   "name": "DECK_left_of_pool",
+   "collection": "space",
+   "material": "deck",
+   "source": "image deck; CAD pool x"
+  },
+  {
+   "name": "DECK_terrace_right",
+   "collection": "space",
+   "material": "deck",
+   "source": "CAD TERRACE label zone; image lounge deck"
+  },
+  {
+   "name": "POOL_coping_n",
+   "collection": "space",
+   "material": "coping",
+   "source": "coping width assumed 0.30; raised pool edge per p26/ELEV-REAR"
+  },
+  {
+   "name": "POOL_coping_s",
+   "collection": "space",
+   "material": "coping",
+   "source": "coping width assumed 0.30; raised pool edge per p26/ELEV-REAR"
+  },
+  {
+   "name": "POOL_coping_w",
+   "collection": "space",
+   "material": "coping",
+   "source": "coping width assumed 0.30; raised pool edge per p26/ELEV-REAR"
+  },
+  {
+   "name": "POOL_coping_e",
+   "collection": "space",
+   "material": "coping",
+   "source": "coping width assumed 0.30; raised pool edge per p26/ELEV-REAR"
+  },
+  {
+   "name": "POOL_floor",
+   "collection": "space",
+   "material": "pooltile",
+   "source": "depth NOT in source (display 1.6 m)"
+  },
+  {
+   "name": "POOL_wall_n",
+   "collection": "space",
+   "material": "pooltile",
+   "source": "pool shell display"
+  },
+  {
+   "name": "POOL_wall_s",
+   "collection": "space",
+   "material": "pooltile",
+   "source": "pool shell display"
+  },
+  {
+   "name": "POOL_wall_w",
+   "collection": "space",
+   "material": "pooltile",
+   "source": "pool shell display"
+  },
+  {
+   "name": "POOL_wall_e",
+   "collection": "space",
+   "material": "pooltile",
+   "source": "pool shell display"
+  },
+  {
+   "name": "POOL_water (CAD 9.50 x 2.40)",
+   "collection": "space",
+   "material": "water",
+   "source": "CAD 9.50 x 2.40"
+  },
+  {
+   "name": "DECK_step_0",
+   "collection": "space",
+   "material": "deck",
+   "source": "image ELEV-REAR/p26 steps (3 risers 0.15 read from image)"
+  },
+  {
+   "name": "DECK_step_1",
+   "collection": "space",
+   "material": "deck",
+   "source": "image ELEV-REAR/p26 steps (3 risers 0.15 read from image)"
+  },
+  {
+   "name": "DECK_step_2",
+   "collection": "space",
+   "material": "deck",
+   "source": "image ELEV-REAR/p26 steps (3 risers 0.15 read from image)"
+  },
+  {
+   "name": "COURTYARD_floor",
+   "collection": "space",
+   "material": "deck",
+   "source": "CAD courtyard"
+  },
+  {
+   "name": "COURTYARD_terrace_paving",
+   "collection": "space",
+   "material": "deck",
+   "source": "CAD OUTDOOR TERRACE strip"
+  },
+  {
+   "name": "COURTYARD_water (CAD)",
+   "collection": "space",
+   "material": "water",
+   "source": "CAD water feature"
+  },
+  {
+   "name": "COURTYARD_planter_island",
+   "collection": "space",
+   "material": "coping",
+   "source": "CAD island; height image-read"
+  },
+  {
+   "name": "COURTYARD_wall_right_closed",
+   "collection": "space",
+   "material": "stone",
+   "source": "CAD GF right wall line z 11.5..14.05"
+  },
+  {
+   "name": "COURTYARD_side_step_0",
+   "collection": "space",
+   "material": "deck",
+   "source": "image ELEV-RIGHT: steps at courtyard opening; CAD open gap"
+  },
+  {
+   "name": "COURTYARD_side_step_1",
+   "collection": "space",
+   "material": "deck",
+   "source": "image ELEV-RIGHT: steps at courtyard opening; CAD open gap"
+  },
+  {
+   "name": "COURTYARD_side_step_2",
+   "collection": "space",
+   "material": "deck",
+   "source": "image ELEV-RIGHT: steps at courtyard opening; CAD open gap"
+  },
+  {
+   "name": "ENTRY_path",
+   "collection": "space",
+   "material": "deck",
+   "source": "CAD PEDESTRIAN ENTRY; image paving"
+  },
+  {
+   "name": "ENTRY_step_0",
+   "collection": "space",
+   "material": "deck",
+   "source": "image ELEV-FRONT steps"
+  },
+  {
+   "name": "ENTRY_step_1",
+   "collection": "space",
+   "material": "deck",
+   "source": "image ELEV-FRONT steps"
+  },
+  {
+   "name": "ENTRY_step_2",
+   "collection": "space",
+   "material": "deck",
+   "source": "image ELEV-FRONT steps"
+  },
+  {
+   "name": "DRIVEWAY",
+   "collection": "space",
+   "material": "paving",
+   "source": "CAD parking zone"
+  },
+  {
+   "name": "GF_rear_glazing",
+   "collection": "models",
+   "material": "glass",
+   "source": "image p26/ELEV-REAR full-height glazing; CAD WINS 1777..9238"
+  },
+  {
+   "name": "GF_rear_frame_m0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_frame_m1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_frame_m2",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_frame_m3",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_frame_m4",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_frame_head",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_frame_sill",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image bronze frames"
+  },
+  {
+   "name": "GF_rear_glazing_terrace",
+   "collection": "models",
+   "material": "glass",
+   "source": "CAD WINS 11228..13608 cue"
+  },
+  {
+   "name": "GF_rear_frame_t_m0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "GF_rear_frame_t_m1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "GF_rear_frame_t_head",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "GF_rear_frame_t_sill",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "GF_win_L_gf-glass-2",
+   "collection": "models",
+   "material": "glass",
+   "source": "CAD GF glazing cue (left side)"
+  },
+  {
+   "name": "GF_win_L_gf-glass-3",
+   "collection": "models",
+   "material": "glass",
+   "source": "CAD GF glazing cue (left side)"
+  },
+  {
+   "name": "GF_win_R_gf-glass-8",
+   "collection": "models",
+   "material": "glass",
+   "source": "CAD GF glazing cue (right side)"
+  },
+  {
+   "name": "GF_win_L_gf-glass-10",
+   "collection": "models",
+   "material": "glass",
+   "source": "CAD GF glazing cue (left side)"
+  },
+  {
+   "name": "CY_glazing_west",
+   "collection": "models",
+   "material": "glass",
+   "source": "image OUTDOOR-COURTYARD; CAD courtyard edge"
+  },
+  {
+   "name": "CY_frame_west_m0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "CY_frame_west_m1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "CY_frame_west_m2",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "CY_frame_west_m3",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "CY_frame_west_head",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "CY_glazing_south",
+   "collection": "models",
+   "material": "glass",
+   "source": "image OUTDOOR-COURTYARD (office/gym side)"
+  },
+  {
+   "name": "GF_entry_glazing",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-FRONT double-height entry"
+  },
+  {
+   "name": "GF_entry_door_timber",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT timber pivot door"
+  },
+  {
+   "name": "GF_carport_back_glazing",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-FRONT"
+  },
+  {
+   "name": "GF_multipurpose_win",
+   "collection": "models",
+   "material": "glass",
+   "source": "CAD WINS cue 13040..13821 / image"
+  },
+  {
+   "name": "FF_rear_glazing",
+   "collection": "models",
+   "material": "glass",
+   "source": "image p26/ELEV-REAR"
+  },
+  {
+   "name": "FF_rear_frame_m0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_rear_frame_m1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_rear_frame_m2",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_rear_frame_m3",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_rear_frame_m4",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_rear_frame_m5",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_rear_frame_head",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_rear_frame_sill",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_balcony_slab",
+   "collection": "models",
+   "material": "soffit",
+   "source": "FF V4 BALCONY (extent traced)"
+  },
+  {
+   "name": "FF_balcony_balustrade_glass",
+   "collection": "models",
+   "material": "glass",
+   "source": "image p26 frameless glass; height assumed"
+  },
+  {
+   "name": "FF_rear_pier_left",
+   "collection": "models",
+   "material": "stone",
+   "source": "image p26 stone end pier"
+  },
+  {
+   "name": "FF_rear_pier_right",
+   "collection": "models",
+   "material": "stone",
+   "source": "image p26 stone end pier"
+  },
+  {
+   "name": "FF_slat_0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_2",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_3",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_4",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_5",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_6",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_7",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_8",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_9",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_10",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_11",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_12",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_13",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_14",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_15",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_16",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_17",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_18",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_19",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_20",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_21",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_22",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_23",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_24",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_25",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT vertical bronze/timber slats; location CAD OPEN TO BELOW"
+  },
+  {
+   "name": "FF_slat_L0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L2",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L3",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L4",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L5",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L6",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L7",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L8",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L9",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L10",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L11",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L12",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L13",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L14",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L15",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L16",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L17",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L18",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L19",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L20",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L21",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L22",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L23",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L24",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L25",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_L26",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image ELEV-FRONT/GARDEN-FRONT: slat screen spans FF front-left in front of bedroom glazing (appearance from image)"
+  },
+  {
+   "name": "FF_slat_frame_top",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "FF_front_left_glazing",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-FRONT"
+  },
+  {
+   "name": "FF_front_left_balcony",
+   "collection": "models",
+   "material": "soffit",
+   "source": "FF V4 front-left BALCONY (traced)"
+  },
+  {
+   "name": "FF_front_left_balustrade",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-FRONT glass/planter balustrade"
+  },
+  {
+   "name": "FF_front_right_box_parapet",
+   "collection": "models",
+   "material": "stone",
+   "source": "image p25 stone box w/ planter; CAD front-right BALCONY"
+  },
+  {
+   "name": "FF_front_right_side",
+   "collection": "models",
+   "material": "stone",
+   "source": "image"
+  },
+  {
+   "name": "FF_front_right_planter",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image p25 planter on stone box"
+  },
+  {
+   "name": "FF_front_right_glazing",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-FRONT"
+  },
+  {
+   "name": "FF_win_left_0",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-LEFT narrow windows (positions image-read, not CAD)"
+  },
+  {
+   "name": "FF_win_left_1",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-LEFT narrow windows (positions image-read, not CAD)"
+  },
+  {
+   "name": "FF_win_left_2",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-LEFT narrow windows (positions image-read, not CAD)"
+  },
+  {
+   "name": "FF_win_right_0",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-RIGHT narrow window"
+  },
+  {
+   "name": "FF_win_right_court",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ELEV-RIGHT courtyard-facing glazing"
+  },
+  {
+   "name": "RF_balustrade_rear",
+   "collection": "models",
+   "material": "glass",
+   "source": "image ROOF-TERRACE glass balustrade; RF edge NTS"
+  },
+  {
+   "name": "RF_balustrade_right",
+   "collection": "models",
+   "material": "glass",
+   "source": "image"
+  },
+  {
+   "name": "RF_core_door",
+   "collection": "models",
+   "material": "glass",
+   "source": "CAD RF stair inside core; door to terrace (image shows open stair \u2014 CAD wins)"
+  },
+  {
+   "name": "RF_counter",
+   "collection": "models",
+   "material": "stone",
+   "source": "RF plan long counter + ROOF-TERRACE image"
+  },
+  {
+   "name": "RF_table",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan dining (~8-10 seats)"
+  },
+  {
+   "name": "RF_table_base",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan"
+  },
+  {
+   "name": "RF_chair_0_5.35",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan chairs (illustrative)"
+  },
+  {
+   "name": "RF_chairback_0_5.35",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan"
+  },
+  {
+   "name": "RF_chair_0_7.05",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan chairs (illustrative)"
+  },
+  {
+   "name": "RF_chairback_0_7.05",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan"
+  },
+  {
+   "name": "RF_chair_1_5.35",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan chairs (illustrative)"
+  },
+  {
+   "name": "RF_chairback_1_5.35",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan"
+  },
+  {
+   "name": "RF_chair_1_7.05",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan chairs (illustrative)"
+  },
+  {
+   "name": "RF_chairback_1_7.05",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan"
+  },
+  {
+   "name": "RF_chair_2_5.35",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan chairs (illustrative)"
+  },
+  {
+   "name": "RF_chairback_2_5.35",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan"
+  },
+  {
+   "name": "RF_chair_2_7.05",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan chairs (illustrative)"
+  },
+  {
+   "name": "RF_chairback_2_7.05",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan"
+  },
+  {
+   "name": "RF_chair_3_5.35",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan chairs (illustrative)"
+  },
+  {
+   "name": "RF_chairback_3_5.35",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan"
+  },
+  {
+   "name": "RF_chair_3_7.05",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan chairs (illustrative)"
+  },
+  {
+   "name": "RF_chairback_3_7.05",
+   "collection": "models",
+   "material": "furniture",
+   "source": "RF plan"
+  },
+  {
+   "name": "RF_sofa_long",
+   "collection": "models",
+   "material": "cushion",
+   "source": "RF plan L-sofa (illustrative)"
+  },
+  {
+   "name": "RF_sofa_short",
+   "collection": "models",
+   "material": "cushion",
+   "source": "RF plan L-sofa"
+  },
+  {
+   "name": "RF_sofa_back",
+   "collection": "models",
+   "material": "cushion",
+   "source": "RF plan"
+  },
+  {
+   "name": "DECK_sofa",
+   "collection": "models",
+   "material": "cushion",
+   "source": "image ELEV-REAR / p26 outdoor sofa (illustrative)"
+  },
+  {
+   "name": "DECK_sofa_back",
+   "collection": "models",
+   "material": "cushion",
+   "source": "image"
+  },
+  {
+   "name": "GATE_PED_bar0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar2",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar3",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar4",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar5",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar6",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar7",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar8",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar9",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar10",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar11",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar12",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar13",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar14",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar15",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar16",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar17",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar18",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar19",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar20",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar21",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar22",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar23",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar24",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_bar25",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_PED_rail",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "GATE_SERVICE_bar0",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar1",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar2",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar3",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar4",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar5",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar6",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar7",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar8",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar9",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar10",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar11",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_bar12",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image p25/ELEV-FRONT slatted metal gate; position CAD entry label"
+  },
+  {
+   "name": "GATE_SERVICE_rail",
+   "collection": "models",
+   "material": "bronze",
+   "source": "image"
+  },
+  {
+   "name": "LED_roof_rear",
+   "collection": "models",
+   "material": "led",
+   "source": "image ELEV-REAR soffit light line"
+  },
+  {
+   "name": "LED_roof_front",
+   "collection": "models",
+   "material": "led",
+   "source": "image ELEV-FRONT soffit line"
+  },
+  {
+   "name": "LED_carport",
+   "collection": "models",
+   "material": "led",
+   "source": "image ELEV-FRONT carport light line"
+  },
+  {
+   "name": "TREE_1_palm_fronds",
+   "collection": "planting",
+   "material": "palmleaf",
+   "source": "CAD tree symbol position; date palm per images p25/p26/OUTDOOR-SITE"
+  },
+  {
+   "name": "TREE_1_palm",
+   "collection": "planting",
+   "material": "bark/palmleaf",
+   "source": "CAD tree symbol position; date palm per images p25/p26/OUTDOOR-SITE"
+  },
+  {
+   "name": "TREE_2_palm_fronds",
+   "collection": "planting",
+   "material": "palmleaf",
+   "source": "CAD tree symbol position; date palm per images p25/p26/OUTDOOR-SITE"
+  },
+  {
+   "name": "TREE_2_palm",
+   "collection": "planting",
+   "material": "bark/palmleaf",
+   "source": "CAD tree symbol position; date palm per images p25/p26/OUTDOOR-SITE"
+  },
+  {
+   "name": "TREE_3_broadleaf",
+   "collection": "planting",
+   "material": "leaf",
+   "source": "CAD tree symbol position; broadleaf per images OUTDOOR-SITE/ELEV-LEFT/RIGHT"
+  },
+  {
+   "name": "TREE_4_palm_fronds",
+   "collection": "planting",
+   "material": "palmleaf",
+   "source": "CAD tree symbol position; date palm per images p25/p26/OUTDOOR-SITE"
+  },
+  {
+   "name": "TREE_4_palm",
+   "collection": "planting",
+   "material": "bark/palmleaf",
+   "source": "CAD tree symbol position; date palm per images p25/p26/OUTDOOR-SITE"
+  },
+  {
+   "name": "TREE_5_broadleaf",
+   "collection": "planting",
+   "material": "leaf",
+   "source": "CAD tree symbol position; broadleaf per images OUTDOOR-SITE/ELEV-LEFT/RIGHT"
+  },
+  {
+   "name": "TREE_6_broadleaf",
+   "collection": "planting",
+   "material": "leaf",
+   "source": "CAD tree symbol position; broadleaf per images OUTDOOR-SITE/ELEV-LEFT/RIGHT"
+  },
+  {
+   "name": "TREE_7_broadleaf",
+   "collection": "planting",
+   "material": "leaf",
+   "source": "CAD tree symbol position; broadleaf per images OUTDOOR-SITE/ELEV-LEFT/RIGHT"
+  },
+  {
+   "name": "TREE_8_broadleaf",
+   "collection": "planting",
+   "material": "leaf",
+   "source": "CAD tree symbol position; broadleaf per images OUTDOOR-SITE/ELEV-LEFT/RIGHT"
+  },
+  {
+   "name": "TREE_9_palm_fronds",
+   "collection": "planting",
+   "material": "palmleaf",
+   "source": "CAD tree symbol position; date palm per images p25/p26/OUTDOOR-SITE"
+  },
+  {
+   "name": "TREE_9_palm",
+   "collection": "planting",
+   "material": "bark/palmleaf",
+   "source": "CAD tree symbol position; date palm per images p25/p26/OUTDOOR-SITE"
+  },
+  {
+   "name": "TREE_10_broadleaf",
+   "collection": "planting",
+   "material": "leaf",
+   "source": "CAD tree symbol position; broadleaf per images OUTDOOR-SITE/ELEV-LEFT/RIGHT"
+  },
+  {
+   "name": "TREE_11_broadleaf",
+   "collection": "planting",
+   "material": "leaf",
+   "source": "CAD tree symbol position; broadleaf per images OUTDOOR-SITE/ELEV-LEFT/RIGHT"
+  },
+  {
+   "name": "TREE_12_broadleaf",
+   "collection": "planting",
+   "material": "leaf",
+   "source": "CAD tree symbol position; broadleaf per images OUTDOOR-SITE/ELEV-LEFT/RIGHT"
+  },
+  {
+   "name": "TREE_13_courtyard_pine",
+   "collection": "planting",
+   "material": "leaf",
+   "source": "CAD tree symbol; species/form from image OUTDOOR-COURTYARD (pine/bonsai-like)"
+  },
+  {
+   "name": "HEDGE_lawn-1",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image planting inside CAD strip"
+  },
+  {
+   "name": "HEDGE_lawn-2",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image OUTDOOR-SITE hedges inside CAD planted strip"
+  },
+  {
+   "name": "HEDGE_lawn-3",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image planting inside CAD strip"
+  },
+  {
+   "name": "HEDGE_lawn-4",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image planting inside CAD strip"
+  },
+  {
+   "name": "HEDGE_lawn-5",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image OUTDOOR-SITE hedges inside CAD planted strip"
+  },
+  {
+   "name": "HEDGE_lawn-6",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image OUTDOOR-SITE hedges inside CAD planted strip"
+  },
+  {
+   "name": "HEDGE_lawn-7",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image OUTDOOR-SITE hedges inside CAD planted strip"
+  },
+  {
+   "name": "HEDGE_lawn-8",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image planting inside CAD strip"
+  },
+  {
+   "name": "HEDGE_front_bed",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image GARDEN-FRONT planted bed (CAD front lawn rect)"
+  },
+  {
+   "name": "HEDGE_context_rear_left",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image ELEV-REAR hedges (off-plot context)"
+  },
+  {
+   "name": "HEDGE_context_rear_right",
+   "collection": "planting",
+   "material": "hedge",
+   "source": "image ELEV-REAR hedges (off-plot context)"
+  },
+  {
+   "name": "CONTEXT_palm_0_fronds",
+   "collection": "planting",
+   "material": "palmleaf",
+   "source": "image ELEV-REAR context palms (off-plot)"
+  },
+  {
+   "name": "CONTEXT_palm_0",
+   "collection": "planting",
+   "material": "bark/palmleaf",
+   "source": "image ELEV-REAR context palms (off-plot)"
+  },
+  {
+   "name": "CONTEXT_palm_1_fronds",
+   "collection": "planting",
+   "material": "palmleaf",
+   "source": "image ELEV-REAR context palms (off-plot)"
+  },
+  {
+   "name": "CONTEXT_palm_1",
+   "collection": "planting",
+   "material": "bark/palmleaf",
+   "source": "image ELEV-REAR context palms (off-plot)"
+  },
+  {
+   "name": "CONTEXT_palm_2_fronds",
+   "collection": "planting",
+   "material": "palmleaf",
+   "source": "image ELEV-REAR context palms (off-plot)"
+  },
+  {
+   "name": "CONTEXT_palm_2",
+   "collection": "planting",
+   "material": "bark/palmleaf",
+   "source": "image ELEV-REAR context palms (off-plot)"
+  },
+  {
+   "name": "CONTEXT_palm_3_fronds",
+   "collection": "planting",
+   "material": "palmleaf",
+   "source": "image ELEV-REAR context palms (off-plot)"
+  },
+  {
+   "name": "CONTEXT_palm_3",
+   "collection": "planting",
+   "material": "bark/palmleaf",
+   "source": "image ELEV-REAR context palms (off-plot)"
+  }
+ ]
+}

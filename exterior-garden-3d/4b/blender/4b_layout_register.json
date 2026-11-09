@@ -1,0 +1,452 @@
+{
+ "stage": "layout",
+ "heights_image_read": {
+  "gf_ffl": 0.45,
+  "gf_clear": 3.5,
+  "slab": 0.5,
+  "ff_clear": 3.3,
+  "roof": 0.7,
+  "rf_core": 3.0,
+  "canopy": 0.35,
+  "side_wall": 2.2,
+  "front_wall": 1.3,
+  "gate": 1.9,
+  "carport_top": 3.45,
+  "carport_th": 0.35,
+  "fin_top": 11.6,
+  "balustrade": 1.1,
+  "parapet": 1.2
+ },
+ "levels": {
+  "GF0": 0.45,
+  "GF1": 3.95,
+  "FF0": 4.45,
+  "FF1": 7.75,
+  "RF0": 8.45,
+  "RF1": 11.45
+ },
+ "layout": [
+  {
+   "zone": "plot (CAD site diagram, not survey)",
+   "x": [
+    0,
+    18.72
+   ],
+   "z": [
+    0,
+    29.88
+   ],
+   "kind": "plot",
+   "image_ref": "OUTDOOR-SITE",
+   "cad_check": "V4 ~18.7 x ~29.9 m"
+  },
+  {
+   "zone": "GF footprint",
+   "x": [
+    3.13,
+    15.78
+   ],
+   "z": [
+    4.76,
+    26.79
+   ],
+   "kind": "building",
+   "image_ref": "OUTDOOR-SITE / ELEV-*",
+   "cad_check": "V4 GF floor polygon"
+  },
+  {
+   "zone": "FF envelope",
+   "x": [
+    2.92,
+    15.88
+   ],
+   "z": [
+    2.93,
+    24.0
+   ],
+   "kind": "building",
+   "image_ref": "ELEV-REAR / ELEV-FRONT",
+   "cad_check": "FF V4 envelope ~13.1 x ~23.9 m"
+  },
+  {
+   "zone": "courtyard (open to sky, open on plan-right 14.05-16.34)",
+   "x": [
+    11.48,
+    15.78
+   ],
+   "z": [
+    12.65,
+    16.34
+   ],
+   "kind": "outdoor",
+   "image_ref": "OUTDOOR-COURTYARD / ELEV-RIGHT",
+   "cad_check": "V4 water feature rect + GF wall gap"
+  },
+  {
+   "zone": "covered outdoor terrace",
+   "x": [
+    11.48,
+    15.78
+   ],
+   "z": [
+    11.5,
+    12.65
+   ],
+   "kind": "outdoor",
+   "image_ref": "OUTDOOR-COURTYARD",
+   "cad_check": "V4 OUTDOOR TERRACE label"
+  },
+  {
+   "zone": "pool 9.50 x 2.40",
+   "x": [
+    3.16,
+    12.65
+   ],
+   "z": [
+    1.17,
+    3.55
+   ],
+   "kind": "water",
+   "image_ref": "POOL / ELEV-REAR",
+   "cad_check": "CAD transcript + calibration span"
+  },
+  {
+   "zone": "raised rear deck +0.45 (pool terrace)",
+   "x": [
+    2.9,
+    15.9
+   ],
+   "z": [
+    0.87,
+    4.76
+   ],
+   "kind": "outdoor",
+   "image_ref": "ELEV-REAR / POOL / GARDEN-BACK",
+   "cad_check": "V4 TERRACE label; deck height image-read"
+  },
+  {
+   "zone": "carport / driveway",
+   "x": [
+    0.0,
+    7.6
+   ],
+   "z": [
+    23.6,
+    29.6
+   ],
+   "kind": "outdoor",
+   "image_ref": "ELEV-FRONT / GARDEN-FRONT",
+   "cad_check": "V4 2 car symbols + VEHICLE ENTRY"
+  },
+  {
+   "zone": "pedestrian entry path",
+   "x": [
+    7.6,
+    10.77
+   ],
+   "z": [
+    23.6,
+    29.88
+   ],
+   "kind": "outdoor",
+   "image_ref": "ELEV-FRONT / GARDEN-FRONT",
+   "cad_check": "V4 PEDESTRIAN ENTRY"
+  },
+  {
+   "zone": "front planted bed",
+   "x": [
+    9.73,
+    15.42
+   ],
+   "z": [
+    27.71,
+    29.74
+   ],
+   "kind": "planting",
+   "image_ref": "GARDEN-FRONT",
+   "cad_check": "V4 lawn rect 381,834,160,57"
+  },
+  {
+   "zone": "side/rear planted strip 1",
+   "x": [
+    0.14,
+    2.88
+   ],
+   "z": [
+    0.18,
+    2.49
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 2",
+   "x": [
+    0.14,
+    1.74
+   ],
+   "z": [
+    2.63,
+    14.89
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 3",
+   "x": [
+    0.14,
+    2.95
+   ],
+   "z": [
+    15.49,
+    17.02
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 4",
+   "x": [
+    15.06,
+    18.62
+   ],
+   "z": [
+    0.18,
+    2.67
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 5",
+   "x": [
+    17.23,
+    18.62
+   ],
+   "z": [
+    2.88,
+    16.84
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 6",
+   "x": [
+    17.27,
+    18.65
+   ],
+   "z": [
+    16.98,
+    27.71
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 7",
+   "x": [
+    1.56,
+    2.95
+   ],
+   "z": [
+    18.8,
+    22.74
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "side/rear planted strip 8",
+   "x": [
+    9.73,
+    15.42
+   ],
+   "z": [
+    27.71,
+    29.74
+   ],
+   "kind": "planting",
+   "image_ref": "OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT",
+   "cad_check": "V4 Source landscape rect"
+  },
+  {
+   "zone": "off-plot context lawn (render p26 / ELEV-REAR) \u2014 NOT PLOT",
+   "x": [
+    -6,
+    24.72
+   ],
+   "z": [
+    -14,
+    0
+   ],
+   "kind": "context",
+   "image_ref": "ELEV-REAR / GARDEN-BACK",
+   "cad_check": "outside CAD plot; appearance only"
+  },
+  {
+   "zone": "RF core (enclosed stair/MEP; RF NTS)",
+   "x": [
+    3.01,
+    10.94
+   ],
+   "z": [
+    9.95,
+    22.5
+   ],
+   "kind": "building",
+   "image_ref": "OUTDOOR-ROOF-TERRACE",
+   "cad_check": "RF plan NTS, board-offset placement"
+  },
+  {
+   "zone": "RF terrace",
+   "x": [
+    3.01,
+    15.6
+   ],
+   "z": [
+    4.6,
+    9.95
+   ],
+   "kind": "outdoor",
+   "image_ref": "OUTDOOR-ROOF-TERRACE",
+   "cad_check": "RF TERRACE label (extent unknown)"
+  }
+ ],
+ "elements": [
+  {
+   "name": "ZONE_plot (CAD site diagram, not survey)",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_GF footprint",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_FF envelope",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_courtyard (open to sky, open on plan-rig",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_covered outdoor terrace",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_pool 9.50 x 2.40",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_raised rear deck +0.45 (pool terrace)",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_carport / driveway",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_pedestrian entry path",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_front planted bed",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_side/rear planted strip 1",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_side/rear planted strip 2",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_side/rear planted strip 3",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_side/rear planted strip 4",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_side/rear planted strip 5",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_side/rear planted strip 6",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_side/rear planted strip 7",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_side/rear planted strip 8",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_off-plot context lawn (render p26 / ELEV",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_RF core (enclosed stair/MEP; RF NTS)",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  },
+  {
+   "name": "ZONE_RF terrace",
+   "collection": "layout",
+   "material": "x",
+   "source": "layout"
+  }
+ ]
+}

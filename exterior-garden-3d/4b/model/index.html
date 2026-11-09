@@ -1,0 +1,120 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Ashwood 4B — exterior/garden concept model (generated)</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Arial,Helvetica,sans-serif}
+#cap{position:absolute;left:0;right:0;bottom:0;background:rgba(20,28,24,.82);color:#fff;padding:9px 16px;font-size:15px;line-height:1.35}
+#cap b{color:#ffd58a}
+#title{position:absolute;left:0;top:0;background:rgba(20,28,24,.78);color:#fff;padding:8px 14px;font-size:15px}
+#labels div{position:absolute;transform:translate(-50%,-100%);background:rgba(255,255,255,.88);border:1px solid #556;color:#123;font-size:12px;padding:2px 5px;white-space:nowrap}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js"}}</script>
+</head><body>
+<div id="title">GENERATED 3D CONCEPT · Ashwood Estates 4-bedroom villa (4B) · <span id="vname"></span></div>
+<div id="labels"></div>
+<div id="cap"><b>Concept visualisation: not survey-verified, not construction-ready, not certified</b><br>
+<span id="sub">Layout: approved CAD V4 (pt16u) + 4B-GF span calibration (~, ±3%). Heights, levels, RF (NTS) and grey placeholder items are display assumptions. Not a marketing render.</span></div>
+<script src="./data/model.js"></script>
+<script type="module">
+import * as THREE from 'three';
+import { Water } from './vendor/three/examples/jsm/objects/Water2.js';
+import { OrbitControls } from './vendor/three/examples/jsm/controls/OrbitControls.js';
+const M = window.MODEL, Q = new URLSearchParams(location.search);
+const W = innerWidth, Hh = innerHeight;
+const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
+renderer.setPixelRatio(1); renderer.setSize(W,Hh);
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.prepend(renderer.domElement);
+const scene = new THREE.Scene();
+// sky gradient (brochure renders: clear blue sky, warm low sun) — style cue only
+{ const c=document.createElement('canvas'); c.width=2; c.height=256; const g=c.getContext('2d');
+  const gr=g.createLinearGradient(0,0,0,256); gr.addColorStop(0,'#3f87bd'); gr.addColorStop(.7,'#9cc7de'); gr.addColorStop(1,'#dfe9ea');
+  g.fillStyle=gr; g.fillRect(0,0,2,256); const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; scene.background=t; }
+scene.add(new THREE.HemisphereLight(0xe6f0ff, 0xb8a888, 1.25)); scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+const sun = new THREE.DirectionalLight(0xfff0d8, 2.4);
+sun.position.set(-18, 30, 22); sun.castShadow = true; sun.shadow.mapSize.set(2048,2048);
+Object.assign(sun.shadow.camera,{left:-30,right:30,top:30,bottom:-30,near:1,far:120}); sun.shadow.bias=-0.0004;
+const cx = M.meta.site_m[0]/2, cz = M.meta.site_m[1]/2;
+sun.target.position.set(cx,0,cz); scene.add(sun, sun.target);
+const _V0 = Q.get('view') ? JSON.parse(Q.get('view')) : {}; if (_V0.sun) sun.position.set(..._V0.sun);
+// procedural textures (no image assets) -------------------------------------------------
+function tex(draw, rep){ const c=document.createElement('canvas'); c.width=c.height=256; draw(c.getContext('2d'));
+  const t=new THREE.CanvasTexture(c); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.colorSpace=THREE.SRGBColorSpace; t.userData.rep=rep; return t; }
+function noise(g,base,var_,n){ g.fillStyle=base; g.fillRect(0,0,256,256); for(let i=0;i<n;i++){ const v=(Math.random()-.5)*var_; g.fillStyle=`rgba(${v>0?255:60},${v>0?245:50},${v>0?225:35},${Math.abs(v)})`; g.fillRect(Math.random()*256,Math.random()*256,1+Math.random()*3,1+Math.random()*2);} }
+const tStone = tex(g=>{ noise(g,'#d8c7a8',.18,9000); g.strokeStyle='rgba(120,100,70,.35)'; g.lineWidth=1.2;
+  for(let y=0;y<256;y+=32){ g.beginPath(); g.moveTo(0,y); g.lineTo(256,y); g.stroke(); for(let x=((y/32)%2)*64;x<256;x+=128){ g.beginPath(); g.moveTo(x,y); g.lineTo(x,y+32); g.stroke(); } }
+  g.strokeStyle='rgba(150,125,90,.25)'; for(let i=0;i<40;i++){ g.beginPath(); const y=Math.random()*256; g.moveTo(0,y); g.lineTo(256,y+Math.random()*4-2); g.stroke(); } }, 2.4);
+const tPave = tex(g=>{ noise(g,'#e2d6c0',.14,7000); g.strokeStyle='rgba(130,115,90,.45)'; g.lineWidth=1.5;
+  for(let i=0;i<=256;i+=64){ g.beginPath(); g.moveTo(i,0); g.lineTo(i,256); g.stroke(); g.beginPath(); g.moveTo(0,i); g.lineTo(256,i); g.stroke(); } }, 3.2);
+const tLawn = tex(g=>{ g.fillStyle='#5f7e34'; g.fillRect(0,0,256,256); for(let i=0;i<14000;i++){ const s=Math.random(); g.fillStyle=`rgba(${60+s*70},${95+s*70},${30+s*30},.55)`; g.fillRect(Math.random()*256,Math.random()*256,1,2+Math.random()*3);} }, 3);
+const tSlat = tex(g=>{ g.fillStyle='#3a2a1c'; g.fillRect(0,0,256,256); for(let x=0;x<256;x+=16){ g.fillStyle='#7a5636'; g.fillRect(x,0,9,256); g.fillStyle='rgba(255,220,170,.15)'; g.fillRect(x,0,2,256);} }, 0.6);
+const tBars = tex(g=>{ g.clearRect(0,0,256,256); for(let x=0;x<256;x+=21){ g.fillStyle='#2e2a24'; g.fillRect(x,0,8,256);} }, 0.35);
+function M_(o){ return new THREE.MeshStandardMaterial(o); }
+const MAT = {
+  stone: M_({map:tStone, roughness:.85}), paving: M_({map:tPave, roughness:.9}), paving_inner: M_({color:0xe8dfcf, roughness:.6}),
+  coping: M_({color:0xe7dcc6, roughness:.8}), lawn: M_({map:tLawn, roughness:1}), soffit: M_({color:0xeee6d6, roughness:.75}),
+  glass: M_({color:0x6f8f9c, roughness:.05, metalness:.3, transparent:true, opacity:.42}),
+  glass_balustrade: M_({color:0xa9c6cf, roughness:.05, metalness:.1, transparent:true, opacity:.28}),
+  bronze_slats: M_({map:tSlat, roughness:.6, metalness:.2}), bronze_bars: M_({map:tBars, transparent:true, alphaTest:.5, side:THREE.DoubleSide, roughness:.5, metalness:.4, color:0x5a4a38}),
+  placeholder: M_({color:0xa7a9ab, roughness:.9}), planter: M_({color:0xbfae8f})
+};
+const ph = M_({color:0xa7a9ab, roughness:.9});
+function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
+const group = new THREE.Group(); scene.add(group);
+const hideCats = new Set((Q.get('hide')||'').split(',').filter(Boolean));
+for (const b of M.boxes) {
+  if (hideCats.has(b.cat)) continue;
+  const w=Math.max(b.x1-b.x0,.02), d=Math.max(b.z1-b.z0,.02), h=Math.max(b.y1-b.y0,.02);
+  let m = MAT[b.mat] || ph;
+  if (b.cat==='gf_wall'||b.cat==='ff_wall'||b.cat==='rf_wall') m = texRepeat(m, Math.max(w,d), h);
+  else if (['ground','lawn','balcony'].includes(b.cat)) m = texRepeat(m, w, d);
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), m);
+  mesh.position.set(b.x0+w/2, b.y0+h/2, b.z0+d/2);
+  mesh.castShadow = !b.mat.startsWith('glass') && b.cat!=='ground' && b.cat!=='lawn'; mesh.receiveShadow = true;
+  group.add(mesh);
+}
+for (const p of M.polys) { const s=new THREE.Shape(p.pts.map(([x,z])=>new THREE.Vector2(x,-z)));
+  for (const h of (p.holes||[])) s.holes.push(new THREE.Path(h.map(([x,z])=>new THREE.Vector2(x,-z))));
+  const g=new THREE.ExtrudeGeometry(s,{depth:p.y1-p.y0,bevelEnabled:false}); g.rotateX(-Math.PI/2);
+  const mesh=new THREE.Mesh(g,MAT[p.mat]); mesh.position.y=p.y0; mesh.receiveShadow=true; mesh.castShadow=true; group.add(mesh); }
+// water — Water2 only for water surfaces drawn in the approved plan
+const useWater2 = Q.get('flatwater')!=='1';
+const tl = new THREE.TextureLoader();
+for (const w of M.water) {
+  const s = new THREE.Shape([[w.x0,w.z0],[w.x1,w.z0],[w.x1,w.z1],[w.x0,w.z1]].map(([x,z])=>new THREE.Vector2(x,-z)));
+  for (const h of w.holes) s.holes.push(new THREE.Path([[h[0],h[1]],[h[2],h[1]],[h[2],h[3]],[h[0],h[3]]].map(([x,z])=>new THREE.Vector2(x,-z)).reverse()));
+  const g = new THREE.ShapeGeometry(s); g.rotateX(-Math.PI/2);
+  let mesh;
+  if (useWater2) mesh = new Water(g, {color:0x9fd8df, scale:3, flowDirection:new THREE.Vector2(1,1), textureWidth:512, textureHeight:512,
+     normalMap0: tl.load('./vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), normalMap1: tl.load('./vendor/three/examples/textures/water/Water_2_M_Normal.jpg')});
+  else mesh = new THREE.Mesh(g, M_({color:0x6fc3cf, roughness:.1, metalness:.2}));
+  mesh.position.y = 0.035; group.add(mesh);
+  // pool shell floor (depth unknown -> shallow display tray, turquoise)
+  const fl = new THREE.Mesh(g.clone(), M_({color:0x5fb7c4})); fl.position.y=0.01; group.add(fl);
+}
+// trees: generic neutral canopy placeholders at plan-symbol positions (species/height unknown)
+const trunkM = M_({color:0x6b5a46}), canopyM = M_({color:0x6f8a5a, roughness:1, transparent:true, opacity:.92});
+for (const t of M.trees) { if (hideCats.has('trees')) break;
+  const ht = t.courtyard ? 3.0 : 4.0;
+  const tr = new THREE.Mesh(new THREE.CylinderGeometry(.12,.16,ht,8), trunkM); tr.position.set(t.x, (t.courtyard?0.45:0)+ht/2, t.z); tr.castShadow=true; group.add(tr);
+  const cn = new THREE.Mesh(new THREE.SphereGeometry(t.r,18,12), canopyM); cn.scale.y=.8; cn.position.set(t.x, (t.courtyard?0.45:0)+ht+t.r*.5, t.z); cn.castShadow=true; group.add(cn); }
+// surrounding neutral ground (outside site diagram = unknown context)
+const out = new THREE.Mesh(new THREE.PlaneGeometry(200,200), M_({color:0xc9c6bd, roughness:1})); out.rotation.x=-Math.PI/2; out.position.set(cx,-0.06,cz); out.receiveShadow=true; scene.add(out);
+// cameras ------------------------------------------------------------------------------------
+const VIEWS = JSON.parse(Q.get('view') ? Q.get('view') : '{"name":"aerial","pos":[-14,30,48],"tgt":[9.4,3,15],"fov":40}');
+document.getElementById('vname').textContent = VIEWS.title || VIEWS.name;
+if (VIEWS.sub) document.getElementById('sub').textContent = VIEWS.sub;
+let cam;
+if (VIEWS.ortho) { const s=VIEWS.ortho, a=W/Hh; cam=new THREE.OrthographicCamera(-s*a/2,s*a/2,s/2,-s/2,0.1,500); }
+else cam = new THREE.PerspectiveCamera(VIEWS.fov||45, W/Hh, 0.1, 500);
+cam.position.set(...VIEWS.pos); if (VIEWS.up) cam.up.set(...VIEWS.up); cam.lookAt(new THREE.Vector3(...VIEWS.tgt));
+if (!Q.get('view')) { const oc=new OrbitControls(cam, renderer.domElement); oc.target.set(...VIEWS.tgt); oc.update(); }
+function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if(!VIEWS.labels) return;
+  for (const l of M.labels) { const v=new THREE.Vector3(l.x,l.y,l.z).project(cam); if (v.z>1) continue;
+    const d=document.createElement('div'); d.textContent=l.t; d.style.left=((v.x+1)/2*W)+'px'; d.style.top=((1-v.y)/2*Hh)+'px'; L.appendChild(d);} }
+let n=0;
+function loop(){ renderer.render(scene,cam); labels(); if(++n>=12 && Q.get('view')){ document.title='READY'; return; } requestAnimationFrame(loop); }
+loop();
+</script></body></html>

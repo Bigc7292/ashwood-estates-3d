@@ -1,0 +1,222 @@
+{
+ "step": 1,
+ "rule": "Images guide appearance; CAD V4 checks footprint dims/positions; image-vs-CAD disagreements logged in ../mismatch_log.json",
+ "excluded": [
+  "_raw_unlabelled/",
+  "_rejected_first_pass/",
+  "superseded_2026-11-09/"
+ ],
+ "refs": [
+  {
+   "ref_id": "EXT-4b-ELEV-FRONT",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "Front (street) elevation",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-ELEV-FRONT_GENERATED-SOURCE-CONDITIONED.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-ELEV-FRONT_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "45e1f38580cb8e2b95b7d4846ad2aa0570c7a3b50e785151f8a0259ae27d9632",
+   "manifest_sha_match": true,
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "manifest_flags": [
+    "Near-replica of brochure render p25 composition; must not be presented as a marketing render",
+    "PASS (visual): carport left with two bays, central gate, right-hand stone block and low wall match GF plan order and p25 render."
+   ]
+  },
+  {
+   "ref_id": "EXT-4b-ELEV-REAR",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "Rear (garden) elevation",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-ELEV-REAR_GENERATED-SOURCE-CONDITIONED.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-ELEV-REAR_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "fe6779218de4f5c4d96b5d8e5f2ce4e7e73d762c19a089d5fa1a41a675ca0dfb",
+   "manifest_sha_match": true,
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "manifest_flags": [
+    "Near-replica of brochure render p26 composition",
+    "PASS with caveat: pool/terrace sides consistent with mirrored plan; pool proportion approximate."
+   ]
+  },
+  {
+   "ref_id": "EXT-4b-ELEV-LEFT",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "Left side elevation (vehicular/carport side; plan-left)",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png",
+   "sha256": "f3275da9159e8bd1c9ef80aedab2f2cd9525f07a8e62f7ffbdaf85f7d43c6ea3",
+   "manifest_sha_match": true,
+   "method": "GENERATED-CONCEPT",
+   "manifest_flags": [
+    "First pass (rejected) invented a public road along the side",
+    "PARTIAL: carport at street end and pool at rear end correct; foreground lawn shown along the full side whereas plan shows a narrow planted/paved strip; carport back wall reads semi-enclosed."
+   ]
+  },
+  {
+   "ref_id": "EXT-4b-ELEV-RIGHT",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "Right side elevation (service-entrance side; plan-right)",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-ELEV-RIGHT_GENERATED-CONCEPT.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-ELEV-RIGHT_GENERATED-CONCEPT.png",
+   "sha256": "2ace2ddd276f581c294a50ae99cd68890e1102fe7902c4f55f58ec1bbd3da7f4",
+   "manifest_sha_match": true,
+   "method": "GENERATED-CONCEPT",
+   "manifest_flags": [
+    "First pass (rejected) invented a public road along the side",
+    "PARTIAL: element order (service gate front, courtyard mid, rear end) matches plan; courtyard depicted as a glazed interior-like recess; foreground lawn not on plan."
+   ]
+  },
+  {
+   "ref_id": "EXT-4b-GARDEN-FRONT",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "Front garden / forecourt",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-GARDEN-FRONT_GENERATED-SOURCE-CONDITIONED.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-GARDEN-FRONT_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "1e8908122dbdbdec9825ce59cda6257b4cf9e5cd3852e2b353823dd6105af37d",
+   "manifest_sha_match": true,
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "manifest_flags": [
+    "PASS (visual): carport left, gate centre, planted wall and service gate right."
+   ]
+  },
+  {
+   "ref_id": "EXT-4b-GARDEN-BACK",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "Back garden",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-GARDEN-BACK_GENERATED-SOURCE-CONDITIONED.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-GARDEN-BACK_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "47b7a112200147b9ab371e84772d41a7ee178504bc45d6682e33d5e636b504f3",
+   "manifest_sha_match": true,
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "manifest_flags": [
+    "Garden depth behind pool: plan vs render p26 disagree (render shows wide lawn); render followed for mood",
+    "PARTIAL: lawn shown deeper than the plan suggests (plan: pool near rear boundary); otherwise consistent with p26."
+   ]
+  },
+  {
+   "ref_id": "EXT-4b-OUTDOOR-SITE",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "Outdoor spaces overview: driveway, paving, side paths, boundary walls, courtyard, pool",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-OUTDOOR-SITE_GENERATED-SOURCE-CONDITIONED.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-OUTDOOR-SITE_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "fb0adbee2202ba0ef2c471d4c59a76b12849f13770d1fad31568375ba9d5175b",
+   "manifest_sha_match": true,
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "manifest_flags": [
+    "First pass rejected: invented second pool, oversized plot",
+    "PASS with caveats: single rear pool, courtyard inside footprint, multipurpose block front-right, two-bay carport front-left, side strips both sides. Plot proportion slightly wider than ~1.6:1."
+   ]
+  },
+  {
+   "ref_id": "EXT-4b-OUTDOOR-ROOF-TERRACE",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "Roof terrace",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-OUTDOOR-ROOF-TERRACE_GENERATED-CONCEPT.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-OUTDOOR-ROOF-TERRACE_GENERATED-CONCEPT.png",
+   "sha256": "ef50f48d3878df946668d30e5ee7b39ee6be8d64348c54103a68bda968fd39fd",
+   "manifest_sha_match": true,
+   "method": "GENERATED-CONCEPT",
+   "manifest_flags": [
+    "Stair depiction does not match RF plan",
+    "PARTIAL: furniture types match RF plan; stair shown as an open external stair, whereas the plan places the stair inside the enclosed core."
+   ]
+  },
+  {
+   "ref_id": "EXT-4b-OUTDOOR-COURTYARD",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "GF side courtyard / outdoor terrace with water feature",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-OUTDOOR-COURTYARD_GENERATED-CONCEPT.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-OUTDOOR-COURTYARD_GENERATED-CONCEPT.png",
+   "sha256": "d8abe4db098fc8e2c6eea38a469dcc53123778463597cadcda310df817548c76",
+   "manifest_sha_match": true,
+   "method": "GENERATED-CONCEPT",
+   "manifest_flags": [
+    "4B GF TERRACE and OUTDOOR TERRACE labels are on the plan but missing from canonical/rooms_index.json for villa 4b",
+    "PARTIAL: square pool + central planter matches plan; enclosure on all sides and amount of glazing are assumptions (plan suggests one side open to the side strip)."
+   ]
+  },
+  {
+   "ref_id": "EXT-4b-POOL",
+   "kind": "APPROVED_GENERATED_IMAGE (AI concept, not marketing, not survey)",
+   "view": "Swimming pool",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-POOL_GENERATED-SOURCE-CONDITIONED.png",
+   "source": "/workspace/exterior-garden-3d/generated-views/4b/EXT-4b-POOL_GENERATED-SOURCE-CONDITIONED.png",
+   "sha256": "b50e708b2cbe4c8dc46b28d612d97cfff2dca54d7d5601d3486462abff294bd9",
+   "manifest_sha_match": true,
+   "method": "GENERATED-SOURCE-CONDITIONED",
+   "manifest_flags": [
+    "Proportion not fully corrected; needs review",
+    "MISMATCH FLAGGED: pool still reads ~3:1 rather than ~4:1 after one regeneration; pool sits slightly away from facade (plan shows ~1 m gap, so acceptable)."
+   ]
+  },
+  {
+   "ref_id": "BROCHURE-p25",
+   "kind": "BROCHURE MARKETING RENDER (read-only evidence)",
+   "view": "primary: street/front",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/brochure_renders/MARKETING_RENDER_p25.png",
+   "source": "original/ashwood-residences_brochure.pdf p25",
+   "sha256": "6a02d40054ce490753bb6a60cd82a1ff6e6f78224e247ab85ea052df8de0775e"
+  },
+  {
+   "ref_id": "BROCHURE-p26",
+   "kind": "BROCHURE MARKETING RENDER (read-only evidence)",
+   "view": "primary: garden/rear/pool",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/brochure_renders/MARKETING_RENDER_p26.png",
+   "source": "original/ashwood-residences_brochure.pdf p26",
+   "sha256": "f45c52bc7700e7b216648d6a52b70fe0a8d40a8fb4ed8a4d9bb812997fea1f37"
+  },
+  {
+   "ref_id": "BROCHURE-p29",
+   "kind": "BROCHURE MARKETING RENDER (read-only evidence)",
+   "view": "backup style (5B front)",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/brochure_renders/MARKETING_RENDER_p29.png",
+   "source": "original/ashwood-residences_brochure.pdf p29",
+   "sha256": "a03c63ae818ed1a6fbf4dafc7d9cd362fe59c7b41fa112c012bc2d2195c0ae44"
+  },
+  {
+   "ref_id": "BROCHURE-p30",
+   "kind": "BROCHURE MARKETING RENDER (read-only evidence)",
+   "view": "backup style (5B rear)",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/brochure_renders/MARKETING_RENDER_p30.png",
+   "source": "original/ashwood-residences_brochure.pdf p30",
+   "sha256": "e1cc2373a8e40fc3c7834811ea90d7569873201baa10858e837018dfb61ef7fd"
+  },
+  {
+   "ref_id": "BROCHURE-p33",
+   "kind": "BROCHURE MARKETING RENDER (read-only evidence)",
+   "view": "backup style (6B front)",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/brochure_renders/MARKETING_RENDER_p33.png",
+   "source": "original/ashwood-residences_brochure.pdf p33",
+   "sha256": "a9c241c9908f3d5790b763379ed41292e14c225f1ae672fc85c5dd216d7bbc79"
+  },
+  {
+   "ref_id": "BROCHURE-p34",
+   "kind": "BROCHURE MARKETING RENDER (read-only evidence)",
+   "view": "backup style (6B rear)",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/brochure_renders/MARKETING_RENDER_p34.png",
+   "source": "original/ashwood-residences_brochure.pdf p34",
+   "sha256": "b476985895a34cb25732afaf541642d74636166f59d69c6bb7433df51ff65805"
+  },
+  {
+   "ref_id": "CAD-V4-4B-GF",
+   "kind": "APPROVED CAD V4 (dimension/position CHECK only)",
+   "view": "GF plan",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/cad_v4_check/APPROVED_V4_FP-4B-GF_preview.png",
+   "source": "active/approved-cad-v4/png/FP-4B-GF_V4_preview.png",
+   "sha256": "c7bff2b3c9452ff21405798e17acabc12f8b97493c7a884eb41eb1c1604970a2"
+  },
+  {
+   "ref_id": "CAD-V4-4B-FF",
+   "kind": "APPROVED CAD V4 (dimension/position CHECK only)",
+   "view": "FF plan",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/cad_v4_check/APPROVED_V4_FP-4B-FF_preview.png",
+   "source": "active/approved-cad-v4/png/FP-4B-FF_V4_preview.png",
+   "sha256": "de41ba68d6093db35d4bbe8707fac4c044ab1b14c8c546d6a6aa25b5313d447e"
+  },
+  {
+   "ref_id": "CAD-V4-4B-RF",
+   "kind": "APPROVED CAD V4 (dimension/position CHECK only)",
+   "view": "RF plan",
+   "path": "/workspace/exterior-garden-3d/4b/step1_reference/cad_v4_check/APPROVED_V4_FP-4B-RF_preview.png",
+   "source": "active/approved-cad-v4/png/FP-4B-RF_V4_preview.png",
+   "sha256": "8f05d20e884b0d4f76d62fb79b6148e8e1ffce67eec167af11cc300feaa177f1"
+  }
+ ]
+}
