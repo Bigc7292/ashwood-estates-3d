@@ -13,3 +13,7 @@ Lane: interior reference images (branch `lane/interior-refs`). Same process, lab
 - Style guide: the shared 4B guide at `../4b-gf/style-guide/` (no new items for this floor).
 
 All 14 images are new for this floor (8 accepted at pass 1, 6 regenerated once after the CAD check). Inputs: `ACTIVE_PIPELINE.json` and `active/approved-cad-v4/` only; `superseded_2026-11-09/` not used. match_status is copied from `optimizer/handoff_overlay.json`; no room has a verified source photo.
+
+## r2 critic fix (2026-11-10, Asia/Dubai)
+
+Critic report: `claude/rules-and-status` @ `1e4df63`, `production-line/critic/2026-11-10_q11-ff-rf-refs.md` (FF/RF CRITIC-FAIL, 14 pass / 4 fail). On this floor, corridor and bath-2 were regenerated as `_r2`, conditioned on their `cad-check/` V4 crops, with the style unchanged. The replaced images are in `images/_superseded-r1/`; don't use them. The other 12 rooms are unchanged. `index.csv` has two new columns, `critic_1e4df63` and `r2_critic_fix`. The residual mismatches are in `mismatches` and on `contact-sheet/critic-fix_plan-vs-image.png` (plan crop | old | new). The scripts are `scripts/apply_fix.py` and `scripts/fix_ff_r2.py`. Status: needs-review, not self-approved.

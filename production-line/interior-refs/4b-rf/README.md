@@ -15,3 +15,7 @@ Lane: interior reference images (branch `lane/interior-refs`). Same process, lab
 All 4 images are new for this floor (1 accepted at pass 1, 3 regenerated once after the CAD check). Inputs: `ACTIVE_PIPELINE.json` and `active/approved-cad-v4/` only; `superseded_2026-11-09/` not used. match_status is copied from `optimizer/handoff_overlay.json`; no room has a verified source photo.
 
 Not included: the roof terrace (outdoor, exterior lane) and the RF stair core (no overlay record). The RF plan is labelled NOT TO SCALE with every room dimension flagged uncertain (dagger).
+
+## r2 critic fix (2026-11-10, Asia/Dubai)
+
+Critic report: `claude/rules-and-status` @ `1e4df63`, `production-line/critic/2026-11-10_q11-ff-rf-refs.md`. The RF plan is not to scale, so these were judged on topology and openings only. Lift: the invented "67" indicator digits are removed by a clean local edit of the pass-2 raw. The indicator window is filled with its own dark background, and no digits were added. Pantry: regenerated as a plain counter run on the south wall, with no sink and no fridge. The new files carry the `_r2` suffix, and the replaced images are in `images/_superseded-r1/`. MEP and powder are unchanged. `index.csv` has two new columns, `critic_1e4df63` and `r2_critic_fix`. The review sheet is `contact-sheet/critic-fix_plan-vs-image.png`. The scripts are `scripts/apply_fix.py` and `scripts/fix_rf_r2.py`. Status: needs-review, not self-approved.

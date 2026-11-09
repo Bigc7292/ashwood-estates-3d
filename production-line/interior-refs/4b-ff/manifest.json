@@ -8,7 +8,9 @@
  "branch": "lane/interior-refs",
  "guard": {
   "handoff_guard": "exit 0 (records=112 verified=0 ambiguous=35 unknown=77 eligible=112 breaches=0)",
-  "verify_active_pipeline": "exit 0; active/pipeline_verification.json restored after run"
+  "verify_active_pipeline": "exit 0; active/pipeline_verification.json restored after run",
+  "handoff_guard_r2": "exit 0 (records=112 verified=0 ambiguous=35 unknown=77 eligible=112 blocked=0 breaches=0)",
+  "verify_active_pipeline_r2": "not run by this lane (integrator only, README rule 7)"
  },
  "overlay": "/workspace/plan-visuals-archive/optimizer/handoff_overlay.json",
  "approved_plan": {
@@ -23,7 +25,9 @@
   "images": 14,
   "pass1_accepted": 8,
   "regenerated": 6,
-  "verified_matches": 0
+  "verified_matches": 0,
+  "r2_critic_fix": 2,
+  "kept_critic_pass_1e4df63": 12
  },
  "excluded": [],
  "assets": [
@@ -57,7 +61,8 @@
    "assumed": "Bench at bed foot, art, plant, rug, curtains, finishes",
    "mismatches": "Pass 1 rejected: balcony glazing on the east wall instead of north. Pass 2: bed-foot bench not drawn",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/ff/family-living",
@@ -89,7 +94,8 @@
    "assumed": "Calacatta panel over media console, shelving, rug, lamp, curtains",
    "mismatches": "Shelving niche beside the console not drawn; balcony chair shown outside is assumed",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/ff/bedroom-1",
@@ -121,7 +127,8 @@
    "assumed": "Wardrobe as full-height (plan shows a long unit), textiles, rug, finishes",
    "mismatches": "West unit drawn as a shallow strip; full-height wardrobe assumed",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/ff/m-dressing",
@@ -153,7 +160,8 @@
    "assumed": "Glass-fronted bronze-framed doors (p15 style), internal lighting",
    "mismatches": "Pass 1 rejected: ottoman in the centre (none drawn). Pass 2: east-side run behind camera not shown",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/ff/m-bath",
@@ -185,24 +193,25 @@
    "assumed": "Window size, tall cabinet, p24 wet-area tiles, bronze fittings",
    "mismatches": "West-wall window read from a faint double line; size and presence need checking",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/ff/corridor",
    "view_id": "ashwood-estates/4b/ff/corridor/view-unassigned-001",
    "room_label": "Corridor / landing",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-ff/images/4b-ff-corridor__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "1c894b2fa0ff59768fd0fed41eef4df944617edf9d0faf173f58654a85774175",
+   "file": "production-line/interior-refs/4b-ff/images/4b-ff-corridor__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "39c566365c4a6552c096cb5341cb232242388c481da65788efee3c09c91a7b27",
    "size_px": [
-    720,
-    1349
+    864,
+    1221
    ],
    "cad_check_crop": "production-line/interior-refs/4b-ff/cad-check/4b-ff-corridor__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "regenerated",
-   "generation_pass": 2,
-   "raw_source_box_path": "/workspace/irw/ff/raw/4b-ff-corridor_pass2_RAW.jpg",
-   "raw_sha256": "deed89925be6a646bc2e143b042334572402a5c6381ada320eae1bf1ffba16b1",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2_ffrf/4b-ff-corridor_r2_RAW.jpg",
+   "raw_sha256": "a7289f739290f3908685fbd135bfe4eed4a88bc76bf278336cb11558f8020d75",
    "references": [
     "V4 plan crop (cad-check/)",
     "4b-gf/style-guide/refs/style-p15-living.png",
@@ -213,11 +222,26 @@
    "dimension_transcript": "3.30 \u00d7 10.10",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "3.30x10.10 m; straight stair on the west side; lift then courtyard glazing on the east; open-to-below void over the entry at the south end",
-   "assumed": "Glass balustrades, door styles, finishes",
-   "mismatches": "Pass 1 rejected: lounge seating, no void balustrade, no lift door. Pass 2: stair appears mainly at the far end rather than alongside the full corridor",
+   "observed": "3.30x10.10 m; straight stair along the west side; lift then courtyard glazing on the east; open-to-below void over the entry at the south end",
+   "assumed": "Glass balustrades, bronze handrail, door styles, finishes, stair direction (up/down)",
+   "mismatches": "Stair now runs alongside the west (right-hand, camera looking south) wall for most of the corridor; it reads as rising away from the camera, direction not checked against the plan; the south void reads only as a low glass balustrade, the drop below is not visible; one extra wood-look door on the east wall between lift and glazing is assumed",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "history": [
+    {
+     "round": "r1",
+     "file": "production-line/interior-refs/4b-ff/images/_superseded-r1/4b-ff-corridor__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+     "result": "regenerated",
+     "mismatches": "Pass 1 rejected: lounge seating, no void balustrade, no lift door. Pass 2: stair appears mainly at the far end rather than alongside the full corridor"
+    }
+   ],
+   "superseded_file": "production-line/interior-refs/4b-ff/images/_superseded-r1/4b-ff-corridor__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts": 1,
+   "chosen_attempt": "r2a",
+   "fix_method": "regenerated",
+   "critic_defect": "Stair shown at the far end on the right; plan runs a straight stair along the west side of the corridor",
+   "critic_report": "claude/rules-and-status @ 1e4df63 production-line/critic/2026-11-10_q11-ff-rf-refs.md",
+   "critic_1e4df63": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/ff/lift",
@@ -248,7 +272,8 @@
    "assumed": "Car interior entirely assumed (no source image)",
    "mismatches": "Door side not verified",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS (concept)"
   },
   {
    "room_id": "ashwood-estates/4b/ff/bath-1",
@@ -280,24 +305,25 @@
    "assumed": "Calacatta panel, terrazzo floor, bronze fittings",
    "mismatches": "Door shown on the left wall in addition to the camera position",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/ff/bath-2",
    "view_id": "ashwood-estates/4b/ff/bath-2/view-unassigned-001",
    "room_label": "Bath 2",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-ff/images/4b-ff-bath-2__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "a30aed413abe5a6a21ae8e1dc7cc30ce222dd66784a0c6807706b04ac10322a1",
+   "file": "production-line/interior-refs/4b-ff/images/4b-ff-bath-2__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "41c879ebc64bfaa12d0f5e59059cd108a00eb17622cb48e465cd79224629ec57",
    "size_px": [
-    864,
-    1201
+    1152,
+    946
    ],
    "cad_check_crop": "production-line/interior-refs/4b-ff/cad-check/4b-ff-bath-2__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "pass",
-   "generation_pass": 1,
-   "raw_source_box_path": "/workspace/irw/ff/raw/4b-ff-bath-2_pass1_RAW.jpg",
-   "raw_sha256": "a909813f7aa46a28f698319cf4981a99ca34692b80a3beeef0e83a2692c4ed25",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2_ffrf/4b-ff-bath-2_r2_RAW.jpg",
+   "raw_sha256": "e70df5ea578690ec33971b758ef5de92e19b0399b6be61c008ad85b35e535756",
    "references": [
     "V4 plan crop (cad-check/)",
     "4b-gf/style-guide/refs/style-p17-materials_swatches.png",
@@ -308,11 +334,26 @@
    "dimension_transcript": "2.30 \u00d7 2.50",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "2.30x2.50 m; WC on north wall; basin on south side; door from dress on the east; no window found",
-   "assumed": "Shower position (plan symbol unclear), p24 wet-area finish",
-   "mismatches": "Vanity shown on the far (west) wall rather than the south wall",
+   "observed": "2.30x2.50 m; WC on north wall; basin on south wall; door from dress on the east; no window found",
+   "assumed": "Shower at the west end (plan symbol unclear), Calacatta panel behind vanity, p24 wet-area finish, bronze fittings",
+   "mismatches": "Basin now on the south (left) wall and WC on the north (right) wall, camera at the east door; shower position on the west wall is assumed",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "history": [
+    {
+     "round": "r1",
+     "file": "production-line/interior-refs/4b-ff/images/_superseded-r1/4b-ff-bath-2__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+     "result": "pass",
+     "mismatches": "Vanity shown on the far (west) wall rather than the south wall"
+    }
+   ],
+   "superseded_file": "production-line/interior-refs/4b-ff/images/_superseded-r1/4b-ff-bath-2__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts": 1,
+   "chosen_attempt": "r2a",
+   "fix_method": "regenerated",
+   "critic_defect": "Vanity on the far (west) wall; plan has the basin on the south wall and the WC on the north",
+   "critic_report": "claude/rules-and-status @ 1e4df63 production-line/critic/2026-11-10_q11-ff-rf-refs.md",
+   "critic_1e4df63": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/ff/dress",
@@ -344,7 +385,8 @@
    "assumed": "Glass fronts, internal lighting",
    "mismatches": "Pass 1 rejected: ottoman and visible bathtub through the door (bath 2 has none drawn). Pass 2: none found",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/ff/bedroom-2",
@@ -376,7 +418,8 @@
    "assumed": "Calacatta feature panel, art, rug, finishes",
    "mismatches": "Glazing shown narrower than the full south wall",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS (note: widen balcony glazing next pass)"
   },
   {
    "room_id": "ashwood-estates/4b/ff/j-dress",
@@ -408,7 +451,8 @@
    "assumed": "Glass fronts, internal lighting",
    "mismatches": "Pass 1 rejected: ottoman in centre. Pass 2: none found",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/ff/j-bath",
@@ -440,7 +484,8 @@
    "assumed": "Calacatta panel, p24 wet-area tiles, bronze fittings",
    "mismatches": "None found",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/ff/junior-suite",
@@ -472,7 +517,12 @@
    "assumed": "Bed-foot bench, art, plant, rug, finishes",
    "mismatches": "Pass 1 rejected: glazing on the west wall instead of south. Pass 2: bed-foot bench not drawn",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   }
+ ],
+ "updated_Asia_Dubai": "2026-11-10T00:59:26+04:00",
+ "critic_reports": [
+  "claude/rules-and-status @ 1e4df63 production-line/critic/2026-11-10_q11-ff-rf-refs.md"
  ]
 }

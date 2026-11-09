@@ -8,7 +8,9 @@
  "branch": "lane/interior-refs",
  "guard": {
   "handoff_guard": "exit 0 (records=112 verified=0 ambiguous=35 unknown=77 eligible=112 breaches=0)",
-  "verify_active_pipeline": "exit 0; active/pipeline_verification.json restored after run"
+  "verify_active_pipeline": "exit 0; active/pipeline_verification.json restored after run",
+  "handoff_guard_r2": "exit 0 (records=112 verified=0 ambiguous=35 unknown=77 eligible=112 blocked=0 breaches=0)",
+  "verify_active_pipeline_r2": "not run by this lane (integrator only, README rule 7)"
  },
  "overlay": "/workspace/plan-visuals-archive/optimizer/handoff_overlay.json",
  "approved_plan": {
@@ -23,7 +25,9 @@
   "images": 4,
   "pass1_accepted": 1,
   "regenerated": 3,
-  "verified_matches": 0
+  "verified_matches": 0,
+  "r2_critic_fix": 2,
+  "kept_critic_pass_1e4df63": 2
  },
  "excluded": [
   {
@@ -65,24 +69,25 @@
    "assumed": "Room proportions, hatch sizes, finishes, lighting; all plant equipment omitted (none drawn)",
    "mismatches": "Pass 1 rejected: shafts drawn as three open lift-style doors. Pass 2: recess/opening at the far right not checked against the plan; drawn room shape is not a simple rectangle",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS (note: check east recess next pass)"
   },
   {
    "room_id": "ashwood-estates/4b/rf/lift",
    "view_id": "ashwood-estates/4b/rf/lift/view-unassigned-001",
    "room_label": "Lift (roof)",
    "method": "GENERATED-CONCEPT",
-   "file": "production-line/interior-refs/4b-rf/images/4b-rf-lift__view-unassigned-001__GENERATED-CONCEPT.png",
-   "sha256": "5adc516ee7693e3373f9eac1e1ad1dc91dacd1142d3edba1bb9525e82cf78d32",
+   "file": "production-line/interior-refs/4b-rf/images/4b-rf-lift__view-unassigned-001__GENERATED-CONCEPT_r2.png",
+   "sha256": "5e9a4ac85840a8f3ebb323e18f411548ca3204ea94b11e4ddcaca94366f9d99b",
    "size_px": [
     864,
     1201
    ],
    "cad_check_crop": "production-line/interior-refs/4b-rf/cad-check/4b-rf-lift__view-unassigned-001__GENERATED-CONCEPT__V4-plan-crop__EVIDENCE.png",
-   "result": "regenerated",
-   "generation_pass": 2,
-   "raw_source_box_path": "/workspace/irw/rf/raw/4b-rf-lift_pass2_RAW.jpg",
-   "raw_sha256": "8b8310066fdd37d4f7c14d928b8452ac7535b6e313169b739337238e3a035eb4",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2_ffrf/4b-rf-lift_r2_RAW.png",
+   "raw_sha256": "3ba5202b2618c99a7d554e3984b962311bb03a1b0a4a4dc40fb6448fc00c7c52",
    "references": [
     "V4 plan crop (cad-check/)",
     "4b-gf/style-guide/refs/style-p17-materials_swatches.png"
@@ -92,11 +97,26 @@
    "dimension_transcript": "1.60 \u00d7 1.80 \u2020",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "1.60x1.80 m label (flagged uncertain); brochure p24 'Lift with direct roof access'",
-   "assumed": "Car interior entirely assumed (no source image)",
-   "mismatches": "Pass 1 rejected: glass side panel in the car. Pass 2: landing indicator shows invented digits '67' (printed matter not in source; ignore)",
+   "observed": "1.60x1.80 m label (flagged uncertain, NTS); brochure p24 'Lift with direct roof access'",
+   "assumed": "Car interior entirely assumed (no source image); landing panel assumed",
+   "mismatches": "Indicator now blank/dark; door side still not verified against the plan's door mark",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "history": [
+    {
+     "round": "r1",
+     "file": "production-line/interior-refs/4b-rf/images/_superseded-r1/4b-rf-lift__view-unassigned-001__GENERATED-CONCEPT.png",
+     "result": "regenerated",
+     "mismatches": "Pass 1 rejected: glass side panel in the car. Pass 2: landing indicator shows invented digits '67' (printed matter not in source; ignore)"
+    }
+   ],
+   "superseded_file": "production-line/interior-refs/4b-rf/images/_superseded-r1/4b-rf-lift__view-unassigned-001__GENERATED-CONCEPT.png",
+   "generation_attempts": 1,
+   "chosen_attempt": "local-edit",
+   "fix_method": "clean local edit of the pass-2 raw: the indicator window (px 718-737 x 519-545) filled with its own dark background colour; no other pixels changed, no digits added",
+   "critic_defect": "Landing indicator shows invented digits '67'",
+   "critic_report": "claude/rules-and-status @ 1e4df63 production-line/critic/2026-11-10_q11-ff-rf-refs.md",
+   "critic_1e4df63": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/rf/powder",
@@ -128,24 +148,25 @@
    "assumed": "Calacatta panel, terrazzo floor, bronze fittings",
    "mismatches": "None found",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "critic_1e4df63": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/rf/pantry",
    "view_id": "ashwood-estates/4b/rf/pantry/view-unassigned-001",
    "room_label": "Pantry (roof)",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-rf/images/4b-rf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "5a83c62912741a5074d9ea76b84b6aeedcdb56fc788e93038ff47f30cfdd4412",
+   "file": "production-line/interior-refs/4b-rf/images/4b-rf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "f5cdac0f8020d5879a3e155e8600220e1cb2798b58e02139ec4dace075b5c6f2",
    "size_px": [
     1152,
     946
    ],
    "cad_check_crop": "production-line/interior-refs/4b-rf/cad-check/4b-rf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "regenerated",
-   "generation_pass": 2,
-   "raw_source_box_path": "/workspace/irw/rf/raw/4b-rf-pantry_pass2_RAW.jpg",
-   "raw_sha256": "3a4ac38470c6192fb6a44e3ac78eda93b4394e384ae79789650723b47ea76c01",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2_ffrf/4b-rf-pantry_r2_RAW.jpg",
+   "raw_sha256": "1c2b8964d616b233429036b6751129ca60b89c5000f2a307c4d33827fcf043b9",
    "references": [
     "V4 plan crop (cad-check/)",
     "4b-gf/style-guide/refs/style-p17-materials_swatches.png"
@@ -155,11 +176,30 @@
    "dimension_transcript": "2.00 \u00d7 2.40 \u2020",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "2.00x2.40 m label (flagged uncertain); single counter run on the south wall; open to the stair lobby on the north",
-   "assumed": "Sink, under-counter fridge, cabinet style, finishes",
-   "mismatches": "Pass 1 rejected: U-shaped counters. Pass 2: sink and fridge are not drawn on the plan",
+   "observed": "2.00x2.40 m label (flagged uncertain, NTS); single counter run on the south wall; open to the stair lobby on the north",
+   "assumed": "Cabinet style, finishes",
+   "mismatches": "Plain counter run only, no sink, tap or fridge; room proportion not judged (NTS)",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "history": [
+    {
+     "round": "r1",
+     "file": "production-line/interior-refs/4b-rf/images/_superseded-r1/4b-rf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+     "result": "regenerated",
+     "mismatches": "Pass 1 rejected: U-shaped counters. Pass 2: sink and fridge are not drawn on the plan"
+    }
+   ],
+   "superseded_file": "production-line/interior-refs/4b-rf/images/_superseded-r1/4b-rf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts": 1,
+   "chosen_attempt": "r2a",
+   "fix_method": "regenerated",
+   "critic_defect": "Sink and under-counter fridge not drawn on the RF plan or sourced in the brochure",
+   "critic_report": "claude/rules-and-status @ 1e4df63 production-line/critic/2026-11-10_q11-ff-rf-refs.md",
+   "critic_1e4df63": "FAIL"
   }
+ ],
+ "updated_Asia_Dubai": "2026-11-10T00:59:29+04:00",
+ "critic_reports": [
+  "claude/rules-and-status @ 1e4df63 production-line/critic/2026-11-10_q11-ff-rf-refs.md"
  ]
 }
