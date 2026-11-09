@@ -23,6 +23,13 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_pass7_ground.js"></script>
 <script src="./overrides/front_step4_finish.js"></script>
 <script src="./overrides/front_pass8_glazing.js"></script>
+<script src="./overrides/front_pass9_gf_glazing.js"></script>
+<script src="./overrides/front_pass11_slats.js"></script>
+<script src="./overrides/front_pass12_tower_cap.js"></script>
+<!-- pass 14 (9.73 m tower) and pass 15 (+0.50 m FF) reverted 2026-11-10: M25 shared heights -->
+<script src="./overrides/front_m25_shared_heights.js"></script>
+<script src="./overrides/front_pass16_multistem_tree.js"></script>
+<script src="./overrides/front_pass17_critic_d.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -77,11 +84,25 @@ MAT.bronze_dark = M_({color:0x3a2c20, roughness:.55, metalness:.35});   // slat 
 MAT.led = M_({color:0xfff2d6, emissive:0xffdcaa, emissiveIntensity:2.4});   // soffit LED lines (front step 4)
 // step 6 glazing (front pass 8): dark clear glass so the lit rooms behind read through it
 if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
-  MAT.glass = M_({color:0x23201c, roughness:.04, metalness:.6, transparent:true, opacity:.32});
-  MAT.interior_wood = M_({color:0x6e4a2c, roughness:.6, emissive:0x8a5226, emissiveIntensity:.55});
-  MAT.interior_stone = M_({color:0xb79d7c, roughness:.8, emissive:0x7a5530, emissiveIntensity:.45});
-  MAT.interior_ceiling = M_({color:0xffe6c0, emissive:0xffc98a, emissiveIntensity:1.1});
-  MAT.interior_floor = M_({color:0x4a3a2c, roughness:.4, emissive:0x3a2614, emissiveIntensity:.3});
+  // critic batch (a), 2026-11-10: clear physical glass (transmission 0.9, low tint) instead of dark tinted glass; rooms behind are pale and lit, not brown
+  MAT.glass = new THREE.MeshPhysicalMaterial({color:0xf3f7f7, transmission:0.9, roughness:0.03, metalness:0, ior:1.5, thickness:0.02, specularIntensity:1, transparent:true});
+  MAT.interior_wood = M_({color:0xd6c4a8, roughness:.6, emissive:0x6a5034, emissiveIntensity:.35});
+  MAT.interior_stone = M_({color:0xebe3d5, roughness:.8, emissive:0x7a6a50, emissiveIntensity:.35});
+  MAT.interior_ceiling = M_({color:0xfff6e8, emissive:0xffe4bc, emissiveIntensity:.9});
+  MAT.interior_floor = M_({color:0xcfc0a8, roughness:.4, emissive:0x4a3e2e, emissiveIntensity:.25});
+  MAT.slat_timber = M_({color:0xa8784a, roughness:.6, emissive:0x6a3e16, emissiveIntensity:.35});   // front pass 11 warm lit timber slats
+  MAT.door_timber = M_({color:0x5a3a22, roughness:.55, emissive:0x2a160a, emissiveIntensity:.25});   // front pass 10 timber entry door
+  MAT.interior_lobby = M_({color:0xf0e6d6, roughness:.7, emissive:0xd8bc94, emissiveIntensity:.6});   // front pass 9 lit GF lobby
+}
+// critic (d) defect 7 (pass 17): dusk. Low warm sun, warm sky, stronger soffit/carport/lobby/interior emissives. Display assumption.
+if ((window.MODEL_OVERRIDES||{}).dusk && !_V0.sun) {
+  sun.position.set(-34, 7, 40); sun.color.set(0xffb27e); sun.intensity = 1.5; renderer.toneMappingExposure = 0.95;
+  scene.children.forEach(o => { if (o.isHemisphereLight) { o.color.set(0x9fb0d0); o.groundColor.set(0x8a6a4c); o.intensity = 0.75; } if (o.isAmbientLight) o.intensity = 0.18; });
+  { const c=document.createElement('canvas'); c.width=2; c.height=256; const g=c.getContext('2d'); const gr=g.createLinearGradient(0,0,0,256);
+    gr.addColorStop(0,'#2f4f7e'); gr.addColorStop(.55,'#8a9fbf'); gr.addColorStop(.85,'#e8b48a'); gr.addColorStop(1,'#f3c99a');
+    g.fillStyle=gr; g.fillRect(0,0,2,256); const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; scene.background=t; }
+  MAT.led.emissiveIntensity = 4.5;
+  for (const k of ['interior_ceiling','interior_lobby','interior_wood','interior_stone','interior_floor']) if (MAT[k]) MAT[k].emissiveIntensity *= 1.8;
 }
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
@@ -168,6 +189,7 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
   const ht = t.courtyard ? 3.0 : 4.0;
   const tr = new THREE.Mesh(new THREE.CylinderGeometry(.12,.16,ht,8), trunkM); tr.position.set(t.x, (t.courtyard?0.45:0)+ht/2, t.z); tr.castShadow=true; group.add(tr);
   const cn = new THREE.Mesh(new THREE.SphereGeometry(t.r,18,12), canopyM); cn.scale.y=.8; cn.position.set(t.x, (t.courtyard?0.45:0)+ht+t.r*.5, t.z); cn.castShadow=true; group.add(cn); }
+window.__FRONDS = []; window.__PALMS = [];
 // palms (front pass 3): tapered ringed trunk + crown of leaflet fronds (procedural, no image assets)
 { const P = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.palms) || [];
   const frondTex = (()=>{ const c=document.createElement('canvas'); c.width=64; c.height=256; const g=c.getContext('2d');
@@ -179,7 +201,7 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
   const trunkTex = tex(g=>{ g.fillStyle='#8a7a62'; g.fillRect(0,0,256,256); for(let y=0;y<256;y+=10){ g.fillStyle='rgba(60,48,34,.55)'; g.fillRect(0,y,256,3);} }, 1.0);
   const trunkPM = new THREE.MeshStandardMaterial({map:trunkTex, roughness:.95});
   for (const p of P) {
-    const pg = new THREE.Group(); pg.position.set(p.x, 0, p.z); group.add(pg);
+    const pg = new THREE.Group(); pg.position.set(p.x, 0, p.z); group.add(pg); window.__PALMS.push(pg);
     const tg = new THREE.CylinderGeometry(.22,.32,p.trunk,10,8); tg.translate(0,p.trunk/2,0);
     const pos = tg.attributes.position; for (let i=0;i<pos.count;i++){ const y=pos.getY(i), k=(y/p.trunk)**2; pos.setX(i,pos.getX(i)+p.lean[0]*k*p.trunk); pos.setZ(i,pos.getZ(i)+p.lean[1]*k*p.trunk); }
     tg.computeVertexNormals(); const tr=new THREE.Mesh(tg, trunkPM); tr.castShadow=true; pg.add(tr);
@@ -194,6 +216,7 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
       const f = new THREE.Mesh(fg, frondM); f.castShadow=true;
       const yaw = i/R.n*Math.PI*2 + Math.random()*0.25, up = R.up[i%3] + (Math.random()-.5)*0.15;
       f.position.copy(top); f.rotation.set(0, yaw, 0, 'YXZ'); f.rotateX(up);
+      f.userData.q0=f.quaternion.clone(); f.userData.ph=Math.random()*6.283; window.__FRONDS.push(f);   // step 7 motion
       pg.add(f); }
     const crownBall = new THREE.Mesh(new THREE.SphereGeometry(.35,10,8), trunkPM); crownBall.position.copy(top); pg.add(crownBall);
   } }
@@ -211,6 +234,27 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
         m.scale.y = Math.min(1.25, row.h/(2*rr)+0.4); m.castShadow=true; m.receiveShadow=true; group.add(m);
         if (row.flowers && rnd()<0.7){ const f=new THREE.Mesh(new THREE.IcosahedronGeometry(rr*0.35,0), new THREE.MeshStandardMaterial({color:row.flowers, roughness:.9}));
           f.position.set(m.position.x+(rnd()-.5)*rr, cy+rr*0.7, m.position.z+(rnd()-.5)*rr); group.add(f); } } } } }
+// multi-stem trees (front pass 16): thin curved stems + an airy canopy of many small leaf clusters (instanced), gaps let sky/stone through
+window.__LEAFSETS = [];
+{ const T = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.multiStemTrees) || [];
+  let seed = 11; const rnd = ()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+  const barkM = new THREE.MeshStandardMaterial({color:0x6a5a48, roughness:.9});
+  for (const t of T) { const tg = new THREE.Group(); tg.position.set(t.x, 0, t.z); group.add(tg);
+    const tips = [];
+    for (let i=0;i<t.stems;i++){ const a = i/t.stems*Math.PI*2 + rnd()*0.5, r = t.spread*(0.22+0.18*rnd());
+      const tip = new THREE.Vector3(Math.cos(a)*r, t.top*(0.62+0.12*rnd()), Math.sin(a)*r*0.6); tips.push(tip);
+      const crv = new THREE.CatmullRomCurve3([new THREE.Vector3((rnd()-.5)*.25,0,(rnd()-.5)*.2), new THREE.Vector3(tip.x*0.25, t.top*0.3, tip.z*0.25), new THREE.Vector3(tip.x*0.7, t.top*0.52, tip.z*0.7), tip]);
+      const m = new THREE.Mesh(new THREE.TubeGeometry(crv, 16, 0.045+0.02*rnd(), 6, false), barkM); m.castShadow = true; tg.add(m); }
+    const leafG = new THREE.IcosahedronGeometry(0.16, 1), leafM = new THREE.MeshStandardMaterial({roughness:.95, color:0xffffff});
+    const im = new THREE.InstancedMesh(leafG, leafM, t.clusters); im.castShadow = true; im.receiveShadow = true;
+    const d = new THREE.Object3D(), base = new THREE.Color(t.color);
+    for (let k=0;k<t.clusters;k++){ const tip = tips[k % tips.length];
+      // clusters gather in loose clumps around each stem tip, flattened into an umbrella; some hang lower at the edges
+      const u = rnd()*Math.PI*2, v = Math.acos(2*rnd()-1), rr = (0.35+0.75*rnd())*t.spread*0.24;
+      d.position.set(tip.x + Math.sin(v)*Math.cos(u)*rr*1.3, Math.min(t.top - 0.12, tip.y + 0.35 + Math.cos(v)*rr*0.55), tip.z + Math.sin(v)*Math.sin(u)*rr*0.8);
+      d.rotation.set(rnd()*3, rnd()*3, rnd()*3); const sc = 0.7 + 0.8*rnd(); d.scale.set(sc*1.3, sc*0.8, sc); d.updateMatrix();
+      im.setMatrixAt(k, d.matrix); im.setColorAt(k, base.clone().offsetHSL((rnd()-.5)*0.03, (rnd()-.5)*0.1, (rnd()-.5)*0.12)); }
+    tg.add(im); window.__LEAFSETS.push(tg); } }
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
 { const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
@@ -224,6 +268,15 @@ let cam;
 if (VIEWS.ortho) { const s=VIEWS.ortho, a=W/Hh; cam=new THREE.OrthographicCamera(-s*a/2,s*a/2,s/2,-s/2,0.1,500); }
 else cam = new THREE.PerspectiveCamera(VIEWS.fov||45, W/Hh, 0.1, 500);
 cam.position.set(...VIEWS.pos); if (VIEWS.up) cam.up.set(...VIEWS.up); cam.lookAt(new THREE.Vector3(...VIEWS.tgt));
+// step 6 pass 13: vertical shift ("keystone" / shift lens). Same camera position and same target at the frame centre,
+// but the camera is held level and the frustum is shifted up, so verticals stay vertical as in ELEV-FRONT.
+// Enabled with view.shift=true; walk mode and older stills are unchanged.
+if (VIEWS.shift && cam.isPerspectiveCamera) {
+  const T = new THREE.Vector3(...VIEWS.tgt), P = cam.position, dh = Math.hypot(T.x-P.x, T.z-P.z);
+  cam.lookAt(new THREE.Vector3(T.x, P.y, T.z)); cam.updateProjectionMatrix();
+  const e = cam.projectionMatrix.elements; e[9] = e[5]*(T.y-P.y)/dh;   // target row back to the frame centre
+  cam.projectionMatrixInverse.copy(cam.projectionMatrix).invert();
+}
 // walk mode (WIP): drag to look, WASD / arrows to walk at eye height. No collision, no sourced start point.
 const EYE=1.6, SPEED=3.0, keys={}; let yaw=0, pitch=0, drag=false, lx=0, ly=0;
 if (!Q.get('view')) {
@@ -248,6 +301,20 @@ function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if
     const d=document.createElement('div'); d.textContent=l.t; d.style.left=((v.x+1)/2*W)+'px'; d.style.top=((1-v.y)/2*Hh)+'px'; L.appendChild(d);} }
 let n=0;
 function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
-  renderer.render(scene,cam); labels(); if(++n>=12 && Q.get('view')){ document.title='READY'; return; } requestAnimationFrame(loop); }
+  if (!window.__capture) { renderer.render(scene,cam); labels(); }   // view mode keeps animating (Water2, caustics); frame capture sets __capture and drives __frame
+  if(++n===12 && Q.get('view')) document.title='READY'; requestAnimationFrame(loop); }
 loop();
+// step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.
+// Driven by a headless frame grabber; does nothing in walk mode. Motion amounts are display assumptions.
+const _sun0 = sun.position.clone(), _sunI0 = sun.intensity;
+window.__frame = (t, T) => { window.__capture = true;
+  const gust = 0.6 + 0.4*Math.sin(t*0.45);
+  for (const f of window.__FRONDS) { f.quaternion.copy(f.userData.q0); const ph=f.userData.ph;
+    f.rotateX(gust*0.07*Math.sin(t*1.7+ph)); f.rotateZ(gust*0.035*Math.sin(t*1.1+ph*1.3)); }
+  window.__PALMS.forEach((pg,i)=>{ pg.rotation.z = 0.006*gust*Math.sin(t*0.8+i); pg.rotation.x = 0.004*gust*Math.sin(t*0.6+i*2); });
+  (window.__LEAFSETS||[]).forEach((g,i)=>{ g.rotation.z = 0.012*gust*Math.sin(t*1.3+i); g.rotation.x = 0.008*gust*Math.sin(t*0.9+i); });
+  for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
+  const k = T ? t/T : 0;   // sun drifts slightly lower and warmer across the clip
+  sun.position.set(_sun0.x - 4*k, _sun0.y - 3*k, _sun0.z); sun.intensity = _sunI0*(1 - 0.15*k);
+  renderer.render(scene, cam); return true; };
 </script></body></html>
