@@ -102,3 +102,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: the critic asked whether the carport should run to the left frame edge as in ELEV-FRONT. The model's carport already starts at the CAD plot's left boundary (x 0.0); matching the image needs roof ~1.9 m past the plot (derived). Logged as a CAD-vs-image conflict; the carport was not extended. Pass 5 critic PASS logged.
 - Why: critic request; CAD decides footprint.
 - Status: REVIEW-PENDING (Colin's ruling on M45).
+
+## 2026-11-10 (Asia/Dubai): M46 first-floor screen right edge logged (no model change)
+- Files: `exterior-garden-3d/4b/mismatches/mismatch_log.md` (M46), `exterior-garden-3d/4b/walk_exterior_wip/views/front_v2/STEP_LOG.md`.
+- What: the critic asked whether the FF timber screen should run ~45 px further right as in ELEV-FRONT. The CAD V4 centre bay ends at x 11.038 (front glass) with a stone pier at x 10.97-11.58, and the right bay is set back behind a terrace; widening would cover the pier. Logged as a CAD-vs-image conflict; screen unchanged.
+- Why: critic request; CAD decides dimensions.
+- Status: REVIEW-PENDING (Colin's ruling on M46).
