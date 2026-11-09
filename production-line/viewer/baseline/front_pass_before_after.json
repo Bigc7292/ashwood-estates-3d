@@ -1,0 +1,51 @@
+{
+  "measured_at_utc": "2026-11-09T20:20:46.360Z",
+  "zone_label": "Asia/Dubai",
+  "note": "Live exterior = front_pass from lane/exterior. walkable_v6 fork superseded.",
+  "sizes": {
+    "source_html": 28869,
+    "source_model_js": 123732,
+    "opt_html": 31575,
+    "opt_model_min_js": 107945,
+    "overrides_count": 16
+  },
+  "before": {
+    "id": "front_pass-source",
+    "loadMs": 22817,
+    "status": "ok",
+    "consoleErrors": [],
+    "failedRequests": [],
+    "metrics": {
+      "measure": {
+        "calls": 1201,
+        "tris": 68656,
+        "pr": 1,
+        "shadowAutoUpdate": true
+      },
+      "lane4": null,
+      "title": "Ashwood 4B front pass (WIP)",
+      "canvases": 1
+    }
+  },
+  "after": {
+    "id": "front_pass-opt",
+    "loadMs": 19239,
+    "status": "ok",
+    "consoleErrors": [],
+    "failedRequests": [],
+    "metrics": {
+      "measure": null,
+      "lane4": {
+        "pixelRatio": 1,
+        "shadowAutoUpdate": false,
+        "shadowBaked": true,
+        "calls": 1201,
+        "tris": 68656,
+        "looping": true,
+        "boxes": 818
+      },
+      "title": "Ashwood 4B front pass · lane4 optimized",
+      "canvases": 1
+    }
+  }
+}

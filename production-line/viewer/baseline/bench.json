@@ -1,0 +1,800 @@
+{
+  "measured_at_utc": "2026-11-09T21:20:29.897Z",
+  "zone_label": "Asia/Dubai",
+  "note": "Software WebGL via SwiftShader — not a phone/desktop GPU. Median of 3 runs per target.",
+  "pairs": {
+    "gf": {
+      "source": [
+        {
+          "loadMs": 12707,
+          "orbitFps": {
+            "fps": 1.4,
+            "worstFrameMs": 1091.7,
+            "calls": 315,
+            "tris": 270034
+          },
+          "idleMs": 10001,
+          "idleFrames": 25,
+          "idleCpuSec": 10.5451,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 587,
+              "wins": 12,
+              "doorsData": 6,
+              "doors3d": 6,
+              "doorsOpen": [
+                true,
+                true,
+                true,
+                true,
+                true,
+                true
+              ],
+              "colliders": 600,
+              "anchors": 18,
+              "water": {
+                "mode": "lite",
+                "count": 2,
+                "error": null,
+                "surfaces": [
+                  {
+                    "id": "swimming-pool",
+                    "mode": "lite"
+                  },
+                  {
+                    "id": "courtyard-water-feature-1",
+                    "mode": "lite"
+                  }
+                ]
+              },
+              "labels": 18,
+              "cam": [
+                8.9887710499006,
+                24.569307536394977,
+                13.304659381504312
+              ]
+            },
+            "opt": null,
+            "canvases": 1,
+            "title": "Ashwood 4B GF · Floorplan 3D spike"
+          }
+        },
+        {
+          "loadMs": 13628,
+          "orbitFps": {
+            "fps": 0.6,
+            "worstFrameMs": 3460.3,
+            "calls": 315,
+            "tris": 270034
+          },
+          "idleMs": 10001,
+          "idleFrames": 11,
+          "idleCpuSec": 11.4923,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 587,
+              "wins": 12,
+              "doorsData": 6,
+              "doors3d": 6,
+              "doorsOpen": [
+                true,
+                true,
+                true,
+                true,
+                true,
+                true
+              ],
+              "colliders": 600,
+              "anchors": 18,
+              "water": {
+                "mode": "lite",
+                "count": 2,
+                "error": null,
+                "surfaces": [
+                  {
+                    "id": "swimming-pool",
+                    "mode": "lite"
+                  },
+                  {
+                    "id": "courtyard-water-feature-1",
+                    "mode": "lite"
+                  }
+                ]
+              },
+              "labels": 18,
+              "cam": [
+                8.9887710499006,
+                24.569307536394977,
+                13.304659381504312
+              ]
+            },
+            "opt": null,
+            "canvases": 1,
+            "title": "Ashwood 4B GF · Floorplan 3D spike"
+          }
+        },
+        {
+          "loadMs": 24717,
+          "orbitFps": {
+            "fps": 0.7,
+            "worstFrameMs": 2813.4,
+            "calls": 315,
+            "tris": 270034
+          },
+          "idleMs": 10001,
+          "idleFrames": 9,
+          "idleCpuSec": 11.1368,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 587,
+              "wins": 12,
+              "doorsData": 6,
+              "doors3d": 6,
+              "doorsOpen": [
+                true,
+                true,
+                true,
+                true,
+                true,
+                true
+              ],
+              "colliders": 600,
+              "anchors": 18,
+              "water": {
+                "mode": "lite",
+                "count": 2,
+                "error": null,
+                "surfaces": [
+                  {
+                    "id": "swimming-pool",
+                    "mode": "lite"
+                  },
+                  {
+                    "id": "courtyard-water-feature-1",
+                    "mode": "lite"
+                  }
+                ]
+              },
+              "labels": 18,
+              "cam": [
+                8.9887710499006,
+                24.569307536394977,
+                13.304659381504312
+              ]
+            },
+            "opt": null,
+            "canvases": 1,
+            "title": "Ashwood 4B GF · Floorplan 3D spike"
+          }
+        }
+      ],
+      "fork": [
+        {
+          "loadMs": 25761,
+          "orbitFps": {
+            "fps": 0.9,
+            "worstFrameMs": 2142.6,
+            "calls": 315,
+            "tris": 270034
+          },
+          "idleMs": 10000,
+          "idleFrames": 5,
+          "idleCpuSec": 11.3568,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 587,
+              "wins": 12,
+              "doorsData": 6,
+              "doors3d": 6,
+              "doorsOpen": [
+                true,
+                true,
+                true,
+                true,
+                true,
+                true
+              ],
+              "colliders": 600,
+              "anchors": 18,
+              "water": {
+                "mode": "lite",
+                "count": 2,
+                "error": null,
+                "surfaces": [
+                  {
+                    "id": "swimming-pool",
+                    "mode": "lite"
+                  },
+                  {
+                    "id": "courtyard-water-feature-1",
+                    "mode": "lite"
+                  }
+                ]
+              },
+              "labels": 18,
+              "cam": [
+                8.9887710499006,
+                24.569307536394977,
+                13.304659381504312
+              ]
+            },
+            "opt": {
+              "pixelRatio": 1,
+              "shadowAutoUpdate": false,
+              "shadowBaked": true,
+              "looping": true
+            },
+            "canvases": 1,
+            "title": "Ashwood 4B GF · Floorplan 3D spike"
+          }
+        },
+        {
+          "loadMs": 21167,
+          "orbitFps": {
+            "fps": 0.9,
+            "worstFrameMs": 2132.4,
+            "calls": 315,
+            "tris": 270034
+          },
+          "idleMs": 10004,
+          "idleFrames": 6,
+          "idleCpuSec": 11.2581,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 587,
+              "wins": 12,
+              "doorsData": 6,
+              "doors3d": 6,
+              "doorsOpen": [
+                true,
+                true,
+                true,
+                true,
+                true,
+                true
+              ],
+              "colliders": 600,
+              "anchors": 18,
+              "water": {
+                "mode": "lite",
+                "count": 2,
+                "error": null,
+                "surfaces": [
+                  {
+                    "id": "swimming-pool",
+                    "mode": "lite"
+                  },
+                  {
+                    "id": "courtyard-water-feature-1",
+                    "mode": "lite"
+                  }
+                ]
+              },
+              "labels": 18,
+              "cam": [
+                8.9887710499006,
+                24.569307536394977,
+                13.304659381504312
+              ]
+            },
+            "opt": {
+              "pixelRatio": 1,
+              "shadowAutoUpdate": false,
+              "shadowBaked": true,
+              "looping": true
+            },
+            "canvases": 1,
+            "title": "Ashwood 4B GF · Floorplan 3D spike"
+          }
+        },
+        {
+          "loadMs": 18395,
+          "orbitFps": {
+            "fps": 0.7,
+            "worstFrameMs": 2922,
+            "calls": 315,
+            "tris": 270034
+          },
+          "idleMs": 10002,
+          "idleFrames": 6,
+          "idleCpuSec": 12.0743,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 587,
+              "wins": 12,
+              "doorsData": 6,
+              "doors3d": 6,
+              "doorsOpen": [
+                true,
+                true,
+                true,
+                true,
+                true,
+                true
+              ],
+              "colliders": 600,
+              "anchors": 18,
+              "water": {
+                "mode": "lite",
+                "count": 2,
+                "error": null,
+                "surfaces": [
+                  {
+                    "id": "swimming-pool",
+                    "mode": "lite"
+                  },
+                  {
+                    "id": "courtyard-water-feature-1",
+                    "mode": "lite"
+                  }
+                ]
+              },
+              "labels": 18,
+              "cam": [
+                8.9887710499006,
+                24.569307536394977,
+                13.304659381504312
+              ]
+            },
+            "opt": {
+              "pixelRatio": 1,
+              "shadowAutoUpdate": false,
+              "shadowBaked": true,
+              "looping": true
+            },
+            "canvases": 1,
+            "title": "Ashwood 4B GF · Floorplan 3D spike"
+          }
+        }
+      ],
+      "median": {
+        "source": {
+          "loadMs": 13628,
+          "orbitFps": 0.7,
+          "idleFrames_10s": 11,
+          "idleCpuSec_10s": 11.1368,
+          "consoleErrors": 0
+        },
+        "fork": {
+          "loadMs": 21167,
+          "orbitFps": 0.9,
+          "idleFrames_10s": 6,
+          "idleCpuSec_10s": 11.3568,
+          "consoleErrors": 0
+        }
+      }
+    },
+    "ff": {
+      "source": [
+        {
+          "loadMs": 12760,
+          "orbitFps": {
+            "fps": 1.3,
+            "worstFrameMs": 1187.9,
+            "calls": 50,
+            "tris": 107346
+          },
+          "idleMs": 10000,
+          "idleFrames": 23,
+          "idleCpuSec": 10.8506,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 1014,
+              "wins": 0,
+              "doorsData": 0,
+              "doors3d": 0,
+              "doorsOpen": [],
+              "colliders": 1015,
+              "anchors": 0,
+              "water": {
+                "mode": null,
+                "count": 0,
+                "error": null,
+                "surfaces": []
+              },
+              "labels": 0,
+              "cam": [
+                7.638271049900601,
+                24.569307536394977,
+                14.059659381504312
+              ]
+            },
+            "opt": null,
+            "canvases": 1,
+            "title": "Ashwood 4B FF · Floorplan 3D spike"
+          }
+        },
+        {
+          "loadMs": 12599,
+          "orbitFps": {
+            "fps": 1.2,
+            "worstFrameMs": 1297.6,
+            "calls": 50,
+            "tris": 107346
+          },
+          "idleMs": 10000,
+          "idleFrames": 19,
+          "idleCpuSec": 10.3893,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 1014,
+              "wins": 0,
+              "doorsData": 0,
+              "doors3d": 0,
+              "doorsOpen": [],
+              "colliders": 1015,
+              "anchors": 0,
+              "water": {
+                "mode": null,
+                "count": 0,
+                "error": null,
+                "surfaces": []
+              },
+              "labels": 0,
+              "cam": [
+                7.638271049900601,
+                24.569307536394977,
+                14.059659381504312
+              ]
+            },
+            "opt": null,
+            "canvases": 1,
+            "title": "Ashwood 4B FF · Floorplan 3D spike"
+          }
+        },
+        {
+          "loadMs": 12410,
+          "orbitFps": {
+            "fps": 1.4,
+            "worstFrameMs": 1078,
+            "calls": 50,
+            "tris": 107346
+          },
+          "idleMs": 10001,
+          "idleFrames": 23,
+          "idleCpuSec": 11.4616,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 1014,
+              "wins": 0,
+              "doorsData": 0,
+              "doors3d": 0,
+              "doorsOpen": [],
+              "colliders": 1015,
+              "anchors": 0,
+              "water": {
+                "mode": null,
+                "count": 0,
+                "error": null,
+                "surfaces": []
+              },
+              "labels": 0,
+              "cam": [
+                7.638271049900601,
+                24.569307536394977,
+                14.059659381504312
+              ]
+            },
+            "opt": null,
+            "canvases": 1,
+            "title": "Ashwood 4B FF · Floorplan 3D spike"
+          }
+        }
+      ],
+      "fork": [
+        {
+          "loadMs": 12684,
+          "orbitFps": {
+            "fps": 1.2,
+            "worstFrameMs": 1568.4,
+            "calls": 64,
+            "tris": 90962
+          },
+          "idleMs": 10001,
+          "idleFrames": 0,
+          "idleCpuSec": 0.0007,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 329,
+              "wins": 0,
+              "doorsData": 0,
+              "doors3d": 0,
+              "doorsOpen": [],
+              "colliders": 330,
+              "anchors": 14,
+              "water": {
+                "mode": null,
+                "count": 0,
+                "error": null,
+                "surfaces": []
+              },
+              "labels": 14,
+              "cam": [
+                8.464271049900601,
+                24.569307536394977,
+                14.743659381504312
+              ]
+            },
+            "opt": {
+              "pixelRatio": 1,
+              "shadowAutoUpdate": false,
+              "shadowBaked": true,
+              "looping": false
+            },
+            "canvases": 1,
+            "title": "Ashwood 4B FF · Floorplan 3D spike"
+          }
+        },
+        {
+          "loadMs": 10701,
+          "orbitFps": {
+            "fps": 1.4,
+            "worstFrameMs": 1507.3,
+            "calls": 64,
+            "tris": 90962
+          },
+          "idleMs": 10001,
+          "idleFrames": 0,
+          "idleCpuSec": 0.001,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 329,
+              "wins": 0,
+              "doorsData": 0,
+              "doors3d": 0,
+              "doorsOpen": [],
+              "colliders": 330,
+              "anchors": 14,
+              "water": {
+                "mode": null,
+                "count": 0,
+                "error": null,
+                "surfaces": []
+              },
+              "labels": 14,
+              "cam": [
+                8.464271049900601,
+                24.569307536394977,
+                14.743659381504312
+              ]
+            },
+            "opt": {
+              "pixelRatio": 1,
+              "shadowAutoUpdate": false,
+              "shadowBaked": true,
+              "looping": false
+            },
+            "canvases": 1,
+            "title": "Ashwood 4B FF · Floorplan 3D spike"
+          }
+        },
+        {
+          "loadMs": 10337,
+          "orbitFps": {
+            "fps": 1.5,
+            "worstFrameMs": 1348.6,
+            "calls": 64,
+            "tris": 90962
+          },
+          "idleMs": 10002,
+          "idleFrames": 1,
+          "idleCpuSec": 0.7995,
+          "idleCpuNote": "CDP TaskDuration/ScriptDuration delta over ~10s idle; software WebGL (SwiftShader)",
+          "consoleErrors": [],
+          "failedRequests": [],
+          "info": {
+            "qa": {
+              "inited": true,
+              "active": true,
+              "mode": "orbit",
+              "cut": 3,
+              "walls": 329,
+              "wins": 0,
+              "doorsData": 0,
+              "doors3d": 0,
+              "doorsOpen": [],
+              "colliders": 330,
+              "anchors": 14,
+              "water": {
+                "mode": null,
+                "count": 0,
+                "error": null,
+                "surfaces": []
+              },
+              "labels": 14,
+              "cam": [
+                8.464271049900601,
+                24.569307536394977,
+                14.743659381504312
+              ]
+            },
+            "opt": {
+              "pixelRatio": 1,
+              "shadowAutoUpdate": false,
+              "shadowBaked": true,
+              "looping": false
+            },
+            "canvases": 1,
+            "title": "Ashwood 4B FF · Floorplan 3D spike"
+          }
+        }
+      ],
+      "median": {
+        "source": {
+          "loadMs": 12599,
+          "orbitFps": 1.3,
+          "idleFrames_10s": 23,
+          "idleCpuSec_10s": 10.8506,
+          "consoleErrors": 0
+        },
+        "fork": {
+          "loadMs": 10701,
+          "orbitFps": 1.4,
+          "idleFrames_10s": 0,
+          "idleCpuSec_10s": 0.001,
+          "consoleErrors": 0
+        }
+      }
+    },
+    "exterior-front": {
+      "source": [
+        {
+          "loadMs": 19131,
+          "orbitFps": {
+            "fps": 1,
+            "worstFrameMs": 2712.4
+          },
+          "idleFrames": 27,
+          "idleCpuSec": 9.9998,
+          "consoleErrors": []
+        },
+        {
+          "loadMs": 21769,
+          "orbitFps": {
+            "fps": 1,
+            "worstFrameMs": 3084.1
+          },
+          "idleFrames": 34,
+          "idleCpuSec": 11.3774,
+          "consoleErrors": []
+        },
+        {
+          "loadMs": 22139,
+          "orbitFps": {
+            "fps": 1,
+            "worstFrameMs": 2307.9
+          },
+          "idleFrames": 41,
+          "idleCpuSec": 12.1825,
+          "consoleErrors": []
+        }
+      ],
+      "fork": [
+        {
+          "loadMs": 16579,
+          "orbitFps": {
+            "fps": 1,
+            "worstFrameMs": 3167.8
+          },
+          "idleFrames": 5,
+          "idleCpuSec": 10.7935,
+          "consoleErrors": []
+        },
+        {
+          "loadMs": 29087,
+          "orbitFps": {
+            "fps": 1,
+            "worstFrameMs": 2395.9
+          },
+          "idleFrames": 7,
+          "idleCpuSec": 10.7771,
+          "consoleErrors": []
+        },
+        {
+          "loadMs": 24220,
+          "orbitFps": {
+            "fps": 1,
+            "worstFrameMs": 1843.3
+          },
+          "idleFrames": 6,
+          "idleCpuSec": 10.009,
+          "consoleErrors": []
+        }
+      ],
+      "median": {
+        "source": {
+          "loadMs": 21769,
+          "orbitFps": 1,
+          "idleFrames_10s": 34,
+          "idleCpuSec_10s": 11.3774,
+          "consoleErrors": 0
+        },
+        "fork": {
+          "loadMs": 24220,
+          "orbitFps": 1,
+          "idleFrames_10s": 6,
+          "idleCpuSec_10s": 10.7771,
+          "consoleErrors": 0
+        }
+      },
+      "note": "Re-measured interactive (no ?view=) after still-capture CPU fix"
+    }
+  }
+}
