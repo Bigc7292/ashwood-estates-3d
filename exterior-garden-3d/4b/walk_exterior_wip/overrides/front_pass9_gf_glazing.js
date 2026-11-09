@@ -7,7 +7,9 @@
 // Interior depth and finishes are display assumptions.
 // Concept visualisation, not survey-verified, not construction-ready, not certified CAD.
 (window.MODEL_OVERRIDES = window.MODEL_OVERRIDES || {remove:[], add:[]});
-window.MODEL_OVERRIDES.remove.push('gf-glass-11', 'int-gf-back-entry', 'int-gf-ceil-entry');
+window.MODEL_OVERRIDES.remove.push('gf-glass-11');   // model box
+// pass-8 boxes live in add[], which remove[] does not filter (fixed in pass 14): drop them from add[] directly
+window.MODEL_OVERRIDES.add = window.MODEL_OVERRIDES.add.filter(b => !['int-gf-back-entry','int-gf-ceil-entry'].includes(b.id));
 const GF9 = 'step6_gf_glazing_image_read_assumption';
 window.MODEL_OVERRIDES.add.push(
   {id:'gf-glass-front-band', cat:'gf_glass', mat:'glass',          x0:7.50, x1:9.59,  z0:23.55, z1:23.60, y0:0.0,  y1:3.5,  status:'plan_cue_x_extent_cad'},
