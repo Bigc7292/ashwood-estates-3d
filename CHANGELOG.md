@@ -51,3 +51,4 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
   - Blender: heights now follow model.js (M25-SET); late-afternoon sun at 14 degrees; loungers face the pool; denser boundary planting.
   - Web: the platform top uses cream paving, which fixes the wood-toned near edge.
   - NOTE: the pool_pass mp4 in 8988490 is the stale 00:57 clip and gets replaced by a re-render.
+- **Right view, exterior lane, step 3 passes 1-4** (Asia/Dubai). Files: `walk_exterior_wip/right_pass.html`, `overrides/right_pass1..4_*.js`, `views/right/` (lock, STEP_LOG, side-by-sides), `mismatches/mismatch_log.md` (M36). What: own page and locked camera for EXT-4b-ELEV-RIGHT; RF canopy moved and thinned, RF block hidden, travertine boundary wall on the CAD line. Why: one critic fix per pass against the approved ELEV-RIGHT image. Status: WIP (pass 4 awaiting critic; steps 4-7 left). Left view steps 1-7: DONE, REVIEW-PENDING by Colin (83ebe51).
