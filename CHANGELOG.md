@@ -160,3 +160,14 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - **Site/aerial view steps 4-7** (Asia/Dubai). Files: `views/site/STEP_LOG.md`, `views/site/step7/EXT-4b-OUTDOOR-SITE_step7_motion.mp4`, `views/site/step7/first_vs_last.png`. What: step 4 closed (critic d8d46b4); step 5 none in source; step 6 logged with residuals; step 7 8 s clip from the locked camera. Status: DONE, REVIEW-PENDING (critic + Colin).
 - **Shared pool v3 + site re-lock (Colin 23:29 pool ruling)** (Asia/Dubai). Files: `walk_exterior_wip/overrides/shared_pool_v3.js` (new, shared), `walk_exterior_wip/site_pass.html` (loads it), `views/site/site_lock_v2.json`, `views/site/STEP_LOG.md`, `views/site/shots/site_lock_v2_side_by_side.png`, `views/pool_v3/pool_v3_check_from_rear_garden.png`, `mismatches/mismatch_log.md` (M44). What: pool moved further from the house and widened (9.50 x 3.60 m), ~4.8 m terrace with a seating set, CAD loungers at the pool end, garden to z -9.0; site camera re-solved on the new rear wall. Why: Colin, "The pool needs to be further away from the back of the building and wider and i was missin sit down area". Status: WIP (critic review; rear/garden/pool views to follow).
 - **Front v2 pass 1** (Asia/Dubai). Files: `walk_exterior_wip/front_v2.html`, `overrides/front_v2_pass1_entry_tree.js`, `views/front_v2/STEP_LOG.md`, `views/front_v2/shots/front_v2_pass1_side_by_side.png`, `front_v2_pass1_tree_crop.png`. What: entry tree kept (the reference shows one) and reshaped into a looser dome reaching the wall. Why: critic fix on dc1edac. Status: WIP (awaiting critic).
+## 2026-11-09 (Asia/Dubai) - FP-4B-FF step 2 loop 3 (WIP)
+- Files: active/floorplan3d-spike/FP-4B-FF/STEPS.md; active/floorplan3d-spike/FP-4B-FF/r6L_step2/ (new: sep.py, diag_components.png).
+- What: applied the four step-2 closures (C1-C4) as ASSUMED closures and ran the per-room flood check. Result FAIL: wall raster not closed, rooms do not separate.
+- Why: critic loop 2 asked for doorway closures before the per-room check.
+- Status: WIP. Next: re-trace a closed wall raster, snap seeds to free pixels, re-run separation. No data file changed; no viewer change.
+
+## 2026-11-09 (Asia/Dubai) - FP-4B-FF furniture pass (WIP)
+- Files: active/floorplan3d-spike/FP-4B-FF/r6F_furniture/ (new: build_r6F.py, furniture_r6F.json); data/fp-4b-ff.plan.r6F.js/.json (new); standalone_r6F.html (new); STEPS.md.
+- What: 36 furniture items placed from the approved FF raster symbols, each marked PLAN or ASSUMED. Walls unchanged (r5L).
+- Why: Colin reported the first floor showed no furniture while the approved plan labels it.
+- Status: WIP. 2D checked headless (no page errors). 3D not checked. Bed sizes may be oversized. Critic review pending.
