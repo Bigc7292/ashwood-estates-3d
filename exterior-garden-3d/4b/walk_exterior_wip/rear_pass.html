@@ -161,6 +161,9 @@ for (const w of M.water) {
       normalMap0: tl.load('../model/vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), normalMap1: tl.load('../model/vendor/three/examples/textures/water/Water_2_M_Normal.jpg')});
   else mesh = new THREE.Mesh(g, M_({color:0x6fc3cf, roughness:.1, metalness:.2}));
   mesh.position.y = yW; group.add(mesh);
+  if (useWater2) { (window.__WATERS = window.__WATERS || []).push(mesh); const ob = mesh.onBeforeRender, fs = (B.wall==='tile' && W2O.flowSpeed) || .02;
+    // step 7: deterministic Water2 flow for frame capture (Water2 otherwise advances on wall-clock delta)
+    mesh.onBeforeRender = function(...a){ ob.apply(this, a); if (window.__T !== undefined) { const c = this.material.uniforms['config'].value, cyc = 0.15; c.x = (fs*window.__T) % cyc; c.y = (c.x + cyc/2) % cyc; } }; }
 }
 const clock = new THREE.Clock();
 // trees: generic neutral canopy placeholders at plan-symbol positions (species/height unknown)
@@ -285,7 +288,7 @@ function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const c of a
 loop();
 // step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.
 // Driven by a headless frame grabber; does nothing in walk mode. Motion amounts are display assumptions.
-const _sun0 = sun.position.clone(), _sunI0 = sun.intensity;
+const _sun0 = sun.position.clone(), _sunI0 = sun.intensity, _sunC0 = sun.color.clone();
 window.__frame = (t, T) => {
   const gust = 0.6 + 0.4*Math.sin(t*0.45);
   for (const f of window.__FRONDS) { f.quaternion.copy(f.userData.q0); const ph=f.userData.ph;
@@ -293,7 +296,9 @@ window.__frame = (t, T) => {
   window.__PALMS.forEach((pg,i)=>{ pg.rotation.z = 0.006*gust*Math.sin(t*0.8+i); pg.rotation.x = 0.004*gust*Math.sin(t*0.6+i*2); });
   (window.__LEAFSETS||[]).forEach((g,i)=>{ g.rotation.z = 0.012*gust*Math.sin(t*1.3+i); g.rotation.x = 0.008*gust*Math.sin(t*0.9+i); });
   for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
-  const k = T ? t/T : 0;   // sun drifts slightly lower and warmer across the clip
-  sun.position.set(_sun0.x - 4*k, _sun0.y - 3*k, _sun0.z); sun.intensity = _sunI0*(1 - 0.15*k);
+  window.__T = t;
+  const k = T ? t/T : 0, e = k*k*(3-2*k);   // rear step 7: sun moves lower and warmer across the clip (visible shadow + colour change)
+  sun.position.set(_sun0.x - 14*e, _sun0.y - 7*e, _sun0.z + 6*e); sun.intensity = _sunI0*(1 - 0.25*e); sun.color.copy(_sunC0).lerp(new THREE.Color(0xff9a52), e);
+  if (VIEWS.push && cam.isPerspectiveCamera) { cam.position.fromArray(VIEWS.pos).lerp(new THREE.Vector3(...VIEWS.push), e); cam.lookAt(new THREE.Vector3(...VIEWS.tgt)); }
   renderer.render(scene, cam); return true; };
 </script></body></html>
