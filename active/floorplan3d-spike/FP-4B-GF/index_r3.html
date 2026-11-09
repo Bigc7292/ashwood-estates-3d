@@ -1463,6 +1463,7 @@ import {wireCourtyard} from './q7_courtyard_wire.js';
 import {WATER2_RES, WATER_PERF, throttleWater} from './f3_water_perf.js';
 import {calacattaWallParams, CAL_REPEAT_M} from './f3_calacatta_wall.js';
 import {buildDressWardrobe} from './f3_dress_wardrobe.js';
+import {buildBasinBox, BASIN_BOX} from './f3_basin_box.js';
 const R3Q = new URLSearchParams(location.search), Q7_ON = R3Q.get('q7') !== '0';
 let court = null;
 
@@ -2845,6 +2846,7 @@ function buildArch(){
     dlPts.forEach(([x, y], i) => im.setMatrixAt(i, m4.compose(new THREE.Vector3(wx(x), H - .004, wz(y)), q, new THREE.Vector3(1, 1, 1))));
     im.visible = top >= H; noPick(im); lampG.add(im); }
   buildFeatures(top); if (top >= H) buildCeilings();
+  buildBasinBox(THREE, archUp, {wx, wz, top, wallMat:S0.paint, basinMat:smat({color:'#f4f1ec', roughness:.2}, .5)});   // F3: GF NE basin box, closed, access NOT FOUND in V4
   buildWater(); buildStairs(top);
   [...DOORS, ...SLIDES].forEach(d => { const [x0, y0, x1, y1] = d.rect; const s = box(M(x1-x0), .012, M(y1-y0), mat('#d8d0c0', {roughness:.3}), wx((x0+x1)/2), 0, wz((y0+y1)/2)); s.castShadow = false; archFloor.add(s); });
   WALLS.forEach((w, i) => {
@@ -3282,7 +3284,7 @@ function shot(){ const a = document.createElement('a'); a.download = tr('户型�
 function relang(){ syncWalkTexts(); if (inited) buildLabels(); }
 
 window.__FP3D_QA__ = {
-  r3: () => ({build:'r3', f2:true, q7:Q7_ON, f3:true, water:waterState, water2_res:WATER2_RES, court:court ? court.meta : null}),
+  r3: () => ({build:'r3', f2:true, q7:Q7_ON, f3:true, basin_box:BASIN_BOX, water:waterState, water2_res:WATER2_RES, court:court ? court.meta : null}),
   waterPerf(force){ if (force !== undefined) WATER_PERF.force = !!force; return {force:WATER_PERF.force, refreshMs:WATER_PERF.refreshMs, ...WATER_PERF.stats}; },
   info: () => ({inited, active, mode:opt.mode, cut:opt.cut, walls:WALLS.length, wins:WINS.length, doorsData:DOORS.length, doors3d:doors.length, doorsOpen:doors.map(d => d.open), colliders:colliders.length, anchors:ANCHORS.length, water:waterState, labels:labelG ? labelG.children.length : 0, cam:camera ? camera.position.toArray() : null}),
   waterMeshes: () => archFloor.children.filter(o => o.userData.water).map(o => { const b = new THREE.Box3().setFromObject(o); return {id:o.userData.water, mode:o.userData.waterMode, verts:o.geometry.attributes.position.count, index:o.geometry.index ? o.geometry.index.count : 0, windingZ:(() => { const P = o.geometry.attributes.position, I = o.geometry.index; const out = []; for (let t = 0; t < I.count; t += 3){ const a = I.getX(t), b = I.getX(t+1), c = I.getX(t+2); out.push(Math.sign((P.getX(b)-P.getX(a))*(P.getY(c)-P.getY(a)) - (P.getY(b)-P.getY(a))*(P.getX(c)-P.getX(a)))); } return out; })(), visible:o.visible, min:b.min.toArray(), max:b.max.toArray()}; }),

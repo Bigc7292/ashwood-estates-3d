@@ -28,6 +28,7 @@ PATCHES = [
   "import {WATER2_RES, WATER_PERF, throttleWater} from './f3_water_perf.js';\n"
   "import {calacattaWallParams, CAL_REPEAT_M} from './f3_calacatta_wall.js';\n"
   "import {buildDressWardrobe} from './f3_dress_wardrobe.js';\n"
+  "import {buildBasinBox, BASIN_BOX} from './f3_basin_box.js';\n"
   "const R3Q = new URLSearchParams(location.search), Q7_ON = R3Q.get('q7') !== '0';\n"
   "let court = null;\n"),
  ('F2 material', "    trav: smat({map:texTravertine(), roughness:.62}, .3),\n",
@@ -54,7 +55,7 @@ PATCHES = [
   "  for (let i = 0; i < animTex.length; i++){ animTex[i].offset.set(now*1.6e-5*(i + 1), now*0.9e-5); }   // pool caustics drift\n"
   "  if (court) court.update(dt, now/1000);   // Q7 tree sway (<= 0.25 deg)\n"),
  ('QA hook', "window.__FP3D_QA__ = {\n",
-  "window.__FP3D_QA__ = {\n  r3: () => ({build:'r3', f2:true, q7:Q7_ON, f3:true, water:waterState, water2_res:WATER2_RES, court:court ? court.meta : null}),\n"
+  "window.__FP3D_QA__ = {\n  r3: () => ({build:'r3', f2:true, q7:Q7_ON, f3:true, basin_box:BASIN_BOX, water:waterState, water2_res:WATER2_RES, court:court ? court.meta : null}),\n"
   "  waterPerf(force){ if (force !== undefined) WATER_PERF.force = !!force; return {force:WATER_PERF.force, refreshMs:WATER_PERF.refreshMs, ...WATER_PERF.stats}; },\n"),
  ('banner', "Ashwood 4B GF · Floorplan 3D SPIKE (MIT viewer) · approx ±3% ·",
   "Ashwood 4B GF · r3 build (F2 + Q7, REVIEW-PENDING) · concept visualisation · approx ±3% ·"),
@@ -62,6 +63,9 @@ PATCHES = [
  ('F3 water comment 2', "?water=water2 restores Water2, ?water=flat the flat fallback.", "(original index.html notes; no ?water option in r3)"),
  ('F3 G4 dress wardrobe', "  state.furniture.forEach(f => furnG.add(buildFurniture(f)));\n",
   "  state.furniture.forEach(f => furnG.add(/^Dress wardrobe$/.test(f.name || '') ? buildDressWardrobe(THREE, wx, wz) : buildFurniture(f)));   // F3 G4: glass-front wardrobe on the V4 joinery block\n"),
+ ('F3 basin box', "  buildFeatures(top); if (top >= H) buildCeilings();\n",
+  "  buildFeatures(top); if (top >= H) buildCeilings();\n"
+  "  buildBasinBox(THREE, archUp, {wx, wz, top, wallMat:S0.paint, basinMat:smat({color:'#f4f1ec', roughness:.2}, .5)});   // F3: GF NE basin box, closed, access NOT FOUND in V4\n"),
  ('F3 Water2 only', "const WATER_Q = new URLSearchParams(location.search).get('water'), WATER_MODE = WATER_Q === 'flat' ? 'flat' : WATER_Q === 'water2' ? 'water2' : 'lite';",
   "const WATER_MODE = 'water2';   // F3 (Colin 2026-11-10): full Water2 only for pool and courtyard; no lite / flat water path, no ?water option"),
  ('F3 Water2 res', "textureWidth:D.textureWidth, textureHeight:D.textureHeight,", "textureWidth:WATER2_RES, textureHeight:WATER2_RES,"),
