@@ -21,12 +21,28 @@ Ashwood Estates is Axis3D scenario test 1. These rules are carried over from Bar
 - `superseded_2026-11-09/` is retired: never an input, never a fallback, never packaged or shown as current.
 - Validate with `scripts/verify_active_pipeline.py`; start from `scripts/active_inputs.py`.
 
-## Exterior: Colin's 7-step pipeline (4-bed, `exterior-garden-3d/4b/PIPELINE_7STEP.md`)
-Reference → Layout → Blockout → Grime → Printed matter → Critique → Motion. One step at a time, a gate/review after each.
-- **Guide rule:** exterior appearance comes from the 10 approved generated 4B images + brochure renders p25/p26 (backups p29/30, p33/34). The V4 CAD is for sizes and plan positions only. Where they disagree, log it in `exterior-garden-3d/4b/mismatches/mismatch_log.md`: image for appearance, CAD for footprint.
-- Never use `_raw_unlabelled` or `_rejected_first_pass` images.
-- **Current HOLD:** stop after step 4 and wait for Colin's go-ahead before step 5.
-- WIP work goes in `blender_wip/`; official `4b_*.blend`, renders and view files change only after critic review.
+## The 7-step rule set (set in stone, exterior AND interior)
+Colin, 2026-11-09: this rule set applies to both exterior and interior work in this project. Full source: `docs/inherited-rules/barclay/ext7/` (step docs), `docs/inherited-rules/barclay/AGENTS.md` (the Barclay "Exterior 7-step process"), and `exterior-garden-3d/4b/PIPELINE_7STEP.md` (the Ashwood 4-bed version).
+
+| Step | Exterior (4-bed) | Interior (floors, rooms, furniture) |
+|---|---|---|
+| 1 Reference | the 10 approved generated 4B images + brochure p25/p26 (backups p29/30, p33/34) | internal brochure images and reference renders (p15–p17, p24), no raw/rejected files |
+| 2 Layout | footprint and plot positions from the approved V4 CAD (sizes only) | room layout from the approved V4 CAD plans (GF/FF/RF) |
+| 3 Blockout | boxes first, then space, models, materials, in that order; proportions fixed while still boxes | walls, rooms and floors as boxes, then furniture and materials |
+| 4 Grime / finish | procedural wear: chips, dust, drips, base dirt, weathering | clean-build finish from the spec: materials, reveals, lighting; no grime on new interiors |
+| 5 Printed matter | signs/plaques/house numbers only if visible in the source images; else "none in source" | labels and signage only if visible in source images |
+| 6 Critique | side-by-side with the reference images; list "looks unnatural" defects and fix them | side-by-side with the reference images and the V4 plan |
+| 7 Motion | flythrough or pool/palm/sun motion, rendered to video | walkthrough or light change, rendered to video |
+
+Rules for all seven steps:
+- One step at a time. Log each step's gate in its step doc (`ext7/`-style: Inputs, Outputs, Review check, Status).
+- Images decide appearance, CAD decides dimensions. Where they disagree, log it in `exterior-garden-3d/4b/mismatches/mismatch_log.md` and use image for look, CAD for footprint.
+- **Ashwood-specific HOLD (current):** stop after step 4, report, and wait for Colin's go-ahead before step 5. (Barclay ran straight through; Ashwood's HOLD is Colin's Ashwood rule and stays unless he changes it.)
+- Pure review gates use the independent critic (not the builder).
+
+## Exterior: 4-bed status
+- Steps 1–4 done, revised, awaiting Colin's review. Official `4b_*.blend` untouched by WIP.
+- WIP in `blender_wip/` (M20–M24) is not critic-reviewed and not used for official renders.
 
 ## Interior web viewer (`active/floorplan3d-spike/FP-4B-GF/`, v2)
 - Must read as a furnished 3D interior (v1 was rejected as "still 2D"). Eye-level renders, full-height walls by default.
@@ -53,6 +69,13 @@ Reference → Layout → Blockout → Grime → Printed matter → Critique → 
 - Don't message a running executor mid-task; it interrupts. Executors can't spawn subagents; the orchestrator runs the critic loop.
 - Interrupted sub-agents leave UNREVIEWED work: log exactly what is WIP in the CHANGELOG and `STATUS.md` before stopping.
 - Keep `STATUS.md` current at the end of every session, so a lost chat costs no context.
+
+## Production line of agents (requested by Colin, 2026-11-09)
+Goal: several agents on separate tasks in parallel to finish faster, with the same seven steps and rules above.
+- Lanes: (1) Facts & evidence (CAD, brochure, mismatch log); (2) Exterior builder; (3) Interior builder; (4) Viewer/web; (5) Critic (independent, reads outputs and logs defects); (6) Integrator (merges one change set at a time, runs verify scripts, updates STATUS.md).
+- Each lane writes only in its own folder and logs its work in its step doc; the integrator is the only one that commits to `main` (and only on Colin's word).
+- Nobody marks a step done on their own: the critic and then Colin pass the gate.
+- This section is the plan, not yet built. Colin approves the plan before any lane starts.
 
 ## Reference copies
 `docs/inherited-rules/` holds verbatim copies of the Barclay and Axis3D rules, tools, tricks registers, Axis3D plan and QA register. They are reference; this file is the rule set for Ashwood.
