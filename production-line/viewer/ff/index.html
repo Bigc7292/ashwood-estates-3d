@@ -1,8 +1,9 @@
 <!doctype html>
 <!--
   Lane 4 (viewer) optimized fork. Original builders' files untouched.
-  Changes vs source: pixelRatio cap (1.5 desktop / 1 mobile), shadowMap.autoUpdate=false
-  with one bake, render-on-demand, importmap points at shared local vendor (offline).
+  Changes vs source: pixelRatio cap (1.5 desktop / 1 mobile; intentional sharpness trade-off),
+  shadowMap.autoUpdate=false with re-bake on light/door/furniture changes, demand-render when
+  static, continuous while water/damping/doors active, shared local vendor (offline).
   No geometry or plan-data edits. Concept visualisation — not survey-verified.
 -->
 
@@ -22,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#fffdf9">
-<title>Ashwood 4B FF · lane4 optimized viewer (r4 data)</title>
+<title>Ashwood 4B FF · lane4 optimized viewer · plan r4</title>
 <style>
 :root{
   --bg:#f3efe7; --paper:#f7f4ee; --panel:#fffdf9; --line:#e3dccf; --ink:#2b2824; --muted:#8a8174;
@@ -357,7 +358,7 @@ main.drawer-panel #fab{opacity:0;visibility:hidden}
 </div>
 <div id="toast"></div>
 
-<script src="data/fp-4b-ff.plan.js"></script>
+<script src="data/fp-4b-ff.plan.r4.js"></script>
 <script>
 /* ======================= 多语言（中文 / English，默认中文） ======================= */
 const LANG_KEY = 'ashwood-fp3d-spike-lang';
@@ -399,7 +400,7 @@ function applyStaticLang(){
   document.querySelectorAll('#langSel [data-lang]').forEach(b => { const on = b.dataset.lang === LANG; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
 }
 
-/* Plan data (WALLS/WINS/DOORS/SLIDES/ROOMS/ANCHORS/PLAN) is loaded from data/fp-4b-ff.plan.js. */
+/* Plan data loaded from data/fp-4b-ff.plan.r4.js (r4 revision; not the r1 filename). */
 const MATS = {
   wood:    {name:'橡木地板', price:320, sw:'#d8b88a'},
   walnut:  {name:'胡桃木地板', price:380, sw:'#9b7250'},
@@ -1476,12 +1477,31 @@ const animTex = [];
 let sigArch = '', sigFurn = '', sigLabels = '', grow = 1, furnGrow = 1;
 const doors = [], keys = {};
 /* ---- lane4 optimizer: demand render + one-shot shadow bake ---- */
-let __lane4Dirty = true, __lane4ShadowBaked = false, __lane4IdleFrames = 0;
+let __lane4Dirty = true, __lane4ShadowBaked = false, __lane4IdleFrames = 0, __lane4RenderCount = 0, __lane4WaterTimer = 0;
 function __lane4RequestRender(){ __lane4Dirty = true; __lane4IdleFrames = 0; startLoop(); }
-function __lane4BakeShadowsOnce(){
-  if (__lane4ShadowBaked || !renderer) return;
+function __lane4InvalidateShadows(){
+  if (!renderer) return;
   renderer.shadowMap.needsUpdate = true;
   __lane4ShadowBaked = true;
+  __lane4RequestRender();
+}
+function __lane4BakeShadowsOnce(){
+  if (!renderer) return;
+  renderer.shadowMap.needsUpdate = true;
+  __lane4ShadowBaked = true;
+}
+function __lane4WaterActive(){
+  if (typeof waterState !== 'undefined' && waterState && waterState.count > 0) return true;
+  return !!(typeof animTex !== 'undefined' && animTex && animTex.length);
+}
+function __lane4EnsureWaterTimer(){
+  if (__lane4WaterTimer) return;
+  if (!__lane4WaterActive()) return;
+  // Critic: keep water animating with a throttled ~30fps timer while water exists.
+  __lane4WaterTimer = setInterval(() => {
+    if (!__lane4WaterActive()){ clearInterval(__lane4WaterTimer); __lane4WaterTimer = 0; return; }
+    __lane4RequestRender();
+  }, 33);
 }
 
 
@@ -1570,11 +1590,12 @@ function init(){
     fdrag.moved = true; cv.style.cursor = 'grabbing';
     [f.cx, f.cy] = snapMove(f, g.x - fdrag.ox, g.y - fdrag.oy);
     furnG.children.find(o => o.userData.fid === f.id)?.position.set(wx(f.cx), 0, wz(f.cy));   // 拖动中只挪模型，松手再整体同步
+    __lane4InvalidateShadows();
   });
   const endF = e => {
     if (!fdrag || e.pointerId !== fdrag.pid) return;
     const d = fdrag; fdrag = null; orbit.enabled = true; cv.style.cursor = '';
-    if (d.moved){ commit(d.before); renderAll(); }
+    if (d.moved){ commit(d.before); renderAll(); __lane4InvalidateShadows(); }
   };
   cv.addEventListener('pointerup', endF); cv.addEventListener('pointercancel', endF);
 
@@ -1582,12 +1603,12 @@ function init(){
     const tap = downAt && Math.hypot(e.clientX-downAt[0], e.clientY-downAt[1]) <= TAP;
     if (look?.id === e.pointerId){
       look = null;
-      if (tap){ const h = pick(e); if (h?.door && h.dist < 3.5) h.door.open = !h.door.open; }   // 漫游时点门开关
+      if (tap){ const h = pick(e); if (h?.door && h.dist < 3.5){ h.door.open = !h.door.open; __lane4InvalidateShadows(); } }   // 漫游时点门开关
       return;
     }
     if (anim || opt.mode !== 'orbit' || !tap) return;
     const h = pick(e);
-    if (h?.door) h.door.open = !h.door.open;
+    if (h?.door){ h.door.open = !h.door.open; __lane4InvalidateShadows(); }
     else if (h?.fid) window.select({kind:'furn', id:h.fid});
     else if (h?.room) window.select({kind:'room', id:h.room});
     else window.select(null);
@@ -1595,6 +1616,7 @@ function init(){
   new ResizeObserver(() => {
     renderer.setSize(SW(), SH()); labelRenderer.setSize(SW(), SH());
     camera.aspect = SW()/SH(); camera.updateProjectionMatrix();
+    __lane4RequestRender();
   }).observe(stage);
   bindUI();
 }
@@ -3016,6 +3038,7 @@ function applyLight(){
   envMats.forEach(m => { m.envMapIntensity = m.userData.env*envK; });
   const h = Math.floor(opt.hour), m = Math.round((opt.hour - h)*60);
   $('#sunT').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+  __lane4InvalidateShadows();
 }
 
 /* ======================= 相机位姿 / 动画 ======================= */
@@ -3046,7 +3069,7 @@ function camTween(A, B, e){
 function setPose(P){ camera.position.copy(P.p); orbit.target.copy(P.t); camera.lookAt(P.t); }
 function animate(dur, fn){ return new Promise(res => { anim = {t0:performance.now(), dur, fn, res}; }); }
 const wait = ms => new Promise(r => setTimeout(r, ms));
-function flyTo(B, dur = 900){ fly = {t0:performance.now(), dur, A:curPose(), B}; }
+function flyTo(B, dur = 900){ fly = {t0:performance.now(), dur, A:curPose(), B}; __lane4RequestRender(); }
 function flyToRoom(id){
   const an = ANCHORS.find(a => a.id === id), hf = an ? an.frame_m*500 : 0;   // derived polygon if any, else display-only anchor framing
   const r = ROOMS.find(r => r.id === id) || (an ? {poly:R(an.at[0]-hf, an.at[1]-hf, an.at[0]+hf, an.at[1]+hf)} : null);
@@ -3227,7 +3250,7 @@ function stepWalk(dt){
 addEventListener('keydown', e => {
   if (!active || e.target.matches('input,select,textarea')) return;
   keys[e.code] = true;
-  if (opt.mode === 'walk' && e.code === 'KeyE'){ const h = pick(); if (h?.door && h.dist < 2.5) h.door.open = !h.door.open; }
+  if (opt.mode === 'walk' && e.code === 'KeyE'){ const h = pick(); if (h?.door && h.dist < 2.5){ h.door.open = !h.door.open; __lane4InvalidateShadows(); } }
 });
 addEventListener('keyup', e => keys[e.code] = false);
 
@@ -3254,12 +3277,13 @@ function bindUI(){
   syncWalkTexts();
   $('#vIso').onclick = () => { if (opt.mode === 'walk') setMode('orbit'); else flyTo(isoWhole()); };
   $('#vTop').onclick = () => { if (opt.mode === 'walk') setMode('orbit'); flyTo(topWhole()); };
-  document.querySelectorAll('[data-cut]').forEach(b => b.onclick = () => { if (opt.mode === 'walk') return; opt.cut = +b.dataset.cut; syncCutBtns(); sync(); });
+  document.querySelectorAll('[data-cut]').forEach(b => b.onclick = () => { if (opt.mode === 'walk') return; opt.cut = +b.dataset.cut; syncCutBtns(); sync(); __lane4RequestRender(); });
   document.querySelectorAll('#toggles3d .btn').forEach(b => b.onclick = () => {
     const k = b.dataset.t; opt[k] = !opt[k]; b.classList.toggle('on', opt[k]);
     if (k === 'furn'){ furnG.visible = decorG.visible = opt.furn; if (!opt.furn && ui.sel?.kind === 'furn') window.select(null); }
     if (k === 'labels') showLabels(opt.labels && opt.mode === 'orbit' && !anim);
     if (k === 'night') applyLight();
+    else __lane4RequestRender();
   });
   $('#sun').oninput = e => { opt.hour = +e.target.value; applyLight(); };
 }
@@ -3273,34 +3297,40 @@ function startLoop(){ if (!raf){ clock.getDelta(); raf = requestAnimationFrame(l
 function loop(){
   const now = performance.now();
   const dt = clock.getDelta();
-  const busy = !!(anim || fly || (opt.mode === 'walk') || (doors && doors.some(d => Math.abs((d.open ? d.a1 : d.a0) - d.cur) > 1e-3)));
-  if (busy) __lane4Dirty = true;
+  const doorMoving = !!(doors && doors.some(d => Math.abs((d.open ? d.a1 : d.a0) - d.cur) > 1e-3));
+  const busy = !!(anim || fly || (opt.mode === 'walk') || doorMoving);
+  if (doorMoving) renderer.shadowMap.needsUpdate = true;
+  let damping = false;
   if (opt.mode === 'orbit' && orbit){
-    orbit.update();
-    // damping keeps us dirty for a short settle window
+    // OrbitControls.update returns true while camera/target still changing (damping).
+    damping = !!orbit.update();
   }
-  if (__lane4Dirty || busy || animTex.length){
+  __lane4EnsureWaterTimer();
+  const waterOn = __lane4WaterActive();
+  if (busy || damping) __lane4Dirty = true;
+  if (__lane4Dirty || busy || damping){
     if (!__lane4ShadowBaked) __lane4BakeShadowsOnce();
     frame(dt, now);
-    // frame always rendered; clear dirty unless still moving
-    if (!busy && !anim && !fly){
+    __lane4RenderCount++;
+    if (!busy && !damping){
       __lane4IdleFrames++;
-      if (__lane4IdleFrames > 8) __lane4Dirty = false;
+      if (__lane4IdleFrames > 2) __lane4Dirty = false;
     } else {
       __lane4IdleFrames = 0;
     }
   }
-  if (__lane4Dirty || busy || anim || fly || (opt.mode === 'walk')){
+  // Demand-render when static; water timer independently marks dirty ~30fps.
+  if (__lane4Dirty || busy || damping || anim || fly || (opt.mode === 'walk')){
     raf = requestAnimationFrame(loop);
   } else {
-    raf = 0; // stop until next interaction
+    raf = 0;
   }
 }
 function frame(rawDt, now){
   const dt = Math.min(rawDt, .05);
   if (anim){ const t = clamp01((now - anim.t0)/anim.dur); anim.fn(t); if (t >= 1){ const r = anim.res; anim = null; r(); } }
   else if (fly){ const t = clamp01((now - fly.t0)/fly.dur); camTween(fly.A, fly.B, ease(t)); if (t >= 1) fly = null; }
-  else if (opt.mode === 'orbit') orbit.update();
+  else if (opt.mode === 'orbit') { /* orbit.update() already called in loop for damping settle */ }
   else {
     // Use the real frame time (so low frame rates don't slow walking), in <=50 ms substeps so wall collision still holds.
     for (let t = Math.min(rawDt, .25); t > 1e-4; t -= .05) stepWalk(Math.min(t, .05));
@@ -3316,7 +3346,7 @@ function shot(){ const a = document.createElement('a'); a.download = tr('户型�
 
 function relang(){ syncWalkTexts(); if (inited) buildLabels(); }
 
-window.__LANE4_OPT__ = {pixelRatio:() => renderer ? renderer.getPixelRatio() : null, shadowAutoUpdate:() => renderer ? renderer.shadowMap.autoUpdate : null, shadowBaked:() => __lane4ShadowBaked, looping:() => !!raf};
+window.__LANE4_OPT__ = {pixelRatio:() => renderer ? renderer.getPixelRatio() : null, shadowAutoUpdate:() => renderer ? renderer.shadowMap.autoUpdate : null, shadowBaked:() => __lane4ShadowBaked, looping:() => !!raf, renderCount:() => __lane4RenderCount, resetRenderCount:() => { __lane4RenderCount = 0; }, requestRender: __lane4RequestRender, invalidateShadows: __lane4InvalidateShadows};
 window.__FP3D_QA__ = {
   info: () => ({inited, active, mode:opt.mode, cut:opt.cut, walls:WALLS.length, wins:WINS.length, doorsData:DOORS.length, doors3d:doors.length, doorsOpen:doors.map(d => d.open), colliders:colliders.length, anchors:ANCHORS.length, water:waterState, labels:labelG ? labelG.children.length : 0, cam:camera ? camera.position.toArray() : null}),
   waterMeshes: () => archFloor.children.filter(o => o.userData.water).map(o => { const b = new THREE.Box3().setFromObject(o); return {id:o.userData.water, mode:o.userData.waterMode, verts:o.geometry.attributes.position.count, index:o.geometry.index ? o.geometry.index.count : 0, windingZ:(() => { const P = o.geometry.attributes.position, I = o.geometry.index; const out = []; for (let t = 0; t < I.count; t += 3){ const a = I.getX(t), b = I.getX(t+1), c = I.getX(t+2); out.push(Math.sign((P.getX(b)-P.getX(a))*(P.getY(c)-P.getY(a)) - (P.getY(b)-P.getY(a))*(P.getX(c)-P.getX(a)))); } return out; })(), visible:o.visible, min:b.min.toArray(), max:b.max.toArray()}; }),
@@ -3326,7 +3356,7 @@ window.__FP3D_QA__ = {
     camera.position.set(wx(cx), D, wz(cy)); camera.lookAt(wx(cx), 0, wz(cy)); renderer.render(scene, camera);
     return {cx, cy, visH_m:visH, canvasW:renderer.domElement.width, canvasH:renderer.domElement.height}; },
   restore(){ camera.fov = FOV; camera.near = .05; camera.far = 300; camera.up.set(0,1,0); camera.updateProjectionMatrix(); startLoop(); },
-  toggleDoor(i){ doors[i].open = !doors[i].open; return doors[i].open; },
+  toggleDoor(i){ doors[i].open = !doors[i].open; __lane4InvalidateShadows(); return doors[i].open; },
   png: () => renderer.domElement.toDataURL('image/png'),
   size(w, h){ renderer.setSize(w, h); labelRenderer.setSize(w, h); camera.aspect = w/h; camera.updateProjectionMatrix(); return [renderer.domElement.width, renderer.domElement.height]; },
   night(v){ if (opt.night !== v){ opt.night = v; document.querySelector('#toggles3d .btn[data-t=night]')?.classList.toggle('on', v); applyLight(); } return opt.night; },

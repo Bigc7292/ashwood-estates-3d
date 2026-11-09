@@ -298,30 +298,42 @@ function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if
     const d=document.createElement('div'); d.textContent=l.t; d.style.left=((v.x+1)/2*W)+'px'; d.style.top=((1-v.y)/2*Hh)+'px'; L.appendChild(d);} }
 let n=0;
 /* lane4: demand-render + one-shot shadow bake */
-let __lane4Dirty = true, __lane4ShadowBaked = false, __lane4Raf = 0, __lane4Idle = 0;
-function __lane4BakeShadows(){ if (__lane4ShadowBaked || !renderer) return; renderer.shadowMap.needsUpdate = true; __lane4ShadowBaked = true; }
+let __lane4Dirty = true, __lane4ShadowBaked = false, __lane4Raf = 0, __lane4Idle = 0, __lane4RenderCount = 0, __lane4WaterTimer = 0;
+function __lane4InvalidateShadows(){ renderer.shadowMap.needsUpdate = true; __lane4ShadowBaked = true; __lane4RequestRender(); }
+function __lane4BakeShadows(){ if (!__lane4ShadowBaked) { renderer.shadowMap.needsUpdate = true; __lane4ShadowBaked = true; } }
 function __lane4RequestRender(){ __lane4Dirty = true; __lane4Idle = 0; if (!__lane4Raf) __lane4Raf = requestAnimationFrame(loop); }
+function __lane4WaterActive(){ return useWater2 || (animated && animated.length > 0); }
+function __lane4EnsureWaterTimer(){
+  if (__lane4WaterTimer || !__lane4WaterActive()) return;
+  __lane4WaterTimer = setInterval(() => {
+    if (!__lane4WaterActive()){ clearInterval(__lane4WaterTimer); __lane4WaterTimer = 0; return; }
+    __lane4RequestRender();
+  }, 33);
+}
 addEventListener('pointerdown', __lane4RequestRender);
 addEventListener('pointermove', e => { if (drag) __lane4RequestRender(); });
 addEventListener('keydown', __lane4RequestRender);
-addEventListener('resize', () => { /* W/Hh captured at start; keep dirty */ __lane4RequestRender(); });
+addEventListener('keyup', __lane4RequestRender);
+addEventListener('resize', () => { __lane4RequestRender(); });
 function loop(){
   __lane4Raf = 0;
   const t=clock.getElapsedTime();
   const moving = !Q.get('view') && (drag || keys['w']||keys['s']||keys['a']||keys['d']||keys['arrowup']||keys['arrowdown']||keys['arrowleft']||keys['arrowright']);
+  __lane4EnsureWaterTimer();
   if (moving) __lane4Dirty = true;
   walkUpdate();
-  const animating = animated.length > 0; // water normal scroll — keep a few frames then freeze offsets when idle
-  if (__lane4Dirty || moving || (animating && __lane4Idle < 30)) {
-    if (animating) for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
+  if (__lane4Dirty || moving) {
+    if (animated.length) for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
     __lane4BakeShadows();
     renderer.render(scene,cam); labels();
+    __lane4RenderCount++;
     n++;
-    if (n>=12 && Q.get('view')){ document.title='READY'; window.__LANE4_FRONT__ = {pixelRatio: renderer.getPixelRatio(), shadowAutoUpdate: renderer.shadowMap.autoUpdate, shadowBaked: __lane4ShadowBaked, calls: renderer.info.render.calls, tris: renderer.info.render.triangles}; return; }
-    if (!moving) __lane4Idle++; else __lane4Idle = 0;
-    if (__lane4Idle > 45) __lane4Dirty = false;
+    if (n>=12 && Q.get('view')){ document.title='READY'; __lane4Raf = 0; if (__lane4WaterTimer){ clearInterval(__lane4WaterTimer); __lane4WaterTimer = 0; } window.__LANE4_FRONT__ = {pixelRatio: renderer.getPixelRatio(), shadowAutoUpdate: renderer.shadowMap.autoUpdate, shadowBaked: __lane4ShadowBaked, calls: renderer.info.render.calls, tris: renderer.info.render.triangles, renderCount: __lane4RenderCount}; return; }
+    if (!moving){ __lane4Idle++; if (__lane4Idle > 2) __lane4Dirty = false; }
+    else __lane4Idle = 0;
   }
-  if (__lane4Dirty || moving || __lane4Idle <= 45) __lane4Raf = requestAnimationFrame(loop);
+  if (__lane4Dirty || moving) __lane4Raf = requestAnimationFrame(loop);
+  else __lane4Raf = 0;
 }
 __lane4RequestRender();
 document.title = Q.get('view') ? document.title : 'READY';
@@ -334,7 +346,11 @@ window.__LANE4_FRONT__ = {
     tris: renderer.info.render.triangles,
     looping: !!__lane4Raf,
     boxes: (M.boxes||[]).length,
-  })
+    renderCount: __lane4RenderCount,
+  }),
+  resetRenderCount: () => { __lane4RenderCount = 0; },
+  requestRender: __lane4RequestRender,
+  invalidateShadows: __lane4InvalidateShadows,
 };
 
 // step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.

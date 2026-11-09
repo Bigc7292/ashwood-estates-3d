@@ -12,3 +12,4 @@ Thumbs.db
 
 # Over GitHub 100MB hard limit; regenerate with: pip install playwright && playwright install
 .venv/lib/python3.13/site-packages/playwright/driver/node
+production-line/viewer/node_modules/

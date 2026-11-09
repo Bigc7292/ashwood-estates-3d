@@ -21,6 +21,7 @@ for f in \
   production-line/viewer/exterior-front/index.html \
   production-line/viewer/exterior-front/data/model.min.js \
   production-line/viewer/exterior-front/overrides/front_pass16_multistem_tree.js \
+  production-line/viewer/ff/data/fp-4b-ff.plan.r4.js \
   production-line/viewer/vendor/three/build/three.module.js \
   production-line/viewer/exterior/SUPERSEDED.md \
   production-line/viewer/check.sh
@@ -81,8 +82,25 @@ else
 fi
 
 # 8) static evidence files
+[[ -f production-line/viewer/baseline/bench.json ]] && pass "baseline bench.json" || fail "missing bench.json"
 [[ -f production-line/viewer/baseline/before.json ]] && pass "baseline before.json" || fail "missing before.json"
 [[ -f production-line/viewer/baseline/after.json ]] && pass "baseline after.json" || fail "missing after.json"
+
+# FF must load r4 by name
+if rg -q 'fp-4b-ff.plan.r4.js' production-line/viewer/ff/index.html; then pass "FF loads plan r4 by revision name"; else fail "FF not loading r4 filename"; fi
+if [[ -f production-line/viewer/ff/data/fp-4b-ff.plan.js ]]; then fail "misnamed FF plan.js (r1 filename) still present"; else pass "no misnamed FF plan.js"; fi
+
+# Interactive regression (Playwright) — sun/door/water
+if [[ "${LANE4_SKIP_REGRESSION:-}" == "1" ]]; then
+  note "SKIP regression (LANE4_SKIP_REGRESSION=1)"
+else
+  note "== interactive regression =="
+  if ! node production-line/viewer/regression.mjs; then
+    fail "interactive regression failed"
+  else
+    pass "interactive regression (sun/door/water)"
+  fi
+fi
 
 if (( FAIL )); then
   note "RESULT: FAIL"

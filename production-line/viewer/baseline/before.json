@@ -1,19 +1,6 @@
 {
-  "note": "Source baselines (builders untouched)",
-  "gf_html_bytes": 251501,
-  "gf_pixelRatio_cap": 2,
-  "gf_shadow_autoUpdate": true,
-  "gf_loop": "continuous rAF",
-  "exterior_v6_html_bytes": 1777697,
-  "exterior_v6": "single-file embedded three+textures",
-  "ff_on_main": false,
-  "rf_viewer": false,
-  "front_pass_live": {
-    "html_bytes": 28869,
-    "model_bytes": 123732,
-    "pixelRatio": 1,
-    "shadow_autoUpdate": true,
-    "loop": "continuous rAF until view-mode READY",
-    "source": "origin/lane/exterior:exterior-garden-3d/4b/walk_exterior_wip/front_pass.html"
-  }
+  "replaced": true,
+  "note": "Hand-written before.json replaced. Authoritative like-for-like medians are in bench.json.",
+  "bench": "production-line/viewer/baseline/bench.json",
+  "measured_at_utc": "2026-11-09T21:20:29.897Z"
 }
