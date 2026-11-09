@@ -1,0 +1,94 @@
+{
+ "tool": "GenerateImage (built-in, free; no paid credits)",
+ "generated_Asia_Dubai": "2026-11-10",
+ "pass": "r2 critic fix",
+ "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+ "common_suffix": "Follow the attached floor-plan crop for layout; use the brochure images only for materials and colours. No people, no text, no watermark, no logo. Do not add windows, doors or openings not described.",
+ "rooms": {
+  "pantry": {
+   "chosen_attempt": "r2a",
+   "aspect_ratio": "4:3",
+   "references": [
+    "plan-crop",
+    "p17-materials"
+   ],
+   "prompt_summary": "SHORT compact walk-in pantry 1.70 m wide x 2.45 m deep (depth ~1.4x width, not a corridor); camera at the show-kitchen end looking in; far end open doorway to working kitchen; LEFT long wall ONE continuous counter run, light recon veneer base, pale stone-look top, plain wall above (no shelves, no wall cabinets, no sink); RIGHT wall plain, no window; no return counter; restrained service finishes per p17."
+  },
+  "powder": {
+   "chosen_attempt": "r2b",
+   "aspect_ratio": "16:9",
+   "references": [
+    "plan-crop",
+    "p17-materials",
+    "p24-spec-text"
+   ],
+   "prompt_summary": "NARROW powder room 1.70 x 3.65 m; camera east end looking west; ALL fixtures on the LEFT (south) wall in one line: walnut veneer double vanity with TWO basins, bronze taps, mirror; then a short full-height partition projecting from the left wall with a wall-hung WC mounted on the left wall behind it; far west end wall holds only the entrance door (no WC on end wall); right wall plain; no window; p24 concrete-look porcelain, one Calacatta panel behind vanity. (r2a: same brief, rejected: WC read as end-wall mounted.)"
+  },
+  "office-gym": {
+   "chosen_attempt": "r2b",
+   "aspect_ratio": "16:9",
+   "references": [
+    "plan-crop",
+    "p15-living",
+    "p17-materials"
+   ],
+   "prompt_summary": "Office 4.60 x 3.40 m at 1.5 m eye height (not elevated); camera at south looking north to full-height glazing onto the courtyard water feature; long walnut table running N-S; EXACTLY FOUR chairs: three on the LEFT (west) side, ONE on the RIGHT opposite the middle chair, none at ends; left wall walnut veneer panelling with door near camera (SW); right wall greige. (r2a rejected: 3+2 chairs.)"
+  },
+  "bath": {
+   "chosen_attempt": "r2a",
+   "aspect_ratio": "16:9",
+   "references": [
+    "plan-crop",
+    "p17-materials",
+    "p24-spec-text"
+   ],
+   "prompt_summary": "Shallow bathroom 2.90 x 1.70 m; camera against the north wall looking at the long south wall; ALL THREE fixtures in ONE row on that wall, left to right: walk-in shower with clear glass screen, floating walnut vanity with one basin and mirror, wall-hung WC; nothing on side walls; no window; p24 terrazzo/concrete-look porcelain, one Calacatta panel behind vanity."
+  },
+  "living-dining": {
+   "chosen_attempt": "r2b",
+   "aspect_ratio": "16:9",
+   "references": [
+    "plan-crop",
+    "p15-living",
+    "p17-materials"
+   ],
+   "prompt_summary": "Living/dining 12.40 x 5.10 m; camera on the south (kitchen) side looking north at the long rear wall; rear wall floor-to-ceiling glazing across almost its full width, slim bronze mullions, broken by ONE narrow solid section right of centre; end walls solid greige, no glass, no walnut panelling; dining table left with 10 chairs (4+4+1+1), L-sofa centre-right with square Calacatta coffee table, two lounge chairs and round side table at right. (r2a rejected: glazing wrapped onto right end wall.)"
+  },
+  "show-kitchen": {
+   "chosen_attempt": "r2b",
+   "aspect_ratio": "16:9",
+   "references": [
+    "plan-crop",
+    "p17-materials"
+   ],
+   "prompt_summary": "Show kitchen 5.70 x 2.70 m; camera on the living (north) side looking south; Calacatta-topped walnut island with induction hob and exactly THREE stools on near side; one straight LOW back counter on the south wall with sink and Calacatta backsplash; NO tall cabinets, NO full-height cupboards, NO wall cabinets, NO windows. (r2a rejected: tall units at right edge and a window at left.)"
+  },
+  "laundry": {
+   "chosen_attempt": "r2a",
+   "aspect_ratio": "4:3",
+   "references": [
+    "plan-crop",
+    "p17-materials"
+   ],
+   "prompt_summary": "Laundry 2.20 x 1.80 m; camera at north looking south; two front-loading appliances side by side on the south wall under one plain worktop; closed light-veneer storage beside; NO sink, NO basin, NO tap; no window; restrained service finishes."
+  },
+  "kitchen-storage": {
+   "chosen_attempt": "r2b",
+   "aspect_ratio": "4:3",
+   "references": [
+    "plan-crop",
+    "p17-materials"
+   ],
+   "prompt_summary": "Tiny K. store 2.20 m deep x 1.40 m wide; camera in the west doorway looking east; small hand-wash basin with stainless tap in the far LEFT (NE) corner; ONE run of white open shelving on the RIGHT (south) wall only; left and far walls plain; no window. (r2a rejected: room read ~3.5 m deep.)"
+  },
+  "multipurpose": {
+   "chosen_attempt": "r2a",
+   "aspect_ratio": "4:3",
+   "references": [
+    "plan-crop",
+    "p17-materials"
+   ],
+   "prompt_summary": "Completely EMPTY multipurpose room 4.60 x 3.90 m, finishes only; camera near SW corner looking NE; wood-look door on the left (west) wall toward the NW corner; floor-to-ceiling glazing on the right (east) wall; no furniture, rug, art, plants or decor; beige porcelain floor, greige textured walls, black linear lights."
+  }
+ }
+}

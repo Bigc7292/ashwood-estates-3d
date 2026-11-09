@@ -1,0 +1,72 @@
+{
+ "wall_poche_iou_vs_V4": 0.99967,
+ "wall_pixels_v4": 126487,
+ "wall_pixels_enh": 126529,
+ "zone_edge_issues": [
+  {
+   "zone": "balc_top",
+   "edge": "right",
+   "barrier_coverage": 0.48
+  },
+  {
+   "zone": "family",
+   "edge": "bottom",
+   "barrier_coverage": 0.22
+  },
+  {
+   "zone": "corridor",
+   "edge": "top",
+   "barrier_coverage": 0.05
+  },
+  {
+   "zone": "lift",
+   "edge": "left",
+   "barrier_coverage": 0.57
+  },
+  {
+   "zone": "stair",
+   "edge": "top",
+   "barrier_coverage": 0.05
+  },
+  {
+   "zone": "stair",
+   "edge": "bottom",
+   "barrier_coverage": 0.05
+  },
+  {
+   "zone": "bath2",
+   "edge": "right",
+   "barrier_coverage": 0.59
+  },
+  {
+   "zone": "dress",
+   "edge": "left",
+   "barrier_coverage": 0.46
+  },
+  {
+   "zone": "dress",
+   "edge": "right",
+   "barrier_coverage": 0.53
+  },
+  {
+   "zone": "bed2pass",
+   "edge": "bottom",
+   "barrier_coverage": 0.0
+  },
+  {
+   "zone": "bed2pass",
+   "edge": "left",
+   "barrier_coverage": 0.51
+  },
+  {
+   "zone": "balc_ll",
+   "edge": "left",
+   "barrier_coverage": 0.33
+  },
+  {
+   "zone": "jdress",
+   "edge": "bottom",
+   "barrier_coverage": 0.55
+  }
+ ]
+}
