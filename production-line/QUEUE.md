@@ -12,6 +12,7 @@ Owner key: L1 facts, L2 exterior, L3 interior, L4 viewer, L5 critic, L6 integrat
 | Q6 | L2 | Exterior step 7: motion (pool water, palm sway, sun change, slow push-in) rendered to video | Q5 | QUEUED |
 | Q7 | L3 | Courtyard module: integrate as a separate build file, then critic | Q4 | QUEUED |
 | Q8 | L4 | Walkable exterior viewer from the lane-2 model, once it has a critic pass | Q6 | QUEUED |
+| Q11 | IVG (interior refs) | 4B interior reference images, GF then FF then RF, on branch `lane/interior-refs` (materials and style only; V4 plan decides dimensions) | none | GF REVIEW-PENDING (`6729e98`, 15 rooms, needs critic); FF/RF QUEUED |
 | Q9 | L6 | Log every lane's hand-off in CHANGELOG.md; push to claude/rules-and-status | every item | ONGOING |
 
 ## Q4 critic verdicts (hand-off in production-line/handoffs/Q4.md, commit 212c79f; verified by integrator 18:10)

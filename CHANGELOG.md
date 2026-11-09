@@ -2,6 +2,10 @@
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
 
+## 2026-11-10 (Asia/Dubai), Grok production line
+
+- **Production line restarted with Grok bots** (Colin, 2026-11-10 00:02). Lanes: L1/L6 Plan & Visuals Archivist (facts, integrator), L2 Exterior & Garden 3D, L3 Ashwood Interior 3D Builder (new), L4 Optimizer Bot (viewer), L5 Ashwood Critic (new), interior references Interior Visuals Generator. Added Q11 (interior refs, `lane/interior-refs`) to `production-line/QUEUE.md`; added README rule 7 (lane branches; only the integrator runs `verify_active_pipeline.py`, because it rewrites `active/pipeline_verification.json`). Why: IVG asked for a queue item and branch confirmation. Status: DONE (docs). Q11 GF refs REVIEW-PENDING, not merged yet.
+
 ## 2026-11-09 (Asia/Dubai), roof floor lane
 
 - **FP-4B-RF lane started** (branch `lane/roof-floor`). Added `active/floorplan3d-spike/FP-4B-RF/STEPS.md` with the step 1 gate (pass with notes) and the step 2 gate (blocked: the RF sheet has no metric scale bar, so 35.53 mm/px is an assumption). Files: new only. Status: WIP. Steps 3 to 7 not started. Needs Colin's decision on the scale and on the sheet's "UNAPPROVED / NOT SURVEY CAD" legend.
