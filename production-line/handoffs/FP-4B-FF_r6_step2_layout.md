@@ -52,11 +52,11 @@ Flags:
 
 | Door | Hinge (mm) | Opens toward | Score (runner-up) |
 |---|---|---|---|
-| D1 Master | south jamb (7685, 7008) | west, into Master Suite | 0.96 (0.65) |
-| D2 Bedroom 1 | south jamb | east, into Bedroom 1 | 1.00 (0.43) |
-| D3 Bath 1 | west jamb | south, into Bath 1 (the drawn leaf line agrees) | 0.91 (0.26) |
-| D7 Bath 2 | north jamb | west, into Bath 2 | 1.00 (0.35) |
-| D9 Corridor → J. Dress lobby | north jamb | east | 0.70 (0.43) |
+| D1 Master | south jamb (4389, 6941) | west, into Master Suite | 0.96 (0.65) |
+| D2 Bedroom 1 | south jamb (8643, 6941) | east, into Bedroom 1 | 1.00 (0.43) |
+| D3 Bath 1 | west jamb (9885, 7111) | south, into Bath 1 (the drawn leaf line agrees) | 0.91 (0.26) |
+| D7 Bath 2 | north jamb (2790, 14631) | west, into Bath 2 | 1.00 (0.35) |
+| D9 Corridor → J. Dress lobby | north jamb (7962, 15992) | east | 0.70 (0.43) |
 | D8 Bedroom 2, D10, D11, D12 | — | **NOT FOUND**: arcs too faint or occluded to separate hypotheses | 0.43-0.65 (top two within 0.25) |
 | D4 Lift, D5 M. Dressing, D6 M. Bath | — | no arc drawn (lift door; open passage; leaf hairline only) | — |
 
