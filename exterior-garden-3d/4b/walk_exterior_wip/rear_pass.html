@@ -19,6 +19,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="../model/data/model.js"></script>
 <script src="./overrides/rear_pass1_base.js"></script>
 <script src="./overrides/rear_pass2_glazing.js"></script>
+<script src="./overrides/rear_pass3_water2.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -120,6 +121,7 @@ for (const p of M.polys) { const s=new THREE.Shape(p.pts.map(([x,z])=>new THREE.
 // water — three.js Water2 (examples/jsm/objects/Water2.js, r160, vendored) on the water surfaces drawn in the approved plan.
 // Water2 reflects the scene and REFRACTS what is under it, so it needs a real basin underneath to read as water.
 const useWater2 = Q.get('flatwater')!=='1';
+const W2O = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.water2) || {};   // rear pass 3: pool Water2 tuning
 const tl = new THREE.TextureLoader();
 // mosaic pool tile (pale aqua 2.5 cm-look tiles, grout lines) - procedural, no image assets
 const tTile = tex(g=>{ g.fillStyle='#d6eeee'; g.fillRect(0,0,256,256);   // turquoise mosaic like the p26 / POOL references
@@ -154,7 +156,7 @@ for (const w of M.water) {
   let mesh;
   if (useWater2) mesh = new Water(g, {
       color: B.wall==='tile' ? 0xd8f6f8 : 0xc7d8cc,       // Water2 tints the refracted basin; pale so the tile reads turquoise through it
-      scale: B.wall==='tile' ? 2.2 : 3.5, flowDirection: new THREE.Vector2(.6,.25), flowSpeed: .02, reflectivity: .035,
+      scale: (B.wall==='tile' && W2O.scale) || (B.wall==='tile' ? 2.2 : 3.5), flowDirection: new THREE.Vector2(.6,.25), flowSpeed: (B.wall==='tile' && W2O.flowSpeed) || .02, reflectivity: (B.wall==='tile' && W2O.reflectivity) || .035,
       textureWidth: 1024, textureHeight: 1024,
       normalMap0: tl.load('../model/vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), normalMap1: tl.load('../model/vendor/three/examples/textures/water/Water_2_M_Normal.jpg')});
   else mesh = new THREE.Mesh(g, M_({color:0x6fc3cf, roughness:.1, metalness:.2}));
