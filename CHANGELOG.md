@@ -39,3 +39,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: applied the four step-2 closures (C1-C4) as ASSUMED closures and ran the per-room flood check. Result FAIL: wall raster not closed, rooms do not separate.
 - Why: critic loop 2 asked for doorway closures before the per-room check.
 - Status: WIP. Next: re-trace a closed wall raster, snap seeds to free pixels, re-run separation. No data file changed; no viewer change.
+
+## 2026-11-09 (Asia/Dubai) - FP-4B-FF furniture pass (WIP)
+- Files: active/floorplan3d-spike/FP-4B-FF/r6F_furniture/ (new: build_r6F.py, furniture_r6F.json); data/fp-4b-ff.plan.r6F.js/.json (new); standalone_r6F.html (new); STEPS.md.
+- What: 36 furniture items placed from the approved FF raster symbols, each marked PLAN or ASSUMED. Walls unchanged (r5L).
+- Why: Colin reported the first floor showed no furniture while the approved plan labels it.
+- Status: WIP. 2D checked headless (no page errors). 3D not checked. Bed sizes may be oversized. Critic review pending.

@@ -52,3 +52,11 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - Result: FAIL. The r5L wall raster is not closed. Flood fill from the label seeds gives one component covering almost the whole plate, so rooms do not separate. The outer shell has gaps (top-left and top edge), and many interior partitions are thin or broken. Four closures are not enough.
 - Also: 5 of 14 label seeds fall on wall pixels, so seeds need snapping to the nearest free pixel.
 - Next: re-trace the r5L wall raster with a closed outer shell and full partition coverage, then re-run the separation. Not marked done. Step 2 stays WIP.
+
+## Furniture pass (requested by Colin: the first floor showed no furniture)
+- Source: approved V4 FP-4B-FF raster symbols (embedded plan, 650 x 1000 crop px). The SVG has no furniture vectors; the "Existing furniture" legend swatch is not drawn in the plan.
+- Built: r6F_furniture/build_r6F.py -> data/fp-4b-ff.plan.r6F.js/.json, standalone_r6F.html. 36 items, listed in r6F_furniture/furniture_r6F.json with status per item.
+- Positions: PLAN (drawn symbol location, read from the approved plan at 35.53 mm/px).
+- Types: most are ASSUMED (symbol shape read by eye: wardrobe, dresser, nightstand, vanity). Sizes are derived from the symbol extent, so beds (about 3.1 m long) may be oversized because the symbol includes headboard and pillows. Not verified.
+- Not done: the wall re-trace (step 2, still FAIL), the 3D view check, and the critic review. Viewer checked in 2D only (no page errors).
+- Status: WIP, not critic-reviewed.
