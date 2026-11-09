@@ -43,3 +43,11 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
     - `mismatches/mismatch_log.md`: M31 corrected, CAD loungers added.
     - `tools/shoot.cjs`, `water_probe.cjs`: no screenshot timeout, and the live loop stops before a still.
     - `tricks_register.md` (new): Water2 before/after.
+- **Lane 2, 01:30: M30 resolved, M29/M30 sources cited, critic (d) front pass 17, Blender M25-SET levels** (the 01:26 and 01:27 WIP snapshots 8988490 and 2b37aca already carry most of these files). Status: WIP, back to the Critic.
+  - M30 resolved by Colin (chat ~01:25): the garden is enlarged beyond the CAD plot boundary, concept only. The rear boundary moves from z 0 to z -9.0 and the pool and terrace are not shrunk (`overrides/rear_garden_enlarged.js`; Blender `WALL_*_ext`, `WALL_rear_new`, `HEDGE_garden_*`).
+  - M29/M30 cite Colin's chat instruction from ~00:20 and the attachment. The ~8.40 x 2.80 m size is this lane's measurement; CAD 9.49 x 2.38 m stays on record.
+  - Front pass 17 (`overrides/front_pass17_critic_d.js`, `front_pass.html` dusk hook): irregular dark bronze grid, glass rail in place of the stone band, a stone box inside the CAD balcony (M32), dusk light.
+  - STEP_LOG critic links and loop numbering are fixed; `views/front/CRITIC_REPORTS.md` is new.
+  - Blender: heights now follow model.js (M25-SET); late-afternoon sun at 14 degrees; loungers face the pool; denser boundary planting.
+  - Web: the platform top uses cream paving, which fixes the wood-toned near edge.
+  - NOTE: the pool_pass mp4 in 8988490 is the stale 00:57 clip and gets replaced by a re-render.

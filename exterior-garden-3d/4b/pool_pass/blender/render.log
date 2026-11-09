@@ -1553,3 +1553,22 @@ Fra:1 Mem:348.82M (Peak 353.38M) | Time:00:00.94 | Mem:54.92M, Peak:55.29M | Sce
 Fra:1 Mem:349.33M (Peak 353.38M) | Time:00:00.94 | Mem:54.92M, Peak:55.29M | Scene, ViewLayer | Updating Scene BVH | Building BVH
 Fra:1 Mem:349.33M (Peak 353.38M) | Time:00:01.05 | Mem:75.75M, Peak:77.73M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
 Fra:1 Mem:349.33M (Peak 353.38M) | Time:00:01.05 | Mem:75.75M, Peak:77.73M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:373.63M (Peak 373.63M) | Time:00:01.09 | Mem:75.75M, Peak:77.73M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:373.63M (Peak 373.63M) | Time:00:01.09 | Mem:100.06M, Peak:100.06M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:373.63M (Peak 373.63M) | Time:00:01.10 | Mem:100.56M, Peak:100.56M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:373.88M (Peak 373.88M) | Time:00:01.10 | Mem:100.81M, Peak:100.81M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:373.88M (Peak 373.88M) | Time:00:01.10 | Mem:100.81M, Peak:100.81M | Scene, ViewLayer | Updating Images | Loading sky_nishita
+Fra:1 Mem:374.89M (Peak 374.89M) | Time:00:01.23 | Mem:101.81M, Peak:101.81M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:374.89M (Peak 374.89M) | Time:00:01.23 | Mem:101.81M, Peak:101.81M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:374.89M (Peak 374.89M) | Time:00:01.23 | Mem:101.89M, Peak:101.89M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:374.90M (Peak 374.90M) | Time:00:01.23 | Mem:101.89M, Peak:101.89M | Scene, ViewLayer | Updating Lights | Importance map
+Fra:1 Mem:438.93M (Peak 726.90M) | Time:00:01.97 | Mem:165.93M, Peak:325.90M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:439.47M (Peak 726.90M) | Time:00:01.99 | Mem:166.47M, Peak:325.90M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:439.47M (Peak 726.90M) | Time:00:01.99 | Mem:166.47M, Peak:325.90M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:439.47M (Peak 726.90M) | Time:00:01.99 | Mem:166.39M, Peak:325.90M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:439.47M (Peak 726.90M) | Time:00:01.99 | Mem:166.48M, Peak:325.90M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:439.47M (Peak 726.90M) | Time:00:01.99 | Mem:166.48M, Peak:325.90M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:440.47M (Peak 726.90M) | Time:00:01.99 | Mem:166.48M, Peak:325.90M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:440.47M (Peak 726.90M) | Time:00:01.99 | Mem:166.48M, Peak:325.90M | Scene, ViewLayer | Sample 0/48
+Fra:1 Mem:507.29M (Peak 726.90M) | Time:00:03.78 | Remaining:01:24.04 | Mem:233.27M, Peak:325.90M | Scene, ViewLayer | Sample 1/48
+Fra:1 Mem:507.29M (Peak 726.90M) | Time:00:33.54 | Remaining:00:57.52 | Mem:233.27M, Peak:325.90M | Scene, ViewLayer | Sample 17/48
