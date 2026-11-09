@@ -24,6 +24,16 @@ Checked 2026-11-09 21:30 Asia/Dubai. Read with `AGENTS.md`. Update this file at 
 | Blender realism pass M20–M24 (sky, grass, interiors behind glass, hedges, trees, palms, pool edge, eye-level cameras) | Built only into `exterior-garden-3d/4b/blender_wip/`; official blends untouched | `exterior-garden-3d/CHANGELOG.md`, mismatch log |
 | Explorable 4-bed web model | Only the ground floor exists; FF and RF not started | |
 
+## 7-step loop tracker (Colin, 2026-11-09 23:07: start at 1, run to 7, loop until done)
+Updated 2026-11-09 23:15 Dubai by the integrator. These are the integrator's reading of each lane, and the lanes have been asked to confirm.
+| Lane / item | Current step | Loop | Latest output | Gate |
+|---|---|---|---|---|
+| Exterior 4B, Blender (official renders) | 6 Critique (step 5: none in source) | 1 | `blender_wip/build_scene_f1.py`, not rendered | Needs a render on Colin's PC |
+| Exterior 4B, walkable web (exterior + fixer lanes) | 6 Critique, front camera passes | 1 | `walkable/walkable_v6.html`, `walk_exterior_wip/front_pass.html` | REVIEW-PENDING |
+| Interior GF viewer v2 | 4 Finish done; 5 Printed matter next | 1 | `FP-4B-GF/index.html`, `courtyard_feature_r2.js` not integrated | REVIEW-PENDING |
+| Interior FF | 3 Blockout (walls and room labels; no doors, windows or furniture) | 1 | `FP-4B-FF/standalone_r4.html` | CRITIC-FAIL on the last check; r4 not re-checked |
+| Interior RF | 1 Reference not started | 0 | — | — |
+
 ## Open issues
 - **M24 OPEN:** rear GF stone pier / FF stone panel may be mirrored vs brochure p26 (check the M16 reading first).
 - M12 open (RF core position).

@@ -39,6 +39,7 @@ Rules for all seven steps:
 - Images decide appearance, CAD decides dimensions. Where they disagree, log it in `exterior-garden-3d/4b/mismatches/mismatch_log.md` and use image for look, CAD for footprint.
 - **Run straight through to step 7** (Colin, 2026-11-09 17:40): no hold. Each step still gets its gate log and critic check before the next step starts, but no wait for Colin between steps 1 and 7. Colin reviews the finished set.
 - Pure review gates use the independent critic (not the builder).
+- **Loop until done** (Colin, 2026-11-09 23:07 Dubai): every lane (exterior, GF interior, first floor, roof, viewers) starts at step 1 and works through to step 7 without stopping. If the step-6 critique or the step-7 review finds defects, go back to the earliest step the defect belongs to and run forward to step 7 again. Repeat the loop until the critic passes every step. Each lane reports its current step and loop number; the integrator keeps them in `STATUS.md`.
 
 ## Exterior: 4-bed status
 - Steps 1–4 done, revised. Steps 5–7 now go ahead (Colin, 2026-11-09 17:40). Official `4b_*.blend` untouched by WIP.
