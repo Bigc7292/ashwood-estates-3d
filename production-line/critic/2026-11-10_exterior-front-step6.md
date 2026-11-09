@@ -38,3 +38,21 @@ Roof slab top, tower top and facade base sit on the reference rows within about 
 
 ## Next for the builder (lane 2)
 Fix defects 1-3 first (FF glazing, screen, balustrade), one per pass. Then 6 and 7, then 4 (CAD check first). Re-submit with the same locked camera and `shift:true`. Not DONE.
+
+## Addendum (2026-11-10 00:35): pass 16 and per-pass gate notes 8 to 16
+Pass 16 is lane/exterior `50ec220`; I checked it at `cc26030`. Evidence: `2026-11-10_exterior-front-step6/builder_renders_pass8_to_16_grid.png` (the builder's left-hand renders, passes 8 to 16) and `2026-11-10_exterior-front-step6/pass16_ref_vs_critic_render.png` (my own render at the locked camera with shift). Each note judges only that pass's one change. The overall view stays CRITIC-FAIL on the defect list above.
+
+| Pass | Commit | Change | Pass verdict | Note |
+|---|---|---|---|---|
+| 8 | bbe1b36 | glazing: dark glass, lit rooms behind | **CRITIC-FAIL** | The FF side bays still read as opaque brown panels, with no room depth visible (defect 1). |
+| 9 | f1cd5ad | GF glazing band widened (M27) | CRITIC-FAIL (superseded) | It broke the CAD width and was reverted in pass 10. |
+| 10 | 8aba267 | GF glass back to the CAD width x 7.50-9.59, timber door | **CRITIC-PASS** | It holds the CAD width, and the door is a labelled image-read assumption. |
+| 11 | e62ad64 | slat screen recoloured to warm timber, single layer | **CRITIC-FAIL** | The reference screen is dark bronze with an irregular grid; the render is even orange slats on a brown panel (defect 2). |
+| 12 | 0eea0b2 | flat coping cap on the tower | **CRITIC-PASS** | The cap matches the reference, and the footprint and height are unchanged. |
+| 13 | 8fda529 | shift lens (parallel verticals) | **CRITIC-PASS** | The verticals are parallel as in ELEV-FRONT, and the camera position is unchanged. |
+| 14 | ca7c9d6 | tower top 9.73 m (M25) | **CRITIC-PASS on the row only** | The tower top sits on the reference row. This is still conditional on P1: the 9.73 m (front) vs 11.6 m (elsewhere) split needs Colin's single height set. |
+| 15 | ba038ea | FF storey +0.50 m (M28) | **CRITIC-PASS on the row only** | The slab top is on the reference row (within 5 px at 960x540). Same P1 condition: this exists in the front-view build only. This is the missing pass 15 note. |
+| 16 | 50ec220 | three shrub balls → one open multi-stem tree | **CRITIC-PASS** | It fixes defect 6's "cartoon balls". The canopy still reads as clumped blobs, and the low grasses and flowering shrubs at the base (reference x 520-650, y 380-420) are still missing. Next: looser foliage and add the base planting. |
+
+The builder's open items also hold. The carport canopy is too deep and thick against the thin reference slab (defect 8). The left palms stand in front of the carport here, but behind it in the reference: move them back behind the carport line, at the plan tree positions (model.js trees).
+Remaining order for step 6: defects 1, 2, 3, then 7, 4, 5, 8, 9.
