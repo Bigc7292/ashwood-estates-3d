@@ -28,6 +28,9 @@ Checked 2026-11-09 21:30 Asia/Dubai. Read with `AGENTS.md`. Update this file at 
 - **M24 OPEN:** rear GF stone pier / FF stone panel may be mirrored vs brochure p26 (check the M16 reading first).
 - M12 open (RF core position).
 - Step 3/4 re-render was interrupted: some step-3 raw renders and all step-4 renders/comparisons are from the earlier pass.
+- `exterior-garden-3d/4b/blender/build_scene.py` does not compile (missing comma, `palmleaf=` line). The fixed copy is `blender_wip/build_scene_f1.py`; run that one for F1 renders.
+- First-floor walls viewer (`FP-4B-FF/`) merged but CRITIC-FAIL: interior partitions and courtyard void walls missing, scale unreconciled. Re-trace in progress. Review bar (Colin): FF must match GF viewer v2 in rooms, furniture, materials, full-height walls and lighting, as well as the approved FF plan.
+- Walkable exterior v3: aerial view uses generic trees and grey ground, not the approved palms; other angles unchecked.
 - `.venv/` is committed (Colin's choice, 2026-11-09), so the repo is ~2.4 GB.
 
 ## Agreed plan (draft, 2026-11-09, waiting for Colin's edits)
