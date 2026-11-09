@@ -1,6 +1,6 @@
 {
   "view": "OUTDOOR-COURTYARD",
-  "status": "LOCK DRAFT, pass 5 (SOLVE from model walls: camera at the open courtyard SW corner, diagonal across the pond; per critic go-ahead after pass 4)",
+  "status": "LOCK DRAFT, pass 6 (ASSUMPTION: camera raised above the bay wall and FOV widened to 70 deg; CAD bay kept, M71 open for Colin)",
   "locked": "2026-11-09 Asia/Dubai, lane exterior-roof-courtyard",
   "reference_image": "exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-OUTDOOR-COURTYARD_GENERATED-CONCEPT.png",
   "page": "exterior-garden-3d/4b/walk_exterior_wip/roof_courtyard_pass.html",
@@ -10,31 +10,31 @@
     "title": "OUTDOOR-COURTYARD",
     "pos": [
       11.0,
-      1.6,
+      4.6,
       12.8
     ],
     "tgt": [
-      16.0,
-      2.2,
-      16.2
+      14.6,
+      1.6,
+      15.6
     ],
-    "fov": 50
+    "fov": 70
   },
-  "solve_method": "Solve from the model: rasterised GF walls and roof/canopy boxes at 0.25 m, flood fill from the pond centre. The open courtyard in the model is only the pond bay, x about 11.0-17.5, z about 13.0-16.5; walls bound it on the west (x<=10.5) and the south (z<=12.5) and north (z~17). Camera at the SW corner (11.0, 1.6, 12.8) inside that bay, eye height 1.6 m, aimed NE across the pond to the north wall. Limit: the reference courtyard is wider than the model bay, so the framing is compromised; logged as M71.",
+  "solve_method": "Solve from the model: rasterised GF walls and roof/canopy boxes at 0.25 m, flood fill from the pond centre. The open courtyard in the model is only the pond bay, x about 11.0-17.5, z about 13.0-16.5; walls bound it on the west (x<=10.5) and the south (z<=12.5) and north (z~17). Camera at the SW corner (11.0, 1.6, 12.8) inside that bay, eye height 1.6 m, aimed NE across the pond to the north wall. Limit: the reference courtyard is wider than the model bay, so the framing is compromised; logged as M71. Pass 6 (coordinator working default, 2026-11-09 23:48): keep the CAD bay, raise the camera to y 4.6 and widen the FOV to 70 deg so the pond, planter tree and far glazing read from inside the bay. Pos [11.0,4.6,12.8], tgt [14.6,1.6,15.6]. ASSUMPTION, Colin can overrule.",
   "check": "Side-by-side at 1280x720: pond near edge and bonsai crown on the same lines in both. One fix per critic pass; camera stays locked once basically identical.",
   "label": "assumption-derived camera; reference is an AI-generated concept image, not a photograph or survey",
   "camera": {
     "position": [
       11.0,
-      1.6,
+      4.6,
       12.8
     ],
     "target": [
-      16.0,
-      2.2,
-      16.2
+      14.6,
+      1.6,
+      15.6
     ],
-    "vertical_fov_deg": 50,
+    "vertical_fov_deg": 70,
     "render_size_px": [
       1280,
       720
