@@ -21,6 +21,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/site_pass3_entry_path.js"></script>
 <script src="./overrides/site_pass4_path_beds.js"></script>
 <script src="./overrides/site_step4_pass1_path_tone.js"></script>
+<script src="./overrides/site_step4_pass2_lawn_tone.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -99,6 +100,8 @@ MAT.timber_lit = M_({color:0xa8825c, roughness:.7, emissive:0x3a2414, emissiveIn
 MAT.curtain = M_({color:0xbea894, roughness:.95, emissive:0x2a2620, emissiveIntensity:.5});   // left pass 15 pale curtains behind FF windows (flat colour)
 MAT.window_dark = M_({color:0x3a3e42, roughness:.08, metalness:.55, emissive:0x1a1814, emissiveIntensity:.4});   // left pass 11 FF window panes
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
+// site step 4 pass 2: per-view flat material colours (MODEL_OVERRIDES.mat_flat {name: hex}); drops the material's texture map
+for (const [k, v] of Object.entries((window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.mat_flat) || {})) if (MAT[k]) { MAT[k].map = null; MAT[k].color.setHex(v); MAT[k].needsUpdate = true; }
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
 const hideCats = new Set((Q.get('hide')||'').split(',').filter(Boolean));
