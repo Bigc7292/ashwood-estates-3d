@@ -1,0 +1,16 @@
+[
+ {"name":"Master Suite","poly":[[151.8,198.8],[266.5,198.8],[266.5,347.5],[151.8,347.5]],"edges":"W wall face 151.8; E partition face 266.5; N glazing line 198.8 (W1/W2); S wall face 347.5 (D5 passage closed on wall line)","closures":[]},
+ {"name":"Family Living","poly":[[271.8,198.8],[389.5,198.8],[389.5,349.0],[271.8,349.0]],"edges":"W partition 271.8; E partition 389.5; N glazing 198.8 (W3/W4); S = C1","closures":["C1"]},
+ {"name":"Bedroom 1","poly":[[395.8,198.8],[511.2,198.8],[511.2,364.2],[459.8,364.2],[459.8,347.0],[395.8,347.0]],"edges":"W partition 395.8; E wall 511.2; N glazing 198.8 (W5); S lift/Bath 1 wall 347 with D3 closed on wall line; wardrobe recess to 364.2","closures":[]},
+ {"name":"M. Dressing","poly":[[149.8,349.8],[266.5,349.8],[266.5,452.2],[149.8,452.2]],"edges":"walls all sides (scan lines h360-h410, v200); wardrobes inside","closures":[]},
+ {"name":"M. Bath","poly":[[149.8,458.0],[266.5,458.0],[266.5,537.2],[149.8,537.2]],"edges":"walls; W6 window on west face","closures":[]},
+ {"name":"Corridor","poly":[[271.8,349.0],[368.5,349.0],[368.5,420.0],[370.8,420.0],[370.8,552.0],[368.5,552.0],[368.5,638.0],[271.8,638.0]],"edges":"W partition 271.8; E lift wall 368.5 (D4 closed), void-edge line 370.8 (C2), Junior/J.Dress wall 368.5 (D9 closed); N = C1; S = C3; stair inside","closures":["C1","C2","C3"]},
+ {"name":"Lift","poly":[[375.0,353.8],[418.5,353.8],[418.5,402.2],[375.0,402.2]],"edges":"lift shaft walls all sides; D4 on west face","closures":[]},
+ {"name":"Bath 1","poly":[[424.8,350.0],[456.5,350.0],[456.5,368.0],[511.2,368.0],[511.2,417.5],[424.8,417.5]],"edges":"W lift wall 424.8; N D3 on wall line 350 + wardrobe-recess wall 368; E wall 511.2 (W8); S courtyard wall 417.5","closures":[]},
+ {"name":"Bath 2","poly":[[151.8,546.0],[219.0,546.0],[219.0,618.5],[151.8,618.5]],"edges":"walls; WC cubicle included; D7 on east wall line; W7 on west face","closures":[]},
+ {"name":"Dress","poly":[[222.0,546.0],[269.5,546.0],[269.5,608.5],[222.0,608.5]],"edges":"W wall 222 (D7); E corridor wall 269.5; S wall 608.5 (D12 closed on wall line); joinery inside","closures":[]},
+ {"name":"Bedroom 2","poly":[[151.8,620.8],[222.0,620.8],[222.0,612.0],[264.2,612.0],[264.2,747.2],[151.8,747.2]],"edges":"N Bath 2 wall 620.8 and Dress wall 612; E corridor wall 264.2 (D8 closed); S window line 747.2 (W9); W wall 151.8","closures":[]},
+ {"name":"J. Dress","poly":[[377.8,560.8],[437.0,560.8],[437.0,640.0],[377.8,640.0]],"edges":"N wall 560.8; W corridor wall 377.8 (D9); E partition 437 (D11); S = C4; internal wall stub y608-612 x375-403 with opening D10","closures":["C4"]},
+ {"name":"J. Bath","poly":[[440.0,560.8],[511.2,560.8],[511.2,636.5],[440.0,636.5]],"edges":"walls all sides; WC enclosure included","closures":[]},
+ {"name":"Junior Suite","poly":[[377.8,640.0],[511.2,640.0],[511.2,758.5],[377.8,758.5]],"edges":"N = C4 (x377.8-437) + J. Bath south wall (x437-511); E wall 511.2; S glazing line 758.5 (W10); W wall 377.8","closures":["C4"]}
+]
