@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ashwood 4B Exterior 3D</title>
+<style>
+:root{--ui:#10161ccc;--ink:#eef3f6;--mut:#a9b6c0;--acc:#e9b872}
+html,body{margin:0;height:100%;overflow:hidden;background:#123d6b;font:13px/1.35 system-ui,Segoe UI,Arial,sans-serif;color:var(--ink)}
+canvas{display:block}
+#ui{position:fixed;top:10px;left:10px;background:var(--ui);padding:8px 10px;border-radius:8px;max-width:270px;backdrop-filter:blur(4px);z-index:5}
+#ui h1{font-size:13px;margin:0 0 6px;font-weight:600}
+#ui .row{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0}
+#ui button{background:#ffffff14;color:var(--ink);border:1px solid #ffffff2a;border-radius:5px;padding:4px 7px;font:inherit;cursor:pointer}
+#ui button.on{background:var(--acc);color:#1b1206;border-color:var(--acc)}
+#ui label{color:var(--mut);display:flex;align-items:center;gap:6px}
+#ui input[type=range]{width:130px}
+#help{color:var(--mut);font-size:12px;margin-top:4px}
+#fps{position:fixed;top:10px;right:10px;background:var(--ui);padding:4px 8px;border-radius:6px;font-variant-numeric:tabular-nums;z-index:5;display:none}
+#cap{position:fixed;left:0;right:0;bottom:0;background:#0b0f13e6;color:#fff;padding:6px 12px;font-size:13px;text-align:center;z-index:10}
+#load{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;z-index:4}
+#cross{position:fixed;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:#fff9;display:none;z-index:5}
+body.shot #ui,body.shot #fps{display:none}
+@media (max-width:600px){#ui{max-width:calc(100% - 40px)}}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
+</head><body>
+<div id="load">Loading model…</div>
+<div id="ui">
+  <h1>Ashwood 4B · exterior</h1>
+  <div class="row" id="presets"></div>
+  <div class="row"><button id="bOrbit" class="on">Orbit</button><button id="bWalk">Walk (WASD)</button><button id="bFps">fps</button></div>
+  <label>Sun <input id="sun" type="range" min="0" max="360" step="1"></label>
+  <div id="help">Orbit: drag / wheel / right-drag. Walk: click the view, WASD + mouse, Shift = run, Esc = release.</div>
+</div>
+<div id="fps"></div><div id="cross"></div>
+<div id="cap"><b>Concept visualisation: not survey-verified, not construction-ready, not certified</b></div>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { Water } from 'three/addons/objects/Water2.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+
+const Q = new URLSearchParams(location.search);
+if (Q.get('shot')) document.body.classList.add('shot');
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, +(Q.get('dpr') || 1)));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.95;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.1, 900);
+
+// ---------------- sky (deep blue zenith -> pale warm horizon, glow toward the sun) ----------------
+const SKY = { zenith: new THREE.Color(0x0f3f7e), mid: new THREE.Color(0x3f7fb8), horizon: new THREE.Color(0xc9dbe4), ground: new THREE.Color(0x8c8676) };
+const sunDir = new THREE.Vector3(1, 0.375, 0).normalize();
+function skyMaterial() {
+  return new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false, fog: false,
+    uniforms: { zen: { value: SKY.zenith }, mid: { value: SKY.mid }, hor: { value: SKY.horizon }, gnd: { value: SKY.ground }, sun: { value: sunDir } },
+    vertexShader: `varying vec3 vD; void main(){ vD = normalize(position); vec4 p = modelViewMatrix*vec4(position,1.); gl_Position = projectionMatrix*p; gl_Position.z = gl_Position.w; }`,
+    fragmentShader: `uniform vec3 zen,mid,hor,gnd,sun; varying vec3 vD;
+      void main(){ vec3 d = normalize(vD); float h = d.y;
+        vec3 c = h > 0. ? mix(mix(hor, mid, smoothstep(0.0, 0.22, h)), zen, smoothstep(0.18, 0.85, h)) : mix(hor, gnd, smoothstep(0.0, 0.06, -h));
+        float s = max(dot(d, normalize(sun)), 0.); c += vec3(1.0,0.72,0.45) * (pow(s, 8.) * 0.35 + pow(s, 200.) * 1.5) * smoothstep(-0.05, 0.1, h);
+        gl_FragColor = vec4(c, 1.); }` });
+}
+const sky = new THREE.Mesh(new THREE.SphereGeometry(800, 32, 16), skyMaterial()); sky.frustumCulled = false; scene.add(sky);
+scene.fog = new THREE.Fog(SKY.horizon.clone().lerp(SKY.mid, 0.15), 90, 520);
+
+// environment (reflections + ambient) from the same sky, prefiltered with PMREM
+const pmrem = new THREE.PMREMGenerator(renderer);
+let envRT = null;
+function buildEnv() {
+  const es = new THREE.Scene(); const m = skyMaterial(); m.uniforms.gnd.value = new THREE.Color(0x6f6a5c);
+  es.add(new THREE.Mesh(new THREE.SphereGeometry(100, 32, 16), m));
+  const rt = pmrem.fromScene(es, 0.02); if (envRT) envRT.dispose(); envRT = rt; scene.environment = rt.texture;
+}
+
+// ---------------- sun (warm, low, from the side) ----------------
+const sun = new THREE.DirectionalLight(0xffd2a0, 3.2);
+sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+const SC = sun.shadow.camera; SC.left = -30; SC.right = 30; SC.top = 30; SC.bottom = -30; SC.near = 1; SC.far = 160;
+sun.shadow.bias = -0.0003; sun.shadow.normalBias = 0.03; sun.shadow.radius = 3;
+const CENTER = new THREE.Vector3(9.4, 0, 15);
+sun.target.position.copy(CENTER); scene.add(sun, sun.target);
+const hemi = new THREE.HemisphereLight(0xbcd4ea, 0x6b6450, 0.25); scene.add(hemi);
+function setSun(azDeg) {    // azimuth in the Blender convention used by render_views.py (sun rotation_euler.z)
+  const rz = THREE.MathUtils.degToRad(azDeg);
+  sunDir.set(0.927 * Math.sin(rz), 0.375, 0.927 * Math.cos(rz)).normalize();
+  sun.position.copy(CENTER).addScaledVector(sunDir, 80);
+  document.getElementById('sun').value = ((azDeg % 360) + 360) % 360;
+  buildEnv();
+}
+
+// ---------------- camera presets (from blender/views_blender.json; Blender (x,y,z) -> three (x, z, -y)) ----------------
+const B2T = ([x, y, z]) => new THREE.Vector3(x, z, -y);
+const vfov = lens => THREE.MathUtils.radToDeg(2 * Math.atan(18 / lens * 9 / 16));
+const RENDER_VIEWS = {   // exact Cycles render cameras (for verification side-by-sides)
+  aerial: { pos: [9.4, -50, 34], tgt: [9.4, -14.5, 0.5], lens: 32 }, front_approach: { pos: [13.5, -46, 2.2], tgt: [8.5, -22, 4.8], lens: 30 },
+  garden_pool: { pos: [9.4, 19, 1.7], tgt: [9.4, -6, 5.0], lens: 32 }, elev_front: { pos: [9.0, -52, 2.4], tgt: [9.0, -20, 5.4], lens: 38 },
+  elev_rear: { pos: [9.4, 24, 2.2], tgt: [9.4, -5, 5.2], lens: 36 }, front_garden: { pos: [16, -40, 3.2], tgt: [8, -25, 2.4], lens: 26 },
+  back_garden: { pos: [21, 11, 1.8], tgt: [8, -6, 4.0], lens: 28 }, pool: { pos: [17.5, 1.8, 1.9], tgt: [6, -2.6, 1.4], lens: 22 },
+  terrace: { pos: [6.5, 0.4, 2.2], tgt: [15, -3.2, 1.2], lens: 22 }, driveway: { pos: [1.5, -40, 2.6], tgt: [4.5, -26, 1.8], lens: 26 },
+  rf_terrace: { pos: [15.0, -3.6, 9.8], tgt: [6.5, -8.6, 9.6], lens: 18 }, outdoor_terrace: { pos: [15.6, -16.1, 2.1], tgt: [11.4, -13.0, 1.9], lens: 14 },
+};
+const EYE = 1.65;
+// user presets: eye-level ones are LEVEL (no pitch -> verticals stay vertical) at 1.65 m
+const PRESETS = [
+  { id: 'front', label: 'Front street', from: 'elev_front', eye: true },
+  { id: 'rear', label: 'Rear garden / pool', from: 'garden_pool', eye: true },
+  { id: 'gfront', label: 'Garden front', from: 'front_approach', eye: true },
+  { id: 'gback', label: 'Garden back', from: 'back_garden', eye: true },
+  { id: 'pool', label: 'Pool', from: 'pool', eye: true },
+  { id: 'aerial', label: 'Aerial', from: 'aerial', eye: false },
+];
+function viewOf(v, eye) {
+  const p = B2T(v.pos), t = B2T(v.tgt);
+  if (eye) { p.y = EYE; t.y = EYE; }
+  const d = new THREE.Vector3().subVectors(B2T(v.tgt), B2T(v.pos));
+  const hd = Math.atan2(-(d.x), -(d.z));   // Blender heading atan2(-dx, dy) with dy = -dz(three)
+  return { p, t, fov: vfov(v.lens), sunAz: THREE.MathUtils.radToDeg(hd) + 52 };
+}
+
+// ---------------- controls ----------------
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.enableDamping = true; orbit.dampingFactor = 0.08; orbit.maxPolarAngle = Math.PI * 0.495; orbit.minDistance = 1; orbit.maxDistance = 220;
+const walk = new PointerLockControls(camera, document.body);
+let mode = 'orbit';
+const keys = {};
+addEventListener('keydown', e => { keys[e.code] = true; }); addEventListener('keyup', e => { keys[e.code] = false; });
+function setMode(m) {
+  mode = m; document.getElementById('bOrbit').classList.toggle('on', m === 'orbit'); document.getElementById('bWalk').classList.toggle('on', m === 'walk');
+  orbit.enabled = m === 'orbit'; document.getElementById('cross').style.display = m === 'walk' ? 'block' : 'none';
+  if (m === 'walk') { const e = new THREE.Euler().setFromQuaternion(camera.quaternion, 'YXZ'); e.x = 0; e.z = 0; camera.quaternion.setFromEuler(e); groundY = probeGround(camera.position) ?? 0; camera.position.y = groundY + EYE; }
+  else { const dir = new THREE.Vector3(); camera.getWorldDirection(dir); orbit.target.copy(camera.position).addScaledVector(dir, 12); orbit.update(); }
+}
+document.getElementById('bOrbit').onclick = () => { walk.unlock(); setMode('orbit'); };
+document.getElementById('bWalk').onclick = () => setMode('walk');
+renderer.domElement.addEventListener('click', () => { if (mode === 'walk' && !walk.isLocked) walk.lock(); });
+function applyPreset(pr, exact) {
+  const v = viewOf(RENDER_VIEWS[pr.from], exact ? false : pr.eye);
+  camera.fov = v.fov; camera.updateProjectionMatrix();
+  camera.position.copy(v.p); camera.lookAt(v.t); orbit.target.copy(v.t); orbit.update();
+  setSun(v.sunAz);
+  document.querySelectorAll('#presets button').forEach(b => b.classList.toggle('on', b.dataset.id === pr.id));
+  if (pr.eye && !exact) setMode(mode === 'walk' ? 'walk' : 'orbit');
+}
+for (const pr of PRESETS) {
+  const b = document.createElement('button'); b.textContent = pr.label; b.dataset.id = pr.id; b.onclick = () => applyPreset(pr);
+  document.getElementById('presets').appendChild(b);
+}
+document.getElementById('sun').oninput = e => setSun(+e.target.value);
+let showFps = !!Q.get('fps');
+document.getElementById('bFps').onclick = () => { showFps = !showFps; document.getElementById('fps').style.display = showFps ? 'block' : 'none'; };
+if (showFps) document.getElementById('fps').style.display = 'block';
+
+// ---------------- materials (per glTF material name) ----------------
+const tl = new THREE.TextureLoader();
+const FOLIAGE = new Set(['hedge', 'leaf', 'palmleaf']);
+const NO_CAST = new Set(['lawn', 'context_lawn', 'ground', 'paving', 'paving_noao', 'lawn_noao', 'ground_noao']);
+function base(n) { return n.replace(/_noao$/, '').replace(/\.\d+$/, ''); }
+function tuneMaterial(m) {
+  const k = base(m.name);
+  if (m.map) { m.map.anisotropy = 4; }
+  if (m.aoMap) { m.aoMapIntensity = 1.0; }
+  m.envMapIntensity = 0.9;
+  if (k === 'glass') {   // dark reflective glazing (renders: deep reflections of sky + trees, faint warm interior)
+    const g = new THREE.MeshStandardMaterial({ name: m.name, color: 0x0d1013, roughness: 0.04, metalness: 0.35, envMapIntensity: 1.6 });
+    return g;
+  }
+  if (k === 'balglass') return new THREE.MeshStandardMaterial({ name: m.name, color: 0xcfe9ea, roughness: 0.05, metalness: 0.1, transparent: true, opacity: 0.22, depthWrite: false, envMapIntensity: 1.4 });
+  if (k === 'led') { m.emissive = new THREE.Color(0xffd29a); m.emissiveIntensity = 2.2; m.color.set(0xfff0d8); return m; }
+  if (FOLIAGE.has(k)) { m.side = THREE.DoubleSide; m.shadowSide = THREE.DoubleSide; m.roughness = 0.8; m.envMapIntensity = 0.6; }
+  if (k === 'bronze') { m.envMapIntensity = 1.0; }
+  return m;
+}
+
+// ---------------- load + merge static meshes by material ----------------
+const loader = new GLTFLoader();
+let groundMeshes = [];
+const waters = [];
+loader.load('./ashwood_4b_exterior.glb', gltf => {
+  const root = gltf.scene; root.updateMatrixWorld(true);
+  const groups = new Map(); const waterBoxes = {};
+  root.traverse(o => {
+    if (!o.isMesh) return;
+    const nm = (o.name + ' ' + (o.parent?.name || ''));
+    if (/POOL_water|COURTYARD_water/.test(nm)) { const b = new THREE.Box3().setFromObject(o); waterBoxes[/POOL/.test(nm) ? 'pool' : 'court'] = b; return; }
+    const key = o.material.name;
+    if (!groups.has(key)) groups.set(key, { mat: o.material, geos: [] });
+    const g = o.geometry.clone(); g.applyMatrix4(o.matrixWorld); groups.get(key).geos.push(g);
+  });
+  const world = new THREE.Group(); world.name = 'ashwood_4b_merged';
+  let draws = 0, tris = 0;
+  for (const [key, { mat, geos }] of groups) {
+    const names = geos.map(g => new Set(Object.keys(g.attributes)));
+    const common = [...names[0]].filter(a => names.every(s => s.has(a)));
+    for (const g of geos) { for (const a of Object.keys(g.attributes)) if (!common.includes(a)) g.deleteAttribute(a); if (!g.index) g.setIndex([...Array(g.attributes.position.count).keys()]); }
+    const merged = mergeGeometries(geos, false); geos.forEach(g => g.dispose());
+    const m = tuneMaterial(mat);
+    const mesh = new THREE.Mesh(merged, m); mesh.name = key;
+    const k = base(key);
+    mesh.receiveShadow = true; mesh.castShadow = !NO_CAST.has(key) && k !== 'balglass' && k !== 'led';
+    if (k === 'balglass') mesh.renderOrder = 2;
+    world.add(mesh); draws++; tris += merged.index.count / 3;
+    if (['paving', 'lawn', 'context_lawn', 'ground', 'coping', 'pooltile', 'stone', 'stone_rf', 'soffit'].includes(k)) groundMeshes.push(mesh);
+  }
+  scene.add(world);
+  // ---------------- water: three.js Water2 over the modelled basins (pool tile basin / courtyard stone floor) ----------------
+  const n0 = tl.load('./vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), n1 = tl.load('./vendor/three/examples/textures/water/Water_2_M_Normal.jpg');
+  for (const [id, b] of Object.entries(waterBoxes)) {
+    const sz = b.getSize(new THREE.Vector3()), c = b.getCenter(new THREE.Vector3());
+    const w = new Water(new THREE.PlaneGeometry(sz.x, sz.z), {
+      color: id === 'pool' ? 0xdff7f7 : 0xd5e2dc, scale: id === 'pool' ? 2.4 : 3.2, flowDirection: new THREE.Vector2(0.6, 0.25), flowSpeed: 0.02,
+      reflectivity: 0.04, textureWidth: 512, textureHeight: 512, normalMap0: n0, normalMap1: n1 });
+    w.rotation.x = -Math.PI / 2; w.position.set(c.x, b.max.y, c.z); w.name = 'WATER2_' + id; scene.add(w); waters.push(w);
+  }
+  document.getElementById('load').remove();
+  window.__stats = { draws, tris: Math.round(tris), materials: [...groups.keys()] };
+  const pv = Q.get('view');
+  if (pv && RENDER_VIEWS[pv]) applyPreset({ id: pv, from: pv, eye: false }, true);
+  else applyPreset(PRESETS.find(p => p.id === (Q.get('preset') || 'rear')) || PRESETS[1]);
+  if (Q.get('walk')) setMode('walk');
+  window.__ready = true; document.title = 'Ashwood 4B Exterior 3D';
+}, undefined, e => { document.getElementById('load').textContent = 'Failed to load model: ' + e.message; });
+
+// ---------------- walk: ground following (raycast down from knee height, 10 Hz), no wall collision (v1) ----------------
+const ray = new THREE.Raycaster(); ray.far = 30; let groundY = 0, probeT = 0;
+function probeGround(p) {
+  ray.set(new THREE.Vector3(p.x, p.y - EYE + 0.6, p.z), new THREE.Vector3(0, -1, 0));
+  const h = ray.intersectObjects(groundMeshes, false)[0]; return h ? h.point.y : null;
+}
+const clock = new THREE.Clock(); const fwd = new THREE.Vector3(), side = new THREE.Vector3();
+let frames = 0, acc = 0;
+function loop() {
+  requestAnimationFrame(loop);
+  const dt = Math.min(clock.getDelta(), 0.1);
+  if (mode === 'walk') {
+    const sp = (keys.ShiftLeft || keys.ShiftRight) ? 7.0 : 3.2;
+    camera.getWorldDirection(fwd); fwd.y = 0; fwd.normalize(); side.crossVectors(fwd, camera.up).normalize();
+    const mv = new THREE.Vector3();
+    if (keys.KeyW || keys.ArrowUp) mv.add(fwd); if (keys.KeyS || keys.ArrowDown) mv.sub(fwd);
+    if (keys.KeyD || keys.ArrowRight) mv.add(side); if (keys.KeyA || keys.ArrowLeft) mv.sub(side);
+    if (mv.lengthSq()) camera.position.addScaledVector(mv.normalize(), sp * dt);
+    if ((probeT += dt) > 0.1) { probeT = 0; const g = probeGround(camera.position); if (g !== null) groundY = g; }
+    camera.position.y += (groundY + EYE - camera.position.y) * Math.min(1, dt * 10);
+  } else orbit.update();
+  renderer.render(scene, camera);
+  frames++; acc += dt; if (acc > 0.5) { if (showFps) document.getElementById('fps').textContent = (frames / acc).toFixed(0) + ' fps'; frames = 0; acc = 0; }
+}
+loop();
+// measured fps over n frames (used by the verification scripts)
+window.__fps = (n = 120) => new Promise(r => { let c = 0, t0 = performance.now(); const f = () => { if (++c >= n) r(+(n * 1000 / (performance.now() - t0)).toFixed(1)); else requestAnimationFrame(f); }; requestAnimationFrame(f); });
+window.__setMode = setMode; window.__camera = camera; window.__keys = keys;
+// verification helper: jump to an exact Cycles render camera, wait for water/env, render once, POST the PNG to tools/shot_server.py
+window.__shot = async (view, name) => {
+  applyPreset({ id: view, from: view, eye: false }, true);
+  for (let i = 0; i < 20; i++) await new Promise(r => requestAnimationFrame(r));
+  renderer.render(scene, camera);
+  const blob = await new Promise(r => renderer.domElement.toBlob(r, 'image/png'));
+  const res = await fetch('http://127.0.0.1:8003/' + (name || view) + '.png', { method: 'POST', body: blob });
+  return res.status;
+};
+window.__preset = id => applyPreset(PRESETS.find(p => p.id === id));
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+</script></body></html>

@@ -38,15 +38,15 @@
   "ref": "EXT-4b-ELEV-REAR",
   "pos": [
    9.4,
-   24.0,
+   20.0,
    1.65
   ],
   "tgt": [
    9.4,
    -6,
-   5.4
+   5.2
   ],
-  "lens": 28,
+  "lens": 26,
   "level": true
  },
  {
@@ -156,16 +156,16 @@
   "file": "view_back_garden.png",
   "ref": "EXT-4b-GARDEN-BACK",
   "pos": [
-   22.5,
-   12.5,
+   18.4,
+   14.0,
    1.65
   ],
   "tgt": [
    8.5,
    -6,
-   4.6
+   4.4
   ],
-  "lens": 26,
+  "lens": 24,
   "level": true
  },
  {
@@ -173,16 +173,16 @@
   "file": "view_swimming_pool.png",
   "ref": "EXT-4b-POOL",
   "pos": [
-   18.2,
-   1.2,
+   18.0,
+   2.6,
    1.65
   ],
   "tgt": [
-   6,
-   -3.4,
-   3.0
+   6.0,
+   -3.2,
+   2.4
   ],
-  "lens": 22,
+  "lens": 20,
   "level": true
  },
  {
@@ -275,7 +275,7 @@
   "pos": [
    9.4,
    9,
-   6.5
+   6.1
   ],
   "tgt": [
    9.4,
@@ -317,5 +317,23 @@
   ],
   "lens": 18,
   "level": true
+ },
+ {
+  "name": "cu_wip_rear_glass_pool",
+  "file": "cu_wip_rear_glass_pool.png",
+  "ref": "EXT-4b-ELEV-REAR",
+  "pos": [
+   8.0,
+   4.0,
+   1.65
+  ],
+  "tgt": [
+   9.5,
+   -6,
+   2.2
+  ],
+  "lens": 30,
+  "level": true,
+  "wip_only": true
  }
 ]

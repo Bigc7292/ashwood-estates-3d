@@ -97,7 +97,7 @@ zone('pedestrian entry path',GATE[0],GATE[1],23.6,SITE_D,'outdoor','ELEV-FRONT /
 zone('front planted bed',9.73,15.42,27.71,29.74,'planting','GARDEN-FRONT','V4 lawn rect 381,834,160,57')
 for i,l in enumerate([b for b in M['boxes'] if b['cat']=='lawn']):
     zone(f'side/rear planted strip {i+1}',l['x0'],l['x1'],l['z0'],l['z1'],'planting','OUTDOOR-SITE / ELEV-LEFT / ELEV-RIGHT','V4 Source landscape rect')
-zone('off-plot context lawn (render p26 / ELEV-REAR) — NOT PLOT',-6,SITE_W+6,-14,0,'context','ELEV-REAR / GARDEN-BACK','outside CAD plot; appearance only')
+zone('off-plot context lawn (render p26 / ELEV-REAR) — NOT PLOT',-6,SITE_W+6,-30,0,'context','ELEV-REAR / GARDEN-BACK','outside CAD plot; appearance only')
 zone('RF core (enclosed stair/MEP; RF NTS)',3.01,10.94,9.95,22.5,'building','OUTDOOR-ROOF-TERRACE','RF plan NTS, board-offset placement')
 zone('RF terrace',3.01,15.6,4.6,9.95,'outdoor','OUTDOOR-ROOF-TERRACE','RF TERRACE label (extent unknown)')
 
@@ -166,7 +166,7 @@ if LV >= ORDER.index('space'):
     C='space'
     box('GROUND_paving_plot', 0,SITE_W, 0,SITE_D, -0.10,0.0,'paving',C,'CAD site hardscape')
     box('GROUND_street_verge', -6,SITE_W+6, SITE_D,SITE_D+6, -0.15,-0.02,'paving',C,'image ELEV-FRONT street edge (context, outside plot)')
-    box('CONTEXT_lawn_beyond_plot (NOT PLOT)', -6,SITE_W+6, -14,0, -0.12,-0.01,'context_lawn',C,'image ELEV-REAR/GARDEN-BACK + p26 lawn; outside CAD plot (CAD wins on plot depth)')
+    box('CONTEXT_lawn_beyond_plot (NOT PLOT)', -6,SITE_W+6, -30,0, -0.12,-0.01,'context_lawn',C,'image ELEV-REAR/GARDEN-BACK + p26 lawn; outside CAD plot (CAD wins on plot depth)')
     for l in [b for b in M['boxes'] if b['cat']=='lawn']:
         box(l['id'].upper()+'_bed', l['x0'],l['x1'],l['z0'],l['z1'], 0,0.05,'lawn',C,'CAD V4 Source landscape rect')
     # raised rear deck at GF FFL with pool cut (pool 9.50 x 2.40 CAD); coping 0.30
@@ -326,7 +326,7 @@ def gn_grass(ob, clump, dmax, r0, seed, edge=None, max_dist=70.0):
     px, py, pz = g.sep(P)
     hz = g.rnd(0.75, 1.3, seed + 3)
     patch = g.noise(P, 0.35)                                               # soft height patches
-    hz = g.m('MULTIPLY', hz, g.m('ADD', 0.75, g.m('MULTIPLY', patch, 0.5)))
+    hz = g.m('MULTIPLY', hz, g.m('ADD', 0.85, g.m('MULTIPLY', patch, 0.3)))
     if edge:
         xa, xb, yb, band, gain = edge
         dx = g.m('MINIMUM', g.m('ABSOLUTE', g.m('SUBTRACT', px, xa)), g.m('ABSOLUTE', g.m('SUBTRACT', px, xb)))
@@ -380,12 +380,12 @@ def palm(name, x, z, ht, src):
     top=(x+0.35, -z, ht); fv=[]; ff=[]
     # Fronds = rachis + individual pinnate leaflets as real geometry (was a flat strip with an alpha-stripe texture,
     # which rendered as see-through 'cards'). Two tiers: upper arching fronds and lower drooping ones (date palm per p25/p26).
-    nf=34
+    nf=44   # WIP realism: denser crowns (was 34 fronds x 14 segments)
     for k in range(nf):
         tier = k % 2
         a=2*math.pi*k/nf+random.uniform(-.12,.12); L=random.uniform(2.7,3.5)*(0.9 if tier else 1.0)
         up=random.uniform(0.35,0.7) if tier==0 else random.uniform(-0.1,0.2); droop=random.uniform(0.6,1.0)+(0.5 if tier else 0)
-        ca,sa=math.cos(a),math.sin(a); ns=14
+        ca,sa=math.cos(a),math.sin(a); ns=20
         pts=[]
         for i in range(ns+1):
             t=i/ns; d=L*t; hz=top[2]+up*t*2.0-droop*(t**2)*2.2
@@ -394,12 +394,12 @@ def palm(name, x, z, ht, src):
         for (cx,cy,hz) in pts: fv += [(cx+sa*0.02,cy-ca*0.02,hz),(cx-sa*0.02,cy+ca*0.02,hz)]
         for i in range(ns): o=b+i*2; ff.append((o,o+1,o+3,o+2))
         for i in range(1,ns):   # leaflets: pairs per segment, V-shaped, longest mid-frond
-            t=i/ns; ll=0.75*math.sin(math.pi*min(t*1.05,1.0))+0.08; cx,cy,hz=pts[i]; nx,ny,nz=pts[i+1]
+            t=i/ns; ll=0.85*math.sin(math.pi*min(t*1.05,1.0))+0.10; cx,cy,hz=pts[i]; nx,ny,nz=pts[i+1]
             for side in (-1,1):
                 ox,oy = -sa*side*ll, ca*side*ll
-                for (sx,sy,sz) in ((cx,cy,hz),((cx+nx)/2,(cy+ny)/2,(hz+nz)/2)):
+                for (sx,sy,sz) in ((cx,cy,hz),((2*cx+nx)/3,(2*cy+ny)/3,(2*hz+nz)/3),((cx+2*nx)/3,(cy+2*ny)/3,(hz+2*nz)/3)):   # 3 leaflets per side per segment (denser)
                     q=len(fv); tip=(sx+ox*0.9+ca*0.12, sy+oy*0.9+sa*0.12, sz-0.28*ll)
-                    fv += [(sx,sy,sz),(sx+ca*0.10,sy+sa*0.10,sz),(tip[0]+ca*0.05,tip[1]+sa*0.05,tip[2]),tip]
+                    fv += [(sx,sy,sz),(sx+ca*0.15,sy+sa*0.15,sz),(tip[0]+ca*0.07,tip[1]+sa*0.07,tip[2]),tip]
                     ff.append((q,q+1,q+2,q+3))
     ob2=add_mesh(name+'_fronds', fv, ff, 'palmleaf', C, src)
     for p in ob2.data.polygons: p.use_smooth=True
@@ -452,8 +452,9 @@ def broadleaf(name, x, z, r, ht, src, matkey='leaf', pine=False, leafkey=None):
     REG.append(dict(name=name, collection=C, material=matkey, source=src))
 
 HEDGE_N = [0]
-def hedge(name, x0,x1,z0,z1,h,src, leaves=True):
-    ob=box(name, x0,x1,z0,z1, 0.05,h,'hedge','planting',src)
+def hedge(name, x0,x1,z0,z1,h,src, leaves=True, h0=0.05):
+    # h0: base height (planters on balconies/boxes). Was always 0.05 -> FF balcony planting ran from the GROUND up (green pillars).
+    ob=box(name, x0,x1,z0,z1, h0,h,'hedge','planting',src)
     if LV >= ORDER.index('models'):
         s=ob.modifiers.new('sub','SUBSURF'); s.subdivision_type='SIMPLE'; s.levels=3; s.render_levels=5
         tx=bpy.data.textures.get('hedgeclouds') or bpy.data.textures.new('hedgeclouds','CLOUDS'); tx.noise_scale=0.25
@@ -464,8 +465,9 @@ def hedge(name, x0,x1,z0,z1,h,src, leaves=True):
             HEDGE_N[0] += 1; i = HEDGE_N[0]
             lk = ('leaf_hedge_a','leaf_hedge_b','leaf_hedge_c')[i % 3]
             cl = leaf_cluster('LEAFSRC_'+lk, 6, 0.06, 0.022, 0.015, lk, 20+i%3)
-            hh = max(h-0.05, 0.3)
-            gn_leaves(ob, cl, 260.0, 300+i, core_scale=1.0, top_noise=(0.05+hh*0.35, hh*0.65, min(0.9, 0.45*hh+0.15), 0.9), push=0.07, size=(0.7, 1.5))
+            big = (x1-x0)*(z1-z0) > 20.0 or max(x1-x0, z1-z0) > 15.0   # large context hedge masses: lower-frequency, bigger lumps so they don't read as boxes
+            hh = max(h-h0, 0.3)
+            gn_leaves(ob, cl, 260.0, 300+i, core_scale=1.0, top_noise=(h0+hh*0.35, hh*0.65, (2.6 if big else min(0.9, 0.45*hh+0.15)), (0.45 if big else 0.9)), push=0.07, size=(0.7, 1.5))
     return ob
 
 if LV >= ORDER.index('models'):
@@ -510,7 +512,7 @@ if LV >= ORDER.index('models'):
     box('FF_balcony_balustrade_glass', FF_X0+0.1,FF_X1-0.1, FF_Z0+0.05,FF_Z0+0.07, FF0,FF0+H['balustrade'],'balglass',C,'image p26 frameless CLEAR glass; height assumed')
     for nm,(a,b) in dict(L=(FF_X0+0.5,FF_X0+1.6), R=(FF_X1-1.6,FF_X1-0.5)).items():   # p26: planting behind the balustrade at both ends
         box(f'FF_balcony_planter_{nm}', a,b, FF_Z0+0.15,FF_Z0+0.65, FF0,FF0+0.45,'stone',C,'image p26 balcony planters (illustrative)', bevel=0.01)
-        hedge(f'FF_balcony_planting_{nm}', a+0.05,b-0.05, FF_Z0+0.2,FF_Z0+0.6, FF0+1.25, 'image p26 planting behind balustrade')
+        hedge(f'FF_balcony_planting_{nm}', a+0.05,b-0.05, FF_Z0+0.2,FF_Z0+0.6, FF0+1.25, 'image p26 planting behind balustrade', h0=FF0+0.40)
     box('FF_rear_pier_left', FF_X0,FF_X0+0.45, FF_Z0,GF_Z0, FF0,FF1,'stone',C,'image p26 stone end pier')
     box('FF_rear_pier_right', FF_X1-0.45,FF_X1, FF_Z0,GF_Z0, FF0,FF1,'stone',C,'image p26 stone end pier')
     # --- FF front: slat screen box (ELEV-FRONT), bedroom/suite windows, front balconies
@@ -527,7 +529,7 @@ if LV >= ORDER.index('models'):
     box('FF_front_left_balustrade', FF_X0,7.3, FF_ZF+1.05,FF_ZF+1.1, FF0,FF0+H['balustrade'],'balglass',C,'image ELEV-FRONT clear glass/planter balustrade')
     box('FF_front_right_box_parapet', 11.0,FF_X1, GF_Z1-0.3,GF_Z1, FF0,FF0+H['parapet'],'stone',C,'image p25 stone box w/ planter; CAD front-right BALCONY')
     box('FF_front_right_side', 11.0,11.3, FF_ZF,GF_Z1, FF0,FF0+H['parapet'],'stone',C,'image')
-    hedge('FF_front_right_planter', 11.3,15.3, GF_Z1-0.8,GF_Z1-0.3, FF0+1.6, 'image p25 planter on stone box')
+    hedge('FF_front_right_planter', 11.3,15.3, GF_Z1-0.8,GF_Z1-0.3, FF0+1.6, 'image p25 planter on stone box', h0=FF0+0.9)
     glass_z('FF_front_right_glazing', FF_ZF+0.02, 11.4, 15.3, FF0, FF1, 'image ELEV-FRONT')
     # --- FF side windows (image ELEV-LEFT/RIGHT: narrow vertical windows; positions image-read)
     for i,zc in enumerate([9.2, 13.5, 17.8]):
@@ -582,8 +584,12 @@ if LV >= ORDER.index('models'):
         else:
             hedge(f'HEDGE_{l["id"]}', l['x0']+0.1,l['x1']-0.1, l['z0']+0.1,l['z0']+0.6 if l['z0']<10 else l['z1']-0.1, 0.9, 'image planting inside CAD strip')
     hedge('HEDGE_front_bed', 9.9,15.3, SITE_D-0.9,SITE_D-0.35, 0.8, 'image GARDEN-FRONT planted bed (CAD front lawn rect)')
-    hedge('HEDGE_context_rear_left', -6,-0.3, -12,-0.3, 1.6, 'image ELEV-REAR hedges (off-plot context)')
-    hedge('HEDGE_context_rear_right', SITE_W+0.3,SITE_W+6, -12,-0.3, 1.6, 'image ELEV-REAR hedges (off-plot context)')
+    # WIP realism: p26 / ELEV-REAR / GARDEN-BACK show the rear lawn bounded by walls with a narrow band of shrubs/ivy, not
+    # 6 m-deep green blocks. Off-plot context only (NOT PLOT): 1.15 m shrub strips in front of 2.2 m context walls.
+    hedge('HEDGE_context_rear_left', -1.4,-0.25, -28,-0.3, 1.7, 'image p26/ELEV-REAR/GARDEN-BACK shrub band along wall (off-plot context)')
+    hedge('HEDGE_context_rear_right', SITE_W+0.25,SITE_W+1.4, -28,-0.3, 1.7, 'image p26/ELEV-REAR/GARDEN-BACK shrub band along wall (off-plot context)')
+    box('CONTEXT_wall_rear_left (NOT PLOT)', -1.65,-1.4, -28,0, 0,H['side_wall'],'stone','models','image p26/GARDEN-BACK boundary wall beside lawn (off-plot context)')
+    box('CONTEXT_wall_rear_right (NOT PLOT)', SITE_W+1.4,SITE_W+1.65, -28,0, 0,H['side_wall'],'stone','models','image p26/GARDEN-BACK boundary wall beside lawn (off-plot context)')
     for k,(x,z) in enumerate([(-3,-6),(22,-5),(-4,-11),(23,-11)]):
         palm(f'CONTEXT_palm_{k}', x, z, random.uniform(7,8.5), 'image ELEV-REAR context palms (off-plot)')
     # ---------------- WIP 2026-11-09 realism pass: life behind the glazing (p26 / ELEV-REAR / GARDEN-BACK / POOL / GARDEN-FRONT) ----------------
@@ -631,7 +637,7 @@ if LV >= ORDER.index('models'):
     box('INT_GF_fireplace', 9.1,9.9, 10.15,10.2, g0+0.5,g0+1.3,'int_fire',CI,src_i)
     box('INT_GF_art', 12.4,13.6, 10.5,10.56, g0+1.0,g0+2.2,'int_art',CI,src_i)
     box('INT_GF_floorlamp', 13.6,13.75, 7.6,7.75, g0,g0+1.5,'bronze',CI,src_i); box('INT_GF_floorlamp_shade', 13.45,13.9, 7.45,7.9, g0+1.5,g0+1.8,'int_lamp',CI,src_i)
-    box('INT_GF_plant_pot', 3.8,4.3, 5.4,5.9, g0,g0+0.5,'stone',CI,src_i); hedge('INT_GF_plant', 3.7,4.4, 5.3,6.0, g0+1.6, src_i)
+    box('INT_GF_plant_pot', 3.8,4.3, 5.4,5.9, g0,g0+0.5,'stone',CI,src_i); hedge('INT_GF_plant', 3.7,4.4, 5.3,6.0, g0+1.6, src_i, h0=g0+0.45)
     # FF bedrooms (bed + nightstand lamps + armchair)
     f0 = FF0+0.012
     box('INT_FF_bed', 9.4,11.4, 6.3,8.6, f0,f0+0.55,'cushion',CI,src_i, bevel=0.05); box('INT_FF_headboard', 9.2,11.6, 8.6,8.8, f0,f0+1.2,'int_fabric',CI,src_i, bevel=0.02)
@@ -656,17 +662,18 @@ if LV >= ORDER.index('models'):
     curtain('INT_curtain_FF_a', 3.42, 4.1, GF_Z0, FF0, FF1); curtain('INT_curtain_FF_b', 14.7, 15.38, GF_Z0, FF0, FF1)
     curtain('INT_curtain_FF_c', 12.15, 12.8, GF_Z0, FF0, FF1)
     # warm interior key lights (area, 3000 K-ish) so furniture reads without relying on emissive surfaces alone
-    for nm,(x,z,h,sx,sz,pw) in dict(GF_a=(6.0,7.6,GF1-0.05,3.5,2.5,260), GF_b=(11.0,7.0,GF1-0.05,4.0,2.5,300),
-                                    FF_a=(6.0,7.0,FF1-0.05,4.0,2.5,180), FF_b=(11.5,7.2,FF1-0.05,4.0,2.5,200), ENTRY=(8.9,21.6,GF1-0.05,2.5,2.5,160)).items():
-        L = bpy.data.lights.new('INT_LIGHT_'+nm, 'AREA'); L.shape='RECTANGLE'; L.size=sx; L.size_y=sz; L.energy=pw; L.color=(1.0,0.72,0.45)
+    for nm,(x,z,h,sx,sz,pw) in dict(GF_a=(6.0,7.6,GF1-0.05,3.5,2.5,110), GF_b=(11.0,7.0,GF1-0.05,4.0,2.5,130),
+                                    FF_a=(6.0,7.0,FF1-0.05,4.0,2.5,80), FF_b=(11.5,7.2,FF1-0.05,4.0,2.5,90), ENTRY=(8.9,21.6,GF1-0.05,2.5,2.5,90)).items():
+        L = bpy.data.lights.new('INT_LIGHT_'+nm, 'AREA'); L.shape='RECTANGLE'; L.size=sx; L.size_y=sz; L.energy=pw; L.color=(1.0,0.62,0.34)
         lo = bpy.data.objects.new('INT_LIGHT_'+nm, L); lo.location=(x,-z,h); coll(CI).objects.link(lo)
+        lo.visible_camera = False; lo.visible_glossy = False   # light the room, but don't show as white panels on the ceiling
 
     # ---------------- WIP realism pass: real grass (GN, instanced, camera-limited) ----------------
     lawn_clump = grass_clump('GRASSSRC_lawn', 22, 0.05, 0.11, 0.006, 0.35, 'grassblade', 31)
     tall_clump = grass_clump('GRASSSRC_tall', 34, 0.10, 0.62, 0.010, 0.9, 'grasstall', 32)
     ctx = bpy.data.objects['CONTEXT_lawn_beyond_plot (NOT PLOT)']
     # rear lawn: mown, taller toward the side hedges (x ~ -0.3 / SITE_W+0.3) and the far edge (y ~ 12), patchy colour
-    gn_grass(ctx, lawn_clump, 260.0, 3.5, 1, edge=(-0.3, SITE_W+0.3, 12.0, 2.2, 4.5))
+    gn_grass(ctx, lawn_clump, 260.0, 3.5, 1, edge=(-0.25, SITE_W+0.25, 999.0, 2.0, 4.5))
     for l in [b for b in M['boxes'] if b['cat']=='lawn']:   # CAD planted strips -> ornamental tall grass
         gn_grass(bpy.data.objects[l['id'].upper()+'_bed'], tall_clump, 22.0, 4.0, 40+int(l['id'][-1]))
 
@@ -895,7 +902,7 @@ def M_lawn(name):
     n = N(nodes,'ShaderNodeTexNoise', **{'Scale':320.0,'Detail':4.0}); links.new(P, n.inputs['Vector'])
     n2 = N(nodes,'ShaderNodeTexNoise', **{'Scale':0.18,'Detail':3.0}); links.new(P, n2.inputs['Vector'])
     col = ramp(nodes,links, math_(nodes,links,'ADD', math_(nodes,links,'MULTIPLY', n.outputs['Fac'],0.8), math_(nodes,links,'MULTIPLY', n2.outputs['Fac'],0.2)),
-               [(0.35,(0.10,0.17,0.04)),(0.52,(0.15,0.23,0.06)),(0.68,(0.20,0.27,0.08))])
+               [(0.35,(0.05,0.10,0.02)),(0.52,(0.07,0.13,0.03)),(0.68,(0.10,0.16,0.04))])   # WIP: darker soil-shadow base under the grass blades
     links.new(col, b.inputs['Base Color']); b.inputs['Roughness'].default_value=0.95
     b.inputs['Sheen Weight'].default_value=0.3; b.inputs['Sheen Tint'].default_value=(0.6,0.7,0.4,1)
     return m   # no bump: any bump read as waves at the low garden camera angles
@@ -917,7 +924,7 @@ BUILD.update(stone=M_stone, stone_rf=M_stone, paving=M_paving, deck=M_paving, co
     soffit=M_flat((.80,.75,.68),.55,'render'), render=M_flat((.80,.75,.68),.55,'render'),   # warm pale render (refs), was near-white
  bronze=M_flat((.20,.14,.09),.45,'metal',metal=0.6),
     glass=M_glass, water=M_water, pooltile=M_flat((.55,.85,.88),.2), lawn=M_lawn, context_lawn=M_lawn,
-    hedge=M_foliage((0.05,0.12,0.03),(0.16,0.26,0.08)), leaf=M_foliage((0.06,0.14,0.04),(0.22,0.32,0.10)), palmleaf=M_foliage((0.10,0.18,0.05),(0.30,0.36,0.12)),   # leaflets are now real geometry -> no alpha stripes
+    hedge=M_foliage((0.05,0.12,0.03),(0.16,0.26,0.08)), leaf=M_foliage((0.06,0.14,0.04),(0.22,0.32,0.10)), palmleaf=M_foliage((0.20,0.26,0.07),(0.46,0.46,0.16))   # yellow-olive date palm (p26),   # leaflets are now real geometry -> no alpha stripes
     balglass=M_balglass,
     bark=M_flat((.32,.26,.20),.9,'stone',bump_scale=20.0), furniture=M_flat((.55,.42,.30),.6,'metal'), cushion=M_flat((.86,.84,.80),.9),
     led=None, placeholder=M_flat((.6,.6,.6),.8), interior=M_glass)
@@ -925,7 +932,7 @@ def M_led(name):
     m,nodes,links,b,P = base(name); b.inputs['Base Color'].default_value=(1,.85,.6,1); b.inputs['Emission Color'].default_value=(1,.8,.55,1); b.inputs['Emission Strength'].default_value=12.0
     return m
 BUILD['led']=M_led
-BUILD['ground']=M_flat((.62,.56,.46),.9,None,0.0,0.0)
+BUILD['ground']=M_flat((.20,.19,.18),.85,None,0.0,0.0)   # WIP: dark asphalt-grey context (ref GARDEN-FRONT road), was a pale void
 BUILD['hedge'] = M_foliage((0.05,0.12,0.03),(0.16,0.26,0.08))
 # ---------------- WIP 2026-11-09 realism pass: new / revised materials ----------------
 def _mixshader(nodes, links, fac, s1, s2):
@@ -955,8 +962,8 @@ def M_blade(cols, dry, hmax, trans=0.3):
         oi = N(nodes,'ShaderNodeObjectInfo'); geo = N(nodes,'ShaderNodeNewGeometry')
         c = ramp(nodes,links, oi.outputs['Random'], [(0.0,cols[0]),(0.5,cols[1]),(1.0,cols[2])])
         pn = N(nodes,'ShaderNodeTexNoise', **{'Scale':0.22,'Detail':4.0}); links.new(geo.outputs['Position'], pn.inputs['Vector'])
-        dryf = math_(nodes,links,'MULTIPLY', math_(nodes,links,'SUBTRACT', pn.outputs['Fac'], 0.56), 3.0, clamp=True)
-        c = mixrgb(nodes,links, math_(nodes,links,'MULTIPLY', dryf, 0.7), c, (*dry,1))
+        dryf = math_(nodes,links,'MULTIPLY', math_(nodes,links,'SUBTRACT', pn.outputs['Fac'], 0.58), 3.0, clamp=True)
+        c = mixrgb(nodes,links, math_(nodes,links,'MULTIPLY', dryf, 0.25), c, (*dry,1))
         sp = N(nodes,'ShaderNodeSeparateXYZ'); links.new(P, sp.inputs[0])
         t = math_(nodes,links,'DIVIDE', sp.outputs['Z'], hmax, clamp=True)
         c = mixrgb(nodes,links, math_(nodes,links,'SUBTRACT', 1.0, t), c, (0.35,0.40,0.25,1), 'MULTIPLY')
@@ -988,9 +995,9 @@ def M_int_glow(name):
     sp = N(nodes,'ShaderNodeSeparateXYZ'); links.new(P, sp.inputs[0])
     t = math_(nodes,links,'DIVIDE', math_(nodes,links,'SUBTRACT', math_(nodes,links,'MODULO', sp.outputs['Z'], 4.0), 0.45), 3.4, clamp=True)
     n = N(nodes,'ShaderNodeTexNoise', **{'Scale':1.5,'Detail':3.0}); links.new(P, n.inputs['Vector'])
-    b.inputs['Base Color'].default_value=(0.62,0.50,0.38,1); b.inputs['Roughness'].default_value=0.8
-    b.inputs['Emission Color'].default_value=(1.0,0.66,0.38,1)
-    s_ = math_(nodes,links,'ADD', 0.35, math_(nodes,links,'MULTIPLY', math_(nodes,links,'POWER', t, 1.6), 2.6))
+    b.inputs['Base Color'].default_value=(0.48,0.34,0.22,1); b.inputs['Roughness'].default_value=0.8
+    b.inputs['Emission Color'].default_value=(1.0,0.55,0.26,1)
+    s_ = math_(nodes,links,'ADD', 0.12, math_(nodes,links,'MULTIPLY', math_(nodes,links,'POWER', t, 1.8), 1.4))
     s_ = math_(nodes,links,'MULTIPLY', s_, math_(nodes,links,'ADD', 0.8, math_(nodes,links,'MULTIPLY', n.outputs['Fac'], 0.4)))
     links.new(s_, b.inputs['Emission Strength'])
     return m
@@ -1032,10 +1039,12 @@ def M_water2(name):
     mp = N(nodes,'ShaderNodeMapping'); mp.inputs['Scale'].default_value=(1.0,2.2,1.0); links.new(P, mp.inputs['Vector'])
     n = N(nodes,'ShaderNodeTexNoise', **{'Scale':2.6,'Detail':7.0,'Roughness':0.55}); links.new(mp.outputs[0], n.inputs['Vector'])
     bump = N(nodes,'ShaderNodeBump', **{'Strength':0.18,'Distance':0.02}); links.new(n.outputs['Fac'], bump.inputs['Height']); links.new(bump.outputs['Normal'], b.inputs['Normal'])
+    sc_ = N(nodes,'ShaderNodeBsdfDiffuse'); sc_.inputs['Color'].default_value=(0.05,0.50,0.55,1)   # stands in for in-water scattering
+    _to_out(nodes, links, _mixshader(nodes, links, 0.30, b.outputs[0], sc_.outputs[0]))
     return m
 BUILD.update(
     glass_clear=M_glass_clear, pool_stone=M_stone, pooltile=M_pooltile, water=M_water2,
-    grassblade=M_blade([(0.07,0.15,0.03),(0.11,0.20,0.04),(0.16,0.24,0.06)], (0.30,0.27,0.12), 0.14),
+    grassblade=M_blade([(0.05,0.12,0.02),(0.07,0.15,0.03),(0.10,0.18,0.035)], (0.20,0.20,0.08), 0.14, trans=0.18),
     grasstall=M_blade([(0.14,0.18,0.06),(0.22,0.24,0.10),(0.34,0.31,0.16)], (0.45,0.38,0.22), 0.75, trans=0.35),
     leaf_olive=M_leafcard([(0.10,0.14,0.07),(0.18,0.22,0.12),(0.28,0.31,0.20)], rough=0.55),
     leaf_frangi=M_leafcard([(0.05,0.13,0.03),(0.10,0.21,0.05),(0.18,0.30,0.08)], rough=0.4),
@@ -1043,9 +1052,9 @@ BUILD.update(
     leaf_hedge_b=M_leafcard([(0.05,0.11,0.02),(0.10,0.18,0.04),(0.18,0.25,0.07)]),
     leaf_hedge_c=M_leafcard([(0.04,0.10,0.03),(0.09,0.16,0.05),(0.15,0.21,0.08)]),
     leaf=M_foliage((0.02,0.05,0.015),(0.05,0.10,0.03)), hedge=M_foliage((0.02,0.05,0.015),(0.05,0.10,0.03)),   # cores now sit INSIDE leaf scatter -> dark
-    int_floor=M_flat((.74,.66,.56),.3), int_fabric=M_flat((.58,.50,.42),.9), int_rug=M_flat((.62,.57,.50),.95), int_art=M_flat((.20,.13,.08),.6),
+    int_floor=M_flat((.36,.25,.16),.35), int_fabric=M_flat((.58,.50,.42),.9), int_rug=M_flat((.62,.57,.50),.95), int_art=M_flat((.20,.13,.08),.6),
     wood=M_flat((.26,.17,.10),.45), int_glow=M_int_glow, sheer=M_sheer,
-    leaf_pine=M_foliage((0.06,0.14,0.04),(0.22,0.32,0.10)), int_lamp=M_emit((1.0,0.78,0.52), 9.0, (1,.9,.75)), int_fire=M_emit((1.0,0.45,0.15), 5.0))
+    leaf_pine=M_foliage((0.06,0.14,0.04),(0.22,0.32,0.10)), int_lamp=M_emit((1.0,0.68,0.40), 6.0, (1,.85,.65)), int_fire=M_emit((1.0,0.45,0.15), 5.0))
 # resolve pending materials now that builders exist
 for key, ph in list(MATS.items()):
     real = BUILD[key]('MAT_'+key); ph.user_remap(real); bpy.data.materials.remove(ph); MATS[key] = real
@@ -1069,8 +1078,8 @@ tc = wn.new('ShaderNodeTexCoord'); sz_ = wn.new('ShaderNodeSeparateXYZ'); wl.new
 mr = wn.new('ShaderNodeMapRange'); mr.inputs['From Min'].default_value=0.0; mr.inputs['From Max'].default_value=0.75; wl.new(sz_.outputs['Z'], mr.inputs['Value'])
 pw_ = wn.new('ShaderNodeMath'); pw_.operation='POWER'; pw_.inputs[1].default_value=0.6; wl.new(mr.outputs['Result'], pw_.inputs[0])
 gr = wn.new('ShaderNodeValToRGB'); ge = gr.color_ramp.elements
-ge[0].position=0.0; ge[0].color=(0.30,0.55,0.78,1); ge[1].position=1.0; ge[1].color=(0.035,0.17,0.52,1)
-gm = ge.new(0.35); gm.color=(0.10,0.33,0.68,1)
+ge[0].position=0.0; ge[0].color=(0.36,0.62,0.76,1); ge[1].position=1.0; ge[1].color=(0.03,0.19,0.44,1)
+gm = ge.new(0.35); gm.color=(0.10,0.36,0.62,1)
 wl.new(pw_.outputs[0], gr.inputs['Fac'])
 hs = wn.new('ShaderNodeHueSaturation'); hs.inputs['Saturation'].default_value=1.6; hs.inputs['Value'].default_value=0.55; wl.new(sky.outputs[0], hs.inputs['Color'])
 skm = wn.new('ShaderNodeMix'); skm.data_type='RGBA'; skm.blend_type='MIX'; skm.inputs[0].default_value=0.22

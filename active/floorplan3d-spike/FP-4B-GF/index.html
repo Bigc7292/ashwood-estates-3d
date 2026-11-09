@@ -1494,7 +1494,7 @@ function init(){
   // GF polish: warmer sky / floor-bounce hemisphere (ceilings were reading muddy brown), sun unchanged in direction
   hemi = new THREE.HemisphereLight(0xfff6ea, 0xdccdb4, 1.25);
   sun = new THREE.DirectionalLight(0xfff1dd, 2.6);
-  sun.castShadow = true; sun.shadow.mapSize.setScalar(COARSE ? 2048 : 4096);   // 平板 GPU 用小一点的阴影贴图
+  sun.castShadow = true; sun.shadow.mapSize.setScalar(COARSE ? 1024 : 2048);   // GF polish: modest shadow map (perf on a busy machine)   // 平板 GPU 用小一点的阴影贴图
   Object.assign(sun.shadow.camera, {left:-PLAN.DISPLAY.shadow_extent_m, right:PLAN.DISPLAY.shadow_extent_m, top:PLAN.DISPLAY.shadow_extent_m, bottom:-PLAN.DISPLAY.shadow_extent_m, near:1, far:90});
   sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.02; sun.shadow.radius = 3;
   scene.add(hemi, sun, sun.target);
@@ -1509,7 +1509,7 @@ function init(){
   const B0 = PLAN.BOUNDS, site = [[B0.x, B0.y], [B0.x + B0.w, B0.y], [B0.x + B0.w, B0.y + B0.h], [B0.x, B0.y + B0.h]];
   const gs = shapeOf([[OX - 80000, OY - 80000], [OX + 80000, OY - 80000], [OX + 80000, OY + 80000], [OX - 80000, OY + 80000]]); gs.holes.push(shapeOf(site));
   const gg = new THREE.ShapeGeometry(gs); gg.rotateX(-Math.PI/2);
-  ground = new THREE.Mesh(gg, new THREE.MeshStandardMaterial({color:0xd9d1c3, roughness:1})); ground.position.y = -0.015; ground.receiveShadow = true;
+  ground = new THREE.Mesh(gg, new THREE.MeshStandardMaterial({color:0xbab2a4, roughness:1})); ground.position.y = -0.015; ground.receiveShadow = true;
   const ps = shapeOf(site); (PLAN.WATER || []).forEach(w => ps.holes.push(shapeOf(w.outer)));
   const pg = new THREE.ShapeGeometry(ps); pg.rotateX(-Math.PI/2);
   const paving = new THREE.Mesh(pg, floorMat('antislip')); paving.position.y = -0.012; paving.receiveShadow = true;
@@ -1607,7 +1607,7 @@ function floorMat(kind){
   // GF polish: brochure flooring. tile800 = light-beige porcelain (p17 / p24) with real 0.8 m scale, per-tile tone
   // variation, roughness variation and soft reflections (p12 floor). antislip (outdoor) = travertine pavers (DA).
   if (kind === 'tile800'){ const r = texRoughNoise(3); r.repeat.set(1/1.7, 1/1.7); return floorMats[kind] = smat({map:texPorcelain(), roughnessMap:r, roughness:.42}, .55); }
-  if (kind === 'antislip'){ const t = texTravertine(19); t.repeat.set(1/1.2, 1/.6); return floorMats[kind] = smat({map:t, roughness:.82}, .12); }
+  if (kind === 'antislip'){ const t = texPaver(19); t.repeat.set(1/1.2, 1/1.2); return floorMats[kind] = smat({map:t, roughness:.82}, .12); }
   const s = TEX[kind] || TEX.tile800, R = rng(kind.length*977 + 13), cv = document.createElement('canvas');
   const wood = kind === 'wood' || kind === 'walnut';
   cv.width = wood ? 1024 : 512; cv.height = wood ? 205 : 512;
@@ -1768,20 +1768,62 @@ function worldUV(geo, su, sv){
   return geo;
 }
 function planeUV(geo, w, h, su, sv){ const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i)*w/su, uv.getY(i)*h/sv); return geo; }
+// box with real-world texture scale (y = bottom)
+function wbox(w, h, d, m, x, y, z, su, sv){ const o = new THREE.Mesh(worldUV(new THREE.BoxGeometry(w, h, d), su, sv), m); o.position.set(x, y + h/2, z); o.castShadow = o.receiveShadow = true; return o; }
+// PERF (GF polish): bake static meshes under `root` into one mesh per material (draw calls were ~1,100 per pass and
+// Water2 renders the scene 4 extra times). Skips door leaves, instanced meshes, invisible meshes and subtrees with
+// userData.noMerge. Picking still works: merged meshes stay children of the same furniture group (userData.fid).
+function mergeStatic(root){
+  const buckets = new Map(), drop = [], tmp = new THREE.Vector3(), nm = new THREE.Matrix3();
+  const skip = o => { for (let p = o; p && p !== root; p = p.parent) if (p.userData.noMerge || !p.visible) return true; return false; };
+  root.traverse(o => {
+    if (!o.isMesh || o.isInstancedMesh || o.userData.door || skip(o)) return;
+    const g = o.geometry; if (!g.attributes.uv || !g.attributes.normal) return;
+    const m = new THREE.Matrix4(); for (let p = o; p && p !== root; p = p.parent){ p.updateMatrix(); m.premultiply(p.matrix); }
+    const mats = Array.isArray(o.material) ? o.material : [o.material];
+    const n = g.index ? g.index.count : g.attributes.position.count;
+    const groups = Array.isArray(o.material) && g.groups.length ? g.groups : [{start:0, count:n, materialIndex:0}];
+    groups.forEach(gr => { const mat = mats[gr.materialIndex] ?? mats[0], key = mat.uuid + (o.castShadow ? 'c' : '') + (o.receiveShadow ? 'r' : '') + o.renderOrder;
+      if (!buckets.has(key)) buckets.set(key, {mat, cast:o.castShadow, recv:o.receiveShadow, ro:o.renderOrder, parts:[], n:0});
+      const b = buckets.get(key), cnt = Math.min(gr.count, n - gr.start); b.parts.push({g, m, start:gr.start, count:cnt}); b.n += cnt; });
+    drop.push(o);
+  });
+  drop.forEach(o => { o.parent.remove(o); });
+  buckets.forEach(b => {
+    const P = new Float32Array(b.n*3), N = new Float32Array(b.n*3), U = new Float32Array(b.n*2); let k = 0;
+    b.parts.forEach(({g, m, start, count}) => { const pa = g.attributes.position, na = g.attributes.normal, ua = g.attributes.uv, ix = g.index; nm.getNormalMatrix(m);
+      for (let i = start; i < start + count; i++, k++){ const v = ix ? ix.getX(i) : i;
+        tmp.fromBufferAttribute(pa, v).applyMatrix4(m); P.set([tmp.x, tmp.y, tmp.z], k*3);
+        tmp.fromBufferAttribute(na, v).applyMatrix3(nm).normalize(); N.set([tmp.x, tmp.y, tmp.z], k*3);
+        U.set([ua.getX(v), ua.getY(v)], k*2); } });
+    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.BufferAttribute(P, 3)); geo.setAttribute('normal', new THREE.BufferAttribute(N, 3)); geo.setAttribute('uv', new THREE.BufferAttribute(U, 2));
+    const o = new THREE.Mesh(geo, b.mat); o.castShadow = b.cast; o.receiveShadow = b.recv; o.renderOrder = b.ro; o.userData.merged = true; root.add(o);
+  });
+  const shared = new Set([DL_GEO]); drop.forEach(o => { if (!shared.has(o.geometry)) o.geometry.dispose(); });
+  return root;
+}
 const noPick = o => { o.traverse(c => { c.raycast = () => {}; }); return o; };
 
 // ---- procedural textures (sizes are real-world: see repeat / worldUV callers) ----
 // Travertine (p17 "Travertine Stone Feature Material", p14 dining wall): vein-cut, 1.2 x 0.6 m slabs
 function texTravertine(seed = 71){ return canvasTex(1024, 512, (g, cw, ch) => { const R = rng(seed);
-  g.fillStyle = '#d4c5ad'; g.fillRect(0, 0, cw, ch);
-  for (let k = 0; k < 260; k++){ const y = R()*ch, th = .6 + R()*5, dark = R() < .45;
-    g.fillStyle = dark ? `rgba(140,116,88,${.05 + R()*.13})` : `rgba(246,238,224,${.08 + R()*.2})`; g.fillRect(0, y, cw, th); }
-  g.lineCap = 'round';
-  for (let k = 0; k < 70; k++){ const y0 = R()*ch, a = 1 + R()*3, ph = R()*6.28, n = 1 + Math.floor(R()*3);
+  g.fillStyle = '#c6b8a2'; g.fillRect(0, 0, cw, ch);
+  g.filter = 'blur(2px)';
+  for (let k = 0; k < 90; k++){ const y = R()*ch, th = 4 + R()*26, dark = R() < .5;
+    g.fillStyle = dark ? `rgba(150,124,92,${.06 + R()*.12})` : `rgba(240,229,208,${.08 + R()*.18})`; g.fillRect(0, y, cw, th); }
+  g.filter = 'none'; g.lineCap = 'round';
+  for (let k = 0; k < 28; k++){ const y0 = R()*ch, a = 1 + R()*3, ph = R()*6.28, n = 1 + Math.floor(R()*3);
     g.strokeStyle = `rgba(120,98,72,${.08 + R()*.15})`; g.lineWidth = .5 + R()*1.5; g.beginPath();
     for (let x = 0; x <= cw; x += 8) g.lineTo(x, y0 + Math.sin(x/cw*Math.PI*2*n + ph)*a); g.stroke(); }
-  for (let k = 0; k < 700; k++){ g.fillStyle = `rgba(105,84,60,${.12 + R()*.28})`; g.beginPath(); g.ellipse(R()*cw, R()*ch, 1 + R()*5, .5 + R()*1.2, 0, 0, 7); g.fill(); }
+  for (let k = 0; k < 450; k++){ g.fillStyle = `rgba(105,84,60,${.1 + R()*.22})`; g.beginPath(); g.ellipse(R()*cw, R()*ch, 1 + R()*5, .5 + R()*1.2, 0, 0, 7); g.fill(); }
   g.fillStyle = 'rgba(110,94,74,.5)'; g.fillRect(0, 0, cw, 2); g.fillRect(0, 0, 2, ch);
+}); }
+// Outdoor travertine pavers (DA): cross-cut / mottled, 0.6 x 0.6 m, so they do not read as decking
+function texPaver(seed = 19){ return canvasTex(512, 512, (g, cw, ch) => { const R = rng(seed), s = cw/2;
+  for (let i = 0; i < 2; i++) for (let j = 0; j < 2; j++){ g.fillStyle = rgbK('#d2c6b2', .95 + R()*.08); g.fillRect(i*s, j*s, s, s); }
+  g.filter = 'blur(3px)'; for (let k = 0; k < 70; k++){ g.fillStyle = R() < .5 ? `rgba(240,232,216,${.1 + R()*.15})` : `rgba(160,140,112,${.06 + R()*.1})`; g.beginPath(); g.ellipse(R()*cw, R()*ch, 10 + R()*40, 6 + R()*20, R()*3, 0, 7); g.fill(); }
+  g.filter = 'none'; for (let k = 0; k < 500; k++){ g.fillStyle = `rgba(110,90,66,${.12 + R()*.25})`; g.beginPath(); g.ellipse(R()*cw, R()*ch, .8 + R()*3, .6 + R()*1.5, R()*3, 0, 7); g.fill(); }
+  g.fillStyle = 'rgba(120,108,92,.6)'; [0, s].forEach(v => { g.fillRect(v, 0, 3, ch); g.fillRect(0, v, cw, 3); });
 }); }
 // Calacatta (p17 "Calacatta marble or Porcelain Feature Material", p14 island + console): 1.6 x 1.6 m slabs
 function texCalacatta(seed = 5){ return canvasTex(1024, 1024, (g, cw, ch) => { const R = rng(seed);
@@ -1790,11 +1832,12 @@ function texCalacatta(seed = 5){ return canvasTex(1024, 1024, (g, cw, ch) => { c
     gr.addColorStop(0, `rgba(226,218,204,${.2 + R()*.25})`); gr.addColorStop(1, 'rgba(226,218,204,0)'); g.fillStyle = gr; g.fillRect(0, 0, cw, ch); }
   const vein = (lw, col, blur, n) => { g.filter = `blur(${blur}px)`;
     for (let k = 0; k < n; k++){ g.strokeStyle = col(); g.lineWidth = lw(); g.beginPath(); let x = R()*cw, y = -20; g.moveTo(x, y);
-      while (y < ch + 20){ const nx = x + (R() - .45)*170, ny = y + 60 + R()*120; g.quadraticCurveTo(x + (R() - .5)*130, (y + ny)/2, nx, ny); x = nx; y = ny; }
+      const drift = (R() - .3)*90;
+      while (y < ch + 20){ const nx = x + drift + (R() - .5)*50, ny = y + 160 + R()*180; g.quadraticCurveTo(x + drift*.5 + (R() - .5)*60, (y + ny)/2, nx, ny); x = nx; y = ny; }
       g.stroke(); } };
-  vein(() => 10 + R()*18, () => `rgba(196,176,140,${.22 + R()*.2})`, 6, 4);
-  vein(() => 2 + R()*4, () => `rgba(150,128,96,${.32 + R()*.3})`, 1.2, 6);
-  vein(() => .6 + R()*1.2, () => `rgba(110,100,92,${.35 + R()*.3})`, .4, 10);
+  vein(() => 14 + R()*22, () => `rgba(200,182,148,${.18 + R()*.15})`, 8, 3);
+  vein(() => 2.5 + R()*3.5, () => `rgba(150,124,88,${.45 + R()*.25})`, 1.4, 4);
+  vein(() => .6 + R()*1, () => `rgba(120,108,98,${.25 + R()*.25})`, .4, 5);
   g.filter = 'none'; g.fillStyle = 'rgba(160,150,135,.3)'; g.fillRect(0, 0, cw, 1.5); g.fillRect(0, 0, 1.5, ch);
 }); }
 // Recon veneer joinery (p17): vertical grain, 0.6 x 2.4 m panels with a dark shadow-gap joint
@@ -1811,8 +1854,8 @@ function texPorcelain(){ return canvasTex(1024, 1024, (g, cw) => { const R = rng
   for (let i = 0; i < n; i++) for (let j = 0; j < n; j++){
     const x0 = i*s, y0 = j*s; g.fillStyle = rgbK('#e8e0d2', .975 + R()*.04); g.fillRect(x0, y0, s, s);
     g.save(); g.beginPath(); g.rect(x0, y0, s, s); g.clip();
-    for (let q = 0; q < 10; q++){ const x = x0 + R()*s, y = y0 + R()*s, r = 20 + R()*90, gr = g.createRadialGradient(x, y, 0, x, y, r), lt = R() < .5;
-      gr.addColorStop(0, lt ? 'rgba(250,246,238,.35)' : 'rgba(205,192,170,.2)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(x0, y0, s, s); }
+    for (let q = 0; q < 6; q++){ const x = x0 + R()*s, y = y0 + R()*s, r = 60 + R()*120, gr = g.createRadialGradient(x, y, 0, x, y, r), lt = R() < .5;
+      gr.addColorStop(0, lt ? 'rgba(250,246,238,.14)' : 'rgba(205,192,170,.08)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(x0, y0, s, s); }
     g.filter = 'blur(1.5px)';
     for (let q = 0; q < 3; q++){ g.strokeStyle = `rgba(175,158,130,${.1 + R()*.14})`; g.lineWidth = .8 + R()*1.6; g.beginPath(); g.moveTo(x0 + R()*s, y0);
       g.bezierCurveTo(x0 + R()*s, y0 + R()*s, x0 + R()*s, y0 + R()*s, x0 + R()*s, y0 + s); g.stroke(); }
@@ -1822,10 +1865,10 @@ function texPorcelain(){ return canvasTex(1024, 1024, (g, cw) => { const R = rng
 }, 1/3.2, 1/3.2); }
 // Roughness variation (smudges / polish differences), linear data
 function texRoughNoise(seed = 3){ return canvasTex(256, 256, (g, cw, ch) => { const R = rng(seed); g.fillStyle = 'rgb(128,128,128)'; g.fillRect(0, 0, cw, ch);
-  g.filter = 'blur(6px)'; for (let k = 0; k < 90; k++){ const v = 90 + R()*80 | 0; g.fillStyle = `rgba(${v},${v},${v},.5)`; g.beginPath(); g.arc(R()*cw, R()*ch, 6 + R()*26, 0, 7); g.fill(); } g.filter = 'none';
+  g.filter = 'blur(14px)'; for (let k = 0; k < 60; k++){ const v = 110 + R()*40 | 0; g.fillStyle = `rgba(${v},${v},${v},.5)`; g.beginPath(); g.arc(R()*cw, R()*ch, 6 + R()*26, 0, 7); g.fill(); } g.filter = 'none';
 }, 1, 1, false); }
 function texWeave(){ return canvasTex(256, 256, (g, cw, ch) => { const R = rng(9); g.fillStyle = '#ffffff'; g.fillRect(0, 0, cw, ch);
-  for (let k = 0; k < 9000; k++){ const v = 212 + R()*43 | 0; g.fillStyle = `rgb(${v},${v},${v})`; g.fillRect(R()*cw, R()*ch, 1 + R()*2, 1 + R()*2); } }, 3, 3); }
+  for (let k = 0; k < 9000; k++){ const v = 232 + R()*23 | 0; g.fillStyle = `rgb(${v},${v},${v})`; g.fillRect(R()*cw, R()*ch, 1 + R()*2, 1 + R()*2); } }, 5, 5); }
 // Pool mosaic: 25 mm turquoise glass mosaic, one canvas = 0.4 m (same idea as exterior-garden-3d BASIN)
 function texMosaic(){ return canvasTex(256, 256, (g) => { const R = rng(12); g.fillStyle = '#d6eeee'; g.fillRect(0, 0, 256, 256);
   for (let y = 0; y < 256; y += 16) for (let x = 0; x < 256; x += 16){ const v = R()*22 - 11; g.fillStyle = `rgb(${48 + v},${168 + v},${186 + v})`; g.fillRect(x + 1, y + 1, 14, 14); } }); }
@@ -1849,7 +1892,7 @@ function texArt(){ return canvasTex(512, 512, (g, cw, ch) => { const R = rng(88)
 function texSky(night){ return canvasTex(8, 512, (g, cw, ch) => {
   const gr = g.createLinearGradient(0, 0, 0, ch);
   if (night){ gr.addColorStop(0, '#0c1222'); gr.addColorStop(.45, '#1d2740'); gr.addColorStop(.5, '#2b3248'); gr.addColorStop(.51, '#141820'); gr.addColorStop(1, '#101215'); }
-  else { gr.addColorStop(0, '#8fb2d4'); gr.addColorStop(.32, '#bcd3e4'); gr.addColorStop(.47, '#e9ebe6'); gr.addColorStop(.497, '#c9cfc2'); gr.addColorStop(.5, '#7f8c6c'); gr.addColorStop(.515, '#9aa287'); gr.addColorStop(.53, '#cfc9ba'); gr.addColorStop(1, '#c2bbad'); }
+  else { gr.addColorStop(0, '#7fa6cc'); gr.addColorStop(.3, '#a9c4dc'); gr.addColorStop(.455, '#d7e2e6'); gr.addColorStop(.475, '#b9c3b4'); gr.addColorStop(.485, '#7a8a63'); gr.addColorStop(.5, '#6f7d58'); gr.addColorStop(.51, '#8e9874'); gr.addColorStop(.53, '#bdb6a6'); gr.addColorStop(1, '#b2ab9d'); }
   g.fillStyle = gr; g.fillRect(0, 0, cw, ch);
 }, 1, 1); }
 
@@ -1861,7 +1904,7 @@ function style(){
   S = {
     trav: smat({map:texTravertine(), roughness:.62}, .3),
     cal: smat({map:texCalacatta(5), roughness:.16}, .7),
-    oak: smat({map:texVeneer('#a68161', 13), roughness:.5}, .3),          // "Recon Veneer Joinery" (p17)
+    oak: smat({map:texVeneer('#a48b72', 13), roughness:.5}, .3),          // "Recon Veneer Joinery" (p17)
     walnut: smat({map:texVeneer('#6b4d36', 17), roughness:.45}, .35),
     taupe: smat({color:'#b2a491', roughness:.5}, .3),                       // DA: taupe lacquer joinery, read from p14 tall units
     bronze: smat({color:'#9a7550', metalness:.92, roughness:.3}, 1),        // "Bronze Metal Ironmongery" (p17)
@@ -1876,7 +1919,7 @@ function style(){
     glass: smat({color:'#e6efee', roughness:.03, metalness:.1, transparent:true, opacity:.28, depthWrite:false}, 1),
     smoked: smat({color:'#3a332d', roughness:.05, metalness:.3, transparent:true, opacity:.55}, 1),
     leaf: smat({color:'#52643d', roughness:.6, side:THREE.DoubleSide}, .15),
-    olive: smat({color:'#7f8a64', roughness:.8, side:THREE.DoubleSide}, .1),
+    olive: smat({color:'#8c9772', roughness:.8, side:THREE.DoubleSide}, .1), oliveDk: smat({color:'#66704f', roughness:.85, side:THREE.DoubleSide}, .05),
     bark: smat({color:'#6a5c4b', roughness:.9}, .05),
     petal: smat({color:'#fbf8f2', roughness:.55, side:THREE.DoubleSide}, .1),
     soil: smat({color:'#5c5246', roughness:1}, 0),
@@ -1893,6 +1936,7 @@ function glowM(key, color, emissive, day, night, extra = {}){
   return glows.get(key).mat;
 }
 let practicals = [];
+const plight = (c, i, dist, decay, x, y, z) => { const l = new THREE.PointLight(c, i, dist, decay); l.position.set(x, y, z); return l; };
 const practical = (light, day, night) => { light.userData.day = day; light.userData.night = night; practicals.push(light); return light; };
 
 // Channel / tub backs: an arc wall of radius r, thickness t, height h, opening angle ang (centred on the back, -z)
@@ -1927,7 +1971,7 @@ function callas(g, x, y, z, s, R){   // glass vase with calla lilies (p13)
   g.add(cyl(.06*s, .05*s, .32*s, S.glass, x, y, z, 24));
   for (let k = 0; k < 4; k++){ const a = k*1.7 + R(), top = [x + Math.cos(a)*.12*s, y + (.62 + R()*.12)*s, z + Math.sin(a)*.12*s];
     g.add(rod([x, y + .05*s, z], top, .004*s, S.leaf));
-    const fl = mesh(new THREE.ConeGeometry(.035*s, .1*s, 12, 1, true), S.petal); fl.position.set(...top); fl.rotation.z = Math.cos(a)*.6; fl.rotation.x = -Math.sin(a)*.6; g.add(fl); }
+    const fl = mesh(new THREE.ConeGeometry(.022*s, .075*s, 12, 1, true), S.petal); fl.position.set(...top); fl.rotation.set(Math.PI + Math.sin(a)*.5, 0, -Math.cos(a)*.5); g.add(fl); }
 }
 function domeLamp(g, x, y, z, s = 1){   // bronze mushroom lamp (p14 console)
   g.add(lathe([[.07*s, 0], [.07*s, .012*s], [.03*s, .02*s], [.022*s, .3*s], [0, .3*s]], S.bronze, x, y, z, 32));
@@ -1948,7 +1992,6 @@ function luxFurniture(f){
       const cols = ['#5b6748', '#efe9de', '#2d2a27', '#d9cdb9'], np = Math.max(2, Math.round(w/.85));
       for (let i = 0; i < np; i++){ const x = -w/2 + .32 + (w - .64)*i/(np - 1);
         g.add(rot(rbox(.46, .44, .13, Sx.fabric(cols[(i + (w > 2.5 ? 0 : 2)) % 4]), x, .37, bz + bd + .09, .07), -.22, (R() - .5)*.3, (R() - .5)*.12)); }
-      if (w > 2.5) g.add(rot(rbox(.55, .03, .72, Sx.fabric('#3a342e'), w*.2, .4, .04, .015), 0, .25, 0));   // folded throw (p13)
       return g;
     }
     case 'armchair': {   // living: green velvet tub chair on walnut legs (p13); pool terrace: rope-strap lounge chair, teak base, white cushions (p12)
@@ -1962,7 +2005,7 @@ function luxFurniture(f){
       return g;
     }
     case 'coffeetable': {   // p13 dark block base + p15 Calacatta top; styling: books, bronze bowl, callas
-      g.add(box(w - .22, .29, d - .22, Sx.stoneDark, 0, 0, 0), rbox(w, .05, d, Sx.cal, 0, .29, 0, .008));
+      g.add(box(w - .22, .29, d - .22, Sx.stoneDark, 0, 0, 0), wbox(w, .05, d, Sx.cal, 0, .29, 0, 1.6, 1.6));
       books(g, -w*.2, .34, w*.12, R, .3); bowl(g, w*.2, .34, -w*.18, .13, Sx.bronzeDS); callas(g, w*.16, .34, w*.2, 1, R);
       return g;
     }
@@ -1974,12 +2017,12 @@ function luxFurniture(f){
     }
     case 'table': {
       if (/office|meeting/i.test(n) || d > w*1.5){   // office: walnut top on slim bronze legs
-        g.add(rbox(w, .04, d, Sx.walnut, 0, .71, 0, .008));
+        g.add(wbox(w, .04, d, Sx.walnut, 0, .71, 0, .6, 2.4));
         [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a, b]) => g.add(box(.035, .71, .035, Sx.dkBronze, a*(w/2 - .06), 0, b*(d/2 - .08))));
         books(g, 0, .75, -d*.25, R, 1.4); bowl(g, 0, .75, d*.25, .12, Sx.bronzeDS);
       } else {   // dining (p14): Calacatta top on two travertine pedestals; orchid centrepiece, no place settings
-        g.add(rbox(w, .045, d, Sx.cal, 0, .71, 0, .01));
-        [-1, 1].forEach(s => g.add(box(.36, .71, d*.5, Sx.trav, s*w*.28, 0, 0)));
+        g.add(wbox(w, .045, d, Sx.cal, 0, .71, 0, 1.6, 1.6));
+        [-1, 1].forEach(s => g.add(wbox(.36, .71, d*.5, Sx.trav, s*w*.28, 0, 0, 1.2, .6)));
         orchid(g, 0, .755, 0, 1.15, R); bowl(g, -w*.27, .755, 0, .15, Sx.ceramicDS); bowl(g, w*.27, .755, .05, .11, Sx.bronzeDS);
       }
       return g;
@@ -1996,8 +2039,8 @@ function luxFurniture(f){
       cab.add(box(w - .14, .1, cd - .08, Sx.plinth, 0, 0, -.04), box(w - .1, .76, cd - .03, Sx.taupe, 0, .1, -.015));
       fronts(cab, -w/2 + .05, .1, w - .1, .76, fz, Math.max(1, Math.round((w - .1)/.6)), 1, Sx.taupe, 'edge');
       cab.rotation.y = Math.PI; cab.position.z = bz + cd/2; g.add(cab);
-      g.add(rbox(w, .06, d, Sx.cal, 0, .86, 0, .006));
-      [-1, 1].forEach(s => g.add(box(.06, .86, d, Sx.cal, s*(w/2 - .03), 0, 0)));
+      g.add(wbox(w, .06, d, Sx.cal, 0, .86, 0, 1.6, 1.6));
+      [-1, 1].forEach(s => g.add(wbox(.06, .86, d, Sx.cal, s*(w/2 - .03), 0, 0, 1.6, 1.6)));
       g.add(box(w - .14, .012, .02, glowM('led', '#fff7e6', '#ffe2b8', .9, 1.6), 0, .83, d/2 - .07));
       const ck = w*.28; g.add(rbox(.78, .008, .5, mat('#0d0d0e', {roughness:.05, metalness:.3}), ck, .92, 0, .003));
       [[-.2, -.12], [.2, -.12], [-.2, .12], [.2, .12]].forEach(([x, z]) => g.add(ring(.08, .003, mat('#3a3a3a', {roughness:.4}), ck + x, .929, z)));
@@ -2017,9 +2060,9 @@ function luxFurniture(f){
       const nn = Math.max(1, Math.round(w/.6)), fz = d/2 - .04;
       g.add(box(w - .01, .1, d - .1, Sx.plinth, 0, 0, -.05), box(w, .76, d - .04, Sx.taupe, 0, .1, -.02));
       fronts(g, -w/2, .1, w, .76, fz, nn, 1, Sx.taupe, 'edge');
-      g.add(rbox(w + .01, .04, d, Sx.cal, 0, .86, 0, .004), box(w, .56, .015, Sx.cal, 0, .9, bz + .008));
+      g.add(wbox(w + .01, .04, d, Sx.cal, 0, .86, 0, 1.6, 1.6), wbox(w, .56, .015, Sx.cal, 0, .9, bz + .008, 1.6, 1.6));
       if (w > .9){
-        g.add(box(w, .64, .34, Sx.oak, 0, 1.46, bz + .17)); fronts(g, -w/2, 1.46, w, .64, bz + .34, nn, 1, Sx.oak, 'none');
+        g.add(wbox(w, .64, .34, Sx.oak, 0, 1.46, bz + .17, .6, 2.4)); fronts(g, -w/2, 1.46, w, .64, bz + .34, nn, 1, Sx.oak, 'none');
         g.add(box(w - .04, .01, .02, glowM('led', '#fff7e6', '#ffe2b8', .9, 1.6), 0, 1.45, bz + .3));
       }
       if (/sink/i.test(n)){ g.add(box(.62, .004, .4, mat('#8d9397', {metalness:.8, roughness:.35}), 0, .9, .02), tube([[0, .9, bz + .07], [0, 1.2, bz + .07], [0, 1.25, bz + .14], [0, 1.18, bz + .24]], .011, Sx.bronze)); }
@@ -2036,7 +2079,7 @@ function luxFurniture(f){
     }
     case 'wardrobe': {   // p15 dressing: oak carcass, bronze-framed smoked glass doors, warm interior light
       const h = 2.3, nn = Math.max(1, Math.round(w/.5)), pw = w/nn, fz = d/2 - .02;
-      g.add(box(w, h, d - .04, Sx.oak, 0, 0, -.02), box(w - .06, h - .12, .01, glowM('robe', '#f4e8d4', '#ffdcae', .5, 1.2), 0, .06, bz + .06));
+      g.add(wbox(w, h, d - .04, Sx.oak, 0, 0, -.02, .6, 2.4), box(w - .06, h - .12, .01, glowM('robe', '#f4e8d4', '#ffdcae', .5, 1.2), 0, .06, bz + .06));
       for (let k = 0; k < 4; k++) g.add(box(.05 + R()*.05, .7 + R()*.3, d*.5, Sx.fabric(['#e7dfd2', '#8f8173', '#c9bba8', '#3f3a35'][k]), -w/2 + .12 + k*(w - .2)/4, 1.0, 0));
       for (let i = 0; i < nn; i++){ const x = -w/2 + pw*(i + .5);
         g.add(box(pw - .03, h - .06, .008, Sx.smoked, x, .03, fz));
@@ -2050,7 +2093,7 @@ function luxFurniture(f){
 /* ======================= 家具模型（局部坐标：背面朝 -z） ======================= */
 function buildFurniture(f){
   const lux = luxFurniture(f);
-  if (lux){ lux.position.set(wx(f.cx), 0, wz(f.cy)); lux.rotation.y = -f.rot * Math.PI/180; lux.userData.fid = f.id; return lux; }
+  if (lux){ mergeStatic(lux); lux.position.set(wx(f.cx), 0, wz(f.cy)); lux.rotation.y = -f.rot * Math.PI/180; lux.userData.fid = f.id; return lux; }
   const g = new THREE.Group(), w = M(f.w), d = M(f.d), c = f.color || STYLE_COLOR[f.type] || '#ddd', bz = -d/2, R = rng(Math.round(f.w*7 + f.d*13 + f.cx + f.cy));
   switch (f.type){
     case 'bed': {
@@ -2531,6 +2574,7 @@ function buildFurniture(f){
     }
     default: g.add(box(w, .8, d, c));
   }
+  mergeStatic(g);
   g.position.set(wx(f.cx), 0, wz(f.cy));
   g.rotation.y = -f.rot * Math.PI/180;       // 平面顺时针旋转 → 绕 Y 轴负向
   g.userData.fid = f.id;
@@ -2560,7 +2604,10 @@ function skirtMat(){
 }
 function shapeOf(poly, flip){ const s = new THREE.Shape(); poly.forEach(([x, y], i) => s[i ? 'lineTo' : 'moveTo'](wx(x), flip ? wz(y) : -wz(y))); return s; }
 
-const WATER_MODE = new URLSearchParams(location.search).get('water') === 'flat' ? 'flat' : 'water2';
+// GF polish PERF: Water2 re-renders the whole scene twice per surface (reflection + refraction) and cost ~85% of the
+// frame (55 ms -> 8 ms without it on Iris Xe). Default is now 'lite': a transparent, normal-mapped, env-reflective surface
+// over the real basin geometry (no extra scene passes). ?water=water2 restores Water2, ?water=flat the flat fallback.
+const WATER_Q = new URLSearchParams(location.search).get('water'), WATER_MODE = WATER_Q === 'flat' ? 'flat' : WATER_Q === 'water2' ? 'water2' : 'lite';
 let waterState = {mode:null, count:0, error:null, surfaces:[]};
 const waterTex = {};
 function waterPath(pts){ return pts.map(([x, y]) => new THREE.Vector2(wx(x), -wz(y))); }
@@ -2575,7 +2622,7 @@ function basinMats_(){
   const mos = texMosaic(), cau = texCaustic(); animTex.push(cau);
   const floorT = mos.clone(); floorT.needsUpdate = true; floorT.repeat.set(1/.4, 1/.4); cau.repeat.set(1/2.2, 1/2.2);
   basinMats = {wallTile:smat({map:mos, roughness:.3}, .4), floorTile:smat({map:floorT, roughness:.3, emissive:'#bff6ff', emissiveMap:cau, emissiveIntensity:.55}, .4),
-               stone:smat({map:texTravertine(23), color:'#8e877c', roughness:.85}, .1), pondFloor:smat({color:'#3f4a42', roughness:.95}, 0)};
+               stone:smat({map:texPaver(23), color:'#a39b8f', roughness:.85}, .1), pondFloor:smat({color:'#566357', roughness:.95}, 0)};
   return basinMats;
 }
 function buildBasin(w, B){
@@ -2618,6 +2665,14 @@ function buildWater(){
         mesh = new Water(geo, {color:B.color, scale:B.scale, flowDirection:new THREE.Vector2(...D.flowDirection), flowSpeed:.02, reflectivity:B.reflect, textureWidth:D.textureWidth, textureHeight:D.textureHeight, normalMap0:waterTex.n0, normalMap1:waterTex.n1});
       } catch(e){ waterState.error = String(e); mesh = null; }
     }
+    if (!mesh && mode === 'lite'){
+      const tl = new THREE.TextureLoader();
+      waterTex.lite ??= tl.load('vendor/three/examples/textures/water/Water_1_M_Normal.jpg', t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; });
+      const nmap = waterTex.lite.clone(); nmap.wrapS = nmap.wrapT = THREE.RepeatWrapping; nmap.repeat.set(B.tile ? .45 : .7, B.tile ? .45 : .7); nmap.needsUpdate = true; animTex.push(nmap);
+      mesh = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({color:B.tile ? '#9fdde2' : '#c9dcd6', transparent:true, opacity:B.tile ? .42 : .3, roughness:.04, metalness:0,
+        normalMap:nmap, normalScale:new THREE.Vector2(.35, .35), envMap:envTex, envMapIntensity:1.1, depthWrite:false}));
+      mesh.renderOrder = 1;
+    }
     if (!mesh){ mode = 'flat'; mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({color:PLAN.DISPLAY.water_flat_fallback_color, roughness:.15, transparent:true, opacity:.8})); }
     mesh.rotation.x = -Math.PI/2; mesh.position.y = B.waterY; mesh.userData.water = w.id; mesh.userData.waterMode = mode;
     archFloor.add(mesh);
@@ -2626,7 +2681,7 @@ function buildWater(){
     waterState.mode = mode; waterState.count++; waterState.surfaces.push({id:w.id, mode});
   });
   const fb = document.getElementById('waterBadge');
-  if (fb) fb.textContent = waterState.count ? (waterState.mode === 'flat' ? 'Water: FLAT FALLBACK material (Water2 not used' + (waterState.error ? ': ' + waterState.error : '') + ')' : 'Water: three.js Water2 (r160, vendored)') + ' · ' + waterState.count + ' source surface(s)' : 'Water: none in source';
+  if (fb) fb.textContent = waterState.count ? (waterState.mode === 'flat' ? 'Water: FLAT FALLBACK material (Water2 not used' + (waterState.error ? ': ' + waterState.error : '') + ')' : waterState.mode === 'lite' ? 'Water: lite transparent surface over modelled basins (?water=water2 for Water2)' : 'Water: three.js Water2 (r160, vendored)') + ' · ' + waterState.count + ' source surface(s)' : 'Water: none in source';
 }
 function buildStairs(top){   // DISPLAY-ONLY stair massing: tread count from the approved V4 tread lines; riser = display wall height / treads; rise direction ASSUMED
   // GF polish (appearance only, same massing): cream stone treads / risers and an oak-veneer clad side (p12 stair),
@@ -2673,7 +2728,7 @@ function wallWasher(x, y, h, tx, ty, th, day, night){   // DA: recessed wall-was
   archUp.add(sp, sp.target); practical(sp, day, night);
 }
 function rodChandelier(parent, cx, cz, sx, sz, yTop, y0, y1, n, seed, tilt){   // p13 / p14 crystal-rod chandelier (styling, DA)
-  const R = rng(seed), geo = new THREE.CapsuleGeometry(.011, .11, 3, 8), m = glowM('crystal', '#fffaf0', '#ffe6bd', .55, 2.2, {transparent:true, opacity:.92, roughness:.15});
+  const R = rng(seed), geo = new THREE.CapsuleGeometry(.008, .12, 3, 8), m = glowM('crystal', '#f4efe6', '#ffe3b5', .35, 1.8, {transparent:true, opacity:.55, roughness:.08, metalness:.1, depthWrite:false});
   const im = new THREE.InstancedMesh(geo, m, n), e = new THREE.Euler(), q = new THREE.Quaternion(), p = new THREE.Vector3(), sc = new THREE.Vector3(1, 1, 1), mx = new THREE.Matrix4(), wires = [];
   for (let i = 0; i < n; i++){
     const u = R() - .5, v = R() - .5, x = cx + u*sx, z = cz + v*sz, y = y0 + (y1 - y0)*(.5 + .45*Math.sin(u*6 + v*2.5))*(.75 + .25*R());
@@ -2760,7 +2815,7 @@ function buildCeilings(){
 }
 function buildArch(){
   clearGroup(archFloor); clearGroup(archUp); lampG.clear(); doors.length = 0; colliders = []; practicals = []; upperG = null;
-  const top = opt.cut, S0 = style();
+  const top = opt.cut, S0 = style(), dlPts = [];
   ROOMS.forEach(r => {
     const m = floorMat(state.rooms[r.id].mat), bay = r.bay === true;
     // GF polish: floors get holes on the exact plan water outlines they contain (so the basins below are visible)
@@ -2775,10 +2830,14 @@ function buildArch(){
     const ceil = new THREE.Mesh(cg, S0.ceil); ceil.position.y = H; ceil.visible = top >= H; if (!r.plate && !r.outdoor && r.id !== VOID_ROOM) archUp.add(ceil);
     if (r.at && !r.outdoor){
       // DA: recessed downlights on a ~1.5 m grid inside each room polygon (brochure p13 / p14 show recessed downlights)
-      if (r.id !== VOID_ROOM) downlights(r.poly).forEach(([x, y]) => { const dl = new THREE.Mesh(DL_GEO, glowM('downlight', '#fffaf0', '#fff0d8', .6, 2.6)); dl.rotation.x = Math.PI/2; dl.position.set(wx(x), H - .004, wz(y)); dl.visible = top >= H; lampG.add(dl); });
+      if (r.id !== VOID_ROOM) dlPts.push(...downlights(r.poly));
       const pl = new THREE.PointLight(0xffd9a8, 0, 7, 1.6); pl.position.set(wx(r.at[0]), H - .25, wz(r.at[1])); lampG.add(pl);
     }
   });
+  if (dlPts.length){   // one InstancedMesh for all downlights (perf)
+    const im = new THREE.InstancedMesh(DL_GEO, glowM('downlight', '#fffaf0', '#fff0d8', .6, 2.6), dlPts.length), m4 = new THREE.Matrix4(), q = new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI/2, 0, 0));
+    dlPts.forEach(([x, y], i) => im.setMatrixAt(i, m4.compose(new THREE.Vector3(wx(x), H - .004, wz(y)), q, new THREE.Vector3(1, 1, 1))));
+    im.visible = top >= H; noPick(im); lampG.add(im); }
   buildFeatures(top); if (top >= H) buildCeilings();
   buildWater(); buildStairs(top);
   [...DOORS, ...SLIDES].forEach(d => { const [x0, y0, x1, y1] = d.rect; const s = box(M(x1-x0), .012, M(y1-y0), mat('#d8d0c0', {roughness:.3}), wx((x0+x1)/2), 0, wz((y0+y1)/2)); s.castShadow = false; archFloor.add(s); });
@@ -2805,8 +2864,9 @@ function buildArch(){
   DOORS.forEach(d => {
     const pivot = new THREE.Group(), L = M(d.len), dh = Math.min(2.05, top);
     pivot.position.set(wx(d.h[0]), 0, wz(d.h[1]));
-    const leaf = box(L, dh, .04, mat(d.entry ? '#6b4f3a' : '#efe6d8', {roughness:.5}), L/2);
-    const knob = new THREE.Mesh(new THREE.SphereGeometry(.03, 12, 8), metal()); knob.position.set(L - .07, Math.min(1, dh - .05), 0); knob.scale.z = 2.2;
+    // GF polish: flush veneer leaves (entry walnut, interior oak; p12 / p17 "Recon Veneer Joinery"), bronze bar pull (p17)
+    const leaf = new THREE.Mesh(worldUV(new THREE.BoxGeometry(L, dh, .04), .6, 2.4), d.entry ? S0.walnut : S0.oak); leaf.position.set(L/2, dh/2, 0); leaf.castShadow = leaf.receiveShadow = true;
+    const knob = new THREE.Mesh(new THREE.BoxGeometry(.018, .45, .05), S0.bronze); knob.position.set(L - .07, Math.min(1.05, dh - .3), 0); knob.castShadow = true;
     pivot.add(leaf, knob);
     const ang = v => Math.atan2(-v[1], v[0]), door = {pivot, a0:ang(d.c), a1:ang(d.o), open:true};
     if (door.a1 - door.a0 > Math.PI) door.a1 -= Math.PI*2; if (door.a0 - door.a1 > Math.PI) door.a1 += Math.PI*2;
@@ -2822,13 +2882,65 @@ function buildArch(){
       [-1, 1].forEach(e => { const fr = new THREE.Mesh(new THREE.BoxGeometry(.04, ph, .04), frameMat); fr.position.set(v ? x : x + e*pl/2, ph/2, v ? z + e*pl/2 : z); archUp.add(fr); });
     });
   });
+  if (upperG){ upperG.userData.noMerge = true; }
+  mergeStatic(archUp); if (upperG){ upperG.userData.noMerge = false; mergeStatic(upperG); upperG.userData.noMerge = true; }
+  mergeLines(archUp);
   applyLight(); applyGrow();
 }
+// walk-only wall edge lines: one LineSegments instead of ~600
+function mergeLines(root){
+  const ls = root.children.filter(o => o.isLineSegments && o.userData.walkOnly); if (!ls.length) return;
+  const arr = []; ls.forEach(o => { o.updateMatrix(); const pa = o.geometry.attributes.position, v = new THREE.Vector3(); for (let i = 0; i < pa.count; i++){ v.fromBufferAttribute(pa, i).applyMatrix4(o.matrix); arr.push(v.x, v.y, v.z); } root.remove(o); o.geometry.dispose(); });
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(arr, 3));
+  const l = new THREE.LineSegments(g, edgeMat); l.userData.walkOnly = true; l.visible = opt.mode === 'walk'; noPick(l); root.add(l);
+}
 
+/* GF polish: STYLING DECOR (display assumption, not plan furniture, not selectable, hidden with the Furniture toggle).
+ * Positions are chosen to suit the plan layout and the brochure styling (p12-p15); none is drawn in the CAD. */
+function buildDecor(){
+  clearGroup(decorG); const S0 = style(), R = rng(2026), P = (x, y) => [wx(x), wz(y)];
+  const add = o => { decorG.add(noPick(o)); return o; };
+  // 1 living rug under the sofa / coffee-table group (p13, p15)
+  { const [x, z] = P(11600, 3420), side = S0.fabric('#bdb4a6'), rg = new THREE.Mesh(new THREE.BoxGeometry(3.3, .01, 2.9), [side, side, smat({map:texRug(), roughness:1}, 0), side, side, side]);
+    rg.position.set(x, .006, z); rg.receiveShadow = true; add(rg); }
+  // 2 dining feature wall styling (p14): floating Calacatta ledge, plaster-relief artwork, bronze dome lamp, orchid
+  { const g = new THREE.Group(), [x, z] = P(1868 + 210, 3446); g.position.set(x, 0, z);
+    const ledge = new THREE.Mesh(worldUV(new THREE.BoxGeometry(.42, .1, 2.9), 1.6, 1.6), S0.cal); ledge.position.set(0, .7, 0); ledge.castShadow = ledge.receiveShadow = true; g.add(ledge);
+    g.add(box(.36, .012, 2.8, glowM('led', '#fff7e6', '#ffe2b8', .9, 1.6), 0, .638, 0));
+    g.add(box(.03, 1.36, 1.36, S0.dkBronze, -.195, 1.08, 0), box(.035, 1.3, 1.3, smat({map:texArt(), roughness:.95}, 0), -.18, 1.11, 0));
+    domeLamp(g, 0, .75, 1.05, 1.05); orchid(g, -.02, .75, -1.0, 1.2, R); books(g, .02, .75, -.45, R, .2);
+    add(g); }
+  // 3 living media wall (p15 right): TV on the Calacatta panel, low oak ledge
+  { const g = new THREE.Group(), [x, z] = P(14137, 3450); g.position.set(x, 0, z);
+    g.add(box(.045, .98, 1.72, mat('#141414', {roughness:.25, metalness:.3}), -.03, 1.15, 0), box(.004, .94, 1.68, mat('#05070a', {roughness:.08, metalness:.4}), -.054, 1.17, 0));
+    g.add(wbox(.4, .26, 2.6, S0.oak, -.2, .22, 0, .6, 2.4), box(.38, .012, 2.5, glowM('led', '#fff7e6', '#ffe2b8', .9, 1.6), -.2, .2, 0));
+    bowl(g, -.2, .48, .8, .14, S0.bronzeDS); books(g, -.2, .48, -.8, R, 1.5); add(g); }
+  // 4 plants in corners (p13 / p14 planting) - upstream plant model in a stone pot
+  [[13700, 1450, 650], [2400, 5500, 600], [6500, 18750, 560], [13650, 13650, 600]].forEach(([x, y, s], i) => add(buildFurniture({id:'decor-plant-' + i, type:'plant', name:'', cx:x, cy:y, w:s, d:s, rot:i*40, color:'#d9d2c5'})));
+  // 5 entry sculpture on a travertine plinth (p12 bronze sculpture under the stair)
+  { const [x, z] = P(6480, 16900), g = new THREE.Group(); g.position.set(x, 0, z);
+    const pl = new THREE.Mesh(worldUV(new THREE.BoxGeometry(.6, .4, .9), 1.2, .6), S0.trav); pl.position.y = .2; pl.castShadow = pl.receiveShadow = true; g.add(pl);
+    g.add(lathe([[0, 0], [.09, 0], [.17, .18], [.15, .42], [.07, .6], [.075, .66]], S0.bronzeDS, 0, .4, -.15, 40), lathe([[0, 0], [.08, 0], [.14, .1], [.12, .26], [.06, .32]], S0.blackGlaze, .05, .4, .22, 40)); add(g); }
+  // 6 courtyard olive tree on the planter island (p12 olive tree in the courtyard; the CAD draws a tree symbol there)
+  (PLAN.WATER || []).forEach(w => (w.holes || []).forEach(h => {
+    const cx = h.reduce((a, p) => a + p[0], 0)/h.length, cy = h.reduce((a, p) => a + p[1], 0)/h.length, [x, z] = P(cx, cy), g = new THREE.Group(); g.position.set(x, .3, z);
+    g.add(tube([[0, 0, 0], [.08, .8, .05], [-.05, 1.5, .1], [.1, 2.1, 0]], .09, S0.bark, 16), tube([[0, 1.3, .06], [.45, 1.9, .2], [.7, 2.3, .1]], .05, S0.bark, 12), tube([[-.03, 1.5, .1], [-.5, 2.0, -.15], [-.65, 2.4, -.2]], .05, S0.bark, 12));
+    for (let k = 0; k < 70; k++){ const a = R()*6.28, r = Math.sqrt(R())*1.15; g.add(blob(.16 + R()*.14, .1 + R()*.07, .16 + R()*.14, k % 3 ? S0.olive : S0.oliveDk, Math.cos(a)*r, 2.2 + R()*1.1 - r*.25, Math.sin(a)*r, 8)); }
+    add(g); }));
+  // 7 sheer curtains stacked at glazing ends (p13 / p14 sheers), hung under the ceiling, ~0.12 m inside the glass
+  const sheer = smat({color:'#f7f3ec', roughness:1, transparent:true, opacity:.55, side:THREE.DoubleSide, depthWrite:false}, 0); sheer.userData.curtain = true;
+  const curtain = (x0, y0, x1, y1) => { const L = M(Math.hypot(x1 - x0, y1 - y0)), n = Math.max(8, Math.round(L/.04)), g = new THREE.PlaneGeometry(L, H - .06, n, 1), pa = g.attributes.position;
+    for (let i = 0; i < pa.count; i++) pa.setZ(i, Math.sin(pa.getX(i)/.1*Math.PI)*.04); g.computeVertexNormals();
+    const o = new THREE.Mesh(g, sheer); o.position.set(wx((x0 + x1)/2), (H - .06)/2 + .01, wz((y0 + y1)/2)); o.rotation.y = Math.atan2(-(y1 - y0), x1 - x0); o.renderOrder = 2; o.castShadow = false; add(o); };
+  curtain(1900, 1062, 2600, 1062); curtain(8500, 1062, 9150, 1062); curtain(11300, 1062, 11850, 1062); curtain(13020, 1062, 13560, 1062);
+  curtain(1790, 1000, 1790, 1600); curtain(11300, 5900, 11850, 5900);
+  mergeStatic(decorG);
+}
 function buildFurn(){
   clearGroup(furnG);
   state.furniture.forEach(f => furnG.add(buildFurniture(f)));
-  furnG.visible = opt.furn; selKey = null; applyGrow();
+  buildDecor();
+  furnG.visible = decorG.visible = opt.furn; selKey = null; applyGrow();
 }
 
 function buildLabels(){
@@ -2861,7 +2973,7 @@ function showLabels(v){ labelG.visible = v; labelG.children.forEach(o => o.visib
 function applyGrow(){
   if (!inited) return;
   archUp.scale.y = Math.max(grow, .001);
-  furnG.scale.y = Math.max(furnGrow, .001);
+  furnG.scale.y = decorG.scale.y = Math.max(furnGrow, .001);
   lampG.visible = grow > .99;
 }
 
@@ -2871,12 +2983,17 @@ function applyLight(){
   sun.position.set(Math.cos(az)*18, Math.sin(el)*20 + 3, -Math.sin(az)*10 + 8); sun.target.position.set(0, 0, 0);
   sun.color.setHSL(.09, .5 + warm*.4, .92 - warm*.12);
   sun.intensity = opt.night ? .05 : 1.4 + Math.sin(Math.PI*t)*1.6;
-  hemi.intensity = opt.night ? .12 : 1.1;
+  hemi.intensity = opt.night ? .1 : 1.25;
   scene.background = new THREE.Color(opt.night ? 0x1c2130 : 0xf7f4ee);
-  ground.material.color.set(opt.night ? 0x2a2e38 : 0xf2eee7);
-  lampG.children.forEach(o => { if (o.isPointLight) o.intensity = opt.night ? 6 : 0; else o.material.emissiveIntensity = opt.night ? 2 : .3; });
-  renderer.toneMappingExposure = opt.night ? 1.25 : 1.05;
+  ground.material.color.set(opt.night ? 0x23262c : 0xbab2a4);
+  if (sky) sky.material.map = opt.night ? skyTex.night : skyTex.day;
+  lampG.children.forEach(o => { if (o.isPointLight) o.intensity = opt.night ? 4 : 0; });
+  // GF polish: practical lights / emissive fixtures follow day-night (brochure renders show them on in daylight too)
+  practicals.forEach(l => { l.intensity = opt.night ? l.userData.night : l.userData.day; });
+  glows.forEach(gm => { gm.mat.emissiveIntensity = opt.night ? gm.night : gm.day; });
+  renderer.toneMappingExposure = opt.night ? 1.15 : .95;
   envK = opt.night ? .15 : 1; matCache.forEach(m => { if (m.envMap) m.envMapIntensity = m.userData.env*envK; });
+  envMats.forEach(m => { m.envMapIntensity = m.userData.env*envK; });
   const h = Math.floor(opt.hour), m = Math.round((opt.hour - h)*60);
   $('#sunT').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
 }
@@ -3120,7 +3237,7 @@ function bindUI(){
   document.querySelectorAll('[data-cut]').forEach(b => b.onclick = () => { if (opt.mode === 'walk') return; opt.cut = +b.dataset.cut; syncCutBtns(); sync(); });
   document.querySelectorAll('#toggles3d .btn').forEach(b => b.onclick = () => {
     const k = b.dataset.t; opt[k] = !opt[k]; b.classList.toggle('on', opt[k]);
-    if (k === 'furn'){ furnG.visible = opt.furn; if (!opt.furn && ui.sel?.kind === 'furn') window.select(null); }
+    if (k === 'furn'){ furnG.visible = decorG.visible = opt.furn; if (!opt.furn && ui.sel?.kind === 'furn') window.select(null); }
     if (k === 'labels') showLabels(opt.labels && opt.mode === 'orbit' && !anim);
     if (k === 'night') applyLight();
   });
@@ -3129,11 +3246,16 @@ function bindUI(){
 
 /* ======================= 主循环 ======================= */
 const clock = new THREE.Clock();
-function lampFace(){ const below = camera.position.y < H - .05; lampG.children.forEach(o => { if (!o.isPointLight) o.visible = below && opt.cut >= H; }); }
+function lampFace(){ const below = camera.position.y < H - .05; lampG.children.forEach(o => { if (!o.isPointLight) o.visible = below && opt.cut >= H; });
+  if (upperG) upperG.visible = opt.cut >= H && camera.position.y < 2*H - .05;
+  decorG.children.forEach(o => { if (o.material?.userData?.curtain) o.visible = opt.cut >= H; }); }   // full-height sheers hidden in cut-wall view   // double-height void linings / chandelier only from inside
 function startLoop(){ if (!raf){ clock.getDelta(); raf = requestAnimationFrame(loop); } }
 function loop(){
   raf = requestAnimationFrame(loop);
-  const rawDt = clock.getDelta(), dt = Math.min(rawDt, .05), now = performance.now();
+  frame(clock.getDelta(), performance.now());
+}
+function frame(rawDt, now){
+  const dt = Math.min(rawDt, .05);
   if (anim){ const t = clamp01((now - anim.t0)/anim.dur); anim.fn(t); if (t >= 1){ const r = anim.res; anim = null; r(); } }
   else if (fly){ const t = clamp01((now - fly.t0)/fly.dur); camTween(fly.A, fly.B, ease(t)); if (t >= 1) fly = null; }
   else if (opt.mode === 'orbit') orbit.update();
@@ -3141,6 +3263,7 @@ function loop(){
     // Use the real frame time (so low frame rates don't slow walking), in <=50 ms substeps so wall collision still holds.
     for (let t = Math.min(rawDt, .25); t > 1e-4; t -= .05) stepWalk(Math.min(t, .05));
   }
+  for (let i = 0; i < animTex.length; i++){ animTex[i].offset.set(now*1.6e-5*(i + 1), now*0.9e-5); }   // pool caustics drift
   doors.forEach(d => { const tg = d.open ? d.a1 : d.a0; d.cur += (tg - d.cur) * Math.min(1, dt*6); d.pivot.rotation.y = d.cur; });
   updateSel(); lampFace();
   renderer.render(scene, camera);
@@ -3162,6 +3285,19 @@ window.__FP3D_QA__ = {
   restore(){ camera.fov = FOV; camera.near = .05; camera.far = 300; camera.up.set(0,1,0); camera.updateProjectionMatrix(); startLoop(); },
   toggleDoor(i){ doors[i].open = !doors[i].open; return doors[i].open; },
   png: () => renderer.domElement.toDataURL('image/png'),
+  size(w, h){ renderer.setSize(w, h); labelRenderer.setSize(w, h); camera.aspect = w/h; camera.updateProjectionMatrix(); return [renderer.domElement.width, renderer.domElement.height]; },
+  night(v){ if (opt.night !== v){ opt.night = v; document.querySelector('#toggles3d .btn[data-t=night]')?.classList.toggle('on', v); applyLight(); } return opt.night; },
+  bench(n = 20){   // synchronous render timing (works while the tab is hidden): ms per frame incl. gl.finish
+    const gl = renderer.getContext(); lampFace(); renderer.render(scene, camera); gl.finish(); const t0 = performance.now();
+    for (let i = 0; i < n; i++){ renderer.render(scene, camera); gl.finish(); }
+    const ms = (performance.now() - t0)/n; return {msPerFrame:+ms.toFixed(1), fpsEquiv:+(1000/ms).toFixed(1), calls:renderer.info.render.calls, tris:renderer.info.render.triangles, w:renderer.domElement.width, h:renderer.domElement.height}; },
+  probe(){   // perf breakdown: base / no water / no shadows / no furniture+decor
+    const ws = archFloor.children.filter(o => o.userData.water), r = {base:this.bench(6).msPerFrame};
+    ws.forEach(o => o.visible = false); r.noWater = this.bench(6).msPerFrame; ws.forEach(o => o.visible = true);
+    renderer.shadowMap.enabled = false; scene.traverse(o => { if (o.material) [].concat(o.material).forEach(m => m.needsUpdate = true); }); r.noShadow = this.bench(6).msPerFrame; renderer.shadowMap.enabled = true; scene.traverse(o => { if (o.material) [].concat(o.material).forEach(m => m.needsUpdate = true); });
+    furnG.visible = decorG.visible = false; r.noFurn = this.bench(6).msPerFrame; furnG.visible = decorG.visible = opt.furn; return r; },
+  tick(n = 1, ms = 16){ for (let i = 0; i < n; i++) frame(ms/1000, performance.now()); return {mode:opt.mode, cam:camera.position.toArray().map(v => +v.toFixed(3)), touchWalk, doors:doors.map(d => +d.cur.toFixed(2))}; },   // headless QA: advance frames without rAF
+  fps(ms = 2000){ return new Promise(res => { let n = 0, worst = 0, last = performance.now(); const t0 = last; const f = () => { const t = performance.now(); worst = Math.max(worst, t - last); last = t; n++; if (t - t0 < ms) requestAnimationFrame(f); else res({fps:+(n*1000/(t - t0)).toFixed(1), worstFrameMs:+worst.toFixed(1), calls:renderer.info.render.calls, tris:renderer.info.render.triangles}); }; requestAnimationFrame(f); }); },
   furniture: () => ({state:state.furniture.length, meshes:furnG.children.length, plan:PLAN.FURNITURE.length}),
   rooms: () => ROOMS.map(r => ({id:r.id, mat:state.rooms[r.id].mat, area:+area(r.poly).toFixed(2)})),
   look(p, t, fovDeg = 55){   // p,t = [plan x mm, plan y mm, height m]; display camera for hero screenshots

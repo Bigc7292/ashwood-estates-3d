@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4B Courtyard Feature Test</title>
+<style>
+  html, body { margin:0; height:100%; background:#d9cdb8; overflow:hidden; font:12px/1.35 system-ui, sans-serif; }
+  canvas { display:block; }
+  #hud { position:fixed; left:8px; top:8px; background:rgba(255,255,255,.78); padding:6px 9px; border-radius:6px; color:#333; }
+  #hud a { color:#6b4f2a; margin-right:6px; }
+  body.clean #hud { display:none; }
+</style>
+<script type="importmap">
+{"imports":{
+  "three":"./vendor/three/build/three.module.js",
+  "three/addons/":"./vendor/three/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div id="hud">4B courtyard feature test &middot; views: <a href="?view=ref">ref</a><a href="?view=iso">iso</a><a href="?view=top">top</a> <span id="fps"></span></div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { buildCourtyard, buildBench, travertineTexture, worldBox } from './courtyard_feature.js';
+
+const Q = new URLSearchParams(location.search), VIEW = Q.get('view') || 'ref';
+if (Q.has('clean')) document.body.classList.add('clean');
+
+// --- CAD-derived rectangles (viewer world metres): wx = (x - 7275)/1000, wz = (y - 11503)/1000 on plan mm
+const OX = 7275, OY = 11503, wx = x => (x - OX)/1000, wz = y => (y - OY)/1000;
+const POND = {x0:wx(10019), z0:wz(8723), x1:wx(14177), z1:wz(12418)};     // courtyard-water-feature-1 outer
+const ISLAND = {x0:wx(11228), z0:wz(9860), x1:wx(12649), z1:wz(11281)};   // its hole (planter island)
+// courtyard (plan room "outdoor-terrace" 9415..14212 x 6129..13057; the open part south of the lift starts at y 7408)
+const CY = {x0:wx(9415), x1:wx(14212), z0:wz(7408), z1:wz(13057)};
+const FLOOR = 0;
+
+const renderer = new THREE.WebGLRenderer({antialias:true, powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio, Q.has('dpr') ? +Q.get('dpr') : 1));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = +(Q.get('exp') || .95);
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+// sky: equirect gradient (deep clear blue overhead -> warm pale horizon), also seen in the water reflections
+{ const c = document.createElement('canvas'); c.width = 64; c.height = 512; const x = c.getContext('2d'), g = x.createLinearGradient(0, 0, 0, 512);
+  g.addColorStop(0, '#2f7fd0'); g.addColorStop(.30, '#5aa6e2'); g.addColorStop(.47, '#b9d9ee'); g.addColorStop(.5, '#efe6d6'); g.addColorStop(1, '#c9b89c');
+  x.fillStyle = g; x.fillRect(0, 0, 64, 512); const t = new THREE.CanvasTexture(c); t.mapping = THREE.EquirectangularReflectionMapping; t.colorSpace = THREE.SRGBColorSpace; scene.background = t; }
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), .04).texture; scene.environmentIntensity = .35;
+
+const hemi = new THREE.HemisphereLight('#bcd6f0', '#c8a878', .3); scene.add(hemi);
+const sun = new THREE.DirectionalLight('#ffd29a', 4.2);
+const SUN_DIR = new THREE.Vector3(-1, .62, -.42).normalize();
+const mid = new THREE.Vector3((CY.x0 + CY.x1)/2, 0, (CY.z0 + CY.z1)/2);
+sun.position.copy(mid).addScaledVector(SUN_DIR, 20); sun.target.position.copy(mid); scene.add(sun, sun.target);
+sun.castShadow = true; sun.shadow.mapSize.setScalar(2048); sun.shadow.bias = -.0004; sun.shadow.normalBias = .02; sun.shadow.radius = 3;
+Object.assign(sun.shadow.camera, {left:-7, right:7, top:7, bottom:-7, near:5, far:40}); sun.shadow.camera.updateProjectionMatrix();
+
+// --- simple travertine-walled courtyard box
+const travT = travertineTexture(THREE, {seed:7}), travM = new THREE.MeshStandardMaterial({map:travT, roughness:.62});
+const pavT = travertineTexture(THREE, {seed:3, tone:2}), pavM = new THREE.MeshStandardMaterial({map:pavT, roughness:.7, color:'#f4ead9'});
+const bronze = new THREE.MeshStandardMaterial({color:'#3a3129', roughness:.4, metalness:.6});
+const glass = new THREE.MeshPhysicalMaterial({color:'#2a2622', roughness:.04, metalness:0, transparent:true, opacity:.22, envMapIntensity:1.4, depthWrite:false});
+const interiorM = new THREE.MeshStandardMaterial({color:'#c9a77a', roughness:.9, emissive:'#8a5a2a', emissiveIntensity:.55});
+const add = (g, m, x, y, z, cast = true) => { const o = new THREE.Mesh(g, m); o.position.set(x, y, z); o.castShadow = cast; o.receiveShadow = true; scene.add(o); return o; };
+const H = 5.6, T = .3;
+// paving with the pond hole
+{ const s = new THREE.Shape(); const pad = 3;   // paving runs under the walls and a little beyond
+  s.moveTo(CY.x0 - pad, -(CY.z1 + pad)); s.lineTo(CY.x1 + pad, -(CY.z1 + pad)); s.lineTo(CY.x1 + pad, -(CY.z0 - pad)); s.lineTo(CY.x0 - pad, -(CY.z0 - pad));
+  const h = new THREE.Path(); h.moveTo(POND.x0, -POND.z1); h.lineTo(POND.x0, -POND.z0); h.lineTo(POND.x1, -POND.z0); h.lineTo(POND.x1, -POND.z1); s.holes.push(h);
+  const g = new THREE.ShapeGeometry(s), uv = g.attributes.uv, p = g.attributes.position; for (let i = 0; i < p.count; i++) uv.setXY(i, (p.getX(i) - POND.x0)/1.2, (p.getY(i) + POND.z1)/.6);
+  const m = new THREE.Mesh(g, pavM); m.rotation.x = -Math.PI/2; m.position.y = FLOOR; m.receiveShadow = true; scene.add(m); }
+const near = [];   // walls hidden in iso/top
+// east: solid travertine, full height
+add(worldBox(THREE, T, H, CY.z1 - CY.z0 + 2*T, 1.2, .6), travM, CY.x1 + T/2, H/2, (CY.z0 + CY.z1)/2);
+// glazed walls (GF glazing 0..2.7, travertine above) on west (x0), north (z0) and south (z1)
+function glazedWall(axis, at, a0, a1, side, glazed = [[a0, a1]]){
+  const len = a1 - a0, mid = (a0 + a1)/2, GH = 2.7, put = (w, h, d, m, u, y, cast) => axis === 'x' ? add(worldBox(THREE, d, h, w, 1.2, .6), m, at, y, u, cast) : add(worldBox(THREE, w, h, d, 1.2, .6), m, u, y, at, cast);
+  const o = [];
+  o.push(put(len + 2*T, H - GH, T, travM, mid, GH + (H - GH)/2, true));   // upper wall
+  o.push(put(len, .32, .9, travM, mid, GH + .16, true));                       // soffit / canopy band
+  let cur = a0; const solid = [];
+  glazed.forEach(([g0, g1]) => { if (g0 > cur) solid.push([cur, g0]); cur = g1; }); if (cur < a1) solid.push([cur, a1]);
+  solid.forEach(([s0, s1]) => o.push(put(s1 - s0, GH, T, travM, (s0 + s1)/2, GH/2, true)));
+  glazed.forEach(([g0, g1]) => {
+    const n = Math.max(1, Math.round((g1 - g0)/1.35));
+    o.push(put(g1 - g0, GH, .02, glass, (g0 + g1)/2, GH/2, false));
+    for (let i = 0; i <= n; i++) o.push(put(.06, GH, .1, bronze, g0 + (g1 - g0)*i/n, GH/2, true));
+    o.push(put(g1 - g0, .07, .1, bronze, (g0 + g1)/2, GH - .035, true), put(g1 - g0, .05, .1, bronze, (g0 + g1)/2, .025, true));
+    // warm interior behind the glass (floor, back wall, ceiling light band)
+    const dI = 3.2*side;
+    o.push(put(g1 - g0, .02, 3.2, interiorM, (g0 + g1)/2, -.01, false));
+    o.push(put(g1 - g0, GH + .3, .1, interiorM, (g0 + g1)/2, (GH + .3)/2, false));
+    if (axis === 'x'){ o[o.length - 2].position.x = at + dI/2; o[o.length - 1].position.x = at + dI; } else { o[o.length - 2].position.z = at + dI/2; o[o.length - 1].position.z = at + dI; }
+  });
+  return o;
+}
+const westW = glazedWall('x', CY.x0 - T/2, CY.z0, CY.z1, -1, [[CY.z0 + .3, CY.z1 - .4]]);
+const northW = glazedWall('z', CY.z0 - T/2, CY.x0, CY.x1, -1, [[CY.x0 + .7, CY.x1 - .5]]);
+const southW = glazedWall('z', CY.z1 + T/2, CY.x0, CY.x1, 1, [[CY.x0 + 1.2, CY.x1 - .3]]);
+near.push(...southW, ...westW);
+
+// --- the feature
+const cy = buildCourtyard(THREE, {pond:POND, island:ISLAND, floorY:FLOOR, renderer, waterRes:+(Q.get('wres') || 1024)});
+scene.add(cy.group);
+const bench = buildBench(THREE); bench.position.set(CY.x0 + .36, FLOOR, -2.35); bench.rotation.y = Math.PI/2; scene.add(bench);
+if (Q.has('person')){   // 1.70 m scale figure
+  const p = new THREE.Mesh(new THREE.CapsuleGeometry(.2, 1.3, 4, 12), new THREE.MeshStandardMaterial({color:'#8899aa'})); p.position.set(CY.x0 + .35, .85, -.3); p.castShadow = true; scene.add(p); }
+
+// --- cameras
+const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, .05, 200);
+const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true;
+const treeAt = new THREE.Vector3((ISLAND.x0 + ISLAND.x1)/2, 1.9, (ISLAND.z0 + ISLAND.z1)/2);
+const VIEWS = {
+  ref:{pos:[2.25, 1.5, 3.7], tgt:[4.9, 1.75, -1.4], fov:52},
+  iso:{pos:[-1.6, 9.2, 6.4], tgt:[treeAt.x, .6, treeAt.z], fov:40},
+  top:{pos:[treeAt.x, 16, treeAt.z + .001], tgt:[treeAt.x, 0, treeAt.z], fov:30},
+};
+const V = VIEWS[VIEW] || VIEWS.ref;
+camera.fov = +(Q.get('fov') || V.fov); camera.position.fromArray(Q.has('pos') ? Q.get('pos').split(',').map(Number) : V.pos);
+controls.target.fromArray(Q.has('tgt') ? Q.get('tgt').split(',').map(Number) : V.tgt); camera.updateProjectionMatrix(); controls.update();
+if (VIEW !== 'ref') near.forEach(o => o.visible = false);   // open the near (south / west) walls for the high views
+else southW.forEach(o => o.visible = false);                // ref: the camera stands in the opened south (office) glazing, ~3 m behind the pond edge
+
+addEventListener('resize', () => { camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+
+// --- loop + fps probe
+const clock = new THREE.Clock(); let frames = 0, acc = 0;
+window.__cy = cy; window.__renderer = renderer; window.__scene = scene; window.__camera = camera;
+window.__measureFps = (ms = 4000) => new Promise(res => { let n = 0; const t0 = performance.now(); const f = () => { n++; const dt = performance.now() - t0; if (dt < ms) requestAnimationFrame(f); else res({fps:+(n*1000/dt).toFixed(1), frames:n, ms:Math.round(dt), calls:renderer.info.render.calls, tris:renderer.info.render.triangles, w:innerWidth, h:innerHeight, dpr:renderer.getPixelRatio()}); }; requestAnimationFrame(f); });
+renderer.setAnimationLoop(() => {
+  const dt = Math.min(clock.getDelta(), .1), t = clock.elapsedTime;
+  cy.update(dt, t); controls.update(); renderer.render(scene, camera);
+  frames++; acc += dt; if (acc > 1){ document.getElementById('fps').textContent = (frames/acc).toFixed(0) + ' fps'; frames = 0; acc = 0; }
+});
+// verification capture (posts the frame to a local receiver run during QA; harmless if none is listening)
+window.__shot = async (name, url = 'http://127.0.0.1:8799/') => { cy.update(0, clock.elapsedTime); renderer.render(scene, camera); const d = renderer.domElement.toDataURL('image/png');
+  const r = await fetch(url + name, {method:'POST', body:d}); return r.status + ' ' + d.length; };
+window.__ready = true;
+</script>
+</body>
+</html>

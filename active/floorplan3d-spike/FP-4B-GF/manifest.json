@@ -1155,5 +1155,51 @@
     "side_by_side": "verify/v2_20_side_by_side_spike_vs_upstream_demo.png",
     "v1_vs_v2": "verify/v2_21_v1_vs_v2.png",
     "renderer": "headless Chrome, SwiftShader WebGL2 (CPU)"
+  },
+  "gf_polish_2026_11_09": {
+    "summary": "Brochure-matched interior styling pass on the ground-floor viewer (appearance only). Rule: brochure interior pages p12-p18 + p24 finishes and canonical/references set APPEARANCE; the approved V4 CAD sets FOOTPRINT and POSITIONS. No wall, door, glazing, room polygon, water outline or plan-furniture position/size was changed.",
+    "sources_used": [
+      "extracts/pages/page110-12.png .. page110-18.png (staircase/entry, double-height living, kitchen + dining, dressing/living, materials board p17, bathroom p18)",
+      "extracts/text p24 finishes (Floors: Porcelain; wet areas terrazzo/porcelain)",
+      "canonical/references/*.png",
+      "active/approved-cad-v4/png/FP-4B-GF_V4_preview.png (positions only)"
+    ],
+    "assets": "All textures procedural (canvas) generated in index.html. No downloaded assets. Water normal maps are the already-vendored three.js r160 examples textures (MIT).",
+    "materials_from_brochure": {
+      "travertine": "p17 'Travertine Stone Feature Material', p14 dining wall",
+      "calacatta": "p17 'Calacatta marble or Porcelain Feature Material', p14 island/console, p15 media wall",
+      "oak/walnut veneer": "p17 'Recon Veneer Joinery', p12 timber wall by the stair, p15 dressing",
+      "bronze": "p17 'Bronze Metal Ironmongery' (pulls, lamp, frames)",
+      "light beige porcelain floor": "p17 + p24 'Floors: Porcelain'",
+      "clear glass": "p17",
+      "white/textured paint": "p17"
+    },
+    "display_assumptions": [
+      "Furniture appearance (all 43 plan items keep plan position/rotation/footprint): low modular sofa on dark plinth with green/cream/charcoal cushions (p13); green velvet tub armchairs on walnut legs (p13); dining = Calacatta top on two travertine pedestals + taupe channel-tufted tub chairs on dark-bronze legs (p14); island = Calacatta waterfall, taupe handleless base, LED under the overhang, cooktop on the plan's cooktop symbol (p14); bar stools dark taupe on bronze frame (p14); counters taupe base, Calacatta top + splashback, oak-veneer wall units (p14/p17); pantry run full-height taupe joinery with bronze pulls; dress wardrobe oak with bronze-framed smoked glass (p15); office table walnut on bronze legs; pool-terrace chairs rope-strap/teak with white cushions and dark stone side table (p12). Colours of bed/nightstand/vanity/washer/dryer restyled only.",
+      "Styling decor (NOT plan furniture, not selectable, hidden with the Furniture toggle): living rug 3.3 x 2.9 m; Calacatta floating ledge + plaster-relief artwork + bronze dome lamp + orchid on the dining feature wall; TV + oak ledge on the living media wall; 4 potted plants; bronze/black vessels on a travertine plinth in the entry; sheer curtains stacked at glazing ends; books/bowls/orchids/callas on tables. Positions chosen to suit the plan, none drawn in the CAD.",
+      "Feature walls: travertine on the living/dining west wall (x 1848, y 2096-5898); Calacatta media panel with oak flanks on the living east wall (x 14159, y 1013-5987); travertine on the double-height entry west wall (x 6040, y 16113-19169, continued up the void); oak veneer beside the stair foot. 20 mm cladding on the existing wall faces; walls themselves unchanged.",
+      "Wall paint warm white #ece6dc; skirting 90 mm stone colour with a dark shadow-gap band, now shown in all modes.",
+      "Display ceilings: flat ceiling at 3.0 m over the traced house outline (CEIL_OUTLINE) with holes for the open courtyard, the stair well and the entry; double-height entry and stair well lined from 3.0 to 6.0 m with a ceiling at 6.0 m; clerestory glazing (x 6300-8950, 3.5-5.65 m) in the entry front; small canopy over the entry glazing (outline to y 19879). The first floor is NOT modelled.",
+      "Pool basin 1.4 m deep under the exact plan outline, 25 mm turquoise glass mosaic, 0.30 m travertine coping outside the outline, water 6 cm below paving, drifting caustic texture on the floor.",
+      "Courtyard pond basin 0.35 m, light stone; planter island top +0.30 m. NOTE: the courtyard tree/island/pond/bench are being replaced by a separate agent's courtyard_feature.js; the current objects here are interim.",
+      "Water rendering default changed to 'lite' (transparent normal-mapped env-reflective surface over the real basin) for performance; ?water=water2 restores three.js Water2, ?water=flat the flat fallback.",
+      "Stair (same display massing): cream stone treads, oak-veneer side, clear glass balustrade and bronze handrail on the east side.",
+      "Interior doors oak veneer, entry door walnut, bronze bar pulls; window/door frames dark bronze #3a3029.",
+      "Lighting: recessed downlights on a ~1.5 m grid per room (emissive, instanced); 3 dark-bronze cone pendants over the island + 1 point light; crystal-rod chandelier over the dining table and in the double-height entry (p13/p14) with point lights; 3 wall-washer spotlights on the feature walls; LED strips under wall units, island overhang, ledges and at the Calacatta edges. Practicals are on at low level by day and stronger at night. Hemisphere fill warmed; ACES exposure 0.95 day / 1.15 night; sun shadow map 2048 (1024 on touch).",
+      "Surroundings: travertine 0.6 m pavers over the plot (plan BOUNDS) with holes on the water outlines; warm gravel beyond the plot; sky dome gradient with a distant tree-line band (day) / dusk gradient (night).",
+      "Floor tile800 = light beige porcelain 0.8 m tiles with per-tile tone variation, roughness map and soft reflections; outdoor 'antislip' = travertine pavers 0.6 m."
+    ],
+    "performance": "Static meshes merged per material (furniture groups, architecture, decor), downlights instanced, walk edge lines merged, lite water. Measured on Intel Iris Xe (ANGLE D3D11), synchronous render + gl.finish at 1920x1080: iso overview ~5.5 ms/frame, living eye level ~4.1 ms, entry ~5.9 ms (before: ~55-80 ms with Water2 and ~1,100 meshes; rAF 3.3 fps in iso).",
+    "code_map_index_html": {
+      "styling layer (textures, materials, mergeStatic, luxFurniture)": "~1740-2093",
+      "buildFurniture hook": "~2094",
+      "skirting": "~2590-2607",
+      "water modes + basins": "~2607-2685",
+      "stair restyle": "~2686-2707",
+      "feature walls / lights / ceilings / void": "~2708-2815",
+      "buildArch changes + merge": "~2816-2899",
+      "buildDecor": "~2900-2938",
+      "applyLight / lampFace / frame / QA hooks": "~2981, ~3249-3319"
+    }
   }
 }

@@ -1,0 +1,12 @@
+00:05.156  blend            | Read blend: "C:\Users\Alfa\.venvs\aw4b\blender_wip\4b_grime_wip.blend"
+00:52.859  render           | Saved: 'C:\Users\Alfa\.venvs\aw4b\blender_wip\renders\r4\preview_02_front_approach.png'
+RENDERED preview_02_front_approach.png
+01:39.422  render           | Saved: 'C:\Users\Alfa\.venvs\aw4b\blender_wip\renders\r4\preview_03_garden_pool_side.png'
+RENDERED preview_03_garden_pool_side.png
+02:23.828  render           | Saved: 'C:\Users\Alfa\.venvs\aw4b\blender_wip\renders\r4\view_back_garden.png'
+RENDERED view_back_garden.png
+03:36.250  render           | Saved: 'C:\Users\Alfa\.venvs\aw4b\blender_wip\renders\r4\view_swimming_pool.png'
+RENDERED view_swimming_pool.png
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:37:04)
+
+Blender quit

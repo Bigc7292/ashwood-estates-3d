@@ -1,0 +1,33 @@
+00:03.781  blend            | Read blend: "C:\Users\Alfa\.venvs\aw4b\web3d\work\4b_materials_copy.blend"
+Info: Baking map saved to internal image, save it externally or pack it
+[  30.9s] tile stone 6.0 m 2048 px 341 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  48.2s] tile paving 4.8 m 2048 px 427 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  51.9s] tile coping 4.0 m 1024 px 256 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  56.3s] tile soffit 4.0 m 1024 px 256 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  58.6s] tile bronze 2.0 m 512 px 256 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  73.3s] tile lawn 8.0 m 2048 px 256 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  76.8s] tile pooltile 1.0 m 1024 px 1024 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  81.2s] tile ground 8.0 m 1024 px 128 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  83.6s] tile hedge 2.0 m 512 px 256 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  85.8s] tile leaf 2.0 m 512 px 256 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  88.4s] tile palmleaf 2.0 m 512 px 256 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  91.5s] tile bark 2.0 m 512 px 256 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  93.6s] tile cushion 2.0 m 256 px 128 px/m
+Info: Baking map saved to internal image, save it externally or pack it
+[  95.5s] tile furniture 2.0 m 256 px 128 px/m
+[  95.6s] applied modifiers on 490 objects; tris 96796
+[  96.2s] UVTile done
+[ 138.7s] atlas objects 254 area 8224 m2 -> ~34 px/m at 4096
+[ 138.8s] export materials ['balglass_noao', 'bark_noao', 'bronze', 'context_lawn', 'coping', 'cushion', 'deck', 'furniture', 'glass_noao', 'ground_noao', 'hedge_noao', 'lawn', 'leaf_noao', 'led_noao', 'palmleaf_noao', 'paving', 'pooltile', 'soffit', 'stone', 'stone_rf', 'water_noao']

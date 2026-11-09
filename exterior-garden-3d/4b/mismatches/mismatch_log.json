@@ -175,6 +175,52 @@
    "status": "RESOLVED (approx.)",
    "rule": "Heights/overhangs are image-read (no CAD)",
    "resolution": "Front overhang beyond the FF envelope 1.2 -> 2.0 m (x up to 11.0); envelope unchanged"
+  },
+  {
+   "id": "M20",
+   "item": "Interiors behind the rear GF/FF glazing and the GF entry glazing (WIP 2026-11-09, pending)",
+   "images": "p26, ELEV-REAR, GARDEN-BACK, POOL, GARDEN-FRONT: warm lit living/dining, bedrooms, entry hall with stair; sheer curtains at glass edges",
+   "cad": "No interior layout used for the exterior model; massing volumes were solid",
+   "status": "RESOLVED (display assumption)",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "Rooms carved (Boolean) inside the CAD envelope only behind glazed bays; furniture, lights, curtains are ILLUSTRATIVE blocks (collection \"interior\"); footprints and facade lines unchanged"
+  },
+  {
+   "id": "M21",
+   "item": "Off-plot rear context (lawn depth, side boundary planting) (WIP 2026-11-09, pending)",
+   "images": "p26, ELEV-REAR, GARDEN-BACK: deep lawn bounded by walls with a narrow band of shrubs/ivy and tall grasses",
+   "cad": "Plot ends at the rear plot line (Y=0); nothing beyond is in CAD",
+   "status": "RESOLVED (context only, NOT PLOT)",
+   "rule": "CAD wins for plot depth; image for context appearance",
+   "resolution": "Context lawn extended from 14 m to 30 m behind the plot so eye-level cameras stand on lawn; 6 m-deep context hedge blocks replaced by 1.15 m shrub strips in front of 2.2 m context walls; all labelled NOT PLOT"
+  },
+  {
+   "id": "M22",
+   "item": "Pool edge appearance (WIP 2026-11-09, pending)",
+   "images": "p26, ELEV-REAR, POOL: raised travertine pool box, thin coping with shadow line, water brimming, turquoise mosaic",
+   "cad": "Pool 9.50 x 2.40 outline/position only",
+   "status": "RESOLVED (approx.)",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "Coping ring = travertine face + 0.11 m cap with 35 mm overhang (shadow line); water 35 mm below coping top (was 90 mm); 25 mm turquoise mosaic + dark waterline band + fake caustics. Pool outline, position and coping width (0.30 assumed) unchanged"
+  },
+  {
+   "id": "M23",
+   "item": "FF balcony planting / planters modelled from the ground up (bug)",
+   "images": "p26: planting sits in planters on the FF balcony",
+   "cad": "n/a",
+   "status": "RESOLVED",
+   "rule": "image for appearance",
+   "resolution": "hedge() now takes a base height; FF balcony planting starts at FF+0.40, FF front-right planter at FF+0.90 (previously ran from 0.05 m to the balcony, reading as green pillars beside the GF glazing)"
+  },
+  {
+   "id": "M24",
+   "item": "GF rear stone pier / FF stone panel side (possible mirror of M16)",
+   "images": "p26 and ELEV-REAR are seen FROM the garden, so image-left = plan-right (high x). They show glazed bay | stone pier | wide opening with the pier LEFT of centre (~plan x 10.2-12.1 by proportion)",
+   "cad": "WINS glazing cues give glazed extents only",
+   "status": "OPEN",
+   "rule": "image for appearance, CAD for footprint dimensions",
+   "resolution": "Not changed in this WIP pass (M16 placement x 6.6-8.4 kept as approved step-3 work)",
+   "open_reason": "Rear renders show the pier RIGHT of centre, mirrored vs p26; needs a check of the M16 reading (it may have missed the rear-view mirror) before moving it"
   }
  ]
 }

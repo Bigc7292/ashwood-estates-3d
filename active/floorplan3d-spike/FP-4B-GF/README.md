@@ -149,6 +149,19 @@ Nothing was added that the source does not draw: no rugs, plants, TVs, lamps, be
 - **Unknown site orientation**, so the sun direction and time are display-only.
 - **Not modelled:** cars, rug or console outline, small store, bath and maid-bath fixtures, landscape (see the skipped list).
 
+## GF polish pass (2026-11-09): brochure-matched interior styling
+This pass changes appearance only. Brochure interior pages p12 to p18, the p24 finishes list and canonical/references set the look. The approved V4 CAD still sets every footprint and position: no wall, door, glazing, room polygon, water outline or plan-furniture position or size was changed. All textures are procedural. Nothing was downloaded. The full list of display assumptions is in `manifest.json` under `gf_polish_2026_11_09`.
+
+- **Furniture.** The 43 plan items keep their positions. Their models and materials are restyled to the brochure: low modular sofa, green velvet tub chairs, Calacatta and travertine dining table, taupe channel-tufted chairs, Calacatta waterfall island, oak and taupe kitchen joinery, bronze details. Styling decor is added (rug, ledge, artwork, lamp, plants, sheers, books and bowls). Decor is not plan furniture, can't be selected, and hides with the Furniture toggle.
+- **Walls.** Travertine dining feature wall. Calacatta media wall with oak flanks. Travertine double-height entry wall. Oak veneer by the stair. Warm white paint. Stone skirting with a shadow gap.
+- **Ceilings (display assumption).** Flat ceiling at 3.0 m over the house outline. The double-height entry and the stair well get linings up to 6.0 m and a clerestory. The first floor isn't modelled.
+- **Water.** Pool basin 1.4 m deep with mosaic, coping and caustics, all under the exact plan outline. The default water rendering is now `lite` for speed. Use `?water=water2` for three.js Water2 and `?water=flat` for the flat fallback.
+- **Lighting.** Instanced downlights, island pendants, crystal-rod chandeliers, wall washers and LED strips. Practical lights stay on at a low level by day and get stronger at night.
+- **Performance.** Static meshes are merged per material. Measured at 1920×1080 on Iris Xe, a frame takes about 4 to 6 ms, down from about 55 to 80 ms.
+- **QA hooks.** `__FP3D_QA__.bench()`, `probe()`, `tick()`, `night()`, `size()`.
+- **Screenshots.** In `verify/gf_polish_2026-11-09/`: `before_*`, `after_*`, `after_night_*` and `compare_*` side by sides.
+- **Courtyard.** The tree, island, pond and bench are interim here. A separate `courtyard_feature.js` module is replacing them.
+
 ## Files
 - `index.html`: patched upstream viewer (attribution header kept). `data/fp-4b-gf.plan.js` / `.plan.json`: generated data with per-room, per-item and per-opening provenance.
 - `adapter/v4_to_floorplan3d.py`: copy of `scripts/v4_to_floorplan3d.py`, locked to `--plan 4B-GF`. Readings input: `source-evidence/floorplan3d-readings/FP-4B-GF.json`.
