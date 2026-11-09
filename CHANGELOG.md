@@ -4,7 +4,7 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 
 ## 2026-11-10 (Asia/Dubai)
 
-- **Interior critic review, loop 1** (branch `lane/critic-interior`). Added `production-line/critic/interior/REVIEW_2026-11-10_critic-interior.md`. Verdicts: GF step 6 FAIL on one fix (walk speed 3.2 / 7.0 m/s unsourced, label as assumption or set by Colin; visual items pass on 4 of 17 sheets); FF step 2 FAIL (room polygons not separated, doorway leaks); RF step 2 PASS on dimension method, step 3 in progress. Files changed: this CHANGELOG and the new review file only. No lane files edited. Status: REVIEW-PENDING.
+- **Interior critic review, loop 1** (branch `lane/critic-interior`). Added `production-line/critic/interior/REVIEW_2026-11-10_critic-interior.md`. Verdicts: GF step 6 PASS with one labelling fix (walk speed 3.2 / 7.0 m/s unsourced: label as assumption Colin can overrule, then proceed to step 7; visual items pass on 4 of 17 sheets); FF step 2 FAIL (room polygons not separated, doorway leaks); RF step 2 PASS on dimension method, step 3 in progress. Files changed: this CHANGELOG and the new review file only. No lane files edited. Status: REVIEW-PENDING.
 
 ## 2026-11-09 (Asia/Dubai)
 
