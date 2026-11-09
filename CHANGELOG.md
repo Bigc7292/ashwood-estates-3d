@@ -2,6 +2,10 @@
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
 
+## 2026-11-10 (Asia/Dubai), GF interior lane (lane 3, branch `lane/gf-interior`)
+
+- **F2 entry travertine streak + Q7 courtyard wiring, r3 build (FP-4B-GF)** (00:30). New files only; `index.html`, `data/`, `ACTIVE_PIPELINE.json` and `active/approved-cad-v4/` untouched. Files: `active/floorplan3d-spike/FP-4B-GF/f2_entry_travertine.js` (streak-free procedural travertine for the entry west wall x 6040 and its void lining only; dining wall unchanged), `q7_courtyard_wire.js` (wires `courtyard_feature_r2.js` in: pond/island from the V4 PLAN.WATER rectangles, vendored three.js r160 Water2, bench as a labelled assumption, `?bench=0` hides it, `?q7=0` turns Q7 off), `build_r3/build_index_r3.py` (11 anchored patches, fails if an anchor is missing), generated `index_r3.html`. Why: Q4 critic FIX on the entry streak (F2) and Q7 integrate the F3-fixed courtyard as a separate build file. Status: REVIEW-PENDING (critic lane to check).
+
 ## 2026-11-09 (Asia/Dubai), roof floor lane
 
 - **FP-4B-RF lane started** (branch `lane/roof-floor`). Added `active/floorplan3d-spike/FP-4B-RF/STEPS.md` with the step 1 gate (pass with notes) and the step 2 gate (blocked: the RF sheet has no metric scale bar, so 35.53 mm/px is an assumption). Files: new only. Status: WIP. Steps 3 to 7 not started. Needs Colin's decision on the scale and on the sheet's "UNAPPROVED / NOT SURVEY CAD" legend.
