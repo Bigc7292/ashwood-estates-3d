@@ -1,6 +1,6 @@
 {
   "view": "OUTDOOR-COURTYARD",
-  "status": "LOCK DRAFT, pass 2 (camera only: moved back and up per critic fail on pass 1; model content unchanged)",
+  "status": "LOCK DRAFT, pass 3 (yaw only: target turned to a three-quarter view per critic fail on pass 2; position and height unchanged)",
   "locked": "2026-11-09 Asia/Dubai, lane exterior-roof-courtyard",
   "reference_image": "exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-OUTDOOR-COURTYARD_GENERATED-CONCEPT.png",
   "page": "exterior-garden-3d/4b/walk_exterior_wip/roof_courtyard_pass.html",
@@ -14,13 +14,13 @@
       3.5
     ],
     "tgt": [
-      13.4,
+      17.0,
       2.6,
-      20.0
+      19.0
     ],
     "fov": 40
   },
-  "solve_method": "ASSUMPTION for pass 1: camera placed on the paving at the pond's near edge (courtyard water feature z0 12.65), centred on the pond x (11.48-15.63). Pitch and distance to be solved by matching the pine and the pond edge against the reference in later passes. Pass 2: camera moved back (z 9.5 to 3.5) and up (y 1.6 to 3.0), target y 2.6, to bring pool, planter and back glazing into frame. Still an ASSUMPTION until solved against plot corners.",
+  "solve_method": "ASSUMPTION for pass 1: camera placed on the paving at the pond's near edge (courtyard water feature z0 12.65), centred on the pond x (11.48-15.63). Pitch and distance to be solved by matching the pine and the pond edge against the reference in later passes. Pass 2: camera moved back (z 9.5 to 3.5) and up (y 1.6 to 3.0), target y 2.6, to bring pool, planter and back glazing into frame. Still an ASSUMPTION until solved against plot corners. Pass 3: position [13.4,3.0,3.5] and height kept; target moved from [13.4,2.6,20.0] to [17.0,2.6,19.0] to yaw the view and run the pool diagonally.",
   "check": "Side-by-side at 1280x720: pond near edge and bonsai crown on the same lines in both. One fix per critic pass; camera stays locked once basically identical.",
   "label": "assumption-derived camera; reference is an AI-generated concept image, not a photograph or survey"
 }
