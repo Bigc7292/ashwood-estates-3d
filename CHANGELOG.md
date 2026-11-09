@@ -1,3 +1,11 @@
+## 2026-11-10 — public WIP preview (lane/preview)
+
+- Added `tools/preview/build_and_deploy.sh` and `tools/preview/README.md`.
+- Published static Hobby preview to Vercel project `ashwood-preview` (production alias https://ashwood-preview.vercel.app).
+- Includes exterior front/rear (Water2), GF Floorplan3D r3, FF r5 step 2 images, latest side-by-sides, provisional step 7 MP4.
+- Banner on index and every viewer. No PDFs/brochures. SSO/password protection off.
+- Built from lane heads exterior `` / gf `2ed944a` / ff `c12e372` (Asia/Dubai).
+
 # CHANGELOG (Ashwood Estates 3D)
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
