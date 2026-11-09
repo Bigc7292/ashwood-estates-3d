@@ -6,6 +6,10 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 
 - **FP-4B-RF lane started** (branch `lane/roof-floor`). Added `active/floorplan3d-spike/FP-4B-RF/STEPS.md` with the step 1 gate (pass with notes) and the step 2 gate (blocked: the RF sheet has no metric scale bar, so 35.53 mm/px is an assumption). Files: new only. Scale decided by Colin (2026-11-09 18:40): use the GF value, 35.53 mm/px, as an assumption. Legend "UNAPPROVED / NOT SURVEY CAD" treated as a presentation label (sheet is approved in ACTIVE_PIPELINE.json, pt16u). Step 2 bounding-box check at 35.53 mm/px: RF stated sizes (3.80 x 15.70 m, 43.92 m2) fit inside the GF wall bbox (14.55 x 23.01 m). Consistent, not proven. Raster overlay pending. Status: WIP. Step 3 blocked on an RF raster wall trace; steps 4 to 7 not started.
 
+## 2026-11-09 (Asia/Dubai), roof floor lane (continued)
+
+- **FP-4B-RF step 2 PASS, step 3 started** (branch `lane/roof-floor`). Added `active/floorplan3d-spike/FP-4B-RF/adapter/rf_wall_extract.py` and `data/rf_walls_summary.json` / `data/rf_wall_mask_1x.png`. RF walls come from the approved sheet's `source_wall_poche` group (11 paths), at 35.53 mm/px (GF value, ASSUMPTION). The method reproduces GF to under 0.3 px. Bounding boxes: GF 14.54 x 23.00 m, FF 13.58 x 24.95 m, RF 13.51 x 22.82 m. Status: WIP. Blockout boxes, furniture markers and steps 4 to 7 not started.
+
 ## 2026-11-09 (Asia/Dubai)
 
 - **Rules and handoff** (branch `claude/rules-and-status`, PR #1). Added `AGENTS.md` (with `CLAUDE.md` and `GROK.md` copies) and `STATUS.md`. Copied the Legacy and Axis3D rule files into `docs/inherited-rules/`. Status: DONE, draft PR.
