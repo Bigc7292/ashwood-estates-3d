@@ -21,10 +21,11 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
 - Stated RF pieces: 3.80 x 15.70 m run, 43.92 m2 roof floor. Both are dimensions the sheet gives, not traced.
 - Sheet legend "UNAPPROVED / NOT SURVEY CAD" logged as a presentation label; the sheet is approved in ACTIVE_PIPELINE.json (pt16u).
 
-## Step 3 Blockout: STARTED (walls available; no blockout built yet)
-- Walls: the vector poche is now available, so the blockout can be built from it.
-- Still to do: rectangle-decompose the RF wall mask into boxes (as GF did), place rooms, then add furniture from the labelled markers, which are not extracted yet.
-- Status: IN PROGRESS.
+## Step 3 Blockout: WALLS DONE, ROOMS AND FURNITURE NOT STARTED
+- Walls as boxes: `adapter/rf_blockout.py` decomposes the RF wall mask into 165 boxes, checked lossless against the mask. Output `data/rf_walls_boxes.json` (mm, origin at the wall bbox top-left). Scale is the GF value, an ASSUMPTION.
+- Rooms: not placed. The RF sheet labels (POWDER, PANTRY, LIFT, TERRACE, and the roof room set) have no room polygons yet. Placing them needs a per-room trace from the approved sheet.
+- Furniture: not extracted. The labelled place markers on the RF sheet still need reading.
+- Status: IN PROGRESS. Walls done; rooms and furniture next.
 
 ## Steps 4 to 7: NOT STARTED
 - Step 4 Grime / finish, step 5 Printed matter, step 6 Critique (independent critic, side-by-side with brochure p15 to p17 and V4 RF plan), step 7 Motion.
@@ -32,4 +33,4 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
 - Viewer target: match `FP-4B-GF/` v2 in rooms, furniture, materials and lighting.
 
 ## Loop tracker
-Loop 1. Current step: 3 (walls extracted; blockout in progress).
+Loop 1. Current step: 3 (walls boxed; rooms and furniture next).
