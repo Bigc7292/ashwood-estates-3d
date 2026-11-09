@@ -225,6 +225,58 @@
     "Headless devicePixelRatio is 1; desktop cap is 1.5 in code (mobile 1).",
     "FPS samples force continuous frames via __FP3D_QA__.fps; they are not idle-power figures. Demand-render stops the loop when idle.",
     "Exterior opt payload = index.html + model.js + shared vendor (shared across GF/FF/exterior). Compare exterior HTML 8KB+108KB model vs source 1.78MB single file.",
-    "No GLBs in these viewers; gltf-transform N/A. Phone win is PR cap + shared vendor + no embedded three."
-  ]
+    "No GLBs in these viewers; gltf-transform N/A. Phone win is PR cap + shared vendor + no embedded three.",
+    "front_pass live exterior optimized 2026-11-10; walkable_v6 fork SUPERSEDED"
+  ],
+  "front_pass": {
+    "measured_at_utc": "2026-11-09T20:20:46.360Z",
+    "zone_label": "Asia/Dubai",
+    "note": "Live exterior = front_pass from lane/exterior. walkable_v6 fork superseded.",
+    "sizes": {
+      "source_html": 28869,
+      "source_model_js": 123732,
+      "opt_html": 31575,
+      "opt_model_min_js": 107945,
+      "overrides_count": 16
+    },
+    "before": {
+      "id": "front_pass-source",
+      "loadMs": 22817,
+      "status": "ok",
+      "consoleErrors": [],
+      "failedRequests": [],
+      "metrics": {
+        "measure": {
+          "calls": 1201,
+          "tris": 68656,
+          "pr": 1,
+          "shadowAutoUpdate": true
+        },
+        "lane4": null,
+        "title": "Ashwood 4B front pass (WIP)",
+        "canvases": 1
+      }
+    },
+    "after": {
+      "id": "front_pass-opt",
+      "loadMs": 19239,
+      "status": "ok",
+      "consoleErrors": [],
+      "failedRequests": [],
+      "metrics": {
+        "measure": null,
+        "lane4": {
+          "pixelRatio": 1,
+          "shadowAutoUpdate": false,
+          "shadowBaked": true,
+          "calls": 1201,
+          "tris": 68656,
+          "looping": true,
+          "boxes": 818
+        },
+        "title": "Ashwood 4B front pass · lane4 optimized",
+        "canvases": 1
+      }
+    }
+  }
 }

@@ -6,36 +6,41 @@
 **Date:** 2026-11-10 (Asia/Dubai)
 
 ## What changed
-New files only under `production-line/viewer/` (+ optimizer helper ports). Builders' sources untouched.
+New files under `production-line/viewer/` only. Builders' sources untouched.
 
-- GF / FF optimized forks: PR cap, shadow bake, demand-render, shared local vendor, offline.
-- Exterior lean viewer: MODEL extracted from walkable_v6; HTML 8 KB + model.js 108 KB vs source 1.78 MB embedded file; load ~3.4 s vs ~25.7 s headless.
-- `check.sh` size/CDN/offline/patch gate — PASS.
-- Optimizer ports: `asset_audit.py`, `precommit_guard.sh`, `raw_labelled_waste.py`; README updated.
+### Live exterior (this update)
+- Optimized fork of `lane/exterior` `walk_exterior_wip/front_pass.html` + 16 overrides → `production-line/viewer/exterior-front/`.
+- Shared local three.js vendor; `data/model.min.js`; PR cap; one-shot shadow bake; demand-render; no CDN; no geometry edits.
+- `production-line/viewer/exterior/` (walkable_v6-based) marked **SUPERSEDED** (`exterior/SUPERSEDED.md`); kept, not deleted.
+
+### Also present
+- GF / FF optimized forks (unchanged this turn).
+- `check.sh` PASS (gates exterior-front as live exterior).
 
 ## Evidence
-- `production-line/viewer/baseline/before.json`
-- `production-line/viewer/baseline/after.json`
+- `baseline/front_pass_before_after.json`
+- `baseline/before.json` / `after.json`
 - `bash production-line/viewer/check.sh` → PASS
 
-## Before → after (key numbers)
-| Item | Before | After |
+## front_pass before → after
+| Metric | Source (lane/exterior) | Lane4 opt |
 |---|---|---|
-| GF HTML | 251501 B, PR≤2, shadows auto, continuous rAF | 250363 B, PR≤1.5/1, shadow bake, demand-render |
-| FF | not on main | 250234 B opt fork (r4 data) |
-| Exterior payload | walkable_v6 1,777,697 B single file | 8,045 + 107,953 B (+ shared 2.2 MB vendor once) |
-| Exterior headless load | ~25.7 s | ~3.4 s |
-| Draw calls / tris (exterior opt) | n/a (embedded) | 792 calls / 11,408 tris |
+| HTML | 28,869 B | 31,575 B |
+| MODEL JS | 123,732 B | 107,945 B (min) |
+| Headless load (`?view=front`) | 22,817 ms | 19,239 ms |
+| Draw calls | 1,201 | 1,201 |
+| Tris | 68,656 | 68,656 |
+| Console errors | 0 | 0 |
+| shadow autoUpdate | true | false (baked) |
+| pixelRatio | 1 | ≤1.5/1 (headless 1) |
 
 ## Open / blocked
-- RF viewer: none on main (`lane/roof-floor` has STEPS only).
-- FF source still lives on `lane/first-floor`; opt fork uses copied r4 plan data.
-- Exterior front_pass WIP not on main; lean MODEL viewer is the lane4 deliverable (no geometry edits).
-- No GLBs → gltf-transform / Khronos validator not applicable yet.
-- Headless FPS samples are not idle-power metrics (QA.fps forces frames).
+- RF viewer still absent.
+- FF opt fork unchanged this turn.
+- Walkable_v6 fork superseded but retained.
 
-## Ask of critic (lane 5)
-Confirm opt forks still match GF/FF/exterior look (no geometry change intended). Flag any missing furniture/walls vs source viewers.
+## Ask of critic
+Confirm exterior-front matches live front_pass look (overrides 1–16). Geometry must be unchanged (calls/tris equal).
 
-## Ask of integrator (lane 6)
-Merge `lane/4-viewer` when critic passes; do not force-push; leave builders' files alone.
+## Ask of integrator
+Merge `lane/4-viewer` when critic passes. Use `exterior-front/` as the live exterior viewer path; ignore superseded `exterior/`.

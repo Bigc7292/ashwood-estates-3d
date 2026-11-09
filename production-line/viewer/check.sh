@@ -18,9 +18,11 @@ note "== lane4 viewer check =="
 for f in \
   production-line/viewer/gf/index.html \
   production-line/viewer/ff/index.html \
-  production-line/viewer/exterior/index.html \
-  production-line/viewer/exterior/model.js \
+  production-line/viewer/exterior-front/index.html \
+  production-line/viewer/exterior-front/data/model.min.js \
+  production-line/viewer/exterior-front/overrides/front_pass16_multistem_tree.js \
   production-line/viewer/vendor/three/build/three.module.js \
+  production-line/viewer/exterior/SUPERSEDED.md \
   production-line/viewer/check.sh
 do
   [[ -f "$f" ]] && pass "exists $f" || fail "missing $f"
@@ -28,12 +30,13 @@ done
 
 # 2) size budgets for lane4 outputs
 sz(){ wc -c < "$1" | tr -d ' '; }
-for f in production-line/viewer/gf/index.html production-line/viewer/ff/index.html production-line/viewer/exterior/index.html; do
+for f in production-line/viewer/gf/index.html production-line/viewer/ff/index.html production-line/viewer/exterior-front/index.html; do
   s=$(sz "$f")
   if (( s > MAX_HTML )); then fail "$f is ${s}B > ${MAX_HTML}B"; else pass "$f size ${s}B"; fi
 done
-s=$(sz production-line/viewer/exterior/model.js)
-if (( s > 500000 )); then fail "model.js ${s}B too large"; else pass "model.js ${s}B"; fi
+s=$(sz production-line/viewer/exterior-front/data/model.min.js)
+if (( s > 500000 )); then fail "model.min.js ${s}B too large"; else pass "model.min.js ${s}B"; fi
+# superseded walkable_v6 fork may remain; not gated as live
 
 # 3) no file we own over 95MB
 while IFS= read -r -d '' f; do
@@ -50,7 +53,7 @@ else
 fi
 
 # 5) importmap points at local vendor
-for f in production-line/viewer/gf/index.html production-line/viewer/ff/index.html production-line/viewer/exterior/index.html; do
+for f in production-line/viewer/gf/index.html production-line/viewer/ff/index.html production-line/viewer/exterior-front/index.html; do
   if rg -q 'vendor/three/build/three.module.js' "$f"; then pass "local three importmap/path in $f"; else fail "missing local three path in $f"; fi
 done
 
@@ -59,7 +62,9 @@ for f in production-line/viewer/gf/index.html production-line/viewer/ff/index.ht
   rg -q 'shadowMap.autoUpdate = false' "$f" && pass "shadow bake flag in $f" || fail "missing shadow bake in $f"
   rg -q '__lane4RequestRender|__LANE4' "$f" && pass "demand-render hooks in $f" || fail "missing demand-render in $f"
 done
-rg -q 'shadowMap.autoUpdate = false' production-line/viewer/exterior/index.html && pass "exterior shadow bake" || fail "exterior missing shadow bake"
+rg -q 'shadowMap.autoUpdate = false' production-line/viewer/exterior-front/index.html && pass "exterior-front shadow bake" || fail "exterior-front missing shadow bake"
+rg -q '__lane4RequestRender' production-line/viewer/exterior-front/index.html && pass "exterior-front demand-render" || fail "exterior-front missing demand-render"
+[[ -f production-line/viewer/exterior/SUPERSEDED.md ]] && pass "walkable_v6 fork marked SUPERSEDED" || fail "missing SUPERSEDED marker"
 
 # 7) optional gltf validator if any glb under lane4 (none expected yet)
 glb_count=$(find production-line/viewer -name '*.glb' | wc -l | tr -d ' ')

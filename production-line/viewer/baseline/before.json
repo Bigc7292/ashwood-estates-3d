@@ -7,5 +7,13 @@
   "exterior_v6_html_bytes": 1777697,
   "exterior_v6": "single-file embedded three+textures",
   "ff_on_main": false,
-  "rf_viewer": false
+  "rf_viewer": false,
+  "front_pass_live": {
+    "html_bytes": 28869,
+    "model_bytes": 123732,
+    "pixelRatio": 1,
+    "shadow_autoUpdate": true,
+    "loop": "continuous rAF until view-mode READY",
+    "source": "origin/lane/exterior:exterior-garden-3d/4b/walk_exterior_wip/front_pass.html"
+  }
 }

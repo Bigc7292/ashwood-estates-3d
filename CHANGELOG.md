@@ -2,6 +2,10 @@
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
 
+## 2026-11-10 (Asia/Dubai), lane 4 viewer — live exterior front_pass
+
+- **Live exterior optimized** (branch `lane/4-viewer`). Fork of `lane/exterior` `walk_exterior_wip/front_pass.html` + overrides into `production-line/viewer/exterior-front/` (shared local three.js, `model.min.js`, PR cap, one-shot shadow bake, demand-render, no CDN, no geometry changes). walkable_v6-based `production-line/viewer/exterior/` marked SUPERSEDED (kept). Measured: HTML 28869→31575 B, MODEL 123732→107945 B, load 22817→19239 ms, calls/tris 1201/68656 unchanged, **0 console errors**. `check.sh` updated. Status: REVIEW-PENDING.
+
 ## 2026-11-10 (Asia/Dubai), lane 4 viewer (Optimizer Bot)
 
 - **Viewer optimization forks** (branch `lane/4-viewer`). New files under `production-line/viewer/` only; builders' HTML/GLB untouched. GF + FF (r4 data) get pixelRatio cap (1.5/1), `shadowMap.autoUpdate=false` with one bake, render-on-demand, shared local three.js r160 (offline, no CDN). Exterior lean viewer extracts MODEL from `walkable_v6.html`: HTML 8 KB + model.js 108 KB vs source 1.78 MB; headless load ~3.4 s vs ~25.7 s. RF blocked (no viewer yet). `check.sh` PASS. Baseline in `production-line/viewer/baseline/`. Optimizer ports: `asset_audit.py`, `precommit_guard.sh`. Status: REVIEW-PENDING.
