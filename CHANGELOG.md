@@ -2,6 +2,14 @@
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
 
+## 2026-11-09 (Asia/Dubai), lane exterior-rear-garden
+
+- **M45 logged** (`exterior-garden-3d/4b/mismatches/mismatch_log.md`). Rear storey heights and roof height vs V4 CAD: model display-only heights (total 10.85 m) are not CAD-sourced; the reference house is about 11% taller at matched width. Status: OPEN, flagged for Colin. No model change. Critic: width PASS, height PASS within the logged gap.
+
+- **Rear v3 pass 2** (branch `lane/exterior-rear-garden`). Re-locked the rear camera to `views/rear/cams/rear_v3_pass2.json` (camera z -24 to -28, same target, fov and shift). House width now about 407 px in the 960-px panel (reference about 400). Side-by-side in `views/rear/shots/rear_v3_pass2_side_by_side.png`. Status: WIP, REVIEW-PENDING. Residual: the model house is shorter than the reference in this view (roof about row 97 and base about row 370, against reference rows 85 and 430). Width and height cannot both match with this camera, so this is a model height/proportion question for the exterior lane, not a camera fix. Not changed: model.js, shared_pool_v3.js, house, pool.
+
+- **Rear v3 pass 1** (branch `lane/exterior-rear-garden`, new files only). Added `exterior-garden-3d/4b/walk_exterior_wip/rear_v3.html` (renderer copied from `site_pass.html`, site overrides removed), `overrides/rear_v3_pass1.js` (no edits yet), `views/rear/cams/rear_v3_pass1.json` (locked camera taken from `views/rear/cams/rear.json`), and `views/rear/shots/rear_v3_pass1.png` plus `rear_v3_pass1_side_by_side.png` against EXT-4b-ELEV-REAR. Loads `shared_pool_v3.js` (Colin 23:29 pool ruling). Status: WIP. Critic fail on framing: the house sits higher and larger than the reference, the pool and terrace are not visible in frame, and the lawn and palms are missing. Next: re-lock camera, then one fix per pass. `rear_pass.html`, `rear_pool2.js`, `rear_garden_enlarged.js` and `model.js` untouched.
+
 ## 2026-11-09 (Asia/Dubai)
 
 - **Rules and handoff** (branch `claude/rules-and-status`, PR #1). Added `AGENTS.md` (with `CLAUDE.md` and `GROK.md` copies) and `STATUS.md`. Copied the Barclay and Axis3D rule files into `docs/inherited-rules/`. Status: DONE, draft PR.
