@@ -8,7 +8,7 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 |---|---|---|---|---|
 | 1 Reference | `step1_reference/generated_approved/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png` | locked camera `left_lock.json`, `shots/left_lock_side_by_side.png` | critic: framing rows and ends match | DONE (critic: lock PASS on framing) |
 | 2 Layout | approved V4 CAD via `model/data/model.js` | left facade x 1.46, z 2.84-26.88 | ends match at the locked camera | DONE (inherited footprint), pending critic |
-| 3 Blockout | steps 1 + 2 | pass 1 RF plant strip | critic, one fix per pass | IN PROGRESS (loop 1) |
+| 3 Blockout | steps 1 + 2 | pass 1 RF plant strip, pass 2 central block | critic, one fix per pass | IN PROGRESS (loop 1) |
 | 4 Grime / finish | | | | NOT STARTED |
 | 5 Printed matter | ELEV-LEFT | | Q1 record | to check |
 | 6 Critique | | | | NOT STARTED |
@@ -16,4 +16,5 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 
 ## Pass history
 - Lock (334032a): critic PASS on framing.
-- Step 3 pass 1 (this commit): RF volume hidden in this view; low recessed strip (7.85-9.45 m) under a thin canopy slab (9.45-9.76 m), z 16.6-23.2, image-read (M33). Awaiting critic.
+- Step 3 pass 1 (this commit): RF volume hidden in this view; low recessed strip (7.85-9.45 m) under a thin canopy slab (9.45-9.76 m), z 16.6-23.2, image-read (M33). Critic (da99dbf): strip PASS; next fix central block top.
+- Step 3 pass 2 (this commit): central travertine block raised above the FF overhang slabs: stone parapet block x 2.85-4.0, z 7.6-21.7, top 8.94 m (derived, M34). Slab overhangs unchanged. Awaiting critic.
