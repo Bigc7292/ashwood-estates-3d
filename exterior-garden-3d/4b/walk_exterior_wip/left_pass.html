@@ -25,6 +25,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/left_pass7_canopy_row.js"></script>
 <script src="./overrides/left_pass8_verge_trees.js"></script>
 <script src="./overrides/left_pass9_plan_trees_low.js"></script>
+<script src="./overrides/left_pass10_grass_layer.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -250,6 +251,19 @@ window.__LEAFSETS = [];
       d.rotation.set(rnd()*3, rnd()*3, rnd()*3); const sc = 0.7 + 0.8*rnd(); d.scale.set(sc*1.3, sc*0.8, sc); d.updateMatrix();
       im.setMatrixAt(k, d.matrix); im.setColorAt(k, base.clone().offsetHSL((rnd()-.5)*0.03, (rnd()-.5)*0.1, (rnd()-.5)*0.12)); }
     tg.add(im); window.__LEAFSETS.push(tg); } }
+// grass rows (left pass 10): tall ornamental grass clumps of thin instanced blades (procedural; species unknown)
+{ const G = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.grassRows) || [];
+  let seed = 23; const rnd = ()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+  const bladeG = new THREE.ConeGeometry(0.018, 1, 3); bladeG.translate(0, 0.5, 0);
+  for (const row of G) {
+    const len = Math.hypot(row.x1-row.x0, row.z1-row.z0), clumps = Math.max(2, Math.round(len/row.gap)), N = clumps*row.blades;
+    const im = new THREE.InstancedMesh(bladeG, new THREE.MeshStandardMaterial({roughness:.9, color:0xffffff}), N); im.castShadow = true;
+    const d = new THREE.Object3D(), base = new THREE.Color(row.color); let k = 0;
+    for (let c=0;c<clumps;c++){ const f=(c+rnd()*0.6)/clumps, cx=row.x0+(row.x1-row.x0)*f+(rnd()-.5)*0.3, cz=row.z0+(row.z1-row.z0)*f;
+      for (let b=0;b<row.blades;b++){ const h=row.h*(0.6+0.5*rnd());
+        d.position.set(cx+(rnd()-.5)*0.12, 0, cz+(rnd()-.5)*0.12); d.rotation.set((rnd()-.5)*0.5, rnd()*6.28, (rnd()-.5)*0.5);
+        d.scale.set(1, h, 1); d.updateMatrix(); im.setMatrixAt(k, d.matrix); im.setColorAt(k++, base.clone().offsetHSL(0,(rnd()-.5)*0.1,(rnd()-.5)*0.12)); } }
+    group.add(im); } }
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
 { const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
