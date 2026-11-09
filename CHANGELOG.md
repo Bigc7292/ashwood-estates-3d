@@ -120,3 +120,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: an extra 16-frond ring per palm crown, inside the outer length, so crowns read dense and layered; scale, colour, trunks and camera unchanged. Logged the coordinator's M48 working default (keep CAD) and the M90+ ID range for front/site items.
 - Why: critic single fix (crowns sparser than the reference).
 - Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 7, entry gate colour from reference sample
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (optional `mat_tune` material hook; loads pass 7), new `overrides/front_v2_pass7_gate_bronze.js`, `views/front_v2/shots/front_v2_pass7_side_by_side.png`, `views/front_v2/shots/front_v2_pass7_gate_crop.png`, `views/front_v2/STEP_LOG.md`.
+- What: gate bars from near-black to the sampled dark bronze of ELEV-FRONT's bars (RGB 36,25,17; model 32,17,8), metalness 0. The critic's "warm timber" read was checked on a crop: the warmth is the lit lobby behind the bars.
+- Why: critic single fix after pass 6.
+- Status: REVIEW-PENDING (critic).
