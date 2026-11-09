@@ -6,13 +6,14 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 
 | Step | Inputs | Outputs | Review check | Status |
 |---|---|---|---|---|
-| 1 Reference | `step1_reference/generated_approved/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png` | locked camera `left_lock.json`, `shots/left_lock_side_by_side.png` | critic: framing rows and ends match | REVIEW-PENDING |
+| 1 Reference | `step1_reference/generated_approved/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png` | locked camera `left_lock.json`, `shots/left_lock_side_by_side.png` | critic: framing rows and ends match | DONE (critic: lock PASS on framing) |
 | 2 Layout | approved V4 CAD via `model/data/model.js` | left facade x 1.46, z 2.84-26.88 | ends match at the locked camera | DONE (inherited footprint), pending critic |
-| 3 Blockout | | | critic, one fix per pass | NOT STARTED |
+| 3 Blockout | steps 1 + 2 | pass 1 RF plant strip | critic, one fix per pass | IN PROGRESS (loop 1) |
 | 4 Grime / finish | | | | NOT STARTED |
 | 5 Printed matter | ELEV-LEFT | | Q1 record | to check |
 | 6 Critique | | | | NOT STARTED |
 | 7 Motion | | | | NOT STARTED |
 
 ## Pass history
-- Lock (this commit): camera solved and locked, awaiting critic.
+- Lock (334032a): critic PASS on framing.
+- Step 3 pass 1 (this commit): RF volume hidden in this view; low recessed strip (7.85-9.45 m) under a thin canopy slab (9.45-9.76 m), z 16.6-23.2, image-read (M33). Awaiting critic.
