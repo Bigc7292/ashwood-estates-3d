@@ -1,0 +1,207 @@
+<!doctype html>
+<!--
+  Lane 4 optimized walkable exterior viewer.
+  MODEL extracted verbatim from exterior-garden-3d/4b/walkable/walkable_v6.html (no geometry edits).
+  Flat material colours approximate walkable_v6 mats (stone/paving/lawn were textured there; AGENTS.md prefers flat at building scale).
+  Shared local three.js r160. Cached shadows, PR cap, render-on-demand. Offline.
+  Concept visualisation — not survey-verified, not construction-ready, not certified CAD.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ashwood 4B walkable exterior · lane4 optimized</title>
+<style>
+body{margin:0;overflow:hidden;background:#cfd8de;font-family:Arial,Helvetica,sans-serif}
+#title{position:absolute;left:0;top:0;z-index:2;background:rgba(20,28,24,.78);color:#fff;padding:8px 14px;font-size:14px}
+#cap{position:absolute;left:0;right:0;bottom:0;z-index:2;background:rgba(20,28,24,.82);color:#fff;padding:9px 16px;font-size:13px;line-height:1.35}
+#cap b{color:#ffd58a}
+#hud{position:absolute;right:10px;top:10px;z-index:2;background:rgba(255,255,255,.92);border:1px solid #556;padding:6px 8px;font:12px/1.35 monospace;max-width:46vw}
+</style>
+<script type="importmap">
+{"imports":{
+  "three":"../vendor/three/build/three.module.js",
+  "three/addons/":"../vendor/three/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div id="title">GENERATED 3D CONCEPT · Ashwood 4B exterior · lane4 opt</div>
+<div id="hud">loading…</div>
+<div id="cap"><b>Concept visualisation: not survey-verified, not construction-ready, not certified</b><br>
+MODEL from walkable_v6 (CAD V4 layout). Heights/levels/RF display assumptions. Press F for walk.</div>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {PointerLockControls} from 'three/addons/controls/PointerLockControls.js';
+import {MODEL} from './model.js';
+
+const hud = document.getElementById('hud');
+const W = () => innerWidth, Hh = () => innerHeight;
+const isMobile = matchMedia('(pointer:coarse)').matches || innerWidth < 768;
+
+const MATS = {
+  // Flat stand-ins for walkable_v6 materials (textured maps omitted on purpose; AGENTS.md).
+  stone: 0xd9d0c2,
+  paving: 0xe8dfcf,
+  paving_inner: 0xe8dfcf,
+  coping: 0xe7dcc6,
+  lawn: 0x7f9a62,
+  glass: 0x6f8f9c,
+  glass_balustrade: 0x8aa6b0,
+  bronze_slats: 0x6a5a48,
+  bronze_bars: 0x6a5a48,
+  soffit: 0xeee6d6,
+  placeholder: 0x9aa3a8,
+};
+
+const renderer = new THREE.WebGLRenderer({antialias: !isMobile, powerPreference: 'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile ? 1 : 1.5));
+renderer.setSize(W(), Hh());
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.autoUpdate = false;
+document.body.prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xcfd8de);
+const camera = new THREE.PerspectiveCamera(50, W() / Hh(), 0.1, 400);
+camera.position.set(24, 16, 32);
+
+const hemi = new THREE.HemisphereLight(0xfff6ea, 0x9aa38c, 1.15);
+const sun = new THREE.DirectionalLight(0xfff1dd, 2.15);
+sun.position.set(28, 42, 16);
+sun.castShadow = true;
+sun.shadow.mapSize.setScalar(isMobile ? 1024 : 2048);
+Object.assign(sun.shadow.camera, {left: -45, right: 45, top: 45, bottom: -45, near: 1, far: 140});
+sun.shadow.bias = -0.00045;
+scene.add(hemi, sun, sun.target);
+
+const matCache = new Map();
+function getMat(name) {
+  if (matCache.has(name)) return matCache.get(name);
+  const color = MATS[name] ?? 0xb0a898;
+  const glass = name.startsWith('glass');
+  const m = new THREE.MeshStandardMaterial({
+    color,
+    roughness: glass ? 0.08 : name.includes('bronze') ? 0.55 : 0.85,
+    metalness: glass ? 0.25 : name.includes('bronze') ? 0.25 : 0,
+    transparent: glass,
+    opacity: glass ? 0.42 : 1,
+    depthWrite: !glass,
+  });
+  matCache.set(name, m);
+  return m;
+}
+
+const root = new THREE.Group();
+scene.add(root);
+const boxes = MODEL.boxes || [];
+for (const b of boxes) {
+  const sx = Math.max(0.02, Math.abs(b.x1 - b.x0));
+  const sy = Math.max(0.02, Math.abs(b.y1 - b.y0));
+  const sz = Math.max(0.02, Math.abs(b.z1 - b.z0));
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, sz), getMat(b.mat));
+  mesh.position.set((b.x0 + b.x1) / 2, (b.y0 + b.y1) / 2, (b.z0 + b.z1) / 2);
+  mesh.castShadow = b.mat !== 'glass' && b.mat !== 'lawn';
+  mesh.receiveShadow = true;
+  mesh.name = b.id || '';
+  root.add(mesh);
+}
+
+// Trees (display proxies from MODEL.trees positions)
+for (const t of (MODEL.trees || [])) {
+  const th = t.h || 7; // height NOT FOUND in MODEL; display assumption (walkable_v6 used textured palms)
+  const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.18, th * 0.35, 8), getMat('bronze_bars'));
+  const crown = new THREE.Mesh(new THREE.SphereGeometry(t.r || 1.4, 10, 8), getMat('lawn'));
+  const x = t.x ?? t.cx ?? 0, z = t.z ?? t.cz ?? 0;
+  trunk.position.set(x, th * 0.175, z);
+  crown.position.set(x, th * 0.55, z);
+  trunk.castShadow = crown.castShadow = true;
+  root.add(trunk, crown);
+}
+
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.enableDamping = true;
+orbit.maxPolarAngle = Math.PI * 0.49;
+orbit.target.set(MODEL.meta.site_m[0] / 2, 3, MODEL.meta.site_m[1] / 2);
+
+const walk = new PointerLockControls(camera, document.body);
+let mode = 'orbit';
+const keys = new Set();
+addEventListener('keydown', e => {
+  keys.add(e.code);
+  if (e.code === 'KeyF') {
+    mode = mode === 'orbit' ? 'walk' : 'orbit';
+    if (mode === 'walk') walk.lock(); else walk.unlock();
+    requestRender();
+  }
+});
+addEventListener('keyup', e => keys.delete(e.code));
+
+let dirty = true, raf = 0, shadowBaked = false, settle = 0;
+const clock = new THREE.Clock();
+function requestRender() { dirty = true; settle = 0; if (!raf) raf = requestAnimationFrame(loop); }
+orbit.addEventListener('change', requestRender);
+renderer.domElement.addEventListener('pointerdown', requestRender);
+addEventListener('resize', () => {
+  camera.aspect = W() / Hh();
+  camera.updateProjectionMatrix();
+  renderer.setSize(W(), Hh());
+  requestRender();
+});
+
+function bakeShadows() {
+  if (shadowBaked) return;
+  renderer.shadowMap.needsUpdate = true;
+  shadowBaked = true;
+}
+
+function loop() {
+  const dt = Math.min(clock.getDelta(), 0.05);
+  let busy = false;
+  if (mode === 'orbit') {
+    orbit.update();
+    busy = settle < 12;
+    settle++;
+  } else {
+    const sp = (keys.has('ShiftLeft') || keys.has('ShiftRight')) ? 8 : 3.2;
+    const forward = (keys.has('KeyW') || keys.has('ArrowUp') ? 1 : 0) - (keys.has('KeyS') || keys.has('ArrowDown') ? 1 : 0);
+    const strafe = (keys.has('KeyD') || keys.has('ArrowRight') ? 1 : 0) - (keys.has('KeyA') || keys.has('ArrowLeft') ? 1 : 0);
+    if (forward || strafe) {
+      const dir = new THREE.Vector3();
+      walk.getDirection(dir); dir.y = 0; dir.normalize();
+      const right = new THREE.Vector3().crossVectors(dir, new THREE.Vector3(0, 1, 0)).negate();
+      camera.position.addScaledVector(dir, forward * sp * dt);
+      camera.position.addScaledVector(right, strafe * sp * dt);
+      busy = true; dirty = true;
+    }
+  }
+  if (dirty || busy) {
+    bakeShadows();
+    renderer.render(scene, camera);
+    const info = renderer.info.render;
+    hud.textContent = `PR ${renderer.getPixelRatio().toFixed(2)} · calls ${info.calls} · tris ${info.triangles} · boxes ${boxes.length} · shadowBake ${shadowBaked} · autoUpdate ${renderer.shadowMap.autoUpdate} · ${mode}`;
+    if (!busy) dirty = false;
+  }
+  if (dirty || busy || mode === 'walk' || settle < 12) raf = requestAnimationFrame(loop);
+  else raf = 0;
+}
+
+requestRender();
+window.__LANE4_EXT__ = {
+  info: () => ({
+    boxes: boxes.length,
+    trees: (MODEL.trees || []).length,
+    calls: renderer.info.render.calls,
+    tris: renderer.info.render.triangles,
+    pixelRatio: renderer.getPixelRatio(),
+    shadowAutoUpdate: renderer.shadowMap.autoUpdate,
+    shadowBaked,
+    looping: !!raf,
+  }),
+};
+document.title = 'READY';
+</script>
+</body>
+</html>

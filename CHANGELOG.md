@@ -2,6 +2,10 @@
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
 
+## 2026-11-10 (Asia/Dubai), lane 4 viewer (Optimizer Bot)
+
+- **Viewer optimization forks** (branch `lane/4-viewer`). New files under `production-line/viewer/` only; builders' HTML/GLB untouched. GF + FF (r4 data) get pixelRatio cap (1.5/1), `shadowMap.autoUpdate=false` with one bake, render-on-demand, shared local three.js r160 (offline, no CDN). Exterior lean viewer extracts MODEL from `walkable_v6.html`: HTML 8 KB + model.js 108 KB vs source 1.78 MB; headless load ~3.4 s vs ~25.7 s. RF blocked (no viewer yet). `check.sh` PASS. Baseline in `production-line/viewer/baseline/`. Optimizer ports: `asset_audit.py`, `precommit_guard.sh`. Status: REVIEW-PENDING.
+
 ## 2026-11-09 (Asia/Dubai)
 
 - **Rules and handoff** (branch `claude/rules-and-status`, PR #1). Added `AGENTS.md` (with `CLAUDE.md` and `GROK.md` copies) and `STATUS.md`. Copied the Legacy and Axis3D rule files into `docs/inherited-rules/`. Status: DONE, draft PR.

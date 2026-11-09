@@ -1,0 +1,11 @@
+{
+  "note": "Source baselines (builders untouched)",
+  "gf_html_bytes": 251501,
+  "gf_pixelRatio_cap": 2,
+  "gf_shadow_autoUpdate": true,
+  "gf_loop": "continuous rAF",
+  "exterior_v6_html_bytes": 1777697,
+  "exterior_v6": "single-file embedded three+textures",
+  "ff_on_main": false,
+  "rf_viewer": false
+}
