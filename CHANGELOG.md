@@ -4,6 +4,7 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 
 ## 2026-11-10 (Asia/Dubai), Grok production line
 
+- **Critic lane 5 reports, items 1-3** (2026-11-10 00:30, Ashwood Critic). New folder `production-line/critic/` (reports + side-by-sides only). (1) Exterior front step 6 passes 8-15 (lane/exterior ba038ea): CRITIC-FAIL 4/10, `production-line/critic/2026-11-10_exterior-front-step6.md`. (2) FF r4 (lane/first-floor f5d651d): CRITIC-FAIL 3/10; walls and void fixed, room labels confirmed offset ~3-5 m (scale ~1.15x + origin), scale still +3-4% vs envelope, `2026-11-10_ff-r4.md`. (3) Walkable v4 (3f20be6): CRITIC-FAIL 3/10; Water2 not visibly animating (6 s two-frame diff max 3/765), `2026-11-10_walkable-v4.md`. Why: critic backlog from the integrator. Status: REVIEW-PENDING (critic verdicts; nothing DONE).
 - **Production line restarted with Grok bots** (Colin, 2026-11-10 00:02). Lanes: L1/L6 Plan & Visuals Archivist (facts, integrator), L2 Exterior & Garden 3D, L3 Ashwood Interior 3D Builder (new), L4 Optimizer Bot (viewer), L5 Ashwood Critic (new), interior references Interior Visuals Generator. Added Q11 (interior refs, `lane/interior-refs`) to `production-line/QUEUE.md`; added README rule 7 (lane branches; only the integrator runs `verify_active_pipeline.py`, because it rewrites `active/pipeline_verification.json`). Why: IVG asked for a queue item and branch confirmation. Status: DONE (docs). Q11 GF refs REVIEW-PENDING, not merged yet.
 
 ## 2026-11-09 (Asia/Dubai), roof floor lane
