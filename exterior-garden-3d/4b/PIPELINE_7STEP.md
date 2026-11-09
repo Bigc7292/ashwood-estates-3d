@@ -4,7 +4,7 @@ Concept visualisation: not survey-verified, not construction-ready, not certifie
 
 **Guide rule:** EXTERIOR work is guided by IMAGES: the 10 approved generated 4B images (`generated-views/4b/`, labelled deliverables only, never `_raw_unlabelled` or `_rejected_first_pass`) plus brochure renders p25/p26 (backups p29/30, p33/34). The approved CAD V4 plan is used only to check sizes and plan positions. Where images and CAD disagree, the mismatch is logged, and the image is used for appearance and the CAD for footprint dimensions (`mismatches/mismatch_log.md`).
 
-**Goal:** improve external model quality. **Run order:** one step at a time with a gate/review after each. **Current hold:** STOP after step 4, report, and wait for the go-ahead before step 5.
+**Goal:** improve external model quality. **Run order:** one step at a time with a gate/review after each. **Current rule:** run straight through to step 7 (Colin, 2026-11-09 17:40). Each step still gets its gate log and critic check before the next step starts.
 
 Tooling: headless Blender 4.2.3 LTS (local, free, GPL), Cycles CPU, procedural shaders only, Python/PIL for captions. No paid tools, no network, nothing sent or pushed, no Stage 1 / pipeline files touched.
 
@@ -37,7 +37,7 @@ All procedural, covering chipped paint, dust, drip marks, fingerprints, base dir
 - **Inputs:** step 3 materials blend.
 - **Outputs:** `blender/4b_grime.blend`; `step4_grime/renders/` (19 captioned), `step4_grime/comparisons/compare_*.png`, `step4_grime/closeups/`.
 - **Review check:** grime present but subtle (no textures/images): base dirt <0.75 m, drips under slab edges, dust on up-faces, edge chips, bronze patina, stone weathering, glass fingerprints at hand height. Still reads like the generated images.
-- **Status:** DONE, awaiting Colin's review. **HOLD: waiting for the go-ahead to start step 5.**
+- **Status:** DONE, awaiting Colin's review. Step 5 now runs straight through (Colin, 17:40).
 - **Revision 2026-11-09 (review found the grime mostly invisible or artificial):** drips now run down from the model's real slab/parapet/wall tops (old hard-coded levels missed them); base dirt above every walking level (ground, deck, FF balconies, roof terrace), vertical faces only; clustered edge chips that show on stone and render, rare on thin metal; bronze patina as broad bar-to-bar tonal variation (old version made an even dot pattern); glass hand smudges 0.8-1.7 m above EACH floor (were GF only); white specks on glass removed (they were caustic fireflies, not grime). Captioned close-ups now in `step4_grime/closeups/`; `4b_grime_register.json` now lists the grime spec, levels and per-material assignment.
 
 ## Step 5: Printed matter
@@ -45,7 +45,7 @@ Signs, plaques, house numbers and any labels, made as prints first, then faded a
 - **Inputs (planned):** step 4 blend; the 10 images + p25/p26 checked for visible signage.
 - **Outputs (planned):** prints, or a "none in source" record.
 - **Review check (planned):** every printed item traces to a visible source item.
-- **Status:** NOT STARTED, waiting for the go-ahead.
+- **Status:** WIP. Lane 2 checked the 10 approved images and brochure p25/p26: no in-scene signage (see production-line/exterior/step5/step5_inventory.md). Awaiting critic pass.
 
 ## Step 6: Critique
 Self-check close-ups of every surface and junction against the reference images, list "looks unnatural" issues and fix them. Colin then reviews.
