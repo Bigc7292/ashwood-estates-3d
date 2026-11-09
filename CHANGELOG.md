@@ -179,3 +179,52 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - Status: WIP. 2D checked headless (no page errors). 3D not checked. Bed sizes may be oversized. Critic review pending.
 - **Merges and artifacts refresh** (2026-11-10 03:55 Dubai). Merged `lane/exterior` `5903abb`: restored `front_v2.html`, `shared_pool_v3.js` (pool further back, wider, with seating, per Colin), site steps 5–7 logs, and M43/M44 rows. Merged `lane/first-floor` `f169437`: `standalone_r6F.html`, with 36 furniture items marked PLAN or ASSUMED. Both merges were new files plus the lanes' own logs, and the CHANGELOG was merged keeping both sides. Republished artifacts, each as a single self-contained page bundled with esbuild (three.js and textures inlined, no external requests). Every page was checked in headless Chromium: no console errors, no failed requests, a canvas present in 3D. Exterior https://claude.ai/artifact/3dty5cFKAgW29MkQVLpAtJ (tabs for front v2, left, right, site with pool v3 and rear WIP, orbit controls starting on each locked camera, left and right side-by-sides; the failed pass 17 front is not shown). Ground floor r3 https://claude.ai/artifact/ABhzr2yy6MKMWfQXY3tB2v. First floor r6F https://claude.ai/artifact/MAPDK4oRWv1EJJ1dMPfiHo (WIP banner). Progress board https://claude.ai/artifact/XZnAbwEKiLHGLLaWnqBq1C. Picture viewer https://claude.ai/artifact/77CUbtNzDqqUYUW75GFiuq. The roof floor has no 3D viewer yet. No repo files changed for the artifacts; the build scripts live in the integrator's scratchpad. Status: DONE (artifacts), WIP (models).
 - **GF step 6 critic fix applied: walk speed labelled ASSUMPTION** (2026-11-10 Dubai, branch `lane/gf-interior-step7`). Critic verdict (GF loop 1, record on `lane/critic-interior`): step 6 FAIL on one fix, walk speed 3.2 / 7.0 m/s has no source. Added an ASSUMPTION comment above `WALK_MPS` in `active/floorplan3d-spike/FP-4B-GF/index_r3.html` (comment only, no value change), and a walk-speed section in `production-line/interior/gf/step7/STEP7_PLAN.md`. Critic note, not blocking: the Q7 bench from the concept is not in the after render. Files changed: `index_r3.html` (comment only), `STEP7_PLAN.md`, `CHANGELOG.md`. Status: WIP, REVIEW-PENDING. Step 7 is loop 2 and waits for the critic to re-check step 6.
+- **Front v2 pass 2; site lock v2 critic notes** (Asia/Dubai). Files: `walk_exterior_wip/front_v2.html`, `overrides/front_v2_pass2_tree_understorey.js`, `views/front_v2/STEP_LOG.md`, `views/front_v2/shots/front_v2_pass2_side_by_side.png`, `front_v2_pass2_tree_crop.png`, `views/site/STEP_LOG.md`, `mismatches/mismatch_log.md` (M42 numbers). What: understorey hides the bare stems under the entry tree; site lock v2 PASS and pool-sliver offset logged. Why: critic on 5903abb / a292a00. Status: WIP (awaiting critic).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 3, filled palm crowns
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (palm builder reads `MODEL_OVERRIDES.palm_style`; defaults unchanged), new `overrides/front_v2_pass3_palm_crowns.js`, `views/front_v2/shots/front_v2_pass3_side_by_side.png`, `views/front_v2/STEP_LOG.md`.
+- What: palm fronds rebuilt as filled, denser leaflet shapes in three wider rings so the crowns read as solid leafy masses like ELEV-FRONT; trunks, heights and the locked camera unchanged. Pass 2 critic PASS logged.
+- Why: critic single fix after v2 pass 2.
+- Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 4, palm crowns scaled to reference
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (optional `palm_style.wByCrown`: frond width scales with crown; off by default), new `overrides/front_v2_pass4_palm_scale.js`, `views/front_v2/shots/front_v2_pass4_side_by_side.png`, `views/front_v2/STEP_LOG.md`.
+- What: crown size x0.57 (left palms) and x0.40 (right palm), same trunk tops; widths now ~170 px and ~145 px against the reference's ~170 and ~130.
+- Why: critic single fix on pass 3 (crowns too big).
+- Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 5, palm crown colour
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (loads the pass 5 override), new `overrides/front_v2_pass5_palm_colour.js`, `views/front_v2/shots/front_v2_pass5_side_by_side.png`, `views/front_v2/STEP_LOG.md`.
+- What: frond colours darkened and desaturated to the ELEV-FRONT crown sample (median RGB 74,80,61); shape, scale, trunks and camera unchanged.
+- Why: critic single fix on pass 4 (crowns bright lime).
+- Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): M45 carport left edge logged (no model change)
+- Files: `exterior-garden-3d/4b/mismatches/mismatch_log.md` (M45), `exterior-garden-3d/4b/walk_exterior_wip/views/front_v2/STEP_LOG.md`.
+- What: the critic asked whether the carport should run to the left frame edge as in ELEV-FRONT. The model's carport already starts at the CAD plot's left boundary (x 0.0); matching the image needs roof ~1.9 m past the plot (derived). Logged as a CAD-vs-image conflict; the carport was not extended. Pass 5 critic PASS logged.
+- Why: critic request; CAD decides footprint.
+- Status: REVIEW-PENDING (Colin's ruling on M45).
+
+## 2026-11-10 (Asia/Dubai): M46 first-floor screen right edge logged (no model change)
+- Files: `exterior-garden-3d/4b/mismatches/mismatch_log.md` (M46), `exterior-garden-3d/4b/walk_exterior_wip/views/front_v2/STEP_LOG.md`.
+- What: the critic asked whether the FF timber screen should run ~45 px further right as in ELEV-FRONT. The CAD V4 centre bay ends at x 11.038 (front glass) with a stone pier at x 10.97-11.58, and the right bay is set back behind a terrace; widening would cover the pier. Logged as a CAD-vs-image conflict; screen unchanged.
+- Why: critic request; CAD decides dimensions.
+- Status: REVIEW-PENDING (Colin's ruling on M46).
+
+## 2026-11-10 (Asia/Dubai): carport and screen mismatch IDs renumbered; carport closed per Colin
+- Files: `exterior-garden-3d/4b/mismatches/mismatch_log.md`, `exterior-garden-3d/4b/walk_exterior_wip/views/front_v2/STEP_LOG.md`.
+- What: the carport left-edge item (logged as M45 at 0913a07) is now M47, because M45 is the rear lane's rear height gap; the FF screen item (logged as M46 at 9a99327) is now M48. M47 marked RESOLVED: CAD extent kept, no overhang past the plot line, per Colin's "Keep on as u are" (23:44) as read by the coordinator; noted as a reading of his words.
+- Why: coordinator relay of Colin's reply; avoid ID collisions across lanes.
+- Status: DONE (M47); M48 REVIEW-PENDING (Colin).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 6, layered palm crowns
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (loads pass 6), new `overrides/front_v2_pass6_palm_ring.js`, `views/front_v2/shots/front_v2_pass6_side_by_side.png`, `views/front_v2/STEP_LOG.md`.
+- What: an extra 16-frond ring per palm crown, inside the outer length, so crowns read dense and layered; scale, colour, trunks and camera unchanged. Logged the coordinator's M48 working default (keep CAD) and the M90+ ID range for front/site items.
+- Why: critic single fix (crowns sparser than the reference).
+- Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 7, entry gate colour from reference sample
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (optional `mat_tune` material hook; loads pass 7), new `overrides/front_v2_pass7_gate_bronze.js`, `views/front_v2/shots/front_v2_pass7_side_by_side.png`, `views/front_v2/shots/front_v2_pass7_gate_crop.png`, `views/front_v2/STEP_LOG.md`.
+- What: gate bars from near-black to the sampled dark bronze of ELEV-FRONT's bars (RGB 36,25,17; model 32,17,8), metalness 0. The critic's "warm timber" read was checked on a crop: the warmth is the lit lobby behind the bars.
+- Why: critic single fix after pass 6.
+- Status: REVIEW-PENDING (critic).

@@ -31,6 +31,12 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_pass15_roof_row.js"></script>
 <script src="./overrides/front_pass16_multistem_tree.js"></script>
 <script src="./overrides/front_v2_pass1_entry_tree.js"></script>
+<script src="./overrides/front_v2_pass2_tree_understorey.js"></script>
+<script src="./overrides/front_v2_pass3_palm_crowns.js"></script>
+<script src="./overrides/front_v2_pass4_palm_scale.js"></script>
+<script src="./overrides/front_v2_pass5_palm_colour.js"></script>
+<script src="./overrides/front_v2_pass6_palm_ring.js"></script>
+<script src="./overrides/front_v2_pass7_gate_bronze.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -95,6 +101,12 @@ if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
   MAT.interior_lobby = M_({color:0xd9b98c, roughness:.7, emissive:0xe0a868, emissiveIntensity:.9});   // front pass 9 lit GF lobby
 }
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
+// front v2 pass 7: optional MODEL_OVERRIDES.mat_tune = {matName:{color, metalness, roughness, emissive, barFill}}; barFill redraws the gate-bar
+// texture (same 21 px pitch, 8 px bars, alpha pattern kept) in that colour. Without mat_tune nothing changes.
+for (const [k, v] of Object.entries((window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.mat_tune) || {})) { const m = MAT[k]; if (!m) continue;
+  if (v.barFill && k === 'bronze_bars') m.map = tex(g=>{ g.clearRect(0,0,256,256); for(let x=0;x<256;x+=21){ g.fillStyle=v.barFill; g.fillRect(x,0,8,256);} }, 0.35);
+  if (v.color !== undefined) m.color.setHex(v.color); if (v.metalness !== undefined) m.metalness = v.metalness;
+  if (v.roughness !== undefined) m.roughness = v.roughness; if (v.emissive !== undefined) m.emissive.setHex(v.emissive); m.needsUpdate = true; }
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
 const hideCats = new Set((Q.get('hide')||'').split(',').filter(Boolean));
@@ -182,12 +194,15 @@ for (const t of M.trees) { if (hideCats.has('trees')) break;
 window.__FRONDS = []; window.__PALMS = [];
 // palms (front pass 3): tapered ringed trunk + crown of leaflet fronds (procedural, no image assets)
 { const P = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.palms) || [];
+  // front v2 pass 3: optional MODEL_OVERRIDES.palm_style (leaf spacing/width/colours, emissive, rings); without it the pass 3 look is unchanged
+  const PS = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.palm_style) || null, LS = (PS && PS.leaf) || {};
   const frondTex = (()=>{ const c=document.createElement('canvas'); c.width=64; c.height=256; const g=c.getContext('2d');
-    g.clearRect(0,0,64,256); g.strokeStyle='#3e5a2a'; g.lineWidth=3; g.beginPath(); g.moveTo(32,0); g.lineTo(32,256); g.stroke();
-    for (let y=6;y<252;y+=7){ const w=29*Math.sin(Math.PI*y/256)+3; g.strokeStyle=(y%14?'#4b6a30':'#3f5e2a'); g.lineWidth=1.6;
-      g.beginPath(); g.moveTo(32,y); g.lineTo(32-w,y+22); g.stroke(); g.beginPath(); g.moveTo(32,y); g.lineTo(32+w,y+22); g.stroke(); }
+    const sp = LS.spacing||7, lw = LS.lineWidth||1.6, cols = LS.colours||['#4b6a30','#3f5e2a'], reach = LS.reach||22;
+    g.clearRect(0,0,64,256); g.strokeStyle=LS.midrib||'#3e5a2a'; g.lineWidth=3; g.beginPath(); g.moveTo(32,0); g.lineTo(32,256); g.stroke();
+    let k=0; for (let y=6;y<252;y+=sp,k++){ const w=29*Math.sin(Math.PI*y/256)+3; g.strokeStyle=cols[k%cols.length]; g.lineWidth=lw;
+      g.beginPath(); g.moveTo(32,y); g.lineTo(32-w,y+reach); g.stroke(); g.beginPath(); g.moveTo(32,y); g.lineTo(32+w,y+reach); g.stroke(); }
     const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; return t; })();
-  const frondM = new THREE.MeshStandardMaterial({map:frondTex, alphaTest:.45, transparent:false, side:THREE.DoubleSide, roughness:.85});
+  const frondM = new THREE.MeshStandardMaterial({map:frondTex, alphaTest:.45, transparent:false, side:THREE.DoubleSide, roughness:.85, emissive:(PS&&PS.emissive)||0x000000});
   const trunkTex = tex(g=>{ g.fillStyle='#8a7a62'; g.fillRect(0,0,256,256); for(let y=0;y<256;y+=10){ g.fillStyle='rgba(60,48,34,.55)'; g.fillRect(0,y,256,3);} }, 1.0);
   const trunkPM = new THREE.MeshStandardMaterial({map:trunkTex, roughness:.95});
   for (const p of P) {
@@ -197,8 +212,8 @@ window.__FRONDS = []; window.__PALMS = [];
     tg.computeVertexNormals(); const tr=new THREE.Mesh(tg, trunkPM); tr.castShadow=true; pg.add(tr);
     const top = new THREE.Vector3(p.lean[0]*p.trunk, p.trunk, p.lean[1]*p.trunk);
     // fuller, drooping crown: outer arching fronds with V-folded hanging leaflets + an inner ring of short upright fronds
-    const rings = [ {n:30, len:1.00, up:[0.7,1.0,1.35], droop:0.55, w:1.15}, {n:6, len:0.55, up:[0.35,0.55,0.7], droop:0.25, w:0.9} ];
-    for (const R of rings) for (let i=0;i<R.n;i++){ const L = p.crown*R.len*(0.8+0.2*Math.random()), W = R.w;
+    const rings = (PS && PS.rings) || [ {n:30, len:1.00, up:[0.7,1.0,1.35], droop:0.55, w:1.15}, {n:6, len:0.55, up:[0.35,0.55,0.7], droop:0.25, w:0.9} ];
+    for (const R of rings) for (let i=0;i<R.n;i++){ const L = p.crown*R.len*(0.8+0.2*Math.random()), W = R.w*((PS&&PS.wByCrown)? p.crown/PS.wByCrown : 1);   // v2 pass 4: frond width scales with crown when palm_style.wByCrown is set
       const fg = new THREE.PlaneGeometry(W, L, 4, 10); fg.translate(0, L/2, 0);
       const fp = fg.attributes.position; for (let j=0;j<fp.count;j++){ const y=fp.getY(j), x=fp.getX(j), t=y/L;
         fp.setZ(j, R.droop*L*t*t + 0.22*Math.abs(x)*(0.3+t)); }     // arch down toward the tip; leaflets hang in a V
