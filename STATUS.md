@@ -12,7 +12,7 @@ Checked 2026-11-09 21:30 Asia/Dubai. Read with `AGENTS.md`. Update this file at 
 |---|---|---|
 | Brochure + 9 approved V4 floor plans (4/5/6-bed × GF/FF/RF) | Approved (`pt16u`), backed up | `active/approved-cad-v4/`, `ACTIVE_PIPELINE.json` |
 | 4-bed exterior steps 1–4 (reference, layout, blockout, grime) | Done, revised after review, awaiting Colin's review | `exterior-garden-3d/4b/`, `PIPELINE_7STEP.md` |
-| Exterior step 5 (printed matter) | **ON HOLD** until Colin says go | |
+| Exterior step 5 (printed matter) | **GO** (Colin, 2026-11-09 17:40): run through to step 7 | |
 | 4-bed GF web viewer v2 | Built (v1 rejected as "too 2D"); review-pending | `active/floorplan3d-spike/FP-4B-GF/` |
 | Pool basin (browser sketch) | Built | `exterior-garden-3d/4b/model/` |
 
@@ -34,4 +34,4 @@ Checked 2026-11-09 21:30 Asia/Dubai. Read with `AGENTS.md`. Update this file at 
 1. Critic review of the 16:39 WIP snapshot against the V4 plans and brochure.
 2. Fix review findings, then integrate the courtyard module into GF viewer v2.
 3. Finish the explorable 4-bed web model (all floors, walkable).
-4. Decide exterior step 5; write up Ashwood lessons for the Axis3D QA register.
+4. Exterior steps 5–7 (printed matter, critique, motion), run straight through; then write up Ashwood lessons for the Axis3D QA register.

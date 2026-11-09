@@ -37,11 +37,11 @@ Colin, 2026-11-09: this rule set applies to both exterior and interior work in t
 Rules for all seven steps:
 - One step at a time. Log each step's gate in its step doc (`ext7/`-style: Inputs, Outputs, Review check, Status).
 - Images decide appearance, CAD decides dimensions. Where they disagree, log it in `exterior-garden-3d/4b/mismatches/mismatch_log.md` and use image for look, CAD for footprint.
-- **Ashwood-specific HOLD (current):** stop after step 4, report, and wait for Colin's go-ahead before step 5. (Barclay ran straight through; Ashwood's HOLD is Colin's Ashwood rule and stays unless he changes it.)
+- **Run straight through to step 7** (Colin, 2026-11-09 17:40): no hold. Each step still gets its gate log and critic check before the next step starts, but no wait for Colin between steps 1 and 7. Colin reviews the finished set.
 - Pure review gates use the independent critic (not the builder).
 
 ## Exterior: 4-bed status
-- Steps 1–4 done, revised, awaiting Colin's review. Official `4b_*.blend` untouched by WIP.
+- Steps 1–4 done, revised. Steps 5–7 now go ahead (Colin, 2026-11-09 17:40). Official `4b_*.blend` untouched by WIP.
 - WIP in `blender_wip/` (M20–M24) is not critic-reviewed and not used for official renders.
 
 ## Interior web viewer (`active/floorplan3d-spike/FP-4B-GF/`, v2)
