@@ -4,7 +4,7 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 
 ## 2026-11-09 (Asia/Dubai), lane exterior-rear-garden
 
-- **M45 logged** (`exterior-garden-3d/4b/mismatches/mismatch_log.md`). Rear storey heights and roof height vs V4 CAD: model display-only heights (total 10.85 m) are not CAD-sourced; the reference house is about 11% taller at matched width. Status: OPEN, flagged for Colin. No model change. Critic: width PASS, height PASS within the logged gap.
+- **M49 logged** (renumbered from M45 per coordinator housekeeping) (`exterior-garden-3d/4b/mismatches/mismatch_log.md`). Rear storey heights and roof height vs V4 CAD: model display-only heights (total 10.85 m) are not CAD-sourced; the reference house is about 11% taller at matched width. Status: OPEN, flagged for Colin. No model change. Critic: width PASS, height PASS within the logged gap.
 
 - **Rear v3 pass 2** (branch `lane/exterior-rear-garden`). Re-locked the rear camera to `views/rear/cams/rear_v3_pass2.json` (camera z -24 to -28, same target, fov and shift). House width now about 407 px in the 960-px panel (reference about 400). Side-by-side in `views/rear/shots/rear_v3_pass2_side_by_side.png`. Status: WIP, REVIEW-PENDING. Residual: the model house is shorter than the reference in this view (roof about row 97 and base about row 370, against reference rows 85 and 430). Width and height cannot both match with this camera, so this is a model height/proportion question for the exterior lane, not a camera fix. Not changed: model.js, shared_pool_v3.js, house, pool.
 
