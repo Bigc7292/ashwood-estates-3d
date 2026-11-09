@@ -54,7 +54,7 @@ scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), .04).texture;
 
 const hemi = new THREE.HemisphereLight('#bcd6f0', '#c8a878', .3); scene.add(hemi);
 const sun = new THREE.DirectionalLight('#ffd29a', 4.2);
-const SUN_DIR = new THREE.Vector3(-1, .62, -.42).normalize();
+const SUN_DIR = new THREE.Vector3(-1, .58, .38).normalize();   // late afternoon, from the WSW (behind-left of the ref camera)
 const mid = new THREE.Vector3((CY.x0 + CY.x1)/2, 0, (CY.z0 + CY.z1)/2);
 sun.position.copy(mid).addScaledVector(SUN_DIR, 20); sun.target.position.copy(mid); scene.add(sun, sun.target);
 sun.castShadow = true; sun.shadow.mapSize.setScalar(2048); sun.shadow.bias = -.0004; sun.shadow.normalBias = .02; sun.shadow.radius = 3;
@@ -64,8 +64,8 @@ Object.assign(sun.shadow.camera, {left:-7, right:7, top:7, bottom:-7, near:5, fa
 const travT = travertineTexture(THREE, {seed:7}), travM = new THREE.MeshStandardMaterial({map:travT, roughness:.62});
 const pavT = travertineTexture(THREE, {seed:3, tone:2}), pavM = new THREE.MeshStandardMaterial({map:pavT, roughness:.7, color:'#f4ead9'});
 const bronze = new THREE.MeshStandardMaterial({color:'#3a3129', roughness:.4, metalness:.6});
-const glass = new THREE.MeshPhysicalMaterial({color:'#2a2622', roughness:.04, metalness:0, transparent:true, opacity:.22, envMapIntensity:1.4, depthWrite:false});
-const interiorM = new THREE.MeshStandardMaterial({color:'#c9a77a', roughness:.9, emissive:'#8a5a2a', emissiveIntensity:.55});
+const glass = new THREE.MeshPhysicalMaterial({color:'#2a2622', roughness:.04, metalness:0, transparent:true, opacity:.14, envMapIntensity:1.2, depthWrite:false});
+const interiorM = new THREE.MeshStandardMaterial({color:'#c9a77a', roughness:.9, emissive:'#c08850', emissiveIntensity:.8});
 const add = (g, m, x, y, z, cast = true) => { const o = new THREE.Mesh(g, m); o.position.set(x, y, z); o.castShadow = cast; o.receiveShadow = true; scene.add(o); return o; };
 const H = 5.6, T = .3;
 // paving with the pond hole
@@ -116,7 +116,7 @@ const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, .05, 200)
 const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true;
 const treeAt = new THREE.Vector3((ISLAND.x0 + ISLAND.x1)/2, 1.9, (ISLAND.z0 + ISLAND.z1)/2);
 const VIEWS = {
-  ref:{pos:[2.25, 1.5, 3.7], tgt:[4.9, 1.75, -1.4], fov:52},
+  ref:{pos:[1.95, 1.5, 4.7], tgt:[4.95, 1.65, -1.5], fov:52},
   iso:{pos:[-1.6, 9.2, 6.4], tgt:[treeAt.x, .6, treeAt.z], fov:40},
   top:{pos:[treeAt.x, 16, treeAt.z + .001], tgt:[treeAt.x, 0, treeAt.z], fov:30},
 };

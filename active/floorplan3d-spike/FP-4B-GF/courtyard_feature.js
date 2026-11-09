@@ -10,7 +10,7 @@
  *   DA3  stone lip: 0.08 m wide light limestone band inside the CAD pond outline, top flush with paving (+4 mm)
  *   DA4  island planter: travertine body inset 15 mm under a 0.10 m wide x 0.06 m coping; coping top floorY + 0.25 m
  *        (0.295 m above the water line); the coping's outer edge = the CAD island rectangle
- *   DA5  planting soil top floorY + 0.21 m, covered with ~230 instanced ornamental-grass tufts (0.15-0.32 m) + 7 stones
+ *   DA5  planting soil top floorY + 0.21 m, covered with ~300 instanced ornamental-grass tufts (0.15-0.32 m) + 7 stones
  *   DA6  tree: single cloud-pruned Japanese black pine, ~3.4 m above the soil (top ~3.6 m above paving),
  *        crown ~3.3 m wide, 8 flat foliage pads, trunk base dia ~0.30 m (+ root flare); placed at the island centre
  *   DA7  tree yaw: opts.treeYaw (default 0 => the "front" of the tree faces +Z)
@@ -31,6 +31,17 @@
  * Licence: project code. three.js (MIT) is vendored under ./vendor/three. Water normal maps are three.js examples (MIT).
  */
 import { Water } from './vendor/three/examples/jsm/objects/Water2.js';
+
+// Water2 shader variant: refraction / reflection distortion 0.05 -> 0.014 (calm pond, no wobbly floor), and the refracted
+// floor is attenuated towards blue-grey (0.35 m of clear water) before the fresnel mix.
+function calmWaterShader(){
+  const S = Water.WaterShader, fs = S.fragmentShader
+    .replace('coord.z * normal.xz * 0.05', 'coord.z * normal.xz * 0.014')
+    .replace('vec4 refractColor = texture2D( tRefractionMap, uv );', 'vec4 refractColor = texture2D( tRefractionMap, uv ); refractColor.rgb *= vec3( 0.66, 0.76, 0.80 );');
+  if (fs === S.fragmentShader) console.warn('courtyard: Water2 shader patch did not apply');
+  return {name:'CalmWaterShader', uniforms:THREE_UNIFORMS_CLONE(S.uniforms), vertexShader:S.vertexShader, fragmentShader:fs};
+}
+function THREE_UNIFORMS_CLONE(u){ const o = {}; for (const k in u){ const v = u[k].value; o[k] = {value:v && v.clone ? v.clone() : v}; } return o; }
 
 const DA = {
   pondDepth: .35, waterDrop: .045, lipW: .08,
@@ -222,7 +233,7 @@ function buildPine(THREE, seed = 4242){
     }
   });
   const barkT = barkTexture(THREE);
-  const barkM = new THREE.MeshStandardMaterial({color:'#9a8e84', map:barkT, bumpMap:barkT, bumpScale:2.2, roughness:.92, metalness:0});
+  const barkM = new THREE.MeshStandardMaterial({color:'#c4b3a2', map:barkT, bumpMap:barkT, bumpScale:2.2, roughness:.92, metalness:0});
   const wood = new THREE.Mesh(mergeGeos(THREE, woodGeos), barkM); wood.castShadow = wood.receiveShadow = true; wood.name = 'pine-wood'; tree.add(wood);
 
   // --- foliage: needle-tuft cards (3 quads each) clustered into lumpy clumps per pad
@@ -237,7 +248,7 @@ function buildPine(THREE, seed = 4242){
   const cardG = new THREE.BufferGeometry(); cardG.setAttribute('position', new THREE.Float32BufferAttribute(cp, 3)); cardG.setAttribute('normal', new THREE.Float32BufferAttribute(cn, 3)); cardG.setAttribute('uv', new THREE.Float32BufferAttribute(cu, 2)); cardG.setIndex(ci);
 
   const items = [], core = [];
-  const cTop = new THREE.Color('#8c8748'), cMid = new THREE.Color('#4a502c'), cLow = new THREE.Color('#20271a');
+  const cTop = new THREE.Color('#a39a52'), cMid = new THREE.Color('#5d6234'), cLow = new THREE.Color('#2c321d');
   PADS.forEach(([cx, cy, cz, rx, rz, th, yaw], k) => {
     const ph = [R()*6.28, R()*6.28, R()*6.28], edge = a => 1 + .13*Math.sin(3*a + ph[0]) + .08*Math.sin(5*a + ph[1]) + .05*Math.sin(8*a + ph[2]);
     const cs = Math.cos(yaw), sn = Math.sin(yaw), toW = (x, z) => [cx + x*cs - z*sn, cz + x*sn + z*cs];
@@ -283,7 +294,7 @@ function buildPine(THREE, seed = 4242){
   // dense dark cores so the clouds read solid (merged, 1 draw call)
   const coreGeos = core.map(([c, r, ry]) => { const g = new THREE.IcosahedronGeometry(1, 1); const p = g.attributes.position;
     for (let i = 0; i < p.count; i++){ const f = 1 + (R() - .5)*.25; p.setXYZ(i, c.x + p.getX(i)*r*f, c.y + p.getY(i)*ry*f, c.z + p.getZ(i)*r*f); } g.computeVertexNormals(); return g; });
-  const coreM = new THREE.MeshStandardMaterial({color:'#262d18', roughness:.95});
+  const coreM = new THREE.MeshStandardMaterial({color:'#30361e', roughness:.95});
   const cores = new THREE.Mesh(mergeGeos(THREE, coreGeos), coreM); cores.name = 'pine-pad-cores'; cores.castShadow = true; cores.receiveShadow = true; tree.add(cores);
   tree.userData.stats = {tufts:items.length, clumps:core.length};
   return tree;
@@ -325,7 +336,7 @@ export function buildCourtyard(THREE, opts = {}){
   const travM = new THREE.MeshStandardMaterial({map:travT, roughness:.62, color:'#ffffff'});
   const copingT = travertineTexture(THREE, {seed:9, tone:1, joint:false});
   const copingM = new THREE.MeshStandardMaterial({map:copingT, roughness:.55, color:'#fffaf2'});
-  const limeM = new THREE.MeshStandardMaterial({map:limeT, roughness:.8, color:'#fbf8f2'});
+  const limeM = new THREE.MeshStandardMaterial({map:limeT, roughness:.8, color:'#efe2cc'});
   const basinM = new THREE.MeshStandardMaterial({map:limeT, roughness:.85, color:'#cfc8ba'});
   disposables.push(travM, copingM, limeM, basinM);
 
@@ -353,8 +364,8 @@ export function buildCourtyard(THREE, opts = {}){
     const n0 = tl.load(new URL('./vendor/three/examples/textures/water/Water_1_M_Normal.jpg', import.meta.url).href);
     const n1 = tl.load(new URL('./vendor/three/examples/textures/water/Water_2_M_Normal.jpg', import.meta.url).href);
     disposables.push(n0, n1);
-    water = new Water(wg, {color:opts.waterColor ?? 0xb9cdd2, scale:opts.waterScale ?? 4.5, flowDirection:new THREE.Vector2(.6, .35), flowSpeed:.006,
-      reflectivity:opts.reflectivity ?? .4, textureWidth:opts.waterRes ?? 1024, textureHeight:opts.waterRes ?? 1024, normalMap0:n0, normalMap1:n1});
+    water = new Water(wg, {color:opts.waterColor ?? 0xc4d4d8, scale:opts.waterScale ?? 4.5, flowDirection:new THREE.Vector2(.6, .35), flowSpeed:.006,
+      reflectivity:opts.reflectivity ?? .4, shader:calmWaterShader(), textureWidth:opts.waterRes ?? 1024, textureHeight:opts.waterRes ?? 1024, normalMap0:n0, normalMap1:n1});
   } catch(e){ waterMode = 'flat'; console.warn('courtyard: Water2 unavailable, flat water fallback:', e.message); }
   if (!water) water = new THREE.Mesh(wg, new THREE.MeshPhysicalMaterial({color:'#9fb4b8', roughness:.06, metalness:0, transparent:true, opacity:.55, envMapIntensity:1.4}));
   water.rotation.x = -Math.PI/2; water.position.y = Y - DA.waterDrop; water.name = 'pond-water'; water.userData.waterMode = waterMode; group.add(water);
@@ -376,10 +387,10 @@ export function buildCourtyard(THREE, opts = {}){
   const tuftG = grassTuftGeometry(THREE, R);
   const grassM = new THREE.MeshStandardMaterial({vertexColors:true, side:THREE.DoubleSide, roughness:.85}); disposables.push(grassM);
   const tufts = [];
-  for (let k = 0; k < 2000 && tufts.length < 230; k++){
+  for (let k = 0; k < 2000 && tufts.length < 300; k++){
     const x = (R() - .5)*(sW - .05), z = (R() - .5)*(sD - .05), r = Math.hypot(x, z);
     if (r < .2) continue;
-    if (tufts.some(t => Math.hypot(t[0] - x, t[1] - z) < .055)) continue;
+    if (tufts.some(t => Math.hypot(t[0] - x, t[1] - z) < .048)) continue;
     tufts.push([x, z]);
   }
   const grass = new THREE.InstancedMesh(tuftG, grassM, tufts.length); grass.name = 'island-grass';
