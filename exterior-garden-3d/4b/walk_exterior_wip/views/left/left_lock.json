@@ -1,0 +1,13 @@
+{
+  "view": "ELEV-LEFT",
+  "status": "LOCKED (camera framing only; model content not yet matching)",
+  "locked": "2026-11-10 Asia/Dubai, lane 2 cloud builder",
+  "reference_image": "exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png",
+  "page": "exterior-garden-3d/4b/walk_exterior_wip/left_pass.html",
+  "coordinate_system": "model/data/model.js (metres; x across plot, y up, z plot depth; street side is +z). Camera on the -x side looking +x; +z (street, carport) is image right.",
+  "view_param": {"pos":[-22.5,1.6,15.08],"tgt":[1.5,5.16,15.08],"fov":40,"shift":true},
+  "camera": {"position":[-22.5,1.6,15.08],"target":[1.5,5.16,15.08],"vertical_fov_deg":40,"render_size_px":[1280,720],"shift_lens":"level camera, frustum shifted so the target sits at the frame centre (verticals parallel, as in the reference)"},
+  "solve_method": "Reference read as a level, one-point side elevation (slab edges horizontal, verticals parallel). Scale and aim set so the FF roof-slab ends (model ff-roof-slab z 2.84-26.88) land on the reference's FF overhang ends (x 165 and 1097 of 1280) and the slab top (7.85 m, model) on row 250 of 720. Eye height 1.6 m and vFOV 40 are assumptions.",
+  "check": "left_lock_side_by_side.png at 960x540: slab ends within about 5 px of the blue guides, slab top on the upper red guide.",
+  "label": "assumption-derived camera; reference is an AI-generated concept image, not a photograph or survey. Concept visualisation, not survey-verified, not construction-ready, not certified CAD."
+}

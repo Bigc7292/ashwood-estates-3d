@@ -1,0 +1,43 @@
+{
+  "view": "ELEV-RIGHT",
+  "status": "LOCKED (camera framing only; model content not yet matching)",
+  "locked": "2026-11-10 Asia/Dubai, lane 2 cloud builder",
+  "reference_image": "exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-ELEV-RIGHT_GENERATED-CONCEPT.png",
+  "page": "exterior-garden-3d/4b/walk_exterior_wip/right_pass.html",
+  "coordinate_system": "model/data/model.js (metres; x across plot, y up, z plot depth; street side is +z). Camera on the +x side looking -x; +z (street, gate) is image LEFT.",
+  "view_param": {
+    "pos": [
+      42.6,
+      1.6,
+      13.45
+    ],
+    "tgt": [
+      15.88,
+      4.66,
+      13.45
+    ],
+    "fov": 40,
+    "shift": true
+  },
+  "camera": {
+    "position": [
+      42.6,
+      1.6,
+      13.45
+    ],
+    "target": [
+      15.88,
+      4.66,
+      13.45
+    ],
+    "vertical_fov_deg": 40,
+    "render_size_px": [
+      1280,
+      720
+    ],
+    "shift_lens": "level camera, frustum shifted so the target sits at the frame centre"
+  },
+  "solve_method": "Reference read as a level, one-point side elevation. Scale and aim set so the FF roof-slab ends (model ff-roof-slab z 26.88 street end, 2.84 rear end) land on the reference's MAIN WALL/slab ends (x 143 and 1033 of 1280; 37.0 px/m, d 26.7 m from the slab edge x 15.88) and the slab top (7.85 m) on row ~242 of 720. Re-solved after the critic: the first solve used x 1120, the end of the lower rear overhang, not the main wall end. Eye height 1.6 m and vFOV 40 are assumptions.",
+  "check": "right_lock_side_by_side.png at 960x540: slab ends on the blue guides (107 / 775), slab top within ~4 px of the upper red guide.",
+  "label": "assumption-derived camera; reference is an AI-generated concept image, not a photograph or survey. Concept visualisation, not survey-verified, not construction-ready, not certified CAD."
+}

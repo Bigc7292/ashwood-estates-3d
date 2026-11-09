@@ -1,0 +1,12 @@
+{
+  "view": "OUTDOOR-SITE",
+  "status": "LOCKED (camera framing on the CAD plot corners; model content not yet matching)",
+  "locked": "2026-11-10 Asia/Dubai, lane 2 cloud builder",
+  "reference_image": "exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-OUTDOOR-SITE_GENERATED-SOURCE-CONDITIONED.png",
+  "page": "exterior-garden-3d/4b/walk_exterior_wip/site_pass.html",
+  "coordinate_system": "model/data/model.js (metres; x across plot, y up, z plot depth; street side is +z, at the image bottom).",
+  "view_param": {"pos": [9.874, 19.166, 42.689], "tgt": [9.36, 0, 20.215], "fov": 39.74},
+  "solve_method": "Least squares (scipy) on 4 CAD plot corners vs the reference: rear wall tops (x 0 / 18.72, y 1.8, z 0) at (450,30) / (876,31) and front ground corners (x 0 / 18.72, y 0, z 29.88) at (222,642) / (1062,642) of 1280x720; target held on the ground at the plot centre line x 9.36. Residuals 9-12 px. All reference pixel reads are by eye (derived).",
+  "known_conflicts": "The generated image is not metrically consistent with the CAD: (1) the FF roof's rear edge (CAD z 2.93, y 7.85) reads at y ~107 in the reference but projects ~200 px higher with any camera that fits the plot corners; a joint fit of plot + roof + carport leaves ~68 px RMS; (2) the reference carport is inset from the left boundary (x ~310 vs ~180 for CAD x 0); (3) the reference pool is wider than CAD (M29). Plot corners chosen as the anchor because the CAD decides dimensions. Logged as M42.",
+  "label": "assumption-derived camera; reference is an AI-generated concept image, not a photograph or survey. Concept visualisation, not survey-verified, not construction-ready, not certified CAD."
+}
