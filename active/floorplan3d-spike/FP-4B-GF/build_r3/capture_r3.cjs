@@ -29,6 +29,19 @@ SHOTS.push({id:'f2_entry_void_up', room:'double-height-entry', label:'Entry doub
 SHOTS.push({id:'q7_courtyard_from_living', room:'outdoor-terrace', label:'Courtyard from the terrace edge, eye level (Q7)', p:[9650, 7900, 1.6], t:[11938, 10570, .9], fov:62});
 SHOTS.push({id:'q7_courtyard_from_south', room:'outdoor-terrace', label:'Courtyard from the south, eye level (Q7)', p:[13900, 12900, 1.6], t:[11600, 9800, 1.0], fov:62});
 SHOTS.push({id:'q7_courtyard_from_entry_side', room:'outdoor-terrace', label:'Courtyard looking east from the west glazing line (Q7)', p:[9600, 12700, 1.6], t:[12649, 9860, 1.2], fov:62});
+SHOTS.push({id:'f3_pool_from_terrace_east', room:'pool', label:'Pool along its length from the east end, low eye (F3 Water2)', p:[11900, -150, 1.3], t:[4000, -2000, 0], fov:62});
+SHOTS.push({id:'f3_pool_from_living', room:'pool', label:'Pool from the living room through the glazing (F3 Water2)', p:[6400, 2600, 1.6], t:[6400, -1600, .2], fov:62});
+// F3 G5: fixture-verification cameras (eye level, wide) + 45-degree cutaways at the 1.2 m cut-wall height (QA assumption)
+const FIX = {powder:{p:[6600, 8700, 1.65], t:[4300, 9400, .7], fov:74}, 'k-store':{p:[3950, 16300, 1.6], t:[5500, 15250, .9], fov:76},
+  dress:{p:[4100, 17250, 1.6], t:[5507, 17126, 1.2], fov:76}, 'maid-bath':{p:[4700, 19400, 1.6], t:[5400, 18100, .6], fov:78}, bath:{p:[13050, 17000, 1.65], t:[12000, 18250, .6], fov:74}};
+Object.entries(FIX).forEach(([id, c]) => {
+  const r = P.ROOMS.find(q => q.id === id), xs = r.poly.map(q => q[0]), ys = r.poly.map(q => q[1]), cx = (Math.min(...xs) + Math.max(...xs))/2, cy = (Math.min(...ys) + Math.max(...ys))/2;
+  SHOTS.push({id:'g5_' + id + '_fixtures', room:id, label:r.label + ' fixtures (eye level, wide)', ...c});
+  SHOTS.push({id:'g5_' + id + '_cutaway45', room:id, label:r.label + ' 45-degree cutaway (walls cut at 1.2 m)', p:[cx + 500, cy + 1500, 5.0], t:[cx, cy, .3], fov:58, cut:1.2});
+});
+SHOTS.push({id:'g2_living_calacatta_wall', room:'living-dining', label:'Living feature (media) wall, Calacatta (G2)', p:[10600, 3450, 1.6], t:[14159, 3450, 1.5], fov:66});
+SHOTS.push({id:'g2_living_calacatta_wall_oblique', room:'living-dining', label:'Living feature wall, oblique (G2)', p:[11200, 1500, 1.6], t:[14159, 4300, 1.4], fov:62});
+const BENCH = process.env.BENCH === '1', FLOW = /^(f3_pool|q7_courtyard_from_living$)/;
 (async () => {
   fs.mkdirSync(outDir, {recursive:true});
   const br = await chromium.launch({executablePath:process.env.CHROME || (process.env.HOME + '/.cache/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell'),
@@ -41,13 +54,22 @@ SHOTS.push({id:'q7_courtyard_from_entry_side', room:'outdoor-terrace', label:'Co
   await pg.evaluate("setView('3d')"); await pg.waitForFunction(() => window.__FP3D_QA__.info().inited, null, {timeout:120000}); await pg.waitForTimeout(6000);
   await pg.evaluate('__FP3D_QA__.settle(); __FP3D_QA__.labels(false); __FP3D_QA__.size(1280, 800); 0');
   const meta = {page:page_, r3:await pg.evaluate('__FP3D_QA__.r3 ? __FP3D_QA__.r3() : null'), info:await pg.evaluate('__FP3D_QA__.info()'), shots:[]};
+  let curCut = 3;
   for (const s of SHOTS){
     if (filt && !new RegExp(filt).test(s.id)) continue;
+    const cut = s.cut || 3; if (cut !== curCut){ await pg.evaluate(c => { __FP3D_QA__.setCut(c); return 0; }, cut); curCut = cut; await pg.waitForTimeout(500); }
     await pg.evaluate(([p, t, f]) => { __FP3D_QA__.look(p, t, f); return 0; }, [s.p, s.t, s.fov]);
     // two stills: first warms Water2 reflection/refraction targets for this camera
     await pg.evaluate('__FP3D_QA__.still(); 0');
     const r = await pg.evaluate('__FP3D_QA__.still()');
     fs.writeFileSync(path.join(outDir, s.id + '.png'), Buffer.from(r.png.split(',')[1], 'base64'));
+    if (FLOW.test(s.id)){   // flow evidence: same camera, 1 s later (Water2 normal-map flow moves; static scene)
+      await pg.waitForTimeout(1000); const r2 = await pg.evaluate('__FP3D_QA__.still()');
+      fs.writeFileSync(path.join(outDir, s.id + '_t1s.png'), Buffer.from(r2.png.split(',')[1], 'base64')); }
+    if (BENCH && /^(f3_pool|q7_)/.test(s.id)){ const wp = await pg.evaluate('!!__FP3D_QA__.waterPerf');
+      s.bench_still = await pg.evaluate('__FP3D_QA__.bench(6)');
+      if (wp){ await pg.evaluate('__FP3D_QA__.waterPerf(true)'); s.bench_moving = await pg.evaluate('__FP3D_QA__.bench(6)'); await pg.evaluate('__FP3D_QA__.waterPerf(false)'); }
+      else s.bench_moving = s.bench_still; }
     meta.shots.push(s); process.stdout.write(s.id + ' ');
   }
   meta.bench = await pg.evaluate('__FP3D_QA__.bench(4)');
