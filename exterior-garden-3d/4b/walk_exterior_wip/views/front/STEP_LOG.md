@@ -7,7 +7,7 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 |---|---|---|---|---|
 | 1 Reference | `step1_reference/generated_approved/EXT-4b-ELEV-FRONT_GENERATED-SOURCE-CONDITIONED.png`; brochure p25 | locked camera, `cameras/front_lock.json` (c327b6e) | critic: framing rows match | DONE (critic accepted lock) |
 | 2 Layout | approved V4 CAD via `model/data/model.js` (4B-GF calibration, approx ±3%) | facade plane z 26.9, extents x 1.46–16.0 | rows match at locked camera | DONE (inherited footprint) |
-| 3 Blockout | step 1 + 2 | pass 1 carport (a22d08a), pass 2 stone tower (80a4858), pass 3 palms (this commit) | critic, one fix per pass | IN PROGRESS: carport improved, tower PASS, palms PASS (d691222), slat screen PASS (4769f7f), hedge pass 6 pending; next: ground relief |
+| 3 Blockout | step 1 + 2 | pass 1 carport (a22d08a), pass 2 stone tower (80a4858), pass 3 palms (this commit) | critic, one fix per pass | IN PROGRESS: carport improved, tower PASS, palms PASS (d691222), slat screen PASS (4769f7f), hedge PASS (3ff454e), ground pass 7 pending |
 | 4 Grime / finish | step 3 | materials and lighting matched to the reference (travertine, bronze slats, warm dusk light) | side by side | NOT STARTED |
 | 5 Printed matter | ELEV-FRONT | no house number, sign or plaque visible in the reference | Q1 record | "none in source" (Q1 REVIEW-PENDING) |
 | 6 Critique | locked pair per pass | `cameras/front_passN_side_by_side.png` | independent critic | ONGOING per pass |
@@ -20,6 +20,7 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - Pass 3 (3e69bff): palms (left group of 2, right 1), positions back-projected through the locked camera. Critic: palms placed right, crowns read as stiff ferns, FAIL.
 - Pass 4 (d691222): palm crowns redrawn: drooping arched fronds with open leaflets. Critic: palm fix accepted, overall FAIL; ranked the slat screen above the hedge.
 - Pass 5 (4769f7f): first-floor slat screen, two staggered layers x 5.4-11.04, y 4.0-7.4. Critic: PASS on placement, overall FAIL.
-- Pass 6: hedge row and planting (front flower bed, shrub mass behind the wall, shrubs behind the right wall, carport-left grasses). Awaiting critic.
+- Pass 6 (3ff454e): hedge row and planting. Critic: PASS on placement, overall FAIL; ground is the largest gap.
+- Pass 7: ground relief: darker driveway paving under the carport (CAD vehicle zone), pavement, kerb and street in front of the plot (context, NOT PLOT). Awaiting critic.
 
-Current position: step 3 (blockout), loop 1, pass 6.
+Current position: step 3 (blockout), loop 1, pass 7.

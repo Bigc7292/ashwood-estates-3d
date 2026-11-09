@@ -20,6 +20,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_pass3_palms.js"></script>
 <script src="./overrides/front_pass5_slats.js"></script>
 <script src="./overrides/front_pass6_hedges.js"></script>
+<script src="./overrides/front_pass7_ground.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -69,6 +70,7 @@ const MAT = {
 };
 const ph = M_({color:0xa7a9ab, roughness:.9});
 MAT.bronze_dark = M_({color:0x3a2c20, roughness:.55, metalness:.35});   // slat screen (front pass 5)
+MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
 const group = new THREE.Group(); scene.add(group);
 const hideCats = new Set((Q.get('hide')||'').split(',').filter(Boolean));
