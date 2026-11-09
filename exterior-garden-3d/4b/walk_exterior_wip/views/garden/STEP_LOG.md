@@ -15,3 +15,4 @@ Page: `../../rear_pass.html` (same renderer as front_pass.html; rear override li
 
 ## Pass history
 - Pass 1 (2026-11-10): baseline rear set on the box. Palms on the four approved-plan tree symbols nearest the rear garden (replacing generic ball trees; palm look image-read), off-plot context lawn behind the rear boundary (image look; plan ends ~1.2 m behind the pool, M-log), low side-boundary hedges. Pool uses three.js Water2 (r160, vendored). Self-critique for pass 2: glazing reads as tan opaque slabs, the references show clear glass with lit rooms and slim frames.
+- Pass 2 (2026-11-10): glazing. Dark clear glass (glass_mode interior, as front pass 8) with warm-lit floor, ceiling and back wall behind the CAD rear glass lines (gf-glass-0/1, ff-glass-rear), plus slim dark frames ~2.4 m (GF) and 5 bays (FF). Interior depths/finishes/mullion spacing are display assumptions. Self-critique for pass 3: Water2 pool reads as flat blue paint, reflections too weak to see.

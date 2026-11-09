@@ -1,3 +1,4 @@
+R=../step1_reference/generated_approved
 shootall () 
 { 
     p=$1;
