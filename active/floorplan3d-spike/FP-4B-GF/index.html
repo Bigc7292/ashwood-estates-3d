@@ -2629,6 +2629,7 @@ function bindUI(){
 
 /* ======================= 主循环 ======================= */
 const clock = new THREE.Clock();
+function lampFace(){ const below = camera.position.y < H - .05; lampG.children.forEach(o => { if (!o.isPointLight) o.visible = below && opt.cut >= H; }); }
 function startLoop(){ if (!raf){ clock.getDelta(); raf = requestAnimationFrame(loop); } }
 function loop(){
   raf = requestAnimationFrame(loop);
@@ -2638,7 +2639,7 @@ function loop(){
   else if (opt.mode === 'orbit') orbit.update();
   else stepWalk(dt);
   doors.forEach(d => { const tg = d.open ? d.a1 : d.a0; d.cur += (tg - d.cur) * Math.min(1, dt*6); d.pivot.rotation.y = d.cur; });
-  updateSel();
+  updateSel(); lampFace();
   renderer.render(scene, camera);
   labelRenderer.render(scene, camera);
 }
@@ -2667,7 +2668,7 @@ window.__FP3D_QA__ = {
   settle(){   // stop the render loop and finish any enter/fly animation (headless capture only)
     cancelAnimationFrame(raf); raf = 0; if (anim){ anim.fn(1); const r = anim.res; anim = null; r(); } if (fly){ camTween(fly.A, fly.B, 1); fly = null; }
     grow = 1; furnGrow = 1; applyGrow(); doors.forEach(d => { d.cur = d.open ? d.a1 : d.a0; d.pivot.rotation.y = d.cur; }); return true; },
-  still(){ this.settle(); orbit.update(); renderer.render(scene, camera); return {png:renderer.domElement.toDataURL('image/png'), w:renderer.domElement.width, h:renderer.domElement.height}; },
+  still(){ this.settle(); orbit.update(); lampFace(); renderer.render(scene, camera); return {png:renderer.domElement.toDataURL('image/png'), w:renderer.domElement.width, h:renderer.domElement.height}; },
   furn(v){ furnG.visible = v; return v; },
   labels(v){ labelG.visible = v; labelG.children.forEach(o => { o.visible = v; o.element.style.display = v ? '' : 'none'; }); return v; },
 };

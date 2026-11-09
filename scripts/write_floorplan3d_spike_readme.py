@@ -5,7 +5,6 @@ from pathlib import Path
 R = Path(__file__).resolve().parents[1]; S = R / 'active/floorplan3d-spike/FP-4B-GF'
 pj = json.loads((S / 'data/fp-4b-gf.plan.json').read_text())
 vj = json.loads((S / 'verify/verification.json').read_text()) if (S / 'verify/verification.json').exists() else {}
-gaps = (S.parent / 'FP-4B-GF.v2_gaps.md')
 L = []; A = L.append
 A('# Ashwood Estates: 4-bed villa, ground floor. Floorplan 3D viewer spike (FP-4B-GF), **v2**\n')
 A('**Status: REVIEW-PENDING SPIKE. One floor only.** Not survey-verified, not construction-ready, not certified CAD.\n')
@@ -51,7 +50,17 @@ if vj:
       f"- Furniture built at runtime: {vj.get('furniture_runtime')}. Rooms at runtime: {len(vj.get('rooms_runtime', []))} (incl. display plate).\n"
       f"- 3D top render vs V4 walls (furniture hidden): recall within ±{g.get('tolerance_mm')} mm {g.get('recall_within_tol')}, precision {g.get('precision_within_tol')}, components ≥0.95 recall {g.get('components_recall_ge_0.95')}/{g.get('v4_wall_components')}. Water IoU {w.get('IoU')}.\n"
       f"- Water mode {vj.get('info_final_desktop', {}).get('water', {}).get('mode')}; flat fallback {vj.get('flat_fallback_info', {}).get('mode')}; fly-to moved {vj.get('flyto', {}).get('moved')}; joystick walk moved {round(vj.get('walk', {}).get('moved_m') or 0, 2)} m.\n")
-if gaps.exists(): A(gaps.read_text())
+A("""## Remaining quality gaps (honest)
+- **Generic furniture models.** These are the upstream procedural models (sofa, chair, bed and so on), not the brochure's actual pieces, and their colours are upstream defaults. Only position, rotation and approximate footprint come from the plan.
+- **Procedural finishes.** Floors use upstream procedural tile and terrazzo textures. Walls are the upstream flat off-white and are not the brochure's textured paint, Calacatta feature wall or Recon Veneer joinery. All finish evidence is project-wide, not per room.
+- **Real-time WebGL quality, not offline renders.** There is no global illumination, real-time-only soft shadows and a basic ceiling. Headless renders use SwiftShader (CPU), so edges are not anti-aliased the way a GPU browser would draw them. On a normal GPU browser the viewer looks somewhat cleaner than these PNGs.
+- **Room polygons are derived.** Show kitchen ~10.6 m² is smaller than its label (5.70 × 2.70) because the open-plan labels overlap. Lift ~1.7 m² is smaller than 1.50 × 1.70. Dress, maid bath, entry and lift have wall/opening fit below 0.9 (see table).
+- **Maid-room bed** is modelled at the traced 1.28 × 1.10 m, which is short for a bed, because that is how the plan draws it.
+- **Stair** is display-only massing. Riser height and rise direction are assumed, and walking does not climb it.
+- **Double-height entry** has no void: corridors, stair hall and entry show open sky above the 3.0 m walls instead of a second floor. Pool has no depth or coping. The outdoor ground beyond the plate is plain.
+- **Unknown site orientation**, so the sun direction and time are display-only.
+- **Not modelled:** cars, rug or console outline, small store, bath and maid-bath fixtures, landscape (see the skipped list).
+""")
 A('## Files\n- `index.html`: patched upstream viewer (attribution header kept). `data/fp-4b-gf.plan.js` / `.plan.json`: generated data with per-room, per-item and per-opening provenance.\n'
   '- `adapter/v4_to_floorplan3d.py`: copy of `scripts/v4_to_floorplan3d.py`, locked to `--plan 4B-GF`. Readings input: `source-evidence/floorplan3d-readings/FP-4B-GF.json`.\n'
   '- `manifest.json`: sources and hashes, display-only defaults, room, furniture and material evidence, output hashes. `verify/`: verification output and renders. `v1/`: superseded first spike.\n'

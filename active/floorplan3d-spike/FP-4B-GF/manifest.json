@@ -1,7 +1,7 @@
 {
   "spike_id": "floorplan3d-spike/FP-4B-GF",
   "status": "REVIEW_PENDING_SPIKE_NOT_APPROVED",
-  "created_at_Asia_Dubai": "2026-11-09T08:23:31+04:00",
+  "created_at_Asia_Dubai": "2026-11-09T08:50:14+04:00",
   "label": "not survey-verified, not construction-ready, not certified CAD",
   "scope": "ONE floor (4B GF) only; other eight floors not converted",
   "sources": {
@@ -1101,11 +1101,11 @@
   "viewer_modifications": "see index.html header + README; patches applied by exact-match string replacement (fail on mismatch)",
   "outputs": {
     "LICENSE-floorplan-3d.txt": "293e6ff11a707c7797873366aae769dd0df3c8d4a33e51c01ae4dd5f91664f14",
-    "adapter/v4_to_floorplan3d.py": "ac53a7bd28bcbb13adb1d9916073ac587ca7fa2f1392cace93e35583fd8cac15",
+    "adapter/v4_to_floorplan3d.py": "a70b5c286b8095027c2171b28b2d6dcc734220784e328e76cec1e8072da4624f",
     "data/fp-4b-gf.plan.js": "09dfceb6afe77ca84377bc597e2fdab50ea7db5cc3c78d6522ea8acb8dde5a66",
     "data/fp-4b-gf.plan.json": "6c152de280af8e0ecc38b9ba756a52362ace7995c3a8fbd522495b0c5320a005",
     "data/wall_mask_2x.png": "b9554d3296e0f8f6cd74094e91d4f09fe1f750241d96ade312eb4970b6758370",
-    "index.html": "7234a757f5e05c03e8610a4597563bd89f5c7ff77368797245c2a0c4c2437960",
+    "index.html": "46e461e0ba8d6254cd550a627898f024041d527d635d134a33afb867cf1b5922",
     "vendor/three/LICENSE": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d",
     "vendor/three/build/three.module.js": "76dea8151bc9352aef3528b4262e249b2604f62543828328db978d060d61a495",
     "vendor/three/examples/jsm/controls/OrbitControls.js": "5a44a9e86a2a0fb11933eed69bc2cd33c76a496854c1aed6ed776efa87d7b064",

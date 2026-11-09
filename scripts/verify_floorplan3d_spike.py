@@ -68,20 +68,20 @@ HERO = [
  ('v2_01_hero_living_dining_pool', MM(372, 328, 1.6), MM(320, 190, 1.0), 60, 3, 'Living / dining toward the pool (eye level 1.6 m)'),
  ('v2_02_hero_living_sofa_pool', MM(538, 322, 1.5), MM(380, 150, 0.9), 62, 3, 'Living: sectional sofa, coffee table, dining beyond, pool through glazing'),
  ('v2_03_hero_show_kitchen_island', MM(392, 300, 1.6), MM(255, 372, 0.9), 62, 3, 'Show kitchen: island + 3 stools, back counter'),
- ('v2_04_hero_kitchen', MM(234, 392, 1.6), MM(292, 505, 0.8), 68, 3, 'Kitchen: U counters, tall storage run (from pantry)'),
+ ('v2_04_hero_kitchen', MM(222, 452, 1.6), MM(300, 524, 0.8), 75, 3, 'Kitchen: U counters (north/east/south runs) and tall storage run'),
  ('v2_05_hero_entry_stair', MM(402, 706, 1.6), MM(338, 585, 1.4), 66, 3, 'Double-height entry toward the stair (display-only stair massing)'),
  ('v2_06_hero_maid_room', MM(262, 642, 1.6), MM(214, 706, 0.5), 72, 3, 'Maid room: bed + nightstand as drawn (bed length as traced)'),
  ('v2_07_hero_pool_terrace', MM(600, 70, 1.7), MM(330, 150, 0.2), 58, 3, 'Pool terrace: Water2 pool, terrace chairs, living glazing'),
- ('v2_08_birdseye_full_walls', MM(700, 960, 27), MM(372, 440, 0), 40, 3, "Bird's-eye oblique, full-height walls (3.0 m display-only)"),
- ('v2_09_birdseye_cut_walls', MM(700, 960, 27), MM(372, 440, 0), 40, 1.2, "Bird's-eye oblique, cut walls (1.2 m)"),
+ ('v2_08_birdseye_full_walls', MM(640, 900, 22), MM(372, 440, 0), 38, 3, "Bird's-eye oblique, full-height walls (3.0 m display-only)"),
+ ('v2_09_birdseye_cut_walls', MM(640, 900, 22), MM(372, 440, 0), 38, 1.2, "Bird's-eye oblique, cut walls (1.2 m)"),
 ]
 # upstream demo apartment (plan mm of the upstream data), same lens/heights
 DEMO_SHOTS = [
  ('demo_01_living', [9900, 10250, 1.6], [6000, 7300, 0.9], 60, 2.8, 'UPSTREAM DEMO (untouched data) - living, eye level'),
- ('demo_02_bedroom', [9950, 3150, 1.6], [7400, 700, 0.5], 72, 2.8, 'UPSTREAM DEMO - master bedroom'),
- ('demo_03_kitchen', [2050, 7800, 1.6], [500, 5600, 0.8], 68, 2.8, 'UPSTREAM DEMO - kitchen'),
- ('demo_08_birdseye_full_walls', [5900 + 7600, 5300 + 12500, 21], [5900, 5300, 0], 40, 2.8, 'UPSTREAM DEMO - bird\'s-eye, full walls'),
- ('demo_09_birdseye_cut_walls', [5900 + 7600, 5300 + 12500, 21], [5900, 5300, 0], 40, 1.2, 'UPSTREAM DEMO - bird\'s-eye, cut walls'),
+ ('demo_02_bedroom', [6900, 2600, 1.6], [8300, 1000, 0.5], 70, 2.8, 'UPSTREAM DEMO - master bedroom'),
+ ('demo_03_kitchen', [1900, 5450, 1.6], [500, 7300, 0.8], 70, 2.8, 'UPSTREAM DEMO - kitchen'),
+ ('demo_08_birdseye_full_walls', [5900 + 6000, 5300 + 10000, 17], [5900, 5300, 0], 38, 2.8, 'UPSTREAM DEMO - bird\'s-eye, full walls'),
+ ('demo_09_birdseye_cut_walls', [5900 + 6000, 5300 + 10000, 17], [5900, 5300, 0], 38, 1.2, 'UPSTREAM DEMO - bird\'s-eye, cut walls'),
 ]
 try: FNT = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 20); FNTs = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 16)
 except Exception: FNT = FNTs = None

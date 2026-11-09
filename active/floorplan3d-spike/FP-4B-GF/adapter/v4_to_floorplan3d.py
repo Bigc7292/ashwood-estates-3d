@@ -572,11 +572,14 @@ function buildArch(){''')
   settle(){   // stop the render loop and finish any enter/fly animation (headless capture only)
     cancelAnimationFrame(raf); raf = 0; if (anim){ anim.fn(1); const r = anim.res; anim = null; r(); } if (fly){ camTween(fly.A, fly.B, 1); fly = null; }
     grow = 1; furnGrow = 1; applyGrow(); doors.forEach(d => { d.cur = d.open ? d.a1 : d.a0; d.pivot.rotation.y = d.cur; }); return true; },
-  still(){ this.settle(); orbit.update(); renderer.render(scene, camera); return {png:renderer.domElement.toDataURL('image/png'), w:renderer.domElement.width, h:renderer.domElement.height}; },
+  still(){ this.settle(); orbit.update(); lampFace(); renderer.render(scene, camera); return {png:renderer.domElement.toDataURL('image/png'), w:renderer.domElement.width, h:renderer.domElement.height}; },
   furn(v){ furnG.visible = v; return v; },
   labels(v){ labelG.visible = v; labelG.children.forEach(o => { o.visible = v; o.element.style.display = v ? '' : 'none'; }); return v; },
 };
 window.View3D = {enter, exit,''')
+    # ceiling lamp discs are one-sided like the ceilings: hide them when the camera is above the ceiling (bird's-eye), keep them from inside
+    s = rep(s, '  updateSel();\n  renderer.render(scene, camera);', '  updateSel(); lampFace();\n  renderer.render(scene, camera);')
+    s = rep(s, 'function startLoop(){', 'function lampFace(){ const below = camera.position.y < H - .05; lampG.children.forEach(o => { if (!o.isPointLight) o.visible = below && opt.cut >= H; }); }\nfunction startLoop(){')
     s = rep(s, '</body>', '<div id="spikeBanner" style="position:fixed;left:50%;transform:translateX(-50%);bottom:6px;z-index:99;background:rgba(52,64,62,.9);color:#fff;font:11px/1.3 sans-serif;padding:4px 10px;border-radius:4px;pointer-events:none">Ashwood 4B GF · Floorplan 3D SPIKE (MIT viewer) · approx ±3% · NOT survey-verified · NOT construction-ready · NOT certified CAD</div>\n</body>')
     s = rep(s, "anchors:ANCHORS.length, labels:", "anchors:ANCHORS.length, water:waterState, labels:")
     s = rep(s, '<div id="spikeBanner"', '<div id="waterBadge" style="position:fixed;right:8px;bottom:6px;z-index:99;background:rgba(40,90,110,.9);color:#fff;font:11px/1.3 sans-serif;padding:4px 8px;border-radius:4px;pointer-events:none">Water: (3D view only)</div>\n<div id="spikeBanner"')
