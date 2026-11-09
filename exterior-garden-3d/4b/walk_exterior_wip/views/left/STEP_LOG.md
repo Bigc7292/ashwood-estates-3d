@@ -9,10 +9,10 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 | 1 Reference | `step1_reference/generated_approved/EXT-4b-ELEV-LEFT_GENERATED-CONCEPT.png` | locked camera `left_lock.json`, `shots/left_lock_side_by_side.png` | critic: framing rows and ends match | DONE (critic: lock PASS on framing) |
 | 2 Layout | approved V4 CAD via `model/data/model.js` | left facade x 1.46, z 2.84-26.88 | ends match at the locked camera | DONE (inherited footprint), pending critic |
 | 3 Blockout | steps 1 + 2 | pass 1 RF plant strip, pass 2 central block, pass 3 base, pass 4 planting, pass 5 canopies, pass 6 canopy volume, pass 7 canopy row, pass 8 verge trees, pass 9 plan trees low, pass 10 grass layer, pass 11 FF openings, pass 12 carport opening, pass 13 carport back wall | critic, one fix per pass | PASS loop 1 (critic, 6998a8a) |
-| 4 Grime / finish | step 3 | pass 14 carport wall tone, pass 15 curtains, pass 16 carport canopy colour, pass 17 window frames | side by side | IN PROGRESS (loop 1) |
-| 5 Printed matter | ELEV-LEFT | | Q1 record | to check |
-| 6 Critique | | | | NOT STARTED |
-| 7 Motion | | | | NOT STARTED |
+| 4 Grime / finish | step 3 | pass 14 carport wall tone, pass 15 curtains, pass 16 carport canopy colour, pass 17 window frames | side by side | PASS loop 1 (critic, b1ac376) |
+| 5 Printed matter | ELEV-LEFT | none in source (only a wall light on the carport pillar) | Q1 record | DONE (critic agreed) |
+| 6 Critique | locked pairs per pass | `shots/left_pass*_side_by_side.png` | independent critic | PASS loop 1 (critic, b1ac376); residual: facade stone a touch paler than the reference's warm travertine, logged for Colin's review |
+| 7 Motion | passed still | `step7/EXT-4b-ELEV-LEFT_step7_motion.mp4` (8 s, 12 fps rendered, 24 fps file, 1280x720, locked camera: tree sway, sun drifting lower/warmer), `step7/first_vs_last.png` | critic | DONE, REVIEW-PENDING (critic + Colin) |
 
 ## Pass history
 - Lock (334032a): critic PASS on framing.
@@ -32,4 +32,5 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - Step 4 pass 14 (this commit): carport back wall recoloured (MAT.timber_lit in left_pass.html) to the tone sampled from ELEV-LEFT: reference median RGB ~118,76,44 in the carport opening; model now renders ~119,83,50 (was 130,80,38). Critic (31ee909): wall tone PASS; next fix black windows.
 - Step 4 pass 15 (this commit): FF window panes now clear glass with a flat pale curtain panel just inside (x 3.00-3.03); reference median inside the windows ~140-150 grey-cream, model ~152-159. Residual: no dark window frames yet. Critic (f54126e): curtains PASS; next fix carport canopy colour.
 - Step 4 pass 16 (this commit): carport canopy and post recoloured to the slabs' cream 'soffit' material (in memory, this view only); size and position unchanged. Critic (9d4842f): canopy PASS; next fix window frames.
-- Step 4 pass 17 (this commit): 0.05 m dark bronze jambs and sill on the three FF windows (head bar from pass 11); curtains unchanged. Awaiting critic: step 4 as a whole.
+- Step 4 pass 17 (this commit): 0.05 m dark bronze jambs and sill on the three FF windows (head bar from pass 11); curtains unchanged. Critic (b1ac376): step 4 PASS as a whole; step 5 none in source agreed.
+- Step 7 (this commit): motion clip from the locked left camera. Final gate is Colin's review of the full set.
