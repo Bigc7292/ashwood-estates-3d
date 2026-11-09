@@ -8,7 +8,9 @@
  "branch": "lane/interior-refs",
  "guard": {
   "handoff_guard": "python3 /workspace/plan-visuals-archive/optimizer/handoff_guard.py exit 0 (records=112 verified=0 ambiguous=35 unknown=77 eligible=112 breaches=0)",
-  "verify_active_pipeline": "python3 scripts/verify_active_pipeline.py exit 0"
+  "verify_active_pipeline": "python3 scripts/verify_active_pipeline.py exit 0",
+  "handoff_guard_r2": "python3 /workspace/plan-visuals-archive/optimizer/handoff_guard.py exit 0 at r2 (records=112 verified=0 ambiguous=35 unknown=77 eligible=112 blocked=0 breaches=0)",
+  "verify_active_pipeline_r2": "not run by this lane (integrator only, README rule 7)"
  },
  "overlay": "/workspace/plan-visuals-archive/optimizer/handoff_overlay.json",
  "approved_plan": {
@@ -21,10 +23,14 @@
  "counts": {
   "rooms_in_overlay": 15,
   "images": 15,
-  "passed": 8,
-  "regenerated": 7,
+  "pass2_accepted_from_pass1": 8,
+  "pass2_regenerated_layout": 6,
+  "pass2_regenerated_style_only": 1,
+  "r2_regenerated_critic_fix": 9,
+  "kept_critic_pass": 6,
   "new": 0,
-  "verified_matches": 0
+  "verified_matches": 0,
+  "note": "Earlier manifest/index said 7 'regenerated'; 6 were for layout and bath was for style only (p24). Corrected 2026-11-10."
  },
  "previous_set": "Bigc7292/ashwood-plan-visuals-archive @ af451f3 generated-interiors/ashwood-estates/4b/ (pass 1)",
  "assets": [
@@ -33,17 +39,17 @@
    "view_id": "ashwood-estates/4b/gf/living-dining/view-unassigned-001",
    "room_label": "Living / dining",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-gf/images/4b-gf-living-dining__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "b0ce946314e0340b38c16f5d4556f2ced9cf873fb9bb49130c2766ffd2425287",
+   "file": "production-line/interior-refs/4b-gf/images/4b-gf-living-dining__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "05efd5d2427eeb9bc95a504a37412375149a7607743e530ac947e1a6f9393fef",
    "size_px": [
     1280,
     808
    ],
    "cad_check_crop": "production-line/interior-refs/4b-gf/cad-check/4b-gf-living-dining__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "pass",
-   "generation_pass": 1,
-   "raw_source_box_path": "/workspace/ivg-repo/generated-interiors/ashwood-estates/4b/gf/living-dining/view-unassigned-001/_raw_unlabelled/4b-gf-living-dining__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__RAW.jpg",
-   "raw_sha256": "4bc92ec4d4ef54e92bad383e1828367e54a9faa8e80bb855e70fc42c4c88b4b1",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2/4b-gf-living-dining_r2_RAW.jpg",
+   "raw_sha256": "5d515bdc08b431d2c0037b0e4dfb47dc204492a133c3772f79087dd96e8b8d75",
    "references": [
     "V4 plan crop",
     "style-guide/refs/style-p15-living.png",
@@ -54,31 +60,37 @@
    "dimension_transcript": "12.40 \u00d7 5.10",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "12.40x5.10 m (brochure transcript); rear wall glazed to pool terrace; dining table left (4+4+2 chairs), L-sofa, square coffee table, 2 lounge chairs, round side table right; open to show kitchen",
-   "assumed": "Chandelier, rug, artwork, all finishes, mullion layout, ceiling height",
-   "mismatches": "Image glazing narrower than the plan's near full-width rear glazing (solid piers shown at both ends); chandelier implies a tall ceiling (height not stated)",
+   "observed": "12.40x5.10 m (brochure transcript); rear wall near full-width glazing broken by one solid section; dining table left (4+4+2 chairs), L-sofa, square coffee table, 2 lounge chairs, round side table right; open to show kitchen",
+   "assumed": "Pendants, rug, artwork, plants, mullion layout, ceiling height",
+   "mismatches": "Rear glazing now near full width with solid end walls and no walnut panelling; the plan's single solid section in the rear wall is not rendered (glazing reads continuous); a short glazed return at the right end of the rear wall. r2a rejected: glazing wrapped onto the right end wall",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "superseded_file": "production-line/interior-refs/4b-gf/images/_superseded-r1/4b-gf-living-dining__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts_r2": 2,
+   "chosen_attempt": "r2b",
+   "critic_defect": "Rear glazing only three bays with piers and walnut panel wall; plan shows near full-width glazing broken by one solid section",
+   "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+   "pass2_result": "pass",
+   "critic_1f58518": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/gf/show-kitchen",
    "view_id": "ashwood-estates/4b/gf/show-kitchen/view-unassigned-001",
    "room_label": "Show kitchen",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-gf/images/4b-gf-show-kitchen__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "8efa6740ee35c1cf30d3dc04702f40df26f4bbc3b513774001eee43361e4512b",
+   "file": "production-line/interior-refs/4b-gf/images/4b-gf-show-kitchen__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "44e7dedc2f934a35a2927400dc74c42af6329ba73142ed2c391fcf38f6bb3a33",
    "size_px": [
     1280,
     808
    ],
    "cad_check_crop": "production-line/interior-refs/4b-gf/cad-check/4b-gf-show-kitchen__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "pass",
-   "generation_pass": 1,
-   "raw_source_box_path": "/workspace/ivg-repo/generated-interiors/ashwood-estates/4b/gf/show-kitchen/view-unassigned-001/_raw_unlabelled/4b-gf-show-kitchen__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__RAW.jpg",
-   "raw_sha256": "a202962b1cea1b70ce04ddfb4eb1cf9a0a95c84460e16fc5bbefa2a039f541c2",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2/4b-gf-show-kitchen_r2_RAW.jpg",
+   "raw_sha256": "0d4a9dc9271f3b7e3f114a3977fdf11600f492d6ddb8a184572088d1a27a7c7d",
    "references": [
     "V4 plan crop",
-    "style-guide/refs/style-p15-living.png",
     "style-guide/refs/style-p17-materials_swatches.png"
    ],
    "match_status": "unknown",
@@ -86,28 +98,35 @@
    "dimension_transcript": "5.70 \u00d7 2.70",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "5.70x2.70 m; island with hob and 3 stools on the living side; straight back counter with sink against the powder/pantry wall; lift to the east",
-   "assumed": "Tall units, appliance positions, finishes, lighting",
-   "mismatches": "Tall units and pantry doorway at the back-left are not drawn as symbols on the plan",
+   "observed": "5.70x2.70 m; island with hob and 3 stools on the living side; straight back counter with sink on the south wall; lift to the east",
+   "assumed": "Sink position along the back counter, finishes, pendant light",
+   "mismatches": "Tall units removed; oblique camera so the island reads at an angle to the back counter; adjacent pantry opening and lift not in frame. r2a rejected: tall units still at right edge and an invented window at left",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "superseded_file": "production-line/interior-refs/4b-gf/images/_superseded-r1/4b-gf-show-kitchen__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts_r2": 2,
+   "chosen_attempt": "r2b",
+   "critic_defect": "Full-height dark tall-unit banks not drawn on plan",
+   "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+   "pass2_result": "pass",
+   "critic_1f58518": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/gf/pantry",
    "view_id": "ashwood-estates/4b/gf/pantry/view-unassigned-001",
    "room_label": "Pantry",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-gf/images/4b-gf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "d10118163082bad747f097c8e2428b9b462e3ddd35dbd8931bc7eaf00756101b",
+   "file": "production-line/interior-refs/4b-gf/images/4b-gf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "31e811afc057591cd2a13d1aaf29559ae18b30741bb43f1fca160c31e0742cdc",
    "size_px": [
-    864,
-    1201
+    1152,
+    946
    ],
    "cad_check_crop": "production-line/interior-refs/4b-gf/cad-check/4b-gf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "regenerated",
-   "generation_pass": 2,
-   "raw_source_box_path": "/workspace/irw/raw/4b-gf-pantry_pass2_RAW.jpg",
-   "raw_sha256": "12c1e5a538a7c46b5b12d7e33c960462f16c0c7759d5d81e728d360e8933768c",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2/4b-gf-pantry_r2_RAW.jpg",
+   "raw_sha256": "e4bb0a7262a0a708441f488f4f80e4c50226747d6d3800e7e9a8c0e9fea040aa",
    "references": [
     "V4 plan crop",
     "style-guide/refs/style-p17-materials_swatches.png"
@@ -117,43 +136,57 @@
    "dimension_transcript": "1.70 \u00d7 2.45",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "1.70x2.45 m; single counter run on the west wall; open to the show kitchen and to the kitchen; no window (solid west wall at pantry)",
-   "assumed": "Open shelves above counter, cabinet style, finishes",
-   "mismatches": "Pass 1 rejected: high window on the east (powder) wall. Pass 2: shelves not drawn on plan; small return counter at far end assumed",
+   "observed": "1.70x2.45 m; single counter run on the west wall; open to the show kitchen and to the kitchen; no window",
+   "assumed": "Cabinet style, finishes, doorway width to kitchen",
+   "mismatches": "Room still reads slightly deeper than 1.44:1 (roughly 1.7:1 in perspective) and the counter run looks longer than 2.45 m; shelves and return counter removed",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "superseded_file": "production-line/interior-refs/4b-gf/images/_superseded-r1/4b-gf-pantry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts_r2": 1,
+   "chosen_attempt": "r2a",
+   "critic_defect": "Corridor ~3x deeper than wide vs plan 1.70x2.45 (1.44:1); open shelves and far-end return counter not on plan",
+   "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+   "pass2_result": "regenerated",
+   "critic_1f58518": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/gf/powder",
    "view_id": "ashwood-estates/4b/gf/powder/view-unassigned-001",
    "room_label": "Powder",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-gf/images/4b-gf-powder__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "49ad7bf5fc778eb8ca7981e91c5446542fd05311e4d8706d3ee933057a690ca3",
+   "file": "production-line/interior-refs/4b-gf/images/4b-gf-powder__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "67af89f696c09104ccfaf4337232f640a4ce07d28401d855874365488c5bc7dc",
    "size_px": [
-    1152,
-    921
+    1280,
+    808
    ],
    "cad_check_crop": "production-line/interior-refs/4b-gf/cad-check/4b-gf-powder__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "regenerated",
-   "generation_pass": 2,
-   "raw_source_box_path": "/workspace/irw/raw/4b-gf-powder_pass2_RAW.jpg",
-   "raw_sha256": "53c8398dfffcf901825d9fd453b0a25662f3add3adc01ef8c77660ac30a06c7c",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2/4b-gf-powder_r2_RAW.jpg",
+   "raw_sha256": "62a082437bf353622db6837d7d026f5dc4062376f9d1f33937c3632a88106507",
    "references": [
     "V4 plan crop",
     "style-guide/refs/style-p17-materials_swatches.png",
-    "brochure p24 'Interior (Summary)' text (applied via prompt, extracts/text/pages/page_24.txt)"
+    "brochure p24 'Interior (Summary)' text (applied via prompt)"
    ],
    "match_status": "unknown",
    "generation_eligibility": "eligible_evidence_led_concept",
    "dimension_transcript": "3.65 \u00d7 1.70",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "3.65x1.70 m; two basin symbols along the south wall; internal partition; WC compartment at the west end; no window",
-   "assumed": "Door position (plan door not legible; shown at far end), Calacatta vanity panel, p24 wet-area tiles, bronze taps",
-   "mismatches": "Pass 1 rejected: mirrored, single vanity, no partition. Pass 2: WC shown on the end wall rather than the south wall; door position assumed",
+   "observed": "3.65x1.70 m; fixtures along the south wall; internal partition with WC compartment at the west end; opening on the west side",
+   "assumed": "Exact door leaf position on the west side; Calacatta vanity panel; p24 concrete-look porcelain; bronze taps",
+   "mismatches": "WC now sits behind a partition on the fixture (left/south) side and the end wall holds only the door; room reads wider than 1.70 m; WC bowl orientation inside the bay is not legible on the plan. r2a rejected: WC read as end-wall mounted",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "superseded_file": "production-line/interior-refs/4b-gf/images/_superseded-r1/4b-gf-powder__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts_r2": 2,
+   "chosen_attempt": "r2b",
+   "critic_defect": "WC on far end wall; door position wrong; WC should be in its partitioned bay on the fixture wall",
+   "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+   "pass2_result": "regenerated",
+   "critic_1f58518": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/gf/kitchen",
@@ -184,24 +217,26 @@
    "assumed": "Sink and hob positions, cabinet style, finishes",
    "mismatches": "Pass 1 rejected: no counter under the window, L instead of U. Pass 2: near leg of the U is out of frame; sink/hob positions not drawn on plan",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "pass2_result": "regenerated",
+   "critic_1f58518": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/gf/laundry",
    "view_id": "ashwood-estates/4b/gf/laundry/view-unassigned-001",
    "room_label": "Laundry",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-gf/images/4b-gf-laundry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "693bda6307b95e07484aa06fed8f6053caa5385464f51e95e5a705fe41bb4d97",
+   "file": "production-line/interior-refs/4b-gf/images/4b-gf-laundry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "87d680d9c966be2b1448ca0471bc89a73efd2f1b0329119f4675471d33650b80",
    "size_px": [
     1152,
-    921
+    946
    ],
    "cad_check_crop": "production-line/interior-refs/4b-gf/cad-check/4b-gf-laundry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "pass",
-   "generation_pass": 1,
-   "raw_source_box_path": "/workspace/ivg-repo/generated-interiors/ashwood-estates/4b/gf/laundry/view-unassigned-001/_raw_unlabelled/4b-gf-laundry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__RAW.jpg",
-   "raw_sha256": "d7962fe6f0a404e90a5135b8399e476bd3d9d47feba1cdf114cb43322a850e1f",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2/4b-gf-laundry_r2_RAW.jpg",
+   "raw_sha256": "721b5d4d6bb91e54151500b3d63bf3b2f1689942a45d855cfe61fd19931005c3",
    "references": [
     "V4 plan crop",
     "style-guide/refs/style-p17-materials_swatches.png"
@@ -212,27 +247,34 @@
    "ceiling_height": null,
    "room_polygon": null,
    "observed": "2.20x1.80 m; two appliance symbols side by side on the south wall",
-   "assumed": "Worktop, sink cabinet, shelf, finishes",
-   "mismatches": "Sink in image is not drawn in the laundry (the basin symbol on plan sits in the K.store corner)",
+   "assumed": "Worktop over appliances, tall storage cupboards either side, finishes",
+   "mismatches": "Sink removed; the two tall cupboards flanking the appliances are assumed storage (not drawn on plan)",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "superseded_file": "production-line/interior-refs/4b-gf/images/_superseded-r1/4b-gf-laundry__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts_r2": 1,
+   "chosen_attempt": "r2a",
+   "critic_defect": "Invented sink cabinet (plan basin symbol is in the K. store)",
+   "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+   "pass2_result": "pass",
+   "critic_1f58518": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/gf/kitchen-storage",
    "view_id": "ashwood-estates/4b/gf/kitchen-storage/view-unassigned-001",
    "room_label": "Kitchen storage (K. store)",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-gf/images/4b-gf-kitchen-storage__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "843a9aceb1f381b5c5b20fcc5edf0ab7a006ecf427c9ddbb0d758f841473ed07",
+   "file": "production-line/interior-refs/4b-gf/images/4b-gf-kitchen-storage__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "0b9ed279b0dd6b416393b1a9b75d85c96de3098f9a6b59f71371861f89a0e9c1",
    "size_px": [
     1152,
     946
    ],
    "cad_check_crop": "production-line/interior-refs/4b-gf/cad-check/4b-gf-kitchen-storage__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "pass",
-   "generation_pass": 1,
-   "raw_source_box_path": "/workspace/ivg-repo/generated-interiors/ashwood-estates/4b/gf/kitchen-storage/view-unassigned-001/_raw_unlabelled/4b-gf-kitchen-storage__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__RAW.jpg",
-   "raw_sha256": "fca46983cc4d615406de84611699b51d850797e7ca1570674755b9a790a3aaa1",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2/4b-gf-kitchen-storage_r2_RAW.jpg",
+   "raw_sha256": "07d2e2a5c8de63755abd5518c0fe0379e90f9ed14f146cc653d80bebc97895a1",
    "references": [
     "V4 plan crop",
     "style-guide/refs/style-p17-materials_swatches.png"
@@ -243,27 +285,34 @@
    "ceiling_height": null,
    "room_polygon": null,
    "observed": "2.20x1.40 m; small basin symbol in the NE corner; door on the west side",
-   "assumed": "Metal shelving and contents, finishes",
-   "mismatches": "Plan basin symbol not shown in image; shelving not drawn on plan",
+   "assumed": "Shelving on one (south) wall only, declared assumption; finishes",
+   "mismatches": "Basin now on the north wall near the NE corner (not tight in the corner); shelving on one wall only; room reads close to plan proportion but slightly wide. r2a rejected: room read ~3.5 m deep",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "superseded_file": "production-line/interior-refs/4b-gf/images/_superseded-r1/4b-gf-kitchen-storage__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts_r2": 2,
+   "chosen_attempt": "r2b",
+   "critic_defect": "Basin in NE corner missing; shelving U on three walls not drawn; room reads deeper than 2.20x1.40",
+   "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+   "pass2_result": "pass",
+   "critic_1f58518": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/gf/office-gym",
    "view_id": "ashwood-estates/4b/gf/office-gym/view-unassigned-001",
    "room_label": "Office / gym",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-gf/images/4b-gf-office-gym__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "f10cbded1c6348f4f22928e6a81d3005361ee2169508115daf910bc4037e44a2",
+   "file": "production-line/interior-refs/4b-gf/images/4b-gf-office-gym__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "bbe4c51ad093146dd6501c0da3887edc0adc09fb73b37980dcdbb5aba1ddd126",
    "size_px": [
     1280,
-    781
+    808
    ],
    "cad_check_crop": "production-line/interior-refs/4b-gf/cad-check/4b-gf-office-gym__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "regenerated",
-   "generation_pass": 2,
-   "raw_source_box_path": "/workspace/irw/raw/4b-gf-office-gym_pass2_RAW.jpg",
-   "raw_sha256": "928acd28dc0d1797b482e8a10994edf653359fc365b1942b01e67bd5d77fa320",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2/4b-gf-office-gym_r2_RAW.jpg",
+   "raw_sha256": "0ec923d120c332c425e4334350213af31195d77961b160933829c974cd91511d",
    "references": [
     "V4 plan crop",
     "style-guide/refs/style-p15-living.png",
@@ -274,43 +323,57 @@
    "dimension_transcript": "4.60 \u00d7 3.40",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "4.60x3.40 m; long table oriented N-S; glazing on the north wall to the courtyard water feature; door at SW",
+   "observed": "4.60x3.40 m; long table oriented N-S; 3 chairs west, 1 chair east; glazing on the north wall to the courtyard water feature; door at SW",
    "assumed": "Curtains, wall joinery, chair style, finishes; gym equipment not drawn so not shown",
-   "mismatches": "Pass 1 rejected: 6 chairs vs plan 4. Pass 2: 4 chairs but split 2+2 vs plan 3+1; elevated camera",
+   "mismatches": "3+1 split now correct, but the single east chair sits toward the glazing end, not opposite the middle west chair as on the plan. r2a rejected: 3+2 chairs",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "superseded_file": "production-line/interior-refs/4b-gf/images/_superseded-r1/4b-gf-office-gym__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts_r2": 2,
+   "chosen_attempt": "r2b",
+   "critic_defect": "Chairs 2+2 vs plan 3+1",
+   "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+   "pass2_result": "regenerated",
+   "critic_1f58518": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/gf/bath",
    "view_id": "ashwood-estates/4b/gf/bath/view-unassigned-001",
    "room_label": "Bath",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-gf/images/4b-gf-bath__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "7f8836c7e5407c9822514e6b7f27a4cd1974340e56c9045f12683e4cfe16bfab",
+   "file": "production-line/interior-refs/4b-gf/images/4b-gf-bath__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "cf28cd26a25fd740b5cf0a2f029ed2a2a08ca1835a48afb855cf05e32a6f0d58",
    "size_px": [
-    1152,
-    921
+    1280,
+    808
    ],
    "cad_check_crop": "production-line/interior-refs/4b-gf/cad-check/4b-gf-bath__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "regenerated",
-   "generation_pass": 2,
-   "raw_source_box_path": "/workspace/irw/raw/4b-gf-bath_pass2_RAW.jpg",
-   "raw_sha256": "bafb072703f7fec7c21bf46511fa6cf74aa7b79a77f1d17164bdf3656c3f0fcc",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2/4b-gf-bath_r2_RAW.jpg",
+   "raw_sha256": "ec9d914b8e02209783e380766763e3cfad596482f8fd20041f25851599a493ec",
    "references": [
     "V4 plan crop",
     "style-guide/refs/style-p17-materials_swatches.png",
-    "brochure p24 'Interior (Summary)' text (applied via prompt, extracts/text/pages/page_24.txt)"
+    "brochure p24 'Interior (Summary)' text (applied via prompt)"
    ],
    "match_status": "unknown",
    "generation_eligibility": "eligible_evidence_led_concept",
    "dimension_transcript": "2.90 \u00d7 1.70",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "2.90x1.70 m; vanity, WC and shower in a row on the south wall; no window",
-   "assumed": "Calacatta panel behind vanity, trough basin, bronze taps, p24 wet-area tiles",
-   "mismatches": "Pass 1 layout passed but used Calacatta-look walls throughout, contradicting p24 'Wet areas: Terrazzo Porcelain / Porcelain Concrete Look'; regenerated for style. Pass 2: none on layout",
+   "observed": "2.90x1.70 m; vanity, WC and shower in one row on the south wall; no window",
+   "assumed": "Left-to-right order (shower, vanity, WC) - plan symbols only partly legible; Calacatta panel behind vanity; p24 porcelain; bronze taps",
+   "mismatches": "All three fixtures now on one long wall, front-on view; fixture order along the wall is assumed (plan symbols partly legible); wide-angle framing makes the wall read slightly longer than 2.90 m",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "superseded_file": "production-line/interior-refs/4b-gf/images/_superseded-r1/4b-gf-bath__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts_r2": 1,
+   "chosen_attempt": "r2a",
+   "critic_defect": "Fixtures turn a corner; room reads deeper than 2.90x1.70; plan has vanity, WC, shower in one row on the south wall",
+   "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+   "pass2_result": "regenerated-style-only",
+   "critic_1f58518": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/gf/double-height-entry",
@@ -342,27 +405,28 @@
    "assumed": "Chandelier, travertine wall, glass balustrade, gallery detail, ceiling height",
    "mismatches": "Corridor beyond the stair looks longer than the plan; first-floor gallery form not checked against FF plan",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "pass2_result": "pass",
+   "critic_1f58518": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/gf/multipurpose",
    "view_id": "ashwood-estates/4b/gf/multipurpose/view-unassigned-001",
    "room_label": "Multipurpose",
    "method": "GENERATED-SOURCE-CONDITIONED",
-   "file": "production-line/interior-refs/4b-gf/images/4b-gf-multipurpose__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
-   "sha256": "14bcd099990177af77b24426470f1138a1554d9a4e133495370542af937c39af",
+   "file": "production-line/interior-refs/4b-gf/images/4b-gf-multipurpose__view-unassigned-001__GENERATED-SOURCE-CONDITIONED_r2.png",
+   "sha256": "e0243e821483adfe25106e97e5e483273290e736cc5c15f60e42b38f26c446bf",
    "size_px": [
-    1280,
-    808
+    1152,
+    946
    ],
    "cad_check_crop": "production-line/interior-refs/4b-gf/cad-check/4b-gf-multipurpose__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__V4-plan-crop__EVIDENCE.png",
-   "result": "pass",
-   "generation_pass": 1,
-   "raw_source_box_path": "/workspace/ivg-repo/generated-interiors/ashwood-estates/4b/gf/multipurpose/view-unassigned-001/_raw_unlabelled/4b-gf-multipurpose__view-unassigned-001__GENERATED-SOURCE-CONDITIONED__RAW.jpg",
-   "raw_sha256": "536f5ab72bb7458aa0123da1939a423c8462074d28f32115a327c2f892e816fe",
+   "result": "regenerated-r2",
+   "generation_pass": "r2",
+   "raw_source_box_path": "/workspace/irw/raw_r2/4b-gf-multipurpose_r2_RAW.jpg",
+   "raw_sha256": "20f8a4897101728b51ce59be91086a7e24a6e6879152f03b25025ad13e4965a6",
    "references": [
     "V4 plan crop",
-    "style-guide/refs/style-p15-living.png",
     "style-guide/refs/style-p17-materials_swatches.png"
    ],
    "match_status": "unknown",
@@ -370,11 +434,18 @@
    "dimension_transcript": "4.60 \u00d7 3.90",
    "ceiling_height": null,
    "room_polygon": null,
-   "observed": "4.60x3.90 m; no furniture drawn; door at NW; glazing on the east wall; possible small openings on the west and south walls",
-   "assumed": "All furniture (sofa, chair, sideboard, rug, art) staged for style only; finishes",
-   "mismatches": "Plan shows an empty room; all furniture is assumed",
+   "observed": "4.60x3.90 m; no furniture drawn; door at NW; glazing on the east wall",
+   "assumed": "Finishes only (greige textured walls, beige porcelain floor, black linear lights)",
+   "mismatches": "Now empty (finishes only); the door reads on the west wall mid-room rather than tight in the NW corner (same as the version the critic accepted for door position)",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "superseded_file": "production-line/interior-refs/4b-gf/images/_superseded-r1/4b-gf-multipurpose__view-unassigned-001__GENERATED-SOURCE-CONDITIONED.png",
+   "generation_attempts_r2": 1,
+   "chosen_attempt": "r2a",
+   "critic_defect": "Plan draws an empty room; image fully furnished (invented furniture)",
+   "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md",
+   "pass2_result": "pass",
+   "critic_1f58518": "FAIL"
   },
   {
    "room_id": "ashwood-estates/4b/gf/dress",
@@ -406,7 +477,9 @@
    "assumed": "Open shelving and hanging, veneer finish",
    "mismatches": "None found",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "pass2_result": "pass",
+   "critic_1f58518": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/gf/maid-room",
@@ -437,7 +510,9 @@
    "assumed": "Room size, wardrobe height and style, finishes",
    "mismatches": "Pass 1 rejected: window on far wall and bed along side wall. Pass 2: room depth shown is an assumption",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "pass2_result": "regenerated",
+   "critic_1f58518": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/gf/maid-bath",
@@ -469,7 +544,9 @@
    "assumed": "WC and shower positions (plan symbols faint), p24 concrete-look porcelain, stainless fittings",
    "mismatches": "Pass 1 rejected: basin on the west wall. Pass 2: WC/shower positions only partly legible on plan",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "pass2_result": "regenerated",
+   "critic_1f58518": "PASS"
   },
   {
    "room_id": "ashwood-estates/4b/gf/lift",
@@ -500,7 +577,11 @@
    "assumed": "Car interior finish entirely assumed (no source image)",
    "mismatches": "Door side not verified against the plan",
    "review_status": "needs-review",
-   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD"
+   "label": "CONCEPT VISUALISATION - AI-generated - not survey-verified - not construction-ready - not certified CAD",
+   "pass2_result": "pass",
+   "critic_1f58518": "PASS (concept)"
   }
- ]
+ ],
+ "updated_Asia_Dubai": "2026-11-10T00:50:09+04:00",
+ "critic_report": "claude/rules-and-status @ 1f58518 production-line/critic/2026-11-10_q11-gf-refs.md"
 }
