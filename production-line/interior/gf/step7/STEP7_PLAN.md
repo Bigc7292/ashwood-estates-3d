@@ -13,6 +13,11 @@ Branch: lane/gf-interior-step7 (cut from lane/gf-interior at 8368286, which is m
 3. Output paths go under production-line/interior/gf/step7/ (new files only).
 4. Critic reviews the video frames against the step 6 references. Defects loop back to the earliest affected step.
 
+## Walk speed label (critic loop 1, GF step 6)
+- Walk speed 3.2 / 7.0 m/s is labelled ASSUMPTION (no source). Applied in `FP-4B-GF/index_r3.html`.
+- Colin sets the final value; the video uses the labelled value until then.
+
 ## Open
 - Video encoding tool: check what is installed before choosing; no paid tools (AGENTS rule 1).
 - Walk speed decision (Colin).
+- Critic note (not blocking): the Q7 bench from the concept is not in the after render.

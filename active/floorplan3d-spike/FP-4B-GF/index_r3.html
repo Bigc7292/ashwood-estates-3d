@@ -3196,6 +3196,7 @@ function blocked(x, z, r = .22){
   return false;
 }
 // Walk speeds in metres per second (display only). Raised from 1.4 / 2.6, which felt slow on screen.
+// ASSUMPTION: 3.2 / 7.0 m/s has no source (critic loop 1, GF step 6). Colin sets the final value.
 const WALK_MPS = 3.2, WALK_RUN_MPS = 7.0;
 function stepWalk(dt){
   if (!walkCtl.isLocked && !touchWalk) return;
