@@ -4,7 +4,7 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 
 ## 2026-11-09 (Asia/Dubai), roof floor lane
 
-- **FP-4B-RF lane started** (branch `lane/roof-floor`). Added `active/floorplan3d-spike/FP-4B-RF/STEPS.md` with the step 1 gate (pass with notes) and the step 2 gate (blocked: the RF sheet has no metric scale bar, so 35.53 mm/px is an assumption). Files: new only. Status: WIP. Steps 3 to 7 not started. Needs Colin's decision on the scale and on the sheet's "UNAPPROVED / NOT SURVEY CAD" legend.
+- **FP-4B-RF lane started** (branch `lane/roof-floor`). Added `active/floorplan3d-spike/FP-4B-RF/STEPS.md` with the step 1 gate (pass with notes) and the step 2 gate (blocked: the RF sheet has no metric scale bar, so 35.53 mm/px is an assumption). Files: new only. Scale decided by Colin (2026-11-09 18:40): use the GF value, 35.53 mm/px, as an assumption. Legend "UNAPPROVED / NOT SURVEY CAD" treated as a presentation label (sheet is approved in ACTIVE_PIPELINE.json, pt16u). Status: WIP. Footprint alignment check and steps 3 to 7 not started.
 
 ## 2026-11-09 (Asia/Dubai)
 
