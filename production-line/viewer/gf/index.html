@@ -3006,9 +3006,13 @@ function buildLabels(){
 function sync(force){
   if (!inited || (!active && !force)) return;
   const a = JSON.stringify([state.rooms, state.demolished, opt.cut]), f = JSON.stringify(state.furniture), l = JSON.stringify([state.rooms, opt.cut]);
-  if (force || a !== sigArch){ sigArch = a; buildArch(); }
-  if (force || f !== sigFurn){ sigFurn = f; buildFurn(); }
+  let casterChanged = false;
+  if (force || a !== sigArch){ sigArch = a; buildArch(); casterChanged = true; }
+  if (force || f !== sigFurn){ sigFurn = f; buildFurn(); casterChanged = true; }
   if (force || l !== sigLabels){ sigLabels = l; buildLabels(); }
+  // Furniture/arch/cut changes move shadow casters — re-bake + redraw.
+  if (casterChanged) __lane4InvalidateShadows();
+  else __lane4RequestRender();
 }
 
 // CSS2DRenderer 只看标签自身的 visible，不继承父级，所以逐个设置
@@ -3221,6 +3225,7 @@ function setMode(m){
   }
   showLabels(opt.labels && m === 'orbit');
   archUp.traverse(o => { if (o.userData.walkOnly) o.visible = m === 'walk'; });
+  __lane4RequestRender();
 }
 function blocked(x, z, r = .22){
   for (const [x0, z0, x1, z1] of colliders) if (x > x0 - r && x < x1 + r && z > z0 - r && z < z1 + r) return true;
