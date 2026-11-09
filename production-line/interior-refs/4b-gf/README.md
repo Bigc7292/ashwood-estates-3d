@@ -22,3 +22,15 @@ Critic report: `claude/rules-and-status` @ `1f58518`, `production-line/critic/20
 - Regenerated as `_r2` for layout against the V4 plan crop, style unchanged (p15-p17, p24): pantry, powder, office/gym, bath, living/dining, show kitchen, laundry, K. store, multipurpose. Each prompt stated room shape, door/window positions and fixtures read from the crop; each output was compared to the crop, with at most 2 attempts used. The residual mismatches are in `index.csv` (`mismatches`) and on the review sheet.
 - Count correction: the earlier pass-2 record said 7 rooms were "regenerated". 6 were regenerated for layout (pantry, powder, kitchen, office/gym, maid room, maid bath), and bath was regenerated for style only (p24 wet-area finish). `index.csv` `result` now reads `regenerated` (6) and `regenerated-style-only` (bath). The new columns `critic_1f58518` and `r2_critic_fix` record the critic verdict and the r2 action.
 - Status: needs-review. Not self-approved; this is waiting for the critic's re-review.
+
+## r3 critic fix (2026-11-10, Asia/Dubai)
+
+Critic report: `claude/rules-and-status` @ `d3e35b0`, `production-line/critic/2026-11-10_q11-gf-refs-r2.md` (CRITIC-FAIL, 9 PASS / 6 FAIL, 6/10). These 6 rooms were redone as `_r3`, conditioned on their V4 crops, with the style unchanged:
+- pantry: counter capped at the 2.45 m length
+- powder: narrower room, with the door moved into the north wall at the plan's gap
+- living/dining: the ~2 m solid rear-wall section is restored, and the right-hand return is now solid
+- laundry: the tall cupboards are removed
+- K. store: the basin is moved into the NE recess, and the shelving is removed
+- multipurpose: the door is at the NW corner on the north wall
+
+The replaced r2 images are in `images/_superseded-r2/`. Office/gym, bath and show kitchen keep their `_r2` images; the other 6 rooms keep their originals. `index.csv` has two new columns, `critic_d3e35b0` and `r3_critic_fix`. `contact-sheet/critic-fix_plan-vs-image.png` now shows plan crop | r2 | r3 for the 6 rooms; the r2 sheet is in git at `b965bbd`. Scripts: `scripts/apply_fix.py` and `scripts/fix_gf_r3.py`. Status: needs-review, not self-approved.
