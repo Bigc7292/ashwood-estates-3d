@@ -2,6 +2,10 @@
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
 
+## 2026-11-09 (Asia/Dubai), mobile layout
+
+- **Phone layout for the exterior and first-floor artifacts** (Colin, 23:46 UTC: "make the layout better, more neatly, model more visible"). Added `mobile-layout/apply_mobile_shell.py`, which adds a phone-only CSS layer (max-width 640px) to the published pages. Exterior: tabs in one scrolling row with thumb-sized targets, the stage fills the screen height, and the front caption is smaller. First floor: the header scrolls on one row, the brand and spacer are hidden, and footer and toast sizes are reduced. Model data, geometry, furniture, scale, cameras and labels are not changed; the WIP banner is kept. Checked at 390x844 (DPR 2): no horizontal overflow, no page errors, model visible. Published to the existing links: Exterior https://claude.ai/artifact/3dty5cFKAgW29MkQVLpAtJ (v5), First floor https://claude.ai/artifact/MAPDK4oRWv1EJJ1dMPfiHo (v4). Status: exterior and first floor DONE on phone. Rear, roof, site and the progress board not yet done. Open: the first-floor File menu download link does nothing for viewers (pre-existing, not changed here).
+
 ## 2026-11-09 (Asia/Dubai)
 
 - **Rules and handoff** (branch `claude/rules-and-status`, PR #1). Added `AGENTS.md` (with `CLAUDE.md` and `GROK.md` copies) and `STATUS.md`. Copied the Legacy and Axis3D rule files into `docs/inherited-rules/`. Status: DONE, draft PR.
