@@ -2,7 +2,7 @@
 
 Read this FIRST on every task. `CLAUDE.md` and `GROK.md` are copies of this file, so any agent tool finds it. Then read `STATUS.md` (where the work is now).
 
-Ashwood Estates is Axis3D scenario test 1. These rules are carried over from Barclay House 3D (`docs/inherited-rules/barclay/AGENTS.md`) and Axis3D (`docs/inherited-rules/axis3d/AGENTS.md`, `PLAN.md`), copied from `Bigc7292/barclay-house-archive` branch `axis3d-plan` at `6417f9b` on 2026-11-09, plus the Ashwood-specific rules already written in this repo's README, `ACTIVE_PIPELINE.json` and `exterior-garden-3d/4b/PIPELINE_7STEP.md`. If this file and a source file disagree, the source file's Ashwood-specific rule wins; tell Colin.
+Ashwood Estates is Axis3D scenario test 1. These rules are carried over from Legacy project (`docs/inherited-rules/legacy/AGENTS.md`) and Axis3D (`docs/inherited-rules/axis3d/AGENTS.md`, `PLAN.md`), copied from `Bigc7292/legacy-archive` branch `axis3d-plan` at `6417f9b` on 2026-11-09, plus the Ashwood-specific rules already written in this repo's README, `ACTIVE_PIPELINE.json` and `exterior-garden-3d/4b/PIPELINE_7STEP.md`. If this file and a source file disagree, the source file's Ashwood-specific rule wins; tell Colin.
 
 ## Hard rules
 1. **Free only.** No paid tools, subscriptions, credits or paid APIs without Colin's explicit OK. A cost is a blocker: propose a zero-cost path.
@@ -22,7 +22,7 @@ Ashwood Estates is Axis3D scenario test 1. These rules are carried over from Bar
 - Validate with `scripts/verify_active_pipeline.py`; start from `scripts/active_inputs.py`.
 
 ## The 7-step rule set (set in stone, exterior AND interior)
-Colin, 2026-11-09: this rule set applies to both exterior and interior work in this project. Full source: `docs/inherited-rules/barclay/ext7/` (step docs), `docs/inherited-rules/barclay/AGENTS.md` (the Barclay "Exterior 7-step process"), and `exterior-garden-3d/4b/PIPELINE_7STEP.md` (the Ashwood 4-bed version).
+Colin, 2026-11-09: this rule set applies to both exterior and interior work in this project. Full source: `docs/inherited-rules/legacy/ext7/` (step docs), `docs/inherited-rules/legacy/AGENTS.md` (the Legacy "Exterior 7-step process"), and `exterior-garden-3d/4b/PIPELINE_7STEP.md` (the Ashwood 4-bed version).
 
 | Step | Exterior (4-bed) | Interior (floors, rooms, furniture) |
 |---|---|---|
@@ -66,7 +66,7 @@ Rules for all seven steps:
 5. EXPORT (when relevant): GLB plus phone GLB; Khronos glTF validator 0 errors; size budgets.
 6. DELIVER: CHANGELOG entry, commit + push (see the change log rule above), update `STATUS.md`, one short message to Colin with screenshots.
 
-## Lessons (Barclay + Kimi + Ashwood)
+## Lessons (Legacy + Kimi + Ashwood)
 - Tiled photo textures read as rubble or rain at building scale: use flat colours or procedural materials.
 - Phones get their own files (smaller textures, merged meshes); big files blank Samsung phones.
 - glTF import in Blender sets quaternion rotation: set rotation_mode before rotating.
@@ -86,4 +86,4 @@ Goal: several agents on separate tasks in parallel to finish faster, with the sa
 - This section is the plan, not yet built. Colin approves the plan before any lane starts.
 
 ## Reference copies
-`docs/inherited-rules/` holds verbatim copies of the Barclay and Axis3D rules, tools, tricks registers, Axis3D plan and QA register. They are reference; this file is the rule set for Ashwood.
+`docs/inherited-rules/` holds verbatim copies of the Legacy and Axis3D rules, tools, tricks registers, Axis3D plan and QA register. They are reference; this file is the rule set for Ashwood.

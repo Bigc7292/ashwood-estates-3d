@@ -1,6 +1,6 @@
 # Axis3D: project rules (AGENTS.md)
 Read this FIRST on every task. CLAUDE.md and GROK.md are copies of this file, so any agent tool finds it.
-Carried over from Barclay House 3D (`barclay/AGENTS.md`, 2026-11-08) and adapted. The plan is in `PLAN.md`.
+Carried over from Legacy project (`legacy/AGENTS.md`, 2026-11-08) and adapted. The plan is in `PLAN.md`.
 
 ## Hard rules
 1. **Free only.** No paid tools, subscriptions, credits or paid APIs without Colin's explicit OK. A cost is a blocker: propose a zero-cost path.
@@ -21,7 +21,7 @@ Carried over from Barclay House 3D (`barclay/AGENTS.md`, 2026-11-08) and adapted
 5. EXPORT: GLB plus phone GLB; Khronos glTF validator must pass with 0 errors; check size budgets.
 6. DELIVER: one short message to Colin, with screenshots.
 
-## Model look: the 7-step process (from Barclay, adapted for new builds)
+## Model look: the 7-step process (from Legacy, adapted for new builds)
 1. Reference: the developer's renders.
 2. Layout: from the traced plans.
 3. Blockout.
@@ -32,7 +32,7 @@ Carried over from Barclay House 3D (`barclay/AGENTS.md`, 2026-11-08) and adapted
 
 Run the steps straight through.
 
-## Lessons (Barclay + Kimi)
+## Lessons (Legacy + Kimi)
 - **Tiled photo textures read as rubble or rain at building scale.** Use flat colours or procedural materials.
 - **Phones get their own files** (smaller textures, merged meshes); big files blank Samsung phones.
 - **glTF import in Blender sets quaternion rotation:** set rotation_mode before rotating.

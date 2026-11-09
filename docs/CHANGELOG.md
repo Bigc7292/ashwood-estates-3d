@@ -2,7 +2,7 @@
 
 ## 2026-11-09 — Initial GitHub backup (Optimizer Bot)
 
-**Branch:** `ashwood-plan-visuals` (orphan) on `Bigc7292/barclay-house-3d` (private).
+**Branch:** `ashwood-plan-visuals` (orphan) on `Bigc7292/legacy-house-3d` (private).
 
 ### Included
 - `original/` — source brochure PDF (`ashwood-residences_brochure.pdf`) and SHA notes (private repo; retained for provenance)
@@ -24,7 +24,7 @@
 - Any file over 95 MB (none besides the ZIP at backup time)
 
 ### Why orphan branch
-Ashwood is a separate project from Barclay House 3D. Orphan history keeps trees independent while sharing the same private GitHub repo for backup.
+Ashwood is a separate project from Legacy project. Orphan history keeps trees independent while sharing the same private GitHub repo for backup.
 
 ## 2026-11-09 — FP-4B-GF Floorplan 3D spike rebuilt as v2 (Plan & Visuals Archivist)
 

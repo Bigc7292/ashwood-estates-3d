@@ -2,14 +2,14 @@
 
 **What it is:** a web app (SaaS) for real-estate developers and agencies. A client uploads one brochure PDF of an off-plan project, plus an optional link to the project's web page. The app checks whether there is enough to work with, extracts the facts, plans, layouts and images, and produces an interactive 3D model of each unit type, a fact sheet, and a shareable link.
 
-**Quality bar:** the Barclay House viewer (live: barclay-house-viewer.vercel.app) and the Kimi "Courtyard Residence" template. Both are walkable, with time-of-day lighting, preset cameras, interiors and a dollhouse view.
+**Quality bar:** the Legacy project viewer (live: legacy-house-viewer.vercel.app) and the Kimi "Courtyard Residence" template. Both are walkable, with time-of-day lighting, preset cameras, interiors and a dollhouse view.
 
-**Where this lives:** branch `axis3d-plan` of `barclay-house-archive`, folder `axis3d/`. This session cannot create new GitHub repositories. Once Colin creates an empty private repo `Bigc7292/axis3d`, this folder moves there with its history, and all work continues on branches. `main` there is only updated when Colin says.
+**Where this lives:** branch `axis3d-plan` of `legacy-archive`, folder `axis3d/`. This session cannot create new GitHub repositories. Once Colin creates an empty private repo `Bigc7292/axis3d`, this folder moves there with its history, and all work continues on branches. `main` there is only updated when Colin says.
 
 ## 1. Decisions taken (Colin, 2026-11-08)
 | Topic | Decision |
 |---|---|
-| Repo | New repo `axis3d`. Carry over all Barclay rules, pipeline, lessons and tricks (see `AGENTS.md` here). |
+| Repo | New repo `axis3d`. Carry over all Legacy rules, pipeline, lessons and tricks (see `AGENTS.md` here). |
 | AI reading | For now, Opus 5.5 inside Claude does the AI reading and checking during development and the scenario tests. Once deployed outside Claude, the app uses open-source models through an OpenAI-compatible endpoint (Ollama, vLLM, or a free/self-hosted provider). A rule-based extractor always runs first, free. |
 | Accounts | v1 has no login. Projects are saved in the browser (IndexedDB). Accounts and a database come in v2. |
 | Process | Plan first, build only after Colin approves this plan. 5 real-world scenario tests; Ashwood Estates is test 1. |
@@ -85,7 +85,7 @@ For Ashwood, the website adds:
 
 Output: one GLB per unit type, plus a JSON "evidence map" (which plan pixels and which text made each wall or room).
 
-**G. Look (Barclay 7-step process, adapted).**
+**G. Look (Legacy 7-step process, adapted).**
 1. Reference: the developer's renders.
 2. Layout: from F.
 3. Blockout.
@@ -94,7 +94,7 @@ Output: one GLB per unit type, plus a JSON "evidence map" (which plan pixels and
 6. Critique: side by side with the renders.
 7. Motion: an optional flythrough video.
 
-**H. Viewer.** Built from the Barclay viewer:
+**H. Viewer.** Built from the Legacy viewer:
 - three.js, AgX tone mapping, SSAO, bloom
 - a sky shader with time of day
 - presets: street, garden, aerial, each room, dollhouse

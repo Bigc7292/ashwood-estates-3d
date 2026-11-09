@@ -4,8 +4,8 @@ Checked 2026-11-09 21:30 Asia/Dubai. Read with `AGENTS.md`. Update this file at 
 
 ## Where the work is
 - GitHub: `Bigc7292/ashwood-estates-3d` (private). Last work snapshot: `main` @ `6f55b79` (2026-11-09 16:39 Dubai, "WIP: final agent reports").
-- Origin: Axis3D plan, Ashwood = scenario test 1 (`Bigc7292/barclay-house-archive`, branch `axis3d-plan`, folder `axis3d/`).
-- Earlier work ran in Claude desktop sessions "Barclay House 3D setup" and its fork; those chats are not needed to continue.
+- Origin: Axis3D plan, Ashwood = scenario test 1 (`Bigc7292/legacy-archive`, branch `axis3d-plan`, folder `axis3d/`).
+- Earlier work ran in Claude desktop sessions "Legacy project setup" and its fork; those chats are not needed to continue.
 
 ## Done
 | Area | State | Where |

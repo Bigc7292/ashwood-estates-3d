@@ -4,7 +4,7 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 
 ## 2026-11-09 (Asia/Dubai)
 
-- **Rules and handoff** (branch `claude/rules-and-status`, PR #1). Added `AGENTS.md` (with `CLAUDE.md` and `GROK.md` copies) and `STATUS.md`. Copied the Barclay and Axis3D rule files into `docs/inherited-rules/`. Status: DONE, draft PR.
+- **Rules and handoff** (branch `claude/rules-and-status`, PR #1). Added `AGENTS.md` (with `CLAUDE.md` and `GROK.md` copies) and `STATUS.md`. Copied the Legacy and Axis3D rule files into `docs/inherited-rules/`. Status: DONE, draft PR.
 - **7-step rule set** in `AGENTS.md`, covering exterior and interior. Status: DONE.
 - **Ashwood runs straight through to step 7** (Colin, 17:40). The step-4 hold is removed from `AGENTS.md` and `STATUS.md`. Status: DONE. Steps 5–7 are WIP.
 - **Change log and push rule** added to `AGENTS.md` (Colin, 17:41). This file created. Status: DONE.
@@ -17,3 +17,4 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - **Step-hold text removed** from `exterior-garden-3d/4b/PIPELINE_7STEP.md` so it matches the straight-through rule in AGENTS.md (Colin, 17:40). Status: DONE.
 - **GF polish WIP review (Q3, lane 3)**: per-area verdicts in `production-line/handoffs/Q3.md`. Keep furniture, feature walls (fix the entry travertine streak texture first), lighting and pool basin. Walk speed (3.2 / 7.0 m/s) is unsourced and needs a decision. Courtyard module reviewed but not integrated (Q7). Status: REVIEW-PENDING.
 - **Ashwood fact sheet (Q2, lane 1)**: `production-line/facts/Q2_fact_sheet.md`. CAD values for 4B-GF, brochure page map, M12 and M24 evidence. Open conflicts recorded, not resolved: paper size (297x420 vs 420x594 mm), pool size (9.50x2.40 brochure vs 9.49x2.38 CAD), M24 pier side (building x-extent NOT FOUND), brochure page attribution for p29/30 and p33/34 (5B/6B in README, 4B in PIPELINE_7STEP), and a missing `generated-views/4b` path in the pipeline doc. Status: REVIEW-PENDING.
+- **Project name cleanup** (Colin, 18:07): the old project name is removed from this repo's text. The copied rule files moved from `docs/inherited-rules/barclay/` to `docs/inherited-rules/legacy/`, and every reference in the docs, rules and lane briefs now uses "legacy" instead. One retired report in `superseded_2026-11-09/` still has the old name and is left unchanged. Git history still contains earlier commits with the old name. Status: DONE.
