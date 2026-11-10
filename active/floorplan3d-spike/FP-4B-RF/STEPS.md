@@ -18,10 +18,11 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
   - FF: 13.58 x 24.95 m (group `source_wall_poche`, 26 paths)
   - RF: 13.51 x 22.82 m (group `source_wall_poche`, 11 paths)
 - RF fits inside the GF and FF envelope on both axes. This is consistent, not proven: each sheet is a separate crop with its own frame, so no shared origin exists and a true overlay can't be made from the sheets alone.
-- Stated RF pieces: 3.80 x 15.70 m run, 43.92 m2 roof floor. Both are dimensions the sheet gives, not traced.
+- Stated RF labels (sheet text, not traced): LIFT 1.60 x 1.80 m; POWDER 1.50 x 2.40 m; PANTRY 2.00 x 2.40 m; MEP 3.80 x 15.70 m (corrected: this is the MEP label, not a roof run); TERRACE UNKNOWN; FLOOR AREA 43.92 m2.
 - Sheet legend "UNAPPROVED / NOT SURVEY CAD" logged as a presentation label; the sheet is approved in ACTIVE_PIPELINE.json (pt16u).
 
 ## Step 3 Blockout: WALLS DONE, ROOMS AND FURNITURE NOT STARTED
+- Furniture-like shapes found in the sheet's `source_diagram` group (not yet mapped to items): 12 seat-gradient rects in 4 clusters, 3 seat circles, and about 10 small rects in fixed fills. A legend swatch "Existing furniture" sits at (857, 1123) in sheet text coords; the swatch colour is not yet matched. Mapping these to items is the next step.
 - Walls as boxes: `adapter/rf_blockout.py` decomposes the RF wall mask into 165 boxes, checked lossless against the mask. Output `data/rf_walls_boxes.json` (mm, origin at the wall bbox top-left). Scale is the GF value, an ASSUMPTION.
 - Rooms: not placed. The RF sheet labels (POWDER, PANTRY, LIFT, TERRACE, and the roof room set) have no room polygons yet. Placing them needs a per-room trace from the approved sheet.
 - Furniture: not extracted. The labelled place markers on the RF sheet still need reading.

@@ -8,6 +8,8 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 
 ## 2026-11-09 (Asia/Dubai), roof floor lane (continued)
 
+- **FP-4B-RF correction and furniture survey** (branch `lane/roof-floor`). Corrected the STEPS.md note: 3.80 x 15.70 m is the MEP label, not a roof run. Logged the sheet's room labels and dimensions, and the furniture-like shapes in `source_diagram` (12 seat rects, 3 circles, about 10 small rects). Their mapping to items is not done. Status: WIP. Rooms, furniture mapping, finish, printed matter, critic review and motion not done.
+
 - **FP-4B-RF step 3, walls blockout** (branch `lane/roof-floor`). Added `adapter/rf_blockout.py` and `data/rf_walls_boxes.json`: the RF wall mask as 165 boxes, lossless against the mask, at 35.53 mm/px (GF value, ASSUMPTION). Status: WIP. Rooms (POWDER, PANTRY, LIFT, TERRACE and the roof room set) and furniture markers not placed yet.
 
 - **FP-4B-RF step 2 PASS, step 3 started** (branch `lane/roof-floor`). Added `active/floorplan3d-spike/FP-4B-RF/adapter/rf_wall_extract.py` and `data/rf_walls_summary.json` / `data/rf_wall_mask_1x.png`. RF walls come from the approved sheet's `source_wall_poche` group (11 paths), at 35.53 mm/px (GF value, ASSUMPTION). The method reproduces GF to under 0.3 px. Bounding boxes: GF 14.54 x 23.00 m, FF 13.58 x 24.95 m, RF 13.51 x 22.82 m. Status: WIP. Blockout boxes, furniture markers and steps 4 to 7 not started.
