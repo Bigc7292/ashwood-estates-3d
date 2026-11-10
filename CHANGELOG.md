@@ -253,3 +253,15 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 ## 2026-11-10 (Asia/Dubai), main brought up to date (Colin's go-ahead)
 
 - **`claude/rules-and-status` merged into `main`** (Colin, 03:49 Dubai: "The main should be updated to where we are currently at in the project"). Every pushed lane branch was merged into `claude/rules-and-status` first; the last one was `lane/exterior-roof-courtyard` `06a3bb1`+1 (courtyard pass 6 and roof terrace pass 1). The main merge is a normal merge commit through a pull request. There is no force-push, no history rewrite, and nothing on `main` is deleted (checked: 0 deletions and 0 renames against `origin/main`; `main` had no commits that this branch lacked). Much of the content is WIP and labelled as such in STATUS.md and the step logs: the exterior front, rear, courtyard and roof terrace; GF step 7; FF step 2; RF step 3. This go-ahead covers this merge only; later changes to `main` need Colin's word again. Status: DONE (merge), WIP (models).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 8, gate top rail and finer bars
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (`mat_tune` gains `from`, `barPitch`, `barWidth`; loads pass 8), new `overrides/front_v2_pass8_gate_rail.js`, `views/front_v2/shots/front_v2_pass8_side_by_side.png`, `views/front_v2/shots/front_v2_pass8_gate_crop.png`, `views/front_v2/STEP_LOG.md`.
+- What: gate display height 1.8 m (assumption) -> 1.33 m read from ELEV-FRONT (derived), with a dark top rail; bar pitch about 2/3 of before to match ~19 bars across. CAD footprint unchanged; colour from pass 7.
+- Why: critic single fix after pass 7.
+- Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Front v2 pass 9, gate widened to the CAD pedestrian-entry span; M90 logged
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/front_v2.html` (loads pass 9), new `overrides/front_v2_pass9_gate_width.js`, `views/front_v2/shots/front_v2_pass9_side_by_side.png`, `front_v2_pass9_gate_crop.png`, `front_v2_pass9_cad_front_strip.png`, `views/front_v2/STEP_LOG.md`, `exterior-garden-3d/4b/mismatches/mismatch_log.md` (M90).
+- What: gate x 7.39-9.735 -> 7.39-10.76 (V4 GF "PEDESTRIAN ENTRY" ~3.4 m span, derived from the dimension strip); central front wall now starts at 10.76. The reference's extra ~0.7 m beyond the CAD span is logged as M90, not built.
+- Why: critic request to check the gate width against the CAD.
+- Status: REVIEW-PENDING (critic); M90 open for Colin.
