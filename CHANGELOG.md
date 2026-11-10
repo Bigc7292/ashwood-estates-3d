@@ -150,3 +150,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: measured frame-to-frame change in the clip (crowns 7-19 grey levels vs facade 0.6-3.3) and saved a crown strip, confirming palm sway is visible across the clip; critic step 7 PASS logged.
 - Why: critic asked to confirm sway in the full clip.
 - Status: DONE.
+
+## 2026-11-10 (Asia/Dubai): Site loop 2 baseline re-render
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/views/site/STEP_LOG.md`, new `views/site/shots/site_loop2_baseline_side_by_side.png`.
+- What: re-rendered the site view at lock v2 with pool v3 as the loop 2 baseline (no page change), for the critic's loop 2 re-check.
+- Why: Colin "Keep going" (2026-11-10 04:21); loop 2 after his pool ruling.
+- Status: REVIEW-PENDING (critic).
