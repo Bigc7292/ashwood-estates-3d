@@ -4,8 +4,8 @@ views=[
  ("front","Front","front_v2",{"name":"ELEV-FRONT","pos":[8.57,1.6,45.4],"tgt":[8.57,4.5,26.9],"fov":40,"labels":False,"shift":True},"Front elevation on the quality-pass locked camera. Technical labels are hidden by default; the required concept disclaimer remains visible."),
  ("left","Left side","left_pass",{"name":"ELEV-LEFT","pos":[-14.5,1.8,15.0],"tgt":[8.0,4.0,15.0],"fov":40,"labels":False,"shift":True},"Left elevation on the revised quality-pass camera. Compare with the approved reference in the Side-by-side tab."),
  ("right","Right side","right_pass",{"name":"ELEV-RIGHT","pos":[32.0,1.8,15.0],"tgt":[10.0,4.0,15.0],"fov":40,"labels":False,"shift":True},"Right elevation preserving the evidence-backed M38 slab at z0=0.53; independent critic review confirmed that retracting it would contradict the approved elevation."),
- ("site","Site + pool","site_pass",{"name":"SITE-AERIAL","pos":[30.0,26.0,-14.0],"tgt":[9.36,0.0,12.0],"fov":40,"labels":False},"Rear-east aerial framing the M44 pool, terrace and M30 enlarged garden without moving CAD trees."),
- ("rear","Rear + garden","rear_v3",{"name":"ELEV-REAR","pos":[8.0,4.5,-14.0],"tgt":[8.0,2.5,6.0],"fov":42,"labels":False},"Corrected rear source with shared_pool_v3 / M44 and visible Water2 reflection and refraction; retired rear_pass pool v2 is not used."),
+ ("site","Site + pool","site_pass",{"name":"SITE-FULL","pos":[30.0,26.0,-16.0],"tgt":[9.36,1.0,11.0],"fov":45,"labels":False},"Full-villa rear-east aerial framing the M44 pool, terrace and M30 enlarged garden without roof clipping or moving CAD trees."),
+ ("rear","Rear + garden","rear_v3",{"name":"ELEV-REAR","pos":[8.0,4.5,-14.0],"tgt":[8.0,2.5,6.0],"fov":42,"labels":False},"Rear source with shared_pool_v3 / M44 and visible Water2. The inspected elevated lock keeps the pool clear of the boundary hedge; nearer eye-level candidates were rejected for cropping/occlusion."),
 ]
 shim=None; data={}
 for key,_,f,v,_n in views:
