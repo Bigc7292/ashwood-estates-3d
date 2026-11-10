@@ -1,11 +1,11 @@
 import json,re,sys
 B=sys.argv[1]
 views=[
- ("front","Front (restored v2)","front_v2",{"name":"Front, restored v2 (locked camera)","pos":[8.57,1.6,45.4],"tgt":[8.57,4.5,26.9],"fov":40,"shift":True},"Restored front on the locked camera. Being corrected: the outside agent's pass 17 failed the critic and is not used here."),
- ("left","Left side","left_pass",{"name":"Left side (ELEV-LEFT lock)","pos":[-22.5,1.6,15.08],"tgt":[1.5,5.16,15.08],"fov":40,"shift":True},"Left view, steps 1 to 7 done (critic-passed). Compare with the reference in the Side-by-side tab."),
- ("right","Right side","right_pass",{"name":"Right side (ELEV-RIGHT lock)","pos":[42.6,1.6,13.45],"tgt":[15.88,4.66,13.45],"fov":40,"shift":True},"Right view, steps 1 to 7 done (critic-passed). Compare with the reference in the Side-by-side tab."),
- ("site","Site + pool v3","site_pass",{"name":"Site overview with pool v3 (site lock v2)","pos":[10.121,22.143,56.135],"tgt":[9.36,0,17.191],"fov":26.71},"Site overview with the new pool layout (pool v3: further back, wider, with seating, per Colin). Steps 1 to 4 passed, 5 to 7 in progress. CAD house size kept (M42)."),
- ("rear","Rear + garden (WIP)","rear_pass",{"name":"Rear and garden (WIP)","pos":[9.4,14,-26],"tgt":[9.4,2,10],"fov":40},"Rear and garden: work in progress, being corrected by the exterior lane. Storey heights are display-only (M45)."),
+ ("front","Front","front_v2",{"name":"ELEV-FRONT","pos":[8.57,1.6,45.4],"tgt":[8.57,4.5,26.9],"fov":40,"labels":False,"shift":True},"Front elevation on the quality-pass locked camera. Technical labels are hidden by default; the required concept disclaimer remains visible."),
+ ("left","Left side","left_pass",{"name":"ELEV-LEFT","pos":[-14.5,1.8,15.0],"tgt":[8.0,4.0,15.0],"fov":40,"labels":False,"shift":True},"Left elevation on the revised quality-pass camera. Compare with the approved reference in the Side-by-side tab."),
+ ("right","Right side","right_pass",{"name":"ELEV-RIGHT","pos":[32.0,1.8,15.0],"tgt":[10.0,4.0,15.0],"fov":40,"labels":False,"shift":True},"Right elevation preserving the evidence-backed M38 slab at z0=0.53; independent critic review confirmed that retracting it would contradict the approved elevation."),
+ ("site","Site + pool","site_pass",{"name":"SITE-FULL","pos":[30.0,26.0,-16.0],"tgt":[9.36,1.0,11.0],"fov":45,"labels":False},"Full-villa rear-east aerial framing the M44 pool, terrace and M30 enlarged garden without roof clipping or moving CAD trees."),
+ ("rear","Rear + garden","rear_v3",{"name":"ELEV-REAR","pos":[8.0,4.5,-14.0],"tgt":[8.0,2.5,6.0],"fov":42,"labels":False},"Rear source with shared_pool_v3 / M44 and visible Water2. The inspected elevated lock keeps the pool clear of the boundary hedge; nearer eye-level candidates were rejected for cropping/occlusion."),
 ]
 shim=None; data={}
 for key,_,f,v,_n in views:
@@ -54,7 +54,7 @@ const tabs=document.getElementById('tabs'),stage=document.getElementById('stage'
 function show(k){{
   [...tabs.children].forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k?'true':'false'));
   stage.innerHTML='';
-  if(k==='sbs'){{note.textContent='Model view (left of each pair) against the approved reference image, at the same locked camera. Latest passes: left pass 17, right pass 11.';
+  if(k==='sbs'){{note.textContent='Historical model-versus-approved-reference comparisons from earlier locked-view passes; use the live tabs for the current quality-pass geometry.';
     stage.innerHTML='<div class="sbs"><h2>Left side</h2><img alt="Left side: model vs reference" src="'+SBS.left+'"><h2>Right side</h2><img alt="Right side: model vs reference" src="'+SBS.right+'"></div>';return;}}
   const v=VIEWS.find(x=>x[0]===k); note.textContent=v[3];
   const f=document.createElement('iframe'); f.title=v[1];
