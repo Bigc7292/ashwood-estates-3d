@@ -1,3 +1,7 @@
+## 2026-11-10 (Asia/Dubai), swarm visual-quality gate (branch `colin/viewer-quality-2026-11-10`)
+
+- Added `verifier/v1/acceptance.md`, `verifier/v1/verify_static.py`, `verifier/README.md` and the initial timestamped run under `verifier/runs/`. Why: Colin requested parallel specialist agents targeting very high realism; this establishes measurable source-fidelity, FF, exterior/water, interaction, runtime, reproducibility and independent-critic gates before integration. Initial structural run: expected FAIL while the FF r8 build and exterior repairs are pending; the trajectory is preserved. Status: WIP / REVIEW-PENDING. Labels: concept visualisation, not survey-verified, not construction-ready, not certified CAD.
+
 ## 2026-11-10 (Asia/Dubai), shareable site (lane/vercel-site)
 
 - **Static site for Vercel** (Colin, 03:48 Dubai, "commit and push everything to github and also to vercel, so i have a shareable url"). New folder `site/`: `index.html` (landing page linking the five viewers, mobile layout, light/dark), `exterior.html`, `ground-floor.html`, `first-floor.html` (WIP), `pictures.html`, `progress.html` (copies of `production-line/artifacts/2026-11-10/`, renamed), `vercel.json` (clean URLs, noindex), `README.md`. Checked in headless Chromium at 390 px: six pages load with 0 console errors and 0 failed requests; exterior and GF render a canvas; no secrets, .env or logs in the folder. Status: WIP until the Vercel URL is live.

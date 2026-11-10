@@ -1,0 +1,1 @@
+{"name": "ELEV-REAR-EYE", "title": "ELEV-REAR near-eye-level off-axis (proposed hub camera, quality_r1; rear-lane evidence: y14 aerial exaggerates the overhang; off-axis x solves tree occlusion without moving garden-tree-rear-c)", "pos": [4.5, 2.0, -7.5], "tgt": [9.5, 2.4, 6.0], "fov": 45, "labels": true}
