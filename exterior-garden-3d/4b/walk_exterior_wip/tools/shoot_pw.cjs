@@ -12,7 +12,7 @@ srv.listen(0, async () => {
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist','--no-sandbox'] });
   const pg = await b.newPage({ viewport: { width: +w, height: +h }, deviceScaleFactor: 1 });
   const errs = []; pg.on('pageerror', e => errs.push(String(e))); pg.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
-  await pg.goto(`http://127.0.0.1:${port}/walk_exterior_wip/${page_}?view=${encodeURIComponent(view)}`, { waitUntil: 'commit', timeout: 0 });
+  await pg.goto(`http://127.0.0.1:${port}/walk_exterior_wip/${page_}?view=${encodeURIComponent(view)}${process.env.HIDE ? "&hide="+process.env.HIDE : ""}`, { waitUntil: 'commit', timeout: 0 });
   await pg.waitForFunction(() => document.title === 'READY', null, { timeout: 120000 });
   await pg.waitForTimeout(1500);
   await pg.evaluate(() => { window.__capture = true; }); await pg.waitForTimeout(1500);
