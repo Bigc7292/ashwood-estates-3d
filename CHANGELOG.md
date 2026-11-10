@@ -2,6 +2,13 @@
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
 
+## 2026-11-10 (Asia/Dubai), mobile layout, pass 2
+
+- **Exterior on phones: model only** (Colin, 04:22 UTC: "too much information on screen, can't see the model on my phone"). `mobile-layout/apply_mobile_shell.py` now hides the page header, notes and help text on phones and the in-view title bar and caption; view tabs float over the top of the model; a one-line concept label stays at the bottom. Model, cameras and labels in the views are unchanged. Fixed a bug in the earlier version: the phone rules were nested in the wrong tag and never applied. Merged onto the 04:24 UTC exterior version from another session, keeping its content edits. Published as v7 on https://claude.ai/artifact/3dty5cFKAgW29MkQVLpAtJ. Status: DONE on phone (checked at 390x844).
+- **Ground floor 3D (v3)** https://claude.ai/artifact/ABhzr2yy6MKMWfQXY3tB2v: same phone header rules as the first floor. Status: DONE on phone for the header; the 3D view framing on a phone still to check.
+- **Progress board (v4)** https://claude.ai/artifact/XZnAbwEKiLHGLLaWnqBq1C: tables become cards on phones. Built from the live text at 08:35 Dubai, which another writer had changed. Status: DONE.
+- **Picture viewer and plans**: phone rules written (`gen` mode) and checked for overflow at 390px, but NOT yet published. The live pages are 1.7 MB and 2.2 MB, so the publish needs a merge step. Status: WIP.
+
 ## 2026-11-09 (Asia/Dubai), mobile layout
 
 - **Phone layout for the exterior and first-floor artifacts** (Colin, 23:46 UTC: "make the layout better, more neatly, model more visible"). Added `mobile-layout/apply_mobile_shell.py`, which adds a phone-only CSS layer (max-width 640px) to the published pages. Exterior: tabs in one scrolling row with thumb-sized targets, the stage fills the screen height, and the front caption is smaller. First floor: the header scrolls on one row, the brand and spacer are hidden, and footer and toast sizes are reduced. Model data, geometry, furniture, scale, cameras and labels are not changed; the WIP banner is kept. Checked at 390x844 (DPR 2): no horizontal overflow, no page errors, model visible. Published to the existing links: Exterior https://claude.ai/artifact/3dty5cFKAgW29MkQVLpAtJ (v5), First floor https://claude.ai/artifact/MAPDK4oRWv1EJJ1dMPfiHo (v4). Status: exterior and first floor DONE on phone. Rear, roof, site and the progress board not yet done. Open: the first-floor File menu download link does nothing for viewers (pre-existing, not changed here).

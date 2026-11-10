@@ -11,17 +11,15 @@ import sys
 EXT_CSS = """
 @media (max-width:640px){
   html,body{height:100%;overflow:hidden;overscroll-behavior:none}
-  .wrap{height:100vh;height:100dvh}
-  header{padding:8px 12px 2px}
-  h1{font-size:16px;line-height:1.2}
-  .sub{font-size:11px;line-height:1.35}
-  .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:6px 10px;gap:6px}
+  .wrap{height:100dvh;position:relative}
+  header,.note,.help{display:none}
+  .tabs{position:absolute;top:8px;left:0;right:0;z-index:5;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:0 8px;gap:6px}
   .tabs::-webkit-scrollbar{display:none}
-  .tab{flex:0 0 auto;min-height:40px;padding:8px 14px;font-size:14px}
-  .note{padding:0 12px 4px;font-size:12px}
-  .help{padding:0 12px 2px;font-size:11px}
-  .stage{flex:1 1 auto;min-height:0;margin:0 6px 6px;border-radius:8px}
-  .sbs{padding:8px}
+  .tab{flex:0 0 auto;min-height:36px;padding:6px 12px;font-size:13px;background:rgba(255,255,255,.88);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+  .tab[aria-selected="true"]{background:var(--accent);color:var(--accent-fg)}
+  .stage{position:absolute;inset:0;margin:0;border:0;border-radius:0;min-height:0}
+  .wrap::after{content:"Concept visualisation · not survey-verified · not certified CAD";position:absolute;left:0;right:0;bottom:4px;z-index:5;text-align:center;font:10px/1.2 sans-serif;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.8);pointer-events:none}
+  .sbs{padding:48px 8px 24px}
 }
 """
 
@@ -38,7 +36,29 @@ FF_CSS = """
 }
 """
 
-CAP_CSS = "@media (max-width:640px){#cap{font-size:11.5px;padding:5px 8px;line-height:1.2}}"
+CAP_CSS = "@media (max-width:640px){#cap,#title{display:none}}"
+
+PROGRESS_CSS = """
+@media (max-width:640px){
+  table, tbody, tr, td { display:block; width:100%; }
+  thead { display:none; }
+  .wrap { overflow:visible; }
+  tr { border-bottom:1px solid var(--line); padding:6px 4px; }
+  tr:last-child { border-bottom:none; }
+  td { border:0; padding:3px 6px; }
+  td small { display:inline; margin-left:4px; }
+  h1 { font-size:21px; }
+  .box { border-radius:8px; }
+}
+"""
+
+GEN_CSS = """
+@media (max-width:640px){
+  body { padding-inline:12px; }
+  h1 { font-size:20px; line-height:1.25; }
+  img { max-width:100%; height:auto; }
+}
+"""
 
 def must_once(html, s):
     n = html.count(s)
@@ -51,7 +71,7 @@ def main():
     if kind == "ext":
         marker = "</style></head><body><div class=\"wrap\">"
         must_once(html, marker)
-        html = html.replace(marker, '<style id="mobile-shell">' + EXT_CSS + "</style>" + marker)
+        html = html.replace(marker, EXT_CSS + marker)  # rules go inside the page's own <style>
         old = "f.srcdoc=DATA[k].replace('<!--SHIM-->',SHIM+"
         must_once(html, old)
         html = html.replace(old, "f.srcdoc=DATA[k].replace('<!--SHIM-->',SHIM+'<style>" + CAP_CSS + "</style>'+")
@@ -59,8 +79,19 @@ def main():
         marker = "</style>\n</head>"
         must_once(html, marker)
         html = html.replace(marker, FF_CSS + "</style>\n</head>")  # rules go inside the page's own <style>
+    elif kind == "gf":
+        # Same floorplan app as the first floor. Its own <style> closes just before </head>.
+        marker = "</style>\n\n</head>"
+        must_once(html, marker)
+        html = html.replace(marker, FF_CSS + marker)
+    elif kind in ("progress", "gen"):
+        css = PROGRESS_CSS if kind == "progress" else GEN_CSS
+        end = html.rfind("</body>")
+        if end < 0:
+            sys.exit("no </body> found")
+        html = html[:end] + '<style id="mobile-shell">' + css + "</style>\n" + html[end:]
     else:
-        sys.exit("kind must be ext or ff")
+        sys.exit("kind must be ext, ff, gf, progress or gen")
     open(dst, "w", encoding="utf-8").write(html)
     print("wrote", dst, len(html), "bytes")
 
