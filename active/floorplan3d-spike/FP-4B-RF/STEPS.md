@@ -21,12 +21,14 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
 - Stated RF labels (sheet text, not traced): LIFT 1.60 x 1.80 m; POWDER 1.50 x 2.40 m; PANTRY 2.00 x 2.40 m; MEP 3.80 x 15.70 m (corrected: this is the MEP label, not a roof run); TERRACE UNKNOWN; FLOOR AREA 43.92 m2.
 - Sheet legend "UNAPPROVED / NOT SURVEY CAD" logged as a presentation label; the sheet is approved in ACTIVE_PIPELINE.json (pt16u).
 
-## Step 3 Blockout: WALLS DONE, ROOMS AND FURNITURE NOT STARTED
-- Furniture-like shapes found in the sheet's `source_diagram` group (not yet mapped to items): 12 seat-gradient rects in 4 clusters, 3 seat circles, and about 10 small rects in fixed fills. A legend swatch "Existing furniture" sits at (857, 1123) in sheet text coords; the swatch colour is not yet matched. Mapping these to items is the next step.
-- Walls as boxes: `adapter/rf_blockout.py` decomposes the RF wall mask into 165 boxes, checked lossless against the mask. Output `data/rf_walls_boxes.json` (mm, origin at the wall bbox top-left). Scale is the GF value, an ASSUMPTION.
-- Rooms: not placed. The RF sheet labels (POWDER, PANTRY, LIFT, TERRACE, and the roof room set) have no room polygons yet. Placing them needs a per-room trace from the approved sheet.
-- Furniture: not extracted. The labelled place markers on the RF sheet still need reading.
-- Status: IN PROGRESS. Walls done; rooms and furniture next.
+## Step 3 Blockout: BLOCKED ON ROOM OUTLINES (decision needed)
+- Walls as boxes: done (165 boxes, lossless; `data/rf_walls_boxes.json`).
+- Room outlines: NOT DERIVABLE from the sheet. A flood fill of the free space on the wall mask (`rf_wall_mask_1x.png`) finds one open region. Every room label (LIFT, POWDER, PANTRY, TERRACE, MEP) falls inside it. The sheet itself marks the envelope as "ENVELOPE UNKNOWN" on all four sides, so the RF walls do not close any room.
+- Furniture: 12 seat rects in 4 clusters, 3 seat circles, about 10 small rects in source_diagram. Not mapped to items. The "Existing furniture" legend swatch is needed.
+- Options for Colin (decision requested):
+  1. Build room outlines as ASSUMED rectangles from the label sizes (LIFT 1.60 x 1.80 m, POWDER 1.50 x 2.40 m, PANTRY 2.00 x 2.40 m), placed at the label points. Labelled ASSUMED throughout. Low evidence; the critic will flag it.
+  2. Colin supplies the RF room outlines or envelope.
+- Status: BLOCKED pending that decision.
 
 ## Steps 4 to 7: NOT STARTED
 - Step 4 Grime / finish, step 5 Printed matter, step 6 Critique (independent critic, side-by-side with brochure p15 to p17 and V4 RF plan), step 7 Motion.
@@ -34,4 +36,4 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
 - Viewer target: match `FP-4B-GF/` v2 in rooms, furniture, materials and lighting.
 
 ## Loop tracker
-Loop 1. Current step: 3 (walls boxed; rooms and furniture next).
+Loop 1. Current step: 3 (blocked on room outlines; decision requested).

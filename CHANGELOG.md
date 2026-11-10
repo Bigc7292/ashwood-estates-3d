@@ -8,6 +8,8 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 
 ## 2026-11-09 (Asia/Dubai), roof floor lane (continued)
 
+- **FP-4B-RF step 3 room check** (branch `lane/roof-floor`). A flood fill of the RF wall mask finds no enclosed room: every room label sits in one open region, because the sheet marks the envelope ENVELOPE UNKNOWN. Room outlines are blocked. Decision requested from Colin: ASSUMED rectangles from label sizes, or source outlines. Status: BLOCKED. Steps 4 to 7 not started.
+
 - **FP-4B-RF correction and furniture survey** (branch `lane/roof-floor`). Corrected the STEPS.md note: 3.80 x 15.70 m is the MEP label, not a roof run. Logged the sheet's room labels and dimensions, and the furniture-like shapes in `source_diagram` (12 seat rects, 3 circles, about 10 small rects). Their mapping to items is not done. Status: WIP. Rooms, furniture mapping, finish, printed matter, critic review and motion not done.
 
 - **FP-4B-RF step 3, walls blockout** (branch `lane/roof-floor`). Added `adapter/rf_blockout.py` and `data/rf_walls_boxes.json`: the RF wall mask as 165 boxes, lossless against the mask, at 35.53 mm/px (GF value, ASSUMPTION). Status: WIP. Rooms (POWDER, PANTRY, LIFT, TERRACE and the roof room set) and furniture markers not placed yet.
