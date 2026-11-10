@@ -168,3 +168,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: side hedges extended to the enlarged garden's rear wall; the plan-symbol side trees keep their CAD positions but are drawn as clipped crowns in the hedge line instead of round lollipop trees.
 - Why: critic's second-ranked site fix; CAD positions kept per the image-for-look, CAD-for-position rule.
 - Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Site loop 2 pass 3, green-olive lawn strips
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/site_pass.html` (loads pass 3), new `overrides/site_loop2_pass3_lawn_olive.js`, `views/site/shots/site_loop2_pass3_side_by_side.png`, `views/site/STEP_LOG.md`.
+- What: lawn tone set to the reference's sampled inner-lawn green-olive (RGB ~71,69,33; model now 75,78,36). Extents unchanged.
+- Why: critic's third-ranked site fix in loop 2.
+- Status: REVIEW-PENDING (critic).
