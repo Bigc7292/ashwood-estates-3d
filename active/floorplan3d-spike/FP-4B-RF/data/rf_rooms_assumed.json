@@ -1,0 +1,67 @@
+{
+ "units": "mm",
+ "origin": "top-left of RF wall bbox; x right, y down",
+ "mm_per_px": 35.53012869683798,
+ "scale_status": "ASSUMPTION: GF value (Colin 2026-11-09 18:40)",
+ "rooms": [
+  {
+   "name": "LIFT",
+   "status": "ASSUMED (rectangle at label point, label size; not a traced outline)",
+   "box_mm": [
+    8296,
+    7236,
+    9896,
+    9036
+   ],
+   "size_m": [
+    1.6,
+    1.8
+   ]
+  },
+  {
+   "name": "POWDER",
+   "status": "ASSUMED (rectangle at label point, label size; not a traced outline)",
+   "box_mm": [
+    4864,
+    15073,
+    6364,
+    17473
+   ],
+   "size_m": [
+    1.5,
+    2.4
+   ]
+  },
+  {
+   "name": "PANTRY",
+   "status": "ASSUMED (rectangle at label point, label size; not a traced outline)",
+   "box_mm": [
+    6213,
+    15037,
+    8213,
+    17437
+   ],
+   "size_m": [
+    2.0,
+    2.4
+   ]
+  },
+  {
+   "name": "MEP",
+   "status": "ASSUMED (rectangle at label point, label size; not a traced outline)",
+   "box_mm": [
+    552,
+    4905,
+    4352,
+    20605
+   ],
+   "size_m": [
+    3.8,
+    15.7
+   ]
+  }
+ ],
+ "not_drawn": [
+  "TERRACE (no size on sheet)"
+ ]
+}

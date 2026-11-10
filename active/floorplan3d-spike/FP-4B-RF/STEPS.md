@@ -21,14 +21,15 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
 - Stated RF labels (sheet text, not traced): LIFT 1.60 x 1.80 m; POWDER 1.50 x 2.40 m; PANTRY 2.00 x 2.40 m; MEP 3.80 x 15.70 m (corrected: this is the MEP label, not a roof run); TERRACE UNKNOWN; FLOOR AREA 43.92 m2.
 - Sheet legend "UNAPPROVED / NOT SURVEY CAD" logged as a presentation label; the sheet is approved in ACTIVE_PIPELINE.json (pt16u).
 
-## Step 3 Blockout: BLOCKED ON ROOM OUTLINES (decision needed)
+## Step 3 Blockout: WALLS + ASSUMED ROOMS DONE; FURNITURE OPEN
 - Walls as boxes: done (165 boxes, lossless; `data/rf_walls_boxes.json`).
-- Room outlines: NOT DERIVABLE from the sheet. A flood fill of the free space on the wall mask (`rf_wall_mask_1x.png`) finds one open region. Every room label (LIFT, POWDER, PANTRY, TERRACE, MEP) falls inside it. The sheet itself marks the envelope as "ENVELOPE UNKNOWN" on all four sides, so the RF walls do not close any room.
-- Furniture: 12 seat rects in 4 clusters, 3 seat circles, about 10 small rects in source_diagram. Not mapped to items. The "Existing furniture" legend swatch is needed.
-- Options for Colin (decision requested):
-  1. Build room outlines as ASSUMED rectangles from the label sizes (LIFT 1.60 x 1.80 m, POWDER 1.50 x 2.40 m, PANTRY 2.00 x 2.40 m), placed at the label points. Labelled ASSUMED throughout. Low evidence; the critic will flag it.
-  2. Colin supplies the RF room outlines or envelope.
-- Status: BLOCKED pending that decision.
+- Rooms: ASSUMED rectangles, `adapter/rf_rooms_assumed.py` -> `data/rf_rooms_assumed.json`. Each is centred on its label point with the label size. Not traced. Status ASSUMED on every room.
+  - LIFT 1.60 x 1.80 m; POWDER 1.50 x 2.40 m; PANTRY 2.00 x 2.40 m; MEP 3.80 x 15.70 m (service strip).
+  - POWDER and PANTRY overlap by about 150 mm in x. Flagged, not fixed.
+  - TERRACE not drawn (no size on sheet).
+- Open ruling for Colin: the sheet does not close its envelope ("ENVELOPE UNKNOWN"), so the walls enclose no room. Working default is the ASSUMED rectangles above. Colin may choose differently on the decision card; if he does, switch.
+- Furniture: NOT mapped. 12 seat rects in 4 clusters, 3 seat circles, about 10 small rects in source_diagram. Needs the "Existing furniture" legend swatch to map.
+- Status: IN PROGRESS (walls and assumed rooms done; furniture open).
 
 ## Steps 4 to 7: NOT STARTED
 - Step 4 Grime / finish, step 5 Printed matter, step 6 Critique (independent critic, side-by-side with brochure p15 to p17 and V4 RF plan), step 7 Motion.
@@ -36,4 +37,4 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
 - Viewer target: match `FP-4B-GF/` v2 in rooms, furniture, materials and lighting.
 
 ## Loop tracker
-Loop 1. Current step: 3 (blocked on room outlines; decision requested).
+Loop 1. Current step: 3 (walls and ASSUMED rooms done; furniture open). Steps 4 to 7 next.
