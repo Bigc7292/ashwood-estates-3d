@@ -338,3 +338,4 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: step 5 "none in source" confirmed at full size; step 6 loop 2 record with open items for Colin (M42, M72, M91); step 7 locked-camera clip with crown sway and slow light change.
 - Why: critic cleared site loop 2 for steps 5-7.
 - Status: REVIEW-PENDING (critic on the clip).
+- **Exterior site loop 2 merged and republished** (2026-11-10 08:40 Dubai). Merged `lane/exterior` `7f56a90`: site loop 2 passes 1–3 and steps 5–7 (with motion clip), the front step 7 sway check, and M91; `site_pass.html` is the lane's own page. Exterior artifact v8 (https://claude.ai/artifact/3dty5cFKAgW29MkQVLpAtJ) is built on the mobile lane's 04:28 version, with its newer phone CSS kept and only the site view and notes replaced. The headless check passed. Status: WIP.
