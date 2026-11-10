@@ -6,7 +6,10 @@
 //   soffit meets the wall at panel row ~244 -> d 35.5 m -> x ~7.1 (derived).
 // The V4 CAD draws no slab here (rear FF balcony x 2.95-15.78, z 2.96-4.6 only), so this is an image-read display assumption, this view
 // only, logged as M38. Concept visualisation, not survey-verified, not construction-ready, not certified CAD.
+// quality_r1 (2026-11-10, change-set viewer-quality-2026-11-10): a rear-lane analysis proposed z0 0.53->2.56 ("extended back" defect);
+// the INDEPENDENT CRITIC FALSIFIED it: the approved ELEV-RIGHT re-measure matches the original 64 px projection at z0=0.53 within ±2 px,
+// while 2.56 contradicts the source by ~76 px (report: rear-critic-report.md). z0 stays 0.53; M38 is visible but matches the reference.
 (window.MODEL_OVERRIDES = window.MODEL_OVERRIDES || {remove:[], add:[]});
 window.MODEL_OVERRIDES.add.push(
-  {id:'right-rear-overhang', cat:'canopy', mat:'soffit', x0:7.1, x1:15.85, z0:0.53, z1:2.84, y0:6.91, y1:7.38, status:'right_pass5_image_read_derived_M38'}
+  {id:'right-rear-overhang', cat:'canopy', mat:'soffit', x0:7.1, x1:15.85, z0:0.53, z1:2.84, y0:6.91, y1:7.38, status:'right_pass5_image_read_derived_M38 (critic-verified 2026-11-10, z0=0.53 stands)'}
 );
