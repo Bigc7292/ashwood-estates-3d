@@ -326,3 +326,15 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - Why: critic's second-ranked site fix; CAD positions kept per the image-for-look, CAD-for-position rule.
 - Status: REVIEW-PENDING (critic).
 - **`main` brought up to date again** (Colin, 2026-11-10 08:29 Dubai: "Update main"). The latest `lane/exterior` and `lane/exterior-roof-courtyard` pushes were merged first. Then `claude/rules-and-status` was merged into `main` through a pull request with a merge commit. No force-push, and nothing on `main` was deleted or overwritten (0 deletions and 0 renames against `origin/main`). This includes the `site/` folder from `lane/vercel-site` for the Vercel import (root directory `site`). This go-ahead covers this one update. Status: DONE (merge), WIP (models).
+
+## 2026-11-10 (Asia/Dubai): Site loop 2 pass 3, green-olive lawn strips
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/site_pass.html` (loads pass 3), new `overrides/site_loop2_pass3_lawn_olive.js`, `views/site/shots/site_loop2_pass3_side_by_side.png`, `views/site/STEP_LOG.md`.
+- What: lawn tone set to the reference's sampled inner-lawn green-olive (RGB ~71,69,33; model now 75,78,36). Extents unchanged.
+- Why: critic's third-ranked site fix in loop 2.
+- Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Site loop 2 steps 5-7
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/site_pass.html` (clipped side crowns grouped and added to the step 7 sway; leaf-set list no longer reset after them), `views/site/STEP_LOG.md`, new `views/site/step7/EXT-4b-OUTDOOR-SITE_loop2_step7_motion.mp4` (~0.2 MB), `views/site/step7/loop2_first_vs_last.png`, `views/site/shots/site_loop2_step5_front_fullsize_crop.png`.
+- What: step 5 "none in source" confirmed at full size; step 6 loop 2 record with open items for Colin (M42, M72, M91); step 7 locked-camera clip with crown sway and slow light change.
+- Why: critic cleared site loop 2 for steps 5-7.
+- Status: REVIEW-PENDING (critic on the clip).
