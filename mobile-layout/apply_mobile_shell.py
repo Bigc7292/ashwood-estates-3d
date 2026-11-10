@@ -25,15 +25,21 @@ EXT_CSS = """
 
 FF_CSS = """
 @media (max-width:640px){
-  header{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:6px 8px;gap:6px}
-  header::-webkit-scrollbar{display:none}
-  .brand{display:none}
-  .spacer{display:none}
-  header .btn,header .grp .btn{min-height:40px;padding:8px 10px}
-  footer{font-size:11px;gap:10px;padding:0 10px}
-  #toast{bottom:96px;max-width:90vw;white-space:normal;text-align:center}
-  main{min-height:0}
+  #phoneTools{display:inline-flex;min-height:40px;align-items:center;white-space:nowrap}
+  header{flex-wrap:nowrap;overflow:visible;padding:6px 8px;gap:6px;position:relative;z-index:20}
+  header > *:not(#phoneTools):not(#viewSeg):not(.only2d):not(.only3d){display:none!important}
+  header > .only2d,header > .only3d{display:none!important}
+  body.tools-open header{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 56px);max-height:calc(100dvh - 120px);overflow-y:auto;flex-wrap:wrap;background:var(--panel);box-shadow:0 8px 24px rgba(40,30,20,.2);padding:8px;border-bottom:1px solid var(--line);z-index:40}
+  body.tools-open header > *:not(#phoneTools):not(.only2d):not(.only3d):not(.brand):not(.spacer){display:flex!important}
+  body.tools-open header > .brand,body.tools-open header > .spacer{display:none!important}
+  body:not(.m3d).tools-open header > .only2d{display:flex!important}
+  body.m3d.tools-open header > .only3d{display:flex!important}
+  #wipNote{left:8px!important;right:8px!important;top:auto!important;bottom:36px!important;transform:none!important;width:auto!important;max-width:none!important;font-size:10.5px!important;line-height:1.25!important;padding:4px 26px 4px 8px!important;border-radius:6px!important;text-align:left!important;opacity:.92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #wipNote.wip-open{white-space:normal;overflow:visible}
+  #spikeBanner{display:none!important}
+  .wip-x{display:inline-block;position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:18px;line-height:1;padding:2px 6px;cursor:pointer}
 }
+.wip-x{display:none}
 """
 
 CAP_CSS = "@media (max-width:640px){#cap,#title{display:none}}"
@@ -75,15 +81,19 @@ def main():
         old = "f.srcdoc=DATA[k].replace('<!--SHIM-->',SHIM+"
         must_once(html, old)
         html = html.replace(old, "f.srcdoc=DATA[k].replace('<!--SHIM-->',SHIM+'<style>" + CAP_CSS + "</style>'+")
-    elif kind == "ff":
-        marker = "</style>\n</head>"
-        must_once(html, marker)
-        html = html.replace(marker, FF_CSS + "</style>\n</head>")  # rules go inside the page's own <style>
-    elif kind == "gf":
-        # Same floorplan app as the first floor. Its own <style> closes just before </head>.
-        marker = "</style>\n\n</head>"
+    elif kind in ("ff", "gf"):  # kind decides the head marker
+        # Floor viewers share one shell: CSS, a Tools toggle, a collapsible tools panel, a dismissible WIP line.
+        marker = "</style>\n</head>" if kind == "ff" else "</style>\n\n</head>"
         must_once(html, marker)
         html = html.replace(marker, FF_CSS + marker)
+        must_once(html, "<header>")
+        html = html.replace("<header>", '<header>\n<button id="phoneTools" class="btn chip" type="button" aria-expanded="false">Tools ▾</button>', 1)
+        wip = "<div style=\"position:fixed;left:50%;transform:translateX(-50%);bottom:34px;z-index:9999;"
+        if wip in html:  # the first floor has the brown WIP note; the ground floor does not
+            i = html.index(wip); j = html.index(">", i) + 1
+            html = html[:i] + '<div id="wipNote" onclick="this.classList.toggle(\'wip-open\')" ' + html[i+5:j] + '<button class="wip-x" type="button" aria-label="Dismiss note" onclick="this.parentNode.remove()">×</button>' + html[j:]
+        end = html.rfind("</body>")
+        html = html[:end] + "<script>document.getElementById('phoneTools').onclick=function(){var o=document.body.classList.toggle('tools-open');this.setAttribute('aria-expanded',o)};</script>\n" + html[end:]
     elif kind in ("progress", "gen"):
         css = PROGRESS_CSS if kind == "progress" else GEN_CSS
         end = html.rfind("</body>")

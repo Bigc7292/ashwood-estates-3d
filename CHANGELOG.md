@@ -2,6 +2,10 @@
 
 Every code edit gets an entry here, in the same turn it is committed and pushed (see AGENTS.md, "Change log and push rule").
 
+## 2026-11-10 (Asia/Dubai), mobile layout, pass 3 (floor viewers)
+
+- **First and ground floor on phones** (Colin, 04:36 UTC screenshot of the Vercel site: toolbars stacked into about seven rows, plan a thin strip, WIP note covering the disclaimer). `mobile-layout/apply_mobile_shell.py` (kinds `ff`, `gf`) now puts one bar on phones: a Tools button and the 2D/3D switch. The Tools button opens the other tools as a panel. The WIP note becomes one line above the footer; tap it to read the full text, × to dismiss. The spike banner is hidden on phones. Model, plan and scale are unchanged. Checked at 390x844 (DPR 2): no sideways scroll, no page errors. Status: first floor and ground floor DONE on phone (built locally). Roof floor not yet done. The Vercel site only shows these after Colin says 'update main'.
+
 ## 2026-11-10 (Asia/Dubai), mobile layout, pass 2
 
 - **Exterior on phones: model only** (Colin, 04:22 UTC: "too much information on screen, can't see the model on my phone"). `mobile-layout/apply_mobile_shell.py` now hides the page header, notes and help text on phones and the in-view title bar and caption; view tabs float over the top of the model; a one-line concept label stays at the bottom. Model, cameras and labels in the views are unchanged. Fixed a bug in the earlier version: the phone rules were nested in the wrong tag and never applied. Merged onto the 04:24 UTC exterior version from another session, keeping its content edits. Published as v7 on https://claude.ai/artifact/3dty5cFKAgW29MkQVLpAtJ. Status: DONE on phone (checked at 390x844).
