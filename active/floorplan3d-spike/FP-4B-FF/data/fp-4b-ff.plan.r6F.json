@@ -2882,8 +2882,8 @@
     "status": "PLAN symbol, type ASSUMED",
     "cx": 3526,
     "cy": 4592,
-    "w": 3109,
-    "d": 3109,
+    "w": 1800,
+    "d": 2000,
     "rot": 0
    },
    {
@@ -3182,8 +3182,8 @@
     "status": "PLAN symbol (bed), type ASSUMED",
     "cx": 3615,
     "cy": 19559,
-    "w": 2931,
-    "d": 2665,
+    "w": 1800,
+    "d": 2000,
     "rot": 0
    },
    {
@@ -3230,8 +3230,8 @@
     "status": "PLAN symbol (bed), type ASSUMED",
     "cx": 13075,
     "cy": 19826,
-    "w": 2842,
-    "d": 2842,
+    "w": 1800,
+    "d": 2000,
     "rot": 0
    },
    {

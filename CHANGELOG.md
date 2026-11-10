@@ -292,3 +292,8 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: re-rendered the site view at lock v2 with pool v3 as the loop 2 baseline (no page change), for the critic's loop 2 re-check.
 - Why: Colin "Keep going" (2026-11-10 04:21); loop 2 after his pool ruling.
 - Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai) - FP-4B-FF r6F bed sizes and 3D check (WIP)
+- Files: active/floorplan3d-spike/FP-4B-FF/r6F_furniture/build_r6F.py; data/fp-4b-ff.plan.r6F.js/.json; standalone_r6F.html; STEPS.md.
+- What: beds set to 1800 x 2000 mm (ASSUMED, GF catalogue size). 3D view checked headless, no page errors.
+- Status: WIP. Wall re-trace (step 2) and steps 3 to 7 not done. Critic not run.
