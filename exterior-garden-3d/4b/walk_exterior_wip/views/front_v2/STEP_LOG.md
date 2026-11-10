@@ -11,9 +11,9 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 | 2 Layout | approved V4 CAD via `model/data/model.js` | front facade | | DONE (earlier) |
 | 3 Blockout | | passes 1-7 | | DONE (earlier) |
 | 4 Grime / finish | | 981cafa finish | | DONE (earlier); re-check under v2 |
-| 5 Printed matter | ELEV-FRONT | | Q1 | to re-check |
-| 6 Critique | | passes 8-16 + v2 passes | critic, one fix per pass | IN PROGRESS (v2 loop) |
-| 7 Motion | | | | to redo on v2 |
+| 5 Printed matter | ELEV-FRONT | none in source | Q1 | DONE v2: re-checked, still no house number, sign or plaque in ELEV-FRONT |
+| 6 Critique | | passes 8-16 + v2 passes 1-9 | critic, one fix per pass | DONE v2 loop (critic 23:52: no CAD-free front fix left; M47 closed, M48/M90 held for Colin) |
+| 7 Motion | front_v2.html at pass 9 | `step7/EXT-4b-ELEV-FRONT_v2_step7_motion.mp4`, `step7/first_vs_last.png` | critic | DONE v2 (awaiting critic) |
 
 ## v2 pass history
 - v2 baseline (this commit): restored page, rendered at the locked camera: `shots/front_v2_base_side_by_side.png`.
@@ -33,3 +33,6 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - v2 pass 7 (this commit): entry gate bars recoloured from near-black (darkest third RGB 3,1,0) to the reference's sampled dark bronze (bars 36,25,17; model now 32,17,8). The critic asked for warm timber; the crop (`shots/front_v2_pass7_gate_crop.png`, model left, reference right) shows ELEV-FRONT's bars are dark metal backlit by the warm lobby, so the bars follow the sample, not the lit background. New optional `mat_tune` hook in `front_v2.html`; values in `overrides/front_v2_pass7_gate_bronze.js` (display assumption). CAD gate box, pattern and position unchanged. Noted for later: the reference gate has a top rail and finer bar pitch. Shot: `shots/front_v2_pass7_side_by_side.png`. Critic (90848d9): PASS, correction accepted; next: top rail and bar pitch.
 - v2 pass 8 (this commit): gate top rail and finer bars. Reference gate top ~1.33 m (derived: dark band from panel row ~442, ground ~505, model ~47.2 px/m at the gate) vs the model's 1.8 m display-only height; ~19 bars vs ~12 across the gate, so bar pitch 21 -> 14 texture px (width 8 -> 6). Gate CAD footprint (x 7.39-9.735, z 29.881-29.961) unchanged; display height replaced by the image-read 1.33 m with a 0.07 m rail on top (material `gate_rail`, pass 7 colour). `overrides/front_v2_pass8_gate_rail.js`; `mat_tune` hook gains `from`, `barPitch`, `barWidth`. Crop: `shots/front_v2_pass8_gate_crop.png`. Shot: `shots/front_v2_pass8_side_by_side.png`. Critic (51f4d84): PASS; next: check gate width against the CAD.
 - v2 pass 9 (this commit): gate width, mixed case. The V4 GF front dimension strip puts "PEDESTRIAN ENTRY" over a ~3.4 m span, x 7.40-10.76 (derived; `shots/front_v2_pass9_cad_front_strip.png`), wider than the model's 7.39-9.735, so the gate is widened to 10.76 and the central front wall starts there (`overrides/front_v2_pass9_gate_width.js`). The reference runs to ~x 11.5 m (panel ~620); the ~0.7 m past the CAD span is logged as M90 and not built. Model gate now panel ~422-585 vs reference ~417-617. Crop: `shots/front_v2_pass9_gate_crop.png`. Shot: `shots/front_v2_pass9_side_by_side.png`. Awaiting critic.
+- Critic (7b886a1): pass 9 PASS (gate to CAD span; M90 residual held for Colin). No CAD-free front fix left; front ready for steps 5-7.
+- Step 5 (this commit): ELEV-FRONT re-checked on v2: no house number, sign or plaque visible: "none in source" (Q1 stands).
+- Step 7 (this commit): 8 s motion clip from the locked camera on `front_v2.html` (pass 9 state): frond and palm sway, tree sway, slow warmer/lower sun; 96 frames at 12 fps, encoded to 24 fps H.264 (`step7/EXT-4b-ELEV-FRONT_v2_step7_motion.mp4`); first vs last frame `step7/first_vs_last.png`. 0 page errors. Motion amounts are display assumptions. Awaiting critic.

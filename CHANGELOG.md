@@ -271,3 +271,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: gate x 7.39-9.735 -> 7.39-10.76 (V4 GF "PEDESTRIAN ENTRY" ~3.4 m span, derived from the dimension strip); central front wall now starts at 10.76. The reference's extra ~0.7 m beyond the CAD span is logged as M90, not built.
 - Why: critic request to check the gate width against the CAD.
 - Status: REVIEW-PENDING (critic); M90 open for Colin.
+
+## 2026-11-10 (Asia/Dubai): Front v2 steps 5-7 (printed matter re-check, critique record, motion clip)
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/views/front_v2/STEP_LOG.md`, new `views/front_v2/step7/EXT-4b-ELEV-FRONT_v2_step7_motion.mp4` (~0.8 MB), new `views/front_v2/step7/first_vs_last.png`.
+- What: step 5 "none in source" re-confirmed on v2; step 6 v2 loop recorded (passes 1-9, M47 closed, M48/M90 held for Colin); step 7 8 s locked-camera clip of front v2 (palm/tree sway, slow light change).
+- Why: critic cleared the front for steps 5-7; Colin's run-straight-through rule; Colin "Keep going" (2026-11-10 04:21).
+- Status: REVIEW-PENDING (critic on the clip).
