@@ -45,3 +45,8 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: 36 furniture items placed from the approved FF raster symbols, each marked PLAN or ASSUMED. Walls unchanged (r5L).
 - Why: Colin reported the first floor showed no furniture while the approved plan labels it.
 - Status: WIP. 2D checked headless (no page errors). 3D not checked. Bed sizes may be oversized. Critic review pending.
+
+## 2026-11-10 (Asia/Dubai) - FP-4B-FF r6F bed sizes and 3D check (WIP)
+- Files: active/floorplan3d-spike/FP-4B-FF/r6F_furniture/build_r6F.py; data/fp-4b-ff.plan.r6F.js/.json; standalone_r6F.html; STEPS.md.
+- What: beds set to 1800 x 2000 mm (ASSUMED, GF catalogue size). 3D view checked headless, no page errors.
+- Status: WIP. Wall re-trace (step 2) and steps 3 to 7 not done. Critic not run.
