@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashwood Estates 3D</title>
+<meta name="description" content="Interactive 3D viewers for the Ashwood Estates villa: exterior, ground floor, first floor (WIP), model versus reference pictures, and the progress board.">
+<style>
+:root { --bg:#f6f4ef; --fg:#1d1f22; --muted:#5d6269; --card:#ffffff; --line:#d9d5cc; --accent:#7a5c2e; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg:#15171a; --fg:#eceae4; --muted:#a6a9ad; --card:#1e2125; --line:#33373d; --accent:#d1ad72; }
+}
+:root[data-theme="dark"] { --bg:#15171a; --fg:#eceae4; --muted:#a6a9ad; --card:#1e2125; --line:#33373d; --accent:#d1ad72; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 32px 16px 48px; }
+h1 { font-size: 1.7rem; margin: 0 0 6px; }
+p.lead { color: var(--muted); margin: 0 0 24px; }
+ul.links { list-style:none; padding:0; margin:0; display:grid; gap:12px; }
+ul.links a { display:block; padding:16px; background:var(--card); border:1px solid var(--line); border-radius:10px; color:var(--fg); text-decoration:none; }
+ul.links a:hover, ul.links a:focus { border-color: var(--accent); }
+ul.links strong { display:block; font-size:1.05rem; color: var(--accent); }
+ul.links span { color: var(--muted); font-size: .95rem; }
+.tag { display:inline-block; margin-left:6px; padding:1px 8px; border-radius:999px; border:1px solid var(--accent); color:var(--accent); font-size:.75rem; vertical-align:middle; }
+footer { margin-top: 28px; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Ashwood Estates 3D</h1>
+  <p class="lead">Interactive viewers for the villa. Concept visualisation: not survey-verified, not construction-ready, not certified CAD.</p>
+  <ul class="links">
+    <li><a href="exterior.html"><strong>Exterior 3D</strong><span>Front, left, right, site and pool views, rear and garden (rear in progress), and side-by-side checks.</span></a></li>
+    <li><a href="ground-floor.html"><strong>Ground floor 3D</strong><span>Walk the ground floor with furniture, materials and lighting.</span></a></li>
+    <li><a href="first-floor.html"><strong>First floor 3D <span class="tag">WIP</span></strong><span>Furnished from the approved plan. Walls are still being checked by the critic.</span></a></li>
+    <li><a href="pictures.html"><strong>Pictures: model vs reference</strong><span>The model checked against the reference images, inside and out.</span></a></li>
+    <li><a href="progress.html"><strong>Progress board</strong><span>Every work lane, its current step and loop, and decisions waiting.</span></a></li>
+  </ul>
+  <footer>Roof floor has no 3D view yet (still at step 3).</footer>
+</main>
+</body>
+</html>
