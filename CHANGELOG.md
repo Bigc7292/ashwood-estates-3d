@@ -156,3 +156,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: re-rendered the site view at lock v2 with pool v3 as the loop 2 baseline (no page change), for the critic's loop 2 re-check.
 - Why: Colin "Keep going" (2026-11-10 04:21); loop 2 after his pool ruling.
 - Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Site loop 2 pass 1, warm sand outside the plot
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/site_pass.html` (optional `outside_ground` colour hook; loads pass 1), new `overrides/site_loop2_pass1_sand.js`, `views/site/shots/site_loop2_pass1_side_by_side.png`, `views/site/STEP_LOG.md`.
+- What: outside-plot ground recoloured to the reference's sampled sand (RGB ~223,201,179; model now 222,201,177). Plot boundary and camera unchanged.
+- Why: critic's first-ranked CAD-free site fix in loop 2.
+- Status: REVIEW-PENDING (critic).

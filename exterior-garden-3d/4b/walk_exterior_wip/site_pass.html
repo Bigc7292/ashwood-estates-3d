@@ -24,6 +24,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/site_step4_pass1_path_tone.js"></script>
 <script src="./overrides/site_step4_pass2_lawn_tone.js"></script>
 <script src="./overrides/site_step4_pass3_bed_tone.js"></script>
+<script src="./overrides/site_loop2_pass1_sand.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -269,7 +270,7 @@ window.__LEAFSETS = [];
     group.add(im); } }
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
-{ const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
+{ const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:((window.MODEL_OVERRIDES||{}).outside_ground)||0xc9c6bd, roughness:1});   // site loop 2 pass 1: optional MODEL_OVERRIDES.outside_ground colour
   for (const [x0,z0,x1,z1] of [[cx-R,cz-R,cx+R,0],[cx-R,SD,cx+R,cz+R],[cx-R,0,0,SD],[SW,0,cx+R,SD]]) {
     const out = new THREE.Mesh(new THREE.PlaneGeometry(x1-x0, z1-z0), outM); out.rotation.x=-Math.PI/2; out.position.set((x0+x1)/2,-0.06,(z0+z1)/2); out.receiveShadow=true; scene.add(out); } }
 // cameras ------------------------------------------------------------------------------------
