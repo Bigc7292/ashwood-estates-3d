@@ -24,6 +24,8 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/site_step4_pass1_path_tone.js"></script>
 <script src="./overrides/site_step4_pass2_lawn_tone.js"></script>
 <script src="./overrides/site_step4_pass3_bed_tone.js"></script>
+<script src="./overrides/site_loop2_pass1_sand.js"></script>
+<script src="./overrides/site_loop2_pass2_side_hedges.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -184,7 +186,11 @@ for (const w of M.water) {
 const clock = new THREE.Clock();
 // trees: generic neutral canopy placeholders at plan-symbol positions (species/height unknown)
 const trunkM = M_({color:0x6b5a46}), canopyM = M_({color:0x6f8a5a, roughness:1, transparent:true, opacity:.92});
+const _TS = (window.MODEL_OVERRIDES||{}).side_tree_style || null;   // site loop 2 pass 2: optional clipped-crown look for the plan-symbol garden trees (positions unchanged)
 for (const t of M.trees) { if (hideCats.has('trees')) break;
+  if (_TS && !t.courtyard && (t.x < (_TS.xL||3) || t.x > (_TS.xR||15.5))) { const r = t.r*(_TS.rScale||0.75), h = _TS.top - _TS.base;
+    const cm = M_({color:_TS.color, roughness:1}); const cn = new THREE.Mesh(new THREE.SphereGeometry(1,18,12), cm);
+    cn.scale.set(r, h/2, r); cn.position.set(t.x, _TS.base + h/2, t.z); cn.castShadow=true; cn.receiveShadow=true; group.add(cn); continue; }
   const ht = t.courtyard ? 3.0 : 4.0;
   const tr = new THREE.Mesh(new THREE.CylinderGeometry(.12,.16,ht,8), trunkM); tr.position.set(t.x, (t.courtyard?0.45:0)+ht/2, t.z); tr.castShadow=true; group.add(tr);
   const cn = new THREE.Mesh(new THREE.SphereGeometry(t.r,18,12), canopyM); cn.scale.y=.8; cn.position.set(t.x, (t.courtyard?0.45:0)+ht+t.r*.5, t.z); cn.castShadow=true; group.add(cn); }
@@ -269,7 +275,7 @@ window.__LEAFSETS = [];
     group.add(im); } }
 // surrounding neutral ground (outside site diagram = unknown context)
 // (a ring around the plot, not one big plane: a plane under the plot would cover the dug water basins)
-{ const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:0xc9c6bd, roughness:1});
+{ const [SW,SD]=M.meta.site_m, R=100, outM=M_({color:((window.MODEL_OVERRIDES||{}).outside_ground)||0xc9c6bd, roughness:1});   // site loop 2 pass 1: optional MODEL_OVERRIDES.outside_ground colour
   for (const [x0,z0,x1,z1] of [[cx-R,cz-R,cx+R,0],[cx-R,SD,cx+R,cz+R],[cx-R,0,0,SD],[SW,0,cx+R,SD]]) {
     const out = new THREE.Mesh(new THREE.PlaneGeometry(x1-x0, z1-z0), outM); out.rotation.x=-Math.PI/2; out.position.set((x0+x1)/2,-0.06,(z0+z1)/2); out.receiveShadow=true; scene.add(out); } }
 // cameras ------------------------------------------------------------------------------------
