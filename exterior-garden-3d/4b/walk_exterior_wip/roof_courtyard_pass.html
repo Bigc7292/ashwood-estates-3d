@@ -15,6 +15,11 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <div id="cap"><b>Concept visualisation: not survey-verified, not construction-ready, not certified</b><br>
 <span id="sub">Layout: approved CAD V4 (pt16u) + 4B-GF span calibration (~, ±3%). Heights, levels, RF (NTS) and grey placeholder items are display assumptions. Not a marketing render.</span></div>
 <script src="../model/data/model.js"></script>
+<!-- COURTYARD and ROOF TERRACE views (lane exterior-roof-courtyard). Shared pool v3 (M44) then per-view overrides. -->
+<script src="./overrides/shared_pool_v3.js"></script>
+<script src="./overrides/courtyard_pass9_canopy_radius.js"></script>
+<script src="./overrides/courtyard_pass10_hide_perimeter_trees.js"></script>
+<script src="./overrides/courtyard_pass12_glass_visible.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -67,6 +72,8 @@ const MAT = {
 const ph = M_({color:0xa7a9ab, roughness:.9});
 MAT.bronze_dark = M_({color:0x3a2c20, roughness:.55, metalness:.35});   // slat screen (front pass 5)
 MAT.led = M_({color:0xfff2d6, emissive:0xffdcaa, emissiveIntensity:2.4});   // soffit LED lines (front step 4)
+// courtyard pass 12: view-only glass (see overrides/courtyard_pass12_glass_visible.js). Opaque-ish, double-sided, so the back glazing reads as glass.
+if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.courtyard_glass) MAT.glass = M_({color:0x9fbcc2, roughness:.05, metalness:.1, transparent:true, opacity:.8, side:THREE.DoubleSide});
 // step 6 glazing (front pass 8): dark clear glass so the lit rooms behind read through it
 if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
   // critic batch (a), 2026-11-10: clear physical glass (transmission 0.9, low tint) instead of dark tinted glass; rooms behind are pale and lit, not brown

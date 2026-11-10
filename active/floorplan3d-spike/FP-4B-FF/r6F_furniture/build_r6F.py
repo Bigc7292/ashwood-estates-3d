@@ -48,6 +48,7 @@ out = []; n = 0
 for room, typ, name, status, (x1, y1, x2, y2) in ITEMS:
     cx = ((x1+x2)/4 - X0) * MM; cy = ((y1+y2)/4 - Y0) * MM
     w = (x2-x1)/2 * MM; d = (y2-y1)/2 * MM
+    if typ == 'bed': w, d = 1800.0, 2000.0   # GF catalogue double bed 1800x2000 (ASSUMED size; symbol extent includes headboard and pillows)
     n += 1
     out.append({'id': f'ff-f{n:02d}', 'room': room, 'type': typ, 'name': name, 'status': status,
                 'cx': round(cx), 'cy': round(cy), 'w': round(w), 'd': round(d), 'rot': 0})

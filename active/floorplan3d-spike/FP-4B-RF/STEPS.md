@@ -18,13 +18,18 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
   - FF: 13.58 x 24.95 m (group `source_wall_poche`, 26 paths)
   - RF: 13.51 x 22.82 m (group `source_wall_poche`, 11 paths)
 - RF fits inside the GF and FF envelope on both axes. This is consistent, not proven: each sheet is a separate crop with its own frame, so no shared origin exists and a true overlay can't be made from the sheets alone.
-- Stated RF pieces: 3.80 x 15.70 m run, 43.92 m2 roof floor. Both are dimensions the sheet gives, not traced.
+- Stated RF labels (sheet text, not traced): LIFT 1.60 x 1.80 m; POWDER 1.50 x 2.40 m; PANTRY 2.00 x 2.40 m; MEP 3.80 x 15.70 m (corrected: this is the MEP label, not a roof run); TERRACE UNKNOWN; FLOOR AREA 43.92 m2.
 - Sheet legend "UNAPPROVED / NOT SURVEY CAD" logged as a presentation label; the sheet is approved in ACTIVE_PIPELINE.json (pt16u).
 
-## Step 3 Blockout: STARTED (walls available; no blockout built yet)
-- Walls: the vector poche is now available, so the blockout can be built from it.
-- Still to do: rectangle-decompose the RF wall mask into boxes (as GF did), place rooms, then add furniture from the labelled markers, which are not extracted yet.
-- Status: IN PROGRESS.
+## Step 3 Blockout: WALLS + ASSUMED ROOMS DONE; FURNITURE OPEN
+- Walls as boxes: done (165 boxes, lossless; `data/rf_walls_boxes.json`).
+- Rooms: ASSUMED rectangles, `adapter/rf_rooms_assumed.py` -> `data/rf_rooms_assumed.json`. Each is centred on its label point with the label size. Not traced. Status ASSUMED on every room.
+  - LIFT 1.60 x 1.80 m; POWDER 1.50 x 2.40 m; PANTRY 2.00 x 2.40 m; MEP 3.80 x 15.70 m (service strip).
+  - POWDER and PANTRY overlap by about 150 mm in x. Flagged, not fixed.
+  - TERRACE not drawn (no size on sheet).
+- Open ruling for Colin: the sheet does not close its envelope ("ENVELOPE UNKNOWN"), so the walls enclose no room. Working default is the ASSUMED rectangles above. Colin may choose differently on the decision card; if he does, switch.
+- Furniture: NOT mapped. 12 seat rects in 4 clusters, 3 seat circles, about 10 small rects in source_diagram. Needs the "Existing furniture" legend swatch to map.
+- Status: IN PROGRESS (walls and assumed rooms done; furniture open).
 
 ## Steps 4 to 7: NOT STARTED
 - Step 4 Grime / finish, step 5 Printed matter, step 6 Critique (independent critic, side-by-side with brochure p15 to p17 and V4 RF plan), step 7 Motion.
@@ -32,4 +37,4 @@ Lane: Build villa roof floor in 3D (branch `lane/roof-floor`). Status: step 1 an
 - Viewer target: match `FP-4B-GF/` v2 in rooms, furniture, materials and lighting.
 
 ## Loop tracker
-Loop 1. Current step: 3 (walls extracted; blockout in progress).
+Loop 1. Current step: 3 (walls and ASSUMED rooms done; furniture open). Steps 4 to 7 next.

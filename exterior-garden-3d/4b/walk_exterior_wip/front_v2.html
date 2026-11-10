@@ -37,6 +37,8 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/front_v2_pass5_palm_colour.js"></script>
 <script src="./overrides/front_v2_pass6_palm_ring.js"></script>
 <script src="./overrides/front_v2_pass7_gate_bronze.js"></script>
+<script src="./overrides/front_v2_pass8_gate_rail.js"></script>
+<script src="./overrides/front_v2_pass9_gate_width.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -103,8 +105,9 @@ if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.glass_mode==='interior') {
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 // front v2 pass 7: optional MODEL_OVERRIDES.mat_tune = {matName:{color, metalness, roughness, emissive, barFill}}; barFill redraws the gate-bar
 // texture (same 21 px pitch, 8 px bars, alpha pattern kept) in that colour. Without mat_tune nothing changes.
-for (const [k, v] of Object.entries((window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.mat_tune) || {})) { const m = MAT[k]; if (!m) continue;
-  if (v.barFill && k === 'bronze_bars') m.map = tex(g=>{ g.clearRect(0,0,256,256); for(let x=0;x<256;x+=21){ g.fillStyle=v.barFill; g.fillRect(x,0,8,256);} }, 0.35);
+// pass 8 adds: from (clone another material under a new name first), barPitch / barWidth (texture px, defaults 21 / 8).
+for (const [k, v] of Object.entries((window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.mat_tune) || {})) { if (v.from && MAT[v.from]) MAT[k] = MAT[v.from].clone(); const m = MAT[k]; if (!m) continue;
+  if (v.barFill && k === 'bronze_bars') m.map = tex(g=>{ g.clearRect(0,0,256,256); for(let x=0;x<256;x+=(v.barPitch||21)){ g.fillStyle=v.barFill; g.fillRect(x,0,(v.barWidth||8),256);} }, 0.35);
   if (v.color !== undefined) m.color.setHex(v.color); if (v.metalness !== undefined) m.metalness = v.metalness;
   if (v.roughness !== undefined) m.roughness = v.roughness; if (v.emissive !== undefined) m.emissive.setHex(v.emissive); m.needsUpdate = true; }
 function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }

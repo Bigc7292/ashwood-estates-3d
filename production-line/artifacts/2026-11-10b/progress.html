@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Ashwood Build Progress</title>
+<style>
+:root { --bg:#f6f4ef; --surface:#fff; --fg:#1d1f1c; --muted:#5d625b; --line:#d9d6cc; --done:#3d6b47; --active:#8a5a1f; --todo:#8b8f87; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#151614; --surface:#1e201d; --fg:#ece9e1; --muted:#a6aaa1; --line:#34372f; --done:#8fc79a; --active:#e0b679; --todo:#7d8279; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg:#151614; --surface:#1e201d; --fg:#ece9e1; --muted:#a6aaa1; --line:#34372f; --done:#8fc79a; --active:#e0b679; --todo:#7d8279; color-scheme: dark; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 Georgia,"Times New Roman",serif; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); padding-block:20px 40px; }
+h1 { font-size:24px; margin:0 0 4px; font-weight:600; }
+h2 { font-size:16px; margin:24px 0 8px; font-weight:600; }
+.sub { color:var(--muted); margin:0 0 12px; max-width:64ch; }
+.box { background:var(--surface); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+table { width:100%; border-collapse:collapse; }
+th, td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600; }
+tr:last-child td { border-bottom:none; }
+td small { color:var(--muted); display:block; }
+.tag { display:inline-block; font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid currentColor; white-space:nowrap; }
+.done { color:var(--done); } .active { color:var(--active); } .todo { color:var(--todo); }
+.wrap { overflow-x:auto; }
+ul { padding-left:18px; margin:0; }
+a { color:var(--active); }
+li { margin:4px 0; }
+</style>
+</head>
+<body>
+<h1>Ashwood build progress</h1>
+<p class="sub">Status as of 2026-11-10, 08:35 (Dubai). Every lane runs steps 1 to 7 and loops back until the critic passes, per your rule. Concept visualisation, not survey-verified, not construction-ready, not certified CAD.</p>
+<h2>3D models to open</h2>
+<div class="box" style="padding:10px 14px"><ul>
+<li><a href="https://claude.ai/artifact/3dty5cFKAgW29MkQVLpAtJ">Exterior</a>: front, left, right, site with pool v3, rear, and side-by-side checks</li>
+<li><a href="https://claude.ai/artifact/ABhzr2yy6MKMWfQXY3tB2v">Ground floor</a>: r3, press "3D Scene"</li>
+<li><a href="https://claude.ai/artifact/MAPDK4oRWv1EJJ1dMPfiHo">First floor</a>: r6F furnished WIP, press "3D Scene"</li>
+<li><a href="https://claude.ai/artifact/Tu2wfHdHwxWgRSbQyPyhH3">Roof floor</a>: step 3 walls blockout (WIP)</li>
+</ul></div>
+<h2>Exterior: 4-bed, by view</h2>
+<div class="box wrap"><table><tr><th>Lane / view</th><th>Step now</th><th>Loop</th><th>Status</th><th>Notes</th></tr><tr><td>Left side<small>ELEV-LEFT, locked camera</small></td><td>7 of 7</td><td>1</td><td><span class="tag done">Steps 1–7 passed</span></td><td>Critic passed each step; side-by-side in the exterior viewer.</td></tr><tr><td>Right side<small>ELEV-RIGHT, locked camera</small></td><td>7 of 7</td><td>1</td><td><span class="tag done">Steps 1–7 passed</span></td><td>Critic passed each step; M37 boundary-wall residual flagged for you.</td></tr><tr><td>Site overview + pool<small>Aerial, site lock v2</small></td><td>5–7</td><td>1</td><td><span class="tag active">Steps 1–4 passed</span></td><td>CAD house size kept (M42). Pool v3: further back, wider, with seating, per your instruction.</td></tr><tr><td>Front<small>ELEV-FRONT, restored v2</small></td><td>7, motion clip with the critic</td><td>2</td><td><span class="tag active">Steps 1–6 passed</span></td><td>v2 passes 1–9 critic-passed (entry tree, palms, gate). M48 (FF screen) and M90 (gate width past CAD) held for you. The outside agent's pass 17 is not used.</td></tr><tr><td>Rear + garden<small>Rear v3</small></td><td>6, pass 2</td><td>1</td><td><span class="tag active">Being corrected</span></td><td>Width passes. Height is about 11% off because storey heights are display-only (M45, flagged for you).</td></tr><tr><td>Courtyard<small>Exterior courtyard view</small></td><td>6, pass 11</td><td>1</td><td><span class="tag active">WIP</span></td><td>Camera solved to the CAD glazing; the glazing is not yet visible in this view.</td></tr><tr><td>Roof terrace<small>Exterior view</small></td><td>6, pass 2</td><td>1</td><td><span class="tag active">WIP</span></td><td>Camera passes started.</td></tr><tr><td>Blender official renders<small>F1 script</small></td><td>6</td><td>1</td><td><span class="tag active">Needs your PC</span></td><td>Box render done in the cloud; the full render needs Blender on your PC (use build_scene_f1.py).</td></tr></table></div>
+<h2>Interior: by floor</h2>
+<div class="box wrap"><table><tr><th>Lane / view</th><th>Step now</th><th>Loop</th><th>Status</th><th>Notes</th></tr><tr><td>Ground floor<small>r3: entry stone, courtyard</small></td><td>6 critique; 7 walkthrough</td><td>1</td><td><span class="tag active">Steps 1–6 merged</span></td><td>Critic pass and the step 7 walkthrough are in progress (draft PR #8).</td></tr><tr><td>First floor<small>r6F, furnished</small></td><td>2 Layout</td><td>2</td><td><span class="tag active">WIP</span></td><td>Scale settled at 35.53 mm/px (assumption). 36 furniture items from plan symbols. Walls still the earlier trace; critic not yet run.</td></tr><tr><td>Roof floor<small>RF walls from the approved sheet</small></td><td>3 Blockout</td><td>1</td><td><span class="tag active">Walls done</span></td><td>165 wall boxes from the approved sheet (viewable). Rooms are assumed rectangles; terrace size not on the sheet; furniture next.</td></tr></table></div>
+<h2>Waiting on you</h2>
+<div class="box" style="padding:10px 14px"><ul>
+<li>M48 / M90: front first-floor screen edge and gate width past the CAD span.</li>
+<li>M45: rear storey heights are display-only, not from the V4 CAD (about 11% height gap).</li>
+<li>M37: right boundary wall residual, accepted by the critic, flagged for you.</li>
+<li>M32: front-right first-floor stone box vs the CAD balcony.</li>
+<li>M31: image-only daybed and in-pool loungers, not added.</li>
+<li>M26 / M33: roof-floor block hidden in the front and left views (assumption).</li>
+<li>Blender renders need your PC.</li>
+</ul></div>
+<p class="sub" style="margin-top:16px">Steps: 1 Reference, 2 Layout, 3 Blockout, 4 Finish, 5 Printed matter, 6 Critique, 7 Motion. Source: STATUS.md and the lane step logs on <code>claude/rules-and-status</code>.</p>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "view": "OUTDOOR-ROOF-TERRACE",
-  "status": "LOCK DRAFT, pass 1 (ASSUMPTION: camera at RF floor eye height, drawn from RF walls; not yet solved)",
+  "status": "LOCK DRAFT, pass 2 (ASSUMPTION: camera at RF floor + 1.6 m; target raised to y 10.6 to tilt up so the far parapet and sky fill the upper half, per critic fail on pass 1)",
   "locked": "2026-11-09 Asia/Dubai, lane exterior-roof-courtyard",
   "reference_image": "exterior-garden-3d/4b/step1_reference/generated_approved/EXT-4b-OUTDOOR-ROOF-TERRACE_GENERATED-CONCEPT.png",
   "page": "exterior-garden-3d/4b/walk_exterior_wip/roof_courtyard_pass.html",
@@ -15,7 +15,7 @@
     ],
     "tgt": [
       9.5,
-      9.0,
+      10.6,
       19.0
     ],
     "fov": 55
@@ -28,7 +28,7 @@
     ],
     "target": [
       9.5,
-      9.0,
+      10.6,
       19.0
     ],
     "vertical_fov_deg": 55,
@@ -37,7 +37,7 @@
       720
     ]
   },
-  "solve_method": "ASSUMPTION for pass 1: camera at RF floor plus 1.6 m eye height, placed on the open roof between the west RF wall (x 3.0-3.35, z 10.3-22.5) and the RF block east of x 7.1. Aimed north-east along the terrace toward the reference's open side (palms). Solve from the RF walls and the terrace opening in later passes.",
+  "solve_method": "ASSUMPTION for pass 1: camera at RF floor plus 1.6 m eye height, placed on the open roof between the west RF wall (x 3.0-3.35, z 10.3-22.5) and the RF block east of x 7.1. Aimed north-east along the terrace toward the reference's open side (palms). Solve from the RF walls and the terrace opening in later passes. Pass 2: target raised from y 9.0 to y 10.6 (tilt up ~8 deg). Position and fov unchanged. No furniture or palms yet.",
   "check": "Side-by-side at 1280x720: terrace edge and sofa area on the same lines as the reference. One fix per critic pass; camera stays locked once basically identical.",
   "label": "assumption-derived camera; reference is an AI-generated concept image, not a photograph or survey"
 }

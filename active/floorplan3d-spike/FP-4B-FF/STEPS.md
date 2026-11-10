@@ -60,3 +60,8 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 - Types: most are ASSUMED (symbol shape read by eye: wardrobe, dresser, nightstand, vanity). Sizes are derived from the symbol extent, so beds (about 3.1 m long) may be oversized because the symbol includes headboard and pillows. Not verified.
 - Not done: the wall re-trace (step 2, still FAIL), the 3D view check, and the critic review. Viewer checked in 2D only (no page errors).
 - Status: WIP, not critic-reviewed.
+
+## Furniture r6F, loop 2 (2026-11-10)
+- Beds set to the GF catalogue double bed, 1800 x 2000 mm (ASSUMED size). Previous symbol-extent sizes (about 3.1 m) were oversized.
+- 3D view checked headless: renders, no page errors, 36 items visible (beds, sofa, wardrobes, bathtub, vanities, WCs). Walls still the r5L trace with stray partition pieces; step 2 wall re-trace not done.
+- Status: WIP. Critic review not run. Steps 3 to 7 not done.

@@ -1,0 +1,3 @@
+# Published artifact builds, 2026-11-10 08:35 Dubai
+
+Single-file pages published to Colin's links. The phone layer comes from `mobile-layout/apply_mobile_shell.py`. Exterior: https://claude.ai/artifact/3dty5cFKAgW29MkQVLpAtJ (front v2 pass 9). First floor: https://claude.ai/artifact/MAPDK4oRWv1EJJ1dMPfiHo (r6F bed fix). Roof floor, new: https://claude.ai/artifact/Tu2wfHdHwxWgRSbQyPyhH3 (step 3 walls from `FP-4B-RF/data/rf_walls_boxes.json`; source page `roof-floor_step3_source.html`). Progress: https://claude.ai/artifact/XZnAbwEKiLHGLLaWnqBq1C. The earlier set in `../2026-11-10/` is kept unchanged. Concept visualisation, not survey-verified.
