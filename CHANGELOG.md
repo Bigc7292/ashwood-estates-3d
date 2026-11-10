@@ -1,3 +1,7 @@
+## 2026-11-10 (Asia/Dubai), shareable site refresh (lane/vercel-site)
+
+- **site/ refreshed with the 08:35 builds** (integrator hand-off). Files: `site/exterior.html` (front v2 pass 9 + mobile layer), `site/first-floor.html` (r6F bed fix + mobile), `site/progress.html`, new `site/roof-floor.html` (step 3 walls, WIP), `site/index.html` (roof floor link, six viewers), `site/README.md`. Copied from `production-line/artifacts/2026-11-10b/`; ground floor and pictures unchanged from `2026-11-10/`. Headless Chromium check at 390 px on all seven pages before push. Status: DONE on lane/vercel-site; reaches main on Colin's next go-ahead.
+
 ## 2026-11-10 (Asia/Dubai), shareable site (lane/vercel-site)
 
 - **Static site for Vercel** (Colin, 03:48 Dubai, "commit and push everything to github and also to vercel, so i have a shareable url"). New folder `site/`: `index.html` (landing page linking the five viewers, mobile layout, light/dark), `exterior.html`, `ground-floor.html`, `first-floor.html` (WIP), `pictures.html`, `progress.html` (copies of `production-line/artifacts/2026-11-10/`, renamed), `vercel.json` (clean URLs, noindex), `README.md`. Checked in headless Chromium at 390 px: six pages load with 0 console errors and 0 failed requests; exterior and GF render a canvas; no secrets, .env or logs in the folder. Status: WIP until the Vercel URL is live.
