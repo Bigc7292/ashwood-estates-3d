@@ -1,3 +1,7 @@
+## 2026-11-10 (Asia/Dubai), shareable site (lane/vercel-site)
+
+- **Static site for Vercel** (Colin, 03:48 Dubai, "commit and push everything to github and also to vercel, so i have a shareable url"). New folder `site/`: `index.html` (landing page linking the five viewers, mobile layout, light/dark), `exterior.html`, `ground-floor.html`, `first-floor.html` (WIP), `pictures.html`, `progress.html` (copies of `production-line/artifacts/2026-11-10/`, renamed), `vercel.json` (clean URLs, noindex), `README.md`. Checked in headless Chromium at 390 px: six pages load with 0 console errors and 0 failed requests; exterior and GF render a canvas; no secrets, .env or logs in the folder. Status: WIP until the Vercel URL is live.
+
 ## 2026-11-10 — public WIP preview (lane/preview)
 
 - Added `tools/preview/build_and_deploy.sh` and `tools/preview/README.md`.
