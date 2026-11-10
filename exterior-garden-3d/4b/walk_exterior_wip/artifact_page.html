@@ -10,6 +10,8 @@ body{margin:0;min-height:100vh;overflow:hidden;background:#cfd8de;font-family:Ar
 #cap b{color:#ffd58a}
 #title{position:absolute;left:0;top:0;background:rgba(20,28,24,.78);color:#fff;padding:8px 14px;font-size:15px}
 #labels div{position:absolute;transform:translate(-50%,-100%);background:rgba(255,255,255,.88);border:1px solid #556;color:#123;font-size:12px;padding:2px 5px;white-space:nowrap}
+
+@media (max-width:800px){#title,#cap{display:none!important}}
 </style>
 <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js"}}</script>
 
@@ -18,6 +20,7 @@ body{margin:0;min-height:100vh;overflow:hidden;background:#cfd8de;font-family:Ar
 <div id="cap"><b>Concept visualisation: not survey-verified, not construction-ready, not certified</b><br>
 <span id="sub">Layout: approved CAD V4 (pt16u) + 4B-GF span calibration (~, ±3%). Heights, levels, RF (NTS) and grey placeholder items are display assumptions. Not a marketing render.</span></div>
 <script src="./data/model.js"></script>
+<script src="./overrides/shared_pool_v3.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from './vendor/three/examples/jsm/objects/Water2.js';

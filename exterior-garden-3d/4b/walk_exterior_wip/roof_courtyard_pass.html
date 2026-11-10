@@ -6,10 +6,14 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 #cap{position:absolute;left:0;right:0;bottom:0;background:rgba(20,28,24,.82);color:#fff;padding:9px 16px;font-size:15px;line-height:1.35}
 #cap b{color:#ffd58a}
 #title{position:absolute;left:0;top:0;background:rgba(20,28,24,.78);color:#fff;padding:8px 14px;font-size:15px}
+#backView{position:absolute;z-index:30;left:8px;top:44px;background:#9a4e28;color:#fff;text-decoration:none;border-radius:999px;padding:8px 14px;font:14px/1 Arial,sans-serif;font-weight:700}
 #labels div{position:absolute;transform:translate(-50%,-100%);background:rgba(255,255,255,.88);border:1px solid #556;color:#123;font-size:12px;padding:2px 5px;white-space:nowrap}
+
+@media (max-width:800px){#title,#cap{display:none!important}}
 </style>
 <script type="importmap">{"imports":{"three":"../model/vendor/three/build/three.module.js"}}</script>
 </head><body>
+<a id="backView" href="front_v2.html">Back</a>
 <div id="title">GENERATED 3D CONCEPT · Ashwood Estates 4-bedroom villa (4B) · <span id="vname"></span></div>
 <div id="labels"></div>
 <div id="cap"><b>Concept visualisation: not survey-verified, not construction-ready, not certified</b><br>
@@ -310,7 +314,7 @@ function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if
 let n=0;
 function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
   if (!window.__capture) { renderer.render(scene,cam); labels(); }   // view mode keeps animating (Water2, caustics); frame capture sets __capture and drives __frame
-  if(++n===12 && Q.get('view')) document.title='READY'; requestAnimationFrame(loop); }
+  if(++n===3 && Q.get('view')) { document.title='READY'; return; } requestAnimationFrame(loop); }
 loop();
 // step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.
 // Driven by a headless frame grabber; does nothing in walk mode. Motion amounts are display assumptions.
@@ -325,4 +329,4 @@ window.__frame = (t, T) => { window.__capture = true;
   const k = T ? t/T : 0;   // sun drifts slightly lower and warmer across the clip
   sun.position.set(_sun0.x - 4*k, _sun0.y - 3*k, _sun0.z); sun.intensity = _sunI0*(1 - 0.15*k);
   renderer.render(scene, cam); return true; };
-</script></body></html>
+</script><script src="../../../review/review.js"></script></body></html>

@@ -1,3 +1,10 @@
+## 2026-11-10 night (Asia/Dubai), Grok exterior handoff
+
+- Colin stopped for the night. Full record: `docs/HANDOFF_2026-11-10_NIGHT.md`. Tomorrow: `docs/TODO_2026-11-11.md`.
+- The reviewed exterior is `exterior-garden-3d/4b/villa.html` plus `villa-materials.glb`. Balloon trees hidden. Trees use `tex/bk/garden.glb`. Hedge bushes use `tex/bk/bush.glb`. Failed white olive and grass cards are kept but not loaded.
+- Rear pool shifted -3.78 m on Z, with a terrace, seating and clearer water. Courtyard water is a dark basin with a planted island, not the pool.
+- Saved review screenshots: `handoff/2026-11-10-night/review-inbox/`. Exterior review is not finished. No deploy.
+
 ## 2026-11-10 (Asia/Dubai), exterior quality_r1 presentation pass (branch `lane/exterior-quality`, change-set `viewer-quality-2026-11-10`, set 2)
 
 - **Technical labels opt-in / default off** in the quality lock cameras: `cameras/lock_{front,left,right,site,rear,site_full}.json` drop `labels:true` and use short view names (the long descriptive titles were overflowing the header bar over the scene — lead visual check). The concept disclaimer bar is unchanged and always shown; `VIEWS.labels` still turns labels on. Before-captures (labels on) remain valid for scene-pixel comparison; after-captures re-run labels-off.
