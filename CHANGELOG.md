@@ -174,3 +174,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - What: lawn tone set to the reference's sampled inner-lawn green-olive (RGB ~71,69,33; model now 75,78,36). Extents unchanged.
 - Why: critic's third-ranked site fix in loop 2.
 - Status: REVIEW-PENDING (critic).
+
+## 2026-11-10 (Asia/Dubai): Site loop 2 steps 5-7
+- Files: `exterior-garden-3d/4b/walk_exterior_wip/site_pass.html` (clipped side crowns grouped and added to the step 7 sway; leaf-set list no longer reset after them), `views/site/STEP_LOG.md`, new `views/site/step7/EXT-4b-OUTDOOR-SITE_loop2_step7_motion.mp4` (~0.2 MB), `views/site/step7/loop2_first_vs_last.png`, `views/site/shots/site_loop2_step5_front_fullsize_crop.png`.
+- What: step 5 "none in source" confirmed at full size; step 6 loop 2 record with open items for Colin (M42, M72, M91); step 7 locked-camera clip with crown sway and slow light change.
+- Why: critic cleared site loop 2 for steps 5-7.
+- Status: REVIEW-PENDING (critic on the clip).

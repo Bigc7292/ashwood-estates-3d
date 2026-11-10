@@ -191,7 +191,8 @@ const _TS = (window.MODEL_OVERRIDES||{}).side_tree_style || null;   // site loop
 for (const t of M.trees) { if (hideCats.has('trees')) break;
   if (_TS && !t.courtyard && (t.x < (_TS.xL||3) || t.x > (_TS.xR||15.5))) { const r = t.r*(_TS.rScale||0.75), h = _TS.top - _TS.base;
     const cm = M_({color:_TS.color, roughness:1}); const cn = new THREE.Mesh(new THREE.SphereGeometry(1,18,12), cm);
-    cn.scale.set(r, h/2, r); cn.position.set(t.x, _TS.base + h/2, t.z); cn.castShadow=true; cn.receiveShadow=true; group.add(cn); continue; }
+    cn.scale.set(r, h/2, r); cn.position.set(0, _TS.base + h/2, 0); cn.castShadow=true; cn.receiveShadow=true;
+    const cg = new THREE.Group(); cg.position.set(t.x, 0, t.z); cg.add(cn); group.add(cg); (window.__LEAFSETS = window.__LEAFSETS || []).push(cg); continue; }   // step 7: crowns sway with the leaf sets
   const ht = t.courtyard ? 3.0 : 4.0;
   const tr = new THREE.Mesh(new THREE.CylinderGeometry(.12,.16,ht,8), trunkM); tr.position.set(t.x, (t.courtyard?0.45:0)+ht/2, t.z); tr.castShadow=true; group.add(tr);
   const cn = new THREE.Mesh(new THREE.SphereGeometry(t.r,18,12), canopyM); cn.scale.y=.8; cn.position.set(t.x, (t.courtyard?0.45:0)+ht+t.r*.5, t.z); cn.castShadow=true; group.add(cn); }
@@ -241,7 +242,7 @@ window.__FRONDS = []; window.__PALMS = [];
         if (row.flowers && rnd()<0.7){ const f=new THREE.Mesh(new THREE.IcosahedronGeometry(rr*0.35,0), new THREE.MeshStandardMaterial({color:row.flowers, roughness:.9}));
           f.position.set(m.position.x+(rnd()-.5)*rr, cy+rr*0.7, m.position.z+(rnd()-.5)*rr); group.add(f); } } } } }
 // multi-stem trees (front pass 16): thin curved stems + an airy canopy of many small leaf clusters (instanced), gaps let sky/stone through
-window.__LEAFSETS = [];
+window.__LEAFSETS = window.__LEAFSETS || [];   // keep the site clipped crowns added above (site loop 2 step 7)
 { const T = (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.multiStemTrees) || [];
   let seed = 11; const rnd = ()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
   const barkM = new THREE.MeshStandardMaterial({color:0x6a5a48, roughness:.9});
