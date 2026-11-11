@@ -1,3 +1,8 @@
+## 2026-11-11 (Asia/Dubai), every window mirrors (branch `lane/villa-draco-fix`)
+
+- Every `MAT_glass` pane, not only the rear, is now a mirror of the space outside that wall. Windows on the terrace still show the pool, parasol and sky. Front, side, courtyard and entry windows mirror their own side instead of a flat sky colour. Panes on the same wall share one reflection, so the page does not render the scene once per window.
+- Balcony glass stays clear. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), window reflections (branch `lane/villa-draco-fix`)
 
 - The painted sky band on the rear panes is gone. Each rear opening (`GF_rear_glazing*`, `FF_rear_glazing*`) is now a mirror of the terrace: sky, parasol, loungers and pool, tinted like glass. The bronze frames stay in front of the glass. Balcony glass stays clear.

@@ -1,18 +1,12 @@
 
-function applyGlass(scene, root, renderer){
+function applyGlass(scene, root){
   const panes = [];
-  const rear = [];
   const glass = new THREE.MeshPhysicalMaterial({
     name: 'MAT_glass',
     color: 0x8ea3ab,
     metalness: 0.92,
     roughness: 0.06,
-    transmission: 0,
-    ior: 1.5,
-    envMapIntensity: 1.15,
-    clearcoat: 1,
-    clearcoatRoughness: 0.04,
-    side: THREE.FrontSide
+    envMapIntensity: 1.15
   });
   const bal = new THREE.MeshPhysicalMaterial({
     name: 'MAT_balglass',
@@ -24,7 +18,6 @@ function applyGlass(scene, root, renderer){
     ior: 1.5,
     transparent: true,
     opacity: 0.45,
-    envMapIntensity: 1,
     depthWrite: false,
     side: THREE.DoubleSide
   });
@@ -34,13 +27,10 @@ function applyGlass(scene, root, renderer){
     if (n === 'MAT_glass'){
       o.material = glass;
       o.castShadow = false;
-      o.renderOrder = 2;
       panes.push(o);
-      if (/rear_glazing/.test(o.name)) rear.push(o);
     } else if (n === 'MAT_balglass'){
       o.material = bal;
       o.castShadow = false;
-      o.renderOrder = 2;
     } else if (n === 'MAT_bronze'){
       o.material = new THREE.MeshStandardMaterial({
         name: 'MAT_bronze',
@@ -52,36 +42,124 @@ function applyGlass(scene, root, renderer){
       o.castShadow = true;
     }
   });
-  if (!rear.length) return;
-  const mirrors = [];
-  let reflecting = false;
-  rear.forEach((o) => {
+  const house = new THREE.Vector3(9.2, 4, 14);
+  const groups = new Map();
+  panes.forEach((o) => {
     o.updateWorldMatrix(true, false);
     if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
     const b = o.geometry.boundingBox.clone().applyMatrix4(o.matrixWorld);
-    const w = b.max.x - b.min.x, h = b.max.y - b.min.y;
-    if (w < 0.2 || h < 0.2) return;
-    o.visible = false;
-    const mirror = new Reflector(new THREE.PlaneGeometry(w - 0.02, h - 0.02), {
-      color: 0xc5d5dc,
-      textureWidth: 384,
-      textureHeight: 384,
-      clipBias: 0.003
+    const size = new THREE.Vector3(), center = new THREE.Vector3();
+    b.getSize(size);
+    b.getCenter(center);
+    let axis = 0;
+    if (size.y <= size.x && size.y <= size.z) axis = 1;
+    if (size.z <= size.x && size.z <= size.y) axis = 2;
+    if (axis === 1) return;
+    const sign = center.getComponent(axis) >= house.getComponent(axis) ? 1 : -1;
+    const plane = sign > 0 ? b.max.getComponent(axis) : b.min.getComponent(axis);
+    const key = axis + ':' + sign + ':' + Math.round(plane * 5);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push({ o, axis, sign, plane, center, size, name: o.name });
+  });
+  const mirrors = [];
+  let reflecting = false;
+  const clipBias = 0.003;
+  groups.forEach((items) => {
+    const rt = new THREE.WebGLRenderTarget(512, 512);
+    const virtualCamera = new THREE.PerspectiveCamera();
+    const tint = new THREE.Color(0xc5d5dc);
+    const meshes = items.map((info) => {
+      const w = info.axis === 0 ? info.size.z : info.size.x;
+      const h = info.size.y;
+      const mat = new THREE.ShaderMaterial({
+        name: 'MAT_window_mirror',
+        uniforms: THREE.UniformsUtils.clone(Reflector.ReflectorShader.uniforms),
+        vertexShader: Reflector.ReflectorShader.vertexShader,
+        fragmentShader: Reflector.ReflectorShader.fragmentShader
+      });
+      mat.uniforms.color.value = tint;
+      mat.uniforms.tDiffuse.value = rt.texture;
+      mat.uniforms.textureMatrix.value = new THREE.Matrix4();
+      const mesh = new THREE.Mesh(new THREE.PlaneGeometry(Math.max(0.05, w - 0.02), Math.max(0.05, h - 0.02)), mat);
+      mesh.position.copy(info.center);
+      mesh.position.setComponent(info.axis, info.plane + info.sign * 0.02);
+      mesh.rotation.y = info.axis === 2 ? (info.sign > 0 ? 0 : Math.PI) : (info.sign > 0 ? Math.PI / 2 : -Math.PI / 2);
+      mesh.name = 'PROC_window_' + info.name;
+      mesh.userData.planeAxis = info.axis;
+      mesh.userData.planeSign = info.sign;
+      info.o.visible = false;
+      scene.add(mesh);
+      mirrors.push(mesh);
+      return mesh;
     });
-    mirror.position.set((b.min.x + b.max.x) / 2, (b.min.y + b.max.y) / 2, b.min.z - 0.015);
-    mirror.rotation.y = Math.PI;
-    mirror.name = 'PROC_window_' + o.name;
-    const pass = mirror.onBeforeRender;
-    mirror.onBeforeRender = function (renderer, scene, camera) {
+    const leader = meshes[0];
+    const normal = new THREE.Vector3();
+    const reflectorWorldPosition = new THREE.Vector3();
+    const cameraWorldPosition = new THREE.Vector3();
+    const rotationMatrix = new THREE.Matrix4();
+    const lookAtPosition = new THREE.Vector3();
+    const view = new THREE.Vector3();
+    const target = new THREE.Vector3();
+    const q = new THREE.Vector4();
+    const reflectorPlane = new THREE.Plane();
+    const clipPlane = new THREE.Vector4();
+    leader.onBeforeRender = function (renderer, scene, camera) {
       if (reflecting) return;
+      reflectorWorldPosition.setFromMatrixPosition(leader.matrixWorld);
+      cameraWorldPosition.setFromMatrixPosition(camera.matrixWorld);
+      rotationMatrix.extractRotation(leader.matrixWorld);
+      normal.set(0, 0, 1).applyMatrix4(rotationMatrix);
+      view.subVectors(reflectorWorldPosition, cameraWorldPosition);
+      if (view.dot(normal) > 0) return;
+      view.reflect(normal).negate().add(reflectorWorldPosition);
+      rotationMatrix.extractRotation(camera.matrixWorld);
+      lookAtPosition.set(0, 0, -1).applyMatrix4(rotationMatrix).add(cameraWorldPosition);
+      target.subVectors(reflectorWorldPosition, lookAtPosition);
+      target.reflect(normal).negate().add(reflectorWorldPosition);
+      virtualCamera.position.copy(view);
+      virtualCamera.up.set(0, 1, 0).applyMatrix4(rotationMatrix);
+      virtualCamera.up.reflect(normal);
+      virtualCamera.lookAt(target);
+      virtualCamera.far = camera.far;
+      virtualCamera.updateMatrixWorld();
+      virtualCamera.projectionMatrix.copy(camera.projectionMatrix);
+      meshes.forEach((m) => {
+        const tm = m.material.uniforms.textureMatrix.value;
+        tm.set(0.5, 0, 0, 0.5, 0, 0.5, 0, 0.5, 0, 0, 0.5, 0.5, 0, 0, 0, 1);
+        tm.multiply(virtualCamera.projectionMatrix);
+        tm.multiply(virtualCamera.matrixWorldInverse);
+        tm.multiply(m.matrixWorld);
+      });
+      reflectorPlane.setFromNormalAndCoplanarPoint(normal, reflectorWorldPosition);
+      reflectorPlane.applyMatrix4(virtualCamera.matrixWorldInverse);
+      clipPlane.set(reflectorPlane.normal.x, reflectorPlane.normal.y, reflectorPlane.normal.z, reflectorPlane.constant);
+      const pe = virtualCamera.projectionMatrix.elements;
+      q.x = (Math.sign(clipPlane.x) + pe[8]) / pe[0];
+      q.y = (Math.sign(clipPlane.y) + pe[9]) / pe[5];
+      q.z = -1;
+      q.w = (1 + pe[10]) / pe[14];
+      clipPlane.multiplyScalar(2 / clipPlane.dot(q));
+      pe[2] = clipPlane.x;
+      pe[6] = clipPlane.y;
+      pe[10] = clipPlane.z + 1 - clipBias;
+      pe[14] = clipPlane.w;
       reflecting = true;
       mirrors.forEach((m) => { m.visible = false; });
-      pass(renderer, scene, camera);
+      const prevTarget = renderer.getRenderTarget();
+      const prevXr = renderer.xr.enabled;
+      const prevShadow = renderer.shadowMap.autoUpdate;
+      renderer.xr.enabled = false;
+      renderer.shadowMap.autoUpdate = false;
+      renderer.setRenderTarget(rt);
+      renderer.state.buffers.depth.setMask(true);
+      if (renderer.autoClear === false) renderer.clear();
+      renderer.render(scene, virtualCamera);
+      renderer.xr.enabled = prevXr;
+      renderer.shadowMap.autoUpdate = prevShadow;
+      renderer.setRenderTarget(prevTarget);
       mirrors.forEach((m) => { m.visible = true; });
       reflecting = false;
     };
-    mirrors.push(mirror);
-    scene.add(mirror);
   });
 }
 
