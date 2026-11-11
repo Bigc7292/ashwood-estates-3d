@@ -1,3 +1,8 @@
+## 2026-11-11 (Asia/Dubai), exterior live Blender scene saved to the repo (branch `lane/villa-draco-fix`)
+
+- Colin 17:26: "push and commit everything to github asap". Added `blender_wip/exterior_live_2026-11-11/` with `villa_exterior_live.blend` (7.5 MB), two viewport screenshots and a README. The scene holds the imported villa model, the pool set-back, terrace furniture, eight trees in two shapes and nine leafy hedges, all built by Python in Blender on Colin's PC. No BlenderKit or downloaded assets.
+- Status: WIP, REVIEW-PENDING. Left: palms, courtyard pine, lawn, pool water in Blender. Official `4b_*.blend` untouched.
+
 ## 2026-11-11 (Asia/Dubai), villa exterior dressing built in three.js (branch `lane/villa-draco-fix`)
 
 - Colin 17:16: "use three js for building furniture, plants etc". New file `exterior-garden-3d/4b/garden_three.js` builds, with no downloaded models or textures: two tree shapes (olive-type and upright broadleaf, 5 seeded variants) on the 8 `TREE_*_broadleaf_trunk` spots; clipped leafy hedges on the `HEDGE_lawn-*` and `HEDGE_front_bed` boxes; pool tile liner, entry steps, pale coping and rippling water inside the `POOL_*` bounds (lawn clipped out of the basin); terrace sofa, two armchairs, coffee table, two sun loungers, side table and parasol at the positions the box furniture had.
