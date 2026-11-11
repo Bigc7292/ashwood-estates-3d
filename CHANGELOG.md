@@ -1,3 +1,9 @@
+## 2026-11-11 (Asia/Dubai), Boomtown skill plus wall and pool water (branch `lane/villa-draco-fix`)
+
+- Vendored the MIT Boomtown skill into `skills/boomtown/` (no example films). `AGENTS.md`, `CLAUDE.md` and `GROK.md` say to use it for a new measured estate concept, not to restyle the villa viewer. Note: `skills/boomtown/ASHWOOD.md`.
+- Rear walls and soffit use the stone photo in triplanar space, darker at the foot. Pool water transmits, with a deeper colour, a stronger ripple and moving caustics on the tiles. Grass from the previous pass is unchanged.
+- Status: REVIEW-PENDING. Main untouched. Headless load of the villa page: READY, 0 shader errors.
+
 ## 2026-11-11 (Asia/Dubai), rear lawn texture and shade (branch `lane/villa-draco-fix`)
 
 - The flat canvas grass is gone. Lawn and the rear context lawn use the grass photo, tiled from world position, with a blade normal and a second finer sample. Colour is deeper in the sun and cooler where the lawn meets the back of the house. The sun now casts a soft shadow from the house onto that grass.

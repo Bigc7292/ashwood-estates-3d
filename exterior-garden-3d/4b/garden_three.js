@@ -292,9 +292,21 @@ function buildPool(scene, root, renderer){
     });
   }
   const tile = tileTexture();
+  const caustic = { value: 0 };
   const liner = (w, h) => {
     const t = tile.clone(); t.needsUpdate = true; t.repeat.set(w / 0.8, h / 0.8);
-    return new THREE.MeshStandardMaterial({ name:'MAT_pool_tile', map: t, roughness: 0.35 });
+    const m = new THREE.MeshStandardMaterial({ name:'MAT_pool_tile', map: t, roughness: 0.28, color: 0xf7fffb });
+    m.onBeforeCompile = (shader) => {
+      shader.uniforms.uTime = caustic;
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', '#include <common>\nuniform float uTime;')
+        .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
+        float c1 = sin(vMapUv.x * 16.0 + uTime * 1.3) * sin(vMapUv.y * 13.0 - uTime);
+        float c2 = sin((vMapUv.x + vMapUv.y) * 21.0 - uTime * 0.7);
+        float cau = smoothstep(0.45, 1.0, c1 * 0.5 + c2 * 0.5 + 0.55);
+        totalEmissiveRadiance += vec3(0.25, 0.75, 0.82) * cau * 0.28;`);
+    };
+    return m;
   };
   const add = (geo, mat, x, y, z, rx, ry, name) => {
     const m = new THREE.Mesh(geo, mat);
@@ -322,13 +334,18 @@ function buildPool(scene, root, renderer){
   const nm = rippleNormal(); nm.repeat.set(dx / 2.4, dz / 2.4);
   const nm2 = nm.clone(); nm2.needsUpdate = true; nm2.repeat.set(dx / 1.3, dz / 1.3);
   const water = new THREE.MeshPhysicalMaterial({
-    name:'MAT_pool_water', color: 0x5fc2cf, roughness: 0.06, metalness: 0, transparent: true, opacity: 0.5,
-    normalMap: nm, normalScale: new THREE.Vector2(0.32, 0.32), clearcoat: 1, clearcoatRoughness: 0.04,
-    clearcoatNormalMap: nm2, clearcoatNormalScale: new THREE.Vector2(0.2, 0.2), envMapIntensity: 1.3, depthWrite: false
+    name:'MAT_pool_water', color: 0x0c7490, roughness: 0.03, metalness: 0,
+    transmission: 0.9, thickness: 1.2, ior: 1.333,
+    attenuationColor: new THREE.Color(0x085e6c), attenuationDistance: 1.6,
+    transparent: true, opacity: 0.82,
+    normalMap: nm, normalScale: new THREE.Vector2(0.55, 0.55),
+    clearcoat: 1, clearcoatRoughness: 0.015,
+    clearcoatNormalMap: nm2, clearcoatNormalScale: new THREE.Vector2(0.32, 0.32),
+    envMapIntensity: 1.8, depthWrite: false
   });
   const wm = add(new THREE.PlaneGeometry(dx - 0.02, dz - 0.02), water, (x0 + x1) / 2, yw, (z0 + z1) / 2, -Math.PI / 2, 0, 'PROC_pool_water');
   wm.renderOrder = 2;
-  return (t) => { nm.offset.set(t * 0.018, t * 0.011); nm2.offset.set(-t * 0.013, t * 0.02); };
+  return (t) => { nm.offset.set(t * 0.018, t * 0.011); nm2.offset.set(-t * 0.013, t * 0.02); caustic.value = t; };
 }
 
 // ---------- terrace furniture ----------
@@ -417,6 +434,58 @@ function buildFurniture(scene){
 }
 
 // spots: [[x, z]...] trunk positions; rows: [{min:[x,y,z], max:[x,y,z]}...] hedge boxes; root: loaded villa scene
+
+function stoneMaterial(photo){
+  const mat = new THREE.MeshStandardMaterial({
+    name: 'MAT_stone',
+    map: photo,
+    color: 0xffffff,
+    roughness: 0.78,
+    metalness: 0
+  });
+  mat.customProgramCacheKey = () => 'ashwood-stone-triplanar-1';
+  mat.onBeforeCompile = (shader) => {
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vWallWorld;\nvarying vec3 vWallN;')
+      .replace('#include <project_vertex>', '#include <project_vertex>\n\tvWallWorld = (modelMatrix * vec4(transformed, 1.0)).xyz;\n\tvWallN = normalize(mat3(modelMatrix) * normal);');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vWallWorld;\nvarying vec3 vWallN;')
+      .replace('#include <map_fragment>', `#ifdef USE_MAP
+        vec3 bn = abs(normalize(vWallN));
+        bn /= max(bn.x + bn.y + bn.z, 0.001);
+        float sc = 0.72;
+        vec3 cx = texture2D(map, vWallWorld.zy * sc).rgb;
+        vec3 cy = texture2D(map, vWallWorld.xz * sc).rgb;
+        vec3 cz = texture2D(map, vWallWorld.xy * sc).rgb;
+        vec3 stone = cx * bn.x + cy * bn.y + cz * bn.z;
+        float foot = smoothstep(0.02, 1.45, vWallWorld.y);
+        stone = mix(stone * vec3(0.58, 0.54, 0.46), stone, foot);
+        float course = smoothstep(0.35, 0.85, fract(vWallWorld.y * 1.35));
+        stone *= 0.92 + course * 0.08;
+        diffuseColor *= vec4(stone, 1.0);
+      #endif`);
+  };
+  return mat;
+}
+
+function applyWalls(root, photo){
+  if (!photo) return;
+  photo.wrapS = photo.wrapT = THREE.RepeatWrapping;
+  photo.colorSpace = THREE.SRGBColorSpace;
+  photo.anisotropy = 8;
+  photo.needsUpdate = true;
+  root.traverse((o) => {
+    if (!o.isMesh || !o.material) return;
+    const n = o.material.name;
+    if (n !== 'MAT_stone' && n !== 'MAT_stone_rf' && n !== 'MAT_soffit') return;
+    const mat = stoneMaterial(photo);
+    mat.name = n;
+    o.material = mat;
+    o.castShadow = true;
+    o.receiveShadow = true;
+  });
+}
+
 function grassNormal(){
   const S = 256, h = new Float32Array(S * S);
   const r = prng(9);
@@ -592,14 +661,24 @@ function buildPine(scene, spot, sway){
 }
 
 // spots: [[x, z]...] ; palms and pine: [x, baseY, z, height]
-export function buildGarden({ scene, root, spots, rows, palms, pine, sway, renderer, grassMap }){
+export function buildGarden({ scene, root, spots, rows, palms, pine, sway, renderer, grassMap, stoneMap }){
   applyLawn(root, grassMap);
+  applyWalls(root, stoneMap);
   buildTrees(scene, spots, sway);
   buildHedges(scene, rows);
   buildPalms(scene, palms || [], sway);
   buildPine(scene, pine, sway);
   buildFurniture(scene);
   const tick = buildPool(scene, root, renderer);
+  if (stoneMap){
+    root.traverse((o) => {
+      if (!o.isMesh || o.name.indexOf('POOL_coping') !== 0) return;
+      const mat = stoneMaterial(stoneMap);
+      mat.name = 'MAT_pool_coping';
+      mat.roughness = 0.62;
+      o.material = mat;
+    });
+  }
   scene.traverse((o) => {
     if (o.isMesh && o.name.indexOf('PROC_') === 0){
       o.castShadow = true;

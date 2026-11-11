@@ -88,3 +88,9 @@ Goal: several agents on separate tasks in parallel to finish faster, with the sa
 
 ## Reference copies
 `docs/inherited-rules/` holds verbatim copies of the Legacy and Axis3D rules, tools, tricks registers, Axis3D plan and QA register. They are reference; this file is the rule set for Ashwood.
+
+## Boomtown (new estate concepts only)
+
+`skills/boomtown/` is the vendored Boomtown skill (MIT, https://github.com/0xwast3/boomtown). Use it when the ask is a new house or estate built in code: measured checklist, parts, stills, then a construction-terminal film. Read `skills/boomtown/SKILL.md` and `skills/boomtown/ASHWOOD.md` first.
+
+Do not point the Ashwood villa viewer at it. The villa stays the photoreal page in `exterior-garden-3d/4b/`. Boomtown does not replace grass, water or stone on that page.

@@ -29,7 +29,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { buildGarden } from './garden_three.js?v=4';
+import { buildGarden } from './garden_three.js?v=6';
 let garden = null;
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
@@ -284,7 +284,7 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
   furn(3.05, 12.95, -0.2, 4.55, 0.0, 0.07, 0xe4d8c6, 0.82);
   // 2026-11-11: trees, hedges, palms, courtyard pine, pool water, terrace furniture and a drawn grass texture are built in three.js (garden_three.js).
   // The earlier box furniture and the tex/bk/*.glb plants are no longer loaded.
-  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, palms: palmSpots, pine: pineSpot, sway, renderer, grassMap: grassC });
+  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, palms: palmSpots, pine: pineSpot, sway, renderer, grassMap: grassC, stoneMap: stoneC });
   renderer.render(scene, cam);
   document.title = 'READY';
 });
