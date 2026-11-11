@@ -1,3 +1,8 @@
+## 2026-11-12 (Asia/Dubai), interiors imported into Unreal, WIP (branch `lane/unreal-villa`)
+
+- The three captured interiors are imported as `/Game/Interior/GF`, `FF` and `RF` static meshes (362,468, 210,782 and 1,990 triangles, Nanite off) and placed in level `Main` as `Interior_GF`, `Interior_FF` and `Interior_RF`.
+- Placement is a first estimate only: GF and FF are centred on the plot at heights 0 and 4.45 m, RF sits at 8.45 m. Position, rotation and mirroring against the exterior shell are NOT verified. Interior walls overlap the exterior shell. Status: WIP. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), remove Android file server token (branch `lane/unreal-villa`)
 
 - `unreal/ashwood_3d_estates/Config/DefaultEngine.ini` was committed in `d47bcba` with the `SecurityToken` line of the Android File Server plugin. The line is removed from the file now. It is still readable in the history of `d47bcba`, because history is not rewritten on this repo. The token is an auto-generated project value for copying files to an Android test device, not an account key. Status: WIP. Main untouched.
