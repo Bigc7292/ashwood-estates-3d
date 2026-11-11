@@ -1,3 +1,9 @@
+## 2026-11-11 (Asia/Dubai), window glass (branch `lane/villa-draco-fix`)
+
+- Window panes were a near-black panel. They now show sky at the top of the pane and the pool colour at the bottom, with a soft horizon. `MAT_bronze` frames are dark bronze instead of the blue metal map. Balcony glass stays lighter so the slats show through.
+- The colour on the pane is a stand-in from the pane height, plus one reflection probe from the terrace. It is not a ray-traced mirror of the pool. Rooms behind the glass are empty, so the glass does not open into the house.
+- Status: REVIEW-PENDING. Commit `5c6b4e7`. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), balcony plant columns (branch `lane/villa-draco-fix`)
 
 - `FF_balcony_planting_L` and `FF_balcony_planting_R` were solid `MAT_hedge` boxes, the dark green columns beside the rear glass. They are hidden. Each is now a stone trough with soil and a leaf column, lighter at the tips. Assumption: the boxes were planting, not stone piers. The stone piers stay stone.
