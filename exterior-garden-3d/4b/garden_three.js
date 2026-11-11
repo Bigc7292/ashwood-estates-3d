@@ -100,6 +100,7 @@ function applyGlass(scene, root){
       mesh.position.setComponent(info.axis, info.plane + info.sign * 0.02);
       mesh.rotation.y = info.axis === 2 ? (info.sign > 0 ? 0 : Math.PI) : (info.sign > 0 ? Math.PI / 2 : -Math.PI / 2);
       mesh.name = 'PROC_window_' + info.name;
+      mesh.renderOrder = 1;
       mesh.userData.planeAxis = info.axis;
       mesh.userData.planeSign = info.sign;
       info.o.visible = false;
@@ -119,7 +120,7 @@ function applyGlass(scene, root){
     const reflectorPlane = new THREE.Plane();
     const clipPlane = new THREE.Vector4();
     leader.onBeforeRender = function (renderer, scene, camera) {
-      if (reflecting) return;
+      if (reflecting || window.__ashwoodReflecting) return;
       reflectorWorldPosition.setFromMatrixPosition(leader.matrixWorld);
       cameraWorldPosition.setFromMatrixPosition(camera.matrixWorld);
       rotationMatrix.extractRotation(leader.matrixWorld);
@@ -159,6 +160,7 @@ function applyGlass(scene, root){
       pe[10] = clipPlane.z + 1 - clipBias;
       pe[14] = clipPlane.w;
       reflecting = true;
+      window.__ashwoodReflecting = true;
       mirrors.forEach((m) => { m.visible = false; });
       const prevTarget = renderer.getRenderTarget();
       const prevXr = renderer.xr.enabled;
@@ -174,8 +176,10 @@ function applyGlass(scene, root){
       renderer.setRenderTarget(prevTarget);
       mirrors.forEach((m) => { m.visible = true; });
       reflecting = false;
+      window.__ashwoodReflecting = false;
     };
   });
+  window.__windowMirrors = mirrors;
 }
 
 // garden_three.js: procedural exterior dressing for villa.html, built in three.js only.
@@ -576,21 +580,98 @@ function buildPool(scene, root, renderer){
       parts[k].material = new THREE.MeshStandardMaterial({ name:'MAT_pool_coping', color: 0xe8e0d0, roughness: 0.55 });
     }
   });
-  const nm = rippleNormal(); nm.repeat.set(dx / 2.4, dz / 2.4);
-  const nm2 = nm.clone(); nm2.needsUpdate = true; nm2.repeat.set(dx / 1.3, dz / 1.3);
-  const water = new THREE.MeshPhysicalMaterial({
-    name:'MAT_pool_water', color: 0x0c7490, roughness: 0.03, metalness: 0,
-    transmission: 0.9, thickness: 1.2, ior: 1.333,
-    attenuationColor: new THREE.Color(0x085e6c), attenuationDistance: 1.6,
-    transparent: true, opacity: 0.82,
-    normalMap: nm, normalScale: new THREE.Vector2(0.55, 0.55),
-    clearcoat: 1, clearcoatRoughness: 0.015,
-    clearcoatNormalMap: nm2, clearcoatNormalScale: new THREE.Vector2(0.32, 0.32),
-    envMapIntensity: 1.8, depthWrite: false
+  const rt = new THREE.WebGLRenderTarget(768, 768);
+  const virtualCamera = new THREE.PerspectiveCamera();
+  const waterColor = new THREE.Color(0x0e5c6c);
+  const frag = Reflector.ReflectorShader.fragmentShader.replace(
+    'gl_FragColor = vec4( blendOverlay( base.rgb, color ), 1.0 );',
+    `vec3 refl = texture2DProj(tDiffuse, vUv).rgb;
+    gl_FragColor = vec4(mix(color, refl, reflMix), 1.0);`
+  ).replace('uniform sampler2D tDiffuse;', 'uniform sampler2D tDiffuse;\nuniform float reflMix;\nuniform float time;');
+  const mat = new THREE.ShaderMaterial({
+    name: 'MAT_pool_water',
+    uniforms: {
+      color: { value: waterColor },
+      tDiffuse: { value: rt.texture },
+      textureMatrix: { value: new THREE.Matrix4() },
+      reflMix: { value: 0.75 },
+      time: { value: 0 }
+    },
+    vertexShader: Reflector.ReflectorShader.vertexShader,
+    fragmentShader: frag
   });
-  const wm = add(new THREE.PlaneGeometry(dx - 0.02, dz - 0.02), water, (x0 + x1) / 2, yw, (z0 + z1) / 2, -Math.PI / 2, 0, 'PROC_pool_water');
-  wm.renderOrder = 2;
-  return (t) => { nm.offset.set(t * 0.018, t * 0.011); nm2.offset.set(-t * 0.013, t * 0.02); caustic.value = t; };
+  const wm = new THREE.Mesh(new THREE.PlaneGeometry(dx - 0.08, dz - 0.08), mat);
+  wm.name = 'PROC_pool_water';
+  wm.position.set((x0 + x1) / 2, yw + 0.012, (z0 + z1) / 2);
+  wm.rotation.x = -Math.PI / 2;
+  wm.renderOrder = 3;
+  scene.add(wm);
+  const normal = new THREE.Vector3();
+  const reflectorWorldPosition = new THREE.Vector3();
+  const cameraWorldPosition = new THREE.Vector3();
+  const rotationMatrix = new THREE.Matrix4();
+  const lookAtPosition = new THREE.Vector3();
+  const view = new THREE.Vector3();
+  const target = new THREE.Vector3();
+  const q = new THREE.Vector4();
+  const reflectorPlane = new THREE.Plane();
+  const clipPlane = new THREE.Vector4();
+  wm.onBeforeRender = function (renderer, scene, camera) {
+    if (window.__ashwoodReflecting) return;
+    reflectorWorldPosition.setFromMatrixPosition(wm.matrixWorld);
+    cameraWorldPosition.setFromMatrixPosition(camera.matrixWorld);
+    rotationMatrix.extractRotation(wm.matrixWorld);
+    normal.set(0, 0, 1).applyMatrix4(rotationMatrix);
+    view.subVectors(reflectorWorldPosition, cameraWorldPosition);
+    if (view.dot(normal) > 0) return;
+    view.reflect(normal).negate().add(reflectorWorldPosition);
+    rotationMatrix.extractRotation(camera.matrixWorld);
+    lookAtPosition.set(0, 0, -1).applyMatrix4(rotationMatrix).add(cameraWorldPosition);
+    target.subVectors(reflectorWorldPosition, lookAtPosition);
+    target.reflect(normal).negate().add(reflectorWorldPosition);
+    virtualCamera.position.copy(view);
+    virtualCamera.up.set(0, 1, 0).applyMatrix4(rotationMatrix);
+    virtualCamera.up.reflect(normal);
+    virtualCamera.lookAt(target);
+    virtualCamera.far = camera.far;
+    virtualCamera.updateMatrixWorld();
+    virtualCamera.projectionMatrix.copy(camera.projectionMatrix);
+    const tm = mat.uniforms.textureMatrix.value;
+    tm.set(0.5, 0, 0, 0.5, 0, 0.5, 0, 0.5, 0, 0, 0.5, 0.5, 0, 0, 0, 1);
+    tm.multiply(virtualCamera.projectionMatrix);
+    tm.multiply(virtualCamera.matrixWorldInverse);
+    tm.multiply(wm.matrixWorld);
+    reflectorPlane.setFromNormalAndCoplanarPoint(normal, reflectorWorldPosition);
+    reflectorPlane.applyMatrix4(virtualCamera.matrixWorldInverse);
+    clipPlane.set(reflectorPlane.normal.x, reflectorPlane.normal.y, reflectorPlane.normal.z, reflectorPlane.constant);
+    const pe = virtualCamera.projectionMatrix.elements;
+    q.x = (Math.sign(clipPlane.x) + pe[8]) / pe[0];
+    q.y = (Math.sign(clipPlane.y) + pe[9]) / pe[5];
+    q.z = -1;
+    q.w = (1 + pe[10]) / pe[14];
+    clipPlane.multiplyScalar(2 / clipPlane.dot(q));
+    pe[2] = clipPlane.x;
+    pe[6] = clipPlane.y;
+    pe[10] = clipPlane.z + 1 - 0.003;
+    pe[14] = clipPlane.w;
+    window.__ashwoodReflecting = true;
+    wm.visible = false;
+    const prevTarget = renderer.getRenderTarget();
+    const prevXr = renderer.xr.enabled;
+    const prevShadow = renderer.shadowMap.autoUpdate;
+    renderer.xr.enabled = false;
+    renderer.shadowMap.autoUpdate = false;
+    renderer.setRenderTarget(rt);
+    renderer.state.buffers.depth.setMask(true);
+    if (renderer.autoClear === false) renderer.clear();
+    renderer.render(scene, virtualCamera);
+    renderer.xr.enabled = prevXr;
+    renderer.shadowMap.autoUpdate = prevShadow;
+    renderer.setRenderTarget(prevTarget);
+    wm.visible = true;
+    window.__ashwoodReflecting = false;
+  };
+  return (t) => { mat.uniforms.time.value = t; caustic.value = t; };
 }
 
 // ---------- terrace furniture ----------

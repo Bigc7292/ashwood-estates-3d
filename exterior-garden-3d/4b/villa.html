@@ -30,7 +30,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { buildGarden } from './garden_three.js?v=21';
+import { buildGarden } from './garden_three.js?v=25';
 let garden = null;
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
@@ -148,9 +148,10 @@ function setEvening(on){
   }
   scene.traverse((o) => {
     if (!o.isMesh || !o.material || o.material.name !== 'MAT_pool_water') return;
-    o.material.color.setHex(on ? 0x082833 : 0x0c7490);
-    o.material.transmission = on ? 0.55 : 0.9;
-    o.material.opacity = on ? 0.9 : 0.82;
+    if (o.material.uniforms && o.material.uniforms.reflMix){
+      o.material.uniforms.color.value.setHex(on ? 0x0b2433 : 0x0e5c6c);
+      o.material.uniforms.reflMix.value = on ? 0.94 : 0.82;
+    }
   });
   const btn = document.getElementById('timeBtn');
   btn.textContent = on ? 'Day' : 'Evening';
