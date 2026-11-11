@@ -350,3 +350,9 @@ Every code edit gets an entry here, in the same turn it is committed and pushed 
 - Why: critic's second-ranked site fix; CAD positions kept per the image-for-look, CAD-for-position rule.
 - Status: REVIEW-PENDING (critic).
 - **`main` brought up to date again** (Colin, 2026-11-10 08:29 Dubai: "Update main"). The latest `lane/exterior` and `lane/exterior-roof-courtyard` pushes were merged first. Then `claude/rules-and-status` was merged into `main` through a pull request with a merge commit. No force-push, and nothing on `main` was deleted or overwritten (0 deletions and 0 renames against `origin/main`). This includes the `site/` folder from `lane/vercel-site` for the Vercel import (root directory `site`). This go-ahead covers this one update. Status: DONE (merge), WIP (models).
+
+## 2026-11-11 (Asia/Dubai) - fable/gf-trace WIP
+- Files: active/gf-trace-spike/ (new): README.md, overlay_walls.py, overlay_gf_walls_crop_FAILED.png, draft_gf_walls.json.
+- What: first overlay of the existing 4B-GF wall list on the rasterised approved GF sheet. Result: walls offset and mis-scaled; Gate 1 FAILED.
+- Why: Colin asked for everything pushed now; the trace is not yet fixed.
+- Status: WIP. Left: refit transform, rebuild data file, re-overlay, measure mm error.
