@@ -1,3 +1,10 @@
+## 2026-11-11 (Asia/Dubai), villa page load fix after handoff sync (branch `lane/villa-draco-fix`)
+
+- Synced: main `ec29d41` (night handoff) merged into `claude/rules-and-status` as `c48b142`. CHANGELOG conflict kept both sides.
+- Check of the GitHub copy of `exterior-garden-3d/4b/villa.html` (headless Chromium): `tex/bk/garden.glb` is Draco-compressed and the page had no Draco decoder, so the trees did not load; `../../review/review.js` and the First floor link `../../ff/index.html` pointed at paths that are not in this repo.
+- Fix: added `model/vendor/three/examples/jsm/loaders/DRACOLoader.js` and `libs/draco/gltf/` (three r160, same as the vendored build); `villa.html` now sets the Draco loader for the tree, loads `./review/review.js`, and links the floor buttons to `handoff/2026-11-10-night/`. Added `handoff/2026-11-10-night/review/review.js` (copy) so the handoff interior pages find it. After the fix: 0 failed requests, 0 console errors.
+- Open for Colin: the tree's leaf texture in `garden.glb` is red-brown, so trees render red, not green as the handoff says. Model still has the 11.60 m stone fin (our front view uses 9.73 m) and the CAD pool 9.50 x 2.40 m shifted 3.78 m (pool v3 was 9.50 x 3.60 m with a 4.8 m terrace). Not changed.
+
 ## 2026-11-10 night (Asia/Dubai), Grok exterior handoff
 
 - Colin stopped for the night. Full record: `docs/HANDOFF_2026-11-10_NIGHT.md`. Tomorrow: `docs/TODO_2026-11-11.md`.

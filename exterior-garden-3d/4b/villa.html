@@ -24,11 +24,13 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 </head><body>
 <a id="backView" href="./walk_exterior_wip/front_v2.html">Walk model</a>
 <nav id="cams"></nav>
-<nav id="floors"><a href="../../site/ground-floor.html?walk=1">Walk inside</a><a href="../../site/ground-floor.html">Ground floor</a><a href="../../ff/index.html?walk=1">First floor</a></nav>
+<nav id="floors"><a href="../../handoff/2026-11-10-night/site/ground-floor.html?walk=1">Walk inside</a><a href="../../handoff/2026-11-10-night/site/ground-floor.html">Ground floor</a><a href="../../handoff/2026-11-10-night/ff/index.html?walk=1">First floor</a></nav>
 <div id="zoom"><button type="button" id="zoomIn" aria-label="Zoom in">+</button><button type="button" id="zoomOut" aria-label="Zoom out">−</button></div>
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from './model/vendor/three/examples/jsm/loaders/DRACOLoader.js';
+const draco = new DRACOLoader().setDecoderPath('./model/vendor/three/examples/jsm/libs/draco/gltf/');
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
 // views_blender.json, Blender Z-up to glTF Y-up: (x, y, z) -> (x, z, -y)
@@ -266,7 +268,7 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
   furn(11.25, 12.0, 0.25, 2.15, 0.07, 0.28, 0xf4f1ea, 0.6);
   furn(11.25, 12.0, 1.55, 2.15, 0.28, 0.55, 0xf4f1ea, 0.6);
   furn(11.05, 11.3, 2.25, 2.55, 0.07, 0.38, 0x3a2c20, 0.45);
-  new GLTFLoader().load('./tex/bk/garden.glb?v=1', (g) => {
+  new GLTFLoader().setDRACOLoader(draco).load('./tex/bk/garden.glb?v=1', (g) => {
     g.scene.traverse((m) => {
       if (!m.isMesh) return;
       const mats = Array.isArray(m.material) ? m.material : [m.material];
@@ -332,5 +334,5 @@ frame();
 addEventListener('resize', () => { cam.aspect = innerWidth/innerHeight; cam.fov = vfov(lens); cam.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
 </script>
 </body>
-<script src="../../review/review.js"></script>
+<script src="./review/review.js"></script>
 </html>
