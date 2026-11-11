@@ -1,4 +1,12 @@
 
+function reflectSlot(){
+  window.__reflectN = (window.__reflectN || 0) + 1;
+  return window.__reflectN - 1;
+}
+function reflectDue(slot){
+  const n = window.__reflectN || 1;
+  return ((window.__frame | 0) % n) === slot;
+}
 function applyGlass(scene, root){
   const panes = [];
   const glass = new THREE.MeshPhysicalMaterial({
@@ -57,7 +65,7 @@ function applyGlass(scene, root){
     if (axis === 1) return;
     const sign = center.getComponent(axis) >= house.getComponent(axis) ? 1 : -1;
     const plane = sign > 0 ? b.max.getComponent(axis) : b.min.getComponent(axis);
-    const key = axis + ':' + sign + ':' + Math.round(plane * 5);
+    const key = axis + ':' + sign;
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push({ o, axis, sign, plane, center, size, name: o.name });
   });
@@ -65,7 +73,7 @@ function applyGlass(scene, root){
   let reflecting = false;
   const clipBias = 0.003;
   groups.forEach((items) => {
-    const rt = new THREE.WebGLRenderTarget(512, 512);
+    const rt = new THREE.WebGLRenderTarget(256, 256);
     const virtualCamera = new THREE.PerspectiveCamera();
     const tint = new THREE.Color(0xc5d5dc);
     const eveningU = window.__eveningGlass || (window.__eveningGlass = { value: 0 });
@@ -119,8 +127,9 @@ function applyGlass(scene, root){
     const q = new THREE.Vector4();
     const reflectorPlane = new THREE.Plane();
     const clipPlane = new THREE.Vector4();
+    const slot = reflectSlot();
     leader.onBeforeRender = function (renderer, scene, camera) {
-      if (reflecting || window.__ashwoodReflecting) return;
+      if (reflecting || window.__ashwoodReflecting || !reflectDue(slot)) return;
       reflectorWorldPosition.setFromMatrixPosition(leader.matrixWorld);
       cameraWorldPosition.setFromMatrixPosition(camera.matrixWorld);
       rotationMatrix.extractRotation(leader.matrixWorld);
@@ -580,7 +589,7 @@ function buildPool(scene, root, renderer){
       parts[k].material = new THREE.MeshStandardMaterial({ name:'MAT_pool_coping', color: 0xe8e0d0, roughness: 0.55 });
     }
   });
-  const rt = new THREE.WebGLRenderTarget(768, 768);
+  const rt = new THREE.WebGLRenderTarget(256, 256);
   const virtualCamera = new THREE.PerspectiveCamera();
   const waterColor = new THREE.Color(0x0e5c6c);
   const frag = Reflector.ReflectorShader.fragmentShader.replace(
@@ -616,8 +625,9 @@ function buildPool(scene, root, renderer){
   const q = new THREE.Vector4();
   const reflectorPlane = new THREE.Plane();
   const clipPlane = new THREE.Vector4();
+  const poolSlot = reflectSlot();
   wm.onBeforeRender = function (renderer, scene, camera) {
-    if (window.__ashwoodReflecting) return;
+    if (window.__ashwoodReflecting || !reflectDue(poolSlot)) return;
     reflectorWorldPosition.setFromMatrixPosition(wm.matrixWorld);
     cameraWorldPosition.setFromMatrixPosition(camera.matrixWorld);
     rotationMatrix.extractRotation(wm.matrixWorld);
@@ -1010,7 +1020,7 @@ export function buildGarden({ scene, root, spots, rows, palms, pine, cols, sway,
   }
   scene.traverse((o) => {
     if (o.isMesh && o.name.indexOf('PROC_') === 0){
-      o.castShadow = true;
+      o.castShadow = !/leaves|fronds|needles|pool_water|pool_floor|pool_wall/.test(o.name);
       o.receiveShadow = true;
     }
   });
