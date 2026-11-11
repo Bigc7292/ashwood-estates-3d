@@ -1,3 +1,8 @@
+## 2026-11-11 (Asia/Dubai), balcony plant columns (branch `lane/villa-draco-fix`)
+
+- `FF_balcony_planting_L` and `FF_balcony_planting_R` were solid `MAT_hedge` boxes, the dark green columns beside the rear glass. They are hidden. Each is now a stone trough with soil and a leaf column, lighter at the tips. Assumption: the boxes were planting, not stone piers. The stone piers stay stone.
+- Status: REVIEW-PENDING. Main untouched. Headless rear view: READY, 0 console errors.
+
 ## 2026-11-11 (Asia/Dubai), Boomtown skill plus wall and pool water (branch `lane/villa-draco-fix`)
 
 - Vendored the MIT Boomtown skill into `skills/boomtown/` (no example films). `AGENTS.md`, `CLAUDE.md` and `GROK.md` say to use it for a new measured estate concept, not to restyle the villa viewer. Note: `skills/boomtown/ASHWOOD.md`.

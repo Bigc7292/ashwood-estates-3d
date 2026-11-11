@@ -29,7 +29,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { buildGarden } from './garden_three.js?v=6';
+import { buildGarden } from './garden_three.js?v=7';
 let garden = null;
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
@@ -180,6 +180,7 @@ const sway = [];
 const oliveSpots = [];
 const palmSpots = []; let pineSpot = null;
 const bushRows = [];
+const plantCols = [];
 new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
   scene.add(gltf.scene);
   gltf.scene.traverse((o) => {
@@ -263,6 +264,22 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
       }
       bushRows.push({ min, max });
     }
+    if (/^FF_balcony_planting_/.test(o.name)) {
+      o.visible = false;
+      o.updateWorldMatrix(true, false);
+      const pos = o.geometry.attributes.position;
+      const e = o.matrixWorld.elements;
+      const min = [1e9, 1e9, 1e9], max = [-1e9, -1e9, -1e9];
+      for (let i = 0; i < pos.count; i++) {
+        const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+        const wx = e[0] * x + e[4] * y + e[8] * z + e[12];
+        const wy = e[1] * x + e[5] * y + e[9] * z + e[13];
+        const wz = e[2] * x + e[6] * y + e[10] * z + e[14];
+        if (wx < min[0]) min[0] = wx; if (wy < min[1]) min[1] = wy; if (wz < min[2]) min[2] = wz;
+        if (wx > max[0]) max[0] = wx; if (wy > max[1]) max[1] = wy; if (wz > max[2]) max[2] = wz;
+      }
+      plantCols.push({ min, max });
+    }
     if (srcName === 'MAT_lawn' || srcName === 'MAT_context_lawn'){
       grassC.repeat.set(14, 14);
       o.material.map = grassC;
@@ -284,7 +301,7 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
   furn(3.05, 12.95, -0.2, 4.55, 0.0, 0.07, 0xe4d8c6, 0.82);
   // 2026-11-11: trees, hedges, palms, courtyard pine, pool water, terrace furniture and a drawn grass texture are built in three.js (garden_three.js).
   // The earlier box furniture and the tex/bk/*.glb plants are no longer loaded.
-  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, palms: palmSpots, pine: pineSpot, sway, renderer, grassMap: grassC, stoneMap: stoneC });
+  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, palms: palmSpots, pine: pineSpot, cols: plantCols, sway, renderer, grassMap: grassC, stoneMap: stoneC });
   renderer.render(scene, cam);
   document.title = 'READY';
 });

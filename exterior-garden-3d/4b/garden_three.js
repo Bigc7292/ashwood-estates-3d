@@ -263,6 +263,70 @@ function buildHedges(scene, rows){
   scene.add(cm, lm);
 }
 
+// The two balcony plantings were solid dark-green boxes. Replace each with a stone trough and a leaf column.
+function buildColumns(scene, cols, sway){
+  if (!cols || !cols.length) return;
+  const r = prng(64);
+  const leaf = new THREE.MeshStandardMaterial({
+    name: 'MAT_column_leaf', roughness: 0.78, alphaTest: 0.42, side: THREE.DoubleSide, vertexColors: true,
+    map: leafTexture({ seed: 64, count: 28, len: 16, aspect: 0.32, h: 118, hv: 12, s: 48, l: 32, lv: 12 })
+  });
+  const potMat = new THREE.MeshStandardMaterial({ name: 'MAT_planter', color: 0xc4b49a, roughness: 0.72 });
+  const soil = new THREE.MeshStandardMaterial({ name: 'MAT_planter_soil', color: 0x3a3228, roughness: 1 });
+  const cloud = new CardCloud();
+  const pots = [];
+  cols.forEach((b, i) => {
+    const x0 = b.min[0], x1 = b.max[0], z0 = b.min[2], z1 = b.max[2];
+    const y0 = b.min[1], y1 = b.max[1];
+    const cx = (x0 + x1) / 2, cz = (z0 + z1) / 2;
+    const dx = x1 - x0, dz = z1 - z0;
+    const potH = 0.52;
+    const pot = new THREE.BoxGeometry(dx + 0.08, potH, dz + 0.08);
+    pot.translate(cx, y0 + potH / 2, cz);
+    pots.push(pot);
+    const dirt = new THREE.BoxGeometry(dx - 0.06, 0.04, dz - 0.04);
+    dirt.translate(cx, y0 + potH - 0.02, cz);
+    pots.push(dirt);
+    const leafY0 = y0 + potH - 0.05;
+    const leafY1 = y1 + 0.08;
+    const dy = leafY1 - leafY0;
+    const faces = [
+      { n: [1, 0, 0], a: dy * dz, at: (u, v) => [x1, leafY0 + u * dy, z0 + v * dz] },
+      { n: [-1, 0, 0], a: dy * dz, at: (u, v) => [x0, leafY0 + u * dy, z0 + v * dz] },
+      { n: [0, 0, 1], a: dy * dx, at: (u, v) => [x0 + v * dx, leafY0 + u * dy, z1] },
+      { n: [0, 0, -1], a: dy * dx, at: (u, v) => [x0 + v * dx, leafY0 + u * dy, z0] },
+      { n: [0, 1, 0], a: dx * dz, at: (u, v) => [x0 + u * dx, leafY1, z0 + v * dz] }
+    ];
+    faces.forEach((f) => {
+      const n = new THREE.Vector3(f.n[0], f.n[1], f.n[2]);
+      const count = Math.round(f.a * 90);
+      for (let k = 0; k < count; k++){
+        const u = r(), v = r();
+        const q = f.at(u, v);
+        const p = new THREE.Vector3(q[0], q[1], q[2]).addScaledVector(n, (r() - 0.35) * 0.12);
+        const hgt = (p.y - leafY0) / dy;
+        // round the top so it is a shrub column, not a cut box
+        if (f.n[1] === 1){
+          const edge = Math.min(u, 1 - u, v, 1 - v);
+          if (edge < 0.22) p.y -= (0.22 - edge) * 1.1;
+        }
+        const shade = Math.min(1, 0.42 + hgt * 0.45 + (r() - 0.5) * 0.22);
+        const nn = n.clone().multiplyScalar(0.65).add(new THREE.Vector3(0, 0.55, 0)).normalize();
+        cloud.add(p, 0.16 + r() * 0.08, n, nn, shade, r);
+      }
+    });
+    void i;
+  });
+  const leaves = new THREE.Mesh(cloud.geometry(), leaf);
+  leaves.name = 'PROC_column_leaves';
+  const potMesh = new THREE.Mesh(mergeGeometries(pots.filter((_, idx) => idx % 2 === 0)), potMat);
+  potMesh.name = 'PROC_column_planter';
+  const soilMesh = new THREE.Mesh(mergeGeometries(pots.filter((_, idx) => idx % 2 === 1)), soil);
+  soilMesh.name = 'PROC_column_soil';
+  scene.add(potMesh, soilMesh, leaves);
+  sway.push({ o: leaves, p: 0.4, a: 0.012, s: 0.45 });
+}
+
 // ---------- pool ----------
 function buildPool(scene, root, renderer){
   const parts = {};
@@ -661,11 +725,12 @@ function buildPine(scene, spot, sway){
 }
 
 // spots: [[x, z]...] ; palms and pine: [x, baseY, z, height]
-export function buildGarden({ scene, root, spots, rows, palms, pine, sway, renderer, grassMap, stoneMap }){
+export function buildGarden({ scene, root, spots, rows, palms, pine, cols, sway, renderer, grassMap, stoneMap }){
   applyLawn(root, grassMap);
   applyWalls(root, stoneMap);
   buildTrees(scene, spots, sway);
   buildHedges(scene, rows);
+  buildColumns(scene, cols, sway);
   buildPalms(scene, palms || [], sway);
   buildPine(scene, pine, sway);
   buildFurniture(scene);
