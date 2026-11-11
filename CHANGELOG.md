@@ -1,3 +1,7 @@
+## 2026-11-11 (Asia/Dubai), evening light (branch `lane/villa-draco-fix`)
+
+- An Evening button on the exterior viewer. It lowers the sun, puts a blue dusk sky with an orange horizon over the terrace, warms the rooms behind the glass, and switches back to Day. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), every window mirrors (branch `lane/villa-draco-fix`)
 
 - Every `MAT_glass` pane, not only the rear, is now a mirror of the space outside that wall. Windows on the terrace still show the pool, parasol and sky. Front, side, courtyard and entry windows mirror their own side instead of a flat sky colour. Panes on the same wall share one reflection, so the page does not render the scene once per window.

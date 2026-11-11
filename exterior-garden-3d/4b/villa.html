@@ -11,7 +11,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 #floors a{background:#9a4e28;color:#fff;text-decoration:none;border-radius:999px;padding:9px 14px;font:15px/1 Arial,sans-serif;font-weight:700}
 #backView{position:absolute;z-index:30;top:8px;left:8px;border:0;border-radius:999px;padding:8px 14px;background:rgba(20,28,24,.88);color:#fff;font:14px/1 Arial,sans-serif;text-decoration:none}
 #zoom{position:absolute;z-index:30;right:8px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px}
-#zoom button{width:44px;height:44px;border:0;border-radius:12px;background:rgba(20,28,24,.88);color:#fff;font:22px/1 Arial,sans-serif}
+#timeBtn{position:absolute;z-index:30;top:8px;left:50%;transform:translateX(-50%);border:0;border-radius:999px;padding:8px 16px;background:rgba(20,28,24,.88);color:#fff;font:14px/1 Arial,sans-serif}
 @media (max-width:800px){
   #cams{display:none;left:8px;right:8px;top:52px;max-height:40dvh;overflow:auto;padding:8px;border-radius:12px;background:rgba(20,28,24,.92)}
   body.tools-open #cams{display:flex}
@@ -23,13 +23,14 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <script type="importmap">{"imports":{"three":"./model/vendor/three/build/three.module.js"}}</script>
 </head><body>
 <a id="backView" href="./walk_exterior_wip/front_v2.html">Walk model</a>
+<button id="timeBtn" type="button">Evening</button>
 <nav id="cams"></nav>
 <nav id="floors"><a href="../../handoff/2026-11-10-night/site/ground-floor.html?walk=1">Walk inside</a><a href="../../handoff/2026-11-10-night/site/ground-floor.html">Ground floor</a><a href="../../handoff/2026-11-10-night/ff/index.html?walk=1">First floor</a></nav>
 <div id="zoom"><button type="button" id="zoomIn" aria-label="Zoom in">+</button><button type="button" id="zoomOut" aria-label="Zoom out">−</button></div>
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { buildGarden } from './garden_three.js?v=19';
+import { buildGarden } from './garden_three.js?v=21';
 let garden = null;
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
@@ -52,7 +53,8 @@ document.body.prepend(renderer.domElement);
 const scene = new THREE.Scene();
 window.__scene = scene;
 scene.background = new THREE.Color(0x7cb3cc);
-scene.add(new THREE.HemisphereLight(0xb7c9d6, 0x4e5c32, 0.34));
+const hemi = new THREE.HemisphereLight(0xb7c9d6, 0x4e5c32, 0.34);
+scene.add(hemi);
 const sun = new THREE.DirectionalLight(0xfff1d6, 2.7);
 sun.position.set(38.2, 20.4, 42.8);
 sun.target.position.set(9, 2.2, 2);
@@ -68,6 +70,94 @@ sun.shadow.bias = -0.00015;
 sun.shadow.normalBias = 0.02;
 sun.shadow.camera.updateProjectionMatrix();
 scene.add(sun, sun.target);
+window.__eveningGlass = { value: 0 };
+window.__eveningGrass = { value: 0 };
+const skyMat = new THREE.ShaderMaterial({
+  side: THREE.BackSide,
+  depthWrite: false,
+  uniforms: {
+    topC: { value: new THREE.Color(0x6aaed0) },
+    horC: { value: new THREE.Color(0xd7eef8) },
+    sunC: { value: new THREE.Color(0xfff6e4) },
+    sunDir: { value: new THREE.Vector3(0.45, 0.35, 0.55).normalize() }
+  },
+  vertexShader: 'varying vec3 vP; void main(){ vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+  fragmentShader: `
+    varying vec3 vP;
+    uniform vec3 topC;
+    uniform vec3 horC;
+    uniform vec3 sunC;
+    uniform vec3 sunDir;
+    void main(){
+      vec3 d = normalize(vP);
+      float h = clamp(d.y * 1.6 + 0.08, 0.0, 1.0);
+      vec3 col = mix(horC, topC, smoothstep(0.0, 0.28, h));
+      float sunDisc = pow(max(dot(d, normalize(sunDir)), 0.0), 64.0);
+      col += sunC * sunDisc;
+      gl_FragColor = vec4(col, 1.0);
+    }`
+});
+const sky = new THREE.Mesh(new THREE.SphereGeometry(220, 28, 16), skyMat);
+sky.frustumCulled = false;
+sky.castShadow = false;
+scene.add(sky);
+const daySun = { color: 0xfff1d6, intensity: 2.7, pos: [38.2, 20.4, 42.8] };
+const lamps = [
+  [11.6, 1.55, 0.6],
+  [6.2, 1.35, 0.2],
+  [9.4, 4.15, 3.2]
+].map(([x, y, z]) => {
+  const L = new THREE.PointLight(0xffb36a, 0, 11, 2);
+  L.position.set(x, y, z);
+  scene.add(L);
+  return L;
+});
+let eveningOn = false;
+function setEvening(on){
+  eveningOn = on;
+  window.__eveningGlass.value = on ? 1 : 0;
+  window.__eveningGrass.value = on ? 1 : 0;
+  if (on){
+    skyMat.uniforms.topC.value.set(0x163056);
+    skyMat.uniforms.horC.value.set(0xd4783c);
+    skyMat.uniforms.sunC.value.set(0xffd0a0);
+    skyMat.uniforms.sunDir.value.set(-0.2, 0.04, -1).normalize();
+    scene.background.set(0x163056);
+    hemi.color.set(0x6d88b0);
+    hemi.groundColor.set(0x3a3228);
+    hemi.intensity = 0.42;
+    sun.color.set(0xffc49a);
+    sun.intensity = 0.38;
+    sun.position.set(-10, 7, -32);
+    renderer.toneMappingExposure = 0.78;
+    lamps.forEach((L) => { L.intensity = 18; });
+  } else {
+    skyMat.uniforms.topC.value.set(0x6aaed0);
+    skyMat.uniforms.horC.value.set(0xd7eef8);
+    skyMat.uniforms.sunC.value.set(0xfff6e4);
+    skyMat.uniforms.sunDir.value.set(0.45, 0.35, 0.55).normalize();
+    scene.background.set(0x7cb3cc);
+    hemi.color.set(0xb7c9d6);
+    hemi.groundColor.set(0x4e5c32);
+    hemi.intensity = 0.34;
+    sun.color.setHex(daySun.color);
+    sun.intensity = daySun.intensity;
+    sun.position.set(daySun.pos[0], daySun.pos[1], daySun.pos[2]);
+    renderer.toneMappingExposure = 0.9;
+    lamps.forEach((L) => { L.intensity = 0; });
+  }
+  scene.traverse((o) => {
+    if (!o.isMesh || !o.material || o.material.name !== 'MAT_pool_water') return;
+    o.material.color.setHex(on ? 0x082833 : 0x0c7490);
+    o.material.transmission = on ? 0.55 : 0.9;
+    o.material.opacity = on ? 0.9 : 0.82;
+  });
+  const btn = document.getElementById('timeBtn');
+  btn.textContent = on ? 'Day' : 'Evening';
+  btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+}
+window.__setEvening = setEvening;
+document.getElementById('timeBtn').onclick = () => setEvening(!eveningOn);
 new RGBELoader().load('./tex/sky.hdr', (hdr) => {
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromEquirectangular(hdr).texture;

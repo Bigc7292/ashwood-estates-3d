@@ -68,18 +68,33 @@ function applyGlass(scene, root){
     const rt = new THREE.WebGLRenderTarget(512, 512);
     const virtualCamera = new THREE.PerspectiveCamera();
     const tint = new THREE.Color(0xc5d5dc);
+    const eveningU = window.__eveningGlass || (window.__eveningGlass = { value: 0 });
+    const vert = Reflector.ReflectorShader.vertexShader
+      .replace('varying vec4 vUv;', 'varying vec4 vUv;\nvarying vec2 vPane;')
+      .replace('gl_Position', 'vPane = position.xy;\ngl_Position');
+    const frag = Reflector.ReflectorShader.fragmentShader
+      .replace('varying vec4 vUv;', 'varying vec4 vUv;\nvarying vec2 vPane;\nuniform float evening;')
+      .replace(
+        'gl_FragColor = vec4( blendOverlay( base.rgb, color ), 1.0 );',
+        `vec3 refl = blendOverlay( base.rgb, color );
+        float paneH = clamp(vPane.y * 0.32 + 0.42, 0.0, 1.0);
+        vec3 room = mix(vec3(1.0, 0.62, 0.26), vec3(0.16, 0.18, 0.26), smoothstep(0.12, 0.78, paneH));
+        room += vec3(1.0, 0.7, 0.32) * smoothstep(0.5, 0.12, paneH) * 0.28;
+        gl_FragColor = vec4(mix(refl, mix(refl, room, 0.45), evening), 1.0);`
+      );
     const meshes = items.map((info) => {
       const w = info.axis === 0 ? info.size.z : info.size.x;
       const h = info.size.y;
       const mat = new THREE.ShaderMaterial({
         name: 'MAT_window_mirror',
         uniforms: THREE.UniformsUtils.clone(Reflector.ReflectorShader.uniforms),
-        vertexShader: Reflector.ReflectorShader.vertexShader,
-        fragmentShader: Reflector.ReflectorShader.fragmentShader
+        vertexShader: vert,
+        fragmentShader: frag
       });
       mat.uniforms.color.value = tint;
       mat.uniforms.tDiffuse.value = rt.texture;
       mat.uniforms.textureMatrix.value = new THREE.Matrix4();
+      mat.uniforms.evening = eveningU;
       const mesh = new THREE.Mesh(new THREE.PlaneGeometry(Math.max(0.05, w - 0.02), Math.max(0.05, h - 0.02)), mat);
       mesh.position.copy(info.center);
       mesh.position.setComponent(info.axis, info.plane + info.sign * 0.02);
@@ -759,13 +774,14 @@ function lawnMaterial(photo, normalMap){
     roughness: 0.92,
     metalness: 0
   });
-  mat.customProgramCacheKey = () => 'ashwood-rear-grass-2';
+  mat.customProgramCacheKey = () => 'ashwood-rear-grass-3';
   mat.onBeforeCompile = (shader) => {
+    shader.uniforms.uEvening = window.__eveningGrass || (window.__eveningGrass = { value: 0 });
     shader.vertexShader = shader.vertexShader
       .replace('#include <common>', '#include <common>\nvarying vec3 vGrassWorld;')
       .replace('#include <project_vertex>', '#include <project_vertex>\n\tvGrassWorld = (modelMatrix * vec4(transformed, 1.0)).xyz;');
     shader.fragmentShader = shader.fragmentShader
-      .replace('#include <common>', '#include <common>\nvarying vec3 vGrassWorld;')
+      .replace('#include <common>', '#include <common>\nvarying vec3 vGrassWorld;\nuniform float uEvening;')
       .replace('#include <color_fragment>', `#include <color_fragment>
         #ifdef USE_MAP
           vec3 fine = texture2D(map, vMapUv * 2.6 + vec2(0.17, 0.41)).rgb;
@@ -777,7 +793,8 @@ function lawnMaterial(photo, normalMap){
         vec3 shaded = vec3(0.34, 0.44, 0.30);
         diffuseColor.rgb *= mix(sunlit, shaded, byHouse);
         float patch = fract(sin(dot(floor(vGrassWorld.xz * 0.42), vec2(12.98, 78.23))) * 43758.5);
-        diffuseColor.rgb *= 0.88 + patch * 0.20;`);
+        diffuseColor.rgb *= 0.88 + patch * 0.20;
+        diffuseColor.rgb *= mix(vec3(1.0), vec3(0.38, 0.44, 0.52), uEvening);`);
   };
   return mat;
 }
