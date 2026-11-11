@@ -1,3 +1,8 @@
+## 2026-11-11 (Asia/Dubai), Unreal villa mesh fix (branch `lane/unreal-villa`)
+
+- The imported villa showed slanted walls with triangular holes. Nanite was on and the viewport drew its 978-triangle fallback. Nanite is now off for `SM_Villa_Exterior`, and the mesh shows all 83,908 triangles of the GLB. The earlier entry that gave 978 triangles was the fallback count.
+- Known gaps: walls are flat cream with no texture detail, the ground outside the plot is bare grey, and the round shrubs read as balloon trees. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), Unreal lighting pass 1 (branch `lane/unreal-villa`)
 
 - The level post-process volume now overrides ambient occlusion to 0.6 (was 0.3 default) for stronger contact shadows at the villa base, and bloom to 0.5 (was 1.0) so glass and water do not glow. Level `/Game/Main` saved. Status: REVIEW-PENDING. Main untouched.
