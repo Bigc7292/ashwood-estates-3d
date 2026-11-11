@@ -1,3 +1,9 @@
+## 2026-11-11 (Asia/Dubai), pool water in the live Blender scene (branch `lane/villa-draco-fix`)
+
+- `POOL_water (CAD 9.50 x 2.40)` was an opaque teal (`MAT_water`, alpha 1, no transmission). It now uses `MAT_pool_water_live`: base #5fc2cf, roughness 0.06, transmission 1, IOR 1.333, alpha 0.55, blended, with a noise bump for ripples. Saved with Blender 5.2.2 LTS, same as the file.
+- `POOL_floor` and `POOL_wall_*` move from the dark `MAT_pooltile` onto `MAT_pool_basin` (pale procedural tile, no image file). Courtyard water is still `MAT_water`. Coping unchanged. Pool position unchanged.
+- Status: REVIEW-PENDING. A viewport still could not be rendered here (no libEGL). Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), palms, courtyard pine and lawn in three.js (branch `lane/villa-draco-fix`)
 
 - Continued from `e0a68c9`. Old `TREE_*_palm_*`, `CONTEXT_palm_*` and `TREE_13_courtyard_pine_*` meshes are hidden. Palms are rebuilt on the trunk bounding-box base (height taken from that box). The courtyard pine is a needle crown on the trunk base, not stacked discs. Lawn and context lawn use a canvas blade texture instead of the tiled photo. No downloaded assets.
