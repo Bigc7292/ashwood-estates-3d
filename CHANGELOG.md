@@ -1,3 +1,8 @@
+## 2026-11-11 (Asia/Dubai), Unreal villa import (branch `lane/unreal-villa`)
+
+- Imported `exterior-garden-3d/4b/villa-materials.glb` into the Ashwood 3D Unreal project as `/Game/Villa/SM_Villa_Exterior` (one combined mesh with 19 materials, 978 triangles, about 180 m x 150 m x 12 m). The actor `Villa_Exterior` sits at the origin in `/Game/Main`.
+- The level keeps its existing sun and sky, fog and post-process volume. Lighting and material tuning are not done yet. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), evening light (branch `lane/villa-draco-fix`)
 
 - An Evening button on the exterior viewer. It lowers the sun, puts a blue dusk sky with an orange horizon over the terrace, warms the rooms behind the glass, and switches back to Day. Status: REVIEW-PENDING. Main untouched.
