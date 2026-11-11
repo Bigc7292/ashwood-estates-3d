@@ -1,3 +1,11 @@
+## 2026-11-11 (Asia/Dubai), villa exterior dressing built in three.js (branch `lane/villa-draco-fix`)
+
+- Colin 17:16: "use three js for building furniture, plants etc". New file `exterior-garden-3d/4b/garden_three.js` builds, with no downloaded models or textures: two tree shapes (olive-type and upright broadleaf, 5 seeded variants) on the 8 `TREE_*_broadleaf_trunk` spots; clipped leafy hedges on the `HEDGE_lawn-*` and `HEDGE_front_bed` boxes; pool tile liner, entry steps, pale coping and rippling water inside the `POOL_*` bounds (lawn clipped out of the basin); terrace sofa, two armchairs, coffee table, two sun loungers, side table and parasol at the positions the box furniture had.
+- `villa.html`: calls `buildGarden(...)`; the box furniture and the `tex/bk/garden.glb` / `bush.glb` loads are removed (files kept). Draco loader import removed from the page since no Draco file is loaded now (vendored decoder kept). Added vendored `RoundedBoxGeometry.js` (three r160).
+- Check: headless Chromium, 0 failed requests, 0 console errors, about 120k triangles in view.
+- ASSUMPTIONS (not from the plan): tree heights and crown sizes, furniture dimensions, pool entry steps, parasol. Pool size and position unchanged from the handoff (CAD 9.50 x 2.40 m, shifted 3.78 m).
+- Status: REVIEW-PENDING (no independent critic pass yet). Not touched: palms, courtyard pine, lawn texture.
+
 ## 2026-11-11 (Asia/Dubai), villa page load fix after handoff sync (branch `lane/villa-draco-fix`)
 
 - Synced: main `ec29d41` (night handoff) merged into `claude/rules-and-status` as `c48b142`. CHANGELOG conflict kept both sides.

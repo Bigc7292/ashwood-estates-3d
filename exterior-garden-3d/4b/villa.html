@@ -29,8 +29,8 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from './model/vendor/three/examples/jsm/loaders/DRACOLoader.js';
-const draco = new DRACOLoader().setDecoderPath('./model/vendor/three/examples/jsm/libs/draco/gltf/');
+import { buildGarden } from './garden_three.js?v=1';
+let garden = null;
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
 // views_blender.json, Blender Z-up to glTF Y-up: (x, y, z) -> (x, z, -y)
@@ -255,70 +255,9 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
     scene.add(mesh);
   }
   furn(3.05, 12.95, -0.2, 4.55, 0.0, 0.07, 0xe4d8c6, 0.82);
-  furn(4.5, 7.1, 3.05, 3.95, 0.07, 0.3, 0x2c2622, 0.8);
-  furn(4.6, 7.0, 3.1, 3.8, 0.3, 0.5, 0xd2c6b4, 0.85);
-  furn(4.6, 7.0, 3.55, 3.95, 0.5, 0.92, 0xd2c6b4, 0.85);
-  furn(3.5, 4.35, 1.85, 2.7, 0.07, 0.3, 0x2c2622, 0.8);
-  furn(3.55, 4.3, 1.9, 2.6, 0.3, 0.48, 0xd2c6b4, 0.85);
-  furn(7.25, 8.1, 1.85, 2.7, 0.07, 0.3, 0x2c2622, 0.8);
-  furn(7.3, 8.05, 1.9, 2.6, 0.3, 0.48, 0xd2c6b4, 0.85);
-  furn(5.15, 6.5, 1.9, 2.55, 0.07, 0.42, 0xefe8dc, 0.4);
-  furn(10.3, 11.05, 0.25, 2.15, 0.07, 0.28, 0xf4f1ea, 0.6);
-  furn(10.3, 11.05, 1.55, 2.15, 0.28, 0.55, 0xf4f1ea, 0.6);
-  furn(11.25, 12.0, 0.25, 2.15, 0.07, 0.28, 0xf4f1ea, 0.6);
-  furn(11.25, 12.0, 1.55, 2.15, 0.28, 0.55, 0xf4f1ea, 0.6);
-  furn(11.05, 11.3, 2.25, 2.55, 0.07, 0.38, 0x3a2c20, 0.45);
-  new GLTFLoader().setDRACOLoader(draco).load('./tex/bk/garden.glb?v=1', (g) => {
-    g.scene.traverse((m) => {
-      if (!m.isMesh) return;
-      const mats = Array.isArray(m.material) ? m.material : [m.material];
-      mats.forEach((mat) => {
-        mat.side = THREE.DoubleSide;
-        mat.alphaTest = 0.35;
-        mat.transparent = false;
-        mat.depthWrite = true;
-      });
-    });
-    oliveSpots.forEach((p, i) => {
-      const t = g.scene.clone(true);
-      t.scale.setScalar(5.6 + (i % 3) * 0.45);
-      t.rotation.y = i * 0.8;
-      t.position.set(p[0], 0, p[1]);
-      scene.add(t);
-    });
-  });
-  new GLTFLoader().load('./tex/bk/bush.glb?v=2', (g) => {
-    g.scene.traverse((m) => {
-      if (!m.isMesh) return;
-      const mats = Array.isArray(m.material) ? m.material : [m.material];
-      mats.forEach((mat) => {
-        mat.side = THREE.DoubleSide;
-        mat.alphaTest = 0.25;
-        mat.transparent = false;
-        mat.depthWrite = true;
-        mat.roughness = 0.9;
-      });
-    });
-    let placed = 0;
-    bushRows.forEach((b, bi) => {
-      const dx = b.max[0] - b.min[0], dz = b.max[2] - b.min[2];
-      const alongX = dx >= dz;
-      const span = alongX ? dx : dz;
-      if (span < 1.2) return;
-      const n = Math.min(8, Math.max(2, Math.round(span / 1.35)));
-      for (let i = 0; i < n && placed < 28; i++, placed++) {
-        const u = (i + 0.5) / n;
-        const x = alongX ? b.min[0] + dx * u : (b.min[0] + b.max[0]) / 2;
-        const z = alongX ? (b.min[2] + b.max[2]) / 2 : b.min[2] + dz * u;
-        const t = g.scene.clone(true);
-        const s = 1.25 + (i % 4) * 0.12;
-        t.scale.set(s * 1.15, s * 0.95, s);
-        t.rotation.y = i * 0.9 + bi * 0.4;
-        t.position.set(x, -0.02, z);
-        scene.add(t);
-      }
-    });
-  });
+  // 2026-11-11: trees, hedges, pool water and terrace furniture are built in three.js (garden_three.js).
+  // The earlier box furniture and the tex/bk/*.glb plants are no longer loaded.
+  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, sway, renderer });
   renderer.render(scene, cam);
   document.title = 'READY';
 });
@@ -327,6 +266,7 @@ function frame(){
   requestAnimationFrame(frame);
   const t = clock.getElapsedTime();
   for (const s of sway) s.o.rotation.z = Math.sin(t * s.s + s.p) * s.a;
+  if (garden) garden.update(t);
   if (!pinch) controls.update();
   renderer.render(scene, cam);
 }
