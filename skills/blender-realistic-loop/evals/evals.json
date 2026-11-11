@@ -1,0 +1,19 @@
+{
+  "evals": [
+    {
+      "id": "villa-rear-dusk",
+      "prompt": "Keep iterating the Ashwood rear terrace until the dusk shot looks photographed.",
+      "expect": "A loop that scores browser frames of villa.html, fixes the worst item, and does not ask mid-loop."
+    },
+    {
+      "id": "pool-mirror",
+      "prompt": "The pool should reflect the house. Iterate without asking.",
+      "expect": "A planar reflection on the waterline, darker than the sky, with the facade visible in the water."
+    },
+    {
+      "id": "product-still",
+      "prompt": "Make this hard-surface product photorealistic in Blender without stopping to ask me.",
+      "expect": "Headless bpy, one hero camera, critic scores, stop at 8/10 or 8 rounds."
+    }
+  ]
+}

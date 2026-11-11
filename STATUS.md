@@ -1,3 +1,5 @@
+Now, 2026-11-11 18:20 Asia/Dubai: branch `lane/villa-draco-fix`. Boomtown is vendored under `skills/boomtown/` for new estate concepts only. The villa preview grass, pool water and stone walls were updated this session. Main untouched. Review still pending.
+
 # Current status (handoff)
 
 Night stop 2026-11-10 23:47 Asia/Dubai. Colin is off the laptop.

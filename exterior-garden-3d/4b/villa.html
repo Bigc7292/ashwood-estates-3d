@@ -11,7 +11,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 #floors a{background:#9a4e28;color:#fff;text-decoration:none;border-radius:999px;padding:9px 14px;font:15px/1 Arial,sans-serif;font-weight:700}
 #backView{position:absolute;z-index:30;top:8px;left:8px;border:0;border-radius:999px;padding:8px 14px;background:rgba(20,28,24,.88);color:#fff;font:14px/1 Arial,sans-serif;text-decoration:none}
 #zoom{position:absolute;z-index:30;right:8px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px}
-#zoom button{width:44px;height:44px;border:0;border-radius:12px;background:rgba(20,28,24,.88);color:#fff;font:22px/1 Arial,sans-serif}
+#timeBtn{position:absolute;z-index:30;top:8px;left:50%;transform:translateX(-50%);border:0;border-radius:999px;padding:8px 16px;background:rgba(20,28,24,.88);color:#fff;font:14px/1 Arial,sans-serif}
 @media (max-width:800px){
   #cams{display:none;left:8px;right:8px;top:52px;max-height:40dvh;overflow:auto;padding:8px;border-radius:12px;background:rgba(20,28,24,.92)}
   body.tools-open #cams{display:flex}
@@ -23,12 +23,15 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <script type="importmap">{"imports":{"three":"./model/vendor/three/build/three.module.js"}}</script>
 </head><body>
 <a id="backView" href="./walk_exterior_wip/front_v2.html">Walk model</a>
+<button id="timeBtn" type="button">Evening</button>
 <nav id="cams"></nav>
-<nav id="floors"><a href="../../site/ground-floor.html?walk=1">Walk inside</a><a href="../../site/ground-floor.html">Ground floor</a><a href="../../ff/index.html?walk=1">First floor</a></nav>
+<nav id="floors"><a href="../../site/ground-floor.html?walk=1">Walk inside</a><a href="../../site/ground-floor.html">Ground floor</a><a href="../../ff/index.html">First floor</a></nav>
 <div id="zoom"><button type="button" id="zoomIn" aria-label="Zoom in">+</button><button type="button" id="zoomOut" aria-label="Zoom out">−</button></div>
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
+import { buildGarden } from './garden_three.js?v=28';
+let garden = null;
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
 // views_blender.json, Blender Z-up to glTF Y-up: (x, y, z) -> (x, z, -y)
@@ -38,21 +41,127 @@ const VIEWS = [
   {name:'Left', pos:[-55,4,15], tgt:[10,4,15], lens:28},
   {name:'Right', pos:[75,4,15], tgt:[10,4,15], lens:28}
 ];
-const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+const phone = matchMedia('(pointer: coarse)').matches || innerHeight > innerWidth;
+const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance', stencil: false });
+renderer.setPixelRatio(phone ? 1 : Math.min(devicePixelRatio, 1));
 renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = phone ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 0.9;
 document.body.prepend(renderer.domElement);
+window.__renderer = renderer;
 const scene = new THREE.Scene();
 window.__scene = scene;
 scene.background = new THREE.Color(0x7cb3cc);
-scene.add(new THREE.HemisphereLight(0x9ec8dc, 0xc4a381, 0.35));
-const sun = new THREE.DirectionalLight(0xfff1d6, 1.55);
+const hemi = new THREE.HemisphereLight(0xb7c9d6, 0x4e5c32, 0.34);
+scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xfff1d6, 2.7);
 sun.position.set(38.2, 20.4, 42.8);
-sun.target.position.set(9, 5.4, 20);
+sun.target.position.set(9, 2.2, 2);
+sun.castShadow = true;
+sun.shadow.mapSize.set(phone ? 512 : 1024, phone ? 512 : 1024);
+sun.shadow.camera.near = 0.5;
+sun.shadow.camera.far = 90;
+sun.shadow.camera.left = -26;
+sun.shadow.camera.right = 26;
+sun.shadow.camera.top = 26;
+sun.shadow.camera.bottom = -26;
+sun.shadow.bias = -0.00015;
+sun.shadow.normalBias = 0.02;
+sun.shadow.camera.updateProjectionMatrix();
 scene.add(sun, sun.target);
+window.__eveningGlass = { value: 0 };
+window.__eveningGrass = { value: 0 };
+const skyMat = new THREE.ShaderMaterial({
+  side: THREE.BackSide,
+  depthWrite: false,
+  uniforms: {
+    topC: { value: new THREE.Color(0x6aaed0) },
+    horC: { value: new THREE.Color(0xd7eef8) },
+    sunC: { value: new THREE.Color(0xfff6e4) },
+    sunDir: { value: new THREE.Vector3(0.45, 0.35, 0.55).normalize() }
+  },
+  vertexShader: 'varying vec3 vP; void main(){ vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+  fragmentShader: `
+    varying vec3 vP;
+    uniform vec3 topC;
+    uniform vec3 horC;
+    uniform vec3 sunC;
+    uniform vec3 sunDir;
+    void main(){
+      vec3 d = normalize(vP);
+      float h = clamp(d.y * 1.6 + 0.08, 0.0, 1.0);
+      vec3 col = mix(horC, topC, smoothstep(0.0, 0.28, h));
+      float sunDisc = pow(max(dot(d, normalize(sunDir)), 0.0), 64.0);
+      col += sunC * sunDisc;
+      gl_FragColor = vec4(col, 1.0);
+    }`
+});
+const sky = new THREE.Mesh(new THREE.SphereGeometry(220, 28, 16), skyMat);
+sky.frustumCulled = false;
+sky.castShadow = false;
+scene.add(sky);
+const daySun = { color: 0xfff1d6, intensity: 2.7, pos: [38.2, 20.4, 42.8] };
+const lamps = [
+  [11.6, 1.55, 0.6],
+  [6.2, 1.35, 0.2],
+  [9.4, 4.15, 3.2]
+].map(([x, y, z]) => {
+  const L = new THREE.PointLight(0xffb36a, 0, 11, 2);
+  L.position.set(x, y, z);
+  scene.add(L);
+  return L;
+});
+let eveningOn = false;
+function setEvening(on){
+  eveningOn = on;
+  window.__eveningGlass.value = on ? 1 : 0;
+  window.__eveningGrass.value = on ? 1 : 0;
+  if (on){
+    skyMat.uniforms.topC.value.set(0x163056);
+    skyMat.uniforms.horC.value.set(0xd4783c);
+    skyMat.uniforms.sunC.value.set(0xffd0a0);
+    skyMat.uniforms.sunDir.value.set(-0.2, 0.04, -1).normalize();
+    scene.background.set(0x163056);
+    hemi.color.set(0x6d88b0);
+    hemi.groundColor.set(0x3a3228);
+    hemi.intensity = 0.42;
+    sun.color.set(0xffc49a);
+    sun.intensity = 0.38;
+    sun.position.set(-10, 7, -32);
+    renderer.toneMappingExposure = 0.78;
+    lamps.forEach((L) => { L.intensity = 18; });
+  } else {
+    skyMat.uniforms.topC.value.set(0x6aaed0);
+    skyMat.uniforms.horC.value.set(0xd7eef8);
+    skyMat.uniforms.sunC.value.set(0xfff6e4);
+    skyMat.uniforms.sunDir.value.set(0.45, 0.35, 0.55).normalize();
+    scene.background.set(0x7cb3cc);
+    hemi.color.set(0xb7c9d6);
+    hemi.groundColor.set(0x4e5c32);
+    hemi.intensity = 0.34;
+    sun.color.setHex(daySun.color);
+    sun.intensity = daySun.intensity;
+    sun.position.set(daySun.pos[0], daySun.pos[1], daySun.pos[2]);
+    renderer.toneMappingExposure = 0.9;
+    lamps.forEach((L) => { L.intensity = 0; });
+  }
+  scene.traverse((o) => {
+    if (!o.isMesh || !o.material || o.material.name !== 'MAT_pool_water') return;
+    if (o.material.uniforms && o.material.uniforms.reflMix){
+      o.material.uniforms.color.value.setHex(on ? 0x0b2433 : 0x0e5c6c);
+      o.material.uniforms.reflMix.value = on ? 0.94 : 0.82;
+    }
+  });
+  const btn = document.getElementById('timeBtn');
+  btn.textContent = on ? 'Day' : 'Evening';
+  btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  renderer.shadowMap.needsUpdate = true;
+}
+window.__setEvening = setEvening;
+document.getElementById('timeBtn').onclick = () => setEvening(!eveningOn);
 new RGBELoader().load('./tex/sky.hdr', (hdr) => {
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromEquirectangular(hdr).texture;
@@ -60,6 +169,7 @@ new RGBELoader().load('./tex/sky.hdr', (hdr) => {
   pmrem.dispose();
 });
 const cam = new THREE.PerspectiveCamera(32, innerWidth/innerHeight, 0.1, 500);
+cam.layers.enable(1);
 window.__cam = cam;
 const controls = new OrbitControls(cam, renderer.domElement);
 window.__controls = controls;
@@ -163,11 +273,15 @@ const BY = {
 };
 const sway = [];
 const oliveSpots = [];
+const palmSpots = []; let pineSpot = null;
 const bushRows = [];
+const plantCols = [];
 new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
   scene.add(gltf.scene);
   gltf.scene.traverse((o) => {
     if (!o.isMesh) return;
+    o.receiveShadow = true;
+    o.castShadow = !/LAWN|lawn|POOL_water|CONTEXT_lawn/.test(o.name);
     const list = Array.isArray(o.material) ? o.material : [o.material];
     const srcName = list[0] && list[0].name;
     const set = BY[srcName] && SETS[BY[srcName]];
@@ -206,6 +320,17 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
       o.material.color.setHex(0x3e3226);
       o.material.roughness = 1;
     }
+    if (/palm_(\d+_)?(trunk|fronds)$/.test(o.name) || /courtyard_pine_/.test(o.name)) {
+      if (/palm_(\d+_)?trunk$|courtyard_pine_trunk$/.test(o.name)) {
+        o.updateWorldMatrix(true, false);
+        if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
+        const b = o.geometry.boundingBox.clone().applyMatrix4(o.matrixWorld);
+        const spot = [(b.min.x + b.max.x) / 2, b.min.y, (b.min.z + b.max.z) / 2, b.max.y - b.min.y];
+        if (/palm_(\d+_)?trunk$/.test(o.name)) palmSpots.push(spot);
+        else pineSpot = spot;
+      }
+      o.visible = false;
+    }
     if (o.name === 'COURTYARD_planter_island'){
       o.scale.x *= 1.45;
       o.scale.z *= 1.45;
@@ -234,14 +359,27 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
       }
       bushRows.push({ min, max });
     }
+    if (/^FF_balcony_planting_/.test(o.name)) {
+      o.visible = false;
+      o.updateWorldMatrix(true, false);
+      const pos = o.geometry.attributes.position;
+      const e = o.matrixWorld.elements;
+      const min = [1e9, 1e9, 1e9], max = [-1e9, -1e9, -1e9];
+      for (let i = 0; i < pos.count; i++) {
+        const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+        const wx = e[0] * x + e[4] * y + e[8] * z + e[12];
+        const wy = e[1] * x + e[5] * y + e[9] * z + e[13];
+        const wz = e[2] * x + e[6] * y + e[10] * z + e[14];
+        if (wx < min[0]) min[0] = wx; if (wy < min[1]) min[1] = wy; if (wz < min[2]) min[2] = wz;
+        if (wx > max[0]) max[0] = wx; if (wy > max[1]) max[1] = wy; if (wz > max[2]) max[2] = wz;
+      }
+      plantCols.push({ min, max });
+    }
     if (srcName === 'MAT_lawn' || srcName === 'MAT_context_lawn'){
       grassC.repeat.set(14, 14);
       o.material.map = grassC;
       o.material.color.setHex(0xc6d39a);
       o.material.roughness = 1;
-    }
-    if ((srcName === 'MAT_leaf' || srcName === 'MAT_palmleaf' || srcName === 'MAT_hedge') && o.visible){
-      sway.push({ o, p: Math.random() * Math.PI * 2, a: 0.012 + Math.random() * 0.018, s: 0.6 + Math.random() * 0.5 });
     }
   });
   function furn(x0, x1, z0, z1, y0, y1, color, rough){
@@ -253,84 +391,38 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
     scene.add(mesh);
   }
   furn(3.05, 12.95, -0.2, 4.55, 0.0, 0.07, 0xe4d8c6, 0.82);
-  furn(4.5, 7.1, 3.05, 3.95, 0.07, 0.3, 0x2c2622, 0.8);
-  furn(4.6, 7.0, 3.1, 3.8, 0.3, 0.5, 0xd2c6b4, 0.85);
-  furn(4.6, 7.0, 3.55, 3.95, 0.5, 0.92, 0xd2c6b4, 0.85);
-  furn(3.5, 4.35, 1.85, 2.7, 0.07, 0.3, 0x2c2622, 0.8);
-  furn(3.55, 4.3, 1.9, 2.6, 0.3, 0.48, 0xd2c6b4, 0.85);
-  furn(7.25, 8.1, 1.85, 2.7, 0.07, 0.3, 0x2c2622, 0.8);
-  furn(7.3, 8.05, 1.9, 2.6, 0.3, 0.48, 0xd2c6b4, 0.85);
-  furn(5.15, 6.5, 1.9, 2.55, 0.07, 0.42, 0xefe8dc, 0.4);
-  furn(10.3, 11.05, 0.25, 2.15, 0.07, 0.28, 0xf4f1ea, 0.6);
-  furn(10.3, 11.05, 1.55, 2.15, 0.28, 0.55, 0xf4f1ea, 0.6);
-  furn(11.25, 12.0, 0.25, 2.15, 0.07, 0.28, 0xf4f1ea, 0.6);
-  furn(11.25, 12.0, 1.55, 2.15, 0.28, 0.55, 0xf4f1ea, 0.6);
-  furn(11.05, 11.3, 2.25, 2.55, 0.07, 0.38, 0x3a2c20, 0.45);
-  new GLTFLoader().load('./tex/bk/garden.glb?v=1', (g) => {
-    g.scene.traverse((m) => {
-      if (!m.isMesh) return;
-      const mats = Array.isArray(m.material) ? m.material : [m.material];
-      mats.forEach((mat) => {
-        mat.side = THREE.DoubleSide;
-        mat.alphaTest = 0.35;
-        mat.transparent = false;
-        mat.depthWrite = true;
-      });
-    });
-    oliveSpots.forEach((p, i) => {
-      const t = g.scene.clone(true);
-      t.scale.setScalar(5.6 + (i % 3) * 0.45);
-      t.rotation.y = i * 0.8;
-      t.position.set(p[0], 0, p[1]);
-      scene.add(t);
-    });
-  });
-  new GLTFLoader().load('./tex/bk/bush.glb?v=2', (g) => {
-    g.scene.traverse((m) => {
-      if (!m.isMesh) return;
-      const mats = Array.isArray(m.material) ? m.material : [m.material];
-      mats.forEach((mat) => {
-        mat.side = THREE.DoubleSide;
-        mat.alphaTest = 0.25;
-        mat.transparent = false;
-        mat.depthWrite = true;
-        mat.roughness = 0.9;
-      });
-    });
-    let placed = 0;
-    bushRows.forEach((b, bi) => {
-      const dx = b.max[0] - b.min[0], dz = b.max[2] - b.min[2];
-      const alongX = dx >= dz;
-      const span = alongX ? dx : dz;
-      if (span < 1.2) return;
-      const n = Math.min(8, Math.max(2, Math.round(span / 1.35)));
-      for (let i = 0; i < n && placed < 28; i++, placed++) {
-        const u = (i + 0.5) / n;
-        const x = alongX ? b.min[0] + dx * u : (b.min[0] + b.max[0]) / 2;
-        const z = alongX ? (b.min[2] + b.max[2]) / 2 : b.min[2] + dz * u;
-        const t = g.scene.clone(true);
-        const s = 1.25 + (i % 4) * 0.12;
-        t.scale.set(s * 1.15, s * 0.95, s);
-        t.rotation.y = i * 0.9 + bi * 0.4;
-        t.position.set(x, -0.02, z);
-        scene.add(t);
-      }
-    });
-  });
+  // 2026-11-11: trees, hedges, palms, courtyard pine, pool water, terrace furniture and a drawn grass texture are built in three.js (garden_three.js).
+  // The earlier box furniture and the tex/bk/*.glb plants are no longer loaded.
+  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, palms: palmSpots, pine: pineSpot, cols: plantCols, sway, renderer, grassMap: grassC, stoneMap: stoneC });
   renderer.render(scene, cam);
+  window.__sceneReady = true;
+  window.__reflectWarm = (window.__reflectN || 4) + 2;
   document.title = 'READY';
 });
 const clock = new THREE.Clock();
+const lastCam = new THREE.Vector3();
+const lastTgt = new THREE.Vector3();
 function frame(){
   requestAnimationFrame(frame);
+  window.__frame = (window.__frame || 0) + 1;
   const t = clock.getElapsedTime();
   for (const s of sway) s.o.rotation.z = Math.sin(t * s.s + s.p) * s.a;
+  if (garden) garden.update(t);
   if (!pinch) controls.update();
+  const moved = cam.position.distanceToSquared(lastCam) > 0.0008 || controls.target.distanceToSquared(lastTgt) > 0.0008;
+  if (moved){
+    lastCam.copy(cam.position);
+    lastTgt.copy(controls.target);
+    window.__reflectWarm = (window.__reflectN || 4) + 1;
+  }
+  window.__reflectLive = (window.__reflectWarm || 0) > 0;
+  if (window.__reflectWarm > 0) window.__reflectWarm--;
   renderer.render(scene, cam);
+  if (window.__sceneReady && renderer.shadowMap.autoUpdate) renderer.shadowMap.autoUpdate = false;
 }
 frame();
 addEventListener('resize', () => { cam.aspect = innerWidth/innerHeight; cam.fov = vfov(lens); cam.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
 </script>
 </body>
-<script src="../../review/review.js"></script>
+<script src="./review/review.js?v=27"></script>
 </html>

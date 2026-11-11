@@ -1,3 +1,71 @@
+## 2026-11-11 (Asia/Dubai), evening light (branch `lane/villa-draco-fix`)
+
+- An Evening button on the exterior viewer. It lowers the sun, puts a blue dusk sky with an orange horizon over the terrace, warms the rooms behind the glass, and switches back to Day. Status: REVIEW-PENDING. Main untouched.
+
+## 2026-11-11 (Asia/Dubai), every window mirrors (branch `lane/villa-draco-fix`)
+
+- Every `MAT_glass` pane, not only the rear, is now a mirror of the space outside that wall. Windows on the terrace still show the pool, parasol and sky. Front, side, courtyard and entry windows mirror their own side instead of a flat sky colour. Panes on the same wall share one reflection, so the page does not render the scene once per window.
+- Balcony glass stays clear. Status: REVIEW-PENDING. Main untouched.
+
+## 2026-11-11 (Asia/Dubai), window reflections (branch `lane/villa-draco-fix`)
+
+- The painted sky band on the rear panes is gone. Each rear opening (`GF_rear_glazing*`, `FF_rear_glazing*`) is now a mirror of the terrace: sky, parasol, loungers and pool, tinted like glass. The bronze frames stay in front of the glass. Balcony glass stays clear.
+- Other windows still use the sky reflection, not this terrace mirror. Status: REVIEW-PENDING. Main untouched.
+
+## 2026-11-11 (Asia/Dubai), window glass (branch `lane/villa-draco-fix`)
+
+- Window panes were a near-black panel. They now show sky at the top of the pane and the pool colour at the bottom, with a soft horizon. `MAT_bronze` frames are dark bronze instead of the blue metal map. Balcony glass stays lighter so the slats show through.
+- The colour on the pane is a stand-in from the pane height, plus one reflection probe from the terrace. It is not a ray-traced mirror of the pool. Rooms behind the glass are empty, so the glass does not open into the house.
+- Status: REVIEW-PENDING. Commit `5c6b4e7`. Main untouched.
+
+## 2026-11-11 (Asia/Dubai), balcony plant columns (branch `lane/villa-draco-fix`)
+
+- `FF_balcony_planting_L` and `FF_balcony_planting_R` were solid `MAT_hedge` boxes, the dark green columns beside the rear glass. They are hidden. Each is now a stone trough with soil and a leaf column, lighter at the tips. Assumption: the boxes were planting, not stone piers. The stone piers stay stone.
+- Status: REVIEW-PENDING. Main untouched. Headless rear view: READY, 0 console errors.
+
+## 2026-11-11 (Asia/Dubai), Boomtown skill plus wall and pool water (branch `lane/villa-draco-fix`)
+
+- Vendored the MIT Boomtown skill into `skills/boomtown/` (no example films). `AGENTS.md`, `CLAUDE.md` and `GROK.md` say to use it for a new measured estate concept, not to restyle the villa viewer. Note: `skills/boomtown/ASHWOOD.md`.
+- Rear walls and soffit use the stone photo in triplanar space, darker at the foot. Pool water transmits, with a deeper colour, a stronger ripple and moving caustics on the tiles. Grass from the previous pass is unchanged.
+- Status: REVIEW-PENDING. Main untouched. Headless load of the villa page: READY, 0 shader errors.
+
+## 2026-11-11 (Asia/Dubai), rear lawn texture and shade (branch `lane/villa-draco-fix`)
+
+- The flat canvas grass is gone. Lawn and the rear context lawn use the grass photo, tiled from world position, with a blade normal and a second finer sample. Colour is deeper in the sun and cooler where the lawn meets the back of the house. The sun now casts a soft shadow from the house onto that grass.
+- Status: REVIEW-PENDING. Main untouched.
+
+## 2026-11-11 (Asia/Dubai), pool water in the live Blender scene (branch `lane/villa-draco-fix`)
+
+- `POOL_water (CAD 9.50 x 2.40)` was an opaque teal (`MAT_water`, alpha 1, no transmission). It now uses `MAT_pool_water_live`: base #5fc2cf, roughness 0.06, transmission 1, IOR 1.333, alpha 0.55, blended, with a noise bump for ripples. Saved with Blender 5.2.2 LTS, same as the file.
+- `POOL_floor` and `POOL_wall_*` move from the dark `MAT_pooltile` onto `MAT_pool_basin` (pale procedural tile, no image file). Courtyard water is still `MAT_water`. Coping unchanged. Pool position unchanged.
+- Status: REVIEW-PENDING. A viewport still could not be rendered here (no libEGL). Main untouched.
+
+## 2026-11-11 (Asia/Dubai), palms, courtyard pine and lawn in three.js (branch `lane/villa-draco-fix`)
+
+- Continued from `e0a68c9`. Old `TREE_*_palm_*`, `CONTEXT_palm_*` and `TREE_13_courtyard_pine_*` meshes are hidden. Palms are rebuilt on the trunk bounding-box base (height taken from that box). The courtyard pine is a needle crown on the trunk base, not stacked discs. Lawn and context lawn use a canvas blade texture instead of the tiled photo. No downloaded assets.
+- ASSUMPTIONS: palm crown spread and pine layer sizes are not on the plan. Pool water in the Blender file is still not done. No independent critic pass.
+- Status: REVIEW-PENDING. Main untouched.
+
+## 2026-11-11 (Asia/Dubai), exterior live Blender scene saved to the repo (branch `lane/villa-draco-fix`)
+
+- Colin 17:26: "push and commit everything to github asap". Added `blender_wip/exterior_live_2026-11-11/` with `villa_exterior_live.blend` (7.5 MB), two viewport screenshots and a README. The scene holds the imported villa model, the pool set-back, terrace furniture, eight trees in two shapes and nine leafy hedges, all built by Python in Blender on Colin's PC. No BlenderKit or downloaded assets.
+- Status: WIP, REVIEW-PENDING. Left: palms, courtyard pine, lawn, pool water in Blender. Official `4b_*.blend` untouched.
+
+## 2026-11-11 (Asia/Dubai), villa exterior dressing built in three.js (branch `lane/villa-draco-fix`)
+
+- Colin 17:16: "use three js for building furniture, plants etc". New file `exterior-garden-3d/4b/garden_three.js` builds, with no downloaded models or textures: two tree shapes (olive-type and upright broadleaf, 5 seeded variants) on the 8 `TREE_*_broadleaf_trunk` spots; clipped leafy hedges on the `HEDGE_lawn-*` and `HEDGE_front_bed` boxes; pool tile liner, entry steps, pale coping and rippling water inside the `POOL_*` bounds (lawn clipped out of the basin); terrace sofa, two armchairs, coffee table, two sun loungers, side table and parasol at the positions the box furniture had.
+- `villa.html`: calls `buildGarden(...)`; the box furniture and the `tex/bk/garden.glb` / `bush.glb` loads are removed (files kept). Draco loader import removed from the page since no Draco file is loaded now (vendored decoder kept). Added vendored `RoundedBoxGeometry.js` (three r160).
+- Check: headless Chromium, 0 failed requests, 0 console errors, about 120k triangles in view.
+- ASSUMPTIONS (not from the plan): tree heights and crown sizes, furniture dimensions, pool entry steps, parasol. Pool size and position unchanged from the handoff (CAD 9.50 x 2.40 m, shifted 3.78 m).
+- Status: REVIEW-PENDING (no independent critic pass yet). Not touched: palms, courtyard pine, lawn texture.
+
+## 2026-11-11 (Asia/Dubai), villa page load fix after handoff sync (branch `lane/villa-draco-fix`)
+
+- Synced: main `ec29d41` (night handoff) merged into `claude/rules-and-status` as `c48b142`. CHANGELOG conflict kept both sides.
+- Check of the GitHub copy of `exterior-garden-3d/4b/villa.html` (headless Chromium): `tex/bk/garden.glb` is Draco-compressed and the page had no Draco decoder, so the trees did not load; `../../review/review.js` and the First floor link `../../ff/index.html` pointed at paths that are not in this repo.
+- Fix: added `model/vendor/three/examples/jsm/loaders/DRACOLoader.js` and `libs/draco/gltf/` (three r160, same as the vendored build); `villa.html` now sets the Draco loader for the tree, loads `./review/review.js`, and links the floor buttons to `handoff/2026-11-10-night/`. Added `handoff/2026-11-10-night/review/review.js` (copy) so the handoff interior pages find it. After the fix: 0 failed requests, 0 console errors.
+- Open for Colin: the tree's leaf texture in `garden.glb` is red-brown, so trees render red, not green as the handoff says. Model still has the 11.60 m stone fin (our front view uses 9.73 m) and the CAD pool 9.50 x 2.40 m shifted 3.78 m (pool v3 was 9.50 x 3.60 m with a 4.8 m terrace). Not changed.
+
 ## 2026-11-10 night (Asia/Dubai), Grok exterior handoff
 
 - Colin stopped for the night. Full record: `docs/HANDOFF_2026-11-10_NIGHT.md`. Tomorrow: `docs/TODO_2026-11-11.md`.
