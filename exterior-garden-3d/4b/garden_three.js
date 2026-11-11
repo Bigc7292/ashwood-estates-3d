@@ -1,3 +1,89 @@
+
+function applyGlass(scene, root, renderer){
+  const panes = [];
+  const glass = new THREE.MeshPhysicalMaterial({
+    name: 'MAT_glass',
+    color: 0xc5d5d8,
+    metalness: 0.35,
+    roughness: 0.04,
+    transmission: 0.08,
+    thickness: 0.06,
+    ior: 1.52,
+    transparent: true,
+    opacity: 1,
+    envMapIntensity: 1.35,
+    clearcoat: 1,
+    clearcoatRoughness: 0.03,
+    side: THREE.DoubleSide,
+    depthWrite: false
+  });
+  glass.customProgramCacheKey = () => 'ashwood-glass-reflect-2';
+  glass.onBeforeCompile = (shader) => {
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vGlassW;')
+      .replace('#include <project_vertex>', '#include <project_vertex>\n\tvGlassW = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vGlassW;')
+      .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+        float gh = clamp((vGlassW.y - 0.45) / 3.2, 0.0, 1.0);
+        vec3 sky = mix(vec3(0.15, 0.46, 0.54), vec3(0.70, 0.82, 0.90), smoothstep(0.05, 0.85, gh));
+        float horizon = smoothstep(0.38, 0.5, gh) * (1.0 - smoothstep(0.5, 0.66, gh));
+        sky = mix(sky, vec3(0.90, 0.94, 0.95), horizon);
+        gl_FragColor.rgb = mix(gl_FragColor.rgb, sky, 0.82);
+      `);
+  };
+  const bal = glass.clone();
+  bal.onBeforeCompile = function () {};
+  bal.customProgramCacheKey = () => 'ashwood-balglass-1';
+  bal.name = 'MAT_balglass';
+  bal.transmission = 0.55;
+  bal.opacity = 0.62;
+  bal.color.setHex(0xe8f1f2);
+  bal.roughness = 0.03;
+  root.traverse((o) => {
+    if (!o.isMesh || !o.material) return;
+    const n = o.material.name;
+    if (n === 'MAT_glass'){
+      o.material = glass;
+      o.castShadow = false;
+      o.renderOrder = 2;
+      panes.push(o);
+    } else if (n === 'MAT_balglass'){
+      o.material = bal;
+      o.castShadow = false;
+      o.renderOrder = 2;
+      panes.push(o);
+    } else if (n === 'MAT_bronze'){
+      o.material = new THREE.MeshStandardMaterial({
+        name: 'MAT_bronze',
+        color: 0x6a4e36,
+        metalness: 0.84,
+        roughness: 0.32,
+        envMapIntensity: 0.7
+      });
+      o.castShadow = true;
+    }
+  });
+  if (!panes.length || !renderer) return;
+  const rt = new THREE.WebGLCubeRenderTarget(128);
+  const cube = new THREE.CubeCamera(0.2, 80, rt);
+  cube.position.set(9.2, 1.15, -3.2);
+  scene.add(cube);
+  panes.forEach((m) => { m.visible = false; });
+  const shadows = renderer.shadowMap.enabled;
+  renderer.shadowMap.enabled = false;
+  cube.update(renderer, scene);
+  renderer.shadowMap.enabled = shadows;
+  panes.forEach((m) => { m.visible = true; });
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const env = pmrem.fromCubemap(rt.texture).texture;
+  pmrem.dispose();
+  glass.envMap = env;
+  bal.envMap = env;
+  glass.needsUpdate = true;
+  bal.needsUpdate = true;
+}
+
 // garden_three.js: procedural exterior dressing for villa.html, built in three.js only.
 // No downloaded models or textures. Concept visualisation, not survey-verified.
 // Sizes: tree and hedge positions come from villa-materials.glb node bounds (TREE_*_broadleaf_trunk, HEDGE_*);
@@ -750,5 +836,6 @@ export function buildGarden({ scene, root, spots, rows, palms, pine, cols, sway,
       o.receiveShadow = true;
     }
   });
+  applyGlass(scene, root, renderer);
   return { update: (t) => { if (tick) tick(t); } };
 }
