@@ -30,7 +30,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { buildGarden } from './garden_three.js?v=26';
+import { buildGarden } from './garden_three.js?v=28';
 let garden = null;
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
@@ -42,8 +42,8 @@ const VIEWS = [
   {name:'Right', pos:[75,4,15], tgt:[10,4,15], lens:28}
 ];
 const phone = matchMedia('(pointer: coarse)').matches || innerHeight > innerWidth;
-const renderer = new THREE.WebGLRenderer({ antialias: !phone, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
-renderer.setPixelRatio(phone ? 1 : Math.min(devicePixelRatio, 1.25));
+const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance', stencil: false });
+renderer.setPixelRatio(phone ? 1 : Math.min(devicePixelRatio, 1));
 renderer.setSize(innerWidth, innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = phone ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
@@ -51,6 +51,7 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 0.9;
 document.body.prepend(renderer.domElement);
+window.__renderer = renderer;
 const scene = new THREE.Scene();
 window.__scene = scene;
 scene.background = new THREE.Color(0x7cb3cc);
@@ -60,7 +61,7 @@ const sun = new THREE.DirectionalLight(0xfff1d6, 2.7);
 sun.position.set(38.2, 20.4, 42.8);
 sun.target.position.set(9, 2.2, 2);
 sun.castShadow = true;
-sun.shadow.mapSize.set(phone ? 1024 : 1536, phone ? 1024 : 1536);
+sun.shadow.mapSize.set(phone ? 512 : 1024, phone ? 512 : 1024);
 sun.shadow.camera.near = 0.5;
 sun.shadow.camera.far = 90;
 sun.shadow.camera.left = -26;
@@ -168,6 +169,7 @@ new RGBELoader().load('./tex/sky.hdr', (hdr) => {
   pmrem.dispose();
 });
 const cam = new THREE.PerspectiveCamera(32, innerWidth/innerHeight, 0.1, 500);
+cam.layers.enable(1);
 window.__cam = cam;
 const controls = new OrbitControls(cam, renderer.domElement);
 window.__controls = controls;
@@ -379,9 +381,6 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
       o.material.color.setHex(0xc6d39a);
       o.material.roughness = 1;
     }
-    if ((srcName === 'MAT_leaf' || srcName === 'MAT_palmleaf' || srcName === 'MAT_hedge') && o.visible){
-      sway.push({ o, p: Math.random() * Math.PI * 2, a: 0.012 + Math.random() * 0.018, s: 0.6 + Math.random() * 0.5 });
-    }
   });
   function furn(x0, x1, z0, z1, y0, y1, color, rough){
     const mesh = new THREE.Mesh(
@@ -397,9 +396,12 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
   garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, palms: palmSpots, pine: pineSpot, cols: plantCols, sway, renderer, grassMap: grassC, stoneMap: stoneC });
   renderer.render(scene, cam);
   window.__sceneReady = true;
+  window.__reflectWarm = (window.__reflectN || 4) + 2;
   document.title = 'READY';
 });
 const clock = new THREE.Clock();
+const lastCam = new THREE.Vector3();
+const lastTgt = new THREE.Vector3();
 function frame(){
   requestAnimationFrame(frame);
   window.__frame = (window.__frame || 0) + 1;
@@ -407,6 +409,14 @@ function frame(){
   for (const s of sway) s.o.rotation.z = Math.sin(t * s.s + s.p) * s.a;
   if (garden) garden.update(t);
   if (!pinch) controls.update();
+  const moved = cam.position.distanceToSquared(lastCam) > 0.0008 || controls.target.distanceToSquared(lastTgt) > 0.0008;
+  if (moved){
+    lastCam.copy(cam.position);
+    lastTgt.copy(controls.target);
+    window.__reflectWarm = (window.__reflectN || 4) + 1;
+  }
+  window.__reflectLive = (window.__reflectWarm || 0) > 0;
+  if (window.__reflectWarm > 0) window.__reflectWarm--;
   renderer.render(scene, cam);
   if (window.__sceneReady && renderer.shadowMap.autoUpdate) renderer.shadowMap.autoUpdate = false;
 }
@@ -414,5 +424,5 @@ frame();
 addEventListener('resize', () => { cam.aspect = innerWidth/innerHeight; cam.fov = vfov(lens); cam.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
 </script>
 </body>
-<script src="./review/review.js"></script>
+<script src="./review/review.js?v=27"></script>
 </html>

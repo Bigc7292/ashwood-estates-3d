@@ -4,6 +4,7 @@ function reflectSlot(){
   return window.__reflectN - 1;
 }
 function reflectDue(slot){
+  if (!window.__reflectLive) return false;
   const n = window.__reflectN || 1;
   return ((window.__frame | 0) % n) === slot;
 }
@@ -402,6 +403,7 @@ function buildTrees(scene, spots, sway){
     tree.name = 'PROC_tree_' + i;
     const leaves = new THREE.Mesh(k.g.leaves, k.mat);
     leaves.name = 'PROC_tree_leaves_' + i;
+    leaves.layers.set(1);
     tree.add(new THREE.Mesh(k.g.wood, bark), leaves);
     tree.position.set(p[0], 0, p[1]);
     tree.rotation.y = i * 1.7;
@@ -453,7 +455,7 @@ function buildHedges(scene, rows){
   });
   if (!cores.length) return;
   const cm = new THREE.Mesh(mergeGeometries(cores), core); cm.name = 'PROC_hedge_core';
-  const lm = new THREE.Mesh(cloud.geometry(), leaf); lm.name = 'PROC_hedge_leaves';
+  const lm = new THREE.Mesh(cloud.geometry(), leaf); lm.name = 'PROC_hedge_leaves'; lm.layers.set(1);
   scene.add(cm, lm);
 }
 
@@ -512,6 +514,7 @@ function buildColumns(scene, cols, sway){
     void i;
   });
   const leaves = new THREE.Mesh(cloud.geometry(), leaf);
+  leaves.layers.set(1);
   leaves.name = 'PROC_column_leaves';
   const potMesh = new THREE.Mesh(mergeGeometries(pots.filter((_, idx) => idx % 2 === 0)), potMat);
   potMesh.name = 'PROC_column_planter';
@@ -955,6 +958,7 @@ function buildPalms(scene, spots, sway){
       }
     }
     const leaves = new THREE.Mesh(crown.geometry(), frond);
+    leaves.layers.set(1);
     leaves.name = 'PROC_palm_fronds_' + i;
     g.add(leaves);
     g.position.set(p[0], p[1], p[2]);
@@ -991,6 +995,7 @@ function buildPine(scene, spot, sway){
     }
   }
   const leaves = new THREE.Mesh(cloud.geometry(), needle);
+  leaves.layers.set(1);
   leaves.name = 'PROC_pine_needles';
   g.add(leaves);
   g.position.set(spot[0], spot[1], spot[2]);
@@ -999,6 +1004,46 @@ function buildPine(scene, spot, sway){
 }
 
 // spots: [[x, z]...] ; palms and pine: [x, baseY, z, height]
+function batchStill(scene, sway){
+  const skip = new Set(sway.map((s) => s.o));
+  const buckets = new Map();
+  const list = [];
+  scene.traverse((o) => { if (o.isMesh) list.push(o); });
+  for (const o of list){
+    if (!o.visible || !o.geometry || skip.has(o)) continue;
+    const mat = o.material;
+    if (!mat || mat.isShaderMaterial) continue;
+    if (mat.clippingPlanes && mat.clippingPlanes.length) continue;
+    const name = mat.name || '';
+    if (/glass|window|pool_water/i.test(name)) continue;
+    const attrs = Object.keys(o.geometry.attributes).sort().join(',');
+    const key = name + '|' + attrs + (o.geometry.index ? '|i' : '');
+    if (!buckets.has(key)) buckets.set(key, []);
+    buckets.get(key).push(o);
+  }
+  buckets.forEach((group) => {
+    if (group.length < 2) return;
+    const geos = [];
+    for (const o of group){
+      const g = o.geometry.index ? o.geometry.clone() : o.geometry.clone();
+      o.updateWorldMatrix(true, false);
+      g.applyMatrix4(o.matrixWorld);
+      geos.push(g);
+    }
+    let merged = null;
+    try { merged = mergeGeometries(geos, false); } catch (e) { merged = null; }
+    geos.forEach((g) => g.dispose());
+    if (!merged) return;
+    const mesh = new THREE.Mesh(merged, group[0].material);
+    mesh.name = 'BATCH_' + (group[0].material.name || 'mesh');
+    mesh.castShadow = group.some((o) => o.castShadow);
+    mesh.receiveShadow = true;
+    mesh.matrixAutoUpdate = false;
+    scene.add(mesh);
+    group.forEach((o) => o.removeFromParent());
+  });
+}
+
 export function buildGarden({ scene, root, spots, rows, palms, pine, cols, sway, renderer, grassMap, stoneMap }){
   applyLawn(root, grassMap);
   applyWalls(root, stoneMap);
@@ -1025,5 +1070,6 @@ export function buildGarden({ scene, root, spots, rows, palms, pine, cols, sway,
     }
   });
   applyGlass(scene, root, renderer);
+  batchStill(scene, sway);
   return { update: (t) => { if (tick) tick(t); } };
 }

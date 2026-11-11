@@ -127,6 +127,7 @@
     return { w, h, src };
   }
   function grab() {
+    if (window.__renderer && window.__scene && window.__cam) window.__renderer.render(window.__scene, window.__cam);
     const { w, h, src } = shotSize();
     canvas.width = w; canvas.height = h;
     if (src) ctx.drawImage(src, 0, 0, w, h);
