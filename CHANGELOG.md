@@ -1,3 +1,9 @@
+## 2026-11-11 (Asia/Dubai), Unreal project and interior export, WIP (branch `lane/unreal-villa`)
+
+- New folder `unreal/ashwood_3d_estates/` holds the Unreal project as it stands: `Content` (level `Main`, villa mesh and 19 materials, 3.3 MB), `Config` and the `.uproject`. `Saved`, `Intermediate` and `DerivedDataCache` are left out.
+- WIP: `interior_export/extract.js` runs a web viewer in headless Chrome, captures its three.js scene and writes a GLB merged by material. It produced `gf_interior.glb` (50 MB, 364,916 triangles), `ff_interior.glb` (26 MB, 213,230 triangles) and `rf_interior.glb` (0.2 MB, 1,990 triangles) from the GF r3, FF r6F and RF step3 viewers.
+- Not done: the three interior GLBs are not imported into Unreal and not aligned to the exterior. The GF water and pond shaders were skipped by the export. No exterior material, ground or planting work yet. Status: WIP. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), Unreal villa mesh fix (branch `lane/unreal-villa`)
 
 - The imported villa showed slanted walls with triangular holes. Nanite was on and the viewport drew its 978-triangle fallback. Nanite is now off for `SM_Villa_Exterior`, and the mesh shows all 83,908 triangles of the GLB. The earlier entry that gave 978 triangles was the fallback count.
