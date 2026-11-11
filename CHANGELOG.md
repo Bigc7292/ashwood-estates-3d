@@ -1,3 +1,7 @@
+## 2026-11-11 (Asia/Dubai), remove Android file server token (branch `lane/unreal-villa`)
+
+- `unreal/ashwood_3d_estates/Config/DefaultEngine.ini` was committed in `d47bcba` with the `SecurityToken` line of the Android File Server plugin. The line is removed from the file now. It is still readable in the history of `d47bcba`, because history is not rewritten on this repo. The token is an auto-generated project value for copying files to an Android test device, not an account key. Status: WIP. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), Unreal project and interior export, WIP (branch `lane/unreal-villa`)
 
 - New folder `unreal/ashwood_3d_estates/` holds the Unreal project as it stands: `Content` (level `Main`, villa mesh and 19 materials, 3.3 MB), `Config` and the `.uproject`. `Saved`, `Intermediate` and `DerivedDataCache` are left out.
