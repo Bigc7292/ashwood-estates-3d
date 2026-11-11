@@ -417,9 +417,120 @@ function buildFurniture(scene){
 }
 
 // spots: [[x, z]...] trunk positions; rows: [{min:[x,y,z], max:[x,y,z]}...] hedge boxes; root: loaded villa scene
-export function buildGarden({ scene, root, spots, rows, sway, renderer }){
+function grassTexture(){
+  const S = 256, c = document.createElement('canvas');
+  c.width = c.height = S;
+  const g = c.getContext('2d'), r = prng(5);
+  g.fillStyle = '#5f7a38';
+  g.fillRect(0, 0, S, S);
+  for (let i = 0; i < 7000; i++){
+    const x = r() * S, y = r() * S, h = 3 + r() * 9;
+    g.strokeStyle = `hsl(${92 + r() * 36},${28 + r() * 22}%,${24 + r() * 28}%)`;
+    g.lineWidth = 1;
+    g.beginPath();
+    g.moveTo(x, y);
+    g.lineTo(x + (r() - 0.5) * 3, y - h);
+    g.stroke();
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(28, 28);
+  t.anisotropy = 4;
+  return t;
+}
+
+function applyLawn(root){
+  const map = grassTexture();
+  root.traverse((o) => {
+    if (!o.isMesh || !o.material) return;
+    const n = o.material.name;
+    if (n !== 'MAT_lawn' && n !== 'MAT_context_lawn') return;
+    o.material = new THREE.MeshStandardMaterial({ name: n, map, color: 0xffffff, roughness: 1 });
+  });
+}
+
+function buildPalms(scene, spots, sway){
+  const bark = new THREE.MeshStandardMaterial({ name: 'MAT_palm_bark', color: 0x6d5642, roughness: 1 });
+  const frond = new THREE.MeshStandardMaterial({
+    name: 'MAT_palm_frond', roughness: 0.72, alphaTest: 0.45, side: THREE.DoubleSide, vertexColors: true,
+    map: leafTexture({ seed: 51, count: 6, len: 34, aspect: 0.16, h: 112, hv: 8, s: 42, l: 26, lv: 8 })
+  });
+  spots.forEach((p, i) => {
+    const r = prng(80 + i);
+    const h = Math.max(3.2, p[3] || 5.5);
+    const g = new THREE.Group();
+    g.name = 'PROC_palm_' + i;
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.16, h, 8, 5), bark);
+    trunk.position.y = h / 2;
+    trunk.rotation.z = (r() - 0.5) * 0.06;
+    trunk.rotation.x = (r() - 0.5) * 0.04;
+    g.add(trunk);
+    const crown = new CardCloud();
+    const nFronds = 16;
+    for (let f = 0; f < nFronds; f++){
+      const az = (f / nFronds) * Math.PI * 2 + r() * 0.15;
+      const dir = new THREE.Vector3(Math.cos(az), 0.15, Math.sin(az)).normalize();
+      const len = 2.1 + r() * 0.7;
+      for (let s = 0; s < 6; s++){
+        const t = 0.22 + (s / 6) * 0.78;
+        const pos = dir.clone().multiplyScalar(len * t);
+        pos.y += h - t * t * 1.15;
+        const out = dir.clone();
+        crown.add(pos, 0.42 * (1.15 - t * 0.35), out, new THREE.Vector3(0, 1, 0), 0.5 + (1 - t) * 0.4, r);
+      }
+    }
+    const leaves = new THREE.Mesh(crown.geometry(), frond);
+    leaves.name = 'PROC_palm_fronds_' + i;
+    g.add(leaves);
+    g.position.set(p[0], p[1], p[2]);
+    scene.add(g);
+    sway.push({ o: leaves, p: i * 0.8, a: 0.015, s: 0.4 });
+  });
+}
+
+function buildPine(scene, spot, sway){
+  if (!spot) return;
+  const r = prng(91);
+  const bark = new THREE.MeshStandardMaterial({ name: 'MAT_pine_bark', color: 0x3e3228, roughness: 1 });
+  const needle = new THREE.MeshStandardMaterial({
+    name: 'MAT_pine_needle', roughness: 0.8, alphaTest: 0.5, side: THREE.DoubleSide, vertexColors: true,
+    map: leafTexture({ seed: 71, count: 48, len: 11, aspect: 0.1, h: 128, hv: 10, s: 32, l: 22, lv: 10 })
+  });
+  const g = new THREE.Group();
+  g.name = 'PROC_courtyard_pine';
+  const trunkH = Math.max(1.6, spot[3] || 2.2);
+  const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.14, trunkH, 7), bark);
+  trunk.position.y = trunkH / 2;
+  g.add(trunk);
+  const cloud = new CardCloud();
+  for (let L = 0; L < 6; L++){
+    const y = trunkH * 0.45 + L * 0.48;
+    const rad = 1.05 - L * 0.14;
+    const count = 70 - L * 6;
+    for (let i = 0; i < count; i++){
+      const a = r() * Math.PI * 2;
+      const rr = rad * Math.sqrt(r());
+      const p = new THREE.Vector3(Math.cos(a) * rr, y + (r() - 0.45) * 0.16, Math.sin(a) * rr);
+      const out = new THREE.Vector3(Math.cos(a), 0.35, Math.sin(a)).normalize();
+      cloud.add(p, 0.14 + r() * 0.07, out, out, 0.42 + L * 0.07 + (r() - 0.5) * 0.12, r);
+    }
+  }
+  const leaves = new THREE.Mesh(cloud.geometry(), needle);
+  leaves.name = 'PROC_pine_needles';
+  g.add(leaves);
+  g.position.set(spot[0], spot[1], spot[2]);
+  scene.add(g);
+  sway.push({ o: leaves, p: 1.4, a: 0.008, s: 0.35 });
+}
+
+// spots: [[x, z]...] ; palms and pine: [x, baseY, z, height]
+export function buildGarden({ scene, root, spots, rows, palms, pine, sway, renderer }){
+  applyLawn(root);
   buildTrees(scene, spots, sway);
   buildHedges(scene, rows);
+  buildPalms(scene, palms || [], sway);
+  buildPine(scene, pine, sway);
   buildFurniture(scene);
   const tick = buildPool(scene, root, renderer);
   return { update: (t) => { if (tick) tick(t); } };

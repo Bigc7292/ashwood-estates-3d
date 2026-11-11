@@ -29,7 +29,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { buildGarden } from './garden_three.js?v=1';
+import { buildGarden } from './garden_three.js?v=2';
 let garden = null;
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
@@ -165,6 +165,7 @@ const BY = {
 };
 const sway = [];
 const oliveSpots = [];
+const palmSpots = []; let pineSpot = null;
 const bushRows = [];
 new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
   scene.add(gltf.scene);
@@ -207,6 +208,17 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
       o.scale.z *= 2.1;
       o.material.color.setHex(0x3e3226);
       o.material.roughness = 1;
+    }
+    if (/palm_(\d+_)?(trunk|fronds)$/.test(o.name) || /courtyard_pine_/.test(o.name)) {
+      if (/palm_(\d+_)?trunk$|courtyard_pine_trunk$/.test(o.name)) {
+        o.updateWorldMatrix(true, false);
+        if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
+        const b = o.geometry.boundingBox.clone().applyMatrix4(o.matrixWorld);
+        const spot = [(b.min.x + b.max.x) / 2, b.min.y, (b.min.z + b.max.z) / 2, b.max.y - b.min.y];
+        if (/palm_(\d+_)?trunk$/.test(o.name)) palmSpots.push(spot);
+        else pineSpot = spot;
+      }
+      o.visible = false;
     }
     if (o.name === 'COURTYARD_planter_island'){
       o.scale.x *= 1.45;
@@ -255,9 +267,9 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
     scene.add(mesh);
   }
   furn(3.05, 12.95, -0.2, 4.55, 0.0, 0.07, 0xe4d8c6, 0.82);
-  // 2026-11-11: trees, hedges, pool water and terrace furniture are built in three.js (garden_three.js).
+  // 2026-11-11: trees, hedges, palms, courtyard pine, pool water, terrace furniture and a drawn grass texture are built in three.js (garden_three.js).
   // The earlier box furniture and the tex/bk/*.glb plants are no longer loaded.
-  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, sway, renderer });
+  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, palms: palmSpots, pine: pineSpot, sway, renderer });
   renderer.render(scene, cam);
   document.title = 'READY';
 });

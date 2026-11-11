@@ -13,5 +13,5 @@ Contents:
 No downloaded models or textures, no BlenderKit assets.
 
 ASSUMPTIONS (not from the plan): tree heights and crown sizes, furniture dimensions.
-Not done here: palms, courtyard pine, lawn, pool water and tiles (those pool changes exist only in the web page, `exterior-garden-3d/4b/garden_three.js`).
+Not done here: the web page now also has palms, the courtyard pine and a drawn lawn (`exterior-garden-3d/4b/garden_three.js`), and the Blender file still does not (pool water in Blender still open).
 No independent critic pass yet. This is separate from the official `4b_*.blend` files, which are untouched.

@@ -1,3 +1,9 @@
+## 2026-11-11 (Asia/Dubai), palms, courtyard pine and lawn in three.js (branch `lane/villa-draco-fix`)
+
+- Continued from `e0a68c9`. Old `TREE_*_palm_*`, `CONTEXT_palm_*` and `TREE_13_courtyard_pine_*` meshes are hidden. Palms are rebuilt on the trunk bounding-box base (height taken from that box). The courtyard pine is a needle crown on the trunk base, not stacked discs. Lawn and context lawn use a canvas blade texture instead of the tiled photo. No downloaded assets.
+- ASSUMPTIONS: palm crown spread and pine layer sizes are not on the plan. Pool water in the Blender file is still not done. No independent critic pass.
+- Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), exterior live Blender scene saved to the repo (branch `lane/villa-draco-fix`)
 
 - Colin 17:26: "push and commit everything to github asap". Added `blender_wip/exterior_live_2026-11-11/` with `villa_exterior_live.blend` (7.5 MB), two viewport screenshots and a README. The scene holds the imported villa model, the pool set-back, terrace furniture, eight trees in two shapes and nine leafy hedges, all built by Python in Blender on Colin's PC. No BlenderKit or downloaded assets.
