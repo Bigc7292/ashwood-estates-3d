@@ -1,3 +1,7 @@
+## 2026-11-11 (Asia/Dubai), Unreal lighting pass 1 (branch `lane/unreal-villa`)
+
+- The level post-process volume now overrides ambient occlusion to 0.6 (was 0.3 default) for stronger contact shadows at the villa base, and bloom to 0.5 (was 1.0) so glass and water do not glow. Level `/Game/Main` saved. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), Unreal villa import (branch `lane/unreal-villa`)
 
 - Imported `exterior-garden-3d/4b/villa-materials.glb` into the Ashwood 3D Unreal project as `/Game/Villa/SM_Villa_Exterior` (one combined mesh with 19 materials, 978 triangles, about 180 m x 150 m x 12 m). The actor `Villa_Exterior` sits at the origin in `/Game/Main`.
