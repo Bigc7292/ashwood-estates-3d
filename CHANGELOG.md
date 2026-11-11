@@ -1,3 +1,8 @@
+## 2026-11-11 (Asia/Dubai), rear lawn texture and shade (branch `lane/villa-draco-fix`)
+
+- The flat canvas grass is gone. Lawn and the rear context lawn use the grass photo, tiled from world position, with a blade normal and a second finer sample. Colour is deeper in the sun and cooler where the lawn meets the back of the house. The sun now casts a soft shadow from the house onto that grass.
+- Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), pool water in the live Blender scene (branch `lane/villa-draco-fix`)
 
 - `POOL_water (CAD 9.50 x 2.40)` was an opaque teal (`MAT_water`, alpha 1, no transmission). It now uses `MAT_pool_water_live`: base #5fc2cf, roughness 0.06, transmission 1, IOR 1.333, alpha 0.55, blended, with a noise bump for ripples. Saved with Blender 5.2.2 LTS, same as the file.

@@ -417,36 +417,103 @@ function buildFurniture(scene){
 }
 
 // spots: [[x, z]...] trunk positions; rows: [{min:[x,y,z], max:[x,y,z]}...] hedge boxes; root: loaded villa scene
-function grassTexture(){
-  const S = 256, c = document.createElement('canvas');
-  c.width = c.height = S;
-  const g = c.getContext('2d'), r = prng(5);
-  g.fillStyle = '#5f7a38';
-  g.fillRect(0, 0, S, S);
-  for (let i = 0; i < 7000; i++){
-    const x = r() * S, y = r() * S, h = 3 + r() * 9;
-    g.strokeStyle = `hsl(${92 + r() * 36},${28 + r() * 22}%,${24 + r() * 28}%)`;
-    g.lineWidth = 1;
-    g.beginPath();
-    g.moveTo(x, y);
-    g.lineTo(x + (r() - 0.5) * 3, y - h);
-    g.stroke();
+function grassNormal(){
+  const S = 256, h = new Float32Array(S * S);
+  const r = prng(9);
+  h.fill(0.45);
+  for (let i = 0; i < 2200; i++){
+    const x = r() * S, y = r() * S, len = 5 + r() * 16, ang = r() * Math.PI * 2;
+    const dx = Math.cos(ang), dy = Math.sin(ang);
+    for (let t = 0; t < len; t++){
+      const px = (Math.floor(x + dx * t) + S) % S;
+      const py = (Math.floor(y + dy * t) + S) % S;
+      h[py * S + px] = Math.min(1, h[py * S + px] + 0.42 * (1 - t / len));
+    }
   }
+  const c = document.createElement('canvas');
+  c.width = c.height = S;
+  const g = c.getContext('2d'), img = g.createImageData(S, S), d = img.data;
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++){
+    const xm = h[y * S + (x + S - 1) % S], xp = h[y * S + (x + 1) % S];
+    const ym = h[((y + S - 1) % S) * S + x], yp = h[((y + 1) % S) * S + x];
+    let nx = xm - xp, ny = ym - yp, nz = 0.42;
+    const L = Math.hypot(nx, ny, nz) || 1;
+    const i = (y * S + x) * 4;
+    d[i] = (nx / L * 0.5 + 0.5) * 255;
+    d[i + 1] = (ny / L * 0.5 + 0.5) * 255;
+    d[i + 2] = (nz / L * 0.5 + 0.5) * 255;
+    d[i + 3] = 255;
+  }
+  g.putImageData(img, 0, 0);
   const t = new THREE.CanvasTexture(c);
-  t.colorSpace = THREE.SRGBColorSpace;
   t.wrapS = t.wrapT = THREE.RepeatWrapping;
-  t.repeat.set(28, 28);
-  t.anisotropy = 4;
   return t;
 }
 
-function applyLawn(root){
-  const map = grassTexture();
+function lawnMaterial(photo, normalMap){
+  const mat = new THREE.MeshStandardMaterial({
+    name: 'MAT_lawn',
+    map: photo,
+    normalMap,
+    normalScale: new THREE.Vector2(1.8, 1.8),
+    color: 0xffffff,
+    roughness: 0.92,
+    metalness: 0
+  });
+  mat.customProgramCacheKey = () => 'ashwood-rear-grass-2';
+  mat.onBeforeCompile = (shader) => {
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vGrassWorld;')
+      .replace('#include <project_vertex>', '#include <project_vertex>\n\tvGrassWorld = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vGrassWorld;')
+      .replace('#include <color_fragment>', `#include <color_fragment>
+        #ifdef USE_MAP
+          vec3 fine = texture2D(map, vMapUv * 2.6 + vec2(0.17, 0.41)).rgb;
+          diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * fine * 1.45, 0.55);
+        #endif
+        diffuseColor.rgb = pow(max(diffuseColor.rgb, 0.0), vec3(1.28));
+        float byHouse = smoothstep(-4.2, 0.45, vGrassWorld.z);
+        vec3 sunlit = vec3(0.78, 0.90, 0.58);
+        vec3 shaded = vec3(0.34, 0.44, 0.30);
+        diffuseColor.rgb *= mix(sunlit, shaded, byHouse);
+        float patch = fract(sin(dot(floor(vGrassWorld.xz * 0.42), vec2(12.98, 78.23))) * 43758.5);
+        diffuseColor.rgb *= 0.88 + patch * 0.20;`);
+  };
+  return mat;
+}
+
+function applyLawn(root, photo){
+  if (photo){
+    photo.wrapS = photo.wrapT = THREE.RepeatWrapping;
+    photo.colorSpace = THREE.SRGBColorSpace;
+    photo.anisotropy = 8;
+    photo.repeat.set(1, 1);
+    photo.needsUpdate = true;
+  }
+  const normalMap = grassNormal();
+  const base = lawnMaterial(photo, normalMap);
   root.traverse((o) => {
     if (!o.isMesh || !o.material) return;
     const n = o.material.name;
     if (n !== 'MAT_lawn' && n !== 'MAT_context_lawn') return;
-    o.material = new THREE.MeshStandardMaterial({ name: n, map, color: 0xffffff, roughness: 1 });
+    o.updateWorldMatrix(true, false);
+    const geo = o.geometry.clone();
+    const pos = geo.attributes.position;
+    const uv = new Float32Array(pos.count * 2);
+    const v = new THREE.Vector3();
+    for (let i = 0; i < pos.count; i++){
+      v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld);
+      uv[i * 2] = v.x * 1.25;
+      uv[i * 2 + 1] = v.z * 1.25;
+    }
+    geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    o.geometry = geo;
+    const mat = base.clone();
+    mat.name = n;
+    o.material = mat;
+    o.castShadow = false;
+    o.receiveShadow = true;
   });
 }
 
@@ -525,13 +592,19 @@ function buildPine(scene, spot, sway){
 }
 
 // spots: [[x, z]...] ; palms and pine: [x, baseY, z, height]
-export function buildGarden({ scene, root, spots, rows, palms, pine, sway, renderer }){
-  applyLawn(root);
+export function buildGarden({ scene, root, spots, rows, palms, pine, sway, renderer, grassMap }){
+  applyLawn(root, grassMap);
   buildTrees(scene, spots, sway);
   buildHedges(scene, rows);
   buildPalms(scene, palms || [], sway);
   buildPine(scene, pine, sway);
   buildFurniture(scene);
   const tick = buildPool(scene, root, renderer);
+  scene.traverse((o) => {
+    if (o.isMesh && o.name.indexOf('PROC_') === 0){
+      o.castShadow = true;
+      o.receiveShadow = true;
+    }
+  });
   return { update: (t) => { if (tick) tick(t); } };
 }

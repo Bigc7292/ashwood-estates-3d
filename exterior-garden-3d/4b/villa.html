@@ -29,7 +29,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <script type="module">
 import * as THREE from 'three';
 import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { buildGarden } from './garden_three.js?v=2';
+import { buildGarden } from './garden_three.js?v=4';
 let garden = null;
 import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
@@ -43,6 +43,8 @@ const VIEWS = [
 const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
 renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 0.9;
@@ -50,10 +52,21 @@ document.body.prepend(renderer.domElement);
 const scene = new THREE.Scene();
 window.__scene = scene;
 scene.background = new THREE.Color(0x7cb3cc);
-scene.add(new THREE.HemisphereLight(0x9ec8dc, 0xc4a381, 0.35));
-const sun = new THREE.DirectionalLight(0xfff1d6, 1.55);
+scene.add(new THREE.HemisphereLight(0xb7c9d6, 0x4e5c32, 0.34));
+const sun = new THREE.DirectionalLight(0xfff1d6, 2.7);
 sun.position.set(38.2, 20.4, 42.8);
-sun.target.position.set(9, 5.4, 20);
+sun.target.position.set(9, 2.2, 2);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.camera.near = 0.5;
+sun.shadow.camera.far = 90;
+sun.shadow.camera.left = -26;
+sun.shadow.camera.right = 26;
+sun.shadow.camera.top = 26;
+sun.shadow.camera.bottom = -26;
+sun.shadow.bias = -0.00015;
+sun.shadow.normalBias = 0.02;
+sun.shadow.camera.updateProjectionMatrix();
 scene.add(sun, sun.target);
 new RGBELoader().load('./tex/sky.hdr', (hdr) => {
   const pmrem = new THREE.PMREMGenerator(renderer);
@@ -171,6 +184,8 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
   scene.add(gltf.scene);
   gltf.scene.traverse((o) => {
     if (!o.isMesh) return;
+    o.receiveShadow = true;
+    o.castShadow = !/LAWN|lawn|POOL_water|CONTEXT_lawn/.test(o.name);
     const list = Array.isArray(o.material) ? o.material : [o.material];
     const srcName = list[0] && list[0].name;
     const set = BY[srcName] && SETS[BY[srcName]];
@@ -269,7 +284,7 @@ new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
   furn(3.05, 12.95, -0.2, 4.55, 0.0, 0.07, 0xe4d8c6, 0.82);
   // 2026-11-11: trees, hedges, palms, courtyard pine, pool water, terrace furniture and a drawn grass texture are built in three.js (garden_three.js).
   // The earlier box furniture and the tex/bk/*.glb plants are no longer loaded.
-  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, palms: palmSpots, pine: pineSpot, sway, renderer });
+  garden = buildGarden({ scene, root: gltf.scene, spots: oliveSpots, rows: bushRows, palms: palmSpots, pine: pineSpot, sway, renderer, grassMap: grassC });
   renderer.render(scene, cam);
   document.title = 'READY';
 });
