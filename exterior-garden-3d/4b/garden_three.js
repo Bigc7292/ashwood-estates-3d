@@ -1,45 +1,33 @@
 
 function applyGlass(scene, root, renderer){
   const panes = [];
+  const rear = [];
   const glass = new THREE.MeshPhysicalMaterial({
     name: 'MAT_glass',
-    color: 0xc5d5d8,
-    metalness: 0.35,
-    roughness: 0.04,
-    transmission: 0.08,
-    thickness: 0.06,
-    ior: 1.52,
-    transparent: true,
-    opacity: 1,
-    envMapIntensity: 1.35,
+    color: 0x8ea3ab,
+    metalness: 0.92,
+    roughness: 0.06,
+    transmission: 0,
+    ior: 1.5,
+    envMapIntensity: 1.15,
     clearcoat: 1,
-    clearcoatRoughness: 0.03,
-    side: THREE.DoubleSide,
-    depthWrite: false
+    clearcoatRoughness: 0.04,
+    side: THREE.FrontSide
   });
-  glass.customProgramCacheKey = () => 'ashwood-glass-reflect-2';
-  glass.onBeforeCompile = (shader) => {
-    shader.vertexShader = shader.vertexShader
-      .replace('#include <common>', '#include <common>\nvarying vec3 vGlassW;')
-      .replace('#include <project_vertex>', '#include <project_vertex>\n\tvGlassW = (modelMatrix * vec4(transformed, 1.0)).xyz;');
-    shader.fragmentShader = shader.fragmentShader
-      .replace('#include <common>', '#include <common>\nvarying vec3 vGlassW;')
-      .replace('#include <opaque_fragment>', `#include <opaque_fragment>
-        float gh = clamp((vGlassW.y - 0.45) / 3.2, 0.0, 1.0);
-        vec3 sky = mix(vec3(0.15, 0.46, 0.54), vec3(0.70, 0.82, 0.90), smoothstep(0.05, 0.85, gh));
-        float horizon = smoothstep(0.38, 0.5, gh) * (1.0 - smoothstep(0.5, 0.66, gh));
-        sky = mix(sky, vec3(0.90, 0.94, 0.95), horizon);
-        gl_FragColor.rgb = mix(gl_FragColor.rgb, sky, 0.82);
-      `);
-  };
-  const bal = glass.clone();
-  bal.onBeforeCompile = function () {};
-  bal.customProgramCacheKey = () => 'ashwood-balglass-1';
-  bal.name = 'MAT_balglass';
-  bal.transmission = 0.55;
-  bal.opacity = 0.62;
-  bal.color.setHex(0xe8f1f2);
-  bal.roughness = 0.03;
+  const bal = new THREE.MeshPhysicalMaterial({
+    name: 'MAT_balglass',
+    color: 0xd5e4e8,
+    metalness: 0.05,
+    roughness: 0.04,
+    transmission: 0.86,
+    thickness: 0.04,
+    ior: 1.5,
+    transparent: true,
+    opacity: 0.45,
+    envMapIntensity: 1,
+    depthWrite: false,
+    side: THREE.DoubleSide
+  });
   root.traverse((o) => {
     if (!o.isMesh || !o.material) return;
     const n = o.material.name;
@@ -48,40 +36,53 @@ function applyGlass(scene, root, renderer){
       o.castShadow = false;
       o.renderOrder = 2;
       panes.push(o);
+      if (/rear_glazing/.test(o.name)) rear.push(o);
     } else if (n === 'MAT_balglass'){
       o.material = bal;
       o.castShadow = false;
       o.renderOrder = 2;
-      panes.push(o);
     } else if (n === 'MAT_bronze'){
       o.material = new THREE.MeshStandardMaterial({
         name: 'MAT_bronze',
-        color: 0x6a4e36,
-        metalness: 0.84,
-        roughness: 0.32,
-        envMapIntensity: 0.7
+        color: 0x4a3424,
+        metalness: 0.86,
+        roughness: 0.28,
+        envMapIntensity: 0.55
       });
       o.castShadow = true;
     }
   });
-  if (!panes.length || !renderer) return;
-  const rt = new THREE.WebGLCubeRenderTarget(128);
-  const cube = new THREE.CubeCamera(0.2, 80, rt);
-  cube.position.set(9.2, 1.15, -3.2);
-  scene.add(cube);
-  panes.forEach((m) => { m.visible = false; });
-  const shadows = renderer.shadowMap.enabled;
-  renderer.shadowMap.enabled = false;
-  cube.update(renderer, scene);
-  renderer.shadowMap.enabled = shadows;
-  panes.forEach((m) => { m.visible = true; });
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  const env = pmrem.fromCubemap(rt.texture).texture;
-  pmrem.dispose();
-  glass.envMap = env;
-  bal.envMap = env;
-  glass.needsUpdate = true;
-  bal.needsUpdate = true;
+  if (!rear.length) return;
+  const mirrors = [];
+  let reflecting = false;
+  rear.forEach((o) => {
+    o.updateWorldMatrix(true, false);
+    if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
+    const b = o.geometry.boundingBox.clone().applyMatrix4(o.matrixWorld);
+    const w = b.max.x - b.min.x, h = b.max.y - b.min.y;
+    if (w < 0.2 || h < 0.2) return;
+    o.visible = false;
+    const mirror = new Reflector(new THREE.PlaneGeometry(w - 0.02, h - 0.02), {
+      color: 0xc5d5dc,
+      textureWidth: 384,
+      textureHeight: 384,
+      clipBias: 0.003
+    });
+    mirror.position.set((b.min.x + b.max.x) / 2, (b.min.y + b.max.y) / 2, b.min.z - 0.015);
+    mirror.rotation.y = Math.PI;
+    mirror.name = 'PROC_window_' + o.name;
+    const pass = mirror.onBeforeRender;
+    mirror.onBeforeRender = function (renderer, scene, camera) {
+      if (reflecting) return;
+      reflecting = true;
+      mirrors.forEach((m) => { m.visible = false; });
+      pass(renderer, scene, camera);
+      mirrors.forEach((m) => { m.visible = true; });
+      reflecting = false;
+    };
+    mirrors.push(mirror);
+    scene.add(mirror);
+  });
 }
 
 // garden_three.js: procedural exterior dressing for villa.html, built in three.js only.
@@ -92,6 +93,7 @@ function applyGlass(scene, root, renderer){
 import * as THREE from 'three';
 import { mergeGeometries } from './model/vendor/three/examples/jsm/utils/BufferGeometryUtils.js';
 import { RoundedBoxGeometry } from './model/vendor/three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { Reflector } from './model/vendor/three/examples/jsm/objects/Reflector.js';
 
 function prng(seed){
   let a = seed >>> 0;

@@ -1,3 +1,8 @@
+## 2026-11-11 (Asia/Dubai), window reflections (branch `lane/villa-draco-fix`)
+
+- The painted sky band on the rear panes is gone. Each rear opening (`GF_rear_glazing*`, `FF_rear_glazing*`) is now a mirror of the terrace: sky, parasol, loungers and pool, tinted like glass. The bronze frames stay in front of the glass. Balcony glass stays clear.
+- Other windows still use the sky reflection, not this terrace mirror. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-11 (Asia/Dubai), window glass (branch `lane/villa-draco-fix`)
 
 - Window panes were a near-black panel. They now show sky at the top of the pane and the pool colour at the bottom, with a soft horizon. `MAT_bronze` frames are dark bronze instead of the blue metal map. Balcony glass stays lighter so the slats show through.
