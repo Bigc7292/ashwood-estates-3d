@@ -7,22 +7,58 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 #cap b{color:#ffd58a}
 #title{position:absolute;left:0;top:0;background:rgba(20,28,24,.78);color:#fff;padding:8px 14px;font-size:15px}
 #labels div{position:absolute;transform:translate(-50%,-100%);background:rgba(255,255,255,.88);border:1px solid #556;color:#123;font-size:12px;padding:2px 5px;white-space:nowrap}
+#cams{position:absolute;z-index:6;left:8px;top:42px;display:flex;gap:6px;flex-wrap:wrap}#cams a{background:rgba(20,28,24,.82);color:#fff;text-decoration:none;border-radius:999px;padding:7px 12px;font-size:13px}
+
+#phoneTools,#backView{display:none;position:absolute;z-index:30;top:8px;border:0;border-radius:999px;padding:8px 14px;background:rgba(20,28,24,.88);color:#fff;font:14px/1 Arial,sans-serif;text-decoration:none}
+#phoneTools{left:8px}
+#backView{left:8px}
+#floors{position:absolute;z-index:30;top:48px;right:8px;display:flex;gap:6px}
+#floors a{background:#9a4e28;color:#fff;text-decoration:none;border-radius:999px;padding:9px 14px;font:15px/1 Arial,sans-serif;font-weight:700}
+@media (max-width:800px){
+  #title,#cap{display:none!important}
+  #phoneTools,#backView{display:inline-block}
+  #backView{left:78px}
+  #floors{top:auto;bottom:16px;left:8px;right:8px;justify-content:center}
+  #floors a{flex:1;max-width:200px;text-align:center;padding:13px 10px}
+  #cams{display:none;position:absolute;z-index:28;left:8px;right:8px;top:52px;max-height:46dvh;overflow:auto;padding:8px;border-radius:12px;background:rgba(20,28,24,.92)}
+  body.tools-open #cams{display:flex}
+}
+@media (min-width:801px){
+  #backView{display:inline-block;top:8px;left:8px}
+}
 </style>
 <script type="importmap">{"imports":{"three":"../model/vendor/three/build/three.module.js"}}</script>
 </head><body>
+<a id="backView" href="front_v2.html">Back</a>
+<button id="phoneTools" type="button" aria-expanded="false">Menu</button>
+<script>
+document.getElementById('phoneTools').onclick=function(){
+  var o=document.body.classList.toggle('tools-open');
+  this.setAttribute('aria-expanded', o?'true':'false');
+  this.textContent=o?'Close':'Menu';
+};
+</script>
+
+<nav id="cams"><a href="front_v2.html?view=%7B%22name%22%3A%22ELEV-FRONT%22%2C%22pos%22%3A%5B8.57%2C1.6%2C45.4%5D%2C%22tgt%22%3A%5B8.57%2C4.5%2C26.9%5D%2C%22fov%22%3A40%2C%22labels%22%3Afalse%2C%22shift%22%3Atrue%7D">Front</a><a href="left_pass.html?view=%7B%22name%22%3A%22ELEV-LEFT%22%2C%22pos%22%3A%5B-14.5%2C1.8%2C15.0%5D%2C%22tgt%22%3A%5B8.0%2C4.0%2C15.0%5D%2C%22fov%22%3A40%2C%22labels%22%3Afalse%2C%22shift%22%3Atrue%7D">Left</a><a href="right_pass.html?view=%7B%22name%22%3A%22ELEV-RIGHT%22%2C%22pos%22%3A%5B32.0%2C1.8%2C15.0%5D%2C%22tgt%22%3A%5B10.0%2C4.0%2C15.0%5D%2C%22fov%22%3A40%2C%22labels%22%3Afalse%2C%22shift%22%3Atrue%7D">Right</a><a href="site_pass.html?view=%7B%22name%22%3A%22SITE-FULL%22%2C%22pos%22%3A%5B30.0%2C26.0%2C-16.0%5D%2C%22tgt%22%3A%5B9.36%2C1.0%2C11.0%5D%2C%22fov%22%3A45%2C%22labels%22%3Afalse%7D">Site</a><a href="rear_v3.html?view=%7B%22name%22%3A%22ELEV-REAR%22%2C%22pos%22%3A%5B8.0%2C4.5%2C-14.0%5D%2C%22tgt%22%3A%5B8.0%2C2.5%2C6.0%5D%2C%22fov%22%3A42%2C%22labels%22%3Afalse%7D">Rear</a><a href="roof_courtyard_pass.html?view=%7B%22name%22%3A%22courtyard%22%2C%22title%22%3A%22OUTDOOR-COURTYARD%22%2C%22pos%22%3A%5B13.75%2C4.6%2C12.8%5D%2C%22tgt%22%3A%5B13.75%2C3.101%2C17.072%5D%2C%22fov%22%3A70%2C%22labels%22%3Afalse%7D">Courtyard</a><a href="roof_courtyard_pass.html?view=%7B%22name%22%3A%22roof_terrace%22%2C%22title%22%3A%22OUTDOOR-ROOF-TERRACE%22%2C%22pos%22%3A%5B5.0%2C9.45%2C11.0%5D%2C%22tgt%22%3A%5B9.5%2C10.6%2C19.0%5D%2C%22fov%22%3A55%2C%22labels%22%3Afalse%7D">Roof terrace</a></nav>
+<nav id="floors"><a href="../../../site/ground-floor.html">Ground floor</a><a href="../../../ff/index.html">First floor</a></nav>
 <div id="title">GENERATED 3D CONCEPT · Ashwood Estates 4-bedroom villa (4B) · <span id="vname"></span></div>
 <div id="labels"></div>
 <div id="cap"><b>Concept visualisation: not survey-verified, not construction-ready, not certified</b><br>
 <span id="sub">Layout: approved CAD V4 (pt16u) + 4B-GF span calibration (~, ±3%). Heights, levels, RF (NTS) and grey placeholder items are display assumptions. Not a marketing render.</span></div>
 <script src="../model/data/model.js"></script>
 <!-- REAR view v3 (EXT-4b-ELEV-REAR, GARDEN-BACK, POOL), lane exterior-rear-garden. Overrides: ./overrides/rear_v3_*.js. Derived from site_pass.html renderer. -->
+<script src="./overrides/rear_pass1_base.js"></script>
+<script src="./overrides/rear_pass2_glazing.js"></script>
+<script src="./overrides/rear_pass3_water2.js"></script>
 <script src="./overrides/shared_pool_v3.js"></script>
+<script src="./overrides/rear_pass4_critic_b.js"></script>
 <script src="./overrides/rear_v3_pass1.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
 import { OrbitControls } from '../model/vendor/three/examples/jsm/controls/OrbitControls.js';
 const M = window.MODEL, Q = new URLSearchParams(location.search);
+let _seed = 123456789; const RND = () => { _seed = (_seed * 16807) % 2147483647; return (_seed - 1) / 2147483646; };
 if (window.MODEL_OVERRIDES) { const O = window.MODEL_OVERRIDES; M.boxes = M.boxes.filter(b => !(O.remove||[]).includes(b.id)).concat(O.add||[]); }
 if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.remove_plain_trees) M.trees = M.trees.filter(t => t.courtyard);
 if (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.hide_cats) M.boxes = M.boxes.filter(b => !window.MODEL_OVERRIDES.hide_cats.includes(b.cat));
@@ -34,14 +70,14 @@ renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadow
 renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = FIN ? 1.0 : 1.05;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 document.body.prepend(renderer.domElement);
-const scene = new THREE.Scene();
+const scene = new THREE.Scene(); window.__scene = scene;
 // sky gradient (brochure renders: clear blue sky, warm low sun) — style cue only
 { const c=document.createElement('canvas'); c.width=2; c.height=256; const g=c.getContext('2d');
   const gr=g.createLinearGradient(0,0,0,256); if (FIN) { gr.addColorStop(0,'#4f92c2'); gr.addColorStop(.65,'#a8cfe0'); gr.addColorStop(1,'#eae2d0'); } else { gr.addColorStop(0,'#3f87bd'); gr.addColorStop(.7,'#9cc7de'); gr.addColorStop(1,'#dfe9ea'); }
   g.fillStyle=gr; g.fillRect(0,0,2,256); const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; scene.background=t; }
 scene.add(FIN ? new THREE.HemisphereLight(0xdde7f4, 0xc29f78, 1.0) : new THREE.HemisphereLight(0xe6f0ff, 0xb8a888, 1.25)); scene.add(new THREE.AmbientLight(0xffffff, FIN ? 0.25 : 0.35));
 const sun = new THREE.DirectionalLight(FIN ? 0xffcf98 : 0xfff0d8, FIN ? 2.9 : 2.4);
-if (FIN) sun.position.set(-26, 15, 42); else sun.position.set(-18, 30, 22); sun.castShadow = true; sun.shadow.mapSize.set(2048,2048);
+if (FIN) sun.position.set(-26, 15, 42); else sun.position.set(-18, 30, 22); sun.castShadow = true; sun.shadow.mapSize.set(1024,1024);
 Object.assign(sun.shadow.camera,{left:-30,right:30,top:30,bottom:-30,near:1,far:120}); sun.shadow.bias=-0.0004;
 const cx = M.meta.site_m[0]/2, cz = M.meta.site_m[1]/2;
 sun.target.position.set(cx,0,cz); scene.add(sun, sun.target);
@@ -49,14 +85,14 @@ const _V0 = Q.get('view') ? JSON.parse(Q.get('view')) : {}; if (_V0.sun) sun.pos
 // procedural textures (no image assets) -------------------------------------------------
 function tex(draw, rep){ const c=document.createElement('canvas'); c.width=c.height=256; draw(c.getContext('2d'));
   const t=new THREE.CanvasTexture(c); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.colorSpace=THREE.SRGBColorSpace; t.userData.rep=rep; return t; }
-function noise(g,base,var_,n){ g.fillStyle=base; g.fillRect(0,0,256,256); for(let i=0;i<n;i++){ const v=(Math.random()-.5)*var_; g.fillStyle=`rgba(${v>0?255:60},${v>0?245:50},${v>0?225:35},${Math.abs(v)})`; g.fillRect(Math.random()*256,Math.random()*256,1+Math.random()*3,1+Math.random()*2);} }
-const tStone = tex(g=>{ noise(g, FIN ? '#d2bd9c' : '#d8c7a8',.18,9000); g.strokeStyle='rgba(120,100,70,.35)'; g.lineWidth=1.2;
-  for(let y=0;y<256;y+=32){ g.beginPath(); g.moveTo(0,y); g.lineTo(256,y); g.stroke(); for(let x=((y/32)%2)*64;x<256;x+=128){ g.beginPath(); g.moveTo(x,y); g.lineTo(x,y+32); g.stroke(); } }
-  g.strokeStyle='rgba(150,125,90,.25)'; for(let i=0;i<40;i++){ g.beginPath(); const y=Math.random()*256; g.moveTo(0,y); g.lineTo(256,y+Math.random()*4-2); g.stroke(); } }, 2.4);
-const tPave = tex(g=>{ noise(g,'#e2d6c0',.14,7000); g.strokeStyle='rgba(130,115,90,.45)'; g.lineWidth=1.5;
-  for(let i=0;i<=256;i+=64){ g.beginPath(); g.moveTo(i,0); g.lineTo(i,256); g.stroke(); g.beginPath(); g.moveTo(0,i); g.lineTo(256,i); g.stroke(); } }, 3.2);
-const tLawn = tex(g=>{ g.fillStyle='#5f7e34'; g.fillRect(0,0,256,256); for(let i=0;i<14000;i++){ const s=Math.random(); g.fillStyle=`rgba(${60+s*70},${95+s*70},${30+s*30},.55)`; g.fillRect(Math.random()*256,Math.random()*256,1,2+Math.random()*3);} }, 3);
-const tSlat = tex(g=>{ g.fillStyle='#3a2a1c'; g.fillRect(0,0,256,256); for(let x=0;x<256;x+=16){ g.fillStyle='#7a5636'; g.fillRect(x,0,9,256); g.fillStyle='rgba(255,220,170,.15)'; g.fillRect(x,0,2,256);} }, 0.6);
+function noise(g,base,var_,n){ g.fillStyle=base; g.fillRect(0,0,256,256); for(let i=0;i<n;i++){ const v=(RND()-.5)*var_; g.fillStyle=`rgba(${v>0?255:60},${v>0?245:50},${v>0?225:35},${Math.abs(v)})`; g.fillRect(RND()*256,RND()*256,1+RND()*3,1+RND()*2);} }
+const tStone = tex(g=>{ noise(g, FIN ? '#d8c4a2' : '#d4c0a0',.08,4000); g.strokeStyle='rgba(150,128,98,.28)'; g.lineWidth=1;
+  for(let y=0;y<256;y+=64){ g.beginPath(); g.moveTo(0,y); g.lineTo(256,y); g.stroke(); }
+}, 1.6);
+const tPave = tex(g=>{ noise(g,'#e6dcc8',.08,3000); g.strokeStyle='rgba(150,135,110,.35)'; g.lineWidth=1.2;
+  for(let i=0;i<=256;i+=128){ g.beginPath(); g.moveTo(i,0); g.lineTo(i,256); g.stroke(); g.beginPath(); g.moveTo(0,i); g.lineTo(256,i); g.stroke(); } }, 2.2);
+const tLawn = tex(g=>{ g.fillStyle='#7d9a48'; g.fillRect(0,0,256,256); for(let i=0;i<9000;i++){ const s=RND(); g.fillStyle=`rgba(${90+s*50},${120+s*50},${40+s*20},.4)`; g.fillRect(RND()*256,RND()*256,1,2);} }, 3);
+const tSlat = tex(g=>{ g.fillStyle='#241e18'; g.fillRect(0,0,256,256); for(let x=0;x<256;x+=16){ g.fillStyle='#3a332c'; g.fillRect(x,0,7,256); g.fillStyle='rgba(180,150,110,.12)'; g.fillRect(x,0,1,256);} }, 0.6);
 const tBars = tex(g=>{ g.clearRect(0,0,256,256); for(let x=0;x<256;x+=21){ g.fillStyle='#2e2a24'; g.fillRect(x,0,8,256);} }, 0.35);
 function M_(o){ return new THREE.MeshStandardMaterial(o); }
 const MAT = {
@@ -98,7 +134,9 @@ MAT.window_dark = M_({color:0x3a3e42, roughness:.08, metalness:.55, emissive:0x1
 MAT.asphalt = M_({color:0x4b4c4f, roughness:.95}); MAT.kerb = M_({color:0xbfb8aa, roughness:.85}); MAT.drive = M_({color:0x8f8578, roughness:.9});   // street context (front pass 7)
 // site step 4 pass 2: per-view flat material colours (MODEL_OVERRIDES.mat_flat {name: hex}); drops the material's texture map
 for (const [k, v] of Object.entries((window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.mat_flat) || {})) if (MAT[k]) { MAT[k].map = null; MAT[k].color.setHex(v); MAT[k].needsUpdate = true; }
-function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); mm.map=m.map.clone(); mm.map.needsUpdate=true; mm.map.repeat.set(Math.max(w/r,.2),Math.max(h/r,.2)); return mm; }
+function texRepeat(m,w,h){ if(!m.map) return m; const r=m.map.userData.rep||3; const mm=m.clone(); const rx=Math.max(w/r,.2), ry=Math.max(h/r,.2);
+  const link=src=>{ if(!src) return null; const t=src.clone(); t.userData.src=src; t.repeat.set(rx,ry); t.wrapS=t.wrapT=THREE.RepeatWrapping; if(src.image){ t.image=src.image; t.needsUpdate=true; } return t; };
+  mm.map=link(m.map); if(m.roughnessMap) mm.roughnessMap=link(m.roughnessMap); if(m.normalMap) mm.normalMap=link(m.normalMap); return mm; }
 const group = new THREE.Group(); scene.add(group);
 const hideCats = new Set((Q.get('hide')||'').split(',').filter(Boolean));
 // Water basins (DISPLAY ASSUMPTIONS - the plan gives the water outlines only, no depths):
@@ -115,6 +153,7 @@ function subtractRect(r, h){   // axis-aligned rect minus rect -> up to 4 rects 
 function addBox(b, x0, z0, x1, z1){
   const w=Math.max(x1-x0,.02), d=Math.max(z1-z0,.02), h=Math.max(b.y1-b.y0,.02);
   let m = MAT[b.mat] || ph;
+  if (b.cat==='rf_wall' || b.cat==='rf_roof') { const rm = window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.rf_core_mat; if (rm && MAT[rm]) m = MAT[rm]; }
   if (b.cat==='gf_wall'||b.cat==='ff_wall'||b.cat==='rf_wall') m = texRepeat(m, Math.max(w,d), h);
   else if (['ground','lawn','balcony'].includes(b.cat)) m = texRepeat(m, w, d);
   const mesh = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), m);
@@ -138,10 +177,10 @@ const useWater2 = Q.get('flatwater')!=='1';
 const tl = new THREE.TextureLoader();
 // mosaic pool tile (pale aqua 2.5 cm-look tiles, grout lines) - procedural, no image assets
 const tTile = tex(g=>{ g.fillStyle='#d6eeee'; g.fillRect(0,0,256,256);   // turquoise mosaic like the p26 / POOL references
-  for(let y=0;y<256;y+=16) for(let x=0;x<256;x+=16){ const v=Math.random()*22-11; g.fillStyle=`rgb(${48+v},${172+v},${190+v})`; g.fillRect(x+1,y+1,14,14); } }, 0.4);
+  for(let y=0;y<256;y+=16) for(let x=0;x<256;x+=16){ const v=RND()*22-11; g.fillStyle=`rgb(${48+v},${172+v},${190+v})`; g.fillRect(x+1,y+1,14,14); } }, 0.4);
 // caustics: soft bright network on the pool floor, animated by scrolling two layers in opposite directions
 function causticCanvas(){ return tex(g=>{ g.fillStyle='#000'; g.fillRect(0,0,256,256); g.strokeStyle='rgba(255,255,255,.55)'; g.lineCap='round';
-  const pts=[...Array(42)].map(()=>[Math.random()*256,Math.random()*256]);
+  const pts=[...Array(42)].map(()=>[RND()*256,RND()*256]);
   for (let i=0;i<256;i+=4) for (let j=0;j<256;j+=4){ let a=1e9,b=1e9; for(const [px,py] of pts){ for(const ox of [-256,0,256]) for(const oy of [-256,0,256]){ const d=Math.hypot(i-px-ox,j-py-oy); if(d<a){b=a;a=d;} else if(d<b) b=d; } }
     const e=b-a; if (e<5){ g.fillStyle=`rgba(255,255,255,${(1-e/5)*.5})`; g.fillRect(i,j,4,4); } } }, 1.6); }
 const tCau1 = causticCanvas(), tCau2 = causticCanvas(); tCau1.colorSpace = tCau2.colorSpace = THREE.NoColorSpace;
@@ -165,15 +204,20 @@ for (const w of M.water) {
   // the water surface
   const s = new THREE.Shape([[w.x0,w.z0],[w.x1,w.z0],[w.x1,w.z1],[w.x0,w.z1]].map(([x,z])=>new THREE.Vector2(x,-z)));
   for (const h of w.holes) s.holes.push(new THREE.Path([[h[0],h[1]],[h[2],h[1]],[h[2],h[3]],[h[0],h[3]]].map(([x,z])=>new THREE.Vector2(x,-z)).reverse()));
-  const g = new THREE.ShapeGeometry(s); g.rotateX(-Math.PI/2);
+  // Water2 orientation fix: Reflector/Refractor take their plane from the MESH and assume flat XY with normal +Z.
+  const g = new THREE.ShapeGeometry(s);
+  // Water quality pass (2026-11-10, change-set viewer-quality-2026-11-10): active defaults reflectivity: 0.32, scale 1.1, flowSpeed 0.035.
+  const W2 = Object.assign({color: 0xd8f6f8, reflectivity: 0.32, scale: 1.1, flowSpeed: 0.035}, (window.MODEL_OVERRIDES && window.MODEL_OVERRIDES.water2) || {});
   let mesh;
   if (useWater2) mesh = new Water(g, {
-      color: B.wall==='tile' ? 0xd8f6f8 : 0xc7d8cc,       // Water2 tints the refracted basin; pale so the tile reads turquoise through it
-      scale: B.wall==='tile' ? 2.2 : 3.5, flowDirection: new THREE.Vector2(.6,.25), flowSpeed: .02, reflectivity: .035,
+      color: B.wall==='tile' ? W2.color : 0xc7d8cc,
+      scale: B.wall==='tile' ? W2.scale : 3.5, flowDirection: new THREE.Vector2(.6,.25), flowSpeed: B.wall==='tile' ? W2.flowSpeed : .02, reflectivity: B.wall==='tile' ? W2.reflectivity : 0.2,
       textureWidth: 1024, textureHeight: 1024,
       normalMap0: tl.load('../model/vendor/three/examples/textures/water/Water_1_M_Normal.jpg'), normalMap1: tl.load('../model/vendor/three/examples/textures/water/Water_2_M_Normal.jpg')});
   else mesh = new THREE.Mesh(g, M_({color:0x6fc3cf, roughness:.1, metalness:.2}));
-  mesh.position.y = yW; group.add(mesh);
+  mesh.rotation.x = -Math.PI/2; mesh.position.y = yW; group.add(mesh); (window.__WATERMESH = window.__WATERMESH || []).push(mesh);
+  if (useWater2) { const ob = mesh.onBeforeRender, fs = B.wall==='tile' ? W2.flowSpeed : .02;
+    mesh.onBeforeRender = function(...a){ ob.apply(this, a); if (window.__T !== undefined) { const c = this.material.uniforms['config'].value, cyc = 0.15; c.x = (fs*window.__T) % cyc; c.y = (c.x + cyc/2) % cyc; } }; }
 }
 const clock = new THREE.Clock();
 // trees: generic neutral canopy placeholders at plan-symbol positions (species/height unknown)
@@ -201,15 +245,15 @@ window.__FRONDS = []; window.__PALMS = [];
     const top = new THREE.Vector3(p.lean[0]*p.trunk, p.trunk, p.lean[1]*p.trunk);
     // fuller, drooping crown: outer arching fronds with V-folded hanging leaflets + an inner ring of short upright fronds
     const rings = [ {n:30, len:1.00, up:[0.7,1.0,1.35], droop:0.55, w:1.15}, {n:6, len:0.55, up:[0.35,0.55,0.7], droop:0.25, w:0.9} ];
-    for (const R of rings) for (let i=0;i<R.n;i++){ const L = p.crown*R.len*(0.8+0.2*Math.random()), W = R.w;
+    for (const R of rings) for (let i=0;i<R.n;i++){ const L = p.crown*R.len*(0.8+0.2*RND()), W = R.w;
       const fg = new THREE.PlaneGeometry(W, L, 4, 10); fg.translate(0, L/2, 0);
       const fp = fg.attributes.position; for (let j=0;j<fp.count;j++){ const y=fp.getY(j), x=fp.getX(j), t=y/L;
         fp.setZ(j, R.droop*L*t*t + 0.22*Math.abs(x)*(0.3+t)); }     // arch down toward the tip; leaflets hang in a V
       fg.computeVertexNormals();
       const f = new THREE.Mesh(fg, frondM); f.castShadow=true;
-      const yaw = i/R.n*Math.PI*2 + Math.random()*0.25, up = R.up[i%3] + (Math.random()-.5)*0.15;
+      const yaw = i/R.n*Math.PI*2 + RND()*0.25, up = R.up[i%3] + (RND()-.5)*0.15;
       f.position.copy(top); f.rotation.set(0, yaw, 0, 'YXZ'); f.rotateX(up);
-      f.userData.q0=f.quaternion.clone(); f.userData.ph=Math.random()*6.283; window.__FRONDS.push(f);   // step 7 motion
+      f.userData.q0=f.quaternion.clone(); f.userData.ph=RND()*6.283; window.__FRONDS.push(f);   // step 7 motion
       pg.add(f); }
     const crownBall = new THREE.Mesh(new THREE.SphereGeometry(.35,10,8), trunkPM); crownBall.position.copy(top); pg.add(crownBall);
   } }
@@ -273,16 +317,28 @@ if (VIEWS.sub) document.getElementById('sub').textContent = VIEWS.sub;
 let cam;
 if (VIEWS.ortho) { const s=VIEWS.ortho, a=W/Hh; cam=new THREE.OrthographicCamera(-s*a/2,s*a/2,s/2,-s/2,0.1,500); }
 else cam = new THREE.PerspectiveCamera(VIEWS.fov||45, W/Hh, 0.1, 500);
+window.__cam = cam;
 cam.position.set(...VIEWS.pos); if (VIEWS.up) cam.up.set(...VIEWS.up); cam.lookAt(new THREE.Vector3(...VIEWS.tgt));
 // step 6 pass 13: vertical shift ("keystone" / shift lens). Same camera position and same target at the frame centre,
 // but the camera is held level and the frustum is shifted up, so verticals stay vertical as in ELEV-FRONT.
 // Enabled with view.shift=true; walk mode and older stills are unchanged.
-if (VIEWS.shift && cam.isPerspectiveCamera) {
+function applyShift(){ if (!(VIEWS.shift && cam.isPerspectiveCamera)) return;
   const T = new THREE.Vector3(...VIEWS.tgt), P = cam.position, dh = Math.hypot(T.x-P.x, T.z-P.z);
   cam.lookAt(new THREE.Vector3(T.x, P.y, T.z)); cam.updateProjectionMatrix();
   const e = cam.projectionMatrix.elements; e[9] = e[5]*(T.y-P.y)/dh;   // target row back to the frame centre
   cam.projectionMatrixInverse.copy(cam.projectionMatrix).invert();
 }
+applyShift();
+// quality pass (change-set viewer-quality-2026-11-10): locked ?view= hub cameras get OrbitControls — drag orbits, wheel/pinch zooms.
+let controls = null;
+if (Q.get('view')) {
+  controls = new OrbitControls(cam, renderer.domElement);
+  controls.target.set(...VIEWS.tgt); controls.enableDamping = false; controls.update();
+  applyShift(); if (VIEWS.shift) controls.addEventListener('change', applyShift);
+  { const c = document.getElementById('cap'); if (c) { const s = document.createElement('span'); s.innerHTML = '<br><b>Locked hub view: drag to orbit, wheel / pinch to zoom.</b>'; c.appendChild(s); } }
+}
+window.__controls = controls;
+window.__info = () => ({calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, view: VIEWS.name || 'walk', viewport: [W, Hh]});
 // walk mode (WIP): drag to look, WASD / arrows to walk at eye height. No collision, no sourced start point.
 const EYE=1.6, SPEED=3.0, keys={}; let yaw=0, pitch=0, drag=false, lx=0, ly=0;
 if (!Q.get('view')) {
@@ -308,12 +364,20 @@ function labels(){ const L=document.getElementById('labels'); L.innerHTML=''; if
 let n=0;
 function loop(){ const t=clock.getElapsedTime(); walkUpdate(); for (const c of animated) c.offset.set(Math.sin(t*.13)*.4 + t*.012, Math.cos(t*.11)*.4 - t*.009);
   if (!window.__capture) { renderer.render(scene,cam); labels(); }   // view mode keeps animating (Water2, caustics); frame capture sets __capture and drives __frame
-  if(++n===12 && Q.get('view')) document.title='READY'; requestAnimationFrame(loop); }
+  n += 1;
+  if (Q.get('view')) {
+    if (n === 2) document.title = 'READY';
+    if (n >= 2) return;
+  }
+  requestAnimationFrame(loop); }
 loop();
+if (controls) controls.addEventListener('change', () => {
+  if (!window.__capture) { renderer.render(scene, cam); labels(); }
+});
 // step 7 motion hook (front view): deterministic frame t (seconds) -> frond sway, slight trunk sway, water drift, slow warm light change.
 // Driven by a headless frame grabber; does nothing in walk mode. Motion amounts are display assumptions.
 const _sun0 = sun.position.clone(), _sunI0 = sun.intensity;
-window.__frame = (t, T) => { window.__capture = true;
+window.__frame = (t, T) => { window.__capture = true; window.__T = t;
   const gust = 0.6 + 0.4*Math.sin(t*0.45);
   for (const f of window.__FRONDS) { f.quaternion.copy(f.userData.q0); const ph=f.userData.ph;
     f.rotateX(gust*0.07*Math.sin(t*1.7+ph)); f.rotateZ(gust*0.035*Math.sin(t*1.1+ph*1.3)); }
@@ -323,4 +387,4 @@ window.__frame = (t, T) => { window.__capture = true;
   const k = T ? t/T : 0;   // sun drifts slightly lower and warmer across the clip
   sun.position.set(_sun0.x - 4*k, _sun0.y - 3*k, _sun0.z); sun.intensity = _sunI0*(1 - 0.15*k);
   renderer.render(scene, cam); return true; };
-</script></body></html>
+</script><script src="../../../review/review.js"></script></body></html>

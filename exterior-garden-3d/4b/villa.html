@@ -1,0 +1,336 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Ashwood 4B exterior</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#7cb3cc;font-family:Arial,Helvetica,sans-serif;touch-action:none;overscroll-behavior:none}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+#cams{position:absolute;z-index:6;left:8px;top:52px;display:flex;gap:6px;flex-wrap:wrap}
+#cams a{background:rgba(20,28,24,.82);color:#fff;text-decoration:none;border-radius:999px;padding:7px 12px;font-size:13px}
+#floors{position:absolute;z-index:30;top:8px;right:8px;display:flex;gap:6px}
+#floors a{background:#9a4e28;color:#fff;text-decoration:none;border-radius:999px;padding:9px 14px;font:15px/1 Arial,sans-serif;font-weight:700}
+#backView{position:absolute;z-index:30;top:8px;left:8px;border:0;border-radius:999px;padding:8px 14px;background:rgba(20,28,24,.88);color:#fff;font:14px/1 Arial,sans-serif;text-decoration:none}
+#zoom{position:absolute;z-index:30;right:8px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px}
+#zoom button{width:44px;height:44px;border:0;border-radius:12px;background:rgba(20,28,24,.88);color:#fff;font:22px/1 Arial,sans-serif}
+@media (max-width:800px){
+  #cams{display:none;left:8px;right:8px;top:52px;max-height:40dvh;overflow:auto;padding:8px;border-radius:12px;background:rgba(20,28,24,.92)}
+  body.tools-open #cams{display:flex}
+  #floors{top:auto;bottom:16px;left:8px;right:8px;justify-content:center}
+  #floors a{flex:1;max-width:200px;text-align:center;padding:13px 10px}
+  #zoom{top:auto;bottom:74px;transform:none;flex-direction:row;right:8px}
+}
+</style>
+<script type="importmap">{"imports":{"three":"./model/vendor/three/build/three.module.js"}}</script>
+</head><body>
+<a id="backView" href="./walk_exterior_wip/front_v2.html">Walk model</a>
+<nav id="cams"></nav>
+<nav id="floors"><a href="../../site/ground-floor.html?walk=1">Walk inside</a><a href="../../site/ground-floor.html">Ground floor</a><a href="../../ff/index.html?walk=1">First floor</a></nav>
+<div id="zoom"><button type="button" id="zoomIn" aria-label="Zoom in">+</button><button type="button" id="zoomOut" aria-label="Zoom out">−</button></div>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from './model/vendor/three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from './model/vendor/three/examples/jsm/controls/OrbitControls.js';
+import { RGBELoader } from './model/vendor/three/examples/jsm/loaders/RGBELoader.js';
+// views_blender.json, Blender Z-up to glTF Y-up: (x, y, z) -> (x, z, -y)
+const VIEWS = [
+  {name:'Front', pos:[8.57,1.6,45.4], tgt:[8.57,4.5,26.9], lens:28},
+  {name:'Rear', pos:[10,3.2,-55], tgt:[10,3.5,10], lens:32},
+  {name:'Left', pos:[-55,4,15], tgt:[10,4,15], lens:28},
+  {name:'Right', pos:[75,4,15], tgt:[10,4,15], lens:28}
+];
+const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.9;
+document.body.prepend(renderer.domElement);
+const scene = new THREE.Scene();
+window.__scene = scene;
+scene.background = new THREE.Color(0x7cb3cc);
+scene.add(new THREE.HemisphereLight(0x9ec8dc, 0xc4a381, 0.35));
+const sun = new THREE.DirectionalLight(0xfff1d6, 1.55);
+sun.position.set(38.2, 20.4, 42.8);
+sun.target.position.set(9, 5.4, 20);
+scene.add(sun, sun.target);
+new RGBELoader().load('./tex/sky.hdr', (hdr) => {
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromEquirectangular(hdr).texture;
+  hdr.dispose();
+  pmrem.dispose();
+});
+const cam = new THREE.PerspectiveCamera(32, innerWidth/innerHeight, 0.1, 500);
+window.__cam = cam;
+const controls = new OrbitControls(cam, renderer.domElement);
+window.__controls = controls;
+controls.enableDamping = true;
+controls.zoomSpeed = 1.35;
+controls.rotateSpeed = 0.7;
+controls.minDistance = 3.5;
+controls.maxDistance = 80;
+controls.enablePan = false;
+renderer.domElement.style.touchAction = 'none';
+const MIN_D = 3.5, MAX_D = 80;
+function setDistance(next){
+  const offset = cam.position.clone().sub(controls.target);
+  const len = Math.min(MAX_D, Math.max(MIN_D, next));
+  if (offset.lengthSq() < 1e-6) return;
+  offset.setLength(len);
+  cam.position.copy(controls.target).add(offset);
+}
+function fingerDist(e){
+  const a = e.touches[0], b = e.touches[1];
+  const dx = a.clientX - b.clientX, dy = a.clientY - b.clientY;
+  return Math.hypot(dx, dy);
+}
+let pinch = null;
+const el = renderer.domElement;
+el.addEventListener('touchstart', (e) => {
+  if (e.touches.length === 2){
+    controls.enabled = false;
+    pinch = { d: fingerDist(e) };
+  }
+}, {capture:true, passive:false});
+el.addEventListener('touchmove', (e) => {
+  if (!pinch || e.touches.length < 2) return;
+  e.preventDefault();
+  const d = fingerDist(e);
+  if (pinch.d > 8 && d > 8){
+    setDistance(cam.position.distanceTo(controls.target) * (pinch.d / d));
+  }
+  pinch.d = d;
+}, {capture:true, passive:false});
+function endPinch(e){
+  if (e.touches.length < 2){ pinch = null; controls.enabled = true; }
+}
+el.addEventListener('touchend', endPinch, {capture:true});
+el.addEventListener('touchcancel', endPinch, {capture:true});
+document.addEventListener('gesturestart', (e) => e.preventDefault());
+document.getElementById('zoomIn').onclick = () => setDistance(cam.position.distanceTo(controls.target) * 0.8);
+document.getElementById('zoomOut').onclick = () => setDistance(cam.position.distanceTo(controls.target) * 1.25);
+function vfov(lens){
+  const hfov = 2 * Math.atan(18 / lens);
+  return THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(hfov / 2) / cam.aspect));
+}
+let lens = 38;
+function go(v){
+  lens = v.lens;
+  cam.position.set(v.pos[0], v.pos[1], v.pos[2]);
+  controls.target.set(v.tgt[0], v.tgt[1], v.tgt[2]);
+  cam.fov = vfov(lens);
+  cam.updateProjectionMatrix();
+  controls.update();
+}
+const nav = document.getElementById('cams');
+VIEWS.forEach((v,i) => {
+  const a = document.createElement('a');
+  a.href = '#'; a.textContent = v.name;
+  a.onclick = (e) => { e.preventDefault(); go(v); };
+  nav.appendChild(a);
+  if (i === 0) go(v);
+});
+document.getElementById('backView').onclick = function(e){
+  if (innerWidth <= 800) { e.preventDefault(); document.body.classList.toggle('tools-open'); this.textContent = document.body.classList.contains('tools-open') ? 'Close' : 'Walk model'; }
+};
+function loadTex(url){
+  const t = new THREE.TextureLoader().load(url);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = 4;
+  return t;
+}
+const stoneC = loadTex('./tex/stone_color.jpg'); stoneC.repeat.set(2, 2);
+const grassC = loadTex('./tex/grass_color.jpg'); grassC.repeat.set(3, 3);
+const barkC = loadTex('./tex/bark_color.jpg'); barkC.repeat.set(1, 1);
+const metalC = loadTex('./tex/metal_color.jpg'); metalC.repeat.set(2, 2);
+const roadC = loadTex('./tex/asphalt_color.jpg'); roadC.repeat.set(3, 3);
+const SETS = {
+  stone: { c:stoneC, tint:0xd4c0a0, metal:0, rough:0.72 },
+  pave: { c:stoneC, tint:0xe6dcc8, metal:0, rough:0.7 },
+  grass: { c:grassC, tint:0x7d9a48, metal:0, rough:0.9 },
+  hedge: { c:grassC, tint:0x4a6a30, metal:0, rough:0.85 },
+  leaf: { c:grassC, tint:0x6a8a38, metal:0, rough:0.8 },
+  bark: { c:barkC, tint:0x5a4632, metal:0, rough:0.9 },
+  metal: { c:metalC, tint:0x3a2c20, metal:0.7, rough:0.45 },
+  road: { c:roadC, tint:0x4b4c4f, metal:0, rough:0.9 }
+};
+const BY = {
+  MAT_stone:'stone', MAT_stone_rf:'stone', MAT_coping:'stone', MAT_soffit:'stone',
+  MAT_paving:'pave', MAT_deck:'pave', MAT_furniture:'bark', MAT_cushion:'pave',
+  MAT_lawn:'grass', MAT_context_lawn:'grass', MAT_hedge:'hedge',
+  MAT_leaf:'leaf', MAT_palmleaf:'leaf', MAT_bark:'bark',
+  MAT_bronze:'metal', MAT_ground:'road', MAT_pooltile:'pave'
+};
+const sway = [];
+const oliveSpots = [];
+const bushRows = [];
+new GLTFLoader().load('./villa-materials.glb?v=6', (gltf) => {
+  scene.add(gltf.scene);
+  gltf.scene.traverse((o) => {
+    if (!o.isMesh) return;
+    const list = Array.isArray(o.material) ? o.material : [o.material];
+    const srcName = list[0] && list[0].name;
+    const set = BY[srcName] && SETS[BY[srcName]];
+    if (set){
+      o.material = new THREE.MeshStandardMaterial({
+        name: srcName, map: set.c,
+        color: set.tint, roughness: set.rough, metalness: set.metal
+      });
+    } else if (o.name === 'COURTYARD_water_(CAD)'){
+      o.material = new THREE.MeshStandardMaterial({
+        name:'MAT_water', color:0x163e46, roughness:0.18, metalness:0.05,
+        transparent:true, opacity:0.9
+      });
+    } else if (srcName === 'MAT_water'){
+      const pool = o.name.indexOf('POOL_water') === 0;
+      o.material = new THREE.MeshStandardMaterial({
+        name:'MAT_water', color: pool ? 0x8fd4d2 : 0x3aa8b0,
+        roughness: pool ? 0.08 : 0.04, metalness: 0.02,
+        transparent:true, opacity: pool ? 0.42 : 0.82
+      });
+    } else if (srcName === 'MAT_glass' || srcName === 'MAT_balglass'){
+      o.material = new THREE.MeshStandardMaterial({
+        name:srcName, color:0x1c1916, roughness:0.08, metalness:0.15,
+        transparent:true, opacity:0.55
+      });
+    }
+    if (/broadleaf_(canopy|trunk|branch)/.test(o.name)) o.visible = false;
+    if (/broadleaf_trunk$/.test(o.name)) {
+      o.updateWorldMatrix(true, false);
+      const e = o.matrixWorld.elements;
+      oliveSpots.push([e[12], e[14]]);
+    }
+    if (/broadleaf_trunk/.test(o.name)){
+      o.scale.x *= 2.1;
+      o.scale.z *= 2.1;
+      o.material.color.setHex(0x3e3226);
+      o.material.roughness = 1;
+    }
+    if (o.name === 'COURTYARD_planter_island'){
+      o.scale.x *= 1.45;
+      o.scale.z *= 1.45;
+      o.position.y += 0.12;
+      o.material = new THREE.MeshStandardMaterial({ name:'MAT_lawn', map: grassC, color:0x6d7a40, roughness:0.95 });
+    }
+    if (o.name.indexOf('POOL_') === 0 || o.name === 'DECK_left_of_pool') o.position.z += -3.78;
+    if (o.name.indexOf('POOL_floor') === 0 || o.name.indexOf('POOL_wall') === 0){
+      o.material.color.setHex(0xd7ebe6);
+      o.material.roughness = 0.45;
+      o.material.map = null;
+    }
+    if (/^HEDGE_lawn-|^HEDGE_front_bed/.test(o.name)) {
+      o.visible = false;
+      o.updateWorldMatrix(true, false);
+      const pos = o.geometry.attributes.position;
+      const e = o.matrixWorld.elements;
+      const min = [1e9, 1e9, 1e9], max = [-1e9, -1e9, -1e9];
+      for (let i = 0; i < pos.count; i++) {
+        const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+        const wx = e[0] * x + e[4] * y + e[8] * z + e[12];
+        const wy = e[1] * x + e[5] * y + e[9] * z + e[13];
+        const wz = e[2] * x + e[6] * y + e[10] * z + e[14];
+        if (wx < min[0]) min[0] = wx; if (wy < min[1]) min[1] = wy; if (wz < min[2]) min[2] = wz;
+        if (wx > max[0]) max[0] = wx; if (wy > max[1]) max[1] = wy; if (wz > max[2]) max[2] = wz;
+      }
+      bushRows.push({ min, max });
+    }
+    if (srcName === 'MAT_lawn' || srcName === 'MAT_context_lawn'){
+      grassC.repeat.set(14, 14);
+      o.material.map = grassC;
+      o.material.color.setHex(0xc6d39a);
+      o.material.roughness = 1;
+    }
+    if ((srcName === 'MAT_leaf' || srcName === 'MAT_palmleaf' || srcName === 'MAT_hedge') && o.visible){
+      sway.push({ o, p: Math.random() * Math.PI * 2, a: 0.012 + Math.random() * 0.018, s: 0.6 + Math.random() * 0.5 });
+    }
+  });
+  function furn(x0, x1, z0, z1, y0, y1, color, rough){
+    const mesh = new THREE.Mesh(
+      new THREE.BoxGeometry(Math.abs(x1 - x0), Math.abs(y1 - y0), Math.abs(z1 - z0)),
+      new THREE.MeshStandardMaterial({ color, roughness: rough })
+    );
+    mesh.position.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2);
+    scene.add(mesh);
+  }
+  furn(3.05, 12.95, -0.2, 4.55, 0.0, 0.07, 0xe4d8c6, 0.82);
+  furn(4.5, 7.1, 3.05, 3.95, 0.07, 0.3, 0x2c2622, 0.8);
+  furn(4.6, 7.0, 3.1, 3.8, 0.3, 0.5, 0xd2c6b4, 0.85);
+  furn(4.6, 7.0, 3.55, 3.95, 0.5, 0.92, 0xd2c6b4, 0.85);
+  furn(3.5, 4.35, 1.85, 2.7, 0.07, 0.3, 0x2c2622, 0.8);
+  furn(3.55, 4.3, 1.9, 2.6, 0.3, 0.48, 0xd2c6b4, 0.85);
+  furn(7.25, 8.1, 1.85, 2.7, 0.07, 0.3, 0x2c2622, 0.8);
+  furn(7.3, 8.05, 1.9, 2.6, 0.3, 0.48, 0xd2c6b4, 0.85);
+  furn(5.15, 6.5, 1.9, 2.55, 0.07, 0.42, 0xefe8dc, 0.4);
+  furn(10.3, 11.05, 0.25, 2.15, 0.07, 0.28, 0xf4f1ea, 0.6);
+  furn(10.3, 11.05, 1.55, 2.15, 0.28, 0.55, 0xf4f1ea, 0.6);
+  furn(11.25, 12.0, 0.25, 2.15, 0.07, 0.28, 0xf4f1ea, 0.6);
+  furn(11.25, 12.0, 1.55, 2.15, 0.28, 0.55, 0xf4f1ea, 0.6);
+  furn(11.05, 11.3, 2.25, 2.55, 0.07, 0.38, 0x3a2c20, 0.45);
+  new GLTFLoader().load('./tex/bk/garden.glb?v=1', (g) => {
+    g.scene.traverse((m) => {
+      if (!m.isMesh) return;
+      const mats = Array.isArray(m.material) ? m.material : [m.material];
+      mats.forEach((mat) => {
+        mat.side = THREE.DoubleSide;
+        mat.alphaTest = 0.35;
+        mat.transparent = false;
+        mat.depthWrite = true;
+      });
+    });
+    oliveSpots.forEach((p, i) => {
+      const t = g.scene.clone(true);
+      t.scale.setScalar(5.6 + (i % 3) * 0.45);
+      t.rotation.y = i * 0.8;
+      t.position.set(p[0], 0, p[1]);
+      scene.add(t);
+    });
+  });
+  new GLTFLoader().load('./tex/bk/bush.glb?v=2', (g) => {
+    g.scene.traverse((m) => {
+      if (!m.isMesh) return;
+      const mats = Array.isArray(m.material) ? m.material : [m.material];
+      mats.forEach((mat) => {
+        mat.side = THREE.DoubleSide;
+        mat.alphaTest = 0.25;
+        mat.transparent = false;
+        mat.depthWrite = true;
+        mat.roughness = 0.9;
+      });
+    });
+    let placed = 0;
+    bushRows.forEach((b, bi) => {
+      const dx = b.max[0] - b.min[0], dz = b.max[2] - b.min[2];
+      const alongX = dx >= dz;
+      const span = alongX ? dx : dz;
+      if (span < 1.2) return;
+      const n = Math.min(8, Math.max(2, Math.round(span / 1.35)));
+      for (let i = 0; i < n && placed < 28; i++, placed++) {
+        const u = (i + 0.5) / n;
+        const x = alongX ? b.min[0] + dx * u : (b.min[0] + b.max[0]) / 2;
+        const z = alongX ? (b.min[2] + b.max[2]) / 2 : b.min[2] + dz * u;
+        const t = g.scene.clone(true);
+        const s = 1.25 + (i % 4) * 0.12;
+        t.scale.set(s * 1.15, s * 0.95, s);
+        t.rotation.y = i * 0.9 + bi * 0.4;
+        t.position.set(x, -0.02, z);
+        scene.add(t);
+      }
+    });
+  });
+  renderer.render(scene, cam);
+  document.title = 'READY';
+});
+const clock = new THREE.Clock();
+function frame(){
+  requestAnimationFrame(frame);
+  const t = clock.getElapsedTime();
+  for (const s of sway) s.o.rotation.z = Math.sin(t * s.s + s.p) * s.a;
+  if (!pinch) controls.update();
+  renderer.render(scene, cam);
+}
+frame();
+addEventListener('resize', () => { cam.aspect = innerWidth/innerHeight; cam.fov = vfov(lens); cam.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+</script>
+</body>
+<script src="../../review/review.js"></script>
+</html>

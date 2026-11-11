@@ -1,0 +1,23 @@
+{
+  "id": "2026-11-10T18-11-15-272Z",
+  "note": "SWIMMING POOL DONT LOOK REAL",
+  "context": {
+    "mode": "external",
+    "floor": "Roof",
+    "place": "Near Swimming pool",
+    "view": "READY",
+    "camera": {
+      "x": 6.23,
+      "y": 8.03,
+      "z": -10.8
+    },
+    "target": {
+      "x": 8.57,
+      "y": 4.5,
+      "z": 26.9
+    },
+    "fov": 67.5,
+    "url": "https://hds-zgo0rrm2jbp4-6014-tjrus.grok-code-wild.hades-www.grok-sandbox.com/ashwood/exterior-garden-3d/4b/villa.html"
+  },
+  "image": "2026-11-10T18-11-15-272Z.jpg"
+}

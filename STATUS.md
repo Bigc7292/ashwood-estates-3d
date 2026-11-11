@@ -1,5 +1,9 @@
 # Current status (handoff)
 
+Night stop 2026-11-10 23:47 Asia/Dubai. Colin is off the laptop.
+
+Read `docs/HANDOFF_2026-11-10_NIGHT.md` and `docs/TODO_2026-11-11.md` before continuing. The exterior that was reviewed is `exterior-garden-3d/4b/villa.html`, not the older walk pages. Trees and hedge bushes were replaced with BlenderKit plants. The pool was moved back from the house and a terrace seating set was added. The exterior review is not finished.
+
 Checked 2026-11-10 02:10 Asia/Dubai. Read with `AGENTS.md`. Update this file at the end of every session.
 
 ## Where the work is

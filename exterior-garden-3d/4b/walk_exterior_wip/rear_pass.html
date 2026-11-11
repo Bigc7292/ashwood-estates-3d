@@ -9,6 +9,8 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 #cap b{color:#ffd58a}
 #title{position:absolute;left:0;top:0;background:rgba(20,28,24,.78);color:#fff;padding:8px 14px;font-size:15px}
 #labels div{position:absolute;transform:translate(-50%,-100%);background:rgba(255,255,255,.88);border:1px solid #556;color:#123;font-size:12px;padding:2px 5px;white-space:nowrap}
+
+@media (max-width:800px){#title,#cap{display:none!important}}
 </style>
 <script type="importmap">{"imports":{"three":"../model/vendor/three/build/three.module.js"}}</script>
 </head><body>
@@ -23,6 +25,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#cfd8de;font-family:Ar
 <script src="./overrides/rear_pool2.js"></script>
 <script src="./overrides/rear_pass4_critic_b.js"></script>
 <script src="./overrides/rear_garden_enlarged.js"></script>
+<script src="./overrides/shared_pool_v3.js"></script>
 <script type="module">
 import * as THREE from 'three';
 import { Water } from '../model/vendor/three/examples/jsm/objects/Water2.js';
@@ -331,4 +334,4 @@ window.__frame = (t, T) => { window.__capture = true;
   sun.position.set(_sun0.x - 14*e, _sun0.y - 7*e, _sun0.z + 6*e); sun.intensity = _sunI0*(1 - 0.25*e); sun.color.copy(_sunC0).lerp(new THREE.Color(0xff9a52), e);
   if (VIEWS.push && cam.isPerspectiveCamera) { cam.position.fromArray(VIEWS.pos).lerp(new THREE.Vector3(...VIEWS.push), e); cam.lookAt(new THREE.Vector3(...VIEWS.tgt)); }
   renderer.render(scene, cam); return true; };
-</script></body></html>
+</script><script src="../../../review/review.js"></script></body></html>

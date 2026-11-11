@@ -1,0 +1,62 @@
+{
+ "change_set": "viewer-quality-2026-11-10",
+ "viewport": [
+  1280,
+  720
+ ],
+ "rear": {
+  "still_renderer": {
+   "calls": 860,
+   "triangles": 15576
+  },
+  "probe_renderer": {
+   "calls": 885,
+   "triangles": 18678
+  },
+  "water_meshes_hidden": 2,
+  "pool_crop_px": [
+   326,
+   562,
+   1076,
+   676
+  ],
+  "t5_vs_t6": {
+   "mean": 1.45,
+   "max": 61
+  },
+  "water_vs_hidden": {
+   "mean": 16.46,
+   "max": 63
+  },
+  "page_errors": [],
+  "failed_requests": []
+ },
+ "front": {
+  "still_renderer": {
+   "calls": 1016,
+   "triangles": 101816
+  },
+  "probe_renderer": {
+   "calls": 1255,
+   "triangles": 116106
+  },
+  "water_meshes_hidden": 2,
+  "pool_crop_px": [
+   511,
+   547,
+   744,
+   561
+  ],
+  "t5_vs_t6": {
+   "mean": 0.51,
+   "max": 6
+  },
+  "water_vs_hidden": {
+   "mean": 0.0,
+   "max": 0
+  },
+  "note": "pool occluded by house from street elevation",
+  "page_errors": [],
+  "failed_requests": []
+ }
+}

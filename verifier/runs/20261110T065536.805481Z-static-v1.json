@@ -1,0 +1,146 @@
+{
+  "version": "v1",
+  "timestamp": "2026-11-10T06:55:36.776693+00:00",
+  "command": "verifier/v1/verify_static.py",
+  "exit_code": 1,
+  "passed": 5,
+  "failed": 22,
+  "results": [
+    {
+      "check": "exists:active/floorplan3d-spike/FP-4B-FF/data/fp-4b-ff.plan.r8.json",
+      "pass": false,
+      "detail": "/mnt/agents/work/ashwood-repo/active/floorplan3d-spike/FP-4B-FF/data/fp-4b-ff.plan.r8.json"
+    },
+    {
+      "check": "exists:active/floorplan3d-spike/FP-4B-FF/data/fp-4b-ff.plan.r8.js",
+      "pass": false,
+      "detail": "/mnt/agents/work/ashwood-repo/active/floorplan3d-spike/FP-4B-FF/data/fp-4b-ff.plan.r8.js"
+    },
+    {
+      "check": "exists:active/floorplan3d-spike/FP-4B-FF/r8_step2/build_r8_layout.py",
+      "pass": false,
+      "detail": "/mnt/agents/work/ashwood-repo/active/floorplan3d-spike/FP-4B-FF/r8_step2/build_r8_layout.py"
+    },
+    {
+      "check": "ff-active-r8",
+      "pass": false,
+      "detail": "active FF index must load r8 plan JS"
+    },
+    {
+      "check": "ff-no-gf-ceiling",
+      "pass": false,
+      "detail": "GF CEIL_OUTLINE coordinates must not remain"
+    },
+    {
+      "check": "water-reflectivity:front_v2.html",
+      "pass": false,
+      "detail": "active Water2 reflectivity must be >=0.2"
+    },
+    {
+      "check": "orbit-controls:front_v2.html",
+      "pass": false,
+      "detail": "locked views require OrbitControls"
+    },
+    {
+      "check": "capture-hook:front_v2.html",
+      "pass": false,
+      "detail": "deterministic one-frame capture hooks required"
+    },
+    {
+      "check": "no-unseeded-random:front_v2.html",
+      "pass": false,
+      "detail": "bare Math.random found"
+    },
+    {
+      "check": "water-reflectivity:left_pass.html",
+      "pass": false,
+      "detail": "active Water2 reflectivity must be >=0.2"
+    },
+    {
+      "check": "orbit-controls:left_pass.html",
+      "pass": false,
+      "detail": "locked views require OrbitControls"
+    },
+    {
+      "check": "capture-hook:left_pass.html",
+      "pass": true,
+      "detail": "deterministic one-frame capture hooks required"
+    },
+    {
+      "check": "no-unseeded-random:left_pass.html",
+      "pass": false,
+      "detail": "bare Math.random found"
+    },
+    {
+      "check": "water-reflectivity:right_pass.html",
+      "pass": false,
+      "detail": "active Water2 reflectivity must be >=0.2"
+    },
+    {
+      "check": "orbit-controls:right_pass.html",
+      "pass": false,
+      "detail": "locked views require OrbitControls"
+    },
+    {
+      "check": "capture-hook:right_pass.html",
+      "pass": true,
+      "detail": "deterministic one-frame capture hooks required"
+    },
+    {
+      "check": "no-unseeded-random:right_pass.html",
+      "pass": false,
+      "detail": "bare Math.random found"
+    },
+    {
+      "check": "water-reflectivity:site_pass.html",
+      "pass": false,
+      "detail": "active Water2 reflectivity must be >=0.2"
+    },
+    {
+      "check": "orbit-controls:site_pass.html",
+      "pass": false,
+      "detail": "locked views require OrbitControls"
+    },
+    {
+      "check": "capture-hook:site_pass.html",
+      "pass": true,
+      "detail": "deterministic one-frame capture hooks required"
+    },
+    {
+      "check": "no-unseeded-random:site_pass.html",
+      "pass": false,
+      "detail": "bare Math.random found"
+    },
+    {
+      "check": "water-reflectivity:rear_v3.html",
+      "pass": false,
+      "detail": "active Water2 reflectivity must be >=0.2"
+    },
+    {
+      "check": "orbit-controls:rear_v3.html",
+      "pass": false,
+      "detail": "locked views require OrbitControls"
+    },
+    {
+      "check": "capture-hook:rear_v3.html",
+      "pass": true,
+      "detail": "deterministic one-frame capture hooks required"
+    },
+    {
+      "check": "no-unseeded-random:rear_v3.html",
+      "pass": false,
+      "detail": "bare Math.random found"
+    },
+    {
+      "check": "protected-model-present",
+      "pass": true,
+      "detail": "M30/M44 source model must remain present"
+    },
+    {
+      "check": "changelog-quality-pass",
+      "pass": false,
+      "detail": "integrated change set must be logged"
+    }
+  ],
+  "git_head": "58b745181b2d6d14c72ea358568de8985f4e7d7a"
+}

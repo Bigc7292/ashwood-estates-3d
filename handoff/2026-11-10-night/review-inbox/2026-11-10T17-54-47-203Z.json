@@ -1,0 +1,23 @@
+{
+  "id": "2026-11-10T17-54-47-203Z",
+  "note": "this tree is not realistic at all and looks like blow up balloon fix it properly",
+  "context": {
+    "mode": "external",
+    "floor": "First floor",
+    "place": "Open exterior",
+    "view": "READY",
+    "camera": {
+      "x": 28.82,
+      "y": 5.63,
+      "z": 25.81
+    },
+    "target": {
+      "x": 8.57,
+      "y": 4.5,
+      "z": 26.9
+    },
+    "fov": 67.5,
+    "url": "https://hds-zgo0rrm2jbp4-6014-tjrus.grok-code-wild.hades-www.grok-sandbox.com/ashwood/exterior-garden-3d/4b/villa.html"
+  },
+  "image": "2026-11-10T17-54-47-203Z.jpg"
+}
