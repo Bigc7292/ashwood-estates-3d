@@ -1,3 +1,14 @@
+## 2026-11-12 (Asia/Dubai), stairs, voids, doors and walk test in Unreal (branch `lane/unreal-villa-courtyard`)
+
+- New `interior_export/edit_glb.js` with a recipe file `vertical_fix_ops.json` applies every geometry fix at source, in world cm. Outputs: `villa_v8.glb`, `gf_house_v4.glb` and `ff_house_v4.glb`, imported and set on the level actors with materials carried over by slot name, Nanite off and complex-as-simple collision.
+- Stairs (option A, approved by the user): two stacked 21-riser flights (19.05 cm rise, 27.3 cm going, exactly 4.0 m) at X 761-889, GF to FF and FF to RF. Stairwell openings are cut through the GF ceiling, the FF floor and ceiling, the shell slab and the roof (Y 1438-1855). The old 3.0 m flights and their stumps are removed. A landing-to-corridor opening is cut on FF.
+- Voids opened: the courtyard light-well (X 1095-1578, Y 1278-1634) through ceiling, floor, slab and roof, and the double-height entry (X 760-1081, Y 2005-2400). Slab edges are lined.
+- The shell was solid massing boxes whose shared faces formed phantom walls across the house (Y 1150, Y 1634 and others). They are now removed exactly by clipping each box's vertical faces against its neighbours.
+- Doors opened: front door, living slider to the pool terrace (shell and interior glazing), master suite, bedroom 1, bedroom 2 and junior suite balcony doors, and the roof pavilion door. Added 3 entrance steps from the paving to the 45 cm plinth (there were none).
+- Planting collision was one box over the whole site, which made the house unwalkable. Collision is now off on the planting.
+- New walk test `unreal/pipeline/walk_check.py` (person capsule on a 20 cm grid, 25 cm max step, flood fill from the street) with `walk_map.py`; map in `unreal/pipeline/reports/walk_map.png`. Result: 27 of 35 places reachable, including all 16 GF rooms, the stair to FF, the FF corridor, lift, bath 1, bedroom 1, the junior suite group and the SE balcony.
+- Still open: the FF west wing (master suite, M.dressing, M.bath, bath 2, dress, bedroom 2), family living, the N and SW balconies and RF are not yet connected. Status: WIP. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), Unreal plan check against V4 CAD; FF interior refitted (branch `lane/unreal-villa-courtyard`)
 
 - New plan check tools in `unreal/pipeline/`: `extract_plan_geometry.py` (walls, floors and stair treads from the meshes), `render_plan.py` and `overlay_cad.py` (registers the model walls onto the approved V4 sheet and draws an overlay). Findings and evidence are in `unreal/pipeline/PLAN_CHECK.md` and `unreal/pipeline/reports/`.

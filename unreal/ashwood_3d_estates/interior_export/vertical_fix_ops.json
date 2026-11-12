@@ -1,0 +1,479 @@
+{
+ "_doc": "Option A stair + voids fix, 2026-11-12. World cm. See unreal/pipeline/PLAN_CHECK.md.",
+ "gf": {
+  "origin": [
+   878,
+   1547,
+   45
+  ],
+  "ops": [
+   {
+    "op": "subtract",
+    "box": [
+     761,
+     889,
+     1430,
+     1990,
+     46,
+     344
+    ],
+    "note": "old GF stair and strip contents"
+   },
+   {
+    "op": "cut",
+    "box": [
+     761,
+     889,
+     1438,
+     1855,
+     340,
+     350
+    ],
+    "note": "GF ceiling stair opening"
+   },
+   {
+    "op": "cut",
+    "box": [
+     1095,
+     1578,
+     1278,
+     1634,
+     340,
+     350
+    ],
+    "note": "GF ceiling courtyard"
+   },
+   {
+    "op": "cut",
+    "box": [
+     760,
+     1081,
+     2005,
+     2400,
+     340,
+     350
+    ],
+    "note": "GF ceiling double-height entry"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     1060,
+     1265,
+     478,
+     505,
+     46,
+     389
+    ],
+    "note": "GF interior living slider to pool terrace open"
+   }
+  ]
+ },
+ "ff": {
+  "origin": [
+   878,
+   1547,
+   445
+  ],
+  "ops": [
+   {
+    "op": "subtract",
+    "box": [
+     761,
+     889,
+     1250,
+     1990,
+     446,
+     744
+    ],
+    "note": "old FF stair and enclosure walls in strip"
+   },
+   {
+    "op": "subtract",
+    "vertOnly": true,
+    "box": [
+     761,
+     889,
+     1250,
+     1990,
+     444,
+     744
+    ],
+    "note": "stumps of old FF stair walls down to the floor (vertical faces only)"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     761,
+     889,
+     1250,
+     1990,
+     746,
+     900
+    ],
+    "note": "old FF stair rail above ceiling"
+   },
+   {
+    "op": "remove",
+    "box": [
+     735,
+     761,
+     1270,
+     1700,
+     446,
+     744
+    ],
+    "note": "old FF stair remnants west of strip"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     886,
+     906,
+     1255,
+     1430,
+     446,
+     744
+    ],
+    "note": "landing to corridor opening"
+   },
+   {
+    "op": "cut",
+    "box": [
+     761,
+     889,
+     1438,
+     1855,
+     440,
+     450
+    ],
+    "note": "FF floor stair opening"
+   },
+   {
+    "op": "cut",
+    "box": [
+     761,
+     889,
+     1438,
+     1855,
+     740,
+     750
+    ],
+    "note": "FF ceiling stair opening"
+   },
+   {
+    "op": "cut",
+    "box": [
+     1095,
+     1578,
+     1278,
+     1634,
+     440,
+     450
+    ],
+    "note": "FF floor courtyard"
+   },
+   {
+    "op": "cut",
+    "box": [
+     1095,
+     1578,
+     1278,
+     1634,
+     740,
+     750
+    ],
+    "note": "FF ceiling courtyard"
+   },
+   {
+    "op": "cut",
+    "box": [
+     760,
+     1081,
+     2005,
+     2400,
+     440,
+     450
+    ],
+    "note": "FF floor open to below"
+   }
+  ]
+ },
+ "villa": {
+  "origin": [
+   0,
+   0,
+   0
+  ],
+  "ops": [
+   {
+    "op": "dropInternal",
+    "nodes": "^(GF_(rear|mid|front|multipurpose)|FF_(rear|mid|front|front_left_bedroom|front_right_suite)|SLAB_FF_(r|m|t|f|front_ext)|ROOF_(r|m|f|fr))$",
+    "note": "phantom walls where massing boxes touch"
+   },
+   {
+    "op": "cut",
+    "box": [
+     761,
+     889,
+     1438,
+     1855,
+     380,
+     460
+    ],
+    "note": "FF slab stair opening"
+   },
+   {
+    "op": "line",
+    "rect": [
+     761,
+     889,
+     1438,
+     1855
+    ],
+    "z": [
+     345,
+     445
+    ],
+    "material": "MAT_soffit"
+   },
+   {
+    "op": "cut",
+    "box": [
+     761,
+     889,
+     1438,
+     1855,
+     760,
+     860
+    ],
+    "note": "roof stair opening"
+   },
+   {
+    "op": "line",
+    "rect": [
+     761,
+     889,
+     1438,
+     1855
+    ],
+    "z": [
+     745,
+     845
+    ],
+    "material": "MAT_soffit"
+   },
+   {
+    "op": "cut",
+    "box": [
+     1095,
+     1578,
+     1278,
+     1634,
+     380,
+     460
+    ],
+    "note": "FF slab courtyard"
+   },
+   {
+    "op": "line",
+    "rect": [
+     1095,
+     1578,
+     1278,
+     1634
+    ],
+    "z": [
+     345,
+     445
+    ],
+    "material": "MAT_soffit"
+   },
+   {
+    "op": "cut",
+    "box": [
+     1095,
+     1578,
+     1278,
+     1634,
+     760,
+     860
+    ],
+    "note": "roof courtyard"
+   },
+   {
+    "op": "line",
+    "rect": [
+     1095,
+     1578,
+     1278,
+     1634
+    ],
+    "z": [
+     745,
+     845
+    ],
+    "material": "MAT_soffit"
+   },
+   {
+    "op": "cut",
+    "box": [
+     760,
+     1081,
+     2005,
+     2400,
+     380,
+     460
+    ],
+    "note": "FF slab open to below"
+   },
+   {
+    "op": "line",
+    "rect": [
+     760,
+     1081,
+     2005,
+     2400
+    ],
+    "z": [
+     345,
+     445
+    ],
+    "material": "MAT_soffit"
+   },
+   {
+    "op": "stair",
+    "name": "STAIR_GF_FF",
+    "x": [
+     761,
+     889
+    ],
+    "yStart": 1984,
+    "dir": -1,
+    "zBase": 45,
+    "risers": 21,
+    "rise": 19.0476,
+    "going": 27.3,
+    "thickness": 20,
+    "material": "MAT_stone"
+   },
+   {
+    "op": "stair",
+    "name": "STAIR_FF_RF",
+    "x": [
+     761,
+     889
+    ],
+    "yStart": 1984,
+    "dir": -1,
+    "zBase": 445,
+    "risers": 21,
+    "rise": 19.0476,
+    "going": 27.3,
+    "thickness": 20,
+    "material": "MAT_stone"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     930,
+     1040,
+     2350,
+     2375,
+     46,
+     335
+    ],
+    "note": "front door open"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     1060,
+     1265,
+     455,
+     485,
+     46,
+     389
+    ],
+    "note": "living slider to pool terrace open"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     510,
+     665,
+     460,
+     485,
+     446,
+     768
+    ],
+    "note": "master suite door to north balcony"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     1215,
+     1370,
+     460,
+     485,
+     446,
+     768
+    ],
+    "note": "bedroom 1 door to north balcony"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     628,
+     712,
+     2395,
+     2420,
+     446,
+     768
+    ],
+    "note": "bedroom 2 door to SW balcony (glazing + 5 slats)"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     1150,
+     1300,
+     2395,
+     2410,
+     446,
+     768
+    ],
+    "note": "junior suite door to SE balcony"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     862,
+     1008,
+     985,
+     1000,
+     846,
+     1083
+    ],
+    "note": "roof pavilion door to terrace"
+   },
+   {
+    "op": "stair",
+    "name": "STEPS_FRONT_ENTRY",
+    "x": [
+     880,
+     1090
+    ],
+    "yStart": 2739,
+    "dir": -1,
+    "zBase": 0,
+    "risers": 3,
+    "rise": 15,
+    "going": 30,
+    "thickness": 15,
+    "material": "MAT_stone",
+    "note": "entrance steps, paving (Z 0) to plinth (Z 45)"
+   }
+  ]
+ }
+}
