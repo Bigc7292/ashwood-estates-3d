@@ -21,6 +21,8 @@ const collect = async () => {
   let scene = null, best = -1;
   for (const s of scenes) { let n = 0; s.traverse && s.traverse(o => { if (o.isMesh) n++; }); if (n > best) { best = n; scene = s; } }
   if (!scene) return { error: 'no scene', count: scenes.length };
+  // The viewer animates walls rising from the floor (scale.y from 0.001); headless never advances it.
+  let unflat = 0; scene.traverse(o => { if (o.scale && o.scale.y > 0 && o.scale.y < 0.05) { o.scale.y = 1; unflat++; } });
   scene.updateMatrixWorld(true);
   const chunks = []; let byteLen = 0;
   const g = { asset: { version: '2.0', generator: 'ashwood-viewer-extract' }, scene: 0, scenes: [{ nodes: [] }], nodes: [], meshes: [], materials: [], accessors: [], bufferViews: [], buffers: [{}], textures: [], images: [], samplers: [{ wrapS: 10497, wrapT: 10497 }] };
@@ -115,6 +117,7 @@ const collect = async () => {
   if (!g.textures.length) { delete g.textures; delete g.images; delete g.samplers; }
   const bin = new Uint8Array(byteLen); let off = 0; for (const c of chunks) { bin.set(c, off); off += c.length; }
   let s = ''; const CH = 0x8000; for (let i = 0; i < bin.length; i += CH) s += String.fromCharCode.apply(null, bin.subarray(i, i + CH));
+  stats.unflattened = unflat;
   return { json: JSON.stringify(g), bin: btoa(s), stats, sceneCount: scenes.length };
 };
 
@@ -133,6 +136,9 @@ const collect = async () => {
     if (hit) { hit.click(); return hit.textContent.trim(); } return 'none';
   });
   console.log('clicked:', clicked);
+  await new Promise(r => setTimeout(r, 6000));
+  const walls = await page.evaluate(() => { const e = [...document.querySelectorAll('button,a,div,span,li')].find(e => /^\s*Full walls\s*$/i.test(e.textContent) && (e.children.length === 0 || e.tagName === 'BUTTON')); if (e) { e.click(); return 'Full walls'; } return 'none'; });
+  console.log('walls:', walls);
   await new Promise(r => setTimeout(r, 12000));
   const res = await page.evaluate(collect);
   await browser.close();

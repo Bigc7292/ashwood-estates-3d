@@ -1,3 +1,11 @@
+## 2026-11-12 (Asia/Dubai), interiors rebuilt and aligned in Unreal (branch `lane/unreal-villa`)
+
+- The first interior import was wrong in three ways, all fixed in `interior_export/`: every material had the same three.js class name, so Unreal merged 147 materials into 2 and the rooms rendered white; the walls were captured at 0.001 height because the viewer rise animation had not run; and the floor plane was dropped as a plan overlay.
+- `extract.js` now resets the flattened wall scale. New `clip.js` gives each material a unique name, drops the viewer wall glow, and cuts each floor exactly to the house footprint so the viewer garden and pool do not duplicate the exterior.
+- Unreal now holds `/Game/Rooms/GF`, `FF` and `RF` (348,049, 206,120 and 1,988 triangles, 142, 104 and 5 materials, Nanite off). The old `/Game/Interior` assets are deleted.
+- Alignment: GF and FF are placed from matching wall footprints (interior 12.85 x 22.26 m against exterior 12.75 x 22.19 m), GF floor at 0.45 m and FF at 4.45 m. Checked from above with the exterior hidden, not yet checked wall by wall from inside. RF placement is still an estimate.
+- Known gaps: surfaces that used vertex colours in the viewer import white, the GF courtyard water was not captured, and interior walls still overlap the exterior shell. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), interiors imported into Unreal, WIP (branch `lane/unreal-villa`)
 
 - The three captured interiors are imported as `/Game/Interior/GF`, `FF` and `RF` static meshes (362,468, 210,782 and 1,990 triangles, Nanite off) and placed in level `Main` as `Interior_GF`, `Interior_FF` and `Interior_RF`.
