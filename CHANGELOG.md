@@ -1,3 +1,12 @@
+## 2026-11-12 (Asia/Dubai), courtyard water basin uncovered and villa v5 imported (branch `lane/unreal-villa-ultra`)
+
+- Diagnosed and resolved the hidden courtyard basin issue: The exterior foundation slab (`GF_plinth`) was an un-cut solid axis-aligned stone block spanning the full building footprint at Y=0.454, which was sitting 12.4 cm above and entombing the recessed courtyard water basin (Y=0.330), terrace paving, and planter island base.
+- New `exterior_export/cut_courtyard.py` rebuilds `GF_plinth` as three surrounding stone plinths (rear, front, and flanking plinths) with the exact `[11.476..15.784] x [11.496..16.344]` courtyard rectangle cleanly subtracted, generating `villa_v5.glb`.
+- Imported `SM_Villa_Exterior` from `villa_v5.glb` with mesh combining enabled (`bCombineMeshes=True`) into `/Game/Villa/villa_v5`.
+- Applied all 18 PBR material slots (travertine stone, paving, lawn, water, glass, pool tile, soffit, teak wood, linen cushions, warm LED, and dense hedges) and disabled Nanite. Pointed `Villa_Exterior` level actor to the new mesh.
+- Verified up close: The deep, dark, reflective water basin (`M_Water`) is now fully open and surrounds the raised planter island and pine tree with ripples and realistic sky reflections.
+- Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), PBR foliage, LED strips, pool tiles, and terrace materials (branch `lane/unreal-villa-ultra`)
 
 - Upgraded all remaining flat and placeholder materials across exterior, planting, and terrace furniture meshes to full PBR:

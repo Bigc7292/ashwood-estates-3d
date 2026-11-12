@@ -1,83 +1,116 @@
-# Ashwood 3D: Unreal Engine handover
+# Ashwood 3D: Unreal Engine Agent Handover
 
-Last updated 2026-11-12 (Asia/Dubai). Branch `lane/unreal-villa`. Read this before touching the Unreal project.
+Hey agent, read this first. This is everything you need to jump straight into Unreal Engine and carry on without hitting any of the snags or wasting context.
 
-## Rules from Colin (do not break)
+---
 
-- Call the project **Ashwood 3D**.
-- Never overwrite existing code on GitHub, never force-push, never touch `main` without Colin's go-ahead. Work on `lane/unreal-villa` or a new branch.
-- Every edit gets a `CHANGELOG.md` entry at the top, a commit and a push. The repo is public: no keys or tokens. Keep every file under 99 MB.
-- Design rulings: the courtyard is a **dark water basin with a planted island**, not pool blue. Pool v3: **4.8 m terrace** between house and pool, **pool 9.50 x 3.60 m**, with seating. **No white grass cards. No balloon trees.** The 4-bed villa has **GF, FF and RF only, no basement**.
-- Colin watches the Unreal editor live. Before each change, frame the viewport tightly on the thing being changed and tell him what he should see. Post a still after each step.
-- No pauses for confirmation on ordinary steps. Keep replies short.
-- Blender on the same PC is shared with other work: never reset its file.
+## 1. Golden Rules from Colin (DO NOT BREAK)
+1. **Project Name**: Call it **Ashwood 3D** (or Ashwood Estates 3D).
+2. **Git Branches**:
+   - **NEVER** overwrite existing branches on GitHub.
+   - **NEVER** force-push.
+   - **NEVER** touch `main` without explicit approval.
+   - Always push work to a clean new or dedicated branch (e.g. `lane/unreal-villa-photoreal`).
+   - Every major step gets a `CHANGELOG.md` entry at the top, a commit, and a push.
+   - Keep all committed files strictly **under 99 MB**.
+3. **Design Rulings**:
+   - **Courtyard**: Deep dark reflective water basin with planted pine island. **NOT pool blue**.
+   - **Pool v3**: 4.80 m terrace between house and pool, pool water 9.50 x 3.60 m with seating.
+   - **No balloon trees. No white grass cards.**
+   - Villa structure: **GF, FF, and RF only (NO basement)**.
+   - **Nanite must stay OFF** on imported villa/interior/planting meshes (otherwise UE draws corrupted low LOD fallback geometry).
 
-## Where things are
+---
 
-| What | Where |
+## 2. Where Things Live On Disk
+| Item | Absolute Path |
 |---|---|
-| Unreal project (live, on Colin's PC) | `C:\Users\Alfa\Documents\Unreal Projects\ashwood_3d_estates` (not a git repo) |
-| Copy of the project in git | `unreal/ashwood_3d_estates/` (`Content`, `Config`, `.uproject`; `Saved`, `Intermediate`, `DerivedDataCache` left out) |
-| Level | `/Game/Main` |
-| Engine | UE 5.9.0 |
-| MCP server | the editor's built-in MCP, `http://127.0.0.1:8001/mcp` (`.mcp.json` in the project folder; port 8000 was taken) |
-| Capture and build scripts | `unreal/ashwood_3d_estates/interior_export/` and `exterior_export/` |
+| **Live Unreal Project** (Working, not git) | `C:\Users\Alfa\Documents\Unreal Projects\ashwood_3d_estates` |
+| **Git Working Repo** | `C:\Users\Alfa\.gemini\antigravity\scratch\ashwood-estates-3d` |
+| **Unreal Engine Level** | `/Game/Main` |
+| **Engine Version** | Unreal Engine 5.9.0 |
+| **Editor MCP Server** | Built-in MCP at `http://127.0.0.1:8001/mcp` (session ID in scratch scripts) |
+| **Python MCP Bridge Script** | `C:\Users\Alfa\.gemini\antigravity\scratch\ue_mcp.py` |
+| **Screenshots / Viewport Captures** | `C:\Users\Alfa\.gemini\antigravity\brain\aba31526-b06f-475e-83d5-31004e393d02\` |
 
-To sync the git copy after working in Unreal: save in the editor, then copy `Content` from the live project over `unreal/ashwood_3d_estates/Content`, log, commit, push.
+---
 
-## Level contents (`/Game/Main`)
+## 3. How to Talk to Unreal (The MCP Shortcut)
+Do NOT struggle with lazy MCP tool discovery. In this environment:
+- Port 8001 is the active editor process.
+- Use the ready-to-run helper: `python C:\Users\Alfa\.gemini\antigravity\scratch\ue_mcp.py --eval "<code>"`
+- Or execute a file: `python C:\Users\Alfa\.gemini\antigravity\scratch\ue_mcp.py --file "<path>"`
+- To capture a viewport without moving Colin's camera:
+  ```python
+  import ue_mcp
+  ue_mcp.capture_viewport("path.png", {"translation": {"x": 1363, "y": 1300, "z": 80}, "rotation": {"pitch": -15, "yaw": 90, "roll": 0}})
+  ```
+- If calling `execute_python` in UE, **NEVER** make HTTP requests back to port 8001 from inside UE python (it will deadlock on socket timeout). Call viewport captures from outside in shell python!
 
-| Actor | Mesh | Location (cm) | Notes |
-|---|---|---|---|
-| `Villa_Exterior` | `/Game/Villa/villa_v4/StaticMeshes/SM_Villa_Exterior` | 0, 0, 0 | Nanite off. Window openings cut, pool v3, balloon trees and old hedges removed (`villa_v4.glb`) |
-| `Interior_GF` | `/Game/Rooms/GF/gf_house/StaticMeshes/SM_GF_House` | 878, 1547, 45 | 345k tris, 142 materials, Nanite off |
-| `Interior_FF` | `/Game/Rooms/FF/ff_house/StaticMeshes/SM_FF_House` | 878, 1547, 445 | 203k tris, 104 materials, Nanite off |
-| `Planting` | `/Game/Villa/Planting/planting_set/StaticMeshes/SM_Planting` | 0, 0, 0 | Viewer trees, hedges, palms, pine; leaf cutout. Nanite off |
-| `Terrace_Furniture` | `/Game/Villa/Terrace/terrace_set/StaticMeshes/SM_Terrace_Furniture` | 0, 0, 38 | Sofa, 2 armchairs, coffee table, 2 loungers, side table, parasol |
-| `IL_GF_*`, `IL_FF_*` (29) | point lights | ceiling height | 3000 K, 15,000 lm, no shadows (staging value) |
-| `SunSky`, `ExponentialHeightFog`, `PostProcessVolume` | | | Post-process overrides: AO 0.6, bloom 0.5 |
-| `Floor` | template floor | | Leftover from the blank map, small, can be deleted |
+---
 
-`/Game/Rooms/RF` holds the roof-floor capture, but it is **not placed**: it was rough massing that duplicated the exterior roof.
+## 4. Current Scene Hierarchy & Actors in `/Game/Main`
+- `Villa_Exterior`: Points to `/Game/Villa/villa_v5/villa_v5/StaticMeshes/SM_Villa_Exterior` at `(0, 0, 0)`.
+  - **All 18 material slots mapped to PBR!**
+  - Includes `M_PoolTile` (mosaic pool tile), `MI_Soffit` (stucco), `M_LED` (warm 3000K strip lights), `MI_Hedge` (dense boxwood), `MI_OutdoorWood`, `MI_OutdoorCushion`, `M_Water` (dark courtyard + pool teal), `M_Glass`.
+  - **Courtyard Plinth is cut open!** In `villa_v5.glb`, `GF_plinth` was split into 3 boxes, opening up the recessed courtyard water basin (`[11.48..15.78] x [11.50..16.34]`) so the dark water and planter island are fully exposed!
+- `Planting`: `/Game/Villa/Planting/planting_set/StaticMeshes/SM_Planting` at `(0, 0, 0)`.
+  - Upgraded to `M_FoliageLeaf` (two-sided masked foliage with subsurface scattering) + `MI_Bark` on trunks.
+  - 7 tuned leaf instances: olive, broadleaf1, broadleaf2, palm fronds, hedge leaves, pine needles, canopy.
+- `Terrace_Furniture`: `/Game/Villa/Terrace/terrace_set/StaticMeshes/SM_Terrace_Furniture` at `(0, 0, 38)`.
+  - Mapped with teak wood, linen cushions, and bronze frames.
+- `Interior_GF`: `/Game/Rooms/GF/gf_house/StaticMeshes/SM_GF_House` at `(878, 1547, 45)`.
+- `Interior_FF`: `/Game/Rooms/FF/ff_house/StaticMeshes/SM_FF_House` at `(878, 1547, 445)`.
+- `IL_GF_*` and `IL_FF_*`: 29 warm interior point lights (currently 15,000 lm staging value).
+- `SunSky_C_1`, `ExponentialHeightFog_2`, `PostProcessVolume_1`: Lighting and atmosphere.
+- Leftover template `Floor` and empty `InstancedFoliageActor` have been **deleted**.
 
-## Materials (`/Game/Villa/Mat`)
+---
 
-- `M_WorldAligned`: world-space projected colour, normal and roughness, with `Tint`, `TileSizeCm`, `RoughnessScale`. Needs no UVs. Instances: `MI_Stone`, `MI_Paving`, `MI_Lawn`, `MI_Ground`, `MI_Bark`, `MI_Bronze`. Textures in `/Game/Villa/Tex` come from `exterior-garden-3d/4b/tex/`.
-- `M_Water`: two panning engine ripple normals. Pool teal by default; the dark basin colour applies within 5.6 m of `BasinCenter` (courtyard).
-- `M_Glass`: translucent with Fresnel opacity. Instances: `MI_GlassBalcony`, `MI_GlassInterior`, `MI_SheerCurtain`.
-- Slot mapping on the villa mesh, used every time it is re-imported: stone and stone_rf to Stone; paving, deck and coping to Paving; lawn and context_lawn to Lawn; ground to Ground; bark to Bark; bronze to Bronze; water to `M_Water`; glass to `M_Glass`; balglass to `MI_GlassBalcony`. The rest (soffit, pooltile, furniture, cushion, led, hedge, palmleaf, leaf) are still the flat imported glTF materials.
+## 5. What Was Just Done in This Session
+1. **Material System Upgrade**:
+   - Created procedural mosaic pool tile `M_PoolTile`.
+   - Created stucco soffit `MI_Soffit`.
+   - Created architectural warm LED strip `M_LED` (3000K emissive glow).
+   - Created boxwood hedge `MI_Hedge`.
+   - Created master foliage shader `M_FoliageLeaf` (`MSM_TWO_SIDED_FOLIAGE`, alpha masked, waxy roughness, translucent subsurface scattering) and 7 leaf instances.
+   - Mapped all terrace furniture materials.
+2. **Courtyard Water Basin Solved (`villa_v5.glb`)**:
+   - We discovered why the courtyard looked like solid stone: `GF_plinth` was an un-cut solid block covering the basin at height 45.4 cm while the water was at 33 cm.
+   - Built `exterior_export/cut_courtyard.py` to subtract the courtyard box.
+   - Imported `villa_v5.glb` with `bCombineMeshes=True`.
+   - Now the dark, calm, reflective water basin (`M_Water`) completely surrounds the raised planter island and pine tree.
+3. **Saved and Synced**:
+   - Packages and map saved.
+   - Synced to git working copy.
 
-## Pipeline (how the assets were made)
+---
 
-1. **Exterior:** `exterior-garden-3d/4b/villa-materials.glb` (unchanged) goes through `exterior_export/openings.js` (holes behind the 23 glass panes), then `exterior_export/pool_v3.js` (pool and terrace), producing `villa_v3.glb`.
-2. **Interiors:** the walkable web viewers in `production-line/artifacts/2026-11-10/ground-floor_r3.html` and `2026-11-10b/first-floor_r6F.html` are loaded in headless Chrome by `interior_export/extract.js`. It hooks three.js scene creation, clicks "3D Scene", resets the walls' 0.001 rise-animation scale, and writes a GLB merged by material. Then `clip.js` gives materials unique names (Unreal merges sections by material name) and cuts each floor to the house footprint, about 8 cm inside the shell.
-   - GF: `node clip.js gf_interior.glb gf_house.glb -5.62 6.97 -10.74 11.29`
-   - FF: `node clip.js ff_interior.glb ff_house.glb -5.83 7.07 -12.46 11.24`
-3. **Terrace furniture:** `exterior_export/serve.js` serves `exterior-garden-3d/4b/` (it needs the vendored three.js under `model/vendor`). Then run `FILTER='^PROC_(sofa|armchair|coffee_table|lounger|side_table|parasol)' node extract.js http://127.0.0.1:8765/villa.html terrace_furniture.glb`, then `clip.js` to rename materials.
-4. **Lights:** `interior_export/lights.js` reads the viewer light positions into `gf_lights.json` and `ff_lights.json`. Lights at 2.75 m height become `IL_*` point lights at viewer x * 100 + 878, viewer z * 100 + 1547.
+## 6. What You Should Tackle Next (In Priority Order)
+1. **Courtyard Island Mulch & Secondary Planting**:
+   - The pine tree is standing on the raised island. In `SM_GF_House`, there are white needle cards under the tree that can be removed or textured with dark pine bark mulch/pebbles.
+   - Add low architectural groundcover / Japanese boxwood or stones around the island base.
+2. **Interiors Detail & Wall Tints**:
+   - The interior walls facing the window cutouts are plain white. Apply soft warm plaster or wood slat accent materials to the visible interior walls (e.g. master bedroom headboard wall, entrance feature wall).
+   - Check FF alignment from inside the rooms.
+3. **Lighting & Lumen Pass**:
+   - Point lights (`IL_GF_*`, `IL_FF_*`) are at 15,000 lm staging intensity. Dial them down to realistic architectural values (~2,000 - 3,500 lm) and enable contact shadows.
+   - Balance SunSky exposure in PostProcessVolume so interior views look naturally exposed without blowing out the pool outside.
+4. **Context Ground**:
+   - The large neutral ground outside the plot boundary is grey asphalt. Blend it with context sand/gravel or desert planting so the plot edges blend seamlessly into the horizon.
 
-The viewer frame maps to Unreal as: Unreal X = viewer x * 100 + 878, Unreal Y = viewer z * 100 + 1547, Unreal Z = viewer y * 100 + floor (GF 45, FF 445). The exterior GLB maps as Unreal X = glTF x, Unreal Y = glTF z, both in cm.
+---
 
-## Working with the MCP (lessons learned)
+## 7. Syncing Your Work to Git
+After making edits in the editor:
+```python
+# 1. In Unreal Python:
+unreal.EditorLoadingAndSavingUtils.save_dirty_packages(True, True)
+unreal.EditorLevelLibrary.save_current_level()
 
-- Imports and Nanite toggles on the big interior meshes (GF especially) take 1 to 4 minutes, and the MCP call times out first. The work still finishes. Wait on the editor log (`Saved/Logs/ashwood_3d_estates_2.log`, line `Built static mesh [..s] /Game/...`) before the next call, or calls return "slow task".
-- **Turn Nanite off** on every imported mesh. Otherwise the viewport draws a low fallback mesh (the villa showed 978 triangles with slanted walls).
-- `SetCameraTransform` moves whichever viewport was last clicked, which may be Colin's second viewport. For checks, use `SceneCaptureToolset.CaptureEditorViewport` with `viewportId` set to Viewport 1's id (from `ListEditorViewports`) and a `captureTransform`. That moves no camera.
-- The capture fails when the viewport tab is hidden or minimized. Ask Colin to bring the editor forward.
-- Re-importing to a new folder name (for example `villa_v3`) creates a new mesh. Point the actor at it, re-apply the slot mapping above, turn Nanite off, then delete the old folder.
+# 2. Run sync script:
+python C:\Users\Alfa\.gemini\antigravity\scratch\save_and_sync.py
 
-## State and what is next
-
-Done: villa import and mesh fix; GF and FF interiors with materials, walls and floors; interior ceiling lights; textured stone, paving, lawn, ground, bark and bronze; glass and water; window openings; pool v3 with terrace seating; procedural pool tile (`M_PoolTile`); soffit stucco (`MI_Soffit`); warm white architectural LED strips (`M_LED`); dense boxwood hedges (`MI_Hedge`); terrace furniture wood, fabric and bronze materials; two-sided subsurface foliage master (`M_FoliageLeaf`) with 7 tuned leaf instances and bark assigned to all `SM_Planting` slots; template `Floor` and empty foliage actors deleted.
-
-Not verified:
-- FF alignment from inside.
-- Front, side and FF facades through the new openings (rough wall ends may show).
-- Courtyard basin up close and courtyard island planting.
-- Pool steps and the far pool edge.
-
-To do, in Colin's priority order ("everything outside and inside ultra realistic"):
-1. **Courtyard and Context Planting:** Plant the courtyard island beyond the single pine, and add context palms beyond the plot boundary.
-2. **Interiors:** surfaces that were vertex-coloured in the viewer import white. The ceilings are cold. Furniture fabrics and wood have no detail. Check FF from inside.
-3. **Lighting:** exposure and sun angle, interior light levels (15,000 lm is a staging value), shadows.
-4. **Context:** the large grey ground outside the plot.
+# 3. Add CHANGELOG.md entry, commit and push to a new branch!
+```
+Good luck, the villa is looking incredible!
