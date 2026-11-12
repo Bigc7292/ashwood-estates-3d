@@ -1,3 +1,11 @@
+## 2026-11-12 (Asia/Dubai), pool v3 and terrace seating in Unreal (branch `lane/unreal-villa`)
+
+- Colin: the pool looked too thin and too close to the house, with no room for seats. The model had the CAD pool: water 2.38 m wide and a 0.9 m strip to the house.
+- New `exterior_export/pool_v3.js` rebuilds the pool and deck boxes to the pool v3 ruling: a 4.80 m terrace between the house and the pool, and pool water 9.50 x 3.60 m. The pool moves 3.90 m toward the rear, onto the lawn beyond the plot, and widens by 1.22 m. Output is `villa_v3.glb`, built on the opened shell. The source GLB and the Blender file are not changed.
+- Terrace seating is captured from the exterior viewer (`PROC_sofa`, two armchairs, coffee table, two loungers, side table, parasol; 23,208 triangles) as `terrace_set.glb` and placed as actor `Terrace_Furniture`. `extract.js` gained a name filter and can load a served page; `serve.js` is the local file server it needs. Furniture sizes are the viewer estimates, not from the plan.
+- Unreal now uses `/Game/Villa/villa_v3/SM_Villa_Exterior`. The `villa_open` assets are deleted.
+- Not checked: the pool steps and right-hand terrace up close, and how the pool edge meets the lawn beyond the plot. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), window openings in the villa shell (branch `lane/unreal-villa`)
 
 - The villa shell is nine solid stone boxes with glass panes laid on their faces, so the rooms were hidden behind stone. New `unreal/ashwood_3d_estates/exterior_export/openings.js` rebuilds the four walls of each box with a rectangular hole behind every glass pane (23 openings). Output is `villa_open.glb`. The source `villa-materials.glb` and the Blender file are not changed.

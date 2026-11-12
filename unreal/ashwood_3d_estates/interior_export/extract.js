@@ -98,6 +98,7 @@ const collect = async () => {
   const all = []; scene.traverse(o => all.push(o));
   for (const o of all) {
     if (!o.isMesh || !visible(o) || !o.geometry || !o.material) { continue; }
+    if (window.__filter) { let hit = false; for (let q = o; q; q = q.parent) if (q.name && window.__filter.test(q.name)) hit = true; if (!hit) continue; }
     if (o.isSkinnedMesh) { stats.skipped++; continue; }
     const mats = Array.isArray(o.material) ? o.material : [o.material];
     if (mats.some(m => m && (m.isShaderMaterial && !m.color))) { stats.skipped++; stats.names.push('shader:' + (o.name || o.type)); continue; }
@@ -127,7 +128,7 @@ const collect = async () => {
   const page = await browser.newPage();
   page.on('pageerror', e => console.log('pageerror', String(e).slice(0, 200)));
   await page.evaluateOnNewDocument(hook);
-  await page.goto('file:///' + path.resolve(html).replace(/\\/g, '/'), { waitUntil: 'load', timeout: 120000 });
+  await page.goto(/^https?:/.test(html) ? html : 'file:///' + path.resolve(html).replace(/\\/g, '/'), { waitUntil: 'load', timeout: 120000 });
   await new Promise(r => setTimeout(r, 4000));
   const clicked = await page.evaluate(() => {
     if ((window.__scenes || []).length) return 'already';
@@ -140,6 +141,7 @@ const collect = async () => {
   const walls = await page.evaluate(() => { const e = [...document.querySelectorAll('button,a,div,span,li')].find(e => /^\s*Full walls\s*$/i.test(e.textContent) && (e.children.length === 0 || e.tagName === 'BUTTON')); if (e) { e.click(); return 'Full walls'; } return 'none'; });
   console.log('walls:', walls);
   await new Promise(r => setTimeout(r, 12000));
+  if (process.env.FILTER) await page.evaluate((f) => { window.__filter = new RegExp(f); }, process.env.FILTER);
   const res = await page.evaluate(collect);
   await browser.close();
   if (res.error) { console.log(JSON.stringify(res)); process.exit(1); }
