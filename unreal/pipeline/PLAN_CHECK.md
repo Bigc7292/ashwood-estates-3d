@@ -23,3 +23,19 @@ Labels: concept visualisation, not survey-verified, not construction-ready, not 
 | Doors and room access | NOT YET RUN. Planned as a navigation-mesh reachability test from the pedestrian entry to every room, up both stairs. | |
 
 Measured offset of the refitted FF stair against the CAD: X 736-866 against CAD X 752-897 (about 20 cm), within the sheet's declared ±3% working uncertainty.
+
+## Update: stairs, voids, doors and access (later the same day)
+
+Walk test (`walk_check.py`): a person capsule (radius 22 cm, clear from 30 to 190 cm above the floor) on a 20 cm grid, steps of 25 cm or less, flood fill from the street; a room passes when reached floor lies within 1.5 m of its V4 label point. Map: `reports/walk_map.png`.
+
+**Result: 34 of 35 places reachable**: all 16 GF spaces including the pool terrace, the full FF (corridor, lift, master suite, M.dressing, M.bath, family living, bedroom 1, bath 1, bedroom 2, dress, bath 2, junior suite group, SW and SE balconies), and the RF stair arrival and roof terrace.
+
+| Item | Fix |
+|---|---|
+| Stairs | Two stacked 21-riser flights, 4.0 m each. GF to FF climbs north from Y 1984 to Y 1438; FF to RF climbs north from Y 1855 to Y 1309 so the corridor passage to bedroom 2 stays free. Headroom is 2.1 m or more everywhere (arrival 2.5 m, between flights 2.7 m). |
+| Voids | Courtyard light-well and double-height entry opened through ceilings, floor, slab and roof. |
+| Shell phantom walls | The massing boxes' shared faces are clipped away exactly. |
+| Doors | Front door plus 3 entrance steps (the plinth is 45 cm with no steps), living slider, master and bedroom 1 to the N balcony, bedroom 2 to SW, junior suite to SE, roof pavilion door. FF interior: master suite to dressing (through joinery), dressing to bath, bedroom 2 door, bath 2 door, dress open to bedroom 2, all at V4 positions. |
+| Site | Planting collision was one box over the whole site; set to NoCollision. |
+
+**Open (needs a decision): north balcony.** Its doors are open, but the captured furniture blocks both approaches. In the master suite the bed group (X 556-731) is about 1 m east of the V4 position (X 368-632) and the west side has a bench, console and plants, so neither aisle is 44 cm wide. In bedroom 1 the twin beds and nightstands sit straight behind the door. A furniture rearrangement is a design choice, so it is not made automatically.

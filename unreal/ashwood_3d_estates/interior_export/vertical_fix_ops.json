@@ -1,5 +1,5 @@
 {
- "_doc": "Option A stair + voids fix, 2026-11-12. World cm. See unreal/pipeline/PLAN_CHECK.md.",
+ "_doc": "Option A stair + voids fix, 2026-11-12. World cm. See unreal/pipeline/PLAN_CHECK.md. Rev 2: roof flight starts at Y 1855 (keeps the FF passage to bedroom 2 free); roof/FF-ceiling openings Y 1309-1726; FF joinery doorways per V4 sheet.",
  "gf": {
   "origin": [
    878,
@@ -154,8 +154,8 @@
     "box": [
      761,
      889,
-     1438,
-     1855,
+     1309,
+     1726,
      740,
      750
     ],
@@ -196,6 +196,126 @@
      450
     ],
     "note": "FF floor open to below"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     560,
+     665,
+     995,
+     1090,
+     446,
+     690
+    ],
+    "note": "master suite to M.dressing doorway through joinery (V4 sheet gap)"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     560,
+     665,
+     1295,
+     1385,
+     446,
+     690
+    ],
+    "note": "M.dressing to M.bath doorway (V4 sliding door)"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     635,
+     720,
+     1845,
+     1910,
+     446,
+     690
+    ],
+    "note": "bedroom 2 door from corridor (V4 sheet)"
+   },
+   {
+    "op": "remove",
+    "box": [
+     555,
+     622,
+     930,
+     970,
+     470,
+     530
+    ],
+    "note": "bench standing in the master suite to M.dressing doorway"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     635,
+     720,
+     1960,
+     1995,
+     446,
+     690
+    ],
+    "note": "bedroom 2 door in the Y 1975 wall (V4 door is about 75 cm north; model wall kept)"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     435,
+     460,
+     1772,
+     1851,
+     446,
+     690
+    ],
+    "note": "bath 2 door in its east wall (V4 sheet)"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     510,
+     665,
+     470,
+     525,
+     446,
+     690
+    ],
+    "note": "master suite balcony door through FF facade"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     1215,
+     1370,
+     470,
+     525,
+     446,
+     690
+    ],
+    "note": "bedroom 1 balcony door through FF facade (low header)"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     628,
+     712,
+     2370,
+     2420,
+     446,
+     690
+    ],
+    "note": "bedroom 2 SW balcony door through FF facade"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     560,
+     665,
+     1870,
+     1960,
+     446,
+     690
+    ],
+    "note": "dress open to bedroom 2 (V4 sheet shows no wall there; double wall at Y 1885-1950)"
    }
   ]
  },
@@ -242,8 +362,8 @@
     "box": [
      761,
      889,
-     1438,
-     1855,
+     1309,
+     1726,
      760,
      860
     ],
@@ -254,8 +374,8 @@
     "rect": [
      761,
      889,
-     1438,
-     1855
+     1309,
+     1726
     ],
     "z": [
      745,
@@ -364,7 +484,7 @@
      761,
      889
     ],
-    "yStart": 1984,
+    "yStart": 1855,
     "dir": -1,
     "zBase": 445,
     "risers": 21,

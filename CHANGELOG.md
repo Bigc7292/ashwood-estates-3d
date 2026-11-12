@@ -1,3 +1,11 @@
+## 2026-11-12 (Asia/Dubai), first floor and roof made walkable: 34 of 35 places reachable (branch `lane/unreal-villa-courtyard`)
+
+- The FF to RF flight now starts at Y 1855 (was 1984) so the corridor passage round the stair to bedroom 2 stays free; roof and FF-ceiling openings moved to Y 1309-1726. The roof terrace is now reachable.
+- FF interior doors cut at the V4 positions: master suite to M.dressing (through joinery, with a bench removed from the doorway), M.dressing to M.bath, bedroom 2 door, bath 2 door, dress open to bedroom 2 (double wall), and FF facade openings behind the master, bedroom 1 and bedroom 2 balcony doors.
+- Planting collision made permanent (collision profile NoCollision); the earlier runtime switch did not persist.
+- Live meshes: `SM_Villa_Exterior_v9`, `SM_GF_House_v4`, `SM_FF_House_v8` (Nanite off, complex collision, all material slots carried over). The recipe is in `interior_export/vertical_fix_ops.json`.
+- Walk test: 34 of 35. Still open: the north balcony, which is blocked by captured furniture placement (master bed group about 1 m east of the V4 position plus side clutter; twin beds behind the bedroom 1 door). Needs a design decision. Status: WIP. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), stairs, voids, doors and walk test in Unreal (branch `lane/unreal-villa-courtyard`)
 
 - New `interior_export/edit_glb.js` with a recipe file `vertical_fix_ops.json` applies every geometry fix at source, in world cm. Outputs: `villa_v8.glb`, `gf_house_v4.glb` and `ff_house_v4.glb`, imported and set on the level actors with materials carried over by slot name, Nanite off and complex-as-simple collision.
