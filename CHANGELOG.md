@@ -1,3 +1,12 @@
+## 2026-11-13 (Asia/Dubai), FF furniture moved onto the V4 plan; 35 of 35 still reachable (branch `lane/unreal-villa-courtyard`)
+
+- Final plan check found the FF walls on the V4 sheet (registered at 43.5 px/m against the sheet bar's 42.8, 1.6%), but the loose furniture in the master suite, family living, bedroom 1, bedroom 2 and the junior suite stood 143-144 cm east of the drawn position. This was measured on three rooms and matches the master bed wall offset. The family sofa crossed the partition into bedroom 1. Beds in bedroom 1 and the junior suite ran into the east wall, where the envelope clip had cut their far halves away.
+- Fix at source: new recipe stage `ff_pre` in `vertical_fix_ops.json` runs on the unclipped refit (`ff_refit.glb`) before `clip.js`, so clipped pieces come back whole. Furniture in those rooms moves 144 cm west. The bedroom 2 bed turns head-west and the junior suite bed head-east between their bedside tables, as drawn. The family low bench, which then straddled the partition, sits against its family-side face (X 753, line trace). Move boxes reach the floor and skip the wall materials, so legs move with their furniture and wall bases stay.
+- Bedroom 1 balcony door moved to X 1225-1330, the gap between the low unit and the twin beds.
+- Pipeline: `refit.js ff_interior.glb ff_refit.glb 0.94483 0.94483 1.19375 -1.40523` -> `edit_glb.js ... ff_pre` -> `clip.js ... -5.78 7.12 -12.27 11.33` -> `edit_glb.js ... ff`. The intermediates are regenerated, not committed.
+- Live meshes: `SM_Villa_Exterior_v11`, `SM_GF_House_v4`, `SM_FF_House_v12` (Nanite off, complex collision, all 104 slots mapped; six slots that came back with the unclipped pieces use the original `/Game/Rooms/FF/ff_house/Materials`). Overlay `unreal/pipeline/reports/overlay_ffv3.png`.
+- Walk test 35 of 35; both north balcony doors walked through. Status: WIP. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), north balcony reachable; walk test 35 of 35 (branch `lane/unreal-villa-courtyard`)
 
 - Master suite rearranged to the V4 sheet. The captured bed wall (headboard panel, ledge, art, both bedside tables, lamps and plants) stood 144 cm east of the outer wall, cutting off an empty 1.4 m strip. It now sits on the outer wall face (X 340, measured with a line trace). The bed had been captured turned 90 degrees, with its head to the north across the room. It is now head-west between the bedside tables (X 389-573, Y 663-838), as drawn. The lounge chair and side table stay in the north-east corner, as on the sheet.

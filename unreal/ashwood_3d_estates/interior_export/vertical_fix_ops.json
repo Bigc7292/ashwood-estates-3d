@@ -284,14 +284,14 @@
    {
     "op": "subtract",
     "box": [
-     1370,
-     1475,
+     1225,
+     1330,
      470,
      525,
      446,
      690
     ],
-    "note": "bedroom 1 balcony door through FF facade, east of the low unit (V4 glazing position)"
+    "note": "bedroom 1 balcony door through FF facade, in the gap between the low unit (ends X 1214) and the twin beds (start X 1334)"
    },
    {
     "op": "subtract",
@@ -316,63 +316,6 @@
      690
     ],
     "note": "dress open to bedroom 2 (V4 sheet shows no wall there; double wall at Y 1885-1950)"
-   },
-   {
-    "op": "move",
-    "box": [
-     478,
-     567,
-     505,
-     900,
-     453.5,
-     746
-    ],
-    "except": [
-     [
-      489,
-      541,
-      505,
-      514,
-      500,
-      746
-     ],
-     [
-      555,
-      732,
-      658,
-      849,
-      450,
-      556
-     ]
-    ],
-    "offset": [
-     -144,
-     0,
-     0
-    ],
-    "note": "master suite bed wall (panel, ledge, art, bedside tables, lamps, plants) slid 144 cm west onto the outer wall face at X 340 (V4: bed head on west wall)"
-   },
-   {
-    "op": "move",
-    "box": [
-     555,
-     732,
-     658,
-     849,
-     450,
-     556
-    ],
-    "rotZ": -90,
-    "pivot": [
-     643.5,
-     753.5
-    ],
-    "offset": [
-     -165,
-     -3.5,
-     0
-    ],
-    "note": "master bed turned head-west (V4) and placed between the bedside tables: X 384-573, Y 662-837"
    }
   ]
  },
@@ -589,14 +532,14 @@
    {
     "op": "subtract",
     "box": [
-     1370,
-     1475,
+     1225,
+     1330,
      460,
      485,
      446,
      768
     ],
-    "note": "bedroom 1 door to north balcony, east of the low unit along the west wall (V4 glazing position)"
+    "note": "bedroom 1 door to north balcony, in the gap between the low unit (ends X 1214) and the twin beds (start X 1334)"
    },
    {
     "op": "subtract",
@@ -650,6 +593,193 @@
     "thickness": 15,
     "material": "MAT_stone",
     "note": "entrance steps, paving (Z 0) to plinth (Z 45)"
+   }
+  ]
+ },
+ "ff_pre": {
+  "origin": [
+   878,
+   1547,
+   445
+  ],
+  "_doc": "Runs on the UNCLIPPED refit (node refit.js ff_interior.glb ff_refit.glb 0.94483 0.94483 1.19375 -1.40523), before clip.js, so pieces that stood past the envelope come back whole. Pipeline: refit.js -> edit_glb ff_pre -> clip.js -5.78 7.12 -12.27 11.33 -> edit_glb ff.",
+  "ops": [
+   {
+    "op": "move",
+    "box": [
+     478,
+     567,
+     505,
+     900,
+     444.5,
+     746
+    ],
+    "except": [
+     [
+      489,
+      541,
+      505,
+      514,
+      500,
+      746
+     ],
+     [
+      555,
+      732,
+      658,
+      849,
+      450,
+      556
+     ]
+    ],
+    "offset": [
+     -144,
+     0,
+     0
+    ],
+    "note": "master suite bed wall (panel, ledge, art, bedside tables, lamps, plants) slid 144 cm west onto the outer wall face at X 340 (V4: bed head on west wall) (box reaches the floor so legs and frame sides that touch it move too)",
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$"
+   },
+   {
+    "op": "move",
+    "box": [
+     555,
+     732,
+     658,
+     849,
+     444.5,
+     556
+    ],
+    "rotZ": -90,
+    "pivot": [
+     643.5,
+     753.5
+    ],
+    "offset": [
+     -165,
+     -3.5,
+     0
+    ],
+    "note": "master bed turned head-west (V4) and placed between the bedside tables: X 384-573, Y 662-837 (box reaches the floor so legs and frame sides that touch it move too)",
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$"
+   },
+   {
+    "op": "move",
+    "box": [
+     576,
+     1720,
+     526,
+     925,
+     444.5,
+     700
+    ],
+    "skipNodes": "^MeshStandardMaterial_(5|14|15|16)$",
+    "offset": [
+     -144,
+     0,
+     0
+    ],
+    "note": "north band (master chair, side table, pendant; family living; bedroom 1): loose furniture captured 144 cm east of the V4 position (same offset as the master bed wall, measured on the overlay)"
+   },
+   {
+    "op": "move",
+    "box": [
+     690,
+     800,
+     625,
+     855,
+     444.5,
+     600
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "offset": [
+     60,
+     0,
+     0
+    ],
+    "note": "family living low bench with plant: after the 144 cm shift it straddled the master/family partition; set against the partition's family-side face (X 753, line trace) as the V4 white unit"
+   },
+   {
+    "op": "move",
+    "box": [
+     400,
+     760,
+     1990,
+     2390,
+     444.5,
+     700
+    ],
+    "skipNodes": "^MeshStandardMaterial_(5|14|15|16)$",
+    "offset": [
+     -144,
+     0,
+     0
+    ],
+    "note": "bedroom 2: loose furniture captured 144 cm east of the V4 position (same offset as the master bed wall, measured on the overlay)"
+   },
+   {
+    "op": "move",
+    "box": [
+     420,
+     596,
+     2072,
+     2263,
+     444.5,
+     556
+    ],
+    "rotZ": -90,
+    "pivot": [
+     507.5,
+     2167.5
+    ],
+    "offset": [
+     -18,
+     5,
+     0
+    ],
+    "note": "bedroom 2 bed turned head-west between its bedside tables (V4) (box reaches the floor so legs and frame sides that touch it move too)",
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$"
+   },
+   {
+    "op": "move",
+    "box": [
+     1100,
+     1720,
+     1990,
+     2400,
+     444.5,
+     700
+    ],
+    "skipNodes": "^MeshStandardMaterial_(5|14|15|16)$",
+    "offset": [
+     -144,
+     0,
+     0
+    ],
+    "note": "junior suite: loose furniture captured 144 cm east of the V4 position (same offset as the master bed wall, measured on the overlay)"
+   },
+   {
+    "op": "move",
+    "box": [
+     1313,
+     1490,
+     2097,
+     2288,
+     444.5,
+     556
+    ],
+    "rotZ": 90,
+    "pivot": [
+     1401.5,
+     2192.5
+    ],
+    "offset": [
+     19,
+     5.5,
+     0
+    ],
+    "note": "junior suite bed turned head-east between its bedside tables (V4) (box reaches the floor so legs and frame sides that touch it move too)",
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$"
    }
   ]
  }

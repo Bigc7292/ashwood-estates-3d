@@ -39,3 +39,10 @@ Walk test (`walk_check.py`): a person capsule (radius 22 cm, clear from 30 to 19
 | Site | Planting collision was one box over the whole site; set to NoCollision. |
 
 **North balcony (resolved, 35 of 35).** In the master suite the bed wall group was 144 cm east of the outer wall and the bed was turned head-north across the room. Both were moved to the V4 arrangement: bed head on the west wall between the bedside tables, chair and side table in the north-east corner. The bedroom 1 door was moved east of the low unit (X 1370-1475). Both doors are now walked through (16 and 9 reached cells in the doorways).
+
+## Final plan check (2026-11-13)
+
+Walls: GF registers at 43.6 px/m and FF at 43.5 px/m against the sheet scale bar's 42.8 px/m (within 2%). FF fit score 0.292 (0.262 at v2).
+Furniture: the bedroom and family living furniture had been captured 144 cm east of the V4 position. It is moved back at source, before the envelope clip, so the clipped bed halves return (`reports/overlay_ffv3.png`). Beds are turned to the V4 orientation: master and bedroom 2 head-west, junior suite head-east, bedroom 1 twins head-east as captured.
+Access: 35 of 35, both north balcony doors walked through.
+Not changed: a small FF block inside the open-to-below void and one in the corridor near bedroom 2 are existing captured items that do not block access. They are left for review in the interior pictures.

@@ -10,7 +10,7 @@
 //   {"op":"line","rect":[...],"z":[za,zb],"material":"NAME"}   vertical lining faces round a hole
 //   {"op":"stair","x":[x0,x1],"yStart":y,"dir":-1,"zBase":z,"risers":n,"rise":r,"going":g,
 //    "thickness":t,"material":"NAME"}         stepped-slab straight flight
-//   {"op":"move","box":[...],"except":[[...],...],"rotZ":deg,"pivot":[x,y],"offset":[dx,dy,dz]}
+//   {"op":"move","box":[...],"except":[[...],...],"rotZ":deg,"pivot":[x,y],"offset":[dx,dy,dz],"skipNodes":"regex"}
 //                                            relocate whole furniture pieces lying fully inside box
 // Node transforms are baked, indices expanded; material names are kept (Unreal maps slots by name).
 const fs = require('fs');
@@ -170,7 +170,9 @@ for (const o of cfg.ops) {
     // world (x, y) -> glTF (x, z): world rotation by th is the same rotation in the glTF x-z plane
     const rotP = (p) => { const x = p[0] - pg[0], z = p[2] - pg[2]; return [pg[0] + x * c - z * s + dx / 100, p[1] + dz / 100, pg[2] + x * s + z * c + dy / 100]; };
     const rotN = (n) => [n[0] * c - n[2] * s, n[1], n[0] * s + n[2] * c];
+    const skip = o.skipNodes ? new RegExp(o.skipNodes) : null;  // e.g. wall materials whose floor-level caps must stay
     for (const g of groups) {
+      if (skip && skip.test(g.name)) { before += g.tris.length; continue; }
       for (const t of g.tris) {
         if (!inside(t, B) || E.some(X => inside(t, X))) continue;
         t.p = t.p.map(rotP); t.n = t.n.map(rotN); after++;
