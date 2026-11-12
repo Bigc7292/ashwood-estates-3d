@@ -1,3 +1,13 @@
+## 2026-11-13 (Asia/Dubai), first-person walk-through set up; house walkable at full character size (branch `lane/unreal-villa-courtyard`)
+
+- Walk mode in Unreal (user's instructions): `Main` uses `BP_FirstPersonGameMode` (level override); the PlayerStart is at the front gate (985, 2860) facing the house. R and F are added to `IA_Look` in `IMC_Default` (Swizzle YXZ; F also Negate Y), mirroring the gamepad right stick, which looks up on +Y. Collision is complex-as-simple on all three house meshes.
+- The template character is 68 cm wide (capsule radius 34). With it, the walk test reached 3 of 35 places, stuck at the front door. The radius is set to 25 cm, a 50 cm body (typical adult shoulder width about 45-50 cm). Step height stays 45 cm (stair riser 19 cm).
+- Front door: the shell opening (X 930-1040) and the GF interior door frame (X 966-1062, line trace) were offset into a 74 cm S-bend, and the cut-away door leaf left edge faces on the cut planes. The shell opening is widened to X 925-1062 (vertical faces only, so the threshold stays).
+- Found that the FF capture had turned the V4 room labels into full-height solid lettering at the label positions: MASTER SUITE, FAMILY LIVING, BEDROOM 1, CORRIDOR (it blocked the corridor), M. DRESSING, BEDROOM 2 and JUNIOR SUITE plus its size text. These are removed; checked one by one against the sheet, which shows open floor there. The block at "J. DRESS" is a real return wall on the sheet and stays. The "Y 1975 wall" a bedroom 2 door was earlier cut through was the BEDROOM 2 label.
+- Removed decor left floating in doorways once those blocks went: a picture panel, lamp and books at the master suite to M.dressing door, and a picture panel and console in the dress to bedroom 2 opening (not on the V4 sheet).
+- Live meshes: `SM_Villa_Exterior_v12`, `SM_GF_House_v4`, `SM_FF_House_v15` (Nanite off, complex collision, all slots mapped).
+- Walk test at the real character size (radius 25): 35 of 35. Capsule sweeps through the master dressing door are clear both ways. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), FF furniture moved onto the V4 plan; 35 of 35 still reachable (branch `lane/unreal-villa-courtyard`)
 
 - Final plan check found the FF walls on the V4 sheet (registered at 43.5 px/m against the sheet bar's 42.8, 1.6%), but the loose furniture in the master suite, family living, bedroom 1, bedroom 2 and the junior suite stood 143-144 cm east of the drawn position. This was measured on three rooms and matches the master bed wall offset. The family sofa crossed the partition into bedroom 1. Beds in bedroom 1 and the junior suite ran into the east wall, where the envelope clip had cut their far halves away.

@@ -316,6 +316,138 @@
      690
     ],
     "note": "dress open to bedroom 2 (V4 sheet shows no wall there; double wall at Y 1885-1950)"
+   },
+   {
+    "op": "remove",
+    "box": [
+     466,
+     597,
+     905,
+     956,
+     444,
+     746
+    ],
+    "note": "plan label block 'MASTER SUITE': the V4 room label was captured as full-height solid lettering at the label position"
+   },
+   {
+    "op": "remove",
+    "box": [
+     885,
+     1024,
+     905,
+     956,
+     444,
+     746
+    ],
+    "note": "plan label block 'FAMILY LIVING': the V4 room label was captured as full-height solid lettering at the label position"
+   },
+   {
+    "op": "remove",
+    "box": [
+     1332,
+     1430,
+     919,
+     946,
+     444,
+     746
+    ],
+    "note": "plan label block 'BEDROOM 1': the V4 room label was captured as full-height solid lettering at the label position"
+   },
+   {
+    "op": "remove",
+    "box": [
+     929,
+     1027,
+     1634,
+     1658,
+     444,
+     746
+    ],
+    "note": "plan label block 'CORRIDOR': the V4 room label was captured as full-height solid lettering at the label position"
+   },
+   {
+    "op": "remove",
+    "box": [
+     503,
+     594,
+     1164,
+     1188,
+     444,
+     746
+    ],
+    "note": "plan label block 'M. DRESSING': the V4 room label was captured as full-height solid lettering at the label position"
+   },
+   {
+    "op": "remove",
+    "box": [
+     593,
+     691,
+     1969,
+     1993,
+     444,
+     746
+    ],
+    "note": "plan label block 'BEDROOM 2': the V4 room label was captured as full-height solid lettering at the label position"
+   },
+   {
+    "op": "remove",
+    "box": [
+     1167,
+     1299,
+     1969,
+     1993,
+     444,
+     746
+    ],
+    "note": "plan label block 'JUNIOR SUITE': the V4 room label was captured as full-height solid lettering at the label position"
+   },
+   {
+    "op": "remove",
+    "box": [
+     1235,
+     1282,
+     1989,
+     2020,
+     444,
+     746
+    ],
+    "note": "plan label block 'JUNIOR SUITE' size text (4.60 x 4.00 m) captured as full-height lettering"
+   },
+   {
+    "op": "remove",
+    "box": [
+     555,
+     622,
+     925,
+     960,
+     520,
+     650
+    ],
+    "note": "floating picture panel, lamp and book left in the master suite to M.dressing approach (they hung on the 'MASTER SUITE' label block and the bench removed earlier)"
+   },
+   {
+    "op": "remove",
+    "box": [
+     600,
+     640,
+     1850,
+     1875,
+     470,
+     650
+    ],
+    "note": "picture panel and console standing in the dress to bedroom 2 opening (not on the V4 sheet)"
+   },
+   {
+    "op": "remove",
+    "box": [
+     555,
+     622,
+     920,
+     985,
+     520,
+     560
+    ],
+    "note": "remaining floating books from the bench removed in the master suite to M.dressing approach"
    }
   ]
  },
@@ -504,6 +636,19 @@
      335
     ],
     "note": "front door open"
+   },
+   {
+    "op": "subtract",
+    "vertOnly": true,
+    "box": [
+     925,
+     1062,
+     2340,
+     2380,
+     40,
+     336
+    ],
+    "note": "front door widened to line up with the GF interior door frame (X 966-1062, line trace) and clear the leaf edge faces left on the X 930/1040 cut planes; vertical faces only so the threshold stays"
    },
    {
     "op": "subtract",

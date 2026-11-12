@@ -46,3 +46,7 @@ Walls: GF registers at 43.6 px/m and FF at 43.5 px/m against the sheet scale bar
 Furniture: the bedroom and family living furniture had been captured 144 cm east of the V4 position. It is moved back at source, before the envelope clip, so the clipped bed halves return (`reports/overlay_ffv3.png`). Beds are turned to the V4 orientation: master and bedroom 2 head-west, junior suite head-east, bedroom 1 twins head-east as captured.
 Access: 35 of 35, both north balcony doors walked through.
 Not changed: a small FF block inside the open-to-below void and one in the corridor near bedroom 2 are existing captured items that do not block access. They are left for review in the interior pictures.
+
+## Walk-through at full character size (2026-11-13)
+
+First-person character radius 25 cm (template 34). Walk test 35 of 35 with that radius after: front door aligned to the interior frame; V4 room labels removed (the capture had made them full-height solid lettering); floating decor removed from two doorways. Map: `reports/walk_map.png`.
