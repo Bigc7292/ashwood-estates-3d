@@ -1,3 +1,12 @@
+## 2026-11-12 (Asia/Dubai), Unreal plan check against V4 CAD; FF interior refitted (branch `lane/unreal-villa-courtyard`)
+
+- New plan check tools in `unreal/pipeline/`: `extract_plan_geometry.py` (walls, floors and stair treads from the meshes), `render_plan.py` and `overlay_cad.py` (registers the model walls onto the approved V4 sheet and draws an overlay). Findings and evidence are in `unreal/pipeline/PLAN_CHECK.md` and `unreal/pipeline/reports/`.
+- GF matches the V4 GF sheet.
+- FF did not. The interior was about 5.8% oversized and shifted, and the footprint clip had cut away the west strip (master suite, bath 2, bedroom 2). The cores did not stack: stair 156 cm west, lift about 120 cm west.
+- Fix: new `interior_export/refit.js` applies the measured plan transform to the unclipped `ff_interior.glb`. It is then re-clipped to the FF envelope as `ff_house_v2.glb`, imported as `/Game/Rooms/FF/ff_house_v2` (Nanite turned off; the import defaulted it on) with all 98 material slots carried over by name, and set on `Interior_FF`. The old `SM_FF_House` is kept for rollback.
+- Still open (logged in PLAN_CHECK.md): both stair flights rise only 3.0 m of the 4.0 m floor to floor, and no stairwell openings are cut. The courtyard light-well and the double-height entry void are covered by the shell slab, ceilings and floor plate. Door and room access test not yet run. RF interior not placed.
+- Status: WIP. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), repeatable pipeline audit script (branch `lane/unreal-villa-courtyard`)
 
 - New `unreal/pipeline/ashwood_pipeline.py`, a read-only, repeatable audit run inside the editor. It writes `Saved/Pipeline/audit.md`.
