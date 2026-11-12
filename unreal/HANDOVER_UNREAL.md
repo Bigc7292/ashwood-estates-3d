@@ -29,9 +29,10 @@ To sync the git copy after working in Unreal: save in the editor, then copy `Con
 
 | Actor | Mesh | Location (cm) | Notes |
 |---|---|---|---|
-| `Villa_Exterior` | `/Game/Villa/villa_v3/StaticMeshes/SM_Villa_Exterior` | 0, 0, 0 | 84k tris, Nanite off. Window openings cut, pool v3 |
+| `Villa_Exterior` | `/Game/Villa/villa_v4/StaticMeshes/SM_Villa_Exterior` | 0, 0, 0 | Nanite off. Window openings cut, pool v3, balloon trees and old hedges removed (`villa_v4.glb`) |
 | `Interior_GF` | `/Game/Rooms/GF/gf_house/StaticMeshes/SM_GF_House` | 878, 1547, 45 | 345k tris, 142 materials, Nanite off |
 | `Interior_FF` | `/Game/Rooms/FF/ff_house/StaticMeshes/SM_FF_House` | 878, 1547, 445 | 203k tris, 104 materials, Nanite off |
+| `Planting` | `/Game/Villa/Planting/planting_set/StaticMeshes/SM_Planting` | 0, 0, 0 | Viewer trees, hedges, palms, pine; leaf cutout. Nanite off |
 | `Terrace_Furniture` | `/Game/Villa/Terrace/terrace_set/StaticMeshes/SM_Terrace_Furniture` | 0, 0, 38 | Sofa, 2 armchairs, coffee table, 2 loungers, side table, parasol |
 | `IL_GF_*`, `IL_FF_*` (29) | point lights | ceiling height | 3000 K, 15,000 lm, no shadows (staging value) |
 | `SunSky`, `ExponentialHeightFog`, `PostProcessVolume` | | | Post-process overrides: AO 0.6, bloom 0.5 |
@@ -76,7 +77,7 @@ Not verified:
 - Pool steps and the far pool edge.
 
 To do, in Colin's priority order ("everything outside and inside ultra realistic"):
-1. **Planting:** replace the round balloon shrubs (forbidden), texture the hedges and leaves, improve the palm fronds. Plant the courtyard island.
+1. **Planting:** balloon trees replaced (`prune.js`, `planting_set.glb`). Still to do: courtyard island planting, leaf colour variety (viewer vertex colours are lost), context palms beyond the plot.
 2. **Remaining flat materials:** soffit, pool tile, outdoor furniture, cushions.
 3. **Interiors:** surfaces that were vertex-coloured in the viewer import white. The ceilings are cold. Furniture fabrics and wood have no detail. Check FF from inside.
 4. **Lighting:** exposure and sun angle, interior light levels (15,000 lm is a staging value), shadows.

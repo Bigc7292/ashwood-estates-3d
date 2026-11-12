@@ -56,7 +56,8 @@ const collect = async () => {
     if (matCache.has(m.uuid)) return matCache.get(m.uuid);
     const c = m.color || { r: 1, g: 1, b: 1 };
     const out = { name: m.name || m.type || 'mat', pbrMetallicRoughness: { baseColorFactor: [c.r, c.g, c.b, m.opacity == null ? 1 : m.opacity], roughnessFactor: m.roughness == null ? 0.8 : m.roughness, metallicFactor: m.metalness == null ? 0 : m.metalness }, doubleSided: m.side === 2 };
-    if (m.transparent && (m.opacity < 1 || m.transmission > 0)) { out.alphaMode = 'BLEND'; if (m.transmission > 0 && m.opacity >= 1) out.pbrMetallicRoughness.baseColorFactor[3] = 0.25; }
+    if (m.alphaTest > 0) { out.alphaMode = 'MASK'; out.alphaCutoff = m.alphaTest; }
+    else if (m.transparent && (m.opacity < 1 || m.transmission > 0)) { out.alphaMode = 'BLEND'; if (m.transmission > 0 && m.opacity >= 1) out.pbrMetallicRoughness.baseColorFactor[3] = 0.25; }
     const ti = texIndex(m.map); if (ti != null) out.pbrMetallicRoughness.baseColorTexture = { index: ti };
     if (m.emissive && (m.emissive.r + m.emissive.g + m.emissive.b) > 0) { const k = Math.min(1, m.emissiveIntensity == null ? 1 : m.emissiveIntensity); out.emissiveFactor = [Math.min(1, m.emissive.r * k), Math.min(1, m.emissive.g * k), Math.min(1, m.emissive.b * k)]; }
     g.materials.push(out); matCache.set(m.uuid, g.materials.length - 1); return g.materials.length - 1;

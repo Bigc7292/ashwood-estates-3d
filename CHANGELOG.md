@@ -1,3 +1,10 @@
+## 2026-11-12 (Asia/Dubai), planting replaced in Unreal (branch `lane/unreal-villa`)
+
+- The villa GLB trees were balloon trees (16 sphere canopies each), which Colin ruled out. New `exterior_export/prune.js` removes the parts the exterior viewer also hides: the 8 `TREE_*_broadleaf` trees, the palm trunks and fronds (garden and context), the courtyard pine, `HEDGE_lawn-*` and `HEDGE_front_bed` (198 nodes). Output is `villa_v4.glb`.
+- The viewer replacements are captured as `planting_set.glb` (61,149 triangles): olive and broadleaf trees with leaf-card crowns, leafy hedges, palms, the courtyard pine and column planters. Leaf materials use alpha cutout. Placed as actor `Planting`. `extract.js` now exports alpha-tested viewer materials as glTF MASK.
+- Planting below 2.5 m is cleared from the pool v3 terrace (2,425 triangles, mostly column planters and part of a hedge row that stood where the old pool edge was). Tree crowns overhead are kept.
+- Not done: the courtyard island planting is the single viewer pine. Leaves are lighter and flatter than the viewer, because its per-leaf vertex colours are not carried over. Context palms beyond the plot are gone with the originals. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), Unreal handover file (branch `lane/unreal-villa`)
 
 - Colin asked for everything committed with a handover for any agent. New `unreal/HANDOVER_UNREAL.md` covers his rules and design rulings, where the live project and the git copy are, every actor in `/Game/Main` with its mesh and position, the materials and the slot mapping to re-apply after an import, how each asset was built from the repo (scripts and exact arguments), the coordinate mapping, MCP lessons (import timeouts, Nanite off, which viewport moves), and the ordered to-do list.
