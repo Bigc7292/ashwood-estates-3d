@@ -1,3 +1,11 @@
+## 2026-11-12 (Asia/Dubai), courtyard island: no more white grass or stucco needles (branch `lane/unreal-villa-courtyard`)
+
+- The white grass cards on the courtyard island and the pine needle cards in `SM_GF_House` had been bulk-mapped to stucco `MI_Soffit` with the other `*_ffffff` slots. Colin rules out white grass cards.
+- Island grass blades (slot `M_GF_143_ffffff`) are now `MI_Leaf_Groundcover`, a dark mondo-grass green. Needle cards (`M_GF_146_ffffff`) are now `MI_Leaf_CourtyardPine`. Both are two-sided foliage instances of `M_FoliageLeaf` with a solid white mask texture.
+- Grey tree limbs (`M_GF_145_d7d1c7`) are now `MI_Bark`, island soil (`M_GF_142_3d3329`) is new `MI_Mulch` (dark pine bark) and the trunk ring (`M_GF_144_b8b1a5`) is new `MI_Pebble`.
+- Pitfall noted in the handover: on `SM_GF_House` and `SM_FF_House`, section index is not material slot index, so map sections with `StaticMeshEditorSubsystem.get_lod_material_slot`.
+- Nanite stays off. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), interior lighting and plaster pass (branch `lane/unreal-villa-courtyard`, recovered from uncommitted work on `lane/unreal-villa-photoreal`)
 
 - This pass was described in the handover as pushed, but it was still uncommitted in the working copy. Committed here as-is.

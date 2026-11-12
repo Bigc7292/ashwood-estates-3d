@@ -46,6 +46,9 @@ Do NOT struggle with lazy MCP tool discovery. In this environment:
   ue_mcp.capture_viewport("path.png", {"translation": {"x": 1363, "y": 1300, "z": 80}, "rotation": {"pitch": -15, "yaw": 90, "roll": 0}})
   ```
 - If calling `execute_python` in UE, **NEVER** make HTTP requests back to port 8001 from inside UE python (it will deadlock on socket timeout). Call viewport captures from outside in shell python!
+- **Section index is NOT material slot index on `SM_GF_House` (all 142 sections) or `SM_FF_House` (101 of 104).** Geometry read with `ProceduralMeshLibrary.get_section_from_static_mesh(sm, 0, s)` belongs to slot `StaticMeshEditorSubsystem.get_lod_material_slot(sm, 0, s)`, not slot `s`. Writing `sm.set_material(s, ...)` with a section index recolours the wrong geometry.
+- Each `StaticMesh.set_material()` on the big interior meshes triggers a full rebuild (~30-40 s, distance field). Batch edits: copy `static_materials` into a list, edit elements, then one `sm.set_editor_property('static_materials', list)`.
+- Offscreen `SceneCaptureToolset.Capture` in `Lit` mode has no eye-adaptation history, so it comes out blown white. Use `BaseColor` for layout checks and `CaptureEditorViewport` (with `captureTransform`, viewport id from `ListEditorViewports`) for lit checks. The camera is restored afterwards. The first capture in a new mode compiles shaders for a few minutes, so wait for it.
 
 ---
 
@@ -61,6 +64,7 @@ Do NOT struggle with lazy MCP tool discovery. In this environment:
   - Mapped with teak wood, linen cushions, and bronze frames.
 - `Interior_GF`: `/Game/Rooms/GF/gf_house/StaticMeshes/SM_GF_House` at `(878, 1547, 45)`.
   - Cold white wall/ceiling slots upgraded to warm architectural plaster (`MI_Soffit`).
+  - Courtyard island (slots 133-137): soil `MI_Mulch`, grass blades `MI_Leaf_Groundcover`, trunk ring `MI_Pebble`, tree limbs `MI_Bark`, needle cards `MI_Leaf_CourtyardPine`.
 - `Interior_FF`: `/Game/Rooms/FF/ff_house/StaticMeshes/SM_FF_House` at `(878, 1547, 445)`.
   - Cold white wall slots upgraded to warm architectural plaster (`MI_Soffit`).
 - `IL_GF_*` and `IL_FF_*`: 29 interior point lights tuned to realistic 3,500 lm, 2850K warm temperature, with soft contact shadows enabled.
@@ -87,16 +91,19 @@ Do NOT struggle with lazy MCP tool discovery. In this environment:
    - Replaced flat pure white drywall slots on GF and FF interior meshes with warm architectural plaster (`MI_Soffit`).
 4. **Saved and Synced**:
    - Packages and map saved.
-   - Synced to git working copy and pushed to branch `lane/unreal-villa-photoreal`.
+   - Note: item 3 was not actually committed last session. It was committed on `lane/unreal-villa-courtyard` (commit `3eff5e5`).
+5. **Courtyard Island Fix** (branch `lane/unreal-villa-courtyard`):
+   - The white grass cards on the island (`M_GF_143_ffffff`) had been bulk-mapped to stucco `MI_Soffit`, as had the pine needle cards (`M_GF_146_ffffff`). They are now dark green two-sided foliage.
+   - New instances in `/Game/Villa/Mat`: `MI_Leaf_Groundcover` and `MI_Leaf_CourtyardPine` (`M_FoliageLeaf` with `WhiteSquareTexture`, so the cards are solid and colour comes from `LeafTint`), `MI_Mulch` (dark bark, 35 cm tile) and `MI_Pebble` (grey stone, 30 cm tile).
+   - Grey limbs (`M_GF_145_d7d1c7`) are now `MI_Bark`. The island soil is `MI_Mulch` (mostly hidden under the groundcover).
 
 ---
 
 ## 6. What You Should Tackle Next (In Priority Order)
-1. **Courtyard Island Mulch & Secondary Planting**:
-   - The pine tree is standing on the raised island. In `SM_GF_House`, there are white needle cards under the tree that can be removed or textured with dark pine bark mulch/pebbles.
-   - Add low architectural groundcover / Japanese boxwood or stones around the island base.
-2. **First Floor Interior Alignment Check**:
+1. **First Floor Interior Alignment Check**:
    - Check the FF master bedroom and bathroom alignment through the upper terrace glass panes.
+   - Audit other `*_ffffff` slots on GF/FF that were bulk-set to `MI_Soffit`: some may be non-wall geometry (as the courtyard foliage was). Classify by section geometry using the slot mapping in section 3.
+2. **Optional courtyard polish**: no new stones were placed around the island base. Only existing geometry was re-materialled. Add loose stones or boxwood if Colin wants more.
 3. **Context Ground Texture**:
    - The large neutral ground outside the plot boundary is grey asphalt (`MI_Ground`). Blend it with context sand/gravel or desert planting so the plot edges blend seamlessly into the horizon.
 
