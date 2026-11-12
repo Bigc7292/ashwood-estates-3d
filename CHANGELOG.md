@@ -1,3 +1,9 @@
+## 2026-11-12 (Asia/Dubai), window openings in the villa shell (branch `lane/unreal-villa`)
+
+- The villa shell is nine solid stone boxes with glass panes laid on their faces, so the rooms were hidden behind stone. New `unreal/ashwood_3d_estates/exterior_export/openings.js` rebuilds the four walls of each box with a rectangular hole behind every glass pane (23 openings). Output is `villa_open.glb`. The source `villa-materials.glb` and the Blender file are not changed.
+- Unreal now uses `/Game/Villa/villa_open/SM_Villa_Exterior` (84,114 triangles, Nanite off) with the textured, glass and water materials re-applied. The old `/Game/Villa/villa-materials` assets are deleted.
+- Checked from the pool terrace: the GF living room, curtains and ceiling lights show through the rear glazing. Other facades and the first floor were not checked. Interior wall ends cut by the footprint clip may show as open edges at some openings. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), glass and water materials in Unreal (branch `lane/unreal-villa`)
 
 - New `/Game/Villa/Mat/M_Water`: opaque, glossy, with two engine ripple normal maps sliding across each other. Colour is chosen by world position: pool teal by default, and a dark basin colour inside a 5.6 m radius of the courtyard centre, per the ruling that the courtyard is a dark water basin and not pool blue. The courtyard was not checked up close.
