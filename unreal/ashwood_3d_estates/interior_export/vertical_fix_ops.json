@@ -780,6 +780,11 @@
     "thickness": 20,
     "material": "MAT_pooltile",
     "note": "pool: full-width entry steps across the east end (X 1025-1265, 3.56 m wide), 9 risers of 18.9 cm from the pool floor (Z -125) up to the deck (Z 45), 30 cm treads; a swimmer heading east always meets a step face, never the side of a flight"
+   },
+   {
+    "op": "dropNodes",
+    "nodes": "^(CONTEXT_|HEDGE_context)",
+    "note": "site context (ground slab, lawn beyond plot, context hedges) moved to its own mesh: inside the shell it stretched the bounds to 180 x 150 m, so Lumen's distance field for the house was over a metre per cell"
    }
   ]
  },
@@ -967,6 +972,33 @@
     ],
     "note": "junior suite bed turned head-east between its bedside tables (V4) (box reaches the floor so legs and frame sides that touch it move too)",
     "skipNodes": "^MeshStandardMaterial_(14|15|16)$"
+   }
+  ]
+ },
+ "context": {
+  "origin": [
+   0,
+   0,
+   0
+  ],
+  "_doc": "Same source as villa (villa_v5.glb). Only the site context parts, with the pool opening cut.",
+  "ops": [
+   {
+    "op": "cut",
+    "box": [
+     316,
+     1265,
+     -395,
+     -35,
+     -35,
+     2
+    ],
+    "note": "pool: the context lawn sheet (Z -12 to -1) and the site ground slab (Z -30 to -16) ran across the pool and lidded it; cut out over the basin (horizontal faces only)"
+   },
+   {
+    "op": "keepNodes",
+    "nodes": "^(CONTEXT_|HEDGE_context)",
+    "note": "keep only the site context parts"
    }
   ]
  }

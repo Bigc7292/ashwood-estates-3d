@@ -12,6 +12,7 @@
 //    "thickness":t,"material":"NAME","axis":"x"|"y"}  stepped-slab straight flight ("axis":"x" runs along X, uses "y":[y0,y1] and "yStart" as the X start)
 //   {"op":"move","box":[...],"except":[[...],...],"rotZ":deg,"pivot":[x,y],"offset":[dx,dy,dz],"skipNodes":"regex"}
 //                                            relocate whole furniture pieces lying fully inside box
+//   {"op":"dropNodes"|"keepNodes","nodes":"regex"}  split a file by part name
 // Node transforms are baked, indices expanded; material names are kept (Unreal maps slots by name).
 const fs = require('fs');
 const [, , inp, out, opsPath, key] = process.argv;
@@ -179,6 +180,10 @@ for (const o of cfg.ops) {
       }
       before += g.tris.length;
     }
+  } else if (o.op === 'dropNodes' || o.op === 'keepNodes') {
+    // Split a file by part name: dropNodes removes parts whose name matches o.nodes, keepNodes keeps only those.
+    const re = new RegExp(o.nodes);
+    for (const g of groups) { before += g.tris.length; if (re.test(g.name) === (o.op === 'dropNodes')) g.tris = []; after += g.tris.length; }
   } else if (o.op === 'line') {
     const [x0, x1, y0, y1] = o.rect, [za, zb] = o.z; const a = toG(x0, y0, za), c = toG(x1, y1, zb);
     const [gx0, gx1, gz0, gz1, gya, gyb] = [Math.min(a[0], c[0]), Math.max(a[0], c[0]), Math.min(a[2], c[2]), Math.max(a[2], c[2]), a[1], c[1]];

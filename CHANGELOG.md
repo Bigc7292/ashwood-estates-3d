@@ -1,3 +1,14 @@
+## 2026-11-13 (Asia/Dubai), sharper walk-through image and light switches (branch `lane/unreal-villa-courtyard`)
+
+- Cause of the "blurry" look: the laptop GPU (Intel Iris Xe) cannot run D3D12 SM6, so Unreal falls back to D3D11 SM5 with no hardware ray tracing (log: "Ray Tracing is not enabled"). Lumen therefore traces mesh distance fields. Those were coarse: the shell bounds included the 180 x 150 m site ground, so a 126-cell distance field put about 1.4 m in each cell. The result was smeared reflections on glossy floors and blotchy, crawling light. Motion blur was also on.
+- Fixes:
+  - Site context (ground slab, lawn beyond plot, context hedges) split from the shell into `SM_Site_Context_v1` (actor `Site_Context`, complex collision). New `dropNodes`/`keepNodes` ops in `edit_glb.js`; recipe key `context`.
+  - Shell `SM_Villa_Exterior_v17` is now 30.7 x 40.8 m; distance field 259 cells at scale 3 (about 16 cm a cell). GF and FF interiors at scale 2 (259 cells, about 9 cm a cell).
+  - PostProcessVolume (unbound): motion blur 0; Lumen final gather quality 1.5; final gather and scene lighting update speed 2 (less smearing while moving); scene detail 1.5; max roughness for traced reflections 0.35; sharpen 0.6.
+  - Before/after capture at the entry confirms that the smears and blotches are gone.
+- Light switches in the walk-through and orbit view: L toggles the 29 room lights (`IL_*`, tag `MainLight`, now movable). K toggles 11 new lamp lights (tag `Lamp`, 400 lm, 2700 K, 4.5 m reach), one at each lamp bulb found by its emissive material: 9 on FF (bedside lamps in the master suite, bedroom 1, bedroom 2 and the junior suite, plus the master ledge lamp) and 2 on GF. Source `unreal/pipeline/walkthrough/LightSwitches.dsl`.
+- Known remaining softness: planting textures are 128 x 128 px (trees and hedges). Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), O key: leave the house into an orbit view of the exterior (branch `lane/unreal-villa-courtyard`)
 
 - New `/Game/Villa/Walkthrough/BP_OrbitPawn`: a camera on a boom (36 m, camera lag for smooth motion, FOV 60) circling the villa centre (940, 1240, 300). It is placed in `Main` as `OrbitCamera_Villa`. Controls are read every frame for continuous motion: mouse or A/D/arrow keys turn, W/S/arrow keys tilt (clamped -80 to -3 degrees, never below ground), Q/E or the mouse wheel zoom (9 to 90 m). An on-screen hint lists the controls when the view starts.
