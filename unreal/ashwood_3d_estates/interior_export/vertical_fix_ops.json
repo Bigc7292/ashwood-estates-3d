@@ -738,6 +738,47 @@
     "thickness": 15,
     "material": "MAT_stone",
     "note": "entrance steps, paving (Z 0) to plinth (Z 45)"
+   },
+   {
+    "op": "cut",
+    "box": [
+     316,
+     1265,
+     -395,
+     -35,
+     -35,
+     2
+    ],
+    "note": "pool: the context lawn sheet (Z -12 to -1) and the site ground slab (Z -30 to -16) ran across the pool and lidded it; cut out over the basin (horizontal faces only)"
+   },
+   {
+    "op": "remove",
+    "box": [
+     310,
+     1270,
+     -400,
+     -30,
+     37,
+     40
+    ],
+    "note": "pool: water surface taken out of the shell (it collided, so you walked on it); replaced in the level by a separate no-collision water plane plus a water volume so the character swims"
+   },
+   {
+    "op": "stair",
+    "name": "POOL_steps",
+    "x": [
+     1145,
+     1262
+    ],
+    "yStart": -275,
+    "dir": 1,
+    "zBase": -125,
+    "risers": 9,
+    "rise": 18.889,
+    "going": 30,
+    "thickness": 20,
+    "material": "MAT_pooltile",
+    "note": "pool: entry steps at the east end, 9 risers of 18.9 cm from the pool floor (Z -125) to the deck (Z 45), 30 cm treads, 117 cm wide, against the south wall"
    }
   ]
  },

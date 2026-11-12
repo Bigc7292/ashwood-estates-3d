@@ -1,3 +1,11 @@
+## 2026-11-13 (Asia/Dubai), slower walk-through and a swimmable pool (branch `lane/unreal-villa-courtyard`)
+
+- Walk speed 600 -> 150 cm/s (about 5.4 km/h, a normal walking pace); swim 300 -> 120 cm/s; acceleration 2048 -> 600 and braking 2048 -> 1200 for gentle starts and stops (`BP_FirstPersonCharacter`). R/F look speed halved (Scalar 0.5 on both mappings in `IMC_Default`).
+- Pool (9.5 x 3.6 m, floor Z -120, water line Z 38): it was not explorable. The water surface was part of the collision shell, so you walked on it. The site lawn sheet (Z -12 to -1) and the ground slab (Z -30 to -16) also ran across the basin and lidded it just under the water.
+  - Shell recipe: both sheets cut out over the basin; water surface removed; entry steps added at the east end (9 risers of 18.9 cm, 30 cm treads, 117 cm wide, pool tile).
+  - Level: `Pool_Water_Surface` (water material, no collision) and `Pool_Water_Volume` (PhysicsVolume, water, filling X 316-1265, Y -395 to -35, Z -125 to 38), so the character swims and can walk back out up the steps.
+- Checked with traces: pool floor at Z -120 everywhere; step profile 48/26/7/-12/.../-120; a 50 cm person fits on every tread. Live shell `SM_Villa_Exterior_v15`, Nanite off, complex collision. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), first-person walk-through set up; house walkable at full character size (branch `lane/unreal-villa-courtyard`)
 
 - Walk mode in Unreal (user's instructions): `Main` uses `BP_FirstPersonGameMode` (level override); the PlayerStart is at the front gate (985, 2860) facing the house. R and F are added to `IA_Look` in `IMC_Default` (Swizzle YXZ; F also Negate Y), mirroring the gamepad right stick, which looks up on +Y. Collision is complex-as-simple on all three house meshes.
