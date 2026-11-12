@@ -1,3 +1,10 @@
+## 2026-11-13 (Asia/Dubai), O key: leave the house into an orbit view of the exterior (branch `lane/unreal-villa-courtyard`)
+
+- New `/Game/Villa/Walkthrough/BP_OrbitPawn`: a camera on a boom (36 m, camera lag for smooth motion, FOV 60) circling the villa centre (940, 1240, 300). It is placed in `Main` as `OrbitCamera_Villa`. Controls are read every frame for continuous motion: mouse or A/D/arrow keys turn, W/S/arrow keys tilt (clamped -80 to -3 degrees, never below ground), Q/E or the mouse wheel zoom (9 to 90 m). An on-screen hint lists the controls when the view starts.
+- O while walking: control passes to the orbit view. O in the orbit view: walking again from the front gate, facing the house. The `Key|O` event is added to `BP_FirstPersonCharacter`; nothing else in it changed.
+- Graph sources kept in `unreal/pipeline/walkthrough/*.dsl` (Blueprint graph DSL).
+- Tested in Play: after the switch, the view is the orbit camera at 36 m from the centre, 25 degrees down, no Blueprint errors. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), pool exit fixed and tested in Play (branch `lane/unreal-villa-courtyard`)
 
 - User report: could not get out of the pool. Causes:
