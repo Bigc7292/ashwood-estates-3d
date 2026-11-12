@@ -1,3 +1,8 @@
+## 2026-11-12 (Asia/Dubai), Unreal handover file (branch `lane/unreal-villa`)
+
+- Colin asked for everything committed with a handover for any agent. New `unreal/HANDOVER_UNREAL.md` covers his rules and design rulings, where the live project and the git copy are, every actor in `/Game/Main` with its mesh and position, the materials and the slot mapping to re-apply after an import, how each asset was built from the repo (scripts and exact arguments), the coordinate mapping, MCP lessons (import timeouts, Nanite off, which viewport moves), and the ordered to-do list.
+- Content re-synced from the live project. `.mcp.json` (local MCP address only) added to the git copy. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), pool v3 and terrace seating in Unreal (branch `lane/unreal-villa`)
 
 - Colin: the pool looked too thin and too close to the house, with no room for seats. The model had the CAD pool: water 2.38 m wide and a 0.9 m strip to the house.
