@@ -1,3 +1,10 @@
+## 2026-11-12 (Asia/Dubai), glass and water materials in Unreal (branch `lane/unreal-villa`)
+
+- New `/Game/Villa/Mat/M_Water`: opaque, glossy, with two engine ripple normal maps sliding across each other. Colour is chosen by world position: pool teal by default, and a dark basin colour inside a 5.6 m radius of the courtyard centre, per the ruling that the courtyard is a dark water basin and not pool blue. The courtyard was not checked up close.
+- New `/Game/Villa/Mat/M_Glass`: translucent, more reflective at glancing angles. Used for the exterior windows, with lighter instances for balcony glass (`MI_GlassBalcony`), interior panes (`MI_GlassInterior`) and sheer curtains (`MI_SheerCurtain`). The interior panes had imported as opaque white.
+- Found: the exterior shell is solid behind its window glass. From the garden the glass now shows a stone surface, not the rooms. Openings must be cut in the exterior model before the interiors are visible from outside.
+- Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), exterior textures in Unreal (branch `lane/unreal-villa`)
 
 - The villa GLB materials were flat colours with no textures. New master material `/Game/Villa/Mat/M_WorldAligned` projects colour, normal and roughness maps in world space, so it needs no UVs. Six instances use the repo textures from `exterior-garden-3d/4b/tex/`: `MI_Stone` (walls and roof stone), `MI_Paving` (paving, deck, coping), `MI_Lawn`, `MI_Ground`, `MI_Bark` and `MI_Bronze`. Tints keep the original GLB colours.
