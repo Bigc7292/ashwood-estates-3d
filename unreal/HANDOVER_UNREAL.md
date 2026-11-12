@@ -68,17 +68,16 @@ The viewer frame maps to Unreal as: Unreal X = viewer x * 100 + 878, Unreal Y = 
 
 ## State and what is next
 
-Done: villa import and mesh fix; GF and FF interiors with materials, walls and floors; interior ceiling lights; textured stone, paving, lawn, ground, bark and bronze; glass and water; window openings; pool v3 with terrace seating.
+Done: villa import and mesh fix; GF and FF interiors with materials, walls and floors; interior ceiling lights; textured stone, paving, lawn, ground, bark and bronze; glass and water; window openings; pool v3 with terrace seating; procedural pool tile (`M_PoolTile`); soffit stucco (`MI_Soffit`); warm white architectural LED strips (`M_LED`); dense boxwood hedges (`MI_Hedge`); terrace furniture wood, fabric and bronze materials; two-sided subsurface foliage master (`M_FoliageLeaf`) with 7 tuned leaf instances and bark assigned to all `SM_Planting` slots; template `Floor` and empty foliage actors deleted.
 
 Not verified:
 - FF alignment from inside.
 - Front, side and FF facades through the new openings (rough wall ends may show).
-- Courtyard basin up close.
+- Courtyard basin up close and courtyard island planting.
 - Pool steps and the far pool edge.
 
 To do, in Colin's priority order ("everything outside and inside ultra realistic"):
-1. **Planting:** balloon trees replaced (`prune.js`, `planting_set.glb`). Still to do: courtyard island planting, leaf colour variety (viewer vertex colours are lost), context palms beyond the plot.
-2. **Remaining flat materials:** soffit, pool tile, outdoor furniture, cushions.
-3. **Interiors:** surfaces that were vertex-coloured in the viewer import white. The ceilings are cold. Furniture fabrics and wood have no detail. Check FF from inside.
-4. **Lighting:** exposure and sun angle, interior light levels (15,000 lm is a staging value), shadows.
-5. **Context:** the large grey ground outside the plot, and the leftover `Floor` actor.
+1. **Courtyard and Context Planting:** Plant the courtyard island beyond the single pine, and add context palms beyond the plot boundary.
+2. **Interiors:** surfaces that were vertex-coloured in the viewer import white. The ceilings are cold. Furniture fabrics and wood have no detail. Check FF from inside.
+3. **Lighting:** exposure and sun angle, interior light levels (15,000 lm is a staging value), shadows.
+4. **Context:** the large grey ground outside the plot.

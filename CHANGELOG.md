@@ -1,3 +1,21 @@
+## 2026-11-12 (Asia/Dubai), PBR foliage, LED strips, pool tiles, and terrace materials (branch `lane/unreal-villa-ultra`)
+
+- Upgraded all remaining flat and placeholder materials across exterior, planting, and terrace furniture meshes to full PBR:
+  - `M_PoolTile`: Procedural world-aligned cyan mosaic tile with clean grout lines, assigned to `SM_Villa_Exterior` `MAT_pooltile` slot.
+  - `MI_Soffit`: Warm off-white architectural stucco instance of `M_WorldAligned`, assigned to `MAT_soffit`.
+  - `M_LED`: Warm 3000K architectural strip light material with tuned emissive glow, assigned to `MAT_led`.
+  - `MI_Hedge`: Lush dense boxwood hedge instance of `M_WorldAligned` with normal mapping, assigned to `MAT_hedge`.
+  - `MI_OutdoorWood` and `MI_OutdoorCushion`: Assigned to exterior seating and lounger frames (`MAT_furniture`, `MAT_cushion`).
+  - Terrace furniture (`SM_Terrace_Furniture`): All 6 slots mapped (`MI_OutdoorWood` teak wood frames, `MI_OutdoorCushion` cream linen fabric, `MI_Bronze` dark metal frames).
+- Foliage overhaul on `SM_Planting`:
+  - Created master foliage material `M_FoliageLeaf` with masked blend mode, two-sided shading (`MSM_TWO_SIDED_FOLIAGE`), waxy roughness, and translucent subsurface scattering backlit by the sun.
+  - Created and assigned 7 distinct tuned leaf instances (`MI_Leaf_Olive`, `MI_Leaf_Broadleaf1`, `MI_Leaf_Broadleaf2`, `MI_Leaf_Palm`, `MI_Leaf_Hedge`, `MI_Leaf_Pine`, `MI_Leaf_Canopy`) to replace opaque glTF leaf cutouts.
+  - Assigned `MI_Bark` with normal-mapped bark textures to all trunk and branch material slots.
+- Level cleanup in `/Game/Main`:
+  - Removed leftover template `Floor` actor (checkerboard plane) and empty `InstancedFoliageActor`.
+  - Saved all dirty packages and map.
+- Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), planting replaced in Unreal (branch `lane/unreal-villa`)
 
 - The villa GLB trees were balloon trees (16 sphere canopies each), which Colin ruled out. New `exterior_export/prune.js` removes the parts the exterior viewer also hides: the 8 `TREE_*_broadleaf` trees, the palm trunks and fronds (garden and context), the courtyard pine, `HEDGE_lawn-*` and `HEDGE_front_bed` (198 nodes). Output is `villa_v4.glb`.
