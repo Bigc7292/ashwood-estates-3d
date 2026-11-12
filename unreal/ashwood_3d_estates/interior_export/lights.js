@@ -1,0 +1,10 @@
+const puppeteer=require('puppeteer-core');const path=require('path');
+(async()=>{const b=await puppeteer.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:'new',args:['--ignore-gpu-blocklist','--enable-unsafe-swiftshader','--window-size=1400,900'],defaultViewport:{width:1400,height:900}});
+const p=await b.newPage();
+await p.evaluateOnNewDocument(()=>{window.__s=[];Object.defineProperty(Object.prototype,'isScene',{configurable:true,get(){return undefined},set(v){Object.defineProperty(this,'isScene',{value:v,writable:true,configurable:true,enumerable:true});window.__s.push(this)}})});
+await p.goto('file:///'+path.resolve(process.argv[2]).split(path.sep).join('/'),{waitUntil:'load',timeout:120000});
+await new Promise(r=>setTimeout(r,4000));
+await p.evaluate(()=>{const e=[...document.querySelectorAll('button,div,span,li,a')].find(e=>/^\s*3D Scene\s*$/i.test(e.textContent)&&(e.children.length===0||e.tagName==='BUTTON'));if(e)e.click()});
+await new Promise(r=>setTimeout(r,10000));
+await new Promise(r=>setTimeout(r,6000));const res=await p.evaluate(()=>{const cnt=q=>{let n=0;q.traverse(o=>{if(o.isMesh)n++});return n};const s=window.__s.sort((a,b)=>cnt(b)-cnt(a))[0];s.updateMatrixWorld(true);const out=[];s.traverse(o=>{if(!o.isLight)return;let vis=true;for(let q=o;q;q=q.parent)if(!q.visible)vis=false;const e=o.matrixWorld.elements;const r={t:o.type,p:[e[12],e[13],e[14]].map(v=>+v.toFixed(3)),c:o.color.getHexString(),i:+o.intensity.toFixed(3),vis};if(o.distance!=null)r.d=o.distance;if(o.decay!=null)r.decay=o.decay;if(o.isSpotLight){const te=o.target.matrixWorld.elements;r.tp=[te[12],te[13],te[14]].map(v=>+v.toFixed(3));r.angle=+o.angle.toFixed(3);r.pen=o.penumbra}if(o.isHemisphereLight)r.g=o.groundColor.getHexString();out.push(r)});return JSON.stringify(out)});require("fs").writeFileSync(process.argv[3],res);console.log(res.length);
+await b.close()})();

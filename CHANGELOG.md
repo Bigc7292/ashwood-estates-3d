@@ -1,3 +1,9 @@
+## 2026-11-12 (Asia/Dubai), interior ceiling lights in Unreal (branch `lane/unreal-villa`)
+
+- 29 warm point lights (3000 K, no shadows) now sit at the ceiling light positions read from the GF and FF viewers, saved as `interior_export/gf_lights.json` and `ff_lights.json`. Actors are named `IL_GF_*` and `IL_FF_*`.
+- Intensity is 15,000 lumens each, far above a household bulb. At 1,100 lumens they did not register against the level physical sun and sky. This is a staging value, not a measured one.
+- Checked from inside the GF living room: walls and floor pick up warm light. The ceiling is still cold and patchy, and FF was not checked from inside. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), interiors rebuilt and aligned in Unreal (branch `lane/unreal-villa`)
 
 - The first interior import was wrong in three ways, all fixed in `interior_export/`: every material had the same three.js class name, so Unreal merged 147 materials into 2 and the rooms rendered white; the walls were captured at 0.001 height because the viewer rise animation had not run; and the floor plane was dropped as a plan overlay.
