@@ -1,3 +1,9 @@
+## 2026-11-12 (Asia/Dubai), exterior textures in Unreal (branch `lane/unreal-villa`)
+
+- The villa GLB materials were flat colours with no textures. New master material `/Game/Villa/Mat/M_WorldAligned` projects colour, normal and roughness maps in world space, so it needs no UVs. Six instances use the repo textures from `exterior-garden-3d/4b/tex/`: `MI_Stone` (walls and roof stone), `MI_Paving` (paving, deck, coping), `MI_Lawn`, `MI_Ground`, `MI_Bark` and `MI_Bronze`. Tints keep the original GLB colours.
+- The interiors covered the stone facade because their walls were about 5 cm wider than the exterior shell. GF and FF are re-clipped 8 cm inside the shell and re-imported (345,622 and 202,688 triangles). The `Interior_RF` actor is removed from the level: it was rough massing that duplicated the exterior roof. Its asset stays in `/Game/Rooms/RF`.
+- Not done: glass and water are still the flat GLB materials, hedges and leaves are untextured, the round shrubs still read as balloon trees, and FF alignment is still unverified. Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), interior ceiling lights in Unreal (branch `lane/unreal-villa`)
 
 - 29 warm point lights (3000 K, no shadows) now sit at the ceiling light positions read from the GF and FF viewers, saved as `interior_export/gf_lights.json` and `ff_lights.json`. Actors are named `IL_GF_*` and `IL_FF_*`.
