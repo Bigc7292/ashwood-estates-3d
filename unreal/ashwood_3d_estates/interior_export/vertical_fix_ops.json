@@ -766,11 +766,12 @@
    {
     "op": "stair",
     "name": "POOL_steps",
-    "x": [
-     1145,
-     1262
+    "axis": "x",
+    "y": [
+     -393,
+     -37
     ],
-    "yStart": -275,
+    "yStart": 1025,
     "dir": 1,
     "zBase": -125,
     "risers": 9,
@@ -778,7 +779,7 @@
     "going": 30,
     "thickness": 20,
     "material": "MAT_pooltile",
-    "note": "pool: entry steps at the east end, 9 risers of 18.9 cm from the pool floor (Z -125) to the deck (Z 45), 30 cm treads, 117 cm wide, against the south wall"
+    "note": "pool: full-width entry steps across the east end (X 1025-1265, 3.56 m wide), 9 risers of 18.9 cm from the pool floor (Z -125) up to the deck (Z 45), 30 cm treads; a swimmer heading east always meets a step face, never the side of a flight"
    }
   ]
  },

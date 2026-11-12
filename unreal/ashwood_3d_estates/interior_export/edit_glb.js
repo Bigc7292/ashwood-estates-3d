@@ -9,7 +9,7 @@
 //   {"op":"remove","box":[...]}              drop triangles that lie fully inside the box
 //   {"op":"line","rect":[...],"z":[za,zb],"material":"NAME"}   vertical lining faces round a hole
 //   {"op":"stair","x":[x0,x1],"yStart":y,"dir":-1,"zBase":z,"risers":n,"rise":r,"going":g,
-//    "thickness":t,"material":"NAME"}         stepped-slab straight flight
+//    "thickness":t,"material":"NAME","axis":"x"|"y"}  stepped-slab straight flight ("axis":"x" runs along X, uses "y":[y0,y1] and "yStart" as the X start)
 //   {"op":"move","box":[...],"except":[[...],...],"rotZ":deg,"pivot":[x,y],"offset":[dx,dy,dz],"skipNodes":"regex"}
 //                                            relocate whole furniture pieces lying fully inside box
 // Node transforms are baked, indices expanded; material names are kept (Unreal maps slots by name).
@@ -191,7 +191,9 @@ for (const o of cfg.ops) {
     for (let i = 1; i < o.risers; i++) {
       const ya = o.yStart + o.dir * i * o.going, yb = o.yStart + o.dir * (i - 1) * o.going, zt = o.zBase + i * o.rise;
       const zb = Math.max(o.zBase, zt - o.rise - o.thickness);
-      const a = toG(o.x[0], Math.min(ya, yb), zb), c = toG(o.x[1], Math.max(ya, yb), zt);
+      // axis "y" (default): treads advance along Y between o.x[0..1]; axis "x": along X between o.y[0..1]
+      const a = o.axis === 'x' ? toG(Math.min(ya, yb), o.y[0], zb) : toG(o.x[0], Math.min(ya, yb), zb);
+      const c = o.axis === 'x' ? toG(Math.max(ya, yb), o.y[1], zt) : toG(o.x[1], Math.max(ya, yb), zt);
       T.push(...box(Math.min(a[0], c[0]), Math.max(a[0], c[0]), a[1], c[1], Math.min(a[2], c[2]), Math.max(a[2], c[2])));
     }
     groups.push({ name: o.name || `stair_${report.length}`, material: matIndex(o.material), tris: withUV(T) }); after = T.length;

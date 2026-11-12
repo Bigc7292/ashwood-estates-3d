@@ -1,3 +1,13 @@
+## 2026-11-13 (Asia/Dubai), pool exit fixed and tested in Play (branch `lane/unreal-villa-courtyard`)
+
+- User report: could not get out of the pool. Causes:
+  - The water volume covered the steps, so the character was still swimming, floating with its feet about 60 cm down, where each submerged step acts as a wall.
+  - The steps ran along the south wall, so a swimmer heading for the east end met the tall side of the flight.
+- Steps rebuilt as a full-width flight across the east end (X 1025-1265, Y -393 to -37): 9 risers of 18.9 cm, 30 cm treads, pool tile. `edit_glb.js` stair op gains `"axis":"x"`.
+- `Pool_Water_Volume` now ends at X 1090, over the third tread (Z -68). A swimmer leaves the water there, settles chest-deep on the step and walks up.
+- Tested in Play with the real character: dropped mid-pool, it swims; holding forward to the east, it leaves the water at X 1090 and walks up the steps onto the deck (feet Z 50 at X 1269) and on across the terrace. Walk speed measured in game time: 148 cm/s (setting 150).
+- Live shell `SM_Villa_Exterior_v16` (Nanite off, complex collision). Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), slower walk-through and a swimmable pool (branch `lane/unreal-villa-courtyard`)
 
 - Walk speed 600 -> 150 cm/s (about 5.4 km/h, a normal walking pace); swim 300 -> 120 cm/s; acceleration 2048 -> 600 and braking 2048 -> 1200 for gentle starts and stops (`BP_FirstPersonCharacter`). R/F look speed halved (Scalar 0.5 on both mappings in `IMC_Default`).
