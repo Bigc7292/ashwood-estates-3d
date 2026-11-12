@@ -1,3 +1,11 @@
+## 2026-11-12 (Asia/Dubai), interior lighting and plaster pass (branch `lane/unreal-villa-courtyard`, recovered from uncommitted work on `lane/unreal-villa-photoreal`)
+
+- This pass was described in the handover as pushed, but it was still uncommitted in the working copy. Committed here as-is.
+- 29 interior point lights (`IL_GF_*`, `IL_FF_*`) tuned from 15,000 lm staging to 3,500 lm, 2850K, soft source radius, shadows on.
+- PostProcessVolume auto-exposure EV min 1.0 / max 14.0, bloom 0.35, AO 0.75.
+- Pure white wall and ceiling slots on `SM_GF_House` and `SM_FF_House` set to warm plaster `MI_Soffit`.
+- Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), courtyard water basin uncovered and villa v5 imported (branch `lane/unreal-villa-ultra`)
 
 - Diagnosed and resolved the hidden courtyard basin issue: The exterior foundation slab (`GF_plinth`) was an un-cut solid axis-aligned stone block spanning the full building footprint at Y=0.454, which was sitting 12.4 cm above and entombing the recessed courtyard water basin (Y=0.330), terrace paving, and planter island base.

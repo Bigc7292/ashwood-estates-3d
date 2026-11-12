@@ -60,9 +60,11 @@ Do NOT struggle with lazy MCP tool discovery. In this environment:
 - `Terrace_Furniture`: `/Game/Villa/Terrace/terrace_set/StaticMeshes/SM_Terrace_Furniture` at `(0, 0, 38)`.
   - Mapped with teak wood, linen cushions, and bronze frames.
 - `Interior_GF`: `/Game/Rooms/GF/gf_house/StaticMeshes/SM_GF_House` at `(878, 1547, 45)`.
+  - Cold white wall/ceiling slots upgraded to warm architectural plaster (`MI_Soffit`).
 - `Interior_FF`: `/Game/Rooms/FF/ff_house/StaticMeshes/SM_FF_House` at `(878, 1547, 445)`.
-- `IL_GF_*` and `IL_FF_*`: 29 warm interior point lights (currently 15,000 lm staging value).
-- `SunSky_C_1`, `ExponentialHeightFog_2`, `PostProcessVolume_1`: Lighting and atmosphere.
+  - Cold white wall slots upgraded to warm architectural plaster (`MI_Soffit`).
+- `IL_GF_*` and `IL_FF_*`: 29 interior point lights tuned to realistic 3,500 lm, 2850K warm temperature, with soft contact shadows enabled.
+- `SunSky_C_1`, `ExponentialHeightFog_2`, `PostProcessVolume_1`: Lighting and atmosphere tuned (histogram auto-exposure min 1.0, max 14.0, bloom 0.35, AO 0.75).
 - Leftover template `Floor` and empty `InstancedFoliageActor` have been **deleted**.
 
 ---
@@ -76,13 +78,16 @@ Do NOT struggle with lazy MCP tool discovery. In this environment:
    - Created master foliage shader `M_FoliageLeaf` (`MSM_TWO_SIDED_FOLIAGE`, alpha masked, waxy roughness, translucent subsurface scattering) and 7 leaf instances.
    - Mapped all terrace furniture materials.
 2. **Courtyard Water Basin Solved (`villa_v5.glb`)**:
-   - We discovered why the courtyard looked like solid stone: `GF_plinth` was an un-cut solid block covering the basin at height 45.4 cm while the water was at 33 cm.
-   - Built `exterior_export/cut_courtyard.py` to subtract the courtyard box.
+   - Subtracted courtyard box from `GF_plinth` via `cut_courtyard.py`.
    - Imported `villa_v5.glb` with `bCombineMeshes=True`.
-   - Now the dark, calm, reflective water basin (`M_Water`) completely surrounds the raised planter island and pine tree.
-3. **Saved and Synced**:
+   - The dark, calm, reflective water basin (`M_Water`) completely surrounds the raised planter island and pine tree.
+3. **Lighting & Photorealism Pass**:
+   - Tuned all 29 interior point lights from 15,000 lm staging value down to 3,500 lm, 2850K color temperature, with soft source radius and shadows enabled.
+   - Balanced PostProcessVolume auto-exposure (EV min 1.0, max 14.0) to prevent blown-out interiors while keeping exterior pool terrace vibrant.
+   - Replaced flat pure white drywall slots on GF and FF interior meshes with warm architectural plaster (`MI_Soffit`).
+4. **Saved and Synced**:
    - Packages and map saved.
-   - Synced to git working copy.
+   - Synced to git working copy and pushed to branch `lane/unreal-villa-photoreal`.
 
 ---
 
@@ -90,14 +95,10 @@ Do NOT struggle with lazy MCP tool discovery. In this environment:
 1. **Courtyard Island Mulch & Secondary Planting**:
    - The pine tree is standing on the raised island. In `SM_GF_House`, there are white needle cards under the tree that can be removed or textured with dark pine bark mulch/pebbles.
    - Add low architectural groundcover / Japanese boxwood or stones around the island base.
-2. **Interiors Detail & Wall Tints**:
-   - The interior walls facing the window cutouts are plain white. Apply soft warm plaster or wood slat accent materials to the visible interior walls (e.g. master bedroom headboard wall, entrance feature wall).
-   - Check FF alignment from inside the rooms.
-3. **Lighting & Lumen Pass**:
-   - Point lights (`IL_GF_*`, `IL_FF_*`) are at 15,000 lm staging intensity. Dial them down to realistic architectural values (~2,000 - 3,500 lm) and enable contact shadows.
-   - Balance SunSky exposure in PostProcessVolume so interior views look naturally exposed without blowing out the pool outside.
-4. **Context Ground**:
-   - The large neutral ground outside the plot boundary is grey asphalt. Blend it with context sand/gravel or desert planting so the plot edges blend seamlessly into the horizon.
+2. **First Floor Interior Alignment Check**:
+   - Check the FF master bedroom and bathroom alignment through the upper terrace glass panes.
+3. **Context Ground Texture**:
+   - The large neutral ground outside the plot boundary is grey asphalt (`MI_Ground`). Blend it with context sand/gravel or desert planting so the plot edges blend seamlessly into the horizon.
 
 ---
 
