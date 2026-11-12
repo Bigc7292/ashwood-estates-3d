@@ -1,3 +1,9 @@
+## 2026-11-13 (Asia/Dubai), sharper trees and hedges; light switches tested (branch `lane/unreal-villa-courtyard`)
+
+- Light switches tested in a live Play session by sending the keys to the game. L: room lights 29 of 29 on -> 0 of 29 -> 29 of 29. K: lamps 11 of 11 -> 0 of 11 -> 11 of 11.
+- Planting: the leaf and bark textures were 128 px procedural images (bark 64 x 128), the last source of softness outside. New `unreal/pipeline/walkthrough/make_leaf_textures.py` redraws them at 1024 px (bark 512 x 1024). It keeps the same leaf styles and samples each original for colour and alpha coverage so the planting design is unchanged: coverage olive 0.20 -> 0.21, broad 0.35, hedge 0.25, column 0.35, palm 0.19, pine 0.12 (equal). Edges are anti-aliased, with a midrib and per-leaf colour variation. Imported over `/Game/Villa/Planting/planting_set/Textures/planting_set_texture_0..6`, so every material keeps the same image slot. PNGs are in `exterior_export/planting_tex/`.
+- Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), sharper walk-through image and light switches (branch `lane/unreal-villa-courtyard`)
 
 - Cause of the "blurry" look: the laptop GPU (Intel Iris Xe) cannot run D3D12 SM6, so Unreal falls back to D3D11 SM5 with no hardware ray tracing (log: "Ray Tracing is not enabled"). Lumen therefore traces mesh distance fields. Those were coarse: the shell bounds included the 180 x 150 m site ground, so a 126-cell distance field put about 1.4 m in each cell. The result was smeared reflections on glossy floors and blotchy, crawling light. Motion blur was also on.
