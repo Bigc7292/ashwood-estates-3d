@@ -1,3 +1,11 @@
+## 2026-11-12 (Asia/Dubai), north balcony reachable; walk test 35 of 35 (branch `lane/unreal-villa-courtyard`)
+
+- Master suite rearranged to the V4 sheet. The captured bed wall (headboard panel, ledge, art, both bedside tables, lamps and plants) stood 144 cm east of the outer wall, cutting off an empty 1.4 m strip. It now sits on the outer wall face (X 340, measured with a line trace). The bed had been captured turned 90 degrees, with its head to the north across the room. It is now head-west between the bedside tables (X 389-573, Y 663-838), as drawn. The lounge chair and side table stay in the north-east corner, as on the sheet.
+- Bedroom 1 balcony door moved from X 1215-1370 to X 1370-1475, in shell and interior. The old cut lay behind the low unit along the room's west wall and through the solid wall the V4 sheet shows in front of family living.
+- `edit_glb.js` gains a `move` op (rotate about Z, then shift, whole pieces lying fully inside a box; `except` boxes protect neighbours). Both moves are in `vertical_fix_ops.json`.
+- Live meshes: `SM_Villa_Exterior_v10`, `SM_GF_House_v4`, `SM_FF_House_v9` (Nanite off, complex collision, all material slots carried over). v9 and v8 kept for rollback.
+- Walk test: 35 of 35 places reachable. The north balcony is reached through both the master suite and bedroom 1 doors. Status: WIP. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), first floor and roof made walkable: 34 of 35 places reachable (branch `lane/unreal-villa-courtyard`)
 
 - The FF to RF flight now starts at Y 1855 (was 1984) so the corridor passage round the stair to bedroom 2 stays free; roof and FF-ceiling openings moved to Y 1309-1726. The roof terrace is now reachable.

@@ -10,6 +10,8 @@
 //   {"op":"line","rect":[...],"z":[za,zb],"material":"NAME"}   vertical lining faces round a hole
 //   {"op":"stair","x":[x0,x1],"yStart":y,"dir":-1,"zBase":z,"risers":n,"rise":r,"going":g,
 //    "thickness":t,"material":"NAME"}         stepped-slab straight flight
+//   {"op":"move","box":[...],"except":[[...],...],"rotZ":deg,"pivot":[x,y],"offset":[dx,dy,dz]}
+//                                            relocate whole furniture pieces lying fully inside box
 // Node transforms are baked, indices expanded; material names are kept (Unreal maps slots by name).
 const fs = require('fs');
 const [, , inp, out, opsPath, key] = process.argv;
@@ -155,6 +157,25 @@ for (const o of cfg.ops) {
         else nt.push(...subtractBox(t, B));
       }
       g.tris = nt; after += nt.length;
+    }
+  } else if (o.op === 'move') {
+    // Furniture relocation: triangles lying fully inside o.box (and not fully inside o.except) are
+    // rotated by o.rotZ degrees about world Z round o.pivot [x, y] (world cm), then shifted by o.offset
+    // [dx, dy, dz] (world cm). Whole pieces move intact; walls and floors that cross the box stay put.
+    const B = boxG(o.box), E = (o.except ? (Array.isArray(o.except[0]) ? o.except : [o.except]) : []).map(boxG);
+    const inside = (t, X) => { const [mn, mx] = bboxOf(t); return mn[0] >= X[0] && mx[0] <= X[1] && mn[1] >= X[2] && mx[1] <= X[3] && mn[2] >= X[4] && mx[2] <= X[5]; };
+    const th = (o.rotZ || 0) * Math.PI / 180, c = Math.cos(th), s = Math.sin(th);
+    const [px, py] = o.pivot || [OX, OY], pg = toG(px, py, OZ);  // pivot in glTF (x, z)
+    const [dx, dy, dz] = o.offset || [0, 0, 0];
+    // world (x, y) -> glTF (x, z): world rotation by th is the same rotation in the glTF x-z plane
+    const rotP = (p) => { const x = p[0] - pg[0], z = p[2] - pg[2]; return [pg[0] + x * c - z * s + dx / 100, p[1] + dz / 100, pg[2] + x * s + z * c + dy / 100]; };
+    const rotN = (n) => [n[0] * c - n[2] * s, n[1], n[0] * s + n[2] * c];
+    for (const g of groups) {
+      for (const t of g.tris) {
+        if (!inside(t, B) || E.some(X => inside(t, X))) continue;
+        t.p = t.p.map(rotP); t.n = t.n.map(rotN); after++;
+      }
+      before += g.tris.length;
     }
   } else if (o.op === 'line') {
     const [x0, x1, y0, y1] = o.rect, [za, zb] = o.z; const a = toG(x0, y0, za), c = toG(x1, y1, zb);

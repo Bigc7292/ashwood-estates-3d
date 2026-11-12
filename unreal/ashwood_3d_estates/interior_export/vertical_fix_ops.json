@@ -284,14 +284,14 @@
    {
     "op": "subtract",
     "box": [
-     1215,
      1370,
+     1475,
      470,
      525,
      446,
      690
     ],
-    "note": "bedroom 1 balcony door through FF facade (low header)"
+    "note": "bedroom 1 balcony door through FF facade, east of the low unit (V4 glazing position)"
    },
    {
     "op": "subtract",
@@ -316,6 +316,63 @@
      690
     ],
     "note": "dress open to bedroom 2 (V4 sheet shows no wall there; double wall at Y 1885-1950)"
+   },
+   {
+    "op": "move",
+    "box": [
+     478,
+     567,
+     505,
+     900,
+     453.5,
+     746
+    ],
+    "except": [
+     [
+      489,
+      541,
+      505,
+      514,
+      500,
+      746
+     ],
+     [
+      555,
+      732,
+      658,
+      849,
+      450,
+      556
+     ]
+    ],
+    "offset": [
+     -144,
+     0,
+     0
+    ],
+    "note": "master suite bed wall (panel, ledge, art, bedside tables, lamps, plants) slid 144 cm west onto the outer wall face at X 340 (V4: bed head on west wall)"
+   },
+   {
+    "op": "move",
+    "box": [
+     555,
+     732,
+     658,
+     849,
+     450,
+     556
+    ],
+    "rotZ": -90,
+    "pivot": [
+     643.5,
+     753.5
+    ],
+    "offset": [
+     -165,
+     -3.5,
+     0
+    ],
+    "note": "master bed turned head-west (V4) and placed between the bedside tables: X 384-573, Y 662-837"
    }
   ]
  },
@@ -532,14 +589,14 @@
    {
     "op": "subtract",
     "box": [
-     1215,
      1370,
+     1475,
      460,
      485,
      446,
      768
     ],
-    "note": "bedroom 1 door to north balcony"
+    "note": "bedroom 1 door to north balcony, east of the low unit along the west wall (V4 glazing position)"
    },
    {
     "op": "subtract",

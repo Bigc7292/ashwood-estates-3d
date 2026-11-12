@@ -28,7 +28,7 @@ Measured offset of the refitted FF stair against the CAD: X 736-866 against CAD 
 
 Walk test (`walk_check.py`): a person capsule (radius 22 cm, clear from 30 to 190 cm above the floor) on a 20 cm grid, steps of 25 cm or less, flood fill from the street; a room passes when reached floor lies within 1.5 m of its V4 label point. Map: `reports/walk_map.png`.
 
-**Result: 34 of 35 places reachable**: all 16 GF spaces including the pool terrace, the full FF (corridor, lift, master suite, M.dressing, M.bath, family living, bedroom 1, bath 1, bedroom 2, dress, bath 2, junior suite group, SW and SE balconies), and the RF stair arrival and roof terrace.
+**Result: 35 of 35 places reachable** (34 before the north balcony fix): all 16 GF spaces including the pool terrace, the full FF (corridor, lift, master suite, M.dressing, M.bath, family living, bedroom 1, bath 1, bedroom 2, dress, bath 2, junior suite group, SW and SE balconies), and the RF stair arrival and roof terrace.
 
 | Item | Fix |
 |---|---|
@@ -38,4 +38,4 @@ Walk test (`walk_check.py`): a person capsule (radius 22 cm, clear from 30 to 19
 | Doors | Front door plus 3 entrance steps (the plinth is 45 cm with no steps), living slider, master and bedroom 1 to the N balcony, bedroom 2 to SW, junior suite to SE, roof pavilion door. FF interior: master suite to dressing (through joinery), dressing to bath, bedroom 2 door, bath 2 door, dress open to bedroom 2, all at V4 positions. |
 | Site | Planting collision was one box over the whole site; set to NoCollision. |
 
-**Open (needs a decision): north balcony.** Its doors are open, but the captured furniture blocks both approaches. In the master suite the bed group (X 556-731) is about 1 m east of the V4 position (X 368-632) and the west side has a bench, console and plants, so neither aisle is 44 cm wide. In bedroom 1 the twin beds and nightstands sit straight behind the door. A furniture rearrangement is a design choice, so it is not made automatically.
+**North balcony (resolved, 35 of 35).** In the master suite the bed wall group was 144 cm east of the outer wall and the bed was turned head-north across the room. Both were moved to the V4 arrangement: bed head on the west wall between the bedside tables, chair and side table in the north-east corner. The bedroom 1 door was moved east of the low unit (X 1370-1475). Both doors are now walked through (16 and 9 reached cells in the doorways).
