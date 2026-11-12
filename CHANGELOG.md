@@ -1,3 +1,12 @@
+## 2026-11-12 (Asia/Dubai), repeatable pipeline audit script (branch `lane/unreal-villa-courtyard`)
+
+- New `unreal/pipeline/ashwood_pipeline.py`, a read-only, repeatable audit run inside the editor. It writes `Saved/Pipeline/audit.md`.
+  - Stage 1 (geometry): every StaticMeshActor with triangle count, Nanite state, prefix check and transform. All 5 meshes pass; Nanite is off everywhere.
+  - Stage 2 (materials): every GF/FF section on plaster `MI_Soffit`, resolved through `get_lod_material_slot`. Sections are classified by triangle size as wall/ceiling or detail.
+- First run flags these slots as likely non-wall geometry still on plaster: GF slots 5, 35, 95, 102 and FF slots 19, 28, 63. They need a visual check before re-materialling.
+- Nanite-on-large-meshes and the placeholder luxury material names from the generic production-line template were deliberately not applied, because they conflict with the handover rules.
+- Status: REVIEW-PENDING. Main untouched.
+
 ## 2026-11-12 (Asia/Dubai), courtyard island: no more white grass or stucco needles (branch `lane/unreal-villa-courtyard`)
 
 - The white grass cards on the courtyard island and the pine needle cards in `SM_GF_House` had been bulk-mapped to stucco `MI_Soffit` with the other `*_ffffff` slots. Colin rules out white grass cards.
