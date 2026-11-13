@@ -1,3 +1,10 @@
+## 2026-11-13 (Asia/Dubai), first-floor check; floating furniture removed from the entry void (branch `lane/unreal-villa-courtyard`)
+
+- New planting textures confirmed saved in the project (all seven 1024 px, bark 512 x 1024).
+- First-floor plan check: a top-down cut below the FF ceiling (BaseColor, orthographic). All rooms match the V4 furniture layout: master and bedroom 2 beds head-west, junior suite head-east, bedroom 1 twins head-east, family L-sofa and bench, baths, stair, courtyard void and entry void.
+- Found and removed: a bookcase with books, a full-height panel and a potted plant from the FF capture standing in mid-air where the FF floor is cut open over the double-height entry (V4: OPEN TO BELOW), 4.45 m above the entry floor. Recipe op `entry void:` in `vertical_fix_ops.json`.
+- Live FF `SM_FF_House_v16` (Nanite off, complex collision, distance field scale 2, all slots mapped). Walk test at the character's 25 cm radius: 35 of 35. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), sharper trees and hedges; light switches tested (branch `lane/unreal-villa-courtyard`)
 
 - Light switches tested in a live Play session by sending the keys to the game. L: room lights 29 of 29 on -> 0 of 29 -> 29 of 29. K: lamps 11 of 11 -> 0 of 11 -> 11 of 11.

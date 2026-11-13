@@ -448,6 +448,18 @@
      560
     ],
     "note": "remaining floating books from the bench removed in the master suite to M.dressing approach"
+   },
+   {
+    "op": "remove",
+    "box": [
+     765,
+     1076,
+     2010,
+     2395,
+     444,
+     760
+    ],
+    "note": "entry void: bookcase, panel and potted plant from the capture left floating where the FF floor is cut open to the double-height entry (V4: OPEN TO BELOW)"
    }
   ]
  },
