@@ -1,3 +1,15 @@
+## 2026-11-13 (Asia/Dubai), brighter daylight, full-size master bath tub, balcony seating, stair console moved, easy way back inside (branch `lane/unreal-villa-courtyard`)
+
+- Brighter interiors in daylight: sky light 1.5 -> 2.5, exposure bias -0.3 -> +0.3, local exposure shadow contrast 0.7.
+- Console table with vases at the FF to RF stair entry (40 cm stone plinth, 57 x 85 cm) moved against the corridor east wall (face X 1072, traced): X 1014-1071, Y 1790-1875. A first placement against the south wall blocked the corridor turn into the junior suite; the walk test caught it (31 of 35) and it was moved again.
+- Master bath tub: the "tub" was a remnant (a flat 136 x 61 cm rim plane) after the old stair strip cut sliced the captured bathtub. It is replaced by a 175 x 75 x 55 cm bathtub in the sanitaryware material at the V4 position (south wall face Y 1646, traced; X 480-655). New `addBox` op; `remove` accepts `skipNodes`.
+- Balcony seating on the bedroom balconies: `SM_Balcony_Set`, built from the pool terrace set (`balcony_set` recipe in `vertical_fix_ops.json`), is two teak lounge armchairs facing each other with a round stone side table (2.8 x 0.9 m), in the terrace materials. Placed so no door is blocked:
+  - north balcony (master suite, family living, bedroom 1) at X 940-1220;
+  - south-west balcony (bedroom 2) at 92% scale, since it is 87 cm deep;
+  - south-east balcony (junior suite), 80 cm clear of its door.
+- Orbit view: going back inside is now read every frame in `BP_OrbitPawn` (the same way as its orbit controls) with O, I or Enter. An InsideKeysArmed latch stops the O that opened the view from bouncing straight back, and an on-screen line stays up while outside: "press O, I or Enter to go back inside". Tested in Play: arms in orbit; GoInside puts the walker at the front gate (985, 2860).
+- Live FF: tiles regenerated from `ff_house_v19.glb` (r3_c0, r3_c1 and r4_c1 re-imported). Walk test at full character size: 35 of 35, all balconies and the RF reached. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), sharp from the first step; reflection capture warning fixed (branch `lane/unreal-villa-courtyard`)
 
 - "Blurry as you first walk in": the editor had auto-picked low scalability for the iGPU (`sg.ResolutionQuality` 0), so the image rendered below native resolution and TSR sharpened it over several frames. Set `r.ScreenPercentage=100` with `r.ScreenPercentage.Default.Desktop.Mode=0` (manual) in `Config/DefaultEngine.ini` [SystemSettings], live and in the repo mirror.

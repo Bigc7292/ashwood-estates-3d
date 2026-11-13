@@ -460,6 +460,84 @@
      760
     ],
     "note": "entry void: bookcase, panel and potted plant from the capture left floating where the FF floor is cut open to the double-height entry (V4: OPEN TO BELOW)"
+   },
+   {
+    "op": "move",
+    "box": [
+     893,
+     952,
+     1873,
+     1960,
+     444,
+     560
+    ],
+    "offset": [
+     120,
+     -84,
+     0
+    ],
+    "note": "stair console: low plinth table with vases stood across the entry to the FF to RF flight; set against the corridor east wall (face X 1072, traced) at X 1014-1071, Y 1790-1875, clear of the stair entry and of the corridor turn into the junior suite (Y 1930+)"
+   },
+   {
+    "op": "remove",
+    "box": [
+     600,
+     770,
+     1540,
+     1640,
+     444,
+     520
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "note": "master bath tub: remnant (flat 136 x 61 cm rim plane and end pieces) left after the old stair strip cut sliced the captured tub"
+   },
+   {
+    "op": "addBox",
+    "name": "MBATH_tub",
+    "material": "M_FF_080_fbfbf9",
+    "boxes": [
+     [
+      480,
+      655,
+      1571,
+      1646,
+      445,
+      455
+     ],
+     [
+      480,
+      655,
+      1639,
+      1646,
+      455,
+      500
+     ],
+     [
+      480,
+      655,
+      1571,
+      1578,
+      455,
+      500
+     ],
+     [
+      480,
+      487,
+      1578,
+      1639,
+      455,
+      500
+     ],
+     [
+      648,
+      655,
+      1578,
+      1639,
+      455,
+      500
+     ]
+    ],
+    "note": "master bath tub: new 175 x 75 x 55 cm bathtub along the south wall (face Y 1646, traced) at the V4 position X 480-655, white sanitaryware material, 7 cm rims"
    }
   ]
  },
@@ -1013,6 +1091,79 @@
     "op": "keepNodes",
     "nodes": "^(CONTEXT_|HEDGE_context)",
     "note": "keep only the site context parts"
+   }
+  ]
+ },
+ "balcony_set": {
+  "origin": [
+   0,
+   0,
+   0
+  ],
+  "_doc": "From exterior_export/terrace_set.glb: two teak lounge armchairs facing each other and the round stone side table, laid out armchair-table-armchair (2.8 m x 0.9 m) on local Z 0, for the bedroom balconies.",
+  "ops": [
+   {
+    "op": "move",
+    "box": [
+     345,
+     435,
+     180,
+     275,
+     0,
+     100
+    ],
+    "offset": [
+     -487,
+     -227,
+     -23
+    ],
+    "note": "armchair facing +X to the left of the table"
+   },
+   {
+    "op": "move",
+    "box": [
+     725,
+     815,
+     180,
+     275,
+     0,
+     100
+    ],
+    "offset": [
+     -673,
+     -227,
+     -23
+    ],
+    "note": "armchair facing -X to the right of the table"
+   },
+   {
+    "op": "move",
+    "box": [
+     1094,
+     1136,
+     224,
+     266,
+     0,
+     60
+    ],
+    "offset": [
+     -1115,
+     -245,
+     -7
+    ],
+    "note": "round stone side table on metal base, centred"
+   },
+   {
+    "op": "clipTo",
+    "box": [
+     -200,
+     200,
+     -100,
+     100,
+     -20,
+     200
+    ],
+    "note": "keep only the balcony set"
    }
   ]
  }

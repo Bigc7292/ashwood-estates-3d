@@ -1,5 +1,5 @@
 {
- "source": "ashwood_3d_estates/interior_export/ff_house_v17.glb",
+ "source": "ashwood_3d_estates/interior_export/ff_house_v19.glb",
  "origin": [
   878.0,
   1547.0,
@@ -161,7 +161,7 @@
     300.0,
     800.0
    ],
-   "tris": 3852
+   "tris": 3068
   },
   {
    "name": "ff_r3_c1",
@@ -173,7 +173,7 @@
     300.0,
     800.0
    ],
-   "tris": 1632
+   "tris": 1997
   },
   {
    "name": "ff_r3_c2",
@@ -221,7 +221,7 @@
     300.0,
     800.0
    ],
-   "tris": 1063
+   "tris": 434
   },
   {
    "name": "ff_r4_c2",

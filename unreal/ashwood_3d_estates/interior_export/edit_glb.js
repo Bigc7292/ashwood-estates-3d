@@ -13,6 +13,7 @@
 //   {"op":"move","box":[...],"except":[[...],...],"rotZ":deg,"pivot":[x,y],"offset":[dx,dy,dz],"skipNodes":"regex"}
 //                                            relocate whole furniture pieces lying fully inside box
 //   {"op":"dropNodes"|"keepNodes","nodes":"regex"}  split a file by part name
+//   {"op":"addBox","boxes":[[...],...],"material":"NAME"}  add solid boxes (rebuilt fixtures)
 //   {"op":"clipTo","box":[...]}            keep only what lies inside the box (exact clip), for tiling
 // Node transforms are baked, indices expanded; material names are kept (Unreal maps slots by name).
 const fs = require('fs');
@@ -149,8 +150,9 @@ for (const o of cfg.ops) {
       own.g.tris = nt; after += nt.length;
     }
   } else if (o.op === 'subtract' || o.op === 'cut' || o.op === 'remove') {
-    const B = boxG(o.box);
+    const B = boxG(o.box); const skipR = o.skipNodes ? new RegExp(o.skipNodes) : null;
     for (const g of groups) {
+      if (skipR && skipR.test(g.name)) { before += g.tris.length; after += g.tris.length; continue; }
       before += g.tris.length; const nt = [];
       for (const t of g.tris) {
         if (o.op === 'remove') { const [mn, mx] = bboxOf(t); if (mn[0] >= B[0] && mx[0] <= B[1] && mn[1] >= B[2] && mx[1] <= B[3] && mn[2] >= B[4] && mx[2] <= B[5]) continue; nt.push(t); }
@@ -181,6 +183,11 @@ for (const o of cfg.ops) {
       }
       before += g.tris.length;
     }
+  } else if (o.op === 'addBox') {
+    // New solid boxes (world cm) in an existing material, e.g. to rebuild a fixture: {"boxes":[[x0,x1,y0,y1,z0,z1],...],"material":"NAME"}
+    const T = [];
+    for (const bx of o.boxes) { const a = toG(bx[0], bx[2], bx[4]), c = toG(bx[1], bx[3], bx[5]); T.push(...box(Math.min(a[0], c[0]), Math.max(a[0], c[0]), Math.min(a[1], c[1]), Math.max(a[1], c[1]), Math.min(a[2], c[2]), Math.max(a[2], c[2]))); }
+    groups.push({ name: o.name || `added_${report.length}`, material: matIndex(o.material), tris: withUV(T) }); after = T.length;
   } else if (o.op === 'clipTo') {
     // Keep only the part of every triangle inside the box (exact clip), e.g. to cut a floor into tiles for Lumen.
     // Bounds use half-open intervals in X/Y via the clip planes, so neighbouring tiles meet without gaps or overlaps.
