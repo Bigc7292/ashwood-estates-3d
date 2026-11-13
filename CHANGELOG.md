@@ -1,3 +1,15 @@
+## 2026-11-13 (Asia/Dubai), natural daylight; TV wall and ceilings fixed (branch `lane/unreal-villa-courtyard`)
+
+- User report with screenshots: the TV could not be seen, rooms were dark, and ceilings were still cloudy. Diagnosis by G-buffer captures at the living room:
+  - BaseColor shows a light travertine TV wall with the TV, LED strips and a floating console. Normals face the room; nothing is metallic; no glass is in front.
+  - Lit, the wall rendered black and the ceiling cloudy. On this iGPU (D3D11 SM5, software Lumen at low scalability) the interior walls sit within a few cm of the shell walls, below the distance-field resolution. Lumen and distance-field AO therefore treat their surfaces as buried, giving no bounce light, black reflections and cloudy sky-light shadowing.
+- Fixes:
+  - PostProcessVolume: global illumination and reflections changed from Lumen to Screen Space; indirect lighting intensity 1.6. `r.DistanceFieldAO=0` added to `Config/DefaultEngine.ini` [SystemSettings] (Unreal project config).
+  - 13 sphere reflection captures (radius 6.5 m) in the main rooms on both floors (`Lights/ReflectionCaptures`) for off-screen floor reflections.
+  - Sun: location set from the template default (Montreal, 45 N) to the project's Dubai (25.2 N, 55.3 E, UTC+4), 21 September, 16:00. The afternoon sun (42.6 degrees up) comes in through the pool-side glazing. Sky light 1.5; sun indirect 1.5; white balance 7000 K.
+- Before/after at the same camera: the TV wall goes from pitch black to travertine with the TV visible, and the cloudy ceiling becomes even. The kitchen and corridor are clean.
+- The tiles and distance fields stay in place; they also serve the reflection captures and a later switch back to Lumen on hardware that supports it. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), interiors split into tiles: blotchy ceilings and black reflections fixed (branch `lane/unreal-villa-courtyard`)
 
 - User screenshots of the GF showed cloud-like blotches on ceilings, smudged wall shading and a black glossy wall. Cause: each floor was one static mesh, and Lumen's surface cache gets at most 12 cards per mesh (`max_lumen_mesh_cards` = 12). Fifteen rooms shared 12 cards, so most walls and ceilings had no cached lighting. The interior meshes were also not marked two-sided for the distance field, although their walls and ceilings are single-sided.
