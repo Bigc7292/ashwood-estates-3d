@@ -1,3 +1,12 @@
+## 2026-11-13 (Asia/Dubai), sharp from the first step; reflection capture warning fixed (branch `lane/unreal-villa-courtyard`)
+
+- "Blurry as you first walk in": the editor had auto-picked low scalability for the iGPU (`sg.ResolutionQuality` 0), so the image rendered below native resolution and TSR sharpened it over several frames. Set `r.ScreenPercentage=100` with `r.ScreenPercentage.Default.Desktop.Mode=0` (manual) in `Config/DefaultEngine.ini` [SystemSettings], live and in the repo mirror.
+- "Reflection captures need rebuilding": the project asked for 2048 px capture cubes, and all 13 failed ("didn't fit in memory on host machine": 128 MB of dedicated VRAM). Changes:
+  - `r.ReflectionCaptureResolution` set to 256.
+  - World Settings set to force no precomputed lighting, so a lighting build no longer starts a Lightmass bake; all 42 lights are movable.
+  - Captures rebuilt with `BuildReflectionCaptures`. The viewport capture with on-screen messages shows no warning.
+- Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), natural daylight; TV wall and ceilings fixed (branch `lane/unreal-villa-courtyard`)
 
 - User report with screenshots: the TV could not be seen, rooms were dark, and ceilings were still cloudy. Diagnosis by G-buffer captures at the living room:
