@@ -1,3 +1,16 @@
+## 2026-11-13 (Asia/Dubai), stairs climbable by the real character (branch `lane/unreal-villa-courtyard`)
+
+- User report: could not get upstairs. A Play test with the real character (1.92 m tall, radius 25) stopped every time at Y 1863, about six treads up the GF to FF flight. The walk test had passed because its person was 1.90 m and 4 cm narrower. Causes found with capsule sweeps:
+  - The stair opening lining hung from Z 345 (old GF ceiling depth) to 445, which made a 50 cm beam across the flight at Y 1855. Linings are now slab depth only: GF to FF Z 395-445, FF to RF Z 775-845 (the upper flight had the same beam).
+  - The GF ceiling over the flight was open only from Y 1855; it is now open over the whole flight (Y 1438-1990). The FF ceiling opening is extended to Y 1800.
+  - Character `max_step_height` lowered from 45 to 30 cm. The tallest step anywhere is 19 cm, and step-up needs head clearance for the full step height.
+- `walk_check.py` now uses the real character: radius 25 cm, clear to 1.95 m.
+- Tests:
+  - Play, GF to FF flight: climbed in about 7 s and walked on to the FF corridor.
+  - Play, FF to RF flight: climbed to roof level (feet Z 847) and out onto the terrace.
+  - Walk test at full size: 35 of 35.
+- Live meshes `SM_Villa_Exterior_v18`, `SM_GF_House_v5`, `SM_FF_House_v17` (Nanite off, complex collision, distance field scales 3/2/2). Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), daylight no longer washed out; rooms settle quickly on entry (branch `lane/unreal-villa-courtyard`)
 
 - Washed-out daylight. Auto exposure had a +0.5 bias, a wide EV 1-14 range and slow adaptation (darkening at 1 EV/s), and the height fog (density 0.02) started at the camera, hazing the house itself. Changes:

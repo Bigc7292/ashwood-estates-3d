@@ -25,11 +25,11 @@
      761,
      889,
      1438,
-     1855,
+     1990,
      340,
      350
     ],
-    "note": "GF ceiling stair opening"
+    "note": "GF ceiling stair opening, over the whole flight (Y 1438-1990) so a 1.92 m character clears the lower treads under the FF slab"
    },
    {
     "op": "cut",
@@ -155,11 +155,11 @@
      761,
      889,
      1309,
-     1726,
+     1800,
      740,
      750
     ],
-    "note": "FF ceiling stair opening"
+    "note": "FF ceiling stair opening, extended to Y 1800 so a 1.92 m character clears the FF to RF flight before the roof opening"
    },
    {
     "op": "cut",
@@ -496,10 +496,11 @@
      1855
     ],
     "z": [
-     345,
+     395,
      445
     ],
-    "material": "MAT_soffit"
+    "material": "MAT_soffit",
+    "note": "stair opening lining, FF slab depth only (Z 395-445): a deeper lining (from Z 345) formed a beam at Y 1855 that stopped a 1.92 m character on the GF to FF flight"
    },
    {
     "op": "cut",
@@ -522,10 +523,11 @@
      1726
     ],
     "z": [
-     745,
+     775,
      845
     ],
-    "material": "MAT_soffit"
+    "material": "MAT_soffit",
+    "note": "roof stair opening lining, roof slab depth only (Z 775-845): a deeper lining (from Z 745) formed the same beam over the FF to RF flight"
    },
    {
     "op": "cut",

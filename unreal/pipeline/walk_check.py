@@ -5,7 +5,7 @@ Run inside the editor (execute_python), then await the coroutine:
 
 Method, on a 20 cm grid over the house (needs complex-as-simple collision on the villa meshes):
   1. Every column is scanned top-down with line traces; each upward-facing hit is a candidate floor.
-  2. A floor cell is walkable when a person capsule (radius 22 cm, clear from 30 cm to 190 cm above the
+  2. A floor cell is walkable when a person capsule (radius 25 cm, clear from 30 cm to 195 cm above the
      floor) overlaps nothing. Walls, glass, closed door leaves and furniture block; steps up to 30 cm don't.
   3. Neighbouring walkable cells connect when their floors differ by max_step (default 25 cm; risers are 19 cm).
   4. Flood fill from outside the front door. A room passes when a reached cell lies within 60 cm (plan)
@@ -19,7 +19,7 @@ from collections import deque
 
 import unreal
 
-STEP, R, HALF, LIFT = 20.0, 22.0, 80.0, 30.0
+STEP, R, HALF, LIFT = 20.0, 25.0, 82.5, 30.0  # BP_FirstPersonCharacter: radius 25, 1.92 m tall (top at floor + 30 + 2*82.5 = 1.95 m)
 X0, X1, Y0, Y1, ZTOP = 250, 1650, 250, 2900, 1250
 gf = lambda px, py: ((px - 148) / 0.435, (py - 165) / 0.435, 45)
 ff = lambda px, py: ((px - 170) / 0.435, (py - 174) / 0.435, 445)
