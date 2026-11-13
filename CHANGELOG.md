@@ -1,3 +1,11 @@
+## 2026-11-13 (Asia/Dubai), bedside tables turned, chandeliers hung, leaves through the walls removed (branch `lane/unreal-villa-courtyard`)
+
+- From the user's annotated screenshot of the master suite:
+  - Bedside tables: all eight FF bedside tables had their drawer fronts on +Y whatever their bed's direction, left over from when the beds were turned. Each is turned in place (with its drawer handles, lamp and book) so the drawers face into the room: master and bedroom 2 -90 degrees, junior suite and bedroom 1 +90 degrees. The first box missed the handles by 1-2 cm; it is widened by 4 cm.
+  - Stick chandeliers had no suspension. The FF cluster had ended up across the master/family wall after the furniture shift, so it showed half-hidden in the master suite. It moves back over the family living seating (X 888-1113, Y 664-756) and gets a ceiling plate and three cables to the ceiling (Z 688 to 745). The GF dining cluster gets the same: plate and three cables, Z 288 to 345, in dark metal materials. New `addBox` parts named `FF_chandelier_suspension` and `GF_chandelier_suspension`.
+  - Leaves through the master wall: garden olive leaves crossed the shell into the room. New recipe `planting` clips the planting set to outside the house footprint (three boxes around the courtyard, which keeps its pine). `SM_Planting_v2`, no collision, all slots mapped.
+- Live: FF `ff_house_v21.glb` (all 24 tiles re-imported), GF `gf_house_v6.glb` (tiles r0_c0 and r0_c1). Walk test 35 of 35. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), stray leaves removed from the master bed (branch `lane/unreal-villa-courtyard`)
 
 - Three leaf fragments of the bedside plant (X 544-573, Y 829-838) were lying on the master duvet. They reached past the bed-wall move box, so they stayed behind when the plant moved. Removed with a `remove` op that skips the bed materials. FF `ff_house_v20.glb`; tile ff_r1_c0 re-imported with full setup. Status: WIP. Main untouched.

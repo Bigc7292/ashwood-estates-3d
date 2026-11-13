@@ -66,6 +66,46 @@
      389
     ],
     "note": "GF interior living slider to pool terrace open"
+   },
+   {
+    "op": "addBox",
+    "name": "GF_chandelier_suspension",
+    "material": "M_GF_050_151516",
+    "boxes": [
+     [
+      590,
+      806,
+      731,
+      751,
+      341,
+      345
+     ],
+     [
+      599,
+      601,
+      740,
+      742,
+      288,
+      341
+     ],
+     [
+      697,
+      699,
+      740,
+      742,
+      288,
+      341
+     ],
+     [
+      795,
+      797,
+      740,
+      742,
+      288,
+      341
+     ]
+    ],
+    "note": "chandelier: dining stick cluster hung in mid-air; ceiling plate and three cables, cluster top Z 288 to ceiling Z 345"
    }
   ]
  },
@@ -551,6 +591,248 @@
     ],
     "skipNodes": "^MeshStandardMaterial_(1[89]|2[0-6])$",
     "note": "master bed leaves: three leaf fragments of the bedside plant left lying on the duvet when the plant moved with the bed wall (they reached past that move box)"
+   },
+   {
+    "op": "move",
+    "box": [
+     565,
+     800,
+     595,
+     695,
+     630,
+     700
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "offset": [
+     316.5,
+     65,
+     0
+    ],
+    "note": "chandelier: stick cluster straddled the master/family wall after the furniture shift; centred over the family living seating (X 888-1113, Y 664-756)"
+   },
+   {
+    "op": "addBox",
+    "name": "FF_chandelier_suspension",
+    "material": "M_FF_095_1b1b1b",
+    "boxes": [
+     [
+      890,
+      1110,
+      700,
+      720,
+      741,
+      745
+     ],
+     [
+      899,
+      901,
+      709,
+      711,
+      688,
+      741
+     ],
+     [
+      999,
+      1001,
+      709,
+      711,
+      688,
+      741
+     ],
+     [
+      1099,
+      1101,
+      709,
+      711,
+      688,
+      741
+     ]
+    ],
+    "note": "chandelier: ceiling plate and three cables, cluster top Z 688 to ceiling Z 745"
+   },
+   {
+    "op": "move",
+    "box": [
+     343,
+     394,
+     606,
+     658,
+     444,
+     600
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "rotZ": -90,
+    "pivot": [
+     367.5,
+     632
+    ],
+    "offset": [
+     0,
+     0,
+     0
+    ],
+    "note": "bedside table: master N turned so the drawer fronts face into the room (they faced +Y whatever the bed direction); box widened 4 cm so the drawer handles turn with it"
+   },
+   {
+    "op": "move",
+    "box": [
+     343,
+     394,
+     844,
+     896,
+     444,
+     600
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "rotZ": -90,
+    "pivot": [
+     367.5,
+     870
+    ],
+    "offset": [
+     0,
+     0,
+     0
+    ],
+    "note": "bedside table: master S turned so the drawer fronts face into the room (they faced +Y whatever the bed direction); box widened 4 cm so the drawer handles turn with it"
+   },
+   {
+    "op": "move",
+    "box": [
+     360,
+     398,
+     2039,
+     2081,
+     444,
+     600
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "rotZ": -90,
+    "pivot": [
+     379,
+     2060
+    ],
+    "offset": [
+     0,
+     0,
+     0
+    ],
+    "note": "bedside table: bedroom 2 N turned so the drawer fronts face into the room (they faced +Y whatever the bed direction); box widened 4 cm so the drawer handles turn with it"
+   },
+   {
+    "op": "move",
+    "box": [
+     360,
+     398,
+     2264,
+     2306,
+     444,
+     600
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "rotZ": -90,
+    "pivot": [
+     379,
+     2285
+    ],
+    "offset": [
+     0,
+     0,
+     0
+    ],
+    "note": "bedside table: bedroom 2 S turned so the drawer fronts face into the room (they faced +Y whatever the bed direction); box widened 4 cm so the drawer handles turn with it"
+   },
+   {
+    "op": "move",
+    "box": [
+     1512,
+     1546,
+     2063,
+     2105,
+     444,
+     600
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "rotZ": 90,
+    "pivot": [
+     1529,
+     2084
+    ],
+    "offset": [
+     0,
+     0,
+     0
+    ],
+    "note": "bedside table: junior N turned so the drawer fronts face into the room (they faced +Y whatever the bed direction); box widened 4 cm so the drawer handles turn with it"
+   },
+   {
+    "op": "move",
+    "box": [
+     1512,
+     1546,
+     2291,
+     2333,
+     444,
+     600
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "rotZ": 90,
+    "pivot": [
+     1529,
+     2312
+    ],
+    "offset": [
+     0,
+     0,
+     0
+    ],
+    "note": "bedside table: junior S turned so the drawer fronts face into the room (they faced +Y whatever the bed direction); box widened 4 cm so the drawer handles turn with it"
+   },
+   {
+    "op": "move",
+    "box": [
+     1515,
+     1550,
+     539,
+     581,
+     444,
+     600
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "rotZ": 90,
+    "pivot": [
+     1532.5,
+     560
+    ],
+    "offset": [
+     0,
+     0,
+     0
+    ],
+    "note": "bedside table: bedroom 1 N turned so the drawer fronts face into the room (they faced +Y whatever the bed direction); box widened 4 cm so the drawer handles turn with it"
+   },
+   {
+    "op": "move",
+    "box": [
+     1515,
+     1550,
+     849,
+     891,
+     444,
+     600
+    ],
+    "skipNodes": "^MeshStandardMaterial_(14|15|16)$",
+    "rotZ": 90,
+    "pivot": [
+     1532.5,
+     870
+    ],
+    "offset": [
+     0,
+     0,
+     0
+    ],
+    "note": "bedside table: bedroom 1 S turned so the drawer fronts face into the room (they faced +Y whatever the bed direction); box widened 4 cm so the drawer handles turn with it"
    }
   ]
  },
@@ -1177,6 +1459,52 @@
      200
     ],
     "note": "keep only the balcony set"
+   }
+  ]
+ },
+ "planting": {
+  "origin": [
+   0,
+   0,
+   0
+  ],
+  "_doc": "exterior_export/planting_set.glb: leaves that grew through the shell walls into rooms are clipped away; the courtyard (X 1095-1578, Y 1278-1634) is kept.",
+  "ops": [
+   {
+    "op": "subtract",
+    "box": [
+     292,
+     1590,
+     470,
+     1278,
+     0,
+     900
+    ],
+    "note": "house footprint north of the courtyard"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     292,
+     1095,
+     1278,
+     1634,
+     0,
+     900
+    ],
+    "note": "house footprint beside the courtyard (west)"
+   },
+   {
+    "op": "subtract",
+    "box": [
+     292,
+     1590,
+     1634,
+     2400,
+     0,
+     900
+    ],
+    "note": "house footprint south of the courtyard"
    }
   ]
  }
