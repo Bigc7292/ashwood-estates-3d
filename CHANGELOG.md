@@ -1,3 +1,7 @@
+## 2026-11-13 (Asia/Dubai), stray leaves removed from the master bed (branch `lane/unreal-villa-courtyard`)
+
+- Three leaf fragments of the bedside plant (X 544-573, Y 829-838) were lying on the master duvet. They reached past the bed-wall move box, so they stayed behind when the plant moved. Removed with a `remove` op that skips the bed materials. FF `ff_house_v20.glb`; tile ff_r1_c0 re-imported with full setup. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), brighter daylight, full-size master bath tub, balcony seating, stair console moved, easy way back inside (branch `lane/unreal-villa-courtyard`)
 
 - Brighter interiors in daylight: sky light 1.5 -> 2.5, exposure bias -0.3 -> +0.3, local exposure shadow contrast 0.7.

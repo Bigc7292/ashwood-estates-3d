@@ -538,6 +538,19 @@
      ]
     ],
     "note": "master bath tub: new 175 x 75 x 55 cm bathtub along the south wall (face Y 1646, traced) at the V4 position X 480-655, white sanitaryware material, 7 cm rims"
+   },
+   {
+    "op": "remove",
+    "box": [
+     540,
+     580,
+     825,
+     845,
+     505,
+     535
+    ],
+    "skipNodes": "^MeshStandardMaterial_(1[89]|2[0-6])$",
+    "note": "master bed leaves: three leaf fragments of the bedside plant left lying on the duvet when the plant moved with the bed wall (they reached past that move box)"
    }
   ]
  },
