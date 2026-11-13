@@ -1,3 +1,10 @@
+## 2026-11-13 (Asia/Dubai), bedroom 2 balcony: door fully open, seating clear of the wall (branch `lane/unreal-villa-courtyard`)
+
+- From two user screenshots of the bedroom 2 (south-west) balcony:
+  - Balcony door half blocked: the door cut (X 628-712) was narrower than the interior opening (X 572-683), so four slats of the screen in front of the glazing (FF_slat_L16-L19) still stood in the doorway. The cut is widened to X 570-685 in both the shell and the FF facade. A check shows nothing left in the doorway from 15 cm to 3.15 m.
+  - Seating cut by a wall: the balcony is only X 292-730 by 87 cm deep. Past X 750 is the slatted screen in front of the double-height entry, crossed by a wall (X 750-1069), and the double set sat there. Bedroom 2 now has `SM_Balcony_Single` (one teak armchair and the side table; recipe `balcony_single`) at 90% scale, X 400-544, clear of the door. The north and south-east sets are unchanged.
+- Live: `SM_Villa_Exterior_v19` (Nanite off, complex collision, distance field scale 3), FF `ff_house_v22.glb` (tile ff_r5_c0). Walk test 35 of 35. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), bedside tables turned, chandeliers hung, leaves through the walls removed (branch `lane/unreal-villa-courtyard`)
 
 - From the user's annotated screenshot of the master suite:

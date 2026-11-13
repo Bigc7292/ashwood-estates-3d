@@ -336,14 +336,14 @@
    {
     "op": "subtract",
     "box": [
-     628,
-     712,
+     570,
+     685,
      2370,
      2420,
      446,
      690
     ],
-    "note": "bedroom 2 SW balcony door through FF facade"
+    "note": "bedroom 2 SW balcony door through FF facade (widened to X 570-685, the full interior opening: slats of the screen still stood in the doorway)"
    },
    {
     "op": "subtract",
@@ -1076,14 +1076,14 @@
    {
     "op": "subtract",
     "box": [
-     628,
-     712,
+     570,
+     685,
      2395,
      2420,
      446,
      768
     ],
-    "note": "bedroom 2 door to SW balcony (glazing + 5 slats)"
+    "note": "bedroom 2 door to SW balcony (widened to X 570-685, the full interior opening: slats of the screen still stood in the doorway)"
    },
    {
     "op": "subtract",
@@ -1505,6 +1505,28 @@
      900
     ],
     "note": "house footprint south of the courtyard"
+   }
+  ]
+ },
+ "balcony_single": {
+  "origin": [
+   0,
+   0,
+   0
+  ],
+  "_doc": "From exterior_export/balcony_set.glb: one armchair plus the side table, for the narrow bedroom 2 balcony.",
+  "ops": [
+   {
+    "op": "clipTo",
+    "box": [
+     -145,
+     25,
+     -100,
+     100,
+     -20,
+     200
+    ],
+    "note": "armchair facing +X and the side table"
    }
   ]
  }
