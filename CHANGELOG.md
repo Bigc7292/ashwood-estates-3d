@@ -1,3 +1,13 @@
+## 2026-11-13 (Asia/Dubai), daylight no longer washed out; rooms settle quickly on entry (branch `lane/unreal-villa-courtyard`)
+
+- Washed-out daylight. Auto exposure had a +0.5 bias, a wide EV 1-14 range and slow adaptation (darkening at 1 EV/s), and the height fog (density 0.02) started at the camera, hazing the house itself. Changes:
+  - PostProcessVolume: exposure EV 4-13.5, bias -0.3, adapt 5/4 EV/s, local exposure highlight contrast 0.75, bloom 0.35 -> 0.2.
+  - Fog: density 0.006, start distance 15 m, max opacity 0.7.
+- "Blurry when entering rooms" was Lumen re-converging in a new space, plus texture streaming on a 128 MB iGPU. Changes:
+  - Lumen final gather and scene lighting update speed set to 4 (maximum).
+  - 56 house and planting textures set to never stream.
+- Checks: the exterior capture shows deep sky, textured stone and leaf detail. The entry captured 1.5 s after moving the camera in from outside is clean (before: dark and smeared at the same point). Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), first-floor check; floating furniture removed from the entry void (branch `lane/unreal-villa-courtyard`)
 
 - New planting textures confirmed saved in the project (all seven 1024 px, bark 512 x 1024).
