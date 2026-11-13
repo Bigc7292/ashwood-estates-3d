@@ -13,6 +13,7 @@
 //   {"op":"move","box":[...],"except":[[...],...],"rotZ":deg,"pivot":[x,y],"offset":[dx,dy,dz],"skipNodes":"regex"}
 //                                            relocate whole furniture pieces lying fully inside box
 //   {"op":"dropNodes"|"keepNodes","nodes":"regex"}  split a file by part name
+//   {"op":"clipTo","box":[...]}            keep only what lies inside the box (exact clip), for tiling
 // Node transforms are baked, indices expanded; material names are kept (Unreal maps slots by name).
 const fs = require('fs');
 const [, , inp, out, opsPath, key] = process.argv;
@@ -179,6 +180,15 @@ for (const o of cfg.ops) {
         t.p = t.p.map(rotP); t.n = t.n.map(rotN); after++;
       }
       before += g.tris.length;
+    }
+  } else if (o.op === 'clipTo') {
+    // Keep only the part of every triangle inside the box (exact clip), e.g. to cut a floor into tiles for Lumen.
+    // Bounds use half-open intervals in X/Y via the clip planes, so neighbouring tiles meet without gaps or overlaps.
+    const B = boxG(o.box); const planes = [[0, 1, B[0]], [0, -1, -B[1]], [1, 1, B[2]], [1, -1, -B[3]], [2, 1, B[4]], [2, -1, -B[5]]];
+    for (const g of groups) {
+      before += g.tris.length; const nt = [];
+      for (const t of g.tris) { const [mn, mx] = bboxOf(t); if (mx[0] < B[0] || mn[0] > B[1] || mx[1] < B[2] || mn[1] > B[3] || mx[2] < B[4] || mn[2] > B[5]) continue; nt.push(...fan(clipPoly(verts(t), planes))); }
+      g.tris = nt; after += nt.length;
     }
   } else if (o.op === 'dropNodes' || o.op === 'keepNodes') {
     // Split a file by part name: dropNodes removes parts whose name matches o.nodes, keepNodes keeps only those.

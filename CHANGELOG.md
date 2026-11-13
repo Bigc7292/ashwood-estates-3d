@@ -1,3 +1,10 @@
+## 2026-11-13 (Asia/Dubai), interiors split into tiles: blotchy ceilings and black reflections fixed (branch `lane/unreal-villa-courtyard`)
+
+- User screenshots of the GF showed cloud-like blotches on ceilings, smudged wall shading and a black glossy wall. Cause: each floor was one static mesh, and Lumen's surface cache gets at most 12 cards per mesh (`max_lumen_mesh_cards` = 12). Fifteen rooms shared 12 cards, so most walls and ceilings had no cached lighting. The interior meshes were also not marked two-sided for the distance field, although their walls and ceilings are single-sided.
+- Fix: new `clipTo` op in `edit_glb.js` (exact clip to a box) and `unreal/pipeline/walkthrough/make_tiles.py`, which cuts a floor into 4 x 4 m tiles. GF v5 and FF v17 are cut into 24 tiles each (triangles +3-4% from edge splits). Each tile is its own mesh in `/Game/Rooms/Tiles/`, so it has its own Lumen cards and distance field (scale 1.5, two-sided). Setup per tile: Nanite off, complex collision, every slot mapped. Placed as `Tile_GF_*` and `Tile_FF_*` (folders `Interior/GF_Tiles` and `Interior/FF_Tiles`). The whole-floor actors are kept hidden with no collision in `Interior/Rollback_whole_floor`.
+- Tile GLBs (about 500 MB) are not committed: `.gitignore` covers them, and `make_tiles.py` regenerates them from the committed `gf_house_v5.glb` and `ff_house_v17.glb`.
+- Checks: walk test at full character size 35 of 35; side traces hit the tiles (collision live); living room capture shows an even ceiling, crisp furniture and no black reflections. Status: WIP. Main untouched.
+
 ## 2026-11-13 (Asia/Dubai), stairs climbable by the real character (branch `lane/unreal-villa-courtyard`)
 
 - User report: could not get upstairs. A Play test with the real character (1.92 m tall, radius 25) stopped every time at Y 1863, about six treads up the GF to FF flight. The walk test had passed because its person was 1.90 m and 4 cm narrower. Causes found with capsule sweeps:
